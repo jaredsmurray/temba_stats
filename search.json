@@ -116,7 +116,28 @@
     "href": "data.html",
     "title": "Data",
     "section": "",
-    "text": "Datasets used in the notes and lecture slides are distributed through Canvas (Files → Data). A listing with short descriptions of each dataset will appear here once the public subset is finalized.\nIf you cannot find a dataset you need for an assignment, ask on the course discussion board."
+    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba-stats-2026/data/returns/returns.csv\")."
+  },
+  {
+    "objectID": "data.html#austin-house-listings",
+    "href": "data.html#austin-house-listings",
+    "title": "Data",
+    "section": "Austin house listings",
+    "text": "Austin house listings\n\naustin_houses.csv (9 MB)\naustin_houses_subset.csv (0.7 MB)"
+  },
+  {
+    "objectID": "data.html#ercot-hourly-load",
+    "href": "data.html#ercot-hourly-load",
+    "title": "Data",
+    "section": "ERCOT hourly load",
+    "text": "ERCOT hourly load\n\nload_1.csv (23 MB)\nload_2.csv (22 MB)\nload_3.csv (17 MB)"
+  },
+  {
+    "objectID": "data.html#sp-500-weekly-returns",
+    "href": "data.html#sp-500-weekly-returns",
+    "title": "Data",
+    "section": "S&P 500 weekly returns",
+    "text": "S&P 500 weekly returns\n\nreturns.csv"
   },
   {
     "objectID": "index.html",
