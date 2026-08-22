@@ -82,7 +82,7 @@ stages; the closing ledger says exactly what to re-run.
 
 | Command | What it does |
 |---|---|
-| `./ship.sh` | The daily command: build what changed → deploy → verify → Canvas if changed. |
+| `./publish.sh` | (this repo) render + `quarto publish gh-pages`; then run `./canvas.sh --diff` / `--push` yourself. |
 | `./canvas.sh --preview` | Render to `working/canvas/canvas_preview.html` and open it. No network. |
 | `./canvas.sh --check` | Validate links, manifest, bundles, file ids. Read-only; exits non-zero on problems. |
 | `./canvas.sh --diff` | Show what a push would change (vs. the body generated at the last push). |
@@ -94,7 +94,7 @@ stages; the closing ledger says exactly what to re-run.
 | `./canvas.sh --prune [--keep N \| --all]` | Delete old snapshots. Lists them and prompts first; keeps 3 by default. |
 | `./canvas.sh --refresh-files` | Re-fetch the Canvas file-id cache; warns on duplicate file names. |
 | `./canvas.sh --sync-data` | Upload datasets marked `host: canvas` in the manifest. |
-| `./tools/check_links.sh` | HEAD every absolute link in the last `--preview`; fails on dead ones. Wired into `ship.sh`. |
+| `./tools/check_links.sh` | HEAD every absolute link in the last `--preview`; fails on dead ones. Run it by hand after `--preview`. |
 
 Every networked action starts with a token preflight, so a dead token fails in
 seconds with the fix spelled out rather than mid-push before class.

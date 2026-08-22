@@ -414,7 +414,7 @@ distribution, or it might be a data-entry error (or something else). You should 
 :::
 
 
-A **violin plot** is essentially a density plot mirrored on both sides of an axis, often combined with a box plot in the center. Violins are most useful for comparing distributions across groups, which we'll do in @sec-box-violin-by-group. For a single variable, they're a nice way to show both the density shape and the summary statistics.
+A **violin plot** is essentially a density plot mirrored on both sides of an axis, often combined with a box plot in the center. Violins are most useful for comparing distributions across groups, which we'll do when we compare groups later in the course. For a single variable, they're a nice way to show both the density shape and the summary statistics.
 
 ```{r}
 #| label: fig-violin-price

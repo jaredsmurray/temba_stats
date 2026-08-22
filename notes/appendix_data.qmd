@@ -1,0 +1,32 @@
+---
+title: "Datasets"
+---
+
+This appendix documents every dataset used in these notes: what it is, where it came from, and the variables that appear in the examples. Each chapter ends with a "Data used in this section" list linking back to the relevant entries here. The raw files live in the book's `data/` directory.
+
+{{< include data/cards/data-housing-kaggle.qmd >}}
+
+{{< include data/cards/data-earnings-cps.qmd >}}
+
+{{< include data/cards/data-returns-2025.qmd >}}
+
+{{< include data/cards/data-portfolios-2025.qmd >}}
+
+{{< include data/cards/data-ercot-shaffer.qmd >}}
+
+{{< include data/cards/data-lendingclub-kaggle.qmd >}}
+
+{{< include data/cards/data-sap-nucleus.qmd >}}
+
+{{< include data/cards/data-kroger-cheese.qmd >}}
+
+{{< include data/cards/data-wfh-bloom.qmd >}}
+
+{{< include data/cards/data-shed.qmd >}}
+
+{{< include data/cards/data-evals-hamermesh.qmd >}}
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

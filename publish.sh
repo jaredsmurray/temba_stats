@@ -7,6 +7,7 @@ for a in "$@"; do case "$a" in
   --site) notes=false; full=false ;; --notes) site=false; full=false ;;
   --refresh) rm -rf _freeze notes/_freeze ;; --no-publish) publish=false ;;
   *) echo "unknown flag $a" >&2; exit 1 ;; esac; done
+if ! $site && ! $notes; then echo "--site and --notes together render nothing; pick one or neither" >&2; exit 1; fi
 [ -d data ] || { echo "data/ missing: run tools/get_data.sh" >&2; exit 1; }
 if $site;  then if $full; then quarto render; else quarto render --no-clean; fi; fi
 if $notes; then (cd notes && quarto render); fi

@@ -52,6 +52,8 @@ book:
     - part: "Visualizing and summarizing a single variable"
       chapters:
         - singlevar_01_visualizing-distributions.qmd
+  appendices:
+    - appendix_data.qmd
 
 bibliography: references.bib
 

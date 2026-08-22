@@ -46,4 +46,8 @@ fi
 
 dest="${dest:-${ROOT}}"
 echo ">> data pin: ${pin}"
-exec "$FETCH" "$pin" "$dest"
+"$FETCH" "$pin" "$dest"
+ln -sfn ../cards "$dest/data/cards"
+
+# Book chapters include data cards as data/cards/<card>.qmd; fetch_data.sh
+# delivers them at <dest>/cards/, so expose them under data/ as well.

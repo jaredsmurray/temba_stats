@@ -15,7 +15,7 @@
 #     ./canvas.sh --refresh-files   re-fetch the Canvas file-id cache
 #     ./canvas.sh --sync-data   upload datasets marked `host: canvas`
 #
-# Normally driven by ./ship.sh, which builds and deploys the site first and
+# Run after ./publish.sh has deployed the site (there is no ship.sh here);
 # pushes here only when the generated page actually changed.
 set -euo pipefail
 
