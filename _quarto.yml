@@ -9,6 +9,14 @@ project:
     - "!files/**"
   resources:
     - "files/*.pdf"
+    # Datasets served to students: only the files the imported notes/decks read.
+    # Add entries as chapters/decks are imported (see data.qmd).
+    - "data/austin_houses/austin_houses.csv"
+    - "data/austin_houses/austin_houses_subset.csv"
+    - "data/ercot/ercotproject/Data/load_1.csv"
+    - "data/ercot/ercotproject/Data/load_2.csv"
+    - "data/ercot/ercotproject/Data/load_3.csv"
+    - "data/returns/returns.csv"
 
 website:
   title: "TEMBA Statistics"

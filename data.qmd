@@ -2,9 +2,25 @@
 title: "Data"
 ---
 
-Datasets used in the notes and lecture slides are distributed through **Canvas**
-(Files → Data). A listing with short descriptions of each dataset will appear here
-once the public subset is finalized.
+Datasets used in the notes and slides, served from this site. Each dataset is
+documented in the notes' [data appendix](notes/appendix_data.html) (what it is,
+where it came from, and what the variables mean). Files are fetched from the
+pinned `teaching-data` release; see `data_pin` in the site repo.
 
-If you cannot find a dataset you need for an assignment, ask on the course discussion
-board.
+Right-click a link and choose "Save link as..." to download, or read it straight
+into R, e.g. `read_csv("https://jaredsmurray.github.io/temba-stats-2026/data/returns/returns.csv")`.
+
+## Austin house listings
+
+- [`austin_houses.csv`](data/austin_houses/austin_houses.csv) (9 MB)
+- [`austin_houses_subset.csv`](data/austin_houses/austin_houses_subset.csv) (0.7 MB)
+
+## ERCOT hourly load
+
+- [`load_1.csv`](data/ercot/ercotproject/Data/load_1.csv) (23 MB)
+- [`load_2.csv`](data/ercot/ercotproject/Data/load_2.csv) (22 MB)
+- [`load_3.csv`](data/ercot/ercotproject/Data/load_3.csv) (17 MB)
+
+## S&P 500 weekly returns
+
+- [`returns.csv`](data/returns/returns.csv)

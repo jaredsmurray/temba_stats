@@ -56,6 +56,7 @@ columns: ["Date", "Readings", "Slides, code, and other materials"]
 # in _book/data. Add `data:` rows once the licensing adjudication is done.
 defaults:
   materials:
+    data: auto      # datasets derived from what each deck reads (data_manifest.yml)
     bundle: false
 
 lectures:
