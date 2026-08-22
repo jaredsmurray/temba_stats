@@ -112,11 +112,25 @@
     "text": "Outliers\n\n\n\nNot everything extreme is an error: the $800K+ sales in 78752 are real, but a $13M listing in this dataset was a typo\nThe 1.5 × IQR box-plot rule flags potential outliers; it is not a substitute for judgment"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEMBA Statistics",
+    "section": "",
+    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+  },
+  {
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "TEMBA Statistics",
+    "section": "Materials",
+    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+  },
+  {
     "objectID": "data.html",
     "href": "data.html",
     "title": "Data",
     "section": "",
-    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba-stats-2026/data/returns/returns.csv\")."
+    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba_stats/data/returns/returns.csv\")."
   },
   {
     "objectID": "data.html#austin-house-listings",
@@ -140,17 +154,10 @@
     "text": "S&P 500 weekly returns\n\nreturns.csv"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEMBA Statistics",
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
     "section": "",
-    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
-  },
-  {
-    "objectID": "index.html#materials",
-    "href": "index.html#materials",
-    "title": "TEMBA Statistics",
-    "section": "Materials",
-    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+    "text": "Lecture slide decks. Each opens as a self-contained slideshow (press ? for keyboard shortcuts, E for print view).\n\nVisualizing a Single Quantitative Variable"
   }
 ]
