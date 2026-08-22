@@ -1,0 +1,92 @@
+.fobx-default {
+  margin: 1.25rem 0;
+  border: 1px solid #dee2e6;
+  border-left: 5px solid var(--border-color);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+details.fobx-default > summary,
+.fobx-static > .fobx-title {
+  padding: 0.2em 0.5em;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 600;
+  color: #343a40;
+  opacity: 0.85;
+}
+
+details.fobx-default > summary::marker,
+.fobx-static .fobx-icon {
+  color: var(--border-color);
+}
+
+.fobx-static > .fobx-title {
+  background: var(--title-background-color);
+}
+
+.fobx-static .fobx-icon {
+  margin-right: 0.4em;
+}
+
+details.fobx-default > summary:hover {
+  box-shadow: none;
+}
+
+details.fobx-default[open] > summary {
+  border-radius: 0;
+}
+
+details.fobx-default > div,
+.fobx-static > .fobx-body {
+  padding: 0 0.5em;
+  border: 0;
+  border-radius: 0;
+}
+
+details.fobx-default > div > :first-child,
+.fobx-static > .fobx-body > :first-child {
+  padding-top: 0.5rem;
+  margin-top: 0;
+}
+
+details.fobx-default > div > :last-child,
+.fobx-static > .fobx-body > :last-child {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+
+.formula-details,
+.solution-details {
+  margin: 0.45rem 0 0.15rem;
+}
+
+.formula-details > summary,
+.solution-details > summary {
+  cursor: pointer;
+  padding: 0.15rem 0;
+}
+
+.formula-details > summary {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #343a40;
+}
+
+.solution-details > summary {
+  font-weight: 650;
+  color: #11646a;
+}
+
+.formula-details > :not(summary),
+.solution-details > :not(summary) {
+  margin-left: 0.8rem;
+  margin-right: 0;
+}
+
+.formula-details[open] > summary,
+.solution-details[open] > summary {
+  margin-bottom: 0.25rem;
+}

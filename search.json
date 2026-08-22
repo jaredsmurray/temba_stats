@@ -1,0 +1,135 @@
+[
+  {
+    "objectID": "slides/01_basic_visualizations.html#a-histogram-counts-observations-in-bins",
+    "href": "slides/01_basic_visualizations.html#a-histogram-counts-observations-in-bins",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "A histogram counts observations in bins",
+    "text": "A histogram counts observations in bins\n\n134 home sales in Austin ZIP 78752. Each tick on the baseline is one sale."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#the-picture-depends-on-the-bin-width",
+    "href": "slides/01_basic_visualizations.html#the-picture-depends-on-the-bin-width",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "The picture depends on the bin width",
+    "text": "The picture depends on the bin width\n\nSame 134 sales in every panel."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#a-density-plot-is-a-smoothed-histogram",
+    "href": "slides/01_basic_visualizations.html#a-density-plot-is-a-smoothed-histogram",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "A density plot is a smoothed histogram",
+    "text": "A density plot is a smoothed histogram\n\nThe curve is high where there are more sales close to that price."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#areas-under-the-curve-are-proportions-of-the-data",
+    "href": "slides/01_basic_visualizations.html#areas-under-the-curve-are-proportions-of-the-data",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Areas under the curve are proportions of the data",
+    "text": "Areas under the curve are proportions of the data\n\nERCOT DFW daily mean load, 2016–2020 (1,827 days): the upper interval is over four times wider for the same 10% share (source)."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#densities-have-a-bandwidth-instead-of-bins",
+    "href": "slides/01_basic_visualizations.html#densities-have-a-bandwidth-instead-of-bins",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Densities have a bandwidth instead of bins",
+    "text": "Densities have a bandwidth instead of bins\n\nA single interpretable knob, with a default computed from the data rather than picked by hand."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#raw-counts-cant-compare-groups-of-different-sizes",
+    "href": "slides/01_basic_visualizations.html#raw-counts-cant-compare-groups-of-different-sizes",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Raw counts can’t compare groups of different sizes",
+    "text": "Raw counts can’t compare groups of different sizes\n\nSame $50,000 bins, but the count axes are on completely different scales."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#rescaled-to-density-the-shapes-are-comparable",
+    "href": "slides/01_basic_visualizations.html#rescaled-to-density-the-shapes-are-comparable",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Rescaled to density, the shapes are comparable",
+    "text": "Rescaled to density, the shapes are comparable\n\nBoth panels share one vertical scale: prices in 78722 sit higher and spread wider than in 78748."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#percentiles",
+    "href": "slides/01_basic_visualizations.html#percentiles",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Percentiles",
+    "text": "Percentiles\n\nSuppose you scored 655 on the GMAT Focus Edition.\nYour score report says you’re at the 90th percentile.\nThat means you did at least as well as about 90% of test takers: 655 is the 90th percentile of GMAT scores.\nIn general, the p-th percentile is the value below which p% of the observations fall."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#median-quartiles-quantiles",
+    "href": "slides/01_basic_visualizations.html#median-quartiles-quantiles",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Median, quartiles, quantiles",
+    "text": "Median, quartiles, quantiles\n\nThe median is the 50th percentile: half the observations fall below it.\nThe quartiles Q1, Q2, Q3 are the 25th, 50th, and 75th percentiles — they split the data into four equal parts.\nWritten as a proportion instead of a percent, a percentile is a quantile: the 90th percentile is the 0.90 quantile, and the median is the 0.50 quantile."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#the-empirical-cdf-plots-every-percentile-at-once",
+    "href": "slides/01_basic_visualizations.html#the-empirical-cdf-plots-every-percentile-at-once",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "The empirical CDF plots every percentile at once",
+    "text": "The empirical CDF plots every percentile at once\n\nGMAC’s full concordance, 2020–2025, is one curve: the fraction of test takers at or below each score."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#the-ecdf-of-our-sale-prices",
+    "href": "slides/01_basic_visualizations.html#the-ecdf-of-our-sale-prices",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "The ECDF of our sale prices",
+    "text": "The ECDF of our sale prices\n\nThe height at each price is the fraction of sales at or below it. There are no bins or bandwidths to choose, and the quartiles read off the plot directly."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#four-things-to-look-for",
+    "href": "slides/01_basic_visualizations.html#four-things-to-look-for",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Four things to look for",
+    "text": "Four things to look for\n\nLocation — where is the center; what is a typical value?\nSpread — how far do values range from the center?\nSkewness — is the distribution symmetric, or stretched to one side?\nModality — how many peaks are there?\nAnd outliers — observations far from the bulk of the data"
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#symmetric",
+    "href": "slides/01_basic_visualizations.html#symmetric",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Symmetric",
+    "text": "Symmetric\n\nWeekly S&P 500 returns, October 2023 to September 2025: the left and right halves are rough mirror images."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#right-skewed",
+    "href": "slides/01_basic_visualizations.html#right-skewed",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Right-skewed",
+    "text": "Right-skewed\n\nDaily mean electricity demand. The high-demand days in the right tail pull the mean above the median."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#bimodal",
+    "href": "slides/01_basic_visualizations.html#bimodal",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Bimodal",
+    "text": "Bimodal\n\nAustin house ages: newer construction on the left, the older building boom on the right. Two peaks often mean two subpopulations — investigate before summarizing with a single number."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#outliers",
+    "href": "slides/01_basic_visualizations.html#outliers",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Outliers",
+    "text": "Outliers\n\n\n\nNot everything extreme is an error: the $800K+ sales in 78752 are real, but a $13M listing in this dataset was a typo\nThe 1.5 × IQR box-plot rule flags potential outliers; it is not a substitute for judgment"
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "Datasets used in the notes and lecture slides are distributed through Canvas (Files → Data). A listing with short descriptions of each dataset will appear here once the public subset is finalized.\nIf you cannot find a dataset you need for an assignment, ask on the course discussion board."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEMBA Statistics",
+    "section": "",
+    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+  },
+  {
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "TEMBA Statistics",
+    "section": "Materials",
+    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+  }
+]
