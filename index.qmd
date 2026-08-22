@@ -1,0 +1,14 @@
+---
+title: "TEMBA Statistics"
+---
+
+Course materials for TEMBA Statistics, taught by [Jared Murray](https://jaredsmurray.github.io).
+
+## Materials
+
+- [Course notes](notes/index.html) — the textbook for the course.
+- [Slides](slides/01_basic_visualizations.qmd) — lecture decks.
+- [Data](data.qmd) — datasets used in the notes and in class.
+
+Course materials are being assembled; expect this page to fill in as the semester
+approaches. Announcements, assignments, and grades live in Canvas.

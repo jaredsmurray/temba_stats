@@ -1,0 +1,10 @@
+format:
+  revealjs:
+    theme: simple
+    slide-number: c/t
+    width: 1280
+    height: 720
+    center: false
+    fig-align: center
+    embed-resources: true
+    html-math-method: mathjax

@@ -1,0 +1,68 @@
+project:
+  type: book
+  output-dir: ../_book/notes
+
+filters:
+  - details
+  - custom-numbered-blocks
+
+extensions:
+  details:
+    interactive:
+      open: false
+      show-controls: false
+    non-interactive:
+      display: remove
+      summary-text: "Details"
+      callout-type: note
+  custom-numbered-blocks:
+    appearances:
+      concept:
+        container: foldbox
+        boxstyle: foldbox.simple
+        collapse: false
+        colors: ['#F4EAF0', '#7C3F58']
+      reference:
+        container: foldbox
+        boxstyle: foldbox.simple
+        collapse: false
+        colors: ['#EEF1F3', '#5B6770']
+      practice:
+        container: foldbox
+        boxstyle: foldbox.simple
+        collapse: false
+        colors: ['#E7F4F5', '#147D85']
+    classes:
+      Definition:
+        appearance: concept
+      Notation:
+        appearance: reference
+      TechnicalDetail:
+        appearance: reference
+        label: "Technical detail"
+        collapse: true
+      Exercise:
+        appearance: practice
+
+book:
+  title: "TEMBA Statistics — Course Notes"
+  author: ""
+  chapters:
+    - index.qmd
+    - part: "Visualizing and summarizing a single variable"
+      chapters:
+        - singlevar_01_visualizing-distributions.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    css: styles/callouts.css
+    number-sections: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto

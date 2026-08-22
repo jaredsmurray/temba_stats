@@ -1,0 +1,365 @@
+---
+title: "Visualizing a Single Quantitative Variable"
+subtitle: "TEMBA Statistics 2026"
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+
+austin_full <- load_austin_full()
+austin <- load_austin_subset()
+ercot <- load_ercot_daily()
+returns <- load_returns()
+
+austin_zip <- austin_full |>
+  filter(zipcode == 78752)
+```
+
+## A histogram counts observations in bins
+
+```{r}
+#| label: viz-hist-price-count
+#| fig-width: 9
+#| fig-height: 4.4
+ggplot(austin_zip, aes(x = latest_price)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Sale price", y = "Count")
+```
+
+`r nrow(austin_zip)` home sales in Austin ZIP 78752. Each tick on the baseline is one sale.
+
+## The picture depends on the bin width
+
+```{r}
+#| label: viz-binwidth
+#| fig-width: 10
+#| fig-height: 3.6
+mk_hist <- function(bins = NULL, binwidth = NULL, boundary = NULL, title = "") {
+  ggplot(austin_zip, aes(x = latest_price)) +
+    geom_histogram(bins = bins, binwidth = binwidth, boundary = boundary,
+                   fill = "steelblue", color = "white") +
+    geom_rug(alpha = 0.3) +
+    scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+    labs(x = NULL, y = NULL, title = title) +
+    theme_minimal(base_size = 12)
+}
+
+mk_hist(bins = 10, title = "10 bins") |
+  mk_hist(bins = 25, title = "25 bins") |
+  mk_hist(bins = 60, title = "60 bins")
+```
+
+Same `r nrow(austin_zip)` sales in every panel.
+
+## A density plot is a smoothed histogram
+
+```{r}
+#| label: viz-density-price
+#| fig-width: 9
+#| fig-height: 4.4
+ggplot(austin_zip, aes(x = latest_price)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, fill = "steelblue", color = "white") +
+  geom_density(color = "darkorange", linewidth = 1.1) +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Sale price", y = "Density")
+```
+
+The curve is high where there are more sales close to that price.
+
+## Areas under the curve are proportions of the data
+
+```{r}
+#| label: viz-density-area
+#| fig-width: 9
+#| fig-height: 4.4
+load_vals <- ercot$load
+dens <- density(load_vals)
+dens_df <- tibble(x = dens$x, y = dens$y)
+
+kde_area <- function(lo, hi) {
+  seg <- filter(dens_df, x >= lo, x <= hi)
+  sum(diff(seg$x) * (head(seg$y, -1) + tail(seg$y, -1)) / 2)
+}
+
+q_mid  <- quantile(load_vals, c(0.40, 0.50))
+q_tail <- quantile(load_vals, c(0.90, 1.00))
+area_mid  <- kde_area(q_mid[1], q_mid[2])
+area_tail <- kde_area(q_tail[1], q_tail[2])
+
+ggplot(dens_df, aes(x = x, y = y)) +
+  geom_area(data = filter(dens_df, x >= q_mid[1], x <= q_mid[2]),
+            fill = "darkorange", alpha = 0.8) +
+  geom_area(data = filter(dens_df, x >= q_tail[1], x <= q_tail[2]),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("text", x = mean(q_mid), y = max(dens_df$y) * 1.08,
+           label = paste0("area = ", number(area_mid, accuracy = 0.001),
+                          "\n10% of days"),
+           size = 4.2, lineheight = 1.1) +
+  annotate("segment", x = mean(q_mid), xend = mean(q_mid),
+           y = max(dens_df$y) * 1.0, yend = max(dens_df$y) * 0.9) +
+  annotate("text", x = mean(q_tail), y = max(dens_df$y) * 0.32,
+           label = paste0("area = ", number(area_tail, accuracy = 0.001),
+                          "\n10% of days"),
+           size = 4.2, lineheight = 1.1) +
+  annotate("text", x = max(load_vals) * 1.035, y = max(dens_df$y) * 0.08,
+           label = "Smoothing extends the curve\npast the observed maximum",
+           size = 3.2, lineheight = 1.0, hjust = 0.5) +
+  scale_x_continuous(labels = comma_format()) +
+  labs(x = "Daily mean load (MW)", y = "Density")
+```
+
+ERCOT DFW daily mean load, 2016--2020 (`r comma(nrow(ercot))` days): the upper interval is over four times wider for the same 10% share ([source](https://github.com/blakeshaffer/ercotproject)).
+
+## Densities have a bandwidth instead of bins
+
+```{r}
+#| label: viz-density-bw
+#| fig-width: 10
+#| fig-height: 3.6
+mk_dens <- function(adjust, title) {
+  ggplot(austin_zip, aes(x = latest_price)) +
+    geom_density(adjust = adjust, fill = "steelblue", alpha = 0.3) +
+    geom_rug(alpha = 0.3) +
+    scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+    labs(x = NULL, y = NULL, title = title) +
+    theme_minimal(base_size = 12)
+}
+
+mk_dens(0.3, "Wiggly (adjust = 0.3)") |
+  mk_dens(1,   "Default (adjust = 1)") |
+  mk_dens(2.5, "Smooth (adjust = 2.5)")
+```
+
+A single interpretable knob, with a default computed from the data rather than picked by hand.
+
+## Raw counts can't compare groups of different sizes
+
+```{r}
+#| label: viz-hist-bigsmall
+#| fig-width: 9
+#| fig-height: 4
+austin_full |>
+  filter(zipcode %in% c(78748, 78722), latest_price < 1050000) |>
+  mutate(zipcode = factor(zipcode,
+                          levels = c(78748, 78722),
+                          labels = c("78748 (1,100 sales)", "78722 (90 sales)"))) |>
+  ggplot(aes(x = latest_price)) +
+  geom_histogram(binwidth = 50000, boundary = 0,
+                 fill = "steelblue", color = "white") +
+  facet_wrap(~zipcode) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+  labs(x = "Sale price", y = "Count")
+```
+
+Same \$50,000 bins, but the count axes are on completely different scales.
+
+## Rescaled to density, the shapes are comparable
+
+```{r}
+#| label: viz-hist-density-overlay
+#| fig-width: 9
+#| fig-height: 4
+austin_full |>
+  filter(zipcode %in% c(78748, 78722), latest_price < 1050000) |>
+  mutate(zipcode = factor(zipcode,
+                          levels = c(78748, 78722),
+                          labels = c("78748 (1,100 sales)", "78722 (90 sales)"))) |>
+  ggplot(aes(x = latest_price)) +
+  geom_histogram(aes(y = after_stat(density)), binwidth = 50000, boundary = 0,
+                 fill = "steelblue", color = "white") +
+  geom_density(color = "darkorange", linewidth = 1) +
+  facet_wrap(~zipcode) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+  labs(x = "Sale price", y = "Density")
+```
+
+Both panels share one vertical scale: prices in 78722 sit higher and spread wider than in 78748.
+
+## Percentiles
+
+::: {.incremental}
+- Suppose you scored 655 on the GMAT Focus Edition.
+- Your score report says you're at the 90th percentile.
+- That means you did at least as well as about 90% of test takers: 655 is the **90th percentile** of GMAT scores.
+- In general, the **p-th percentile** is the value below which p% of the observations fall.
+:::
+
+## Median, quartiles, quantiles
+
+::: {.incremental}
+- The **median** is the 50th percentile: half the observations fall below it.
+- The **quartiles** Q1, Q2, Q3 are the 25th, 50th, and 75th percentiles --- they split the data into four equal parts.
+- Written as a proportion instead of a percent, a percentile is a **quantile**: the 90th percentile is the 0.90 quantile, and the median is the 0.50 quantile.
+:::
+
+## The empirical CDF plots every percentile at once
+
+```{r}
+#| label: viz-gmat-ecdf
+#| fig-width: 9
+#| fig-height: 4.4
+gmat_655 <- gmat |> filter(score == 655)
+
+ggplot(gmat, aes(x = score, y = quantile)) +
+  annotate("segment", x = 655, xend = 655, y = 0, yend = gmat_655$quantile,
+           linetype = "dashed", color = "grey50") +
+  annotate("segment", x = min(gmat$score), xend = 655,
+           y = gmat_655$quantile, yend = gmat_655$quantile,
+           linetype = "dashed", color = "grey50") +
+  geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
+  geom_point(size = 1.6, color = "steelblue") +
+  annotate("point", x = 655, y = gmat_655$quantile,
+           color = "darkorange", size = 3) +
+  annotate("label", x = 655, y = gmat_655$quantile,
+           label = "655 beats 90% of test takers",
+           hjust = 1.08, vjust = -0.3, size = 4.5,
+           fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "GMAT Focus Edition total score", y = "Cumulative percentage")
+```
+
+GMAC's full concordance, 2020--2025, is one curve: the fraction of test takers at or below each score.
+
+## The ECDF of our sale prices
+
+```{r}
+#| label: viz-ecdf-price
+#| fig-width: 9
+#| fig-height: 4.4
+ecdf_df <- austin_zip |>
+  count(latest_price, name = "n_price") |>
+  arrange(latest_price) |>
+  mutate(ecdf = cumsum(n_price) / sum(n_price))
+
+qs <- tibble(p = c(0.25, 0.50, 0.75),
+             q = quantile(austin_zip$latest_price, c(0.25, 0.50, 0.75)),
+             lab = c("Q1", "median", "Q3"))
+
+ggplot(ecdf_df, aes(x = latest_price, y = ecdf)) +
+  geom_segment(data = qs, aes(x = min(austin_zip$latest_price), xend = q,
+                              y = p, yend = p),
+               linetype = "dashed", color = "grey50", inherit.aes = FALSE) +
+  geom_segment(data = qs, aes(x = q, xend = q, y = 0, yend = p),
+               linetype = "dashed", color = "grey50", inherit.aes = FALSE) +
+  geom_step(aes(group = 1), direction = "hv",
+            color = "steelblue", linewidth = 1) +
+  geom_point(data = qs, aes(x = q, y = p), color = "darkorange", size = 3,
+             inherit.aes = FALSE) +
+  geom_text(data = qs, aes(x = q, y = p, label = lab),
+            hjust = -0.35, vjust = 1.2, size = 4.5, color = "grey30",
+            inherit.aes = FALSE) +
+  scale_x_continuous(labels = dollar_format()) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "Sale price", y = "Cumulative percentage")
+```
+
+The height at each price is the fraction of sales at or below it. There are no bins or bandwidths to choose, and the quartiles read off the plot directly.
+
+# Describing distributions
+
+## Four things to look for
+
+::: {.incremental}
+- **Location** --- where is the center; what is a typical value?
+- **Spread** --- how far do values range from the center?
+- **Skewness** --- is the distribution symmetric, or stretched to one side?
+- **Modality** --- how many peaks are there?
+- And **outliers** --- observations far from the bulk of the data
+:::
+
+## Symmetric
+
+```{r}
+#| label: viz-returns-symmetric
+#| fig-width: 8.5
+#| fig-height: 4.4
+max_abs <- max(abs(returns$market))
+ggplot(returns, aes(x = market)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = percent_format(),
+                     limits = c(-max_abs, max_abs)) +
+  labs(x = "Weekly return", y = "Density")
+```
+
+Weekly S&P 500 returns, October 2023 to September 2025: the left and right halves are rough mirror images.
+
+## Right-skewed
+
+```{r}
+#| label: viz-ercot-skewed
+#| fig-width: 8.5
+#| fig-height: 4.4
+mean_load <- mean(ercot$load)
+med_load  <- median(ercot$load)
+peak_y <- max(density(ercot$load)$y)
+
+ggplot(ercot, aes(x = load)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 40, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_vline(xintercept = med_load, linetype = "dashed", color = "grey30") +
+  geom_vline(xintercept = mean_load, color = "darkorange", linewidth = 0.9) +
+  annotate("label", x = med_load, y = peak_y * 0.95, label = "median",
+           hjust = 1.1, size = 4.5, fill = "white", alpha = 0.9,
+           label.size = 0.25, color = "grey30") +
+  annotate("label", x = mean_load, y = peak_y * 0.8, label = "mean",
+           hjust = -0.15, size = 4.5, fill = "white", alpha = 0.9,
+           label.size = 0.25, color = "darkorange") +
+  scale_x_continuous(labels = comma_format()) +
+  labs(x = "Load (MW)", y = "Density")
+```
+
+Daily mean electricity demand. The high-demand days in the right tail pull the mean above the median.
+
+## Bimodal
+
+```{r}
+#| label: viz-austin-bimodal
+#| fig-width: 8.5
+#| fig-height: 4.4
+ggplot(austin, aes(x = age)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.1) +
+  labs(x = "House age (years)", y = "Density")
+```
+
+Austin house ages: newer construction on the left, the older building boom on the right. Two peaks often mean two subpopulations --- investigate before summarizing with a single number.
+
+## Outliers
+
+:::: {.columns}
+
+::: {.column width="62%"}
+::: {.incremental}
+- Not everything extreme is an error: the \$800K+ sales in 78752 are real, but a \$13M listing in this dataset was a typo
+- The 1.5 × IQR box-plot rule flags potential outliers; it is not a substitute for judgment
+:::
+:::
+
+::: {.column width="38%"}
+```{r}
+#| label: viz-boxplot-price
+#| fig-width: 3
+#| fig-height: 4.5
+ggplot(austin_zip, aes(y = latest_price)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.3, width = 0.4) +
+  scale_y_continuous(labels = dollar_format()) +
+  labs(y = "Sale price of homes in 78752") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+```
+:::
+
+::::

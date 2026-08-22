@@ -1,0 +1,23 @@
+# Preface {.unnumbered}
+
+These course notes cover the essentials of probability and statistics, targeted to students of business disciplines. Emphasis is placed on conceptual over mathematical understanding; certain ideas will be easier to understand for students with some calculus background, but calculus is not required. 
+
+The notes follow a somewhat unusual "data first" progression that alternates between describing data and modeling it. We start with visualizing and summarizing a single variable, then probability for a single random variable, then summaries of two or more variables at once, then probability models for several random variables, and only then more formal statistical estimation and inference. Each probability idea arrives after the data summary it abstracts. The reason is simple: unlike when many textbooks were written, students tend to arrive to my courses with some experience analyzing data or consuming data analyses, and the use of summary statistics, distribution/density estimates, and related visualizations to describe data is much more natural than introducing them as estimates of abstract mathematical objects from probability theory. 
+
+These notes also take some pains to be explicit about the meaning of probability without veering too far into philosophical debates. In particular, the probability chapters spend a fair amount of time connecting probability models to classical finite population statistical inference to help students understand why statistical inference via sampling distributions remains relevant even in settings where the notion of a "population" is not clear (or where a "population" clearly doesn't exist).
+
+### Further reading
+
+#### Visualization
+
+These notes barely scratch the surface on data visualization. [Data Visualization](https://socviz.co/) by Kieran Healy is an affordable and accessible introduction to the topic with a distinctive blend of "why" and "how" (via R and ggplot2). His website includes a draft version of the book, and the preface does a better job of identifying additional resources for data visualization than I could.
+
+#### Probability and basic statistics
+
+[OpenIntro](https://www.openintro.org/book/os/) is a free, open-source textbook that covers probability and statistics at a level broadly similar to these notes. It takes a similar data-first perspective, and a resampling-based approach to inference that aligns with current best practices in teaching statistics. It's also notable for covering sampling and random assignment schemes at a deeper level than many texts (covering stratified and cluster sampling, as well as completely random assignment, blocking, and observational study designs in causal inference).
+
+Much of the same could be said of [Data Science in R: A Gentle Introduction](https://bookdown.org/jgscott/DSGI/) by my colleague James Scott, which is also free and open-source. I have borrowed several of his examples (and lent a few of mine).
+
+[Data Analysis and Prediction Algorithms with R](https://rafalab.dfci.harvard.edu/dsbook/) also covers similar ground, with accessible, applied material on important data wrangling topics and a section on machine learning methods.
+
+[Modern Mathematical Statistics with Applications](https://www.amazon.com/Modern-Mathematical-Statistics-Applications/dp/1461403204) by Devore, Beck and Carlton is a more traditional text that covers probability and statistics at a higher mathematical level. It is not free, but is widely available as a free digital download for university affiliates, including UT students and faculty.

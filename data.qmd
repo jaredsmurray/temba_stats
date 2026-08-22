@@ -1,0 +1,10 @@
+---
+title: "Data"
+---
+
+Datasets used in the notes and lecture slides are distributed through **Canvas**
+(Files → Data). A listing with short descriptions of each dataset will appear here
+once the public subset is finalized.
+
+If you cannot find a dataset you need for an assignment, ask on the course discussion
+board.

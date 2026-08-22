@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: _book
+  render:
+    - "**/*.qmd"
+    - "!notes/**"
+    - "!data/**"
+    - "!cards/**"   # data cards land at public/cards/ (fetch_data.sh), gitignored — never render
+    - "!files/**"
+  resources:
+    - "files/*.pdf"
+
+website:
+  title: "TEMBA Statistics"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: notes/index.html
+        text: Notes
+      - href: slides/01_basic_visualizations.qmd
+        text: Slides
+      - href: data.qmd
+        text: Data
+
+format:
+  html:
+    theme: cosmo
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
