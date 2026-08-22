@@ -26,7 +26,7 @@ website:
         text: Home
       - href: notes/index.html
         text: Notes
-      - href: slides/01_basic_visualizations.qmd
+      - href: slides/index.qmd
         text: Slides
       - href: data.qmd
         text: Data

@@ -23,10 +23,10 @@ canvas:
 course_slug: temba2026
 
 # This offering's own published site; {{site}} expands to it.
-site_url: https://jaredsmurray.github.io/temba-stats-2026
+site_url: https://jaredsmurray.github.io/temba_stats
 
 # The course notes book; {{notes}} expands to it.
-notes_url: https://jaredsmurray.github.io/temba-stats-2026/notes
+notes_url: https://jaredsmurray.github.io/temba_stats/notes
 
 # TODO: fill in -- Panopto folder linked under every date. A row may set its
 # own `recording:` to override the folder link for that day.

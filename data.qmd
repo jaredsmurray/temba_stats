@@ -8,7 +8,7 @@ where it came from, and what the variables mean). Files are fetched from the
 pinned `teaching-data` release; see `data_pin` in the site repo.
 
 Right-click a link and choose "Save link as..." to download, or read it straight
-into R, e.g. `read_csv("https://jaredsmurray.github.io/temba-stats-2026/data/returns/returns.csv")`.
+into R, e.g. `read_csv("https://jaredsmurray.github.io/temba_stats/data/returns/returns.csv")`.
 
 ## Austin house listings
 
