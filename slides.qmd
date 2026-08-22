@@ -1,0 +1,8 @@
+---
+title: "Slides"
+---
+
+Lecture slide decks. Each opens as a self-contained slideshow (press `?` for
+keyboard shortcuts, `E` for print view).
+
+1. [Visualizing a Single Quantitative Variable](slides/01_basic_visualizations.qmd)
