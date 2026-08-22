@@ -1,0 +1,2924 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Documentation – TEMBA Statistics — Course Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./singlevar_01_visualizing-distributions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/foldbox/foldbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles/callouts.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix_data.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix_data.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEMBA Statistics — Course Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_01_visualizing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualizing a Single Quantitative Variable</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-data-housing-kaggle" id="toc-sec-data-housing-kaggle" class="nav-link active" data-scroll-target="#sec-data-housing-kaggle"><span class="header-section-number">A.1</span> Austin House Listings</a>
+  <ul class="collapse">
+  <li><a href="#dataset-versions" id="toc-dataset-versions" class="nav-link" data-scroll-target="#dataset-versions">Dataset versions</a></li>
+  <li><a href="#variable-renaming" id="toc-variable-renaming" class="nav-link" data-scroll-target="#variable-renaming">Variable renaming</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
+  <li><a href="#text-embeddings" id="toc-text-embeddings" class="nav-link" data-scroll-target="#text-embeddings">Text embeddings</a></li>
+  </ul></li>
+  <li><a href="#sec-data-earnings-cps" id="toc-sec-data-earnings-cps" class="nav-link" data-scroll-target="#sec-data-earnings-cps"><span class="header-section-number">A.2</span> CPS ASEC Earnings</a>
+  <ul class="collapse">
+  <li><a href="#education-recode-a_hga-educ_years" id="toc-education-recode-a_hga-educ_years" class="nav-link" data-scroll-target="#education-recode-a_hga-educ_years"><span class="header-section-number">A.2.1</span> Education recode (<code>a_hga</code> → <code>educ_years</code>)</a></li>
+  <li><a href="#sample-filters" id="toc-sample-filters" class="nav-link" data-scroll-target="#sample-filters"><span class="header-section-number">A.2.2</span> Sample filters</a></li>
+  </ul></li>
+  <li><a href="#sec-data-returns-2025" id="toc-sec-data-returns-2025" class="nav-link" data-scroll-target="#sec-data-returns-2025"><span class="header-section-number">A.3</span> Weekly Asset Returns (2023–2025)</a>
+  <ul class="collapse">
+  <li><a href="#variables-1" id="toc-variables-1" class="nav-link" data-scroll-target="#variables-1">Variables</a></li>
+  <li><a href="#tickers" id="toc-tickers" class="nav-link" data-scroll-target="#tickers">Tickers</a></li>
+  </ul></li>
+  <li><a href="#sec-data-portfolios-2025" id="toc-sec-data-portfolios-2025" class="nav-link" data-scroll-target="#sec-data-portfolios-2025"><span class="header-section-number">A.4</span> Three-Asset Portfolio Series (2023–2025)</a>
+  <ul class="collapse">
+  <li><a href="#variables-2" id="toc-variables-2" class="nav-link" data-scroll-target="#variables-2">Variables</a></li>
+  <li><a href="#tickers-1" id="toc-tickers-1" class="nav-link" data-scroll-target="#tickers-1">Tickers</a></li>
+  </ul></li>
+  <li><a href="#sec-data-ercot-shaffer" id="toc-sec-data-ercot-shaffer" class="nav-link" data-scroll-target="#sec-data-ercot-shaffer"><span class="header-section-number">A.5</span> ERCOT Hourly Load and Temperature Panel</a>
+  <ul class="collapse">
+  <li><a href="#variables-3" id="toc-variables-3" class="nav-link" data-scroll-target="#variables-3">Variables</a></li>
+  </ul></li>
+  <li><a href="#sec-data-lendingclub-kaggle" id="toc-sec-data-lendingclub-kaggle" class="nav-link" data-scroll-target="#sec-data-lendingclub-kaggle"><span class="header-section-number">A.6</span> LendingClub Accepted Loans</a>
+  <ul class="collapse">
+  <li><a href="#variables-4" id="toc-variables-4" class="nav-link" data-scroll-target="#variables-4">Variables</a></li>
+  </ul></li>
+  <li><a href="#sec-data-sap-nucleus" id="toc-sec-data-sap-nucleus" class="nav-link" data-scroll-target="#sec-data-sap-nucleus"><span class="header-section-number">A.7</span> SAP Customer ROE</a>
+  <ul class="collapse">
+  <li><a href="#dataset-versions-1" id="toc-dataset-versions-1" class="nav-link" data-scroll-target="#dataset-versions-1">Dataset versions</a></li>
+  <li><a href="#variables-5" id="toc-variables-5" class="nav-link" data-scroll-target="#variables-5">Variables</a></li>
+  </ul></li>
+  <li><a href="#sec-data-kroger-cheese" id="toc-sec-data-kroger-cheese" class="nav-link" data-scroll-target="#sec-data-kroger-cheese"><span class="header-section-number">A.8</span> Kroger Packaged Cheese Sales</a>
+  <ul class="collapse">
+  <li><a href="#variables-6" id="toc-variables-6" class="nav-link" data-scroll-target="#variables-6">Variables</a></li>
+  </ul></li>
+  <li><a href="#sec-data-wfh-bloom" id="toc-sec-data-wfh-bloom" class="nav-link" data-scroll-target="#sec-data-wfh-bloom"><span class="header-section-number">A.9</span> Bloom, Han &amp; Liang (2024) Hybrid WFH Experiment</a>
+  <ul class="collapse">
+  <li><a href="#attrition" id="toc-attrition" class="nav-link" data-scroll-target="#attrition">Attrition</a></li>
+  <li><a href="#productivity" id="toc-productivity" class="nav-link" data-scroll-target="#productivity">Productivity</a></li>
+  <li><a href="#manager-perceptions" id="toc-manager-perceptions" class="nav-link" data-scroll-target="#manager-perceptions">Manager Perceptions</a></li>
+  </ul></li>
+  <li><a href="#sec-data-shed" id="toc-sec-data-shed" class="nav-link" data-scroll-target="#sec-data-shed"><span class="header-section-number">A.10</span> Household economics (SHED)</a>
+  <ul class="collapse">
+  <li><a href="#variables-7" id="toc-variables-7" class="nav-link" data-scroll-target="#variables-7">Variables</a></li>
+  </ul></li>
+  <li><a href="#sec-data-evals-hamermesh" id="toc-sec-data-evals-hamermesh" class="nav-link" data-scroll-target="#sec-data-evals-hamermesh"><span class="header-section-number">A.11</span> Course Evaluations and Instructor Appearance</a>
+  <ul class="collapse">
+  <li><a href="#dataset-versions-2" id="toc-dataset-versions-2" class="nav-link" data-scroll-target="#dataset-versions-2">Dataset versions</a></li>
+  <li><a href="#variables-8" id="toc-variables-8" class="nav-link" data-scroll-target="#variables-8">Variables</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix_data.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix_data.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Data Documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This appendix documents every dataset used in these notes: what it is, where it came from, and the variables that appear in the examples. Each chapter ends with a “Data used in this section” list linking back to the relevant entries here. The raw files live in the book’s <code>data/</code> directory.</p>
+<section id="sec-data-housing-kaggle" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="sec-data-housing-kaggle"><span class="header-section-number">A.1</span> Austin House Listings</h2>
+<p>This dataset contains listing-level information on residential properties in Austin, Texas scraped from Zillow and assembled by Eric Pierce. Variables include sale price, structural characteristics, lot and living area, school proximity metrics, and free-text listing descriptions. The data are used here to predict home sale prices from a property’s attributes — both structured variables such as square footage, bedroom count, and neighborhood school ratings, and unstructured listing descriptions encoded as dense text embeddings.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://www.kaggle.com/datasets/ericpierce/austinhousingprices">Kaggle dataset</a></li>
+</ul>
+<p><strong>Provenance.</strong> The data were scraped from Zillow by Eric Pierce and published on Kaggle in 2021. Coverage is limited to Austin, Texas residential listings with recorded sale prices. The dataset is distributed via Kaggle without a formal license; access requires a Kaggle account. See <span class="citation" data-cites="housing-kaggle">Pierce (<a href="appendix_data.html#ref-housing-kaggle" role="doc-biblioref">2021</a>)</span> for the primary citation.</p>
+<section id="dataset-versions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="dataset-versions">Dataset versions</h3>
+<p>Four processed files are exported by <code>preprocess.Rmd</code>. All four retain the same 34 columns from the Kaggle source (plus the derived variable <code>age</code>); the subset versions apply additional geographic and structural filters.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Rows</th>
+<th>Columns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>austin_houses.csv</code></td>
+<td>All Austin single-family homes</td>
+<td>35</td>
+<td>Full processed dataset. Filtered to Austin city, single-family home type, <code>living_area_sq_ft</code> &lt; 25,000, <code>lot_size_sq_ft</code> &lt; 43,560 (one acre).</td>
+</tr>
+<tr class="even">
+<td><code>austin_houses_subset.csv</code></td>
+<td>Three-zipcode sample</td>
+<td>35</td>
+<td>Restricted to ZIP codes 78721, 78723, and 78731; <code>living_area_sq_ft</code> &lt; 4,000; 2–5 bedrooms; three anomalous listings removed.</td>
+</tr>
+<tr class="odd">
+<td><code>austin_houses_embeddings.csv</code></td>
+<td>Same as <code>austin_houses</code></td>
+<td>35 + 1,536</td>
+<td>Full processed dataset with 1,536-dimensional text embeddings appended, joined on <code>zpid</code>.</td>
+</tr>
+<tr class="even">
+<td><code>austin_houses_subset_embeddings.csv</code></td>
+<td>Same as <code>austin_houses_subset</code></td>
+<td>35 + 1,536</td>
+<td>Three-zipcode subset with embeddings appended.</td>
+</tr>
+<tr class="odd">
+<td><code>austin_houses_clean.csv</code></td>
+<td>13,485</td>
+<td>35</td>
+<td>Full dataset after a data-quality pass removing listings with recording errors (rules and per-listing rationale in <code>preprocess.Rmd</code> and <code>austin_dq_audit.qmd</code>, kept with the source data).</td>
+</tr>
+<tr class="even">
+<td><code>austin_houses_subset_clean.csv</code></td>
+<td>1,096</td>
+<td>35</td>
+<td>Three-zipcode subset derived from the clean full file (same zip/area/bedroom filters). Used by the problem sets.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variable-renaming" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variable-renaming">Variable renaming</h3>
+<p>All column names are converted from camelCase to snake_case on load (<code>preprocess.Rmd</code>, chunk 1). Three columns that were already lowercase in the source (<code>zpid</code>, <code>zipcode</code>, <code>latest_saledate</code>, <code>latest_salemonth</code>, <code>latest_saleyear</code>) are unchanged. Thirteen columns are dropped during preprocessing and do not appear in the exported files.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Original (Kaggle)</th>
+<th>Renamed</th>
+<th>Retained</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>zpid</code></td>
+<td><code>zpid</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>streetAddress</code></td>
+<td><code>street_address</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>zipcode</code></td>
+<td><code>zipcode</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td><code>description</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>latitude</code></td>
+<td><code>latitude</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>longitude</code></td>
+<td><code>longitude</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>garageSpaces</code></td>
+<td><code>garage_spaces</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>hasAssociation</code></td>
+<td><code>has_association</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>hasGarage</code></td>
+<td><code>has_garage</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>hasSpa</code></td>
+<td><code>has_spa</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>hasView</code></td>
+<td><code>has_view</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>homeType</code></td>
+<td><code>home_type</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>yearBuilt</code></td>
+<td><code>year_built</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>latestPrice</code></td>
+<td><code>latest_price</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>latest_saledate</code></td>
+<td><code>latest_saledate</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>latest_salemonth</code></td>
+<td><code>latest_salemonth</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>latest_saleyear</code></td>
+<td><code>latest_saleyear</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>numOfPhotos</code></td>
+<td><code>num_of_photos</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>numOfAppliances</code></td>
+<td><code>num_of_appliances</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>numOfParkingFeatures</code></td>
+<td><code>num_of_parking_features</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>numOfPatioAndPorchFeatures</code></td>
+<td><code>num_of_patio_and_porch_features</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>numOfSecurityFeatures</code></td>
+<td><code>num_of_security_features</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>numOfWaterfrontFeatures</code></td>
+<td><code>num_of_waterfront_features</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>numOfWindowFeatures</code></td>
+<td><code>num_of_window_features</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>numOfCommunityFeatures</code></td>
+<td><code>num_of_community_features</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>lotSizeSqFt</code></td>
+<td><code>lot_size_sq_ft</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>livingAreaSqFt</code></td>
+<td><code>living_area_sq_ft</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>avgSchoolDistance</code></td>
+<td><code>avg_school_distance</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>avgSchoolRating</code></td>
+<td><code>avg_school_rating</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>avgSchoolSize</code></td>
+<td><code>avg_school_size</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>MedianStudentsPerTeacher</code></td>
+<td><code>median_students_per_teacher</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>numOfBathrooms</code></td>
+<td><code>num_of_bathrooms</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>numOfBedrooms</code></td>
+<td><code>num_of_bedrooms</code></td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td><code>numOfStories</code></td>
+<td><code>num_of_stories</code></td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><code>city</code></td>
+<td><code>city</code></td>
+<td>No — filtered to Austin then dropped</td>
+</tr>
+<tr class="even">
+<td><code>homeImage</code></td>
+<td><code>home_image</code></td>
+<td>No — image URL, not used</td>
+</tr>
+<tr class="odd">
+<td><code>hasCooling</code></td>
+<td><code>has_cooling</code></td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>hasHeating</code></td>
+<td><code>has_heating</code></td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><code>latestPriceSource</code></td>
+<td><code>latest_price_source</code></td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>numOfElementarySchools</code></td>
+<td><code>num_of_elementary_schools</code></td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><code>numOfHighSchools</code></td>
+<td><code>num_of_high_schools</code></td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>numOfMiddleSchools</code></td>
+<td><code>num_of_middle_schools</code></td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><code>numOfPrimarySchools</code></td>
+<td><code>num_of_primary_schools</code></td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>numPriceChanges</code></td>
+<td><code>num_price_changes</code></td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><code>parkingSpaces</code></td>
+<td><code>parking_spaces</code></td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>propertyTaxRate</code></td>
+<td><code>property_tax_rate</code></td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td><code>numOfAccessibilityFeatures</code></td>
+<td><code>num_of_accessibility_features</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variables" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables">Variables</h3>
+<div id="tbl-vars-housing-kaggle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-housing-kaggle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.1: Variables from the Austin House Listings data.
+</figcaption>
+<div aria-describedby="tbl-vars-housing-kaggle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>latest_price</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Most recent recorded sale price of the listing. Used as the outcome variable; models fit on <code>log(latest_price)</code>.</td>
+</tr>
+<tr class="even">
+<td><code>living_area_sq_ft</code></td>
+<td>Continuous</td>
+<td>sq ft</td>
+<td>Interior living area of the home. Key structural predictor; capped at 25,000 sq ft in preprocessing.</td>
+</tr>
+<tr class="odd">
+<td><code>lot_size_sq_ft</code></td>
+<td>Continuous</td>
+<td>sq ft</td>
+<td>Total lot area. Capped at 43,560 sq ft (one acre) in preprocessing.</td>
+</tr>
+<tr class="even">
+<td><code>num_of_bedrooms</code></td>
+<td>Discrete</td>
+<td>1–6+</td>
+<td>Number of bedrooms. Restricted to 2–5 in the subset files.</td>
+</tr>
+<tr class="odd">
+<td><code>num_of_bathrooms</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Number of bathrooms.</td>
+</tr>
+<tr class="even">
+<td><code>num_of_stories</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Number of stories.</td>
+</tr>
+<tr class="odd">
+<td><code>year_built</code></td>
+<td>Discrete</td>
+<td>year</td>
+<td>Year the structure was built.</td>
+</tr>
+<tr class="even">
+<td><code>zipcode</code></td>
+<td>Categorical</td>
+<td>—</td>
+<td>5-digit ZIP code. Used as a fixed effect or factor in models.</td>
+</tr>
+<tr class="odd">
+<td><code>latitude</code></td>
+<td>Continuous</td>
+<td>decimal degrees</td>
+<td>Latitude of the listing.</td>
+</tr>
+<tr class="even">
+<td><code>longitude</code></td>
+<td>Continuous</td>
+<td>decimal degrees</td>
+<td>Longitude of the listing.</td>
+</tr>
+<tr class="odd">
+<td><code>has_garage</code></td>
+<td>Binary</td>
+<td>0/1</td>
+<td>Indicator for an attached or detached garage.</td>
+</tr>
+<tr class="even">
+<td><code>has_spa</code></td>
+<td>Binary</td>
+<td>0/1</td>
+<td>Indicator for a spa or hot tub.</td>
+</tr>
+<tr class="odd">
+<td><code>has_view</code></td>
+<td>Binary</td>
+<td>0/1</td>
+<td>Indicator that the listing is noted as having a view.</td>
+</tr>
+<tr class="even">
+<td><code>has_association</code></td>
+<td>Binary</td>
+<td>0/1</td>
+<td>Indicator for a homeowners association.</td>
+</tr>
+<tr class="odd">
+<td><code>garage_spaces</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Number of garage spaces.</td>
+</tr>
+<tr class="even">
+<td><code>home_type</code></td>
+<td>Categorical</td>
+<td>—</td>
+<td>Property type; filtered to “Single Family” in preprocessing.</td>
+</tr>
+<tr class="odd">
+<td><code>latest_saledate</code></td>
+<td>—</td>
+<td>date string</td>
+<td>Date of most recent recorded sale.</td>
+</tr>
+<tr class="even">
+<td><code>latest_salemonth</code></td>
+<td>Discrete</td>
+<td>1–12</td>
+<td>Month of most recent recorded sale.</td>
+</tr>
+<tr class="odd">
+<td><code>latest_saleyear</code></td>
+<td>Discrete</td>
+<td>year</td>
+<td>Year of most recent recorded sale.</td>
+</tr>
+<tr class="even">
+<td><code>avg_school_rating</code></td>
+<td>Continuous</td>
+<td>—</td>
+<td>Average rating of nearby schools.</td>
+</tr>
+<tr class="odd">
+<td><code>avg_school_distance</code></td>
+<td>Continuous</td>
+<td>—</td>
+<td>Average distance to nearby schools.</td>
+</tr>
+<tr class="even">
+<td><code>avg_school_size</code></td>
+<td>Continuous</td>
+<td>—</td>
+<td>Average enrollment of nearby schools.</td>
+</tr>
+<tr class="odd">
+<td><code>median_students_per_teacher</code></td>
+<td>Continuous</td>
+<td>—</td>
+<td>Median student-to-teacher ratio across nearby schools.</td>
+</tr>
+<tr class="even">
+<td><code>num_of_appliances</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed appliances.</td>
+</tr>
+<tr class="odd">
+<td><code>num_of_parking_features</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed parking features.</td>
+</tr>
+<tr class="even">
+<td><code>num_of_patio_and_porch_features</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed patio and porch features.</td>
+</tr>
+<tr class="odd">
+<td><code>num_of_security_features</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed security features.</td>
+</tr>
+<tr class="even">
+<td><code>num_of_waterfront_features</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed waterfront features.</td>
+</tr>
+<tr class="odd">
+<td><code>num_of_window_features</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed window features.</td>
+</tr>
+<tr class="even">
+<td><code>num_of_community_features</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Count of listed community features.</td>
+</tr>
+<tr class="odd">
+<td><code>num_of_photos</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Number of listing photos on Zillow.</td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>Text</td>
+<td>—</td>
+<td>Free-text listing description written by the seller or agent. Present in the source CSV; not carried through as a structured column in models (see embeddings below).</td>
+</tr>
+<tr class="odd">
+<td><code>street_address</code></td>
+<td>Categorical</td>
+<td>—</td>
+<td>Street address of the listing. Not used in models.</td>
+</tr>
+<tr class="even">
+<td><code>zpid</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Zillow property identifier. Serves as the join key between base datasets and the embeddings files.</td>
+</tr>
+<tr class="odd">
+<td><code>age</code></td>
+<td>Derived (continuous)</td>
+<td>years</td>
+<td><code>latest_saleyear − year_built</code>. Age of the structure at time of most recent sale.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="text-embeddings" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="text-embeddings">Text embeddings</h3>
+<p>The <code>*_embeddings.csv</code> files append 1,536 numeric columns (<code>dim_1</code> through <code>dim_1536</code>) representing dense vector embeddings of each listing’s <code>description</code> field. Embeddings were generated using OpenAI’s <code>text-embedding-3-small</code> model and retrieved on 2026-06-23. Listings with missing or empty descriptions are excluded from the embeddings file and appear with <code>NA</code> in the embedding columns after the left join on <code>zpid</code>. The embeddings are used as predictors in lasso (<code>lasso.R</code>) and random forest (<code>rf.R</code>) models to assess the marginal predictive value of listing text beyond structural variables.</p>
+</section>
+</section>
+<section id="sec-data-earnings-cps" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="sec-data-earnings-cps"><span class="header-section-number">A.2</span> CPS ASEC Earnings</h2>
+<p>The Annual Social and Economic Supplement (ASEC) to the Current Population Survey (CPS) is a nationally representative household survey conducted each March by the U.S. Census Bureau and Bureau of Labor Statistics. It is one of the principal federal sources for data on annual earnings, employment, and hours worked in the United States. The survey covers civilian non-institutional residents and collects detailed information on labor force participation, earnings, education, and demographics.</p>
+<p>This dataset contains information on wages, age, education, and gender for a subsample of prime-age, full-time, full-year wage earners extracted from the Current Population Survey (CPS). The CPS is the primary source for labor market data in the U.S.; its best-known use is in estimating the unemployment rate and related statistics. It is widely used in economics research, including studies of wage determination and human capital.</p>
+<p>Each March the CPS includes the Annual Social and Economic Supplement (ASEC), which collects detailed information on income, earnings, and work experience for the prior calendar year. The ASEC is the most comprehensive source of data on annual earnings in the U.S. This dataset was extracted from the 2023 CPS ASEC.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://www.census.gov/data/datasets/time-series/demo/cps/cps-asec.html">CPS ASEC documentation (Census Bureau)</a> – details about the survey design, target population, data collection, and variables available in the ASEC.</li>
+<li><a href="https://en.wikipedia.org/wiki/Mincer_earnings_function">Mincer earnings function (Wikipedia)</a> – this dataset is suitable for estimating the Mincer earnings function, a widely used model in labor economics that relates wages to schooling and experience.</li>
+</ul>
+<p>Data were obtained via the <code>cpsR</code> R package, which queries the Census Bureau’s API and returns a tidy extract from the 2023 ASEC public-use microdata file. The underlying microdata represent civilian non-institutional respondents nationwide. No license restrictions apply to CPS public-use files; the data are freely available from the U.S. Census Bureau.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>CPS Source Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hrly_wage</code></td>
+<td>—</td>
+<td>Derived (continuous)</td>
+<td>USD/hr</td>
+<td>Hourly wage rate, computed as <code>wage_income / (weeks_worked * hrs_per_week)</code>. <strong>Primary outcome</strong> in all regression models (entered as <code>log(hrly_wage)</code>).</td>
+</tr>
+<tr class="even">
+<td><code>educ_years</code></td>
+<td><code>a_hga</code></td>
+<td>Derived (continuous)</td>
+<td>years, 0–20</td>
+<td>Years of completed schooling, recoded from the CPS educational attainment code <code>a_hga</code> using the mapping below. Key predictor in all models.</td>
+</tr>
+<tr class="odd">
+<td><code>experience</code></td>
+<td>—</td>
+<td>Derived (continuous)</td>
+<td>years</td>
+<td>Potential labor market experience, computed as <code>age − educ_years − 6</code>. Enters models linearly (m2) and as a second-degree polynomial (m3, m4).</td>
+</tr>
+<tr class="even">
+<td><code>weight</code></td>
+<td><code>marsupwt</code></td>
+<td>Continuous</td>
+<td>—</td>
+<td>March supplement person weight. Used as observation weight in the weighted regression (m4).</td>
+</tr>
+<tr class="odd">
+<td><code>age</code></td>
+<td><code>a_age</code></td>
+<td>Discrete</td>
+<td>years</td>
+<td>Respondent’s age in years. Used to derive <code>experience</code>; retained in the final file.</td>
+</tr>
+<tr class="even">
+<td><code>female</code></td>
+<td><code>a_sex</code></td>
+<td>Binary</td>
+<td>0/1</td>
+<td>Indicator equal to 1 if <code>a_sex == 2</code> (female), 0 otherwise.</td>
+</tr>
+<tr class="odd">
+<td><code>wage_income</code></td>
+<td><code>wsal_val</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Total wage and salary income in the prior calendar year. Used to derive <code>hrly_wage</code>; retained in the final file.</td>
+</tr>
+<tr class="even">
+<td><code>weeks_worked</code></td>
+<td><code>wkswork</code></td>
+<td>Discrete</td>
+<td>weeks</td>
+<td>Number of weeks worked in the prior calendar year. Used as a filter (&gt; 45) and to derive <code>hrly_wage</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>hrs_per_week</code></td>
+<td><code>a_uslhrs</code></td>
+<td>Discrete</td>
+<td>hrs/week</td>
+<td>Usual hours worked per week. Used as a filter (&gt; 35) and to derive <code>hrly_wage</code>.</td>
+</tr>
+<tr class="even">
+<td><code>educ_code</code></td>
+<td><code>a_hga</code></td>
+<td>Ordinal</td>
+<td>31–46</td>
+<td>Raw CPS educational attainment code, before recoding. Dropped from the final file (<code>select()</code>) but used to construct <code>educ_years</code>; documented here for traceability.</td>
+</tr>
+</tbody>
+</table>
+<section id="education-recode-a_hga-educ_years" class="level3" data-number="A.2.1">
+<h3 data-number="A.2.1" class="anchored" data-anchor-id="education-recode-a_hga-educ_years"><span class="header-section-number">A.2.1</span> Education recode (<code>a_hga</code> → <code>educ_years</code>)</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>a_hga</code></th>
+<th>CPS label</th>
+<th><code>educ_years</code> assigned</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Children (no schooling data)</td>
+<td>dropped (filter)</td>
+</tr>
+<tr class="even">
+<td>31</td>
+<td>Less than 1st grade</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>32</td>
+<td>1st–4th grade</td>
+<td>2.5</td>
+</tr>
+<tr class="even">
+<td>33</td>
+<td>5th–6th grade</td>
+<td>5.5</td>
+</tr>
+<tr class="odd">
+<td>34</td>
+<td>7th–8th grade</td>
+<td>7.5</td>
+</tr>
+<tr class="even">
+<td>35</td>
+<td>9th grade</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>36</td>
+<td>10th grade</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>37</td>
+<td>11th grade</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>38</td>
+<td>12th grade, no diploma</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>39</td>
+<td>High school diploma or GED</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>40</td>
+<td>Some college, no degree</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>41</td>
+<td>Associate’s degree, vocational</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>42</td>
+<td>Associate’s degree, academic</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>43</td>
+<td>Bachelor’s degree</td>
+<td>16</td>
+</tr>
+<tr class="odd">
+<td>44</td>
+<td>Master’s degree</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>45</td>
+<td>Professional degree (JD, MD, etc.)</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td>Doctorate</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sample-filters" class="level3" data-number="A.2.2">
+<h3 data-number="A.2.2" class="anchored" data-anchor-id="sample-filters"><span class="header-section-number">A.2.2</span> Sample filters</h3>
+<p>The following filters were applied sequentially in <code>fetch_2023.R</code>:</p>
+<ol type="1">
+<li><strong>Full-year workers</strong>: <code>weeks_worked &gt; 45</code> — retains respondents who worked more than 45 weeks in the prior year.</li>
+<li><strong>Full-time workers</strong>: <code>hrs_per_week &gt; 35</code> — retains respondents who usually worked more than 35 hours per week.</li>
+<li><strong>Positive wage earners</strong>: <code>wage_income &gt; 0</code> — drops respondents with zero or missing wage and salary income.</li>
+<li><strong>Valid age</strong>: <code>age &lt; 100</code> — excludes top-coded or implausible age values.</li>
+<li><strong>Non-children</strong>: <code>educ_code != 0</code> — explicitly excludes child records for which educational attainment is not reported.</li>
+<li><strong>Valid education recode</strong>: <code>!is.na(educ_years)</code> — drops any remaining records where the recode produced a missing value.</li>
+<li><strong>Internally consistent age–education</strong>: <code>age &gt;= educ_years + 6</code> — requires that age is at least as large as the minimum age at which a person could have completed the stated level of schooling (school entry at age 6).</li>
+<li><strong>Minimum working age</strong>: <code>age &gt;= 21</code> — restricts the sample to respondents aged 21 and older, ensuring that the derived <code>experience</code> variable is non-negative for all education levels.</li>
+</ol>
+<p>This dataset is cited as <span class="citation" data-cites="earnings-cps">U.S. Census Bureau and Bureau of Labor Statistics (<a href="appendix_data.html#ref-earnings-cps" role="doc-biblioref">2023</a>)</span>.</p>
+</section>
+</section>
+<section id="sec-data-returns-2025" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="sec-data-returns-2025"><span class="header-section-number">A.3</span> Weekly Asset Returns (2023–2025)</h2>
+<p>These data document weekly simple returns for 25 exchange-traded assets—individual equities, a sector ETF, bond ETFs, and a commodity ETF—alongside a contemporaneous weekly risk-free rate, covering the period September 30, 2023 to September 29, 2025. Prices are sourced from Yahoo Finance and converted to weekly simple returns using split- and dividend-adjusted closing prices. The dataset supports analysis of asset pricing and portfolio diversification: the companion script estimates the Capital Asset Pricing Model for each security and examines mean-variance tradeoffs across asset classes and holding-period horizons.</p>
+<p>The data ship as two files. <code>returns.csv</code> contains the weekly returns and the risk-free rate only. <code>returns_prices.csv</code> contains the identical rows plus the weekly adjusted closing price for every asset, in columns named <code>&lt;ticker&gt;_price</code> (with SPY’s price as <code>market_price</code>); it supports exercises that contrast price levels with returns, such as the Ford-versus-Tesla comparison in the transformations chapter of the course notes.</p>
+<p><strong>Provenance.</strong> Adjusted daily closing prices were retrieved from Yahoo Finance via the <code>tidyquant</code> R package. The data request covers September 30, 2023 to September 29, 2025 (<code>start_date</code> and <code>end_date</code> as set in <code>data_extract.R</code>). The risk-free rate is proxied by the 13-week U.S. Treasury bill secondary-market yield (<code>^IRX</code>), converted from an annualized percentage to a weekly decimal rate by dividing by 100 and then by 52; forward-filling patches any holiday gaps in that series. Price columns in <code>returns_prices.csv</code> record the last available split- and dividend-adjusted daily close on or before each weekly return date, so prices and returns are aligned on the same Friday grid. Yahoo Finance terms of use restrict redistribution of raw price data; this assembled dataset is intended for educational use. See <span class="citation" data-cites="returns-2025"><em>Weekly Asset Return Panel, October 2023–September 2025</em> (<a href="appendix_data.html#ref-returns-2025" role="doc-biblioref">2025</a>)</span> for retrieval details.</p>
+<section id="variables-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-1">Variables</h3>
+<div id="tbl-vars-returns-2025" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-returns-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.2: Variables in the weekly asset returns data.
+</figcaption>
+<div aria-describedby="tbl-vars-returns-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Discrete (date)</td>
+<td>YYYY-MM-DD</td>
+<td>End-of-week date corresponding to the Friday close used by <code>tq_transmute()</code> with <code>period = "weekly"</code>.</td>
+</tr>
+<tr class="even">
+<td><code>market</code></td>
+<td>Continuous</td>
+<td>proportion</td>
+<td>Weekly simple return on SPY (SPDR S&amp;P 500 ETF Trust); renamed from <code>SPY</code> to signal its role as the market-portfolio proxy in CAPM estimation.</td>
+</tr>
+<tr class="odd">
+<td><code>AAPL</code> … <code>VCIT</code> (24 columns)</td>
+<td>Continuous</td>
+<td>proportion</td>
+<td>Weekly simple return for each individual asset; one column per ticker. Column names match the Yahoo Finance ticker symbol. See <a href="#tbl-tickers-returns-2025" class="quarto-xref">Table&nbsp;<span>A.3</span></a> for descriptions.</td>
+</tr>
+<tr class="even">
+<td><code>rf</code></td>
+<td>Derived (continuous)</td>
+<td>proportion</td>
+<td>Weekly risk-free rate, computed as <code>(^IRX / 100) / 52</code> from the annualized 13-week T-bill yield.</td>
+</tr>
+<tr class="odd">
+<td><code>market_price</code>, <code>AAPL_price</code> … <code>VCIT_price</code> (25 columns, <code>returns_prices.csv</code> only)</td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Split- and dividend-adjusted closing price on each weekly return date (last available daily close on or before the date). <code>market_price</code> is the SPY price.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="tickers" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="tickers">Tickers</h3>
+<p>The 24 individual-asset columns span equities, airlines, and fixed-income and commodity ETFs. The table below gives a brief description and a link to the ticker’s profile page.</p>
+<div id="tbl-tickers-returns-2025" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tickers-returns-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.3: Asset tickers in the weekly returns data.
+</figcaption>
+<div aria-describedby="tbl-tickers-returns-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ticker</th>
+<th>Full name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/AAPL"><code>AAPL</code></a></td>
+<td>Apple Inc.</td>
+<td>Equity</td>
+<td>Consumer electronics, software, and services company; one of the largest publicly traded firms by market capitalization.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/AMZN"><code>AMZN</code></a></td>
+<td>Amazon.com, Inc.</td>
+<td>Equity</td>
+<td>E-commerce and cloud computing (AWS) conglomerate; operates across retail, logistics, and digital services.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/GOOG"><code>GOOG</code></a></td>
+<td>Alphabet Inc.&nbsp;(Class C)</td>
+<td>Equity</td>
+<td>Parent company of Google; generates revenue primarily from digital advertising, cloud services, and hardware.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/MSTR"><code>MSTR</code></a></td>
+<td>Strategy Inc.</td>
+<td>Equity</td>
+<td>Business intelligence software company; holds a large Bitcoin treasury, making its stock returns highly sensitive to cryptocurrency prices.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/NVDA"><code>NVDA</code></a></td>
+<td>NVIDIA Corporation</td>
+<td>Equity</td>
+<td>Designer of graphics processing units (GPUs) and AI accelerators; primary supplier of chips for large-scale machine learning workloads.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/TSLA"><code>TSLA</code></a></td>
+<td>Tesla, Inc.</td>
+<td>Equity</td>
+<td>Electric vehicle and clean-energy company; high-growth, high-volatility stock with a large retail investor following.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/BRK-A"><code>BRK-A</code></a></td>
+<td>Berkshire Hathaway Class A</td>
+<td>Equity</td>
+<td>Diversified holding company managed by Warren Buffett; subsidiaries span insurance, rail, energy, and consumer goods. Very high per-share price; otherwise economically identical to BRK-B.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/BRK-B"><code>BRK-B</code></a></td>
+<td>Berkshire Hathaway Class B</td>
+<td>Equity</td>
+<td>1/1500th economic interest in Berkshire Hathaway relative to Class A; more accessible price point, slightly different voting rights.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/JPM"><code>JPM</code></a></td>
+<td>JPMorgan Chase &amp; Co.</td>
+<td>Equity</td>
+<td>Largest U.S. bank by assets; operates commercial banking, investment banking, and asset management divisions.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/PG"><code>PG</code></a></td>
+<td>Procter &amp; Gamble Co.</td>
+<td>Equity</td>
+<td>Multinational consumer staples manufacturer (Tide, Pampers, Gillette); a canonical low-beta defensive stock.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/WMT"><code>WMT</code></a></td>
+<td>Walmart Inc.</td>
+<td>Equity</td>
+<td>World’s largest retailer by revenue; considered a defensive consumer-staples name despite its discretionary product mix.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/XOM"><code>XOM</code></a></td>
+<td>Exxon Mobil Corporation</td>
+<td>Equity</td>
+<td>Integrated oil-and-gas major; returns are sensitive to crude oil prices and thus provide partial commodity exposure within an equity portfolio.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/BA"><code>BA</code></a></td>
+<td>The Boeing Company</td>
+<td>Equity</td>
+<td>Commercial and defense aerospace manufacturer; subject to idiosyncratic risk from aircraft certification and production delays.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/CAT"><code>CAT</code></a></td>
+<td>Caterpillar Inc.</td>
+<td>Equity</td>
+<td>Leading manufacturer of construction and mining equipment; returns are cyclically sensitive to global infrastructure spending.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/F"><code>F</code></a></td>
+<td>Ford Motor Company</td>
+<td>Equity</td>
+<td>Legacy U.S. automaker; investing in electric vehicle transition while managing legacy internal-combustion operations.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/TGT"><code>TGT</code></a></td>
+<td>Target Corporation</td>
+<td>Equity</td>
+<td>U.S. general-merchandise retailer; operates roughly 2,000 stores and competes directly with Walmart in consumer staples and discretionary categories.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/AAL"><code>AAL</code></a></td>
+<td>American Airlines Group</td>
+<td>Equity — airline</td>
+<td>One of the world’s largest airlines by passenger volume; carries substantial long-term debt from pandemic-era borrowing.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/ALK"><code>ALK</code></a></td>
+<td>Alaska Air Group, Inc.</td>
+<td>Equity — airline</td>
+<td>Regional U.S. carrier focused on the Pacific Coast; acquired Hawaiian Airlines in 2024.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/DAL"><code>DAL</code></a></td>
+<td>Delta Air Lines, Inc.</td>
+<td>Equity — airline</td>
+<td>Major U.S. carrier; generally regarded as one of the more financially stable legacy airlines.</td>
+</tr>
+<tr class="even">
+<td><a href="https://finance.yahoo.com/quote/LUV"><code>LUV</code></a></td>
+<td>Southwest Airlines Co.</td>
+<td>Equity — airline</td>
+<td>Low-cost U.S. carrier with a historically differentiated point-to-point route model; underwent significant strategic changes in 2024–2025.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://finance.yahoo.com/quote/UAL"><code>UAL</code></a></td>
+<td>United Airlines Holdings</td>
+<td>Equity — airline</td>
+<td>Major U.S. carrier with extensive international network; high revenue and cost exposure to fuel prices.</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.etf.com/GLD"><code>GLD</code></a></td>
+<td>SPDR Gold Shares</td>
+<td>ETF — commodity</td>
+<td>Largest physically backed gold ETF; holds gold bullion in trust, providing direct exposure to gold spot prices without futures roll costs.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.etf.com/JNK"><code>JNK</code></a></td>
+<td>SPDR Bloomberg High Yield Bond ETF</td>
+<td>ETF — fixed income</td>
+<td>Tracks an index of U.S. dollar-denominated high-yield (below investment grade) corporate bonds; higher credit risk and yield than investment-grade bond ETFs.</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.etf.com/VCIT"><code>VCIT</code></a></td>
+<td>Vanguard Intermediate-Term Corporate Bond ETF</td>
+<td>ETF — fixed income</td>
+<td>Tracks investment-grade U.S. corporate bonds with maturities of 5–10 years; lower credit risk than JNK but sensitive to interest-rate movements.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.etf.com/XLK"><code>XLK</code></a></td>
+<td>Technology Select Sector SPDR Fund</td>
+<td>ETF — sector</td>
+<td>Tracks the technology sector of the S&amp;P 500 (software, hardware, semiconductors); heavily concentrated in Apple and NVIDIA.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-data-portfolios-2025" class="level2" data-number="A.4">
+<h2 data-number="A.4" class="anchored" data-anchor-id="sec-data-portfolios-2025"><span class="header-section-number">A.4</span> Three-Asset Portfolio Series (2023–2025)</h2>
+<p>These data document weekly simple returns and adjusted prices for three exchange-traded funds—a U.S. equity market fund (SPY), an international developed-markets equity fund (EFA), and a long-term U.S. Treasury bond fund (TLT)—alongside a contemporaneous weekly risk-free rate, covering the period September 30, 2023 to September 29, 2025. The three funds were chosen for the portfolio construction material in the course notes: over this window they had nearly identical volatility but quite different mean returns, and the two equity funds are strongly correlated with each other while the bond fund is nearly uncorrelated with both. Prices are sourced from Yahoo Finance and converted to weekly simple returns using split- and dividend-adjusted closing prices.</p>
+<p>The dataset ships as a single file, <code>portfolios.csv</code>, containing the weekly returns, the risk-free rate, and the aligned weekly adjusted closing prices. The rows sit on the same Friday grid as the broader weekly asset returns panel (<a href="#sec-data-returns-2025" class="quarto-xref"><span>Section A.3</span></a>), so the two datasets can be joined on <code>date</code>; the <code>SPY</code> column here is the same series as that dataset’s <code>market</code> column.</p>
+<p><strong>Provenance.</strong> Adjusted daily closing prices were retrieved from Yahoo Finance via the <code>tidyquant</code> R package. The data request covers September 30, 2023 to September 29, 2025 (<code>start_date</code> and <code>end_date</code> as set in <code>data_extract.R</code>). The risk-free rate is proxied by the 13-week U.S. Treasury bill secondary-market yield (<code>^IRX</code>), converted from an annualized percentage to a weekly decimal rate by dividing by 100 and then by 52; forward-filling patches any holiday gaps in that series. Price columns record the last available split- and dividend-adjusted daily close on or before each weekly return date, so prices and returns are aligned on the same Friday grid. Yahoo Finance terms of use restrict redistribution of raw price data; this assembled dataset is intended for educational use. See <span class="citation" data-cites="portfolios-2025"><em>Three-Asset Weekly Return and Price Series, October 2023–September 2025</em> (<a href="appendix_data.html#ref-portfolios-2025" role="doc-biblioref">2025</a>)</span> for retrieval details.</p>
+<section id="variables-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-2">Variables</h3>
+<div id="tbl-vars-portfolios-2025" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-portfolios-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.4: Variables in the three-asset portfolio data.
+</figcaption>
+<div aria-describedby="tbl-vars-portfolios-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Discrete (date)</td>
+<td>YYYY-MM-DD</td>
+<td>End-of-week date corresponding to the Friday close used by <code>tq_transmute()</code> with <code>period = "weekly"</code>.</td>
+</tr>
+<tr class="even">
+<td><code>SPY</code></td>
+<td>Continuous</td>
+<td>proportion</td>
+<td>Weekly simple return on SPY (SPDR S&amp;P 500 ETF Trust), a proxy for the U.S. stock market.</td>
+</tr>
+<tr class="odd">
+<td><code>EFA</code></td>
+<td>Continuous</td>
+<td>proportion</td>
+<td>Weekly simple return on EFA (iShares MSCI EAFE ETF), a proxy for developed stock markets outside the U.S.</td>
+</tr>
+<tr class="even">
+<td><code>TLT</code></td>
+<td>Continuous</td>
+<td>proportion</td>
+<td>Weekly simple return on TLT (iShares 20+ Year Treasury Bond ETF), a proxy for long-term U.S. government bonds.</td>
+</tr>
+<tr class="odd">
+<td><code>rf</code></td>
+<td>Derived (continuous)</td>
+<td>proportion</td>
+<td>Weekly risk-free rate, computed as <code>(^IRX / 100) / 52</code> from the annualized 13-week T-bill yield.</td>
+</tr>
+<tr class="even">
+<td><code>SPY_price</code>, <code>EFA_price</code>, <code>TLT_price</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Split- and dividend-adjusted closing price on each weekly return date (last available daily close on or before the date).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="tickers-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="tickers-1">Tickers</h3>
+<div id="tbl-tickers-portfolios-2025" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tickers-portfolios-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.5: Asset tickers in the three-asset portfolio data.
+</figcaption>
+<div aria-describedby="tbl-tickers-portfolios-2025-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ticker</th>
+<th>Full name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://www.etf.com/SPY"><code>SPY</code></a></td>
+<td>SPDR S&amp;P 500 ETF Trust</td>
+<td>ETF — U.S. equity</td>
+<td>Tracks the S&amp;P 500 index of large-capitalization U.S. stocks; the oldest and one of the largest ETFs, commonly used as a proxy for the U.S. stock market.</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.etf.com/EFA"><code>EFA</code></a></td>
+<td>iShares MSCI EAFE ETF</td>
+<td>ETF — international equity</td>
+<td>Tracks the MSCI EAFE index of large- and mid-capitalization stocks in developed markets outside North America (Europe, Australasia, and the Far East).</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.etf.com/TLT"><code>TLT</code></a></td>
+<td>iShares 20+ Year Treasury Bond ETF</td>
+<td>ETF — fixed income</td>
+<td>Holds U.S. Treasury bonds with at least 20 years to maturity; essentially free of default risk but highly sensitive to interest-rate movements because of its long duration.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<hr>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">portfolios</span>-<span class="ot">2025</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Three-Asset Weekly Return and Price Series, October 2023--September 2025},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2025},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {Assembled from Yahoo Finance via the <span class="ch">\texttt</span>{tidyquant} R package</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                  (<span class="ch">\url</span>{https://cran.r-project.org/package=tidyquant})},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {SPY, EFA, and TLT ETFs and 13-week T-bill rate;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                  weekly simple returns and adjusted prices, 2023-09-30 to 2025-09-29.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                  Accessed: 2026-07-14}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="sec-data-ercot-shaffer" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="sec-data-ercot-shaffer"><span class="header-section-number">A.5</span> ERCOT Hourly Load and Temperature Panel</h2>
+<p>These data were assembled to characterize the relationship between temperature and electricity demand in Texas. The panel links hourly zone-level load from ERCOT with hourly surface temperature observations from nearby weather stations, enabling temperature response functions to be estimated separately for each of ERCOT’s eight weather zones. <span class="citation" data-cites="ercot-shaffer">Shaffer (<a href="appendix_data.html#ref-ercot-shaffer" role="doc-biblioref">2022</a>)</span> uses these data to examine how the load–temperature relationship changed over time, estimating the functions across rolling multi-year windows from 2002 through 2020.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S2589004222004436">Article</a></li>
+<li><a href="https://github.com/blakeshaffer/ercotproject">Replication archive</a></li>
+</ul>
+<p><strong>Provenance.</strong> Load data originate from the Electric Reliability Council of Texas (ERCOT) and reflect hourly settlement-point electricity demand, in megawatts, for each of ERCOT’s eight weather zones from January 2002 through March 2021. Temperature data originate from NOAA’s Local Climatological Data (LCD) product, which reports hourly observations from Automated Surface Observing System (ASOS) and Automated Weather Observing System (AWOS) stations. NOAA LCD reports dry-bulb temperature in <strong>degrees Fahrenheit</strong> for U.S. stations; the field name <code>HourlyDryBulbTemperature</code> is the exact column name used in LCD exports. One representative station was selected per ERCOT weather zone. The two sources are matched on datetime and zone. Large-scale load-shed events (outages) are flagged from ERCOT operating records to allow their exclusion from estimation. All data were curated by Blake Shaffer and are archived at the replication repository above. See <span class="citation" data-cites="ercot-shaffer">Shaffer (<a href="appendix_data.html#ref-ercot-shaffer" role="doc-biblioref">2022</a>)</span> for the primary citation.</p>
+<section id="variables-3" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-3">Variables</h3>
+<div id="tbl-vars-ercot-shaffer" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-ercot-shaffer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.6: Variables from the ERCOT Hourly Load and Temperature Panel.
+</figcaption>
+<div aria-describedby="tbl-vars-ercot-shaffer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DATEHOUR</code></td>
+<td>Datetime</td>
+<td>Hourly</td>
+<td>Timestamp of the observation, UTC. Identifies the hour of load measurement and temperature reading; used as the join key between load, weather, and outage data.</td>
+</tr>
+<tr class="even">
+<td><code>LOCATION</code></td>
+<td>Categorical</td>
+<td>—</td>
+<td>ERCOT weather zone name. Eight zones: Coast (Houston), East (Tyler), Far West (Midland), North (Wichita Falls), North Central (DFW), South (Corpus Christi), South Central (Austin), West (Abilene). Used as a grouping variable; all regressions are estimated within zone.</td>
+</tr>
+<tr class="odd">
+<td><code>LOAD</code></td>
+<td>Continuous</td>
+<td>MW</td>
+<td>Hourly electricity demand for the weather zone, in megawatts. This is the outcome variable in the temperature response function regressions.</td>
+</tr>
+<tr class="even">
+<td><code>HourlyDryBulbTemperature</code></td>
+<td>Continuous</td>
+<td>°F</td>
+<td>Hourly dry-bulb surface air temperature from the nearest NOAA ASOS/AWOS station. <strong>Values are in degrees Fahrenheit</strong> (NOAA LCD native units). The key predictor in all analyses; in the published paper these are converted to Celsius before modeling, but are retained in Fahrenheit in the current working script.</td>
+</tr>
+<tr class="odd">
+<td><code>Outage</code></td>
+<td>Binary</td>
+<td>0 / 1</td>
+<td>Indicator for hours affected by large-scale, operator-initiated load shedding, sourced from ERCOT operating records. Flagged events include February 2008 and February 2011. Observations with <code>Outage == 1</code> are excluded from all regression estimation to avoid conflating involuntary curtailment with normal demand response. Not used in the current <code>test.R</code> exploratory plots but retained in the merged dataset.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-data-lendingclub-kaggle" class="level2" data-number="A.6">
+<h2 data-number="A.6" class="anchored" data-anchor-id="sec-data-lendingclub-kaggle"><span class="header-section-number">A.6</span> LendingClub Accepted Loans</h2>
+<p>LendingClub operated an online marketplace that matched individual borrowers with investors who funded loans in small fractional shares (“notes”). To let investors screen and price loans, the company published detailed loan-level records for every funded loan — borrower credit attributes recorded at origination together with the loan’s subsequent repayment history. These data are widely used to study consumer-credit default and loan pricing. This card documents a cleaned extract used to model loan <strong>charge-off</strong> and investor <strong>payoff</strong>.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">Kaggle dataset</a></li>
+</ul>
+<p><strong>Provenance.</strong> The underlying data were released by LendingClub Corporation (San Francisco, CA) as public loan-performance files covering U.S. consumer loans issued 2007–2018 Q4, and were compiled into a single Kaggle dataset by Nathan George (user <em>wordsforthewise</em>). This extract uses only the <strong>accepted/funded</strong> loans and restricts to loans <strong>issued 2008–2012</strong> that had reached a terminal status — <code>Fully Paid</code> or <code>Charged Off</code> (92,902 loans; 15.4% charged off). It retains 45 analysis-relevant columns and adds a small number of derived fields (below). Two files share this schema: <code>df_all.csv</code> (all purposes) and <code>df_subs.csv</code>, which further restricts to three purposes (<code>debt_consolidation</code>, <code>home_improvement</code>, <code>small_business</code>). Data are available at the Kaggle dataset page linked above; consult that page for current license terms. See <span class="citation" data-cites="lendingclub-kaggle">George (<a href="appendix_data.html#ref-lendingclub-kaggle" role="doc-biblioref">2019</a>)</span> for the primary citation.</p>
+<section id="variables-4" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-4">Variables</h3>
+<p>Columns are grouped by role. <strong>Targets</strong> are modeled outcomes; <strong>payment record</strong> fields are realized after origination and are used only to construct the payoff targets (never as predictors of default). Derived fields (created in the extract) are labeled and defined in terms of their source columns.</p>
+<div id="tbl-vars-lendingclub-kaggle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-lendingclub-kaggle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.7: Variables in the LendingClub accepted-loans extract.
+</figcaption>
+<div aria-describedby="tbl-vars-lendingclub-kaggle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fully_paid</code></td>
+<td>Binary</td>
+<td>0/1</td>
+<td>1 = loan Fully Paid, 0 = Charged Off. Primary classification target (charge-off = 1 − <code>fully_paid</code>).</td>
+</tr>
+<tr class="even">
+<td><code>loan_status</code></td>
+<td>Categorical</td>
+<td>Fully Paid, Charged Off</td>
+<td>Terminal loan outcome; source of <code>fully_paid</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>payoff_net</code></td>
+<td>Derived (continuous)</td>
+<td>USD, 0–62,080</td>
+<td><code>total_pymnt − collection_recovery_fee</code>: dollars netted to the investor. Primary payoff-regression target.</td>
+</tr>
+<tr class="even">
+<td><code>payoff_frac</code></td>
+<td>Derived (continuous)</td>
+<td>fraction, 0–1.77</td>
+<td><code>payoff_net / funded_amnt</code>: scale-free payoff (share of funded amount returned).</td>
+</tr>
+<tr class="odd">
+<td><code>payoff_gross</code></td>
+<td>Derived (continuous)</td>
+<td>USD, 0–62,080</td>
+<td><code>= total_pymnt</code>: gross dollars the borrower paid back (already includes recoveries).</td>
+</tr>
+<tr class="even">
+<td><code>recovery_channel</code></td>
+<td>Categorical (derived)</td>
+<td>collection / debt_sale / no_recovery</td>
+<td>How a charged-off loan resolved, backed out from <code>recoveries</code> and <code>collection_recovery_fee</code>. <code>NA</code> for fully-paid loans.</td>
+</tr>
+<tr class="odd">
+<td><code>loan_amnt</code></td>
+<td>Continuous</td>
+<td>USD, 500–35,000</td>
+<td>Amount the borrower requested/listed.</td>
+</tr>
+<tr class="even">
+<td><code>funded_amnt</code></td>
+<td>Continuous</td>
+<td>USD, 500–35,000</td>
+<td>Amount actually funded (≈ <code>loan_amnt</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>funded_amnt_inv</code></td>
+<td>Continuous</td>
+<td>USD, 0–35,000</td>
+<td>Portion of the loan funded by investors.</td>
+</tr>
+<tr class="even">
+<td><code>term</code></td>
+<td>Binary</td>
+<td>36 or 60 months</td>
+<td>Number of scheduled monthly payments.</td>
+</tr>
+<tr class="odd">
+<td><code>int_rate</code></td>
+<td>Continuous</td>
+<td>%, 5.42–24.89</td>
+<td>Loan interest rate.</td>
+</tr>
+<tr class="even">
+<td><code>installment</code></td>
+<td>Continuous</td>
+<td>USD, 16–1,388</td>
+<td>Scheduled monthly payment.</td>
+</tr>
+<tr class="odd">
+<td><code>grade</code></td>
+<td>Ordinal</td>
+<td>A–G</td>
+<td>LendingClub-assigned risk grade (A best).</td>
+</tr>
+<tr class="even">
+<td><code>sub_grade</code></td>
+<td>Ordinal</td>
+<td>A1–G5</td>
+<td>Finer risk subgrade within <code>grade</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>credit_score</code></td>
+<td>Derived (discrete)</td>
+<td>45–79</td>
+<td><code>80 − rank(sub_grade)</code>: a continuous re-encoding of <code>sub_grade</code>. Kept for exposition only; not used as a model predictor (redundant with <code>grade</code>/<code>sub_grade</code>).</td>
+</tr>
+<tr class="even">
+<td><code>purpose</code></td>
+<td>Categorical</td>
+<td>14 levels</td>
+<td>Borrower-stated loan purpose (e.g., <code>debt_consolidation</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>title</code></td>
+<td>Categorical (text)</td>
+<td>—</td>
+<td>Borrower-supplied loan title (free text, high-cardinality).</td>
+</tr>
+<tr class="even">
+<td><code>issue_d</code></td>
+<td>Date (month)</td>
+<td>e.g.&nbsp;Apr-2011</td>
+<td>Month the loan was issued.</td>
+</tr>
+<tr class="odd">
+<td><code>annual_inc</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Self-reported annual income.</td>
+</tr>
+<tr class="even">
+<td><code>dti</code></td>
+<td>Continuous</td>
+<td>ratio, 0–35</td>
+<td>Debt-to-income: monthly non-mortgage debt payments ÷ monthly income.</td>
+</tr>
+<tr class="odd">
+<td><code>emp_length</code></td>
+<td>Ordinal</td>
+<td>&lt;1 to 10+ years</td>
+<td>Employment length in years (<code>NA</code> when not provided).</td>
+</tr>
+<tr class="even">
+<td><code>emp_title</code></td>
+<td>Categorical (text)</td>
+<td>—</td>
+<td>Borrower job title (free text, high-cardinality; <code>NA</code> ≈ 6%).</td>
+</tr>
+<tr class="odd">
+<td><code>home_ownership</code></td>
+<td>Categorical</td>
+<td>RENT, OWN, MORTGAGE, OTHER, NONE</td>
+<td>Home-ownership status.</td>
+</tr>
+<tr class="even">
+<td><code>verification_status</code></td>
+<td>Categorical</td>
+<td>Not Verified, Source Verified, Verified</td>
+<td>Whether/how income was verified.</td>
+</tr>
+<tr class="odd">
+<td><code>addr_state</code></td>
+<td>Categorical</td>
+<td>49 U.S. states</td>
+<td>Borrower state of residence.</td>
+</tr>
+<tr class="even">
+<td><code>zip_code</code></td>
+<td>Categorical</td>
+<td>3-digit prefix (e.g.&nbsp;007xx)</td>
+<td>First three digits of the borrower ZIP code.</td>
+</tr>
+<tr class="odd">
+<td><code>fico_approx</code></td>
+<td>Derived (continuous)</td>
+<td>FICO points, 662–847.5</td>
+<td>Midpoint of the origination FICO band (<code>(fico_range_low + fico_range_high)/2</code>).</td>
+</tr>
+<tr class="even">
+<td><code>credit_history_age</code></td>
+<td>Derived (continuous)</td>
+<td>years, 3.0–65.4</td>
+<td>Years between the earliest reported credit line and <code>issue_d</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>open_acc</code></td>
+<td>Discrete</td>
+<td>count, 1–49</td>
+<td>Number of open credit lines.</td>
+</tr>
+<tr class="even">
+<td><code>total_acc</code></td>
+<td>Discrete</td>
+<td>count, 2–99</td>
+<td>Total number of credit lines ever.</td>
+</tr>
+<tr class="odd">
+<td><code>revol_bal</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Total revolving credit balance.</td>
+</tr>
+<tr class="even">
+<td><code>revol_util</code></td>
+<td>Continuous</td>
+<td>%, 0–104</td>
+<td>Revolving-credit utilization rate (<code>NA</code> ≈ 0.1%).</td>
+</tr>
+<tr class="odd">
+<td><code>inq_last_6mths</code></td>
+<td>Discrete</td>
+<td>count, 0–8</td>
+<td>Credit inquiries in the past 6 months.</td>
+</tr>
+<tr class="even">
+<td><code>had_delinq</code></td>
+<td>Binary (derived)</td>
+<td>0/1</td>
+<td>1 if the borrower has any delinquency on record (from <code>mths_since_last_delinq</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>delinq_recent</code></td>
+<td>Binary (derived)</td>
+<td>0/1</td>
+<td>1 if any 30+ days-past-due delinquency in the last 2 years (<code>delinq_2yrs &gt; 0</code>).</td>
+</tr>
+<tr class="even">
+<td><code>has_pub_rec</code></td>
+<td>Binary (derived)</td>
+<td>0/1</td>
+<td>1 if the borrower has any derogatory public record (<code>pub_rec &gt; 0</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>total_pymnt</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Total payments received to date (includes <code>recoveries</code>). Payment record.</td>
+</tr>
+<tr class="even">
+<td><code>total_rec_prncp</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Principal received to date. Payment record.</td>
+</tr>
+<tr class="odd">
+<td><code>total_rec_int</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Interest received to date. Payment record.</td>
+</tr>
+<tr class="even">
+<td><code>total_rec_late_fee</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Late fees received to date. Payment record.</td>
+</tr>
+<tr class="odd">
+<td><code>recoveries</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Gross post-charge-off recovery. Payment record; defines <code>recovery_channel</code>.</td>
+</tr>
+<tr class="even">
+<td><code>collection_recovery_fee</code></td>
+<td>Continuous</td>
+<td>USD</td>
+<td>Post-charge-off collection fee. Payment record; subtracted to form <code>payoff_net</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>last_pymnt_d</code></td>
+<td>Date (month)</td>
+<td>e.g.&nbsp;Aug-2013</td>
+<td>Month of the last payment received (<code>NA</code> ≈ 0.1%).</td>
+</tr>
+<tr class="even">
+<td><code>id</code></td>
+<td>Identifier</td>
+<td>—</td>
+<td>Unique LendingClub loan ID.</td>
+</tr>
+<tr class="odd">
+<td><code>year</code></td>
+<td>Discrete</td>
+<td>2008–2012</td>
+<td>Loan issue year; also the subsetting filter.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-data-sap-nucleus" class="level2" data-number="A.7">
+<h2 data-number="A.7" class="anchored" data-anchor-id="sec-data-sap-nucleus"><span class="header-section-number">A.7</span> SAP Customer ROE</h2>
+<p>In 2005 SAP began running advertisements claiming that companies running SAP software are 32% more profitable than companies that don’t, citing a study it had commissioned from Stratascope Inc.&nbsp;that was never released for public scrutiny <span class="citation" data-cites="carr-sap-lies">(<a href="appendix_data.html#ref-carr-sap-lies" role="doc-biblioref">Carr 2005</a>)</span>. In March 2006 the technology analyst firm Nucleus Research pushed back with a research note titled “SAP customers are 20 percent less profitable than their peers.” Nucleus compiled the publicly traded companies appearing on SAP’s own web site — 81 firms — looked up each one’s return on equity (ROE) from published financial data, and compared it with the average ROE of the firm’s industry. The average across the 81 firms was 12.6%, against an industry-average benchmark of 15.7%. These data are used in the notes to estimate the mean ROE among SAP customers, to test hypotheses about both companies’ claims, and to examine what a non-random sample can and cannot support.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://www.oracle.com/us/corporate/analystreports/industries/059823.pdf">Nucleus Research note G12 (PDF)</a></li>
+<li><a href="https://www.roughtype.com/?p=225">Rough Type on the ad campaign</a></li>
+<li><a href="https://www.roughtype.com/?p=150">Rough Type on the Stratascope study</a></li>
+</ul>
+<p><strong>Provenance.</strong> The figures are transcribed from Table 1 of <span class="citation" data-cites="sap-nucleus">Nucleus Research (<a href="appendix_data.html#ref-sap-nucleus" role="doc-biblioref">2006</a>)</span> (Nucleus Research note G12, March 2006), which lists each company with its SAP solution(s), industry, ROE, and industry-average ROE. Nucleus reports gathering the ROE figures from Bloomberg and the industry averages from Hoovers via Yahoo! Finance. The note itself circulates today courtesy of Oracle — an SAP competitor with an obvious interest in its conclusions — though Nucleus states the analysis was conducted independently and not commissioned by any company. The one derived column, <code>roe_diff</code>, was added for this book.</p>
+<p><strong>A caution on sampling.</strong> These 81 firms are not a random sample of SAP customers: they are the publicly traded companies SAP itself chose to feature on its web site. The inference chapter leans on this fact — analyses of these data describe SAP’s showcased customers, not SAP customers in general.</p>
+<section id="dataset-versions-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="dataset-versions-1">Dataset versions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Rows</th>
+<th>Columns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sap_roe.csv</code></td>
+<td>81</td>
+<td>6</td>
+<td>One row per publicly traded SAP customer in the Nucleus note’s Table 1.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variables-5" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-5">Variables</h3>
+<div id="tbl-vars-sap-nucleus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-sap-nucleus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.8: Variables in the SAP customer ROE data.
+</figcaption>
+<div aria-describedby="tbl-vars-sap-nucleus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>roe</code></td>
+<td>Continuous</td>
+<td>%, −91.8 to 116.4</td>
+<td>The company’s return on equity from published financial data at the time of the report. The outcome variable throughout.</td>
+</tr>
+<tr class="even">
+<td><code>industry_roe</code></td>
+<td>Continuous</td>
+<td>%, 2.6 to 48.8</td>
+<td>Average ROE of the company’s industry, as compiled by Nucleus.</td>
+</tr>
+<tr class="odd">
+<td><code>roe_diff</code></td>
+<td>Derived (continuous)</td>
+<td>pp, −95.5 to 69.3</td>
+<td><code>roe − industry_roe</code>: the company’s ROE gap relative to its industry average, in percentage points.</td>
+</tr>
+<tr class="even">
+<td><code>company</code></td>
+<td>Identifier</td>
+<td>—</td>
+<td>Company name as printed in the note (Adidas-Salamon, BMW, Caterpillar, Xerox, …).</td>
+</tr>
+<tr class="odd">
+<td><code>sap_solution</code></td>
+<td>Categorical</td>
+<td>—</td>
+<td>SAP product area(s) deployed (CRM, ERP, SCM, PLM, SRM, SAM, Mobile); comma-separated when a company appears with several.</td>
+</tr>
+<tr class="even">
+<td><code>industry</code></td>
+<td>Categorical</td>
+<td>30 values</td>
+<td>Industry label used to define the peer benchmark.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-data-kroger-cheese" class="level2" data-number="A.8">
+<h2 data-number="A.8" class="anchored" data-anchor-id="sec-data-kroger-cheese"><span class="header-section-number">A.8</span> Kroger Packaged Cheese Sales</h2>
+<p>These data record weekly sales of packaged, sliced American cheese at Kroger grocery stores across 11 U.S. cities. They were assembled by James Scott for use as a teaching dataset in <em>Data Science in R: A Gentle Introduction</em>, where they first appear in the Plots chapter to illustrate exploratory data visualization before being revisited in later chapters on regression with dummy variables. The data are used throughout to examine how price and in-store promotional displays relate to cheese sales volume.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://bookdown.org/jgscott/DSGI/">Data Science in R: A Gentle Introduction</a></li>
+</ul>
+<p><strong>Provenance.</strong> The data were compiled by James Scott (University of Texas at Austin) for instructional use and distributed with <em>Data Science in R: A Gentle Introduction</em> (bookdown, last updated August 2021). The dataset covers 11 U.S. cities — Atlanta, Birmingham, Cincinnati, Columbus, Dallas, Detroit, Houston, Indianapolis, Louisville, Nashville, and Roanoke — with 706 observations. No formal license is stated; the data are made available for educational use through the book’s online companion. See <span class="citation" data-cites="kroger-cheese">Scott (<a href="appendix_data.html#ref-kroger-cheese" role="doc-biblioref">2021</a>)</span> for the primary citation.</p>
+<section id="variables-6" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-6">Variables</h3>
+<div id="tbl-vars-kroger-cheese" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-kroger-cheese-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.9: Variables from the Kroger Packaged Cheese Sales data.
+</figcaption>
+<div aria-describedby="tbl-vars-kroger-cheese-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>vol</code></td>
+<td>Continuous</td>
+<td>packages, 799–14,534</td>
+<td>Sales volume in packages of packaged, sliced American cheese. Serves as the outcome variable in regression analyses.</td>
+</tr>
+<tr class="even">
+<td><code>price</code></td>
+<td>Continuous</td>
+<td>USD, 1.72–3.83</td>
+<td>Retail price charged per package. Key predictor of sales volume.</td>
+</tr>
+<tr class="odd">
+<td><code>disp</code></td>
+<td>Binary</td>
+<td>yes / no</td>
+<td>Whether a promotional in-store display was shown during the observation period. Coded as a character variable (“yes” / “no”).</td>
+</tr>
+<tr class="even">
+<td><code>city</code></td>
+<td>Categorical</td>
+<td>11 cities</td>
+<td>City in which the Kroger store is located (Atlanta, Birmingham, Cincinnati, Columbus, Dallas, Detroit, Houston, Indianapolis, Louisville, Nashville, Roanoke).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-data-wfh-bloom" class="level2" data-number="A.9">
+<h2 data-number="A.9" class="anchored" data-anchor-id="sec-data-wfh-bloom"><span class="header-section-number">A.9</span> Bloom, Han &amp; Liang (2024) Hybrid WFH Experiment</h2>
+<p>Bloom, Han &amp; Liang (2024) ran a six-month randomized controlled trial at a Chinese technology company in 2021–2022, randomly assigning 1,612 graduate-educated employees to a hybrid work-from-home schedule (two days per week at home) or a full-time in-person control condition. The study examines whether hybrid WFH affects employee retention, job performance, promotion rates, and subjective productivity beliefs. The three datasets documented here cover the paper’s core outcomes: employee attrition, daily lines of code written by software engineers, and manager perceptions of WFH’s effect on productivity.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://doi.org/10.1038/s41586-024-07500-2">Article</a></li>
+<li><a href="https://doi.org/10.7910/DVN/6X4ZZL">Replication archive</a></li>
+</ul>
+<p><strong>Provenance.</strong> Data were collected by the research team of Nicholas Bloom, Ruobing Han, and James Liang as part of a pre-registered field experiment conducted at a large Chinese technology firm between July 2021 and June 2022. The replication archive, including the datasets documented here, is deposited at the Harvard Dataverse (doi:10.7910/DVN/6X4ZZL) and is freely available under a Creative Commons CC BY 4.0 licence. The original article was published open-access in <em>Nature</em> in June 2024. See <span class="citation" data-cites="wfh-bloom">Bloom et al. (<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">2024</a>)</span> for the primary citation.</p>
+<section id="attrition" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="attrition">Attrition</h3>
+<p>The attrition dataset (<code>attrition.csv</code>) contains one row per employee (<em>n</em> = 1,612) and records whether each individual left the firm during the study period, together with the key subgroup characteristics used to stratify comparisons in the paper.</p>
+<div id="tbl-vars-wfh-bloom-attrition" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-wfh-bloom-attrition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.10: Variables in <code>attrition.csv</code>.
+</figcaption>
+<div aria-describedby="tbl-vars-wfh-bloom-attrition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>attrite_perc</code></td>
+<td>Discrete</td>
+<td>0 or 100</td>
+<td>Employee attrition indicator scaled as a percentage. A value of 100 indicates the employee voluntarily left the firm during the study period; 0 indicates they remained. Because it takes only these two values, the group mean equals the attrition rate expressed as a percentage. Outcome variable in all attrition analyses.</td>
+</tr>
+<tr class="even">
+<td><code>treat</code></td>
+<td>Categorical</td>
+<td>Control / Treatment</td>
+<td>Experimental assignment. “Treatment” employees followed a hybrid WFH schedule (two days per week working from home); “Control” employees worked in-person full-time. The key independent variable.</td>
+</tr>
+<tr class="odd">
+<td><code>role</code></td>
+<td>Categorical</td>
+<td>Manager / Non-manager</td>
+<td>Whether the employee held a managerial position. Used to stratify attrition comparisons; the paper finds that the quit-rate reduction from hybrid WFH is concentrated among non-managers.</td>
+</tr>
+<tr class="even">
+<td><code>male</code></td>
+<td>Categorical</td>
+<td>Male / Female</td>
+<td>Employee gender. Used to stratify attrition comparisons; the paper finds a significant reduction in quit rates for female employees.</td>
+</tr>
+<tr class="odd">
+<td><code>live_far</code></td>
+<td>Categorical</td>
+<td>Commute ≤ 90 mins / Commute &gt; 90 mins</td>
+<td>Commute-distance indicator based on round-trip commute time, with the sample median (90 minutes) as the threshold. Employees above the median are classified as long commuters. Used to stratify attrition comparisons; the paper finds a significant quit-rate reduction for long commuters.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="productivity" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="productivity">Productivity</h3>
+<p>The productivity dataset (<code>codelines.csv</code>) contains one row per engineer-day observation (<em>n</em> ≈ 95,500) and records the daily lines of code written by software engineer employees, together with several log-transformed versions used in the analysis. Zero values are common, reflecting non-coding days.</p>
+<div id="tbl-vars-wfh-bloom-codelines" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-wfh-bloom-codelines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.11: Variables in <code>codelines.csv</code>.
+</figcaption>
+<div aria-describedby="tbl-vars-wfh-bloom-codelines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>codelines</code></td>
+<td>Discrete</td>
+<td>0 – ~16,000+</td>
+<td>Raw count of lines of code written per software engineer per day. Primary productivity outcome for engineer employees. The distribution is highly right-skewed with a large mass at zero.</td>
+</tr>
+<tr class="even">
+<td><code>treat</code></td>
+<td>Binary</td>
+<td>0 / 1</td>
+<td>Experimental assignment (0 = in-person control, 1 = hybrid WFH treatment).</td>
+</tr>
+<tr class="odd">
+<td><code>ln_codelines_1</code></td>
+<td>Derived (continuous)</td>
+<td>ln(lines + 1)</td>
+<td>Natural log of (<code>codelines</code> + 1). The +1 offset avoids undefined values on zero-output days.</td>
+</tr>
+<tr class="even">
+<td><code>log2_codelines</code></td>
+<td>Derived (continuous)</td>
+<td>log₂(lines)</td>
+<td>Log base 2 of <code>codelines</code>. Undefined (NA) when <code>codelines</code> = 0; used as the x-axis in the histogram figure.</td>
+</tr>
+<tr class="odd">
+<td><code>log2_codelines_1</code></td>
+<td>Derived (continuous)</td>
+<td>log₂(lines + 1)</td>
+<td>Log base 2 of (<code>codelines</code> + 1). The primary transformed outcome for null equivalence testing. The paper finds no significant difference between treatment and control on this measure.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="manager-perceptions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="manager-perceptions">Manager Perceptions</h3>
+<p>The perceptions dataset (<code>perceptions.csv</code>) contains one row per survey respondent-wave observation (<em>n</em> ≈ 2,660) and records employees’ self-reported beliefs about how working from home affects their productivity, collected at baseline (before the policy) and endline (after six months). The paper focuses on whether managers updated their perceptions over the course of the experiment.</p>
+<div id="tbl-vars-wfh-bloom-perceptions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-wfh-bloom-perceptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.12: Variables in <code>perceptions.csv</code>.
+</figcaption>
+<div aria-describedby="tbl-vars-wfh-bloom-perceptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>prod_percent</code></td>
+<td>Ordinal</td>
+<td>−20 to 30</td>
+<td>Numeric midpoint encoding of the respondent’s self-reported productivity category. Values represent the midpoint percentage-point change in perceived efficiency (e.g., 20 = “15%–25% more efficient”, 0 = “About the same”, −10 = “5%–15% less efficient”). Outcome variable in the perceptions analysis.</td>
+</tr>
+<tr class="even">
+<td><code>productivity</code></td>
+<td>Ordinal</td>
+<td>—</td>
+<td>Self-reported productivity category. Ordered levels from least to most positive: “15%–25% less efficient”, “5%–15% less efficient”, “About the same”, “5%–15% more efficient”, “15%–25% more efficient”, “25%–35% more efficient”.</td>
+</tr>
+<tr class="odd">
+<td><code>wave</code></td>
+<td>Categorical</td>
+<td>baseline / endline</td>
+<td>Survey timing. “baseline” was administered before the hybrid WFH policy began; “endline” was administered after six months. Used as the primary grouping variable in wave-level comparisons.</td>
+</tr>
+<tr class="even">
+<td><code>role</code></td>
+<td>Categorical</td>
+<td>Managers / Non-managers</td>
+<td>Whether the respondent held a managerial position. The paper finds that managers revised their perceptions from a perceived negative effect (−2.6% on average at baseline) to a positive one (+1.0% at endline), while non-managers’ perceptions shifted less dramatically.</td>
+</tr>
+<tr class="odd">
+<td><code>wave_n</code></td>
+<td>Derived (binary)</td>
+<td>0 / 1</td>
+<td>Numeric wave indicator constructed in <code>perceptions.R</code> (0 = baseline, 1 = endline). Used as the grouping variable in the wave-level t-test comparing overall productivity perceptions between baseline and endline.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<hr>
+<p>We use the Bloom, Han &amp; Liang (2024) hybrid WFH experimental data <span class="citation" data-cites="wfh-bloom">(<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">Bloom et al. 2024</a>)</span>; variable definitions and provenance are in <a href="#sec-data-wfh-bloom" class="quarto-xref"><span>Section A.9</span></a>.</p>
+</section>
+</section>
+<section id="sec-data-shed" class="level2" data-number="A.10">
+<h2 data-number="A.10" class="anchored" data-anchor-id="sec-data-shed"><span class="header-section-number">A.10</span> Household economics (SHED)</h2>
+<p>The Survey of Household Economics and Decisionmaking (SHED) is an annual survey of U.S. adults conducted since 2013 by the Board of Governors of the Federal Reserve System. It measures how households assess their own finances and the broader economy, alongside employment, income, housing, and demographic characteristics. The course extract <code>shed_2025.csv</code> covers the 2025 wave: 12,934 respondents, drawn from a probability-based online panel designed to be representative of the U.S. adult population.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://www.federalreserve.gov/consumerscommunities/shed.htm">SHED — Board of Governors of the Federal Reserve System</a></li>
+<li><a href="https://www.federalreserve.gov/consumerscommunities/shed_data.htm">Public-use data and codebooks</a></li>
+</ul>
+<p><strong>Provenance.</strong> The public-use 2025 microdata file was downloaded from the Board’s SHED data page. As a work of the federal government, the file is in the public domain and may be copied and distributed without permission; the Board requests citation. The course extract keeps nine columns from the original 380, renames them to snake_case, and changes no values. Survey weights are not carried in the extract; course examples report unweighted proportions, which on the extract’s variables differ from weighted ones by less than a percentage point. Respondents rate every retained item on a forced-choice basis, so the extract has no missing values and no “don’t know” category.</p>
+<section id="variables-7" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-7">Variables</h3>
+<div id="tbl-vars-shed" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-shed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.13: Variables in the SHED 2025 extract.
+</figcaption>
+<div aria-describedby="tbl-vars-shed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>case_id</code></td>
+<td>Discrete</td>
+<td>—</td>
+<td>Respondent identifier assigned by the survey (<code>shedid</code> in the source file).</td>
+</tr>
+<tr class="even">
+<td><code>econ_conditions_country</code></td>
+<td>Categorical (ordinal)</td>
+<td>Poor / Only fair / Good / Excellent</td>
+<td>“In this country — how would you rate economic conditions today?” (source item <code>B7_b</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>employment_status</code></td>
+<td>Categorical</td>
+<td>Not working / Working part-time / Working full-time</td>
+<td>Panel-recorded employment status (<code>ppemploy</code>).</td>
+</tr>
+<tr class="even">
+<td><code>household_income</code></td>
+<td>Categorical (ordinal)</td>
+<td>7 bins, Less than $10,000 to $150,000 or more</td>
+<td>Total household income bin (<code>ppinc7</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>age_category</code></td>
+<td>Categorical (ordinal)</td>
+<td>7 bins, 18–24 to 75+</td>
+<td>Respondent age bin (<code>ppagecat</code>).</td>
+</tr>
+<tr class="even">
+<td><code>education</code></td>
+<td>Categorical (ordinal)</td>
+<td>4 levels</td>
+<td>Highest educational attainment (<code>ppeducat</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>gender</code></td>
+<td>Categorical</td>
+<td>Male / Female</td>
+<td>Panel-recorded gender (<code>ppgender</code>).</td>
+</tr>
+<tr class="even">
+<td><code>region</code></td>
+<td>Categorical</td>
+<td>Northeast / Midwest / South / West</td>
+<td>Census region of residence (<code>ppreg4</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>housing_status</code></td>
+<td>Categorical</td>
+<td>Own with mortgage / Own free and clear / Pay rent / Neither own nor rent</td>
+<td>Home tenure (source item <code>GH1</code>).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-data-evals-hamermesh" class="level2" data-number="A.11">
+<h2 data-number="A.11" class="anchored" data-anchor-id="sec-data-evals-hamermesh"><span class="header-section-number">A.11</span> Course Evaluations and Instructor Appearance</h2>
+<p>Do better-looking instructors get better teaching evaluations? <span class="citation" data-cites="hamermesh-parker-2005">Hamermesh and Parker (<a href="appendix_data.html#ref-hamermesh-parker-2005" role="doc-biblioref">2005</a>)</span> collected student course evaluations for 463 course sections taught by 94 instructors at the University of Texas at Austin between 2000 and 2002, along with a measure of each instructor’s physical attractiveness: a panel of six students rated a photograph of each instructor, and the ratings were averaged and normalized. Hamermesh and Parker found that instructors rated as better looking receive systematically higher evaluations. In the regression chapters these data serve as a running multiple-regression example — in particular, whether the association between beauty ratings and evaluation scores survives adjusting for instructor age and other course and instructor characteristics.</p>
+<p><strong>Resources:</strong></p>
+<ul>
+<li><a href="https://doi.org/10.1016/j.econedurev.2004.07.013">Article</a></li>
+<li><a href="https://cran.r-project.org/package=AER">AER package on CRAN</a> (distributes this extract as <code>TeachingRatings</code>)</li>
+</ul>
+<p><strong>Provenance.</strong> The data were collected by Daniel Hamermesh and Amy Parker for <span class="citation" data-cites="hamermesh-parker-2005">Hamermesh and Parker (<a href="appendix_data.html#ref-hamermesh-parker-2005" role="doc-biblioref">2005</a>)</span>. Each row is one course section; instructor characteristics (age, gender, beauty rating, and so on) repeat across an instructor’s sections, indexed by <code>prof</code>. The beauty score is the average of six student panelists’ ratings of the instructor’s photograph, normalized to have mean zero across instructors (standard deviation about 0.79 in this file). This extract is the widely used teaching version of the data that circulates with Stock and Watson’s econometrics text and is distributed in the R package AER as <code>TeachingRatings</code>; the one column not in that distribution, <code>generation</code>, is a recode of <code>age</code> added for teaching purposes. See <span class="citation" data-cites="hamermesh-parker-2005">Hamermesh and Parker (<a href="appendix_data.html#ref-hamermesh-parker-2005" role="doc-biblioref">2005</a>)</span> for the primary citation.</p>
+<section id="dataset-versions-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="dataset-versions-2">Dataset versions</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Rows</th>
+<th>Columns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hamermesh_evals.csv</code></td>
+<td>463</td>
+<td>13</td>
+<td>One row per course section evaluated, 2000–2002.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variables-8" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variables-8">Variables</h3>
+<div id="tbl-vars-evals-hamermesh" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-evals-hamermesh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;A.14: Variables in the course evaluations data.
+</figcaption>
+<div aria-describedby="tbl-vars-evals-hamermesh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Unit / Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>eval</code></td>
+<td>Continuous</td>
+<td>1–5 (observed 2.1–5.0)</td>
+<td>Average student evaluation score for the course section, on a 1 (very unsatisfactory) to 5 (excellent) scale. The outcome variable.</td>
+</tr>
+<tr class="even">
+<td><code>beauty</code></td>
+<td>Continuous</td>
+<td>mean 0 (observed −1.45 to 1.97)</td>
+<td>Instructor’s beauty rating: the average of six student panelists’ ratings of the instructor’s photograph, normalized to mean zero. The key predictor.</td>
+</tr>
+<tr class="odd">
+<td><code>age</code></td>
+<td>Discrete</td>
+<td>years, 29–73</td>
+<td>Instructor’s age. The main adjustment variable in the multiple-regression example.</td>
+</tr>
+<tr class="even">
+<td><code>gender</code></td>
+<td>Binary</td>
+<td>female/male</td>
+<td>Instructor’s gender as recorded in the study.</td>
+</tr>
+<tr class="odd">
+<td><code>minority</code></td>
+<td>Binary</td>
+<td>no/yes</td>
+<td>Whether the instructor belongs to a minority group.</td>
+</tr>
+<tr class="even">
+<td><code>native</code></td>
+<td>Binary</td>
+<td>no/yes</td>
+<td>Whether the instructor is a native English speaker.</td>
+</tr>
+<tr class="odd">
+<td><code>tenure</code></td>
+<td>Binary</td>
+<td>no/yes</td>
+<td>Whether the instructor is on the tenure track.</td>
+</tr>
+<tr class="even">
+<td><code>division</code></td>
+<td>Binary</td>
+<td>lower/upper</td>
+<td>Whether the course is lower-division (introductory) or upper-division.</td>
+</tr>
+<tr class="odd">
+<td><code>credits</code></td>
+<td>Binary</td>
+<td>more/single</td>
+<td>Whether the course is a standard multi-credit course (<code>more</code>) or a single-credit elective (<code>single</code>).</td>
+</tr>
+<tr class="even">
+<td><code>students</code></td>
+<td>Discrete</td>
+<td>5–380</td>
+<td>Number of students who completed the course evaluation.</td>
+</tr>
+<tr class="odd">
+<td><code>allstudents</code></td>
+<td>Discrete</td>
+<td>8–581</td>
+<td>Total enrollment in the course section.</td>
+</tr>
+<tr class="even">
+<td><code>prof</code></td>
+<td>Identifier</td>
+<td>1–94</td>
+<td>Instructor identifier; each instructor appears in one or more course sections.</td>
+</tr>
+<tr class="odd">
+<td><code>generation</code></td>
+<td>Derived (categorical)</td>
+<td>genx/boomer/silent</td>
+<td>Recode of <code>age</code> into bands (up to 40, 41–60, 61 and over), labeled with generation names. Not part of the original distribution; added for teaching purposes.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-wfh-bloom" class="csl-entry" role="listitem">
+Bloom, Nicholas, Ruobing Han, and James Liang. 2024. <span>“Hybrid
+Working from Home Improves Retention Without Damaging
+Performance.”</span> <em>Nature</em> 630 (8018): 920–25. <a href="https://doi.org/10.1038/s41586-024-07500-2">https://doi.org/10.1038/s41586-024-07500-2</a>.
+</div>
+<div id="ref-carr-sap-lies" class="csl-entry" role="listitem">
+Carr, Nicholas. 2005. <em>Lies, Damned Lies and <span>IT</span>
+Statistics</em>. Rough Type (blog), November 8. <a href="https://www.roughtype.com/?p=150">https://www.roughtype.com/?p=150</a>.
+</div>
+<div id="ref-lendingclub-kaggle" class="csl-entry" role="listitem">
+George, Nathan. 2019. <em>All Lending Club Loan Data</em>. Kaggle. <a href="https://www.kaggle.com/datasets/wordsforthewise/lending-club">https://www.kaggle.com/datasets/wordsforthewise/lending-club</a>.
+</div>
+<div id="ref-hamermesh-parker-2005" class="csl-entry" role="listitem">
+Hamermesh, Daniel S., and Amy Parker. 2005. <span>“Beauty in the
+Classroom: Instructors’ Pulchritude and Putative Pedagogical
+Productivity.”</span> <em>Economics of Education Review</em> 24 (4):
+369–76. <a href="https://doi.org/10.1016/j.econedurev.2004.07.013">https://doi.org/10.1016/j.econedurev.2004.07.013</a>.
+</div>
+<div id="ref-sap-nucleus" class="csl-entry" role="listitem">
+Nucleus Research. 2006. <em><span>SAP</span> Customers Are 20 Percent
+Less Profitable Than Their Peers</em>. Research Note G12, Nucleus
+Research Inc., Wellesley, MA. <a href="https://www.oracle.com/us/corporate/analystreports/industries/059823.pdf">https://www.oracle.com/us/corporate/analystreports/industries/059823.pdf</a>.
+</div>
+<div id="ref-housing-kaggle" class="csl-entry" role="listitem">
+Pierce, Eric. 2021. <em>Austin, TX House Listings</em>. Kaggle. <a href="https://www.kaggle.com/datasets/ericpierce/austinhousingprices">https://www.kaggle.com/datasets/ericpierce/austinhousingprices</a>.
+</div>
+<div id="ref-kroger-cheese" class="csl-entry" role="listitem">
+Scott, James. 2021. <em>Data Science in <span>R</span>: A Gentle
+Introduction</em>. Online companion (bookdown). <a href="https://bookdown.org/jgscott/DSGI/">https://bookdown.org/jgscott/DSGI/</a>.
+</div>
+<div id="ref-ercot-shaffer" class="csl-entry" role="listitem">
+Shaffer, Blake. 2022. <span>“Changing Sensitivity to Cold Weather in
+<span>Texas</span> Power Demand.”</span> <em>iScience</em> 25 (5):
+104173. <a href="https://doi.org/10.1016/j.isci.2022.104173">https://doi.org/10.1016/j.isci.2022.104173</a>.
+</div>
+<div id="ref-portfolios-2025" class="csl-entry" role="listitem">
+<em>Three-Asset Weekly Return and Price Series, October 2023–September
+2025</em>. 2025. Assembled from Yahoo Finance via the
+<code>tidyquant</code> R package (<a href="https://cran.r-project.org/package=tidyquant" class="uri">https://cran.r-project.org/package=tidyquant</a>).
+</div>
+<div id="ref-earnings-cps" class="csl-entry" role="listitem">
+U.S. Census Bureau and Bureau of Labor Statistics. 2023. <em>Current
+Population Survey, Annual Social and Economic Supplement (ASEC),
+2023</em>. Public-use microdata accessed via the <code>cpsR</code> R
+package. <a href="https://www.census.gov/data/datasets/time-series/demo/cps/cps-asec.html">https://www.census.gov/data/datasets/time-series/demo/cps/cps-asec.html</a>.
+</div>
+<div id="ref-returns-2025" class="csl-entry" role="listitem">
+<em>Weekly Asset Return Panel, October 2023–September 2025</em>. 2025.
+Assembled from Yahoo Finance via the <code>tidyquant</code> R package
+(<a href="https://cran.r-project.org/package=tidyquant" class="uri">https://cran.r-project.org/package=tidyquant</a>).
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./singlevar_01_visualizing-distributions.html" class="pagination-link" aria-label="Visualizing a Single Quantitative Variable">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualizing a Single Quantitative Variable</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
