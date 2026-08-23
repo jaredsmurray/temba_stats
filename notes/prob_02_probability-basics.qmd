@@ -67,7 +67,7 @@ the higher the number, the more likely the event.
 The previous chapter discussed what such numbers *mean*; whichever interpretation fits the application, the numbers must obey the same three rules.
 
 ::: {.callout-note}
-## Key idea: The three fundamental probability rules
+## The three fundamental probability rules
 
 1. **Probabilities are non-negative.** For any event $A$, $\Pr(A) \geq 0$.
 2. **Something must happen.** $\Pr(\text{all possible outcomes}) = 1$.

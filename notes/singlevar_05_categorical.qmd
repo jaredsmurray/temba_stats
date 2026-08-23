@@ -224,7 +224,7 @@ lending |>
 The shape is easier to see here than in the table: two categories account for most of the loans, and everything below `home_improvement` is a long tail of small proportions. With fourteen categories, labels under vertical bars would be cramped and tilted; laid on their sides they stay flat and readable, and sorting by length means the chart simultaneously communicates the distribution as well as a ranking of the categories.
 
 ::: {.callout-note}
-## Key idea: Order categories by a meaningful summary
+## Order categories by a meaningful summary
 
 Sort nominal categories by the summary the chart displays. When the variable
 is ordinal, keep its natural order --- sorting by size discards it.
