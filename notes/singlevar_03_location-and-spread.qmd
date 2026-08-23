@@ -21,9 +21,58 @@ austin_full <- read_csv("data/austin_houses/austin_houses.csv",
 
 austin_zip <- austin_full |>
   filter(zipcode == 78752)
+
+returns_prices <- read_csv("data/returns/returns_prices.csv",
+                           show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
 ```
 
 Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.
+
+:::: {.Notation #notation-subscripts-summation}
+## Subscripts and summation
+
+::: {.details #details-subscripts-summation summary="Details" open="true" display="show" non-interactive-summary="Details"}
+
+A subscript labels *which* observation we mean: $x_1$ is the first value of a
+variable $x$, $x_2$ the second, and $x_i$ is "the $i$-th one" when we don't
+want to say which. With $n$ observations, $i$ runs from 1 to $n$. Here are the
+first four sale prices in our 78752 data with their labels:
+
+```{r}
+#| label: tbl-subscripts
+#| tbl-cap: "The first four sale prices, labeled."
+#| html-table-processing: none
+austin_zip |>
+  slice(1:4) |>
+  transmute(`\\(i\\)` = row_number(),
+            `\\(x_i\\) (sale price)` = dollar(latest_price)) |>
+  knitr::kable(align = "cl", escape = FALSE) |>
+  kableExtra::kable_styling(full_width = FALSE, position = "center",
+                            htmltable_class = "table table-sm table-striped")
+```
+
+```{r}
+#| label: first-four
+#| include: false
+x4 <- head(austin_zip$latest_price, 4)
+# dollar() inside display math: TeX needs the sign escaped
+usd <- function(x) sub("^\\$", "\\\\$", dollar(x))
+```
+
+The symbol $\sum$ (a capital sigma, for "sum") means "add up." Writing
+$\sum_{i=1}^{4} x_i$ says: add up $x_i$ for every $i$ from 1 to 4,
+
+$$
+\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4
+= `r usd(x4[1])` + `r usd(x4[2])` + `r usd(x4[3])` + `r usd(x4[4])`
+= `r usd(sum(x4))`.
+$$
+
+Putting $n$ in place of 4 adds up the whole column, and $\frac{1}{n}\sum_{i=1}^{n} x_i$
+is that total divided by the number of observations --- the sample mean.
+:::
+::::
 
 ## Measures of center {#sec-measures-center}
 
@@ -42,63 +91,56 @@ display="show" non-interactive-summary="Formula"}
 For observations $x_1, x_2, \ldots, x_n$,
 
 $$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i.
+\bar{x} = \frac1n\left ( x_1 + x_2 + x_3 + \dots + x_n \right ) = \frac{1}{n}\sum_{i=1}^{n} x_i.
 $$
 
 The summation adds the $n$ observed values, and dividing by $n$ turns that
-total into an average.
+total into an average. Notation refresher: [subscripts and summation](#notation-subscripts-summation).
 
 :::
 ::::
 
-For our Austin 78752 prices, the mean is `r dollar(round(mean(austin_zip$latest_price)))`.
+
 
 ::: {.Definition #defn-median}
-## Median
+## Sample median
 
-The **median** is the middle value when the data are sorted from smallest to
+The sample **median** is the middle value when the data are sorted from smallest to
 largest. It goes by three other names we have already seen: the 50th percentile,
 the 0.5 quantile, and the second quartile.
 :::
 
-For our prices, the median is `r dollar(round(median(austin_zip$latest_price)))`.
 
 :::: {.TechnicalDetail}
 ## Medians when values tie
-
-When the number of observations is odd, the median is the middle sorted value. When it is even, we use the average of the two middle values. Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it.
+Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it. That doesn't always uniquely define the median, and there are different conventions for a number that meets the general rule, but the one we use almost never matters.
 ::::
 
-The mean here (`r dollar(round(mean(austin_zip$latest_price)))`) is higher than the median (`r dollar(round(median(austin_zip$latest_price)))`) because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.
+
+For our Austin 78752 prices, the mean is `r dollar(round(mean(austin_zip$latest_price)))`. For our prices, the median is `r dollar(round(median(austin_zip$latest_price)))`.
+The mean is higher than the median because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.
 
 ::: {.callout-note}
 ## Mean or median?
 
+Which measure of location is better? It depends, and like histograms and density plots they're better together.
+
 The mean and the median sit close together in a symmetric distribution. In a right-skewed distribution the mean sits above the median, and in a
 left-skewed distribution it sits below. A substantial gap
 between the two is therefore evidence of skewness, outliers, or some other
-asymmetry, which is a good reason to report both.
+asymmetry, which is a good reason to report both. 
+
+You will, however, often hear distributions of economic measures like wages reported via median with no reference to the mean. That's just because the skew already is well-known.
 :::
 
-Consider the bimodal distribution of house ages in the full Austin housing dataset (@fig-house-age-center).
-
-```{r}
-#| label: fig-house-age-center
-#| fig-cap: "Distribution of house ages in the full Austin housing dataset."
-ggplot(austin_full, aes(x = age)) +
-  geom_histogram(aes(y = after_stat(density)),
-                 bins = 30, fill = "steelblue", color = "white") +
-  geom_density(alpha = 0.3) +
-  geom_rug(alpha = 0.1) +
-  labs(x = "House age (years)", y = "Density")
-```
-
-The distribution has two broad peaks, while the mean age of `r round(mean(austin_full$age), 1)` years falls between them.
+If you find yourself looking at a distirbution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center --- both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a "center" as we would usually think of it.
 
 
 ## Measures of spread {#sec-measures-spread}
 
-Knowing the center of a distribution isn't enough --- we also need to know how much values vary around that center. We can think about the spread of a distribution as measuring how *un*predictable a variable is. Let's see an example. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.
+Once we have a measure of where the "middle" of a distribution is we naturally want some measure of how close observations tend to be to the middle --- or how they are *spread* our around the center. The median price of a house in 78752 is `r dollar(round(median(austin_zip$latest_price)))`, but are there houses selling for around `r dollar(round(0.28*median(austin_zip$latest_price), -4))`? Or `r dollar(round(1.4*median(austin_zip$latest_price), -4))`? Are there a few houses with similarly high or low prices, or many?
+
+Let's look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.
 
 ```{r}
 #| label: fig-zip-comparison
@@ -129,8 +171,38 @@ p_box + p_hist
 Now imagine you need to guess the sale price for a new listing in each of those ZIP codes, using only the ZIP code to make your guess. Assuming our historical data is useful for making such a prediction, which price is going to be harder to accurately predict?
 
 
-You probably said 78741, because the values are more "spread out" than in 78749. Your best prediction for the sale price of a house in either ZIP code will be the mean or median (depending on how you define "best" mathematically). Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749.
+You probably said 78741, because the values are more spread out than in 78749 whether our reference point is the mean or the median. Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749 because prices are less **variable**.
 
+
+:::: {.Definition #defn-variance}
+## Sample Variance
+
+The sample **variance** is the average squared deviation (difference) between each observation $x_i$ and the mean $\bar x$ (which is $(x_i-\bar x)$). We denote it $s^2$. 
+
+
+::: {.details .formula-details #formula-variance summary="Details and formulas" non-interactive-summary="Formula"}
+
+The variance is given by
+
+$$
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
+$$
+
+which you get by
+
+1) Computing each observation's deviation from the mean: $(x_1 - \bar{x})$, $(x_2 - \bar{x})$, ..., $(x_n - \bar{x})$. These are signed — values below the mean give negative deviations.
+2) Squaring them: $(x_1 - \bar{x})^2$, $(x_2 - \bar{x})^2$, ..., $(x_n - \bar{x})^2$.
+
+and then averaging the squares — almost. We divide by $n-1$ rather than $n$. The full justification is mathematical and not something you need for this course, but here is the idea. Because $\bar{x}$ is computed from the same data, the deviations $(x_i-\bar x)$ always satisfy
+
+$$
+\sum_{i=1}^{n} (x_i - \bar{x}) = 0,
+$$
+
+so if I hand you any $n-1$ of them, you can recover the last one: add um the ones you have and flip the sign. Only $n-1$ of the deviations carry independent information about spread, so we divide by $n-1$. The difference between dividing by $n$ or $n-1$ is negligible in all but the smallest datasets. Notation refresher: [subscripts and summation](#notation-subscripts-summation).
+::::
+
+Since we get the variance by adding up *squared* deviations of $x$, its units are "units of x squared". This is usually not a helpful number for communicating results:
 ```{r}
 #| label: spread-setup
 #| include: false
@@ -138,30 +210,61 @@ p49 <- austin_full$latest_price[austin_full$zipcode == 78749]
 p41 <- austin_full$latest_price[austin_full$zipcode == 78741]
 ```
 
-:::: {.Definition #defn-standard-deviation}
-## Standard deviation
+For 78749 that comes to $s^2 = `r format(round(var(p49) / 1e9, 1), big.mark = ",")`$ billion dollars-squared, and for 78741 about $`r format(round(var(p41) / 1e9, 1), big.mark = ",")`$ billion dollars-squared.
 
-The **standard deviation** measures the typical distance of an observation from the mean. We square the deviations so that positive and negative ones don't cancel out, then take the square root to get back to the original units.
+::::
+
+:::: {.Definition #defn-standard-deviation}
+## Sample standard deviation
+
+The sample **standard deviation** is the square root of the variance: $s = \sqrt{s^2}$. it measures the typical distance of an observation from the mean --- above or below. The standard deviation has the same units as the original $x$ variable, and is more interpretable. 
 
 ::: {.details .formula-details #formula-standard-deviation summary="Details and formulas" non-interactive-summary="Formula"}
 
 $$
-s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
+s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
 $$
 
-The standard deviation is the square root of the average squared distance from the mean. Dividing by $n-1$ rather than $n$ to form that average is a technical adjustment; in any case we care about, $n$ and $n-1$ are effectively the same.
+The standard deviation is the square root of the average squared deviation from the mean. Again, dividing by $n-1$ rather than $n$ to form that average is a technical adjustment; in any case we care about, $n$ and $n-1$ are effectively the same. Notation refresher: [subscripts and summation](#notation-subscripts-summation).
 :::
 ::::
 
-For 78749 the standard deviation is `r dollar(round(sd(p49)))`; for 78741 it is `r dollar(round(sd(p41)))`. That gap matches what we saw: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.
+For 78749 the standard deviation is `r dollar(round(sd(p49)))`; for 78741 it is `r dollar(round(sd(p41)))`. These are typical deviations from the average price (whether above or below). That gap matches what we saw when we compared the spread: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.
 
-:::: {.Definition #defn-variance}
-## Variance
+The variance is most useful as a measure of spread --- unpredictability --- when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.
 
-The **variance** is simply the standard deviation squared.
-::::
+Let's take a look at another example: @fig-ford-tesla-sd shows two years of weekly returns for Ford and Tesla --- the percentage change in each share price from one week to the next (we'll see how to compute it in @sec-returns) --- with a histogram of all the returns below. 
 
-For 78749 that comes to $s^2 = `r format(round(var(p49) / 1e9, 1), big.mark = ",")`$ billion dollars-squared, and for 78741 about $`r format(round(var(p41) / 1e9, 1), big.mark = ",")`$ billion. The variance is most useful as a measure of spread --- unpredictability --- when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.
+```{r}
+#| label: fig-ford-tesla-sd
+#| fig-cap: "Weekly returns for Ford and Tesla over the same two years (top), and their distributions as histograms (bottom)."
+#| fig-width: 9
+#| fig-height: 6.5
+sd_f <- sd(returns_prices$F); sd_t <- sd(returns_prices$TSLA)
+return_series <- function(var, title) {
+  ggplot(returns_prices, aes(x = date, y = .data[[var]])) +
+    geom_line(color = "steelblue", linewidth = 0.5) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+    scale_y_continuous(labels = percent_format(accuracy = 1),
+                       limits = c(-0.30, 0.30)) +
+    labs(x = NULL, y = "Weekly return", title = title)
+}
+return_hist <- function(var, s) {
+  ggplot(returns_prices, aes(x = .data[[var]])) +
+    geom_histogram(binwidth = 0.02, boundary = 0, fill = "steelblue", color = "white") +
+    geom_rug(alpha = 0.4) +
+    annotate("label", x = 0.29, y = Inf, hjust = 1, vjust = 1.3, size = 4,
+             label = paste0("s = ", percent(s, accuracy = 0.1)), label.size = 0) +
+    scale_x_continuous(labels = percent_format(accuracy = 1), limits = c(-0.30, 0.30)) +
+    labs(x = "Weekly return", y = "Count")
+}
+(return_series("F", "Ford") | return_series("TSLA", "Tesla")) /
+  (return_hist("F", sd_f) | return_hist("TSLA", sd_t))
+```
+
+Both stocks averaged close to zero weekly returns over these two years: `r percent(mean(returns_prices$F), accuracy = 0.1)` a week for Ford and `r percent(mean(returns_prices$TSLA), accuracy = 0.1)` for Tesla. The spread is where they differ. Ford's weekly returns have a standard deviation of `r percent(sd_f, accuracy = 0.1)`; Tesla's is `r percent(sd_t, accuracy = 0.1)`, about `r number(sd_t / sd_f, accuracy = 0.1)` times larger. Tesla's stock price tends to have big swings over short time periods, while Ford is relatively stable. Week-to-week Tesla's returns are less predictable; in finance parlance we would typically say they are more **volatile**. High spread, variance/variability, volatility, all mean the same thing: The variable we're looking at is difficult to predict accurately.
+
+Our final measure of spread is the interquartile range; we already saw it defined alongside box plots, but here it is again for completeness:
 
 ::: {.Definition #defn-iqr}
 ## Interquartile range
@@ -171,7 +274,7 @@ percentiles, $\text{IQR} = Q3 - Q1$ --- the width of the middle half of the
 data. Like the median, it is insensitive to the values of the most extreme observations.
 :::
 
-The IQR works out to `r dollar(round(IQR(p49)))` in 78749 and `r dollar(round(IQR(p41)))` in 78741. Because the extremes never enter the calculation, the IQR is a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.
+The IQR works out to `r dollar(round(IQR(p49)))` in 78749 and `r dollar(round(IQR(p41)))` in 78741. Because the extremes never enter the calculation, the IQR can be a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.
 
 ## Data used in this section {.unnumbered}
 

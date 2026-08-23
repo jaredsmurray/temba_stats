@@ -118,7 +118,15 @@ $$
 Taking the
 z-score of every observation produces a **standardized** variable, which has a
 mean of 0 and a standard deviation of 1. Standardization is a linear
-transformation, so it leaves the shape of the distribution unchanged.
+transformation:
+
+$$
+z = \frac{x - \bar{x}}{s}
+  = \underbrace{\left(\frac{1}{s}\right)}_{a}\, x
+  + \underbrace{\left(-\frac{\bar{x}}{s}\right)}_{b},
+$$
+
+so it leaves the shape of the distribution unchanged.
 
 ::::
 
@@ -204,7 +212,7 @@ Turning a series of prices into returns changes more than the center or the unit
 
 ```{r}
 #| label: fig-price-vs-returns
-#| fig-cap: "Two years of weekly Ford and Tesla data. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale."
+#| fig-cap: "Two years of weekly Ford and Tesla weekly prices and returns. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale."
 #| fig-width: 9
 #| fig-height: 6.5
 price_panel <- function(var, title) {
@@ -232,6 +240,17 @@ $$
 $$
 
 Applying a percentage change multiplies the old value rather than adding a fixed amount. Suppose your salary is \$100,000 and you receive a 3% raise. Your new salary is \$100,000 $\times$ 1.03 = \$103,000. Another 3% raise produces a salary of \$103,000 $\times$ 1.03 = \$106,090. The second raise adds \$90 more because it applies to a larger base. Repeated proportional changes compound in this way.
+
+
+::: {.callout-warning}
+## Common mistake: A 10% loss and a 10% gain do not cancel
+
+A stock that falls from \$100 to \$90 and then rises by 10% ends at \$99, down
+1% overall. Equal percentage losses and gains apply to different starting
+values, so they do not offset. Log returns do add up:
+$\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101$, the log return
+from \$100 to \$99.
+:::
 
 ## Logarithms {#sec-logarithms}
 
@@ -296,6 +315,7 @@ w1 + w2
 
 On the original scale, most wages cluster on the left while a thin tail stretches to the right. We saw the same shape for house prices. The log transformation does not remove that tail; it measures the gaps in multiplicative steps. The gap from \$10 to \$20 per hour is then the same as the gap from \$50 to \$100.
 
+<!---
 ## Log returns {#sec-log-returns}
 
 The return $r$ we defined in @sec-returns is formally called an arithmetic return, and it has a logarithmic counterpart, the log return.
@@ -350,6 +370,7 @@ Exponentiating that log return, $e^{-0.0101}-1\approx-0.01$, recovers the arithm
 ### Should I use log or arithmetic returns?
 
 Arithmetic returns give the more direct reading of an investment's percentage gain or loss. Log returns make successive changes easier to combine because we can add them across time. If you need to report the total percentage change in value, convert the cumulative log return back to an arithmetic return.
+--->
 
 ## Data used in this section {.unnumbered}
 
