@@ -5,13 +5,14 @@ title: "Slides"
 Lecture slide decks. Each opens as a self-contained slideshow (press `?` for
 keyboard shortcuts, `E` for print view).
 
+0. [Statistics with IntroStatGPT](slides/00_introstatgpt_workflow.qmd)
 1. [Visualizing a Single Quantitative Variable](slides/01_basic_visualizations.qmd)
 
 2. [Measuring Location and Spread](slides/02_location_and_spread.qmd)
 3. [Categorical Variables](slides/03_categorical_variables.qmd)
 
-<!-- Deck 04 is imported but not yet reviewed; restore this line (and drop the
-     matching "!slides/04_probability.qmd" render exclusion in _quarto.yml) to publish it.
+<!-- Deck 04 lives in drafts/staging until reviewed. To publish it:
+     tools/promote.sh slides/04_probability.qmd, then restore this line.
 4. [Probability](slides/04_probability.qmd)
 -->
 

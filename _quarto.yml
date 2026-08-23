@@ -7,10 +7,9 @@ project:
     - "!data/**"
     - "!cards/**"   # data cards land at public/cards/ (fetch_data.sh), gitignored — never render
     - "!files/**"
-    # Deck 04 is imported but not yet reviewed — withheld from the site.
-    - "!slides/04_probability.qmd"
   resources:
     - "files/*.pdf"
+    - "files/*.zip"
     # Datasets served to students: only the files the imported notes/decks read.
     # Add entries as chapters/decks are imported (see data.qmd).
     - "data/austin_houses/austin_houses.csv"
@@ -40,6 +39,14 @@ website:
         text: Data
       - href: introstatgpt.qmd
         text: IntroStatGPT
+  sidebar:
+    - title: "IntroStatGPT"
+      style: docked
+      contents:
+        - introstatgpt.qmd
+        - introstatgpt/setup.qmd
+        - introstatgpt/use.qmd
+        - introstatgpt/working.qmd
 
 format:
   html:
