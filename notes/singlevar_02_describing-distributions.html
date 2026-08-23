@@ -77,13 +77,13 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 .Definition {
   --color1: #F4EAF0;
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_02_describing-distributions.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_02_describing-distributions.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -142,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+ <span class="menu-text">Data analysis and visualization for one variable</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,47 +183,12 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -242,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-symmetric-skewed" id="toc-sec-symmetric-skewed" class="nav-link active" data-scroll-target="#sec-symmetric-skewed"><span class="header-section-number">2.1</span> Symmetric and skewed distributions</a></li>
+  <li><a href="#sec-symmetric-skewed" id="toc-sec-symmetric-skewed" class="nav-link active" data-scroll-target="#sec-symmetric-skewed"><span class="header-section-number">2.1</span> Skewness</a></li>
   <li><a href="#multimodal-distributions" id="toc-multimodal-distributions" class="nav-link" data-scroll-target="#multimodal-distributions"><span class="header-section-number">2.2</span> Multimodal distributions</a></li>
   <li><a href="#outliers-and-extreme-values" id="toc-outliers-and-extreme-values" class="nav-link" data-scroll-target="#outliers-and-extreme-values"><span class="header-section-number">2.3</span> Outliers and extreme values</a></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
@@ -252,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_02_describing-distributions.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_02_describing-distributions.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></h1>
 </div>
@@ -274,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Once we have a picture of a distribution, we need vocabulary to describe what we see. In practice there are four features of the distribution of a quantitative variable which tell us most of what we want to know: <strong>location</strong> (where is the center of the distribution, or what is a “typical value”?), <strong>spread</strong> (how far do values tend to range from the center?), <strong>skewness</strong> (is the distribution symmetric or stretched to one side?), and <strong>modality</strong> (how many peaks are there?). Extreme values or <strong>outliers</strong> — observations far from the bulk of the data — also merit comment, as they can impact analysis choices later or indicate data quality problems.</p>
 <p>We’ll begin in this section by looking at skewness, modality, and outliers/extreme values. These are easy to see from the visualizations introduced in the last chapter, and they will help us decide how to faithfully measure location and spread in the next chapter.</p>
 <section id="sec-symmetric-skewed" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-symmetric-skewed"><span class="header-section-number">2.1</span> Symmetric and skewed distributions</h2>
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-symmetric-skewed"><span class="header-section-number">2.1</span> Skewness</h2>
 <div id="defn-skewness" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 2.1: </strong>Symmetric and skewed distributions</div><div class="fobx-body">
 <p>A distribution is approximately <strong>symmetric</strong> when its left and right halves are rough mirror images of each other. It is <strong>right-skewed</strong> when most values cluster at the lower end and a long tail stretches to the right, and <strong>left-skewed</strong> when the long tail stretches to the left instead.</p>

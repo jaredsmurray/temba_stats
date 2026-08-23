@@ -39,7 +39,7 @@
     "href": "slides/01_basic_visualizations.html#raw-counts-cant-compare-groups-of-different-sizes",
     "title": "Visualizing a Single Quantitative Variable",
     "section": "Raw counts can’t compare groups of different sizes",
-    "text": "Raw counts can’t compare groups of different sizes\n\nSame $50,000 bins, but the count axes are on completely different scales."
+    "text": "Raw counts can’t compare groups of different sizes\n\nSame $50,000 bins and the same count axis, but 78748 has more than ten times as many sales as 78722, so the smaller panel is squashed flat."
   },
   {
     "objectID": "slides/01_basic_visualizations.html#rescaled-to-density-the-shapes-are-comparable",
@@ -53,7 +53,7 @@
     "href": "slides/01_basic_visualizations.html#percentiles",
     "title": "Visualizing a Single Quantitative Variable",
     "section": "Percentiles",
-    "text": "Percentiles\n\nSuppose you scored 655 on the GMAT Focus Edition.\nYour score report says you’re at the 90th percentile.\nThat means you did at least as well as about 90% of test takers: 655 is the 90th percentile of GMAT scores.\nIn general, the p-th percentile is the value below which p% of the observations fall."
+    "text": "Percentiles\n\nSuppose you scored 655 on the GMAT Focus Edition.\nYour score report says you’re at the 90th percentile.\nThat means you did at least as well as about 90% of test takers: 655 is the 90th percentile of GMAT scores.\nIn general, the p-th percentile is the value at or below which p% of the observations fall."
   },
   {
     "objectID": "slides/01_basic_visualizations.html#median-quartiles-quantiles",
@@ -103,6 +103,13 @@
     "title": "Visualizing a Single Quantitative Variable",
     "section": "Bimodal",
     "text": "Bimodal\n\nAustin house ages: newer construction on the left, the older building boom on the right. Two peaks often mean two subpopulations — investigate before summarizing with a single number."
+  },
+  {
+    "objectID": "slides/01_basic_visualizations.html#anatomy-of-a-box-plot",
+    "href": "slides/01_basic_visualizations.html#anatomy-of-a-box-plot",
+    "title": "Visualizing a Single Quantitative Variable",
+    "section": "Anatomy of a box plot",
+    "text": "Anatomy of a box plot"
   },
   {
     "objectID": "slides/01_basic_visualizations.html#outliers",

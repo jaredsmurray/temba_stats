@@ -77,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.TechnicalDetail {
+.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
@@ -85,13 +85,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,7 +171,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+ <span class="menu-text">Data analysis and visualization for one variable</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,47 +212,12 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -275,10 +240,6 @@ window.Quarto = {
   <li><a href="#sec-zscores" id="toc-sec-zscores" class="nav-link" data-scroll-target="#sec-zscores"><span class="header-section-number">4.2</span> z-scores and standardization</a></li>
   <li><a href="#sec-returns" id="toc-sec-returns" class="nav-link" data-scroll-target="#sec-returns"><span class="header-section-number">4.3</span> Percent changes and returns</a></li>
   <li><a href="#sec-logarithms" id="toc-sec-logarithms" class="nav-link" data-scroll-target="#sec-logarithms"><span class="header-section-number">4.4</span> Logarithms</a></li>
-  <li><a href="#sec-log-returns" id="toc-sec-log-returns" class="nav-link" data-scroll-target="#sec-log-returns"><span class="header-section-number">4.5</span> Log returns</a>
-  <ul class="collapse">
-  <li><a href="#should-i-use-log-or-arithmetic-returns" id="toc-should-i-use-log-or-arithmetic-returns" class="nav-link" data-scroll-target="#should-i-use-log-or-arithmetic-returns"><span class="header-section-number">4.5.1</span> Should I use log or arithmetic returns?</a></li>
-  </ul></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
@@ -286,7 +247,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></h1>
 </div>
@@ -310,7 +271,7 @@ window.Quarto = {
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-linear-transformations"><span class="header-section-number">4.1</span> Linear transformations</h2>
 <div id="defn-linear-transformation" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.1: </strong>Linear transformation</div><div class="fobx-body">
-<p>A <strong>linear transformation</strong> multiplies a variable by a positive constant, adds a constant, or does both: <span class="math inline">\(y = ax + b\)</span>, where <span class="math inline">\(a&gt;0\)</span>. Every value gets the same rescaling and the same shift. We usually make one to change the units, the reference point, or both.</p>
+<p>A <strong>linear transformation</strong> multiplies a variable by a constant, adds a constant, or does both: <span class="math inline">\(y = ax + b\)</span>. Every value gets the same rescaling and the same shift. We usually make one to change the units, the reference point, or both.</p>
 </div></div>
 </div>
 <p>Suppose you divide every Austin sale price by 1,000 so that you can report prices in thousands of dollars rather than dollars. The distribution keeps exactly the same shape. You have only relabeled its horizontal axis.</p>
@@ -350,18 +311,18 @@ Figure&nbsp;4.2: Mean-centered sale prices in dollars (left) and thousands of do
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Key idea: Summary statistics after a linear transformation
+<span class="screen-reader-only">Note</span>Mean, median, and standard deviation of <span class="math inline">\(ax + b\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If <span class="math inline">\(y_i = a x_i + b\)</span> for every observation, with <span class="math inline">\(a&gt;0\)</span>, then</p>
+<p>If <span class="math inline">\(y_i = a x_i + b\)</span> for every observation, where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants, then</p>
 <p><span class="math display">\[
-\bar{y} = a\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
+\bar{y} = a\,\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
 \]</span></p>
 <p><span class="math display">\[
-s_y = a\,s_x, \qquad s^2_y = a^2\,s^2_x.
+s_y = |a|\,s_x, \qquad s^2_y = a^2\,s^2_x.
 \]</span></p>
-<p>Multiplying by <span class="math inline">\(a\)</span> rescales both the center and the spread. Adding <span class="math inline">\(b\)</span> shifts the center but leaves the spread unchanged.</p>
+<p>Adding <span class="math inline">\(b\)</span> shifts the center and leaves the spread alone; multiplying by <span class="math inline">\(a\)</span> scales both the center and the spread (and the spread doesn’t care about the sign of <span class="math inline">\(a\)</span>).</p>
 </div>
 </div>
 </section>
@@ -373,7 +334,13 @@ s_y = a\,s_x, \qquad s^2_y = a^2\,s^2_x.
 <p><span class="math display">\[
 z = \frac{x - \bar{x}}{s}.
 \]</span></p>
-<p>Taking the z-score of every observation produces a <strong>standardized</strong> variable, which has a mean of 0 and a standard deviation of 1. Standardization is a linear transformation, so it leaves the shape of the distribution unchanged.</p>
+<p>Taking the z-score of every observation produces a <strong>standardized</strong> variable, which has a mean of 0 and a standard deviation of 1. Standardization is a linear transformation:</p>
+<p><span class="math display">\[
+z = \frac{x - \bar{x}}{s}
+  = \underbrace{\left(\frac{1}{s}\right)}_{a}\, x
+  + \underbrace{\left(-\frac{\bar{x}}{s}\right)}_{b},
+\]</span></p>
+<p>so it leaves the shape of the distribution unchanged.</p>
 </div></div>
 </div>
 <div class="cell">
@@ -436,7 +403,7 @@ r = \frac{\text{New value} - \text{Old value}}{\text{Old value}}.
 <img src="singlevar_04_transformations_files/figure-html/fig-price-vs-returns-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-price-vs-returns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.5: Two years of weekly Ford and Tesla data. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale.
+Figure&nbsp;4.5: Two years of weekly Ford and Tesla weekly prices and returns. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale.
 </figcaption>
 </figure>
 </div>
@@ -447,6 +414,19 @@ Figure&nbsp;4.5: Two years of weekly Ford and Tesla data. The top row shows shar
 \text{New value} = \text{Old value} \times (1+r).
 \]</span></p>
 <p>Applying a percentage change multiplies the old value rather than adding a fixed amount. Suppose your salary is $100,000 and you receive a 3% raise. Your new salary is $100,000 <span class="math inline">\(\times\)</span> 1.03 = $103,000. Another 3% raise produces a salary of $103,000 <span class="math inline">\(\times\)</span> 1.03 = $106,090. The second raise adds $90 more because it applies to a larger base. Repeated proportional changes compound in this way.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common mistake: A 10% loss and a 10% gain do not cancel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A stock that falls from $100 to $90 and then rises by 10% ends at $99, down 1% overall. Equal percentage losses and gains apply to different starting values, so they do not offset. Log returns do add up: <span class="math inline">\(\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101\)</span>, the log return from $100 to $99.</p>
+</div>
+</div>
 </section>
 <section id="sec-logarithms" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="sec-logarithms"><span class="header-section-number">4.4</span> Logarithms</h2>
@@ -496,49 +476,62 @@ Figure&nbsp;4.7: Hourly wages on the original (left) and log (right) scales.
 </div>
 </div>
 <p>On the original scale, most wages cluster on the left while a thin tail stretches to the right. We saw the same shape for house prices. The log transformation does not remove that tail; it measures the gaps in multiplicative steps. The gap from $10 to $20 per hour is then the same as the gap from $50 to $100.</p>
-</section>
-<section id="sec-log-returns" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="sec-log-returns"><span class="header-section-number">4.5</span> Log returns</h2>
-<p>The return <span class="math inline">\(r\)</span> we defined in <a href="#sec-returns" class="quarto-xref"><span>Section 4.3</span></a> is formally called an arithmetic return, and it has a logarithmic counterpart, the log return.</p>
-<div id="defn-log-return" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.3: </strong>Arithmetic and log returns</div><div class="fobx-body">
-<p>An <strong>arithmetic return</strong> is the ordinary percentage change in price: the change in value divided by the value we started from. A <strong>log return</strong> is the natural logarithm of the ratio of the new price to the old one. A move from $100 to $110 is an arithmetic return of 0.10, or 10%, and a log return of about 0.0953.</p>
-<p>For a price that moves from <span class="math inline">\(P_{t-1}\)</span> to <span class="math inline">\(P_t\)</span>,</p>
-<p><span class="math display">\[
+<!---
+## Log returns {#sec-log-returns}
+
+The return $r$ we defined in @sec-returns is formally called an arithmetic return, and it has a logarithmic counterpart, the log return.
+
+:::: {.Definition #defn-log-return}
+## Arithmetic and log returns
+
+An **arithmetic return** is the ordinary percentage change in price: the change
+in value divided by the value we started from. A **log return** is the natural
+logarithm of the ratio of the new price to the old one. A move from \$100 to
+\$110 is an arithmetic return of 0.10, or 10%, and a log return of about 0.0953.
+
+For a price that moves from $P_{t-1}$ to $P_t$,
+
+$$
 r_t = \frac{P_t - P_{t-1}}{P_{t-1}} = \frac{P_t}{P_{t-1}} - 1,
 \qquad
 g_t = \log\left(\frac{P_t}{P_{t-1}}\right) = \log(1 + r_t).
-\]</span></p>
-<p>The log return is the natural log of one plus the arithmetic return, and <span class="math inline">\(r_t = e^{g_t} - 1\)</span> converts a log return back to an arithmetic one.</p>
-</div></div>
-</div>
-<p>Arithmetic and log returns handle multiple periods differently. Arithmetic returns compound through multiplication, so the total return over <span class="math inline">\(T\)</span> periods is</p>
-<p><span class="math display">\[
+$$
+
+The log return is the natural log of one plus the arithmetic return, and
+$r_t = e^{g_t} - 1$ converts a log return back to an arithmetic one.
+
+::::
+
+Arithmetic and log returns handle multiple periods differently. Arithmetic returns compound through multiplication, so the total return over $T$ periods is
+
+$$
 (1+r_1)(1+r_2)\cdots(1+r_T)-1.
-\]</span></p>
-<p>Each period changes the base for the next one. Log returns instead add across periods:</p>
-<p><span class="math display">\[
+$$
+
+Each period changes the base for the next one. Log returns instead add across periods:
+
+$$
 g_1+g_2+\cdots+g_T = \log\left(\frac{P_T}{P_0}\right).
-\]</span></p>
-<p>The sum is the log return from the initial price <span class="math inline">\(P_0\)</span> to the final price <span class="math inline">\(P_T\)</span>. Exponentiating that sum and subtracting 1 gives the same total arithmetic return as compounding the individual arithmetic returns.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common mistake: A 10% loss and a 10% gain do not cancel
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A stock that falls from $100 to $90 and then rises by 10% ends at $99, down 1% overall. Equal percentage losses and gains apply to different starting values, so they do not offset. Log returns do add up: <span class="math inline">\(\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101\)</span>, the log return from $100 to $99.</p>
-</div>
-</div>
-<p>Exponentiating that log return, <span class="math inline">\(e^{-0.0101}-1\approx-0.01\)</span>, recovers the arithmetic return of about −1%. For small changes, arithmetic and log returns are nearly equal because <span class="math inline">\(\log(1+r)\approx r\)</span>. An arithmetic return of 0.01 (1%) corresponds to a log return of about 0.00995. The difference grows with the return: an arithmetic return of 0.50 (50%) corresponds to a log return of about 0.4055.</p>
-<section id="should-i-use-log-or-arithmetic-returns" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="should-i-use-log-or-arithmetic-returns"><span class="header-section-number">4.5.1</span> Should I use log or arithmetic returns?</h3>
-<p>Arithmetic returns give the more direct reading of an investment’s percentage gain or loss. Log returns make successive changes easier to combine because we can add them across time. If you need to report the total percentage change in value, convert the cumulative log return back to an arithmetic return.</p>
-</section>
+$$
+
+The sum is the log return from the initial price $P_0$ to the final price $P_T$. Exponentiating that sum and subtracting 1 gives the same total arithmetic return as compounding the individual arithmetic returns.
+
+::: {.callout-warning}
+## Common mistake: A 10% loss and a 10% gain do not cancel
+
+A stock that falls from \$100 to \$90 and then rises by 10% ends at \$99, down
+1% overall. Equal percentage losses and gains apply to different starting
+values, so they do not offset. Log returns do add up:
+$\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101$, the log return
+from \$100 to \$99.
+:::
+
+Exponentiating that log return, $e^{-0.0101}-1\approx-0.01$, recovers the arithmetic return of about −1%. For small changes, arithmetic and log returns are nearly equal because $\log(1+r)\approx r$. An arithmetic return of 0.01 (1%) corresponds to a log return of about 0.00995. The difference grows with the return: an arithmetic return of 0.50 (50%) corresponds to a log return of about 0.4055.
+
+### Should I use log or arithmetic returns?
+
+Arithmetic returns give the more direct reading of an investment's percentage gain or loss. Log returns make successive changes easier to combine because we can add them across time. If you need to report the total percentage change in value, convert the cumulative log return back to an arithmetic return.
+--->
 </section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>

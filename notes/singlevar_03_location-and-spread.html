@@ -76,6 +76,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <style>
 .Notation {
   --color1: #EEF1F3;
@@ -85,13 +87,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 </style>
 
@@ -137,7 +139,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,7 +173,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+ <span class="menu-text">Data analysis and visualization for one variable</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,47 +214,12 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -280,7 +247,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></h1>
 </div>
@@ -300,35 +267,88 @@ window.Quarto = {
 
 
 <p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
+<div id="notation-subscripts-summation" class="Notation">
+<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
+<details aria-label="Details" id="details-subscripts-summation" open="">
+<summary>Details</summary>
+<p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
+<div class="cell">
+<div id="tbl-subscripts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: The first four sale prices, labeled.
+</figcaption>
+<div aria-describedby="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class=" table table-sm table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;"> \(i\) </th>
+   <th style="text-align:left;"> \(x_i\) (sale price) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:left;"> $419,000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:left;"> $429,000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:left;"> $575,000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:left;"> $210,000 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The symbol <span class="math inline">\(\sum\)</span> (a capital sigma, for “sum”) means “add up.” Writing <span class="math inline">\(\sum_{i=1}^{4} x_i\)</span> says: add up <span class="math inline">\(x_i\)</span> for every <span class="math inline">\(i\)</span> from 1 to 4,</p>
+<p><span class="math display">\[
+\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4
+= \$419,000 + \$429,000 + \$575,000 + \$210,000
+= \$1,633,000.
+\]</span></p>
+<p>Putting <span class="math inline">\(n\)</span> in place of 4 adds up the whole column, and <span class="math inline">\(\frac{1}{n}\sum_{i=1}^{n} x_i\)</span> is that total divided by the number of observations — the sample mean.</p>
+</details>
+</div></div>
+</div>
 <section id="sec-measures-center" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</h2>
 <p>The two most common measures of center are the <strong>mean</strong> and the <strong>median</strong>.</p>
 <div id="defn-sample-mean" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
 <p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-sample-mean">
+<details aria-label="Details and formulas" class="formula-details" id="formula-sample-mean">
 <summary>Details and formulas</summary>
 <p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
 <p><span class="math display">\[
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i.
+\bar{x} = \frac1n\left ( x_1 + x_2 + x_3 + \dots + x_n \right ) = \frac{1}{n}\sum_{i=1}^{n} x_i.
 \]</span></p>
-<p>The summation adds the <span class="math inline">\(n\)</span> observed values, and dividing by <span class="math inline">\(n\)</span> turns that total into an average.</p>
+<p>The summation adds the <span class="math inline">\(n\)</span> observed values, and dividing by <span class="math inline">\(n\)</span> turns that total into an average. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
 </details>
 </div></div>
 </div>
-<p>For our Austin 78752 prices, the mean is $370,804.</p>
 <div id="defn-median" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.2: </strong>Median</div><div class="fobx-body">
-<p>The <strong>median</strong> is the middle value when the data are sorted from smallest to largest. It goes by three other names we have already seen: the 50th percentile, the 0.5 quantile, and the second quartile.</p>
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.2: </strong>Sample median</div><div class="fobx-body">
+<p>The sample <strong>median</strong> is the middle value when the data are sorted from smallest to largest. It goes by three other names we have already seen: the 50th percentile, the 0.5 quantile, and the second quartile.</p>
 </div></div>
 </div>
-<p>For our prices, the median is $351,478.</p>
 <div id="medians-when-values-tie" class="TechnicalDetail">
 <details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 3.1: </strong>Medians when values tie</summary><div>
-<p>When the number of observations is odd, the median is the middle sorted value. When it is even, we use the average of the two middle values. Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it.</p>
+<p>Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it. That doesn’t always uniquely define the median, and there are different conventions for a number that meets the general rule, but the one we use almost never matters.</p>
 </div></details>
 </div>
-<p>The mean here ($370,804) is higher than the median ($351,478) because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.</p>
+<p>For our Austin 78752 prices, the mean is $370,804. For our prices, the median is $351,478. The mean is higher than the median because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -339,29 +359,17 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Which measure of location is better? It depends, and like histograms and density plots they’re better together.</p>
 <p>The mean and the median sit close together in a symmetric distribution. In a right-skewed distribution the mean sits above the median, and in a left-skewed distribution it sits below. A substantial gap between the two is therefore evidence of skewness, outliers, or some other asymmetry, which is a good reason to report both.</p>
+<p>You will, however, often hear distributions of economic measures like wages reported via median with no reference to the mean. That’s just because the skew already is well-known.</p>
 </div>
 </div>
-<p>Consider the bimodal distribution of house ages in the full Austin housing dataset (<a href="#fig-house-age-center" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>).</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-house-age-center" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-house-age-center-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-house-age-center-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-house-age-center-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Distribution of house ages in the full Austin housing dataset.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The distribution has two broad peaks, while the mean age of 31.2 years falls between them.</p>
+<p>If you find yourself looking at a distirbution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center — both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a “center” as we would usually think of it.</p>
 </section>
 <section id="sec-measures-spread" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</h2>
-<p>Knowing the center of a distribution isn’t enough — we also need to know how much values vary around that center. We can think about the spread of a distribution as measuring how <em>un</em>predictable a variable is. Let’s see an example. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.</p>
+<p>Once we have a measure of where the “middle” of a distribution is we naturally want some measure of how close observations tend to be to the middle — or how they are <em>spread</em> our around the center. The median price of a house in 78752 is $351,478, but are there houses selling for around $100,000? Or $490,000? Are there a few houses with similarly high or low prices, or many?</p>
+<p>Let’s look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-zip-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -370,39 +378,75 @@ Figure&nbsp;3.1: Distribution of house ages in the full Austin housing dataset.
 <img src="singlevar_03_location-and-spread_files/figure-html/fig-zip-comparison-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: Sale prices by ZIP code: box plots (left) with x’s indicating sample means and overlapping density-scaled histograms (right).
+Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating sample means and overlapping density-scaled histograms (right).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Now imagine you need to guess the sale price for a new listing in each of those ZIP codes, using only the ZIP code to make your guess. Assuming our historical data is useful for making such a prediction, which price is going to be harder to accurately predict?</p>
-<p>You probably said 78741, because the values are more “spread out” than in 78749. Your best prediction for the sale price of a house in either ZIP code will be the mean or median (depending on how you define “best” mathematically). Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749.</p>
+<p>You probably said 78741, because the values are more spread out than in 78749 whether our reference point is the mean or the median. Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749 because prices are less <strong>variable</strong>.</p>
+<div id="defn-variance" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
+<p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
+<details aria-label="Details and formulas" class="formula-details" id="formula-variance">
+<summary>Details and formulas</summary>
+<p>The variance is given by</p>
+<p><span class="math display">\[
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
+\]</span></p>
+<p>which you get by</p>
+<ol type="1">
+<li>Computing each observation’s deviation from the mean: <span class="math inline">\((x_1 - \bar{x})\)</span>, <span class="math inline">\((x_2 - \bar{x})\)</span>, …, <span class="math inline">\((x_n - \bar{x})\)</span>. These are signed — values below the mean give negative deviations.</li>
+<li>Squaring them: <span class="math inline">\((x_1 - \bar{x})^2\)</span>, <span class="math inline">\((x_2 - \bar{x})^2\)</span>, …, <span class="math inline">\((x_n - \bar{x})^2\)</span>.</li>
+</ol>
+<p>and then averaging the squares — almost. We divide by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span>. The full justification is mathematical and not something you need for this course, but here is the idea. Because <span class="math inline">\(\bar{x}\)</span> is computed from the same data, the deviations <span class="math inline">\((x_i-\bar x)\)</span> always satisfy</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} (x_i - \bar{x}) = 0,
+\]</span></p>
+<p>so if I hand you any <span class="math inline">\(n-1\)</span> of them, you can recover the last one: add um the ones you have and flip the sign. Only <span class="math inline">\(n-1\)</span> of the deviations carry independent information about spread, so we divide by <span class="math inline">\(n-1\)</span>. The difference between dividing by <span class="math inline">\(n\)</span> or <span class="math inline">\(n-1\)</span> is negligible in all but the smallest datasets. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
+</details>
+<p>Since we get the variance by adding up <em>squared</em> deviations of <span class="math inline">\(x\)</span>, its units are “units of x squared”. This is usually not a helpful number for communicating results:</p>
+<p>For 78749 that comes to <span class="math inline">\(s^2 = 7.2\)</span> billion dollars-squared, and for 78741 about <span class="math inline">\(23.1\)</span> billion dollars-squared.</p>
+</div></div>
+</div>
 <div id="defn-standard-deviation" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Standard deviation</div><div class="fobx-body">
-<p>The <strong>standard deviation</strong> measures the typical distance of an observation from the mean. We square the deviations so that positive and negative ones don’t cancel out, then take the square root to get back to the original units.</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-standard-deviation">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
+<p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. it measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
+<details aria-label="Details and formulas" class="formula-details" id="formula-standard-deviation">
 <summary>Details and formulas</summary>
 <p><span class="math display">\[
-s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
+s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
 \]</span></p>
-<p>The standard deviation is the square root of the average squared distance from the mean. Dividing by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span> to form that average is a technical adjustment; in any case we care about, <span class="math inline">\(n\)</span> and <span class="math inline">\(n-1\)</span> are effectively the same.</p>
+<p>The standard deviation is the square root of the average squared deviation from the mean. Again, dividing by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span> to form that average is a technical adjustment; in any case we care about, <span class="math inline">\(n\)</span> and <span class="math inline">\(n-1\)</span> are effectively the same. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
 </details>
 </div></div>
 </div>
-<p>For 78749 the standard deviation is $85,141; for 78741 it is $151,824. That gap matches what we saw: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.</p>
-<div id="defn-variance" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Variance</div><div class="fobx-body">
-<p>The <strong>variance</strong> is simply the standard deviation squared.</p>
-</div></div>
+<p>For 78749 the standard deviation is $85,141; for 78741 it is $151,824. These are typical deviations from the average price (whether above or below). That gap matches what we saw when we compared the spread: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.</p>
+<p>The variance is most useful as a measure of spread — unpredictability — when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.</p>
+<p>Let’s take a look at another example: <a href="#fig-ford-tesla-sd" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows two years of weekly returns for Ford and Tesla — the percentage change in each share price from one week to the next (we’ll see how to compute it in <a href="singlevar_04_transformations.html#sec-returns" class="quarto-xref"><span>Section 4.3</span></a>) — with a histogram of all the returns below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ford-tesla-sd" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_03_location-and-spread_files/figure-html/fig-ford-tesla-sd-1.png" class="img-fluid figure-img" width="864">
 </div>
-<p>For 78749 that comes to <span class="math inline">\(s^2 = 7.2\)</span> billion dollars-squared, and for 78741 about <span class="math inline">\(23.1\)</span> billion. The variance is most useful as a measure of spread — unpredictability — when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top), and their distributions as histograms (bottom).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Both stocks averaged close to zero weekly returns over these two years: 0.2% a week for Ford and 0.9% for Tesla. The spread is where they differ. Ford’s weekly returns have a standard deviation of 4.5%; Tesla’s is 8.2%, about 1.8 times larger. Tesla’s stock price tends to have big swings over short time periods, while Ford is relatively stable. Week-to-week Tesla’s returns are less predictable; in finance parlance we would typically say they are more <strong>volatile</strong>. High spread, variance/variability, volatility, all mean the same thing: The variable we’re looking at is difficult to predict accurately.</p>
+<p>Our final measure of spread is the interquartile range; we already saw it defined alongside box plots, but here it is again for completeness:</p>
 <div id="defn-iqr" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.5: </strong>Interquartile range</div><div class="fobx-body">
 <p>The <strong>interquartile range</strong> (IQR) is the distance between the 75th and 25th percentiles, <span class="math inline">\(\text{IQR} = Q3 - Q1\)</span> — the width of the middle half of the data. Like the median, it is insensitive to the values of the most extreme observations.</p>
 </div></div>
 </div>
-<p>The IQR works out to $91,000 in 78749 and $157,000 in 78741. Because the extremes never enter the calculation, the IQR is a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.</p>
+<p>The IQR works out to $91,000 in 78749 and $157,000 in 78741. Because the extremes never enter the calculation, the IQR can be a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.</p>
 </section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>

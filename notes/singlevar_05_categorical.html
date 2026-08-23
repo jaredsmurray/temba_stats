@@ -36,7 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prob_01_intro.html" rel="next">
+<link href="./appendix_data.html" rel="next">
 <link href="./singlevar_04_transformations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -85,13 +85,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_05_categorical.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_05_categorical.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,7 +171,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+ <span class="menu-text">Data analysis and visualization for one variable</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,47 +212,12 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -285,7 +250,6 @@ window.Quarto = {
   <li><a href="#bar-charts-dot-plots-and-pie-charts" id="toc-bar-charts-dot-plots-and-pie-charts" class="nav-link" data-scroll-target="#bar-charts-dot-plots-and-pie-charts"><span class="header-section-number">5.6.1</span> Bar charts, dot plots, and pie charts</a></li>
   <li><a href="#the-distribution-of-loan-purpose" id="toc-the-distribution-of-loan-purpose" class="nav-link" data-scroll-target="#the-distribution-of-loan-purpose"><span class="header-section-number">5.6.2</span> The distribution of loan purpose</a></li>
   <li><a href="#sec-ordinal-rating" id="toc-sec-ordinal-rating" class="nav-link" data-scroll-target="#sec-ordinal-rating"><span class="header-section-number">5.6.3</span> An ordinal example: rating the economy</a></li>
-  <li><a href="#good-practice-and-pitfalls" id="toc-good-practice-and-pitfalls" class="nav-link" data-scroll-target="#good-practice-and-pitfalls"><span class="header-section-number">5.6.4</span> Good practice and pitfalls</a></li>
   </ul></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
@@ -294,7 +258,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_05_categorical.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_05_categorical.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></h1>
 </div>
@@ -313,7 +277,7 @@ window.Quarto = {
 </header>
 
 
-<p>The previous chapters described a single quantitative variable — a price, an age, a wage — with tools that assume the values are numbers we can order and average. A categorical variable breaks that assumption. We’ll work with one dataset for most of this chapter: the <code>lending</code> data records 92,902 loans issued between 2008 and 2012 on LendingClub, a peer-to-peer platform that matched individual borrowers with investors. We’ll look at two variables. The first is <code>purpose</code>, the reason the borrower gave for the loan — consolidating debt, refinancing a credit card, funding a small business, and so on. The second is whether the loan <strong>defaulted</strong>: LendingClub eventually recorded each loan as either <code>Fully Paid</code> or <code>Charged Off</code>, the latter meaning the borrower stopped paying and the balance was written off as a loss.</p>
+<p>The previous chapters described a single <em>quantitative</em> variable — a price, an age, a wage — with tools that assume the values are numbers we can order and average. A categorical variable breaks that assumption. We’ll work with one dataset for most of this chapter: the <code>lending</code> data records 92,902 loans issued between 2008 and 2012 on LendingClub, a peer-to-peer platform that matched individual borrowers with investors. We’ll look at two variables. The first is <code>purpose</code>, the reason the borrower gave for the loan — consolidating debt, refinancing a credit card, funding a small business, and so on. The second is whether the loan <strong>defaulted</strong>: LendingClub eventually recorded each loan as either <code>Fully Paid</code> or <code>Charged Off</code>, the latter meaning the borrower stopped paying and the balance was written off as a loss.</p>
 <section id="kinds-of-categorical-variables" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="kinds-of-categorical-variables"><span class="header-section-number">5.1</span> Kinds of categorical variables</h2>
 <div id="defn-categorical-variable" class="Definition">
@@ -595,7 +559,7 @@ Figure&nbsp;5.2: The distribution of loan purpose across all LendingClub loans, 
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Key idea: Order categories by a meaningful summary
+<span class="screen-reader-only">Note</span>Order categories by a meaningful summary
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -636,63 +600,23 @@ Figure&nbsp;5.4: How U.S. households rated national economic conditions (Survey 
 </div>
 </div>
 </div>
-<p>The tallest bar is “only fair,” but we leave it second from the left where it belongs. The categories are ordered, so their sequence is part of the message: reading left to right traces the ratings from worst to best, and sorting by height would throw that away. The layout also carries information a sorted chart would lose. Fewer than 2% of households answered “excellent,” and seeing that bar at the end of the scale tells us almost nobody rates conditions at the top; sorted by size, the same bar reads as merely the rarest answer, with nothing to show it is the scale’s endpoint.</p>
-</section>
-<section id="good-practice-and-pitfalls" class="level3" data-number="5.6.4">
-<h3 data-number="5.6.4" class="anchored" data-anchor-id="good-practice-and-pitfalls"><span class="header-section-number">5.6.4</span> Good practice and pitfalls</h3>
-<p>A handful of choices separate a clear categorical chart from a cluttered one. The table below collects the ones that come up most.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Situation</th>
-<th>Prefer</th>
-<th>Avoid</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Few categories</td>
-<td>A simple bar chart</td>
-<td>Decorative or 3D charts</td>
-</tr>
-<tr class="even">
-<td>Many categories</td>
-<td>Horizontal bars, so labels stay flat</td>
-<td>Crowded vertical bars with rotated labels</td>
-</tr>
-<tr class="odd">
-<td>Nominal categories</td>
-<td>Sort by value when comparison is the point</td>
-<td>Alphabetical order when you mean to rank</td>
-</tr>
-<tr class="even">
-<td>Ordinal categories</td>
-<td>Preserve the natural order (<code>A</code>–<code>G</code>, better–worse)</td>
-<td>Re-sorting by frequency and destroying the order</td>
-</tr>
-<tr class="odd">
-<td>Long-tailed categories</td>
-<td>Show the top categories plus a combined “Other”</td>
-<td>Fifty tiny, unreadable bars</td>
-</tr>
-<tr class="even">
-<td>Part-to-whole, few categories</td>
-<td>A few labeled numbers, or a bar chart</td>
-<td>A pie chart with many similar slices</td>
-</tr>
-<tr class="odd">
-<td>Any bar chart</td>
-<td>Start the value axis at zero</td>
-<td>A truncated axis that exaggerates differences</td>
-</tr>
-</tbody>
-</table>
-<p>A good rule of thumb for any visualization is to make the interesting comparisons as obvious as possible without misleading your reader.</p>
+<p>The tallest bar is “only fair,” but we leave it second from the left where it belongs. The categories are ordered, so their sequence is part of the message: reading left to right traces the ratings from worst to best, and sorting by height would throw that away. The layout also carries information a sorted chart would lose. Fewer than 2% of households answered “excellent,” and seeing that bar at the end of the scale tells us almost nobody rates conditions at the top; sorted by size, the same bar reads as merely the rarest answer, with nothing to show it is the scale’s endpoint. <!---
+### Good practice and pitfalls
+
+A handful of choices separate a clear categorical chart from a cluttered one. The table below collects the ones that come up most.
+
+| Situation | Prefer | Avoid |
+| --- | --- | --- |
+| Few categories | A simple bar chart | Decorative or 3D charts |
+| Many categories | Horizontal bars, so labels stay flat | Crowded vertical bars with rotated labels |
+| Nominal categories | Sort by value when comparison is the point | Alphabetical order when you mean to rank |
+| Ordinal categories | Preserve the natural order (`A`–`G`, better–worse) | Re-sorting by frequency and destroying the order |
+| Long-tailed categories | Show the top categories plus a combined "Other" | Fifty tiny, unreadable bars |
+| Part-to-whole, few categories | A few labeled numbers, or a bar chart | A pie chart with many similar slices |
+| Any bar chart | Start the value axis at zero | A truncated axis that exaggerates differences |
+
+A good rule of thumb for any visualization is to make the interesting comparisons as obvious as possible without misleading your reader.
+---></p>
 </section>
 </section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
@@ -1113,8 +1037,8 @@ Figure&nbsp;5.4: How U.S. households rated national economic conditions (Survey 
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prob_01_intro.html" class="pagination-link" aria-label="Introduction to Probability and Sampling">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix_data.html" class="pagination-link" aria-label="Datasets">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
