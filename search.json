@@ -1,5 +1,96 @@
 [
   {
+    "objectID": "slides/03_categorical_variables.html#the-data-lendingclub-loans",
+    "href": "slides/03_categorical_variables.html#the-data-lendingclub-loans",
+    "title": "Categorical Variables",
+    "section": "The data: LendingClub loans",
+    "text": "The data: LendingClub loans\n\nThe lending data records 92,902 peer-to-peer loans issued between 2008 and 2012, each with a final outcome.\npurpose records why the borrower took the loan (14 categories).\ndefault records whether the loan was Charged Off — the borrower stopped paying and the balance was written off — or Fully Paid."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#kinds-of-categorical-variables",
+    "href": "slides/03_categorical_variables.html#kinds-of-categorical-variables",
+    "title": "Categorical Variables",
+    "section": "Kinds of categorical variables",
+    "text": "Kinds of categorical variables\n\nA categorical variable records which of several groups an observation belongs to.\nA nominal variable’s categories have no natural order: loan purpose.\nAn ordinal variable’s categories fall in a natural order, but the spacing between them is not measurable: loan grade, from A down to G.\nA binary variable has exactly two categories, so it can be nominal or ordinal: did the loan default?"
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#frequency-tables",
+    "href": "slides/03_categorical_variables.html#frequency-tables",
+    "title": "Categorical Variables",
+    "section": "Frequency tables",
+    "text": "Frequency tables\nA frequency table counts how many observations fall in each category; dividing by the total gives the proportion.\n\n\n\n\n\n\nPurpose\nCount\nProportion\n\n\n\n\ndebt_consolidation\n49409\n0.532 (53.2%)\n\n\ncredit_card\n15459\n0.166 (16.6%)\n\n\nother\n7012\n0.075 (7.5%)\n\n\nhome_improvement\n5856\n0.063 (6.3%)\n\n\nmajor_purchase\n3543\n0.038 (3.8%)\n\n\nsmall_business\n3191\n0.034 (3.4%)\n\n\ncar\n2449\n0.026 (2.6%)\n\n\nwedding\n1676\n0.018 (1.8%)\n\n\nmedical\n1323\n0.014 (1.4%)\n\n\nmoving\n976\n0.011 (1.1%)\n\n\nhouse\n799\n0.009 (0.9%)\n\n\nvacation\n722\n0.008 (0.8%)\n\n\neducational\n313\n0.003 (0.3%)\n\n\nrenewable_energy\n174\n0.002 (0.2%)"
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#bar-charts-dot-plots-and-pie-charts",
+    "href": "slides/03_categorical_variables.html#bar-charts-dot-plots-and-pie-charts",
+    "title": "Categorical Variables",
+    "section": "Bar charts, dot plots, and pie charts",
+    "text": "Bar charts, dot plots, and pie charts\n\nA bar chart or dot plot shows each category’s count or proportion as a length or position on a common axis. Differences of a percentage point or two stay visible.\nA pie chart shows the same numbers as angles and areas. Two slices a few percentage points apart look the same, and ranking several mid-sized slices is harder still.\nWith more than a handful of categories, or when comparing them is the point, use bars or dots."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#the-distribution-of-loan-purpose",
+    "href": "slides/03_categorical_variables.html#the-distribution-of-loan-purpose",
+    "title": "Categorical Variables",
+    "section": "The distribution of loan purpose",
+    "text": "The distribution of loan purpose"
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#the-same-distribution-as-a-dot-plot",
+    "href": "slides/03_categorical_variables.html#the-same-distribution-as-a-dot-plot",
+    "title": "Categorical Variables",
+    "section": "The same distribution as a dot plot",
+    "text": "The same distribution as a dot plot"
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#rating-national-economic-conditions",
+    "href": "slides/03_categorical_variables.html#rating-national-economic-conditions",
+    "title": "Categorical Variables",
+    "section": "Rating national economic conditions",
+    "text": "Rating national economic conditions\nEach fall the Federal Reserve’s Survey of Household Economics and Decisionmaking asks a national sample of U.S. adults to rate economic conditions in the country today. The 2025 wave surveyed 12,934 people."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#ordinal-categories-keep-their-order",
+    "href": "slides/03_categorical_variables.html#ordinal-categories-keep-their-order",
+    "title": "Categorical Variables",
+    "section": "Ordinal categories keep their order",
+    "text": "Ordinal categories keep their order\n\nWe sorted purpose by size because its labels have no order. An ordinal variable’s bars stay in their natural order: here, worst to best, left to right.\nThe tallest bar, “only fair,” sits second from the left; the order tells you where that answer falls on the scale.\nOnly 1.9% answered “excellent.” Kept at the end of the scale, that bar shows the top of the scale is nearly empty; sorted by height, it would just be the rarest answer."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#dummy-indicator-variables",
+    "href": "slides/03_categorical_variables.html#dummy-indicator-variables",
+    "title": "Categorical Variables",
+    "section": "Dummy (indicator) variables",
+    "text": "Dummy (indicator) variables\nA dummy variable (or indicator variable) equals 1 when an observation belongs to a category and 0 when it does not:\n\\[\n\\text{default}_i =\n\\begin{cases}\n1 & \\text{if loan } i \\text{ was charged off} \\\\\n0 & \\text{if loan } i \\text{ was fully paid.}\n\\end{cases}\n\\]\n\n\n\n\n\nPurpose\nLoan status\ndefault\n\n\n\n\ncredit_card\nFully Paid\n0\n\n\nsmall_business\nFully Paid\n0\n\n\nother\nFully Paid\n0\n\n\ncar\nCharged Off\n1\n\n\nother\nFully Paid\n0\n\n\n\n\n\nThat single column carries everything the two labels told us, in a form we can add up and average."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#a-proportion-is-the-mean-of-a-01-variable",
+    "href": "slides/03_categorical_variables.html#a-proportion-is-the-mean-of-a-01-variable",
+    "title": "Categorical Variables",
+    "section": "A proportion is the mean of a 0/1 variable",
+    "text": "A proportion is the mean of a 0/1 variable\n\nThe mean of the default dummy is 0.154, and 15.4% of these loans were charged off.\nTake the mean of a 0/1 column and you get back the proportion of 1s. Summing the column counts the 1s, so dividing by \\(n\\) gives their share:\n\n\n\\[\n\\hat{p} = \\frac{1}{n}\\sum_{i=1}^{n} x_i = \\frac{\\text{number of 1s}}{n} = \\text{proportion of 1s}\n\\]\nWe write a sample proportion as \\(\\hat{p}\\), read aloud as “p-hat.” It is a sample mean in disguise."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#the-spread-of-a-01-variable",
+    "href": "slides/03_categorical_variables.html#the-spread-of-a-01-variable",
+    "title": "Categorical Variables",
+    "section": "The spread of a 0/1 variable",
+    "text": "The spread of a 0/1 variable\nPredict a random loan’s outcome, knowing only the 15.4% default rate.\n\nYour best guess is “no default,” and you will be right about 84.6% of the time. That is a fairly predictable outcome.\nA rarer outcome is easier still: if one loan in a hundred defaulted, guessing “no default” every time would be right 99% of the time.\nWhere does prediction get hard? At a coin flip: if half of loans defaulted, no guessing rule would beat 50-50.\nSo the spread of a 0/1 variable should be smallest near 0 or 1 and largest in the middle."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#variance-of-a-01-variable",
+    "href": "slides/03_categorical_variables.html#variance-of-a-01-variable",
+    "title": "Categorical Variables",
+    "section": "Variance of a 0/1 variable",
+    "text": "Variance of a 0/1 variable\nThe variance of a 0/1 variable depends on \\(\\hat{p}\\) alone:\n\\[\ns^2 \\approx \\hat{p}\\,(1 - \\hat{p}),\n\\]\nthe chance a randomly selected observation is a 1 times the chance it is a 0.\n\nLargest at \\(\\hat{p} = 0.5\\): a coin flip.\nShrinks toward zero as \\(\\hat{p}\\) approaches 0 or 1: the outcome is nearly certain."
+  },
+  {
+    "objectID": "slides/03_categorical_variables.html#variance-as-a-function-of-hatp",
+    "href": "slides/03_categorical_variables.html#variance-as-a-function-of-hatp",
+    "title": "Categorical Variables",
+    "section": "Variance as a function of \\(\\hat{p}\\)",
+    "text": "Variance as a function of \\(\\hat{p}\\)\n\nAt \\(\\hat{p}\\) = 0.154 the variance is 0.130, well below its maximum of 0.25: defaults are fairly predictable. The standard deviation is 0.361."
+  },
+  {
     "objectID": "slides/01_basic_visualizations.html#a-histogram-counts-observations-in-bins",
     "href": "slides/01_basic_visualizations.html#a-histogram-counts-observations-in-bins",
     "title": "Visualizing a Single Quantitative Variable",
@@ -194,5 +285,110 @@
     "title": "Slides",
     "section": "",
     "text": "Lecture slide decks. Each opens as a self-contained slideshow (press ? for keyboard shortcuts, E for print view).\n\nVisualizing a Single Quantitative Variable"
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#were-going-to-play-a-game",
+    "href": "slides/02_location_and_spread.html#were-going-to-play-a-game",
+    "title": "Measuring Location and Spread",
+    "section": "We’re going to play a game",
+    "text": "We’re going to play a game\n\nYou have to guess the sale price of a randomly selected house in one of two ZIP codes.\nYou can pick the ZIP code."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#pick-your-zip-code",
+    "href": "slides/02_location_and_spread.html#pick-your-zip-code",
+    "title": "Measuring Location and Spread",
+    "section": "Pick your ZIP code",
+    "text": "Pick your ZIP code\n\nWhich zip, and what’s your guess?"
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#the-mean",
+    "href": "slides/02_location_and_spread.html#the-mean",
+    "title": "Measuring Location and Spread",
+    "section": "The mean",
+    "text": "The mean\n\nFor the 134 sales in ZIP 78752, the mean price is $370,804: add up all 134 prices and divide by 134.\nIn notation, \\(\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i\\)."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#subscripts-and-summation",
+    "href": "slides/02_location_and_spread.html#subscripts-and-summation",
+    "title": "Measuring Location and Spread",
+    "section": "Subscripts and summation",
+    "text": "Subscripts and summation\n\n\n\n\n\n\n\n\\(i\\)\n\\(x_i\\) (sale price)\n\n\n\n\n1\n$419,000\n\n\n2\n$429,000\n\n\n3\n$575,000\n\n\n4\n$210,000\n\n\n\n\n\n\n\nA subscript labels which observation: \\(x_1\\) is the first sale price, \\(x_2\\) the second, \\(x_i\\) “the \\(i\\)-th one.” With \\(n\\) observations, \\(i\\) runs from 1 to \\(n\\).\n\\(\\sum\\) (capital sigma, for “sum”) means “add up”: \\[\n\\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4 = \\$419,000 + \\$429,000 + \\$575,000 + \\$210,000 = \\$1,633,000.\n\\]\nPut \\(n\\) in place of 4 to add up the whole column; \\(\\frac{1}{n}\\sum_{i=1}^{n} x_i\\) is that total divided by \\(n\\) — the mean."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#the-median",
+    "href": "slides/02_location_and_spread.html#the-median",
+    "title": "Measuring Location and Spread",
+    "section": "The median",
+    "text": "The median\n\nThe median price in 78752 is $351,478: the middle value when the prices are sorted, with half the sales below and half above.\nUnlike the mean, the median doesn’t care how extreme the extremes are."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#mean-vs.-median",
+    "href": "slides/02_location_and_spread.html#mean-vs.-median",
+    "title": "Measuring Location and Spread",
+    "section": "Mean vs. median",
+    "text": "Mean vs. median\n\nThe mean sits above the median because a few high-priced homes drag the average up. Report both, and pay attention to the gap — a large gap signals skewness."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#back-to-the-game",
+    "href": "slides/02_location_and_spread.html#back-to-the-game",
+    "title": "Measuring Location and Spread",
+    "section": "Back to the game",
+    "text": "Back to the game\n\nYour best guess is the mean or the median.\nWhichever you choose, prices in 78741 vary more around that center, so your prediction error will tend to be larger there.\nMeasures of spread quantify how unpredictable a variable is."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#standard-deviation",
+    "href": "slides/02_location_and_spread.html#standard-deviation",
+    "title": "Measuring Location and Spread",
+    "section": "Standard deviation",
+    "text": "Standard deviation\nThe standard deviation measures the typical distance of an observation from the mean:\n\\[\ns = \\sqrt{\\frac{1}{n-1}\\sum_{i=1}^{n} (x_i - \\bar{x})^2}\n\\]\n\nWe square the deviations so positive and negative ones don’t cancel, then take the square root to get back to the original units.\nFor 78749 the standard deviation is $85,141; for 78741 it is $151,824 — about 1.8 times the standard deviation in 78749."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#variance",
+    "href": "slides/02_location_and_spread.html#variance",
+    "title": "Measuring Location and Spread",
+    "section": "Variance",
+    "text": "Variance\n\nThe variance is the standard deviation squared, \\(s^2\\).\nIts units — dollars-squared here — are impossible to picture, so we report the standard deviation when we want a readable number.\nVariance earns its keep as a building block inside other calculations."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#standard-deviation-measures-unpredictability",
+    "href": "slides/02_location_and_spread.html#standard-deviation-measures-unpredictability",
+    "title": "Measuring Location and Spread",
+    "section": "Standard deviation measures unpredictability",
+    "text": "Standard deviation measures unpredictability"
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#tesla-is-harder-to-predict",
+    "href": "slides/02_location_and_spread.html#tesla-is-harder-to-predict",
+    "title": "Measuring Location and Spread",
+    "section": "Tesla is harder to predict",
+    "text": "Tesla is harder to predict\n\nFord: \\(s\\) = 4.5%. Tesla: \\(s\\) = 8.2%, about 1.8 times larger.\nA typical Tesla week lands that much farther from its average, up or down.\nGuess next week’s return for each stock and you will miss by more with Tesla. That is what the standard deviation measures."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#the-interquartile-range",
+    "href": "slides/02_location_and_spread.html#the-interquartile-range",
+    "title": "Measuring Location and Spread",
+    "section": "The interquartile range",
+    "text": "The interquartile range\n\nThe IQR is the distance between the 75th and 25th percentiles, \\(\\text{IQR} = Q3 - Q1\\): the width of the middle half of the data.\nIt comes to $91,000 in 78749 and $157,000 in 78741.\nLike the median, the IQR ignores how extreme the extremes are."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#changing-units",
+    "href": "slides/02_location_and_spread.html#changing-units",
+    "title": "Measuring Location and Spread",
+    "section": "Changing units",
+    "text": "Changing units\nA linear transformation multiplies a variable by a constant, adds a constant, or does both: \\(y = ax + b\\). Every value gets the same rescaling and the same shift.\n\nThe shape is identical; only the axis labels change."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#shifting-mean-centering",
+    "href": "slides/02_location_and_spread.html#shifting-mean-centering",
+    "title": "Measuring Location and Spread",
+    "section": "Shifting: mean-centering",
+    "text": "Shifting: mean-centering\n\nSubtracting the mean shifts the distribution to center on zero; the shape is unchanged."
+  },
+  {
+    "objectID": "slides/02_location_and_spread.html#what-happens-to-the-summaries",
+    "href": "slides/02_location_and_spread.html#what-happens-to-the-summaries",
+    "title": "Measuring Location and Spread",
+    "section": "What happens to the summaries?",
+    "text": "What happens to the summaries?\nIf \\(y_i = a x_i + b\\) for every observation, where \\(a\\) and \\(b\\) are constants, then\n\\[\n\\bar{y} = a\\bar{x} + b, \\qquad \\text{median}(y) = a\\,\\text{median}(x) + b,\n\\]\n\\[\ns_y = |a|\\,s_x, \\qquad s^2_y = a^2\\,s^2_x.\n\\]\nAdding \\(b\\) shifts the center and leaves the spread alone; multiplying by \\(a\\) scales both the center and the spread (and the spread doesn’t care about the sign of \\(a\\))."
   }
 ]
