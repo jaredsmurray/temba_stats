@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Categorical Variables – TEMBA Statistics — Course Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./prob_01_intro.html" rel="next">
+<link href="./singlevar_04_transformations.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/foldbox/foldbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles/callouts.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_05_categorical.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEMBA Statistics — Course Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_01_visualizing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualizing a Single Quantitative Variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_02_describing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_04_transformations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_05_categorical.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#kinds-of-categorical-variables" id="toc-kinds-of-categorical-variables" class="nav-link active" data-scroll-target="#kinds-of-categorical-variables"><span class="header-section-number">5.1</span> Kinds of categorical variables</a></li>
+  <li><a href="#frequency-tables-counts-and-proportions" id="toc-frequency-tables-counts-and-proportions" class="nav-link" data-scroll-target="#frequency-tables-counts-and-proportions"><span class="header-section-number">5.2</span> Frequency tables: counts and proportions</a></li>
+  <li><a href="#sec-dummy-variables" id="toc-sec-dummy-variables" class="nav-link" data-scroll-target="#sec-dummy-variables"><span class="header-section-number">5.3</span> Dummy (indicator) variables</a></li>
+  <li><a href="#sec-proportion-mean" id="toc-sec-proportion-mean" class="nav-link" data-scroll-target="#sec-proportion-mean"><span class="header-section-number">5.4</span> A proportion is the mean of a 0/1 variable</a></li>
+  <li><a href="#the-spread-of-a-01-variable" id="toc-the-spread-of-a-01-variable" class="nav-link" data-scroll-target="#the-spread-of-a-01-variable"><span class="header-section-number">5.5</span> The spread of a 0/1 variable</a>
+  <ul class="collapse">
+  <li><a href="#variance-and-unpredictability" id="toc-variance-and-unpredictability" class="nav-link" data-scroll-target="#variance-and-unpredictability"><span class="header-section-number">5.5.1</span> Variance and unpredictability</a></li>
+  <li><a href="#variance-as-a-function-of-hatp" id="toc-variance-as-a-function-of-hatp" class="nav-link" data-scroll-target="#variance-as-a-function-of-hatp"><span class="header-section-number">5.5.2</span> Variance as a function of <span class="math inline">\(\hat{p}\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-cat-viz" id="toc-sec-cat-viz" class="nav-link" data-scroll-target="#sec-cat-viz"><span class="header-section-number">5.6</span> Visualizing categorical variables</a>
+  <ul class="collapse">
+  <li><a href="#bar-charts-dot-plots-and-pie-charts" id="toc-bar-charts-dot-plots-and-pie-charts" class="nav-link" data-scroll-target="#bar-charts-dot-plots-and-pie-charts"><span class="header-section-number">5.6.1</span> Bar charts, dot plots, and pie charts</a></li>
+  <li><a href="#the-distribution-of-loan-purpose" id="toc-the-distribution-of-loan-purpose" class="nav-link" data-scroll-target="#the-distribution-of-loan-purpose"><span class="header-section-number">5.6.2</span> The distribution of loan purpose</a></li>
+  <li><a href="#sec-ordinal-rating" id="toc-sec-ordinal-rating" class="nav-link" data-scroll-target="#sec-ordinal-rating"><span class="header-section-number">5.6.3</span> An ordinal example: rating the economy</a></li>
+  <li><a href="#good-practice-and-pitfalls" id="toc-good-practice-and-pitfalls" class="nav-link" data-scroll-target="#good-practice-and-pitfalls"><span class="header-section-number">5.6.4</span> Good practice and pitfalls</a></li>
+  </ul></li>
+  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_05_categorical.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The previous chapters described a single quantitative variable — a price, an age, a wage — with tools that assume the values are numbers we can order and average. A categorical variable breaks that assumption. We’ll work with one dataset for most of this chapter: the <code>lending</code> data records 92,902 loans issued between 2008 and 2012 on LendingClub, a peer-to-peer platform that matched individual borrowers with investors. We’ll look at two variables. The first is <code>purpose</code>, the reason the borrower gave for the loan — consolidating debt, refinancing a credit card, funding a small business, and so on. The second is whether the loan <strong>defaulted</strong>: LendingClub eventually recorded each loan as either <code>Fully Paid</code> or <code>Charged Off</code>, the latter meaning the borrower stopped paying and the balance was written off as a loss.</p>
+<section id="kinds-of-categorical-variables" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="kinds-of-categorical-variables"><span class="header-section-number">5.1</span> Kinds of categorical variables</h2>
+<div id="defn-categorical-variable" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 5.1: </strong>Categorical variable</div><div class="fobx-body">
+<p>A <strong>categorical variable</strong> records which of several groups an observation belongs to. A <strong>nominal</strong> variable’s categories have no natural order, so any ordering we impose is for our own convenience. An <strong>ordinal</strong> variable’s categories fall in a natural order, but the spacing between them is not measurable. A <strong>binary</strong> variable has exactly two categories, and because that describes the number of categories rather than their order, a binary variable can be nominal or ordinal.</p>
+</div></div>
+</div>
+<p>The <code>purpose</code> variable is nominal: it takes fourteen values, including <code>debt_consolidation</code>, <code>credit_card</code>, <code>small_business</code>, and <code>car</code>. Nothing about the data says one should come before another.</p>
+<p>LendingClub’s loan <code>grade</code> is ordinal: it runs from <code>A</code> (least risky) down to <code>G</code> (most risky). We know <code>A</code> comes before <code>B</code> comes before <code>C</code>, but the gap from <code>A</code> to <code>B</code> need not equal the gap from <code>F</code> to <code>G</code>. A national household survey we’ll meet later in the chapter gives another example: when respondents rate national economic conditions as “poor,” “only fair,” “good,” or “excellent,” the four answers are ordered, but the distance between them is anyone’s guess.</p>
+<p>Binary variables are everywhere: a loan being charged off, an employee leaving the company, and a survey respondent owning their home are all yes-or-no facts. Since there are only two levels, there’s no meaningful nominal versus ordinal distinction to be made.</p>
+</section>
+<section id="frequency-tables-counts-and-proportions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="frequency-tables-counts-and-proportions"><span class="header-section-number">5.2</span> Frequency tables: counts and proportions</h2>
+<div id="defn-frequency-table" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 5.2: </strong>Frequency table</div><div class="fobx-body">
+<p>A <strong>frequency table</strong> lists each category of a variable and the number of observations that fall within it. Dividing each count by the total gives the <strong>proportion</strong> in each category, which puts counts from differently sized datasets on a comparable scale.</p>
+</div></div>
+</div>
+<p>Here is the table for loan <code>purpose</code>, sorted from most to least common.</p>
+<div class="cell">
+<div id="tbl-purpose-counts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-purpose-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Loan purposes, sorted from most to least common, with the proportion of loans in each category (percentage in parentheses).
+</figcaption>
+<div aria-describedby="tbl-purpose-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: right;">Proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">debt_consolidation</td>
+<td style="text-align: right;">49409</td>
+<td style="text-align: right;">0.532 (53.2%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">credit_card</td>
+<td style="text-align: right;">15459</td>
+<td style="text-align: right;">0.166 (16.6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">other</td>
+<td style="text-align: right;">7012</td>
+<td style="text-align: right;">0.075 (7.5%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">home_improvement</td>
+<td style="text-align: right;">5856</td>
+<td style="text-align: right;">0.063 (6.3%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">major_purchase</td>
+<td style="text-align: right;">3543</td>
+<td style="text-align: right;">0.038 (3.8%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">small_business</td>
+<td style="text-align: right;">3191</td>
+<td style="text-align: right;">0.034 (3.4%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">car</td>
+<td style="text-align: right;">2449</td>
+<td style="text-align: right;">0.026 (2.6%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wedding</td>
+<td style="text-align: right;">1676</td>
+<td style="text-align: right;">0.018 (1.8%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">medical</td>
+<td style="text-align: right;">1323</td>
+<td style="text-align: right;">0.014 (1.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">moving</td>
+<td style="text-align: right;">976</td>
+<td style="text-align: right;">0.011 (1.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">house</td>
+<td style="text-align: right;">799</td>
+<td style="text-align: right;">0.009 (0.9%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vacation</td>
+<td style="text-align: right;">722</td>
+<td style="text-align: right;">0.008 (0.8%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">educational</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">0.003 (0.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">renewable_energy</td>
+<td style="text-align: right;">174</td>
+<td style="text-align: right;">0.002 (0.2%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A table like this is the whole story for a nominal variable. There is no notion of “location” to report, because the labels have no order and no meaningful distance between them. We can loosely think of the “spread” of a categorical variable as how much the frequencies vary across categories — a variable that takes one value 99% of the time has less spread than one whose labels are distributed more evenly. Statistical summaries of that kind of spread exist, but they’re beyond the scope of this course.</p>
+<p>Binary variables are the exception: with two labels we can talk more meaningfully about location and spread by turning them into zeros and ones and treating them as a quantitative variable. We’ll do that next, and then return to visualizing categorical variables more generally.</p>
+</section>
+<section id="sec-dummy-variables" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-dummy-variables"><span class="header-section-number">5.3</span> Dummy (indicator) variables</h2>
+<p>It’s often useful to map a categorical variable to a numeric one — it’s the first step to using categorical variables as predictors in a statistical model, for example. Here it will also reinforce what the sample mean and variance/standard deviation represent.</p>
+<div id="defn-dummy-variable" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 5.3: </strong>Dummy (indicator) variable</div><div class="fobx-body">
+<p>A <strong>dummy variable</strong>, also called an <strong>indicator variable</strong>, is a column that equals 1 when an observation belongs to a category and 0 when it does not. Which category gets the 1 is our choice; the choice only changes how we interpret an analysis that uses the variable.</p>
+</div></div>
+</div>
+<p>Loan status is either <code>Fully Paid</code> or <code>Charged Off</code>, so we define a single dummy variable to indicate default:</p>
+<p><span class="math display">\[
+\text{default}_i =
+\begin{cases}
+1 &amp; \text{if loan } i \text{ was charged off} \\
+0 &amp; \text{if loan } i \text{ was fully paid.}
+\end{cases}
+\]</span></p>
+<p>In words: we label each loan with a 1 if it defaulted and a 0 if it did not. <a href="#tbl-dummy-map" class="quarto-xref">Table&nbsp;<span>5.2</span></a> shows the recode on a handful of loans — the text label on the left, the number it becomes on the right.</p>
+<div class="cell">
+<div id="tbl-dummy-map" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dummy-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: The <code>default</code> dummy variable for a few loans. <code>Charged Off</code> becomes 1; <code>Fully Paid</code> becomes 0.
+</figcaption>
+<div aria-describedby="tbl-dummy-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Purpose</th>
+<th style="text-align: left;">Loan status</th>
+<th style="text-align: right;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">credit_card</td>
+<td style="text-align: left;">Fully Paid</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">small_business</td>
+<td style="text-align: left;">Fully Paid</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">other</td>
+<td style="text-align: left;">Fully Paid</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">car</td>
+<td style="text-align: left;">Charged Off</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">other</td>
+<td style="text-align: left;">Fully Paid</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>That single column carries everything the two-category variable told us, in a form we can add up and average. So what do the mean and the standard deviation of a 0/1 column tell us?</p>
+</section>
+<section id="sec-proportion-mean" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-proportion-mean"><span class="header-section-number">5.4</span> A proportion is the mean of a 0/1 variable</h2>
+<p>If we take the mean of a binary variable, we just get back the proportion of ones. Let <span class="math inline">\(x_i\)</span> be the value of the dummy variable for observation <span class="math inline">\(i\)</span>, which is either 0 or 1. The sample mean is</p>
+<p><span class="math display">\[
+\hat{p} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{\text{number of 1s}}{n} = \text{proportion of 1s}.
+\]</span></p>
+<p>We write a sample proportion as <span class="math inline">\(\hat{p}\)</span> (read aloud as “p-hat”). It is a sample mean in disguise. For the loan data, the mean of the <code>default</code> dummy is <span class="math inline">\(\hat{p} = 0.154\)</span> (15.4%). This is exactly the proportion of loans that were charged off. If we reversed the coding, the mean would instead be 0.846, the proportion of loans that were fully paid.</p>
+</section>
+<section id="the-spread-of-a-01-variable" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="the-spread-of-a-01-variable"><span class="header-section-number">5.5</span> The spread of a 0/1 variable</h2>
+<section id="variance-and-unpredictability" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="variance-and-unpredictability"><span class="header-section-number">5.5.1</span> Variance and unpredictability</h3>
+<p>In <a href="singlevar_03_location-and-spread.html#sec-measures-spread" class="quarto-xref"><span>Section 3.2</span></a> we framed the spread of a quantitative variable as a statement about <strong>unpredictability</strong>: prices in ZIP 78741 were harder to guess than prices in ZIP 78749 because they varied more around their center, however we measured that variability. The interpretation is the same for binary variables.</p>
+<p>Imagine that one of the 92,902 recorded loans is chosen at random and you have to predict whether it defaulted. All you know is that 15.4% of these loans defaulted. Your best guess is “no default,” and you will be right about 84.6% of the time. That is a fairly predictable outcome. A rarer recorded outcome would be easier still: if only one loan in a hundred had defaulted, guessing “no default” every time would be right 99% of the time. The closer the recorded proportion sits to zero — or to one — the less the outcome varies, and the easier it is to call.</p>
+<p>Where does prediction get hard? At a coin flip. If exactly half of the recorded loans had defaulted, you would be wrong at least half the time, and no guessing rule could do better. We’d therefore expect spread to be largest at 0.5 and smallest near zero or one.</p>
+</section>
+<section id="variance-as-a-function-of-hatp" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="variance-as-a-function-of-hatp"><span class="header-section-number">5.5.2</span> Variance as a function of <span class="math inline">\(\hat{p}\)</span></h3>
+<p>The variance of a binary variable has exactly that property. Let <span class="math inline">\(\hat{p}\)</span> be the proportion of 1s, which we just showed is the mean. The variance turns out to be a function of <span class="math inline">\(\hat{p}\)</span> alone.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The variance of an indicator variable is approximately <span class="math inline">\(\hat{p}(1-\hat{p})\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An indicator (0/1) variable has sample variance <span class="math inline">\(s^2 \approx \hat{p}\,(1-\hat{p})\)</span> — the chance that a randomly selected observation is a 1 times the chance a randomly selected observation is a 0. That product is largest at <span class="math inline">\(\hat{p} = 0.5\)</span>, where the outcome is a coin flip, and it shrinks toward zero as the proportion approaches 0 or 1.</p>
+</div>
+</div>
+<div id="technical-p-one-minus-p" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 5.1: </strong>Where does <span class="math inline">\(\hat{p}(1-\hat{p})\)</span> come from?</summary><div>
+<p>Start from the definition of the sample variance and split the sum over the 0s and the 1s. Among <span class="math inline">\(n\)</span> observations there are <span class="math inline">\(n\hat{p}\)</span> ones and <span class="math inline">\(n(1-\hat{p})\)</span> zeros. Each 1 contributes a squared deviation of <span class="math inline">\((1-\hat{p})^2\)</span> and each 0 contributes <span class="math inline">\((0-\hat{p})^2 = \hat{p}^2\)</span>, so</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n}(x_i - \hat{p})^2
+= n\hat{p}\,(1-\hat{p})^2 + n(1-\hat{p})\,\hat{p}^2
+= n\hat{p}(1-\hat{p})\big[(1-\hat{p}) + \hat{p}\big]
+= n\hat{p}(1-\hat{p}).
+\]</span></p>
+<p>The bracket sums to 1, which is what makes everything collapse. Dividing by <span class="math inline">\(n-1\)</span> gives the sample variance,</p>
+<p><span class="math display">\[
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i-\hat{p})^2 = \frac{n}{n-1}\,\hat{p}(1-\hat{p}),
+\]</span></p>
+<p>and dividing by <span class="math inline">\(n\)</span> instead — the population version — leaves <span class="math inline">\(\hat{p}(1-\hat{p})\)</span> exactly. For any reasonably large <span class="math inline">\(n\)</span> the two are indistinguishable.</p>
+</div></details>
+</div>
+<p><a href="#fig-variance-parabola" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows how the variance changes as the proportion moves from 0 to 1.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-variance-parabola" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-variance-parabola-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_05_categorical_files/figure-html/fig-variance-parabola-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variance-parabola-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: The variance of a 0/1 variable, <span class="math inline">\(\hat{p}(1-\hat{p})\)</span>, as the proportion <span class="math inline">\(\hat{p}\)</span> ranges from 0 to 1. Spread is zero at the extremes, where the outcome is certain, and largest at <span class="math inline">\(\hat{p} = 0.5\)</span>, where the outcome is a coin flip. The point marks the loan default proportion.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The default proportion of <span class="math inline">\(\hat{p} = 0.154\)</span> lands well down the left slope of the curve. Among these recorded loans, repayment was far more common than default, so the coded outcomes are comparatively predictable. Reversing the coding would replace <span class="math inline">\(\hat{p}\)</span> with <span class="math inline">\(1-\hat{p}\)</span>, but the product <span class="math inline">\(\hat{p}(1-\hat{p})\)</span> — and so the variance — would stay the same. The <strong>standard deviation</strong> is the square root of the variance. For the individual coded loan outcomes, it comes to 0.361.</p>
+</section>
+</section>
+<section id="sec-cat-viz" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-cat-viz"><span class="header-section-number">5.6</span> Visualizing categorical variables</h2>
+<p>With the numerical summaries in hand, we can turn to charts and graphs. The goal for a categorical variable is almost always to show a <strong>frequency, a percentage, or a share</strong> across categories, and to let the reader easily make relevant comparisons.</p>
+<section id="bar-charts-dot-plots-and-pie-charts" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="bar-charts-dot-plots-and-pie-charts"><span class="header-section-number">5.6.1</span> Bar charts, dot plots, and pie charts</h3>
+<p>A <strong>bar chart</strong> and a <strong>dot plot</strong> encode each category’s value the same way: as a length, or a position, along a common axis. People read length and position more accurately than any other visual channel, so differences of a percentage point or two between categories stay visible. A <strong>pie chart</strong> encodes the same numbers as the angles and areas of wedges, which the eye judges less precisely — two slices a few percentage points apart look the same, and ranking five middling slices is harder still. When are many categories, or comparison between them is the point, bar and dot plots keep the differences readable. Even when there are only a few categories you are almost always served poorly by a pie chart.</p>
+</section>
+<section id="the-distribution-of-loan-purpose" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="the-distribution-of-loan-purpose"><span class="header-section-number">5.6.2</span> The distribution of loan purpose</h3>
+<p>We already have the numbers for loan <code>purpose</code> in the frequency table at the start of the chapter. A chart turns that column of proportions into something the eye can rank at a glance. <a href="#fig-purpose-dist" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> shows the share of loans in each purpose, sorted from most to least common.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-purpose-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-purpose-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_05_categorical_files/figure-html/fig-purpose-dist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-purpose-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: The distribution of loan purpose across all LendingClub loans, sorted from most to least common. Debt consolidation and credit-card refinancing account for most loans; the rest form a long tail.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The shape is easier to see here than in the table: two categories account for most of the loans, and everything below <code>home_improvement</code> is a long tail of small proportions. With fourteen categories, labels under vertical bars would be cramped and tilted; laid on their sides they stay flat and readable, and sorting by length means the chart simultaneously communicates the distribution as well as a ranking of the categories.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key idea: Order categories by a meaningful summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sort nominal categories by the summary the chart displays. When the variable is ordinal, keep its natural order — sorting by size discards it.</p>
+</div>
+</div>
+<p>A <strong>dot plot</strong> shows the same proportions with one point per category (<a href="#fig-purpose-dot" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>). The reader judges position along a common axis, the same channel the bars use, so the comparison is about as accurate either way. Dot plots are more compact, which is useful when you have a large number of categories.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-purpose-dot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-purpose-dot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_05_categorical_files/figure-html/fig-purpose-dot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-purpose-dot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: The same loan-purpose distribution as a dot plot. Each category’s proportion is one point read against a common axis.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Both charts summarize <code>purpose</code> on its own. The more pointed question — which purposes default most often — asks how a <em>second</em> variable, <code>default</code>, shifts across these categories. That is a two-variable summary, and we take it up later in the course.</p>
+</section>
+<section id="sec-ordinal-rating" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="sec-ordinal-rating"><span class="header-section-number">5.6.3</span> An ordinal example: rating the economy</h3>
+<p>Sorting by size was the right call for <code>purpose</code>, whose categories have no inherent order. Ordinal variables call for the opposite. Let’s see an example: Each fall the Federal Reserve’s Survey of Household Economics and Decisionmaking (SHED) asks a national sample of U.S. adults to rate economic conditions in this country today; the 2025 wave surveyed 12,934 people drawn from a panel built to represent the adult population. The answer falls into four ordered categories — “poor,” “only fair,” “good,” or “excellent.” <a href="#fig-shed-outlook" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> plots the 2025 responses in that natural order.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-shed-outlook" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shed-outlook-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_05_categorical_files/figure-html/fig-shed-outlook-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shed-outlook-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: How U.S. households rated national economic conditions (Survey of Household Economics and Decisionmaking, 2025). The four ordered categories run poor to excellent.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The tallest bar is “only fair,” but we leave it second from the left where it belongs. The categories are ordered, so their sequence is part of the message: reading left to right traces the ratings from worst to best, and sorting by height would throw that away. The layout also carries information a sorted chart would lose. Fewer than 2% of households answered “excellent,” and seeing that bar at the end of the scale tells us almost nobody rates conditions at the top; sorted by size, the same bar reads as merely the rarest answer, with nothing to show it is the scale’s endpoint.</p>
+</section>
+<section id="good-practice-and-pitfalls" class="level3" data-number="5.6.4">
+<h3 data-number="5.6.4" class="anchored" data-anchor-id="good-practice-and-pitfalls"><span class="header-section-number">5.6.4</span> Good practice and pitfalls</h3>
+<p>A handful of choices separate a clear categorical chart from a cluttered one. The table below collects the ones that come up most.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Prefer</th>
+<th>Avoid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Few categories</td>
+<td>A simple bar chart</td>
+<td>Decorative or 3D charts</td>
+</tr>
+<tr class="even">
+<td>Many categories</td>
+<td>Horizontal bars, so labels stay flat</td>
+<td>Crowded vertical bars with rotated labels</td>
+</tr>
+<tr class="odd">
+<td>Nominal categories</td>
+<td>Sort by value when comparison is the point</td>
+<td>Alphabetical order when you mean to rank</td>
+</tr>
+<tr class="even">
+<td>Ordinal categories</td>
+<td>Preserve the natural order (<code>A</code>–<code>G</code>, better–worse)</td>
+<td>Re-sorting by frequency and destroying the order</td>
+</tr>
+<tr class="odd">
+<td>Long-tailed categories</td>
+<td>Show the top categories plus a combined “Other”</td>
+<td>Fifty tiny, unreadable bars</td>
+</tr>
+<tr class="even">
+<td>Part-to-whole, few categories</td>
+<td>A few labeled numbers, or a bar chart</td>
+<td>A pie chart with many similar slices</td>
+</tr>
+<tr class="odd">
+<td>Any bar chart</td>
+<td>Start the value axis at zero</td>
+<td>A truncated axis that exaggerates differences</td>
+</tr>
+</tbody>
+</table>
+<p>A good rule of thumb for any visualization is to make the interesting comparisons as obvious as possible without misleading your reader.</p>
+</section>
+</section>
+<section id="data-used-in-this-section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
+<ul>
+<li><a href="./appendix_data.html#sec-data-lendingclub-kaggle">LendingClub Accepted Loans</a></li>
+<li><a href="./appendix_data.html#sec-data-shed">Household economics (SHED)</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./singlevar_04_transformations.html" class="pagination-link" aria-label="Transforming Quantitative Variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./prob_01_intro.html" class="pagination-link" aria-label="Introduction to Probability and Sampling">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

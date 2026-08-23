@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Transforming Quantitative Variables – TEMBA Statistics — Course Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./singlevar_05_categorical.html" rel="next">
+<link href="./singlevar_03_location-and-spread.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/foldbox/foldbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles/callouts.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEMBA Statistics — Course Notes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Visualizing and summarizing a single variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_01_visualizing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualizing a Single Quantitative Variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_02_describing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_04_transformations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_05_categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-linear-transformations" id="toc-sec-linear-transformations" class="nav-link active" data-scroll-target="#sec-linear-transformations"><span class="header-section-number">4.1</span> Linear transformations</a></li>
+  <li><a href="#sec-zscores" id="toc-sec-zscores" class="nav-link" data-scroll-target="#sec-zscores"><span class="header-section-number">4.2</span> z-scores and standardization</a></li>
+  <li><a href="#sec-returns" id="toc-sec-returns" class="nav-link" data-scroll-target="#sec-returns"><span class="header-section-number">4.3</span> Percent changes and returns</a></li>
+  <li><a href="#sec-logarithms" id="toc-sec-logarithms" class="nav-link" data-scroll-target="#sec-logarithms"><span class="header-section-number">4.4</span> Logarithms</a></li>
+  <li><a href="#sec-log-returns" id="toc-sec-log-returns" class="nav-link" data-scroll-target="#sec-log-returns"><span class="header-section-number">4.5</span> Log returns</a>
+  <ul class="collapse">
+  <li><a href="#should-i-use-log-or-arithmetic-returns" id="toc-should-i-use-log-or-arithmetic-returns" class="nav-link" data-scroll-target="#should-i-use-log-or-arithmetic-returns"><span class="header-section-number">4.5.1</span> Should I use log or arithmetic returns?</a></li>
+  </ul></li>
+  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Visualizing and summarizing a single variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Raw data do not always arrive in the form we want for an analysis or visualization. A <strong>transformation</strong> uses one or more existing values to produce a new variable with different properties. We will focus for now on three common transformations.</p>
+<section id="sec-linear-transformations" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-linear-transformations"><span class="header-section-number">4.1</span> Linear transformations</h2>
+<div id="defn-linear-transformation" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.1: </strong>Linear transformation</div><div class="fobx-body">
+<p>A <strong>linear transformation</strong> multiplies a variable by a positive constant, adds a constant, or does both: <span class="math inline">\(y = ax + b\)</span>, where <span class="math inline">\(a&gt;0\)</span>. Every value gets the same rescaling and the same shift. We usually make one to change the units, the reference point, or both.</p>
+</div></div>
+</div>
+<p>Suppose you divide every Austin sale price by 1,000 so that you can report prices in thousands of dollars rather than dollars. The distribution keeps exactly the same shape. You have only relabeled its horizontal axis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-linear-transform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-linear-transform-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Sale prices in dollars (left) and thousands of dollars (right). The distribution has the same shape; only the axis labels change.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also shift each price by subtracting a reference value such as the mean or median.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-linear-transform-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear-transform-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-linear-transform-2-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-transform-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Mean-centered sale prices in dollars (left) and thousands of dollars (right).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>These changes again amount to relabeling the axis. After we subtract the mean and change the units, each value tells us how many thousands of dollars its sale price was above or below the average. The sign gives the direction.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key idea: Summary statistics after a linear transformation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(y_i = a x_i + b\)</span> for every observation, with <span class="math inline">\(a&gt;0\)</span>, then</p>
+<p><span class="math display">\[
+\bar{y} = a\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
+\]</span></p>
+<p><span class="math display">\[
+s_y = a\,s_x, \qquad s^2_y = a^2\,s^2_x.
+\]</span></p>
+<p>Multiplying by <span class="math inline">\(a\)</span> rescales both the center and the spread. Adding <span class="math inline">\(b\)</span> shifts the center but leaves the spread unchanged.</p>
+</div>
+</div>
+</section>
+<section id="sec-zscores" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-zscores"><span class="header-section-number">4.2</span> z-scores and standardization</h2>
+<div id="defn-z-score" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.2: </strong>z-score and standardization</div><div class="fobx-body">
+<p>A <strong>z-score</strong> measures how many standard deviations a value lies from the mean. A home that sold one standard deviation above the mean price has a z-score of 1, and a home that sold one standard deviation below has a z-score of <span class="math inline">\(-1\)</span>. It is computed as</p>
+<p><span class="math display">\[
+z = \frac{x - \bar{x}}{s}.
+\]</span></p>
+<p>Taking the z-score of every observation produces a <strong>standardized</strong> variable, which has a mean of 0 and a standard deviation of 1. Standardization is a linear transformation, so it leaves the shape of the distribution unchanged.</p>
+</div></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-zscore-transform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zscore-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-zscore-transform-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zscore-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Austin 78752 sale prices before and after standardization. The distribution has the same shape; the horizontal axis now measures standard deviations from the mean.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A z-score compares an observed difference, <span class="math inline">\(x_i - \bar x\)</span>, with the size of a <em>typical</em> difference, the standard deviation <span class="math inline">\(s\)</span>. It measures the difference relative to the variable’s spread. A $50,000 difference is five standard deviations when <span class="math inline">\(s=\$10,000\)</span>, but only half a standard deviation when <span class="math inline">\(s=\$100,000\)</span>.</p>
+<p>As an example, consider home sale prices in ZIP codes 78749 and 78741. <a href="#fig-zip-spread-recap" class="quarto-xref">Figure&nbsp;<span>4.4</span></a> shows the distributions of prices in the two ZIP codes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-zip-spread-recap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zip-spread-recap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-zip-spread-recap-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zip-spread-recap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Density-scaled histograms of sale prices in ZIP codes 78749 and 78741. Prices vary more in 78741 than in 78749.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Suppose one home in each ZIP code sold for $600,000. Which sale lies farther above its local mean once we account for the different spreads? The mean sale price is $393,970 in 78749 and $379,545 in 78741. The lower mean in 78741 gives its $600,000 sale the larger raw difference. But prices also vary more in 78741. We can account for both facts by comparing the two z-scores.</p>
+<p>For 78749, the z-score of the $600,000 sale is</p>
+<p><span class="math display">\[
+z = \frac{600,000 - 393,970}{85,141} \approx 2.42
+\]</span></p>
+<p>This value measures how many standard deviations $600,000 lies above the mean price in 78749. For 78741, we get</p>
+<p><span class="math display">\[
+z = \frac{600,000 - 379,545}{151,824}\approx 1.45
+\]</span></p>
+<p>On the standardized scale, then, $600,000 lies farther above the mean in 78749.</p>
+<p>The histograms support the same comparison. The $600,000 mark lies deeper in the right tail for 78749 than for 78741.</p>
+</section>
+<section id="sec-returns" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-returns"><span class="header-section-number">4.3</span> Percent changes and returns</h2>
+<p>We often care more about a change relative to its baseline than about the raw change itself. A return on investment, for example, is the percentage change in value over a particular period. A $10,000 gain on a $100,000 investment is a 10% return, while the same gain on a $1,000,000 investment is only a 1% return.</p>
+<p>We compute the relative change as</p>
+<p><span class="math display">\[
+r = \frac{\text{New value} - \text{Old value}}{\text{Old value}}.
+\]</span></p>
+<p>In words, we divide the change in value by the old value. A value of <span class="math inline">\(r=0.10\)</span> represents a 10% increase, while <span class="math inline">\(r=-0.10\)</span> represents a 10% decrease. We will write returns as proportions and give their percentage equivalents when useful.</p>
+<p>Turning a series of prices into returns changes more than the center or the units, so it is not a linear transformation. Like a z-score, however, a return lets us make apples-to-apples comparisons across settings. Ford and Tesla share prices and their dollar changes are not directly comparable, but the returns on a fixed investment in each company are.</p>
+<p><a href="#fig-price-vs-returns" class="quarto-xref">Figure&nbsp;<span>4.5</span></a> shows two years of weekly observations for both stocks. The top row gives their prices, while the bottom row places their returns on a common scale.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-price-vs-returns" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-price-vs-returns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-price-vs-returns-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-price-vs-returns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Two years of weekly Ford and Tesla data. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Rearranging the percent-change formula gives</p>
+<p><span class="math display">\[
+\text{New value} = \text{Old value} \times (1+r).
+\]</span></p>
+<p>Applying a percentage change multiplies the old value rather than adding a fixed amount. Suppose your salary is $100,000 and you receive a 3% raise. Your new salary is $100,000 <span class="math inline">\(\times\)</span> 1.03 = $103,000. Another 3% raise produces a salary of $103,000 <span class="math inline">\(\times\)</span> 1.03 = $106,090. The second raise adds $90 more because it applies to a larger base. Repeated proportional changes compound in this way.</p>
+</section>
+<section id="sec-logarithms" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-logarithms"><span class="header-section-number">4.4</span> Logarithms</h2>
+<p>Many quantities are easier to compare in proportional terms than in dollar terms. A 3% raise depends on the current salary, while a fixed $3,000 raise adds the same amount each year. <strong>Logarithms</strong> convert multiplication into addition: <span class="math inline">\(\log(ab)=\log(a)+\log(b)\)</span>. That identity lets us add changes that would otherwise compound through multiplication.</p>
+<p>Logarithms are defined only for positive values. The plots below use base-10 logs, which make powers of 10 easy to label. The log returns later in this section use natural logs instead. The base changes the numerical units, but both scales turn equal ratios into equal distances.</p>
+<p>House prices provide one example. <a href="#fig-log-transform" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> compares sale prices on the original and log scales.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-log-transform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-log-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-log-transform-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-log-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Austin sale prices on the original (left) and log (right) scales.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretation: Equal distances on a log axis are equal ratios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On the original price axis, $1 million to $2 million covers the same distance as $2 million to $3 million, because each interval adds $1 million. On the log-scaled axis, $100,000 to $300,000 covers the same distance as $1 million to $3 million, because the upper value is three times the lower in both cases.</p>
+</div>
+</div>
+<p>Hourly wages provide another example.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-log-wage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-log-wage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="singlevar_04_transformations_files/figure-html/fig-log-wage-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-log-wage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Hourly wages on the original (left) and log (right) scales.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>On the original scale, most wages cluster on the left while a thin tail stretches to the right. We saw the same shape for house prices. The log transformation does not remove that tail; it measures the gaps in multiplicative steps. The gap from $10 to $20 per hour is then the same as the gap from $50 to $100.</p>
+</section>
+<section id="sec-log-returns" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-log-returns"><span class="header-section-number">4.5</span> Log returns</h2>
+<p>The return <span class="math inline">\(r\)</span> we defined in <a href="#sec-returns" class="quarto-xref"><span>Section 4.3</span></a> is formally called an arithmetic return, and it has a logarithmic counterpart, the log return.</p>
+<div id="defn-log-return" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.3: </strong>Arithmetic and log returns</div><div class="fobx-body">
+<p>An <strong>arithmetic return</strong> is the ordinary percentage change in price: the change in value divided by the value we started from. A <strong>log return</strong> is the natural logarithm of the ratio of the new price to the old one. A move from $100 to $110 is an arithmetic return of 0.10, or 10%, and a log return of about 0.0953.</p>
+<p>For a price that moves from <span class="math inline">\(P_{t-1}\)</span> to <span class="math inline">\(P_t\)</span>,</p>
+<p><span class="math display">\[
+r_t = \frac{P_t - P_{t-1}}{P_{t-1}} = \frac{P_t}{P_{t-1}} - 1,
+\qquad
+g_t = \log\left(\frac{P_t}{P_{t-1}}\right) = \log(1 + r_t).
+\]</span></p>
+<p>The log return is the natural log of one plus the arithmetic return, and <span class="math inline">\(r_t = e^{g_t} - 1\)</span> converts a log return back to an arithmetic one.</p>
+</div></div>
+</div>
+<p>Arithmetic and log returns handle multiple periods differently. Arithmetic returns compound through multiplication, so the total return over <span class="math inline">\(T\)</span> periods is</p>
+<p><span class="math display">\[
+(1+r_1)(1+r_2)\cdots(1+r_T)-1.
+\]</span></p>
+<p>Each period changes the base for the next one. Log returns instead add across periods:</p>
+<p><span class="math display">\[
+g_1+g_2+\cdots+g_T = \log\left(\frac{P_T}{P_0}\right).
+\]</span></p>
+<p>The sum is the log return from the initial price <span class="math inline">\(P_0\)</span> to the final price <span class="math inline">\(P_T\)</span>. Exponentiating that sum and subtracting 1 gives the same total arithmetic return as compounding the individual arithmetic returns.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common mistake: A 10% loss and a 10% gain do not cancel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A stock that falls from $100 to $90 and then rises by 10% ends at $99, down 1% overall. Equal percentage losses and gains apply to different starting values, so they do not offset. Log returns do add up: <span class="math inline">\(\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101\)</span>, the log return from $100 to $99.</p>
+</div>
+</div>
+<p>Exponentiating that log return, <span class="math inline">\(e^{-0.0101}-1\approx-0.01\)</span>, recovers the arithmetic return of about −1%. For small changes, arithmetic and log returns are nearly equal because <span class="math inline">\(\log(1+r)\approx r\)</span>. An arithmetic return of 0.01 (1%) corresponds to a log return of about 0.00995. The difference grows with the return: an arithmetic return of 0.50 (50%) corresponds to a log return of about 0.4055.</p>
+<section id="should-i-use-log-or-arithmetic-returns" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="should-i-use-log-or-arithmetic-returns"><span class="header-section-number">4.5.1</span> Should I use log or arithmetic returns?</h3>
+<p>Arithmetic returns give the more direct reading of an investment’s percentage gain or loss. Log returns make successive changes easier to combine because we can add them across time. If you need to report the total percentage change in value, convert the cumulative log return back to an arithmetic return.</p>
+</section>
+</section>
+<section id="data-used-in-this-section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
+<ul>
+<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a></li>
+<li><a href="./appendix_data.html#sec-data-earnings-cps">CPS ASEC Earnings</a></li>
+<li><a href="./appendix_data.html#sec-data-returns-2025">Weekly Asset Returns (2023–2025)</a></li>
+</ul>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The price series use split- and dividend-adjusted closing prices.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./singlevar_03_location-and-spread.html" class="pagination-link" aria-label="Measuring Location and Spread">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./singlevar_05_categorical.html" class="pagination-link" aria-label="Categorical Variables">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

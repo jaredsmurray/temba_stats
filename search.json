@@ -137,21 +137,42 @@
     "href": "data.html#austin-house-listings",
     "title": "Data",
     "section": "Austin house listings",
-    "text": "Austin house listings\n\naustin_houses.csv (9 MB)\naustin_houses_subset.csv (0.7 MB)"
+    "text": "Austin house listings\n\naustin_houses.csv (8.7M)\naustin_houses_subset.csv (704K)"
   },
   {
     "objectID": "data.html#ercot-hourly-load",
     "href": "data.html#ercot-hourly-load",
     "title": "Data",
     "section": "ERCOT hourly load",
-    "text": "ERCOT hourly load\n\nload_1.csv (23 MB)\nload_2.csv (22 MB)\nload_3.csv (17 MB)"
+    "text": "ERCOT hourly load\n\nload_1.csv ( 23M)\nload_2.csv ( 22M)\nload_3.csv ( 17M)"
   },
   {
     "objectID": "data.html#sp-500-weekly-returns",
     "href": "data.html#sp-500-weekly-returns",
     "title": "Data",
     "section": "S&P 500 weekly returns",
-    "text": "S&P 500 weekly returns\n\nreturns.csv"
+    "text": "S&P 500 weekly returns\n\nreturns.csv ( 60K)\nreturns_prices.csv (108K)"
+  },
+  {
+    "objectID": "data.html#earnings-cps-asec-2023",
+    "href": "data.html#earnings-cps-asec-2023",
+    "title": "Data",
+    "section": "Earnings (CPS ASEC 2023)",
+    "text": "Earnings (CPS ASEC 2023)\n\ncps_asec_2023.csv (2.0M)"
+  },
+  {
+    "objectID": "data.html#lending-club-loans",
+    "href": "data.html#lending-club-loans",
+    "title": "Data",
+    "section": "Lending Club loans",
+    "text": "Lending Club loans\n\ndf_all.csv ( 29M)\ndf_subs.csv ( 19M)"
+  },
+  {
+    "objectID": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
+    "href": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
+    "title": "Data",
+    "section": "Survey of Household Economics and Decisionmaking (SHED 2025)",
+    "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
   },
   {
     "objectID": "slides.html",
