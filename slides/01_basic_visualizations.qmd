@@ -336,6 +336,49 @@ ggplot(austin, aes(x = age)) +
 
 Austin house ages: newer construction on the left, the older building boom on the right. Two peaks often mean two subpopulations --- investigate before summarizing with a single number.
 
+## Anatomy of a box plot
+
+```{r}
+#| label: viz-boxplot-annotated
+#| fig-width: 10
+#| fig-height: 4.8
+y <- austin_zip$latest_price
+q <- quantile(y, c(0.25, 0.5, 0.75)); iqr <- unname(q[3] - q[1])
+lo <- min(y[y >= q[1] - 1.5 * iqr]); hi <- max(y[y <= q[3] + 1.5 * iqr])
+out <- tibble(latest_price = y[y < q[1] - 1.5 * iqr | y > q[3] + 1.5 * iqr])
+ink <- "grey35"; red <- "firebrick"
+note <- function(xt, yt, xl, yl, txt, col = ink, hj = 0) {
+  list(annotate("segment", x = xl, xend = xt, y = yl, yend = yt, color = col, linewidth = 0.5,
+                arrow = arrow(length = unit(0.18, "cm"), type = "closed")),
+       annotate("label", x = xl, y = yl, label = txt, hjust = hj, size = 4.5,
+                color = col, fill = "white", label.size = 0))
+}
+ggplot(austin_zip, aes(x = latest_price, y = 0)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.3, width = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  coord_cartesian(ylim = c(-1, 1), clip = "off") +
+  labs(x = "Sale price of homes in 78752", y = NULL) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank()) +
+  annotate("segment", x = q[1], xend = q[3], y = 0.32, yend = 0.32, color = ink, linewidth = 0.7) +
+  annotate("segment", x = q[1], xend = q[1], y = 0.32, yend = 0.26, color = ink, linewidth = 0.7) +
+  annotate("segment", x = q[3], xend = q[3], y = 0.32, yend = 0.26, color = ink, linewidth = 0.7) +
+  annotate("label", x = q[2], y = 0.45, label = paste0("IQR = ", dollar(iqr)), size = 4.5,
+           color = ink, fill = "white", label.size = 0) +
+  note(q[1], -0.21, q[1] - 0.6 * iqr, -0.5, paste0("Q1 (25th percentile)\n", dollar(q[1])), hj = 1) +
+  note(q[2], -0.21, q[2], -0.82, paste0("median (50th percentile)\n", dollar(q[2])), hj = 0.5) +
+  note(q[3], -0.21, q[3] + 0.6 * iqr, -0.5, paste0("Q3 (75th percentile)\n", dollar(q[3]))) +
+  note(hi, 0.03, hi + 0.15 * iqr, 0.42,
+       paste0("whisker: largest data point\nwithin 1.5 IQR of Q3 (", dollar(hi), ")")) +
+  note(lo, 0.03, lo, 0.85,
+       paste0("whisker: smallest data point\nwithin 1.5 IQR of Q1 (", dollar(lo), ")")) +
+  geom_point(data = out, aes(x = latest_price, y = 0), shape = 21, size = 5.5,
+             color = red, stroke = 1, fill = NA) +
+  annotate("label", x = max(out$latest_price), y = 0.85, hjust = 1, size = 4.5, color = red,
+           fill = "white", label.size = 0,
+           label = paste0(nrow(out), " points beyond the whiskers:\nflagged as potential outliers"))
+```
+
 ## Outliers
 
 :::: {.columns}

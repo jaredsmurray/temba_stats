@@ -180,7 +180,7 @@ ggplot(dens_df, aes(x = x, y = y)) +
   labs(x = "Daily mean load (MW)", y = "Density")
 ```
 
-The two shaded regions have the same area -- and, therefore, represent about the same proportion of the data values -- but they have different shapes. In particular they span different intervals on the x-axis: The left one spans only about `r comma(round(diff(q_mid)))` MW, because demand is dense there: a narrow band near the center collects about 10% of the days. The upper region stretches across about `r comma(round(diff(q_tail)))` MW to gather the same share from the thinner right "tail". The area-equals-proportion property is only approximate, but it is a useful guide to what the y-axis units mean (such as they are).
+The two shaded regions have the same area --- and, therefore, represent about the same proportion of the data values --- but they have different shapes. In particular they span different intervals on the x-axis: The left one spans only about `r comma(round(diff(q_mid)))` MW, because demand is dense there: a narrow band near the center collects about 10% of the days. The upper region stretches across about `r comma(round(diff(q_tail)))` MW to gather the same share from the thinner right "tail". The area-equals-proportion property is only approximate, but it is a useful guide to what the y-axis units mean (such as they are).
 
 
 ### Comparing density plots and histograms
@@ -393,15 +393,46 @@ Run your finger up from a score of 655 on the x-axis to the CDF and you land nea
 A **box plot** is a compact representation of a distribution that highlights the three quartiles (25th, 50th, and 75th percentiles) and any extreme values. This is a box plot of the home sales in 78752:
 ```{r}
 #| label: fig-boxplot-price
-#| fig-cap: "Box plot of Austin 78752 home prices. Points beyond the whiskers are flagged as potential outliers."
-#| fig-height: 5
-#| fig.width: 3
-#| fig.align: "center"
-ggplot(austin_zip, aes(y = latest_price)) +
+#| fig-cap: "Box plot of Austin 78752 home prices, annotated. Points beyond the whiskers are flagged as potential outliers."
+#| fig-height: 6
+#| fig-width: 8
+#| fig-align: "center"
+y <- austin_zip$latest_price
+q <- quantile(y, c(0.25, 0.5, 0.75)); iqr <- unname(q[3] - q[1])
+lo <- min(y[y >= q[1] - 1.5 * iqr]); hi <- max(y[y <= q[3] + 1.5 * iqr])
+out <- tibble(latest_price = y[y < q[1] - 1.5 * iqr | y > q[3] + 1.5 * iqr])
+ink <- "grey35"; red <- "firebrick"
+note <- function(xt, yt, xl, yl, txt, col = ink, hj = 0) {
+  list(annotate("segment", x = xl - 0.02, xend = xt, y = yl, yend = yt, color = col, linewidth = 0.5,
+                arrow = arrow(length = unit(0.18, "cm"), type = "closed")),
+       annotate("label", x = xl, y = yl, label = txt, hjust = hj, size = 3.6,
+                color = col, fill = "white", label.size = 0))
+}
+dy <- iqr * 0.12
+ggplot(austin_zip, aes(x = 0, y = latest_price)) +
   geom_boxplot(fill = "steelblue", alpha = 0.3, width = 0.4) +
   scale_y_continuous(labels = dollar_format()) +
-  labs(y = "Sale price of homes in 78752") +
-  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+  coord_cartesian(xlim = c(-0.45, 1.15), clip = "off") +
+  labs(y = "Sale price of homes in 78752", x = NULL) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        panel.grid.major.x = element_blank()) +
+  annotate("segment", x = -0.3, xend = -0.3, y = q[1], yend = q[3], color = ink, linewidth = 0.7) +
+  annotate("segment", x = -0.3, xend = -0.26, y = q[1], yend = q[1], color = ink, linewidth = 0.7) +
+  annotate("segment", x = -0.3, xend = -0.26, y = q[3], yend = q[3], color = ink, linewidth = 0.7) +
+  annotate("label", x = -0.32, y = q[2], label = paste0("IQR = ", dollar(iqr)), hjust = 1,
+           size = 3.6, color = ink, fill = "white", label.size = 0) +
+  note(0.21, q[3], 0.45, q[3] + dy, paste0("Q3 (75th percentile) = ", dollar(q[3]))) +
+  note(0.21, q[2], 0.45, q[2], paste0("median (50th percentile) = ", dollar(q[2]))) +
+  note(0.21, q[1], 0.45, q[1] - dy, paste0("Q1 (25th percentile) = ", dollar(q[1]))) +
+  note(0.02, hi, 0.16, hi + iqr * 0.35,
+       paste0("whisker: largest data point\nwithin 1.5 IQR of Q3 (", dollar(hi), ")")) +
+  note(0.02, lo, 0.16, lo - iqr * 0.35,
+       paste0("whisker: smallest data point\nwithin 1.5 IQR of Q1 (", dollar(lo), ")")) +
+  geom_point(data = out, aes(x = 0, y = latest_price), shape = 21, size = 5.5,
+             color = red, stroke = 1, fill = NA) +
+  annotate("label", x = 0.3, y = max(out$latest_price) - iqr * 0.2, hjust = 0, size = 3.6,
+           color = red, fill = "white", label.size = 0,
+           label = paste0(nrow(out), " points beyond the whiskers:\nflagged as potential outliers"))
 ```
 
 The box begins at the 25th percentile and ends at the 75th. The height of the box --- the distance between the 75th and 25th percentiles --- is the **interquartile range** (IQR). The line inside the box marks the median (50th percentile). The whiskers reach out to the smallest and largest values within 1.5 times the IQR of the box edges, and any points past the whiskers are drawn individually as potential **outliers**.
