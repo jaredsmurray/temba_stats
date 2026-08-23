@@ -7,6 +7,7 @@ subtitle: "TEMBA Statistics 2026"
 #| label: setup
 #| include: false
 source("_setup.R")
+library(ggiraph)
 
 austin_full <- load_austin_full()
 austin <- load_austin_subset()
@@ -19,15 +20,82 @@ austin_zip <- austin_full |>
 
 ## A histogram counts observations in bins
 
+```{=html}
+<!-- Quarto's revealjs format never calls HTMLWidgets.staticRender(), so the
+     ggiraph/girafe figures imported from the book chapters render as empty
+     containers. Render them once the deck is ready, and cap their height so
+     the widget's fill-the-container default doesn't push the slide past 720px. -->
+<style>
+/* The three girafe figures are all 9 x 4.4in; box them at that aspect so the
+   widget's fill-the-container default can't clip the axis or overflow 720px. */
+.reveal .girafe.html-widget {
+  height: 500px !important;
+  max-width: 1000px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+</style>
+<script>
+(function () {
+  function renderWidgets() {
+    if (!window.HTMLWidgets) return;
+    try { window.HTMLWidgets.staticRender(); } catch (e) {}
+  }
+  document.addEventListener('DOMContentLoaded', renderWidgets);
+  window.addEventListener('load', renderWidgets);
+  [0, 200, 800, 2000].forEach(function (d) { setTimeout(renderWidgets, d); });
+  var iv = setInterval(function () {
+    if (window.Reveal && Reveal.on) {
+      clearInterval(iv);
+      Reveal.on('ready', renderWidgets);
+      Reveal.on('slidechanged', renderWidgets);
+      renderWidgets();
+    }
+  }, 100);
+})();
+</script>
+```
+
 ```{r}
 #| label: viz-hist-price-count
 #| fig-width: 9
 #| fig-height: 4.4
-ggplot(austin_zip, aes(x = latest_price)) +
-  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
-  geom_rug(alpha = 0.4) +
+n_bins <- 20
+breaks <- seq(min(austin_zip$latest_price), max(austin_zip$latest_price),
+              length.out = n_bins + 1)
+bw <- diff(breaks)[1]
+
+hist_df <- austin_zip |>
+  mutate(bin_idx = pmin(findInterval(latest_price, breaks, rightmost.closed = TRUE),
+                        n_bins)) |>
+  count(bin_idx) |>
+  mutate(
+    lower  = breaks[bin_idx],
+    upper  = breaks[bin_idx + 1],
+    mid    = (lower + upper) / 2,
+    tip    = paste0(dollar(round(lower), accuracy = 1000), "–",
+                   dollar(round(upper), accuracy = 1000), "\n",
+                   n, " home", ifelse(n == 1, "", "s"))
+  )
+
+p_hist <- ggplot(hist_df, aes(x = mid, y = n, width = bw)) +
+  geom_col_interactive(
+    aes(tooltip = tip, data_id = bin_idx),
+    fill = "steelblue", color = "white"
+  ) +
+  geom_rug(data = austin_zip, aes(x = latest_price), inherit.aes = FALSE,
+           alpha = 0.4) +
   scale_x_continuous(labels = dollar_format()) +
   labs(x = "Sale price", y = "Count")
+
+girafe(
+  ggobj = p_hist,
+  options = list(
+    opts_hover(css = "fill:darkorange;"),
+    opts_tooltip(css = "background:white; padding:6px 8px; border:1px solid #ccc;
+                        border-radius:4px; font-size:13px; white-space:pre;")
+  )
+)
 ```
 
 `r nrow(austin_zip)` home sales in Austin ZIP 78752. Each tick on the baseline is one sale.
@@ -62,12 +130,10 @@ Same `r nrow(austin_zip)` sales in every panel.
 #| fig-width: 9
 #| fig-height: 4.4
 ggplot(austin_zip, aes(x = latest_price)) +
-  geom_histogram(aes(y = after_stat(density)),
-                 bins = 20, fill = "steelblue", color = "white") +
-  geom_density(color = "darkorange", linewidth = 1.1) +
-  geom_rug(alpha = 0.4) +
+  geom_density(fill = "steelblue", alpha = 0.3) +
   scale_x_continuous(labels = dollar_format()) +
-  labs(x = "Sale price", y = "Density")
+  labs(x = "Sale price", y = "Density") +
+  geom_rug(alpha = 0.4)
 ```
 
 The curve is high where there are more sales close to that price.
@@ -101,16 +167,13 @@ ggplot(dens_df, aes(x = x, y = y)) +
   annotate("text", x = mean(q_mid), y = max(dens_df$y) * 1.08,
            label = paste0("area = ", number(area_mid, accuracy = 0.001),
                           "\n10% of days"),
-           size = 4.2, lineheight = 1.1) +
+           size = 3.4, lineheight = 1.1) +
   annotate("segment", x = mean(q_mid), xend = mean(q_mid),
            y = max(dens_df$y) * 1.0, yend = max(dens_df$y) * 0.9) +
   annotate("text", x = mean(q_tail), y = max(dens_df$y) * 0.32,
            label = paste0("area = ", number(area_tail, accuracy = 0.001),
                           "\n10% of days"),
-           size = 4.2, lineheight = 1.1) +
-  annotate("text", x = max(load_vals) * 1.035, y = max(dens_df$y) * 0.08,
-           label = "Smoothing extends the curve\npast the observed maximum",
-           size = 3.2, lineheight = 1.0, hjust = 0.5) +
+           size = 3.4, lineheight = 1.1) +
   scale_x_continuous(labels = comma_format()) +
   labs(x = "Daily mean load (MW)", y = "Density")
 ```
@@ -205,24 +268,27 @@ Both panels share one vertical scale: prices in 78722 sit higher and spread wide
 #| label: viz-gmat-ecdf
 #| fig-width: 9
 #| fig-height: 4.4
-gmat_655 <- gmat |> filter(score == 655)
+gmat_plot <- gmat |>
+  mutate(tip = paste0("Score: ", score, "\n",
+                      "Percentile: ", pct, "%"))
 
-ggplot(gmat, aes(x = score, y = quantile)) +
-  annotate("segment", x = 655, xend = 655, y = 0, yend = gmat_655$quantile,
-           linetype = "dashed", color = "grey50") +
-  annotate("segment", x = min(gmat$score), xend = 655,
-           y = gmat_655$quantile, yend = gmat_655$quantile,
-           linetype = "dashed", color = "grey50") +
+p_gmat <- ggplot(gmat_plot, aes(x = score, y = quantile)) +
   geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
-  geom_point(size = 1.6, color = "steelblue") +
-  annotate("point", x = 655, y = gmat_655$quantile,
-           color = "darkorange", size = 3) +
-  annotate("label", x = 655, y = gmat_655$quantile,
-           label = "655 beats 90% of test takers",
-           hjust = 1.08, vjust = -0.3, size = 4.5,
-           fill = "white", alpha = 0.9, label.size = 0.25) +
+  geom_point_interactive(
+    aes(tooltip = tip, data_id = score),
+    size = 1.4, color = "steelblue"
+  ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "GMAT Focus Edition total score", y = "Cumulative percentage")
+
+girafe(
+  ggobj = p_gmat,
+  options = list(
+    opts_hover(css = "stroke:darkorange; fill:darkorange;"),
+    opts_tooltip(css = "background:white; padding:6px 8px; border:1px solid #ccc;
+                        border-radius:4px; font-size:13px; white-space:pre;")
+  )
+)
 ```
 
 GMAC's full concordance, 2020--2025, is one curve: the fraction of test takers at or below each score.
@@ -236,28 +302,53 @@ GMAC's full concordance, 2020--2025, is one curve: the fraction of test takers a
 ecdf_df <- austin_zip |>
   count(latest_price, name = "n_price") |>
   arrange(latest_price) |>
-  mutate(ecdf = cumsum(n_price) / sum(n_price))
-
-qs <- tibble(p = c(0.25, 0.50, 0.75),
-             q = quantile(austin_zip$latest_price, c(0.25, 0.50, 0.75)),
-             lab = c("Q1", "median", "Q3"))
-
-ggplot(ecdf_df, aes(x = latest_price, y = ecdf)) +
-  geom_segment(data = qs, aes(x = min(austin_zip$latest_price), xend = q,
-                              y = p, yend = p),
-               linetype = "dashed", color = "grey50", inherit.aes = FALSE) +
-  geom_segment(data = qs, aes(x = q, xend = q, y = 0, yend = p),
-               linetype = "dashed", color = "grey50", inherit.aes = FALSE) +
-  geom_step(aes(group = 1), direction = "hv",
-            color = "steelblue", linewidth = 1) +
-  geom_point(data = qs, aes(x = q, y = p), color = "darkorange", size = 3,
-             inherit.aes = FALSE) +
-  geom_text(data = qs, aes(x = q, y = p, label = lab),
-            hjust = -0.35, vjust = 1.2, size = 4.5, color = "grey30",
-            inherit.aes = FALSE) +
+  mutate(
+    ecdf = cumsum(n_price) / sum(n_price),
+    tip = paste0(
+      "Percentile: ", percent(ecdf, accuracy = 0.1), "\n",
+      "Price: ", dollar(latest_price)
+    )
+  )
+ p_ecdf <- ggplot(ecdf_df, aes(x = latest_price, y = ecdf)) +
+  geom_step(
+    aes(group = 1),
+    direction = "hv",
+    color = "steelblue",
+    linewidth = 1
+  ) +
+  geom_segment_interactive(
+    aes(
+      x = latest_price, xend = 0,
+      y = ecdf, yend = ecdf,
+      data_id = latest_price
+    ),
+    color = "transparent", linewidth = 0.8, linetype = "dashed"
+  ) +
+  geom_segment_interactive(
+    aes(
+      x = latest_price, xend = latest_price,
+      y = ecdf, yend = 0,
+      data_id = latest_price
+    ),
+    color = "transparent", linewidth = 0.8, linetype = "dashed"
+  ) +
+  geom_point_interactive(
+    aes(tooltip = tip, data_id = latest_price),
+    size = 1,
+    color = "transparent"
+  ) +
   scale_x_continuous(labels = dollar_format()) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "Sale price", y = "Cumulative percentage")
+
+girafe(
+  ggobj = p_ecdf,
+  options = list(
+    opts_hover(css = "stroke:darkorange; fill:darkorange;"),
+    opts_tooltip(css = "background:white; padding:6px 8px; border:1px solid #ccc;
+                        border-radius:4px; font-size:13px; white-space:pre;")
+  )
+)
 ```
 
 The height at each price is the fraction of sales at or below it. There are no bins or bandwidths to choose, and the quartiles read off the plot directly.
@@ -299,22 +390,10 @@ Weekly S&P 500 returns, October 2023 to September 2025: the left and right halve
 #| label: viz-ercot-skewed
 #| fig-width: 8.5
 #| fig-height: 4.4
-mean_load <- mean(ercot$load)
-med_load  <- median(ercot$load)
-peak_y <- max(density(ercot$load)$y)
-
 ggplot(ercot, aes(x = load)) +
   geom_histogram(aes(y = after_stat(density)),
                  bins = 40, fill = "steelblue", color = "white") +
   geom_density(alpha = 0.3) +
-  geom_vline(xintercept = med_load, linetype = "dashed", color = "grey30") +
-  geom_vline(xintercept = mean_load, color = "darkorange", linewidth = 0.9) +
-  annotate("label", x = med_load, y = peak_y * 0.95, label = "median",
-           hjust = 1.1, size = 4.5, fill = "white", alpha = 0.9,
-           label.size = 0.25, color = "grey30") +
-  annotate("label", x = mean_load, y = peak_y * 0.8, label = "mean",
-           hjust = -0.15, size = 4.5, fill = "white", alpha = 0.9,
-           label.size = 0.25, color = "darkorange") +
   scale_x_continuous(labels = comma_format()) +
   labs(x = "Load (MW)", y = "Density")
 ```
