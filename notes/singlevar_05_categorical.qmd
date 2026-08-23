@@ -22,7 +22,7 @@ lending <- read_csv("data/lending_club/data/df_all.csv",
 shed <- read_csv("data/shed/shed_2025.csv", show_col_types = FALSE)
 ```
 
-The previous chapters described a single quantitative variable --- a price, an age, a wage --- with tools that assume the values are numbers we can order and average. A categorical variable breaks that assumption. We'll work with one dataset for most of this chapter: the `lending` data records `r comma(nrow(lending))` loans issued between 2008 and 2012 on LendingClub, a peer-to-peer platform that matched individual borrowers with investors. We'll look at two variables. The first is `purpose`, the reason the borrower gave for the loan --- consolidating debt, refinancing a credit card, funding a small business, and so on. The second is whether the loan **defaulted**: LendingClub eventually recorded each loan as either `Fully Paid` or `Charged Off`, the latter meaning the borrower stopped paying and the balance was written off as a loss.
+The previous chapters described a single *quantitative* variable --- a price, an age, a wage --- with tools that assume the values are numbers we can order and average. A categorical variable breaks that assumption. We'll work with one dataset for most of this chapter: the `lending` data records `r comma(nrow(lending))` loans issued between 2008 and 2012 on LendingClub, a peer-to-peer platform that matched individual borrowers with investors. We'll look at two variables. The first is `purpose`, the reason the borrower gave for the loan --- consolidating debt, refinancing a credit card, funding a small business, and so on. The second is whether the loan **defaulted**: LendingClub eventually recorded each loan as either `Fully Paid` or `Charged Off`, the latter meaning the borrower stopped paying and the balance was written off as a loss.
 
 ## Kinds of categorical variables
 
@@ -270,7 +270,7 @@ shed |>
 ```
 
 The tallest bar is "only fair," but we leave it second from the left where it belongs. The categories are ordered, so their sequence is part of the message: reading left to right traces the ratings from worst to best, and sorting by height would throw that away. The layout also carries information a sorted chart would lose. Fewer than 2% of households answered "excellent," and seeing that bar at the end of the scale tells us almost nobody rates conditions at the top; sorted by size, the same bar reads as merely the rarest answer, with nothing to show it is the scale's endpoint.
-
+<!---
 ### Good practice and pitfalls
 
 A handful of choices separate a clear categorical chart from a cluttered one. The table below collects the ones that come up most.
@@ -286,6 +286,7 @@ A handful of choices separate a clear categorical chart from a cluttered one. Th
 | Any bar chart | Start the value axis at zero | A truncated axis that exaggerates differences |
 
 A good rule of thumb for any visualization is to make the interesting comparisons as obvious as possible without misleading your reader.
+--->
 
 ## Data used in this section {.unnumbered}
 
