@@ -133,7 +133,7 @@ asymmetry, which is a good reason to report both.
 You will, however, often hear distributions of economic measures like wages reported via median with no reference to the mean. That's just because the skew already is well-known.
 :::
 
-If you find yourself looking at a distirbution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center --- both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a "center" as we would usually think of it.
+If you find yourself looking at a distribution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center --- both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a "center" as we would usually think of it.
 
 
 ## Measures of spread {#sec-measures-spread}
@@ -217,7 +217,7 @@ For 78749 that comes to $s^2 = `r format(round(var(p49) / 1e9, 1), big.mark = ",
 :::: {.Definition #defn-standard-deviation}
 ## Sample standard deviation
 
-The sample **standard deviation** is the square root of the variance: $s = \sqrt{s^2}$. it measures the typical distance of an observation from the mean --- above or below. The standard deviation has the same units as the original $x$ variable, and is more interpretable. 
+The sample **standard deviation** is the square root of the variance: $s = \sqrt{s^2}$. It measures the typical distance of an observation from the mean --- above or below. The standard deviation has the same units as the original $x$ variable, and is more interpretable. 
 
 ::: {.details .formula-details #formula-standard-deviation summary="Details and formulas" non-interactive-summary="Formula"}
 
