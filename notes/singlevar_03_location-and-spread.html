@@ -79,6 +79,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <style>
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -86,10 +90,6 @@ ul.task-list li input[type="checkbox"] {
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 .Exercise {
   --color1: #E7F4F5;
@@ -155,6 +155,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEMBA Statistics — Course Notes</a> 
+        <div class="sidebar-tools-main">
+    <a href="./../index.html" title="Course site" class="quarto-navigation-tool px-1" aria-label="Course site"><i class="bi bi-house-door"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -328,7 +331,7 @@ Table&nbsp;3.1: The first four sale prices, labeled.
 <div id="defn-sample-mean" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
 <p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details aria-label="Details and formulas" id="formula-sample-mean" class="formula-details">
+<details id="formula-sample-mean" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
 <p><span class="math display">\[
@@ -389,7 +392,7 @@ Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating
 <div id="defn-variance" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
 <p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details aria-label="Details and formulas" id="formula-variance" class="formula-details">
+<details id="formula-variance" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>The variance is given by</p>
 <p><span class="math display">\[
@@ -413,7 +416,7 @@ s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
 <div id="defn-standard-deviation" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
 <p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details aria-label="Details and formulas" id="formula-standard-deviation" class="formula-details">
+<details id="formula-standard-deviation" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p><span class="math display">\[
 s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
