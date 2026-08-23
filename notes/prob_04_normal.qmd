@@ -117,7 +117,7 @@ computing normal probabilities, densities, and quantiles takes the mean and
 kept straight when moving between a written model and code.
 :::
 
-A shifted and scaled normal random variable is still normal: if $X \sim N(\mu, \sigma^2)$, then $Y = aX + b$ follows another normal distribution with mean and variance given by the shifting-and-scaling rules from @sec-shift-scale: $N(a\mu + b,\; a^2\sigma^2)$ (recall $SD(Y) = |a|\sigma$, so $Var(Y) = a^2\sigma^2$).
+A shifted and scaled normal random variable is still normal: if $X \sim N(\mu, \sigma^2)$, then $Y = aX + b$ follows another normal distribution with mean and variance given by the shifting-and-scaling rules from @sec-shift-scale: $N(a\mu + b,\; a^2\sigma^2)$.
 
 ## Computing probabilities {#sec-normal-probabilities}
 

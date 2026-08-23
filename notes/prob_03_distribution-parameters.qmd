@@ -363,16 +363,22 @@ For the price model, the quartiles land at `r dollar(round(q25))` and `r dollar(
 Linear transformations of random variables act just like linear transformations applied to columns in our datasets:
 
 ::: {.callout-note}
-## Key idea: Mean and standard deviation of $aX + b$
+## Key idea: Mean, median, and standard deviation of $aX + b$
 
 If $X$ is a random variable with mean $E[X] = \mu$ and standard deviation $SD(X) = \sigma$, and $a$ and $b$ are known constants, then $Y = aX + b$ has
 
 $$
-E[Y] = a\,\mu + b, \qquad SD(Y) = |a|\,\sigma.
+E[Y] = a\,\mu + b, \qquad \text{median}(Y) = a\,\text{median}(X) + b,
 $$
+
+$$
+SD(Y) = |a|\,\sigma, \qquad Var(Y) = a^2\,\sigma^2.
+$$
+
+Adding $b$ shifts the center and leaves the spread alone; multiplying by $a$ scales both the center and the spread (and the spread doesn't care about the sign of $a$).
 :::
 
-In words: adding a constant shifts the center and leaves the spread alone, while multiplying by a constant scales both the center and the spread (and the spread doesn't care about the sign). These are exactly the same rules we encountered for the sample mean and variance/SD in @sec-linear-transformations.
+These are exactly the same rules we encountered for the sample mean, median, and variance/SD in @sec-linear-transformations.
 
 The profit on our 16% loan is $X - 10{,}000$, so its mean is `r dollar(ev_pay16)` $-$ \$10,000 = `r dollar(ev_pay16 - principal)` and its standard deviation is exactly the payoff's `r dollar(sd_pay16, accuracy = 0.01)` --- shifting can't make an uncertain payoff any more or less predictable. Scaling Loan B's \$10,000 principal up to \$100,000 sets $a = 10$: expected profit rises to `r dollar(10 * ev_B)`, and the standard deviation rises right along with it to `r dollar(10 * sd_B)`.
 

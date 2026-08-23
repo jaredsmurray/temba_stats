@@ -35,10 +35,10 @@ Raw data do not always arrive in the form we want for an analysis or visualizati
 :::: {.Definition #defn-linear-transformation}
 ## Linear transformation
 
-A **linear transformation** multiplies a variable by a positive constant, adds
-a constant, or does both: $y = ax + b$, where $a>0$. Every value gets the same
-rescaling and the same shift. We usually make one to change the units, the
-reference point, or both.
+A **linear transformation** multiplies a variable by a constant, adds a
+constant, or does both: $y = ax + b$. Every value gets the same rescaling and
+the same shift. We usually make one to change the units, the reference point,
+or both.
 ::::
 
 Suppose you divide every Austin sale price by 1,000 so that you can report prices in thousands of dollars rather than dollars. The distribution keeps exactly the same shape. You have only relabeled its horizontal axis.
@@ -87,19 +87,19 @@ p3 + p4
 These changes again amount to relabeling the axis. After we subtract the mean and change the units, each value tells us how many thousands of dollars its sale price was above or below the average. The sign gives the direction.
 
 ::: {.callout-note}
-## Key idea: Summary statistics after a linear transformation
+## Key idea: Mean, median, and standard deviation of $ax + b$
 
-If $y_i = a x_i + b$ for every observation, with $a>0$, then
-
-$$
-\bar{y} = a\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
-$$
+If $y_i = a x_i + b$ for every observation, where $a$ and $b$ are constants, then
 
 $$
-s_y = a\,s_x, \qquad s^2_y = a^2\,s^2_x.
+\bar{y} = a\,\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
 $$
 
-Multiplying by $a$ rescales both the center and the spread. Adding $b$ shifts the center but leaves the spread unchanged.
+$$
+s_y = |a|\,s_x, \qquad s^2_y = a^2\,s^2_x.
+$$
+
+Adding $b$ shifts the center and leaves the spread alone; multiplying by $a$ scales both the center and the spread (and the spread doesn't care about the sign of $a$).
 :::
 
 ## z-scores and standardization {#sec-zscores}
