@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="How to request, check, and save statistical analysis">
+<meta name="description" content="Using AI tools for the statistical computing in this course">
 
-<title>Working with Codex – TEMBA Statistics</title>
+<title>IntroStatGPT – TEMBA Statistics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -112,8 +112,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./working-with-codex.html" aria-current="page"> 
-<span class="menu-text">Using Codex</span></a>
+    <a class="nav-link active" href="./introstatgpt.html" aria-current="page"> 
+<span class="menu-text">IntroStatGPT</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -132,12 +132,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with Codex</h1>
+<h1 class="title">IntroStatGPT</h1>
 </div>
 
 <div>
   <div class="description">
-    How to request, check, and save statistical analysis
+    Using AI tools for the statistical computing in this course
   </div>
 </div>
 
@@ -154,88 +154,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.</p>
-<section id="be-precise" class="level2">
-<h2 class="anchored" data-anchor-id="be-precise">Be precise</h2>
-<p><strong>Name the data, variables, operation, and output you want.</strong> Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask Codex to list the names and types first.</p>
-<p>Use this recipe:</p>
-<blockquote class="blockquote">
-<p>Using <strong>[data or observations]</strong>, use <strong>[variables]</strong> to <strong>[calculate, plot, or fit]</strong>. Return <strong>[the table, plot, model output, or saved result]</strong>.</p>
-</blockquote>
-<p>For example:</p>
-<blockquote class="blockquote">
-<p>Using the housing data, keep observations with nonmissing <code>PRICE</code> and <code>SQFT</code>. Fit <code>PRICE</code> on <code>SQFT</code> and <code>BATHS</code>, treating <code>ZIPCODE</code> as categorical. Return the standardized regression table.</p>
-</blockquote>
-</section>
-<section id="keep-each-task-focused" class="level2">
-<h2 class="anchored" data-anchor-id="keep-each-task-focused">Keep each task focused</h2>
-<p><strong>Use one task for one question or a closely related set of outputs.</strong> Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.</p>
-<p>Start a new task when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the assignment folder, so tell the new task your current goal and the visible title of any output it should inspect.</p>
-</section>
-<section id="check-before-you-build" class="level2">
-<h2 class="anchored" data-anchor-id="check-before-you-build">Check before you build</h2>
-<p><strong>Compare every output with your request before using it in the next step.</strong> Run one or two checks that could expose the mistake you are most worried about.</p>
-<p>After filtering or changing data, you can ask Codex to:</p>
-<ul>
-<li>Show the row count before and after the change.</li>
-<li>Count missing values in the variables used.</li>
-<li>Show the minimum and maximum of a new numeric variable.</li>
-<li>Show category counts after recoding or grouping.</li>
-</ul>
-<p>For a plot or table, check:</p>
-<ul>
-<li>The observations and variables used.</li>
-<li>The labels, units, axes, and category order.</li>
-<li>Impossible values, unexpected categories, or empty groups.</li>
-<li>Whether counts or percentages add to the expected total.</li>
-</ul>
-<p>For a model, you can ask Codex to:</p>
-<ul>
-<li>Show the exact formula it fit.</li>
-<li>Report how many observations it used and excluded.</li>
-<li>Confirm the reference group for a categorical variable.</li>
-<li>Create the diagnostic plot required by the assignment.</li>
-</ul>
-<p>If something looks wrong, name the mismatch and ask Codex to trace it. For example:</p>
-<blockquote class="blockquote">
-<p>I expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step.</p>
-</blockquote>
-</section>
-<section id="ask-for-the-right-kind-of-help" class="level2">
-<h2 class="anchored" data-anchor-id="ask-for-the-right-kind-of-help">Ask for the right kind of help</h2>
-<p><strong>Ask Codex to inspect data, diagnose errors, trace an operation, or check its work.</strong> These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.</p>
-<p>These prompts address common blocks:</p>
-<ul>
-<li>If you do not know the variable names, ask: “List the variable names and types in the housing data.”</li>
-<li>If the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”</li>
-<li>If an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”</li>
-<li>If Codex refuses an allowed data operation, say: “I am asking for a data operation, not an interpretation. Identify the ambiguous wording and help me restate the same operation precisely.”</li>
-</ul>
-</section>
-<section id="save-what-you-want-to-keep" class="level2">
-<h2 class="anchored" data-anchor-id="save-what-you-want-to-keep">Save what you want to keep</h2>
-<p><strong>Mark a finished output report ready and identify it by its visible title.</strong> This preserves the current version; it does not certify that the analysis is correct. Ask Codex for the clean R reproduction script when you want to inspect or reproduce the code.</p>
-<p>For an important or complicated output, run a stronger independence check:</p>
-<ol type="1">
-<li>Ask Codex for the clean R reproduction script.</li>
-<li>Give another local AI a fresh copy of the assignment folder and the script, without the original conversation.</li>
-<li>Ask it to describe the data, filters, transformations, variables, and analysis step by step.</li>
-<li>Ask it to run the script in a clean environment and compare the result with the saved output.</li>
-<li>Ask it to report errors, warnings, and differences without interpreting the results.</li>
-</ol>
-<p>This check can expose a missing or inconsistent step. It is an imperfect substitute for reading the code because another AI can repeat the same mistake. Keep course data local unless your instructor allows you to share it with another service.</p>
-</section>
-<section id="before-you-finish" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-finish">Before you finish</h2>
-<ul>
-<li>Does the output use the requested observations and variables?</li>
-<li>Do the labels, units, and model formula match the request?</li>
-<li>Did you run one useful check and resolve anything unexpected?</li>
-<li>Did you mark the version you want to keep report ready?</li>
-</ul>
+<p>Coming soon. This page will explain how we use AI tools (ChatGPT, Claude, and the like) as the interface to statistical software in this course: how to ask for an analysis precisely, how to check what comes back, and how to save your work. We will set it up together during the August residency.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

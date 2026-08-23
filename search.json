@@ -1,124 +1,5 @@
 [
   {
-    "objectID": "working-with-codex.html",
-    "href": "working-with-codex.html",
-    "title": "Working with Codex",
-    "section": "",
-    "text": "Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean."
-  },
-  {
-    "objectID": "working-with-codex.html#be-precise",
-    "href": "working-with-codex.html#be-precise",
-    "title": "Working with Codex",
-    "section": "Be precise",
-    "text": "Be precise\nName the data, variables, operation, and output you want. Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask Codex to list the names and types first.\nUse this recipe:\n\nUsing [data or observations], use [variables] to [calculate, plot, or fit]. Return [the table, plot, model output, or saved result].\n\nFor example:\n\nUsing the housing data, keep observations with nonmissing PRICE and SQFT. Fit PRICE on SQFT and BATHS, treating ZIPCODE as categorical. Return the standardized regression table."
-  },
-  {
-    "objectID": "working-with-codex.html#keep-each-task-focused",
-    "href": "working-with-codex.html#keep-each-task-focused",
-    "title": "Working with Codex",
-    "section": "Keep each task focused",
-    "text": "Keep each task focused\nUse one task for one question or a closely related set of outputs. Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.\nStart a new task when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the assignment folder, so tell the new task your current goal and the visible title of any output it should inspect."
-  },
-  {
-    "objectID": "working-with-codex.html#check-before-you-build",
-    "href": "working-with-codex.html#check-before-you-build",
-    "title": "Working with Codex",
-    "section": "Check before you build",
-    "text": "Check before you build\nCompare every output with your request before using it in the next step. Run one or two checks that could expose the mistake you are most worried about.\nAfter filtering or changing data, you can ask Codex to:\n\nShow the row count before and after the change.\nCount missing values in the variables used.\nShow the minimum and maximum of a new numeric variable.\nShow category counts after recoding or grouping.\n\nFor a plot or table, check:\n\nThe observations and variables used.\nThe labels, units, axes, and category order.\nImpossible values, unexpected categories, or empty groups.\nWhether counts or percentages add to the expected total.\n\nFor a model, you can ask Codex to:\n\nShow the exact formula it fit.\nReport how many observations it used and excluded.\nConfirm the reference group for a categorical variable.\nCreate the diagnostic plot required by the assignment.\n\nIf something looks wrong, name the mismatch and ask Codex to trace it. For example:\n\nI expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step."
-  },
-  {
-    "objectID": "working-with-codex.html#ask-for-the-right-kind-of-help",
-    "href": "working-with-codex.html#ask-for-the-right-kind-of-help",
-    "title": "Working with Codex",
-    "section": "Ask for the right kind of help",
-    "text": "Ask for the right kind of help\nAsk Codex to inspect data, diagnose errors, trace an operation, or check its work. These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.\nThese prompts address common blocks:\n\nIf you do not know the variable names, ask: “List the variable names and types in the housing data.”\nIf the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”\nIf an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”\nIf Codex refuses an allowed data operation, say: “I am asking for a data operation, not an interpretation. Identify the ambiguous wording and help me restate the same operation precisely.”"
-  },
-  {
-    "objectID": "working-with-codex.html#save-what-you-want-to-keep",
-    "href": "working-with-codex.html#save-what-you-want-to-keep",
-    "title": "Working with Codex",
-    "section": "Save what you want to keep",
-    "text": "Save what you want to keep\nMark a finished output report ready and identify it by its visible title. This preserves the current version; it does not certify that the analysis is correct. Ask Codex for the clean R reproduction script when you want to inspect or reproduce the code.\nFor an important or complicated output, run a stronger independence check:\n\nAsk Codex for the clean R reproduction script.\nGive another local AI a fresh copy of the assignment folder and the script, without the original conversation.\nAsk it to describe the data, filters, transformations, variables, and analysis step by step.\nAsk it to run the script in a clean environment and compare the result with the saved output.\nAsk it to report errors, warnings, and differences without interpreting the results.\n\nThis check can expose a missing or inconsistent step. It is an imperfect substitute for reading the code because another AI can repeat the same mistake. Keep course data local unless your instructor allows you to share it with another service."
-  },
-  {
-    "objectID": "working-with-codex.html#before-you-finish",
-    "href": "working-with-codex.html#before-you-finish",
-    "title": "Working with Codex",
-    "section": "Before you finish",
-    "text": "Before you finish\n\nDoes the output use the requested observations and variables?\nDo the labels, units, and model formula match the request?\nDid you run one useful check and resolve anything unexpected?\nDid you mark the version you want to keep report ready?"
-  },
-  {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Slides",
-    "section": "",
-    "text": "Lecture slide decks. Each opens as a self-contained slideshow (press ? for keyboard shortcuts, E for print view).\n\nVisualizing a Single Quantitative Variable"
-  },
-  {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "Data",
-    "section": "",
-    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba_stats/data/returns/returns.csv\")."
-  },
-  {
-    "objectID": "data.html#austin-house-listings",
-    "href": "data.html#austin-house-listings",
-    "title": "Data",
-    "section": "Austin house listings",
-    "text": "Austin house listings\n\naustin_houses.csv (8.7M)\naustin_houses_subset.csv (704K)"
-  },
-  {
-    "objectID": "data.html#ercot-hourly-load",
-    "href": "data.html#ercot-hourly-load",
-    "title": "Data",
-    "section": "ERCOT hourly load",
-    "text": "ERCOT hourly load\n\nload_1.csv ( 23M)\nload_2.csv ( 22M)\nload_3.csv ( 17M)"
-  },
-  {
-    "objectID": "data.html#sp-500-weekly-returns",
-    "href": "data.html#sp-500-weekly-returns",
-    "title": "Data",
-    "section": "S&P 500 weekly returns",
-    "text": "S&P 500 weekly returns\n\nreturns.csv ( 60K)\nreturns_prices.csv (108K)"
-  },
-  {
-    "objectID": "data.html#earnings-cps-asec-2023",
-    "href": "data.html#earnings-cps-asec-2023",
-    "title": "Data",
-    "section": "Earnings (CPS ASEC 2023)",
-    "text": "Earnings (CPS ASEC 2023)\n\ncps_asec_2023.csv (2.0M)"
-  },
-  {
-    "objectID": "data.html#lending-club-loans",
-    "href": "data.html#lending-club-loans",
-    "title": "Data",
-    "section": "Lending Club loans",
-    "text": "Lending Club loans\n\ndf_all.csv ( 29M)\ndf_subs.csv ( 19M)"
-  },
-  {
-    "objectID": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
-    "href": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
-    "title": "Data",
-    "section": "Survey of Household Economics and Decisionmaking (SHED 2025)",
-    "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEMBA Statistics",
-    "section": "",
-    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
-  },
-  {
-    "objectID": "index.html#materials",
-    "href": "index.html#materials",
-    "title": "TEMBA Statistics",
-    "section": "Materials",
-    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nUsing Codex — requesting and checking statistical analysis.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
-  },
-  {
     "objectID": "slides/01_basic_visualizations.html#a-histogram-counts-observations-in-bins",
     "href": "slides/01_basic_visualizations.html#a-histogram-counts-observations-in-bins",
     "title": "Visualizing a Single Quantitative Variable",
@@ -236,5 +117,82 @@
     "title": "Visualizing a Single Quantitative Variable",
     "section": "Outliers",
     "text": "Outliers\n\n\n\nNot everything extreme is an error: the $800K+ sales in 78752 are real, but a $13M listing in this dataset was a typo\nThe 1.5 × IQR box-plot rule flags potential outliers; it is not a substitute for judgment"
+  },
+  {
+    "objectID": "introstatgpt.html",
+    "href": "introstatgpt.html",
+    "title": "IntroStatGPT",
+    "section": "",
+    "text": "Coming soon. This page will explain how we use AI tools (ChatGPT, Claude, and the like) as the interface to statistical software in this course: how to ask for an analysis precisely, how to check what comes back, and how to save your work. We will set it up together during the August residency."
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba_stats/data/returns/returns.csv\")."
+  },
+  {
+    "objectID": "data.html#austin-house-listings",
+    "href": "data.html#austin-house-listings",
+    "title": "Data",
+    "section": "Austin house listings",
+    "text": "Austin house listings\n\naustin_houses.csv (8.7M)\naustin_houses_subset.csv (704K)"
+  },
+  {
+    "objectID": "data.html#ercot-hourly-load",
+    "href": "data.html#ercot-hourly-load",
+    "title": "Data",
+    "section": "ERCOT hourly load",
+    "text": "ERCOT hourly load\n\nload_1.csv ( 23M)\nload_2.csv ( 22M)\nload_3.csv ( 17M)"
+  },
+  {
+    "objectID": "data.html#sp-500-weekly-returns",
+    "href": "data.html#sp-500-weekly-returns",
+    "title": "Data",
+    "section": "S&P 500 weekly returns",
+    "text": "S&P 500 weekly returns\n\nreturns.csv ( 60K)\nreturns_prices.csv (108K)"
+  },
+  {
+    "objectID": "data.html#earnings-cps-asec-2023",
+    "href": "data.html#earnings-cps-asec-2023",
+    "title": "Data",
+    "section": "Earnings (CPS ASEC 2023)",
+    "text": "Earnings (CPS ASEC 2023)\n\ncps_asec_2023.csv (2.0M)"
+  },
+  {
+    "objectID": "data.html#lending-club-loans",
+    "href": "data.html#lending-club-loans",
+    "title": "Data",
+    "section": "Lending Club loans",
+    "text": "Lending Club loans\n\ndf_all.csv ( 29M)\ndf_subs.csv ( 19M)"
+  },
+  {
+    "objectID": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
+    "href": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
+    "title": "Data",
+    "section": "Survey of Household Economics and Decisionmaking (SHED 2025)",
+    "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEMBA Statistics",
+    "section": "",
+    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+  },
+  {
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "TEMBA Statistics",
+    "section": "Materials",
+    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
+    "section": "",
+    "text": "Lecture slide decks. Each opens as a self-contained slideshow (press ? for keyboard shortcuts, E for print view).\n\nVisualizing a Single Quantitative Variable"
   }
 ]
