@@ -80,6 +80,10 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -87,10 +91,6 @@ ul.task-list li input[type="checkbox"] {
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 </style>
 
@@ -209,10 +209,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
-  </ul></li>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
   </ul>
 </nav>
     </div>
@@ -240,25 +237,10 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>These course notes cover the essentials of probability and statistics, targeted to students of business disciplines. Emphasis is placed on conceptual over mathematical understanding; certain ideas will be easier to understand for students with some calculus background, but calculus is not required.</p>
-<p>The notes follow a somewhat unusual “data first” progression that alternates between describing data and modeling it. We start with visualizing and summarizing a single variable, then probability for a single random variable, then summaries of two or more variables at once, then probability models for several random variables, and only then more formal statistical estimation and inference. Each probability idea arrives after the data summary it abstracts. The reason is simple: unlike when many textbooks were written, students tend to arrive to my courses with some experience analyzing data or consuming data analyses, and the use of summary statistics, distribution/density estimates, and related visualizations to describe data is much more natural than introducing them as estimates of abstract mathematical objects from probability theory.</p>
-<p>These notes also take some pains to be explicit about the meaning of probability without veering too far into philosophical debates. In particular, the probability chapters spend a fair amount of time connecting probability models to classical finite population statistical inference to help students understand why statistical inference via sampling distributions remains relevant even in settings where the notion of a “population” is not clear (or where a “population” clearly doesn’t exist).</p>
-<section id="further-reading" class="level3">
-<h3 class="anchored" data-anchor-id="further-reading">Further reading</h3>
-<section id="visualization" class="level4">
-<h4 class="anchored" data-anchor-id="visualization">Visualization</h4>
-<p>These notes barely scratch the surface on data visualization. <a href="https://socviz.co/">Data Visualization</a> by Kieran Healy is an affordable and accessible introduction to the topic with a distinctive blend of “why” and “how” (via R and ggplot2). His website includes a draft version of the book, and the preface does a better job of identifying additional resources for data visualization than I could.</p>
-</section>
-<section id="probability-and-basic-statistics" class="level4">
-<h4 class="anchored" data-anchor-id="probability-and-basic-statistics">Probability and basic statistics</h4>
-<p><a href="https://www.openintro.org/book/os/">OpenIntro</a> is a free, open-source textbook that covers probability and statistics at a level broadly similar to these notes. It takes a similar data-first perspective, and a resampling-based approach to inference that aligns with current best practices in teaching statistics. It’s also notable for covering sampling and random assignment schemes at a deeper level than many texts (covering stratified and cluster sampling, as well as completely random assignment, blocking, and observational study designs in causal inference).</p>
-<p>Much of the same could be said of <a href="https://bookdown.org/jgscott/DSGI/">Data Science in R: A Gentle Introduction</a> by my colleague James Scott, which is also free and open-source. I have borrowed several of his examples (and lent a few of mine).</p>
-<p><a href="https://rafalab.dfci.harvard.edu/dsbook/">Data Analysis and Prediction Algorithms with R</a> also covers similar ground, with accessible, applied material on important data wrangling topics and a section on machine learning methods.</p>
-<p><a href="https://www.amazon.com/Modern-Mathematical-Statistics-Applications/dp/1461403204">Modern Mathematical Statistics with Applications</a> by Devore, Beck and Carlton is a more traditional text that covers probability and statistics at a higher mathematical level. It is not free, but is widely available as a free digital download for university affiliates, including UT students and faculty.</p>
+<p>These are the course notes for TEMBA Statistics (B A 286T) at the McCombs School of Business for the 2026–2027 academic year. Slides, the syllabus, and everything else for the course live on the <a href="https://jaredsmurray.github.io/temba_stats/">course website</a>; announcements and assignments are in Canvas.</p>
+<p>The notes will be updated as the course goes along: chapters are added as we reach them, and existing chapters get corrections and small revisions. If a page looks different from the last time you read it, that is why. When a change matters for an assignment, I will say so in Canvas.</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
