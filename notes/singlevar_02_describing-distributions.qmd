@@ -43,7 +43,7 @@ Once we have a picture of a distribution, we need vocabulary to describe what we
 
 We'll begin in this section by looking at skewness, modality, and outliers/extreme values. These are easy to see from the visualizations introduced in the last chapter, and they will help us decide how to faithfully measure location and spread in the next chapter.
 
-## Symmetric and skewed distributions {#sec-symmetric-skewed}
+## Skewness {#sec-symmetric-skewed}
 
 ::: {.Definition #defn-skewness}
 ## Symmetric and skewed distributions
