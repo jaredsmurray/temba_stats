@@ -68,7 +68,7 @@ p_box + p_hist
 - In notation, $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$.
 :::
 
-## Subscripts and summation
+## Subscripts and summation {.smaller}
 
 :::: {.columns}
 
@@ -189,12 +189,12 @@ return_hist <- function(var, s) {
   (return_hist("F", sd_f) | return_hist("TSLA", sd_t))
 ```
 
-## Same center, different spread
+## Tesla is harder to predict
 
 ::: {.incremental}
-- Both stocks averaged close to zero over these two years: `r percent(mean(returns_prices$F), accuracy = 0.1)` a week for Ford, `r percent(mean(returns_prices$TSLA), accuracy = 0.1)` for Tesla.
-- Ford's weekly returns have a standard deviation of `r percent(sd_f, accuracy = 0.1)`; Tesla's is `r percent(sd_t, accuracy = 0.1)` --- about `r number(sd_t / sd_f, accuracy = 0.1)` times larger. A typical Tesla week lands that much farther from zero, in either direction.
-- If you had to guess next week's return, zero is about as good a guess as any for either stock. With Tesla you would just be wrong by more.
+- Ford: $s$ = `r percent(sd_f, accuracy = 0.1)`. Tesla: $s$ = `r percent(sd_t, accuracy = 0.1)`, about `r number(sd_t / sd_f, accuracy = 0.1)` times larger.
+- A typical Tesla week lands that much farther from its average, up or down.
+- Guess next week's return for each stock and you will miss by more with Tesla. That is what the standard deviation measures.
 :::
 
 ## The interquartile range
