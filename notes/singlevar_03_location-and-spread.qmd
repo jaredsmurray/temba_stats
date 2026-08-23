@@ -262,7 +262,7 @@ return_hist <- function(var, s) {
   (return_hist("F", sd_f) | return_hist("TSLA", sd_t))
 ```
 
-Both stocks averaged close to zero weekly returns over these two years: `r percent(mean(returns_prices$F), accuracy = 0.1)` a week for Ford and `r percent(mean(returns_prices$TSLA), accuracy = 0.1)` for Tesla. The spread is where they differ. Ford's weekly returns have a standard deviation of `r percent(sd_f, accuracy = 0.1)`; Tesla's is `r percent(sd_t, accuracy = 0.1)`, about `r number(sd_t / sd_f, accuracy = 0.1)` times larger. Tesla's stock price tends to have big swings over short time periods, while Ford is relatively stable. Week-to-week Tesla's returns are less predictable; in finance parlance we would typically say they are more **volatile**. High spread, variance/variability, volatility, all mean the same thing: The variable we're looking at is difficult to predict accurately.
+Ford's weekly returns have a standard deviation of `r percent(sd_f, accuracy = 0.1)`; Tesla's is `r percent(sd_t, accuracy = 0.1)`, about `r number(sd_t / sd_f, accuracy = 0.1)` times larger, and the histograms show what that means: a typical Tesla week lands that much farther from its average, up or down. Guess next week's return for each stock and you will miss by more with Tesla. That is what the standard deviation measures.
 
 Our final measure of spread is the interquartile range; we already saw it defined alongside box plots, but here it is again for completeness:
 
