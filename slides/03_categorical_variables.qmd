@@ -48,9 +48,9 @@ lending |>
 ## Bar charts, dot plots, and pie charts
 
 ::: {.incremental}
-- A bar chart and a dot plot both encode a category's value as a length or a position along a common axis. People read those channels more accurately than any other.
-- A pie chart encodes the same numbers as angles and areas, which the eye judges less precisely. Two wedges a few percentage points apart look the same.
-- Ranking five middling wedges is harder still. Even with only a few categories, a pie chart usually serves you poorly.
+- A **bar chart** or **dot plot** shows each category's count or proportion as a length or position on a common axis. Differences of a percentage point or two stay visible.
+- A **pie chart** shows the same numbers as angles and areas. Two slices a few percentage points apart look the same, and ranking several mid-sized slices is harder still.
+- With more than a handful of categories, or when comparing them is the point, use bars or dots.
 :::
 
 ## The distribution of loan purpose
@@ -108,10 +108,9 @@ shed |>
 ## Ordinal categories keep their order
 
 ::: {.incremental}
-- Sorting by size was the right call for `purpose`, whose labels have no inherent order, but an ordinal variable calls for the opposite.
-- The tallest bar here is "only fair," and we leave it second from the left. Reading left to right traces the ratings from worst to best.
-- Only `r percent(mean(shed$econ_conditions_country == "Excellent"), accuracy = 0.1)` of households answered "excellent," and that bar sitting at the end of the scale tells us almost nobody rates conditions at the top.
-- Sorted by height, the same bar would read as merely the rarest answer, with nothing to show it is the scale's endpoint.
+- We sorted `purpose` by size because its labels have no order. An ordinal variable's bars stay in their natural order: here, worst to best, left to right.
+- The tallest bar, "only fair," sits second from the left; the order tells you where that answer falls on the scale.
+- Only `r percent(mean(shed$econ_conditions_country == "Excellent"), accuracy = 0.1)` answered "excellent." Kept at the end of the scale, that bar shows the top of the scale is nearly empty; sorted by height, it would just be the rarest answer.
 :::
 
 ## Dummy (indicator) variables {.smaller}
