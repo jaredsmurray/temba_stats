@@ -70,8 +70,6 @@ lending |>
   labs(x = NULL, y = "Proportion of loans")
 ```
 
-Horizontal bars keep fourteen labels flat and readable, and sorting by length makes the chart a ranking as well as a distribution.
-
 ## The same distribution as a dot plot
 
 ```{r}
@@ -87,8 +85,6 @@ lending |>
   scale_x_continuous(limits = c(0, NA)) +
   labs(x = "Proportion of loans", y = NULL)
 ```
-
-Each category is one point read against a common axis, the same channel the bars use. Dots stay compact when the categories pile up.
 
 ## Rating national economic conditions {.smaller}
 
