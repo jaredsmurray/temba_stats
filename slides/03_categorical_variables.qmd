@@ -9,6 +9,8 @@ subtitle: "TEMBA Statistics 2026"
 source("_setup.R")
 
 lending <- load_lending()
+
+shed <- read_csv("../data/shed/shed_2025.csv", show_col_types = FALSE)
 ```
 
 ## The data: LendingClub loans
@@ -20,35 +22,101 @@ lending <- load_lending()
 ## Kinds of categorical variables
 
 ::: {.incremental}
-- A **nominal** variable has categories with no natural order: loan `purpose`.
-- An **ordinal** variable has ordered categories, but the spacing between them is not meaningful: loan `grade`, from `A` down to `G`.
-- A **binary** variable has exactly two categories: did the loan default?
+- A **categorical variable** records which of several groups an observation belongs to.
+- A **nominal** variable's categories have no natural order: loan `purpose`.
+- An **ordinal** variable's categories fall in a natural order, but the spacing between them is not measurable: loan `grade`, from `A` down to `G`.
+- A **binary** variable has exactly two categories, so it can be nominal or ordinal: did the loan default?
 :::
 
 ## Frequency tables {.smaller}
 
 A **frequency table** counts how many observations fall in each category; dividing by the total gives the **proportion**.
 
+::: {style="font-size: 0.62em;"}
 ```{r}
 #| label: table-purpose-counts
-purpose_counts <- lending |>
-  count(purpose, name = "n") |>
-  arrange(desc(n))
-
-bind_rows(
-  purpose_counts |> slice_head(n = 7),
-  purpose_counts |> slice(-(1:7)) |>
-    summarise(purpose = paste0("everything else (", n(), " purposes)"),
-              n = sum(n))
-) |>
-  mutate(Proportion = paste0(number(n / sum(n), accuracy = 0.001),
-                             " (", percent(n / sum(n), accuracy = 0.1), ")"),
-         Count = comma(n)) |>
-  select(Purpose = purpose, Count, Proportion) |>
+lending |>
+  count(purpose, name = "Count") |>
+  arrange(desc(Count)) |>
+  mutate(Proportion = paste0(number(Count / sum(Count), accuracy = 0.001),
+                             " (", percent(Count / sum(Count), accuracy = 0.1), ")")) |>
+  rename(Purpose = purpose) |>
   knitr::kable(align = c("l", "r", "r"))
 ```
+:::
 
-Two categories cover more than two-thirds of the loans; the rest is a long tail.
+## Bar charts, dot plots, and pie charts
+
+::: {.incremental}
+- A bar chart and a dot plot both encode a category's value as a length or a position along a common axis. People read those channels more accurately than any other.
+- A pie chart encodes the same numbers as angles and areas, which the eye judges less precisely. Two wedges a few percentage points apart look the same.
+- Ranking five middling wedges is harder still. Even with only a few categories, a pie chart usually serves you poorly.
+:::
+
+## The distribution of loan purpose
+
+```{r}
+#| label: viz-purpose-dist
+#| fig-width: 9
+#| fig-height: 4.6
+lending |>
+  count(purpose) |>
+  mutate(prop = n / sum(n),
+         purpose = fct_reorder(purpose, prop)) |>
+  ggplot(aes(x = purpose, y = prop)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(x = NULL, y = "Proportion of loans")
+```
+
+Horizontal bars keep fourteen labels flat and readable, and sorting by length makes the chart a ranking as well as a distribution.
+
+## The same distribution as a dot plot
+
+```{r}
+#| label: viz-purpose-dot
+#| fig-width: 9
+#| fig-height: 4.6
+lending |>
+  count(purpose) |>
+  mutate(prop = n / sum(n),
+         purpose = fct_reorder(purpose, prop)) |>
+  ggplot(aes(x = prop, y = purpose)) +
+  geom_point(color = "steelblue", size = 3) +
+  scale_x_continuous(limits = c(0, NA)) +
+  labs(x = "Proportion of loans", y = NULL)
+```
+
+Each category is one point read against a common axis, the same channel the bars use. Dots stay compact when the categories pile up.
+
+## Rating national economic conditions {.smaller}
+
+Each fall the Federal Reserve's [Survey of Household Economics and Decisionmaking](https://www.federalreserve.gov/consumerscommunities/shed.htm) asks a national sample of U.S. adults to rate economic conditions in the country today. The 2025 wave surveyed `r comma(nrow(shed))` people.
+
+```{r}
+#| label: viz-shed-outlook
+#| fig-width: 8
+#| fig-height: 3.8
+shed |>
+  count(econ_conditions_country) |>
+  mutate(prop = n / sum(n),
+         econ_conditions_country = factor(econ_conditions_country,
+           levels = c("Poor", "Only fair", "Good", "Excellent"))) |>
+  ggplot(aes(x = econ_conditions_country, y = prop)) +
+  geom_col(fill = "steelblue") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(x = NULL, y = "Proportion of respondents")
+```
+
+## Ordinal categories keep their order
+
+::: {.incremental}
+- Sorting by size was the right call for `purpose`, whose labels have no inherent order, but an ordinal variable calls for the opposite.
+- The tallest bar here is "only fair," and we leave it second from the left. Reading left to right traces the ratings from worst to best.
+- Only `r percent(mean(shed$econ_conditions_country == "Excellent"), accuracy = 0.1)` of households answered "excellent," and that bar sitting at the end of the scale tells us almost nobody rates conditions at the top.
+- Sorted by height, the same bar would read as merely the rarest answer, with nothing to show it is the scale's endpoint.
+:::
 
 ## Dummy (indicator) variables {.smaller}
 
@@ -73,14 +141,13 @@ lending |>
   knitr::kable(align = c("l", "l", "r"))
 ```
 
-That single column is something we can add up and average.
+That single column carries everything the two labels told us, in a form we can add up and average.
 
 ## A proportion is the mean of a 0/1 variable
 
 ::: {.incremental}
-- The default rate in the lending data is `r percent(mean(lending$default), accuracy = 0.1)`.
-- The mean of the `default` dummy is `r number(mean(lending$default), accuracy = 0.001)` --- the same number.
-- That's no accident. Summing a column of 0s and 1s counts the 1s, so dividing by $n$ gives the share of 1s:
+- The mean of the `default` dummy is `r number(mean(lending$default), accuracy = 0.001)`, and `r percent(mean(lending$default), accuracy = 0.1)` of these loans were charged off.
+- Take the mean of a 0/1 column and you get back the proportion of 1s. Summing the column counts the 1s, so dividing by $n$ gives their share:
 :::
 
 ::: {.fragment}
@@ -88,7 +155,7 @@ $$
 \hat{p} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{\text{number of 1s}}{n} = \text{proportion of 1s}
 $$
 
-We write a sample proportion as $\hat{p}$, read aloud as "p-hat."
+We write a sample proportion as $\hat{p}$, read aloud as "p-hat." It is a sample mean in disguise.
 :::
 
 ## The spread of a 0/1 variable
@@ -97,19 +164,20 @@ Predict a random loan's outcome, knowing only the `r percent(mean(lending$defaul
 
 ::: {.incremental}
 - Your best guess is "no default," and you will be right about `r percent(1 - mean(lending$default), accuracy = 0.1)` of the time. That is a fairly predictable outcome.
-- Where does prediction get hard? At a coin flip: if half of loans defaulted, no guess would beat 50-50.
+- A rarer outcome is easier still: if one loan in a hundred defaulted, guessing "no default" every time would be right 99% of the time.
+- Where does prediction get hard? At a coin flip: if half of loans defaulted, no guessing rule would beat 50-50.
 - So the spread of a 0/1 variable should be smallest near 0 or 1 and largest in the middle.
 :::
 
 ## Variance of a 0/1 variable
 
-A 0/1 variable can only deviate from its mean two ways: a 1 sits $(1 - \hat{p})$ above it, and a 0 sits $\hat{p}$ below it. The variance formula collapses to
+The variance of a 0/1 variable turns out to be a function of $\hat{p}$ alone:
 
 $$
-s^2 = \frac{n}{n-1}\,\hat{p}\,(1 - \hat{p}) \approx \hat{p}\,(1 - \hat{p}).
+s^2 \approx \hat{p}\,(1 - \hat{p}).
 $$
 
-In words: the variance of a yes/no variable is the chance of a yes times the chance of a no.
+In words, the variance is the chance that a randomly selected observation is a 1 times the chance a randomly selected observation is a 0. That product is largest at $\hat{p} = 0.5$. It shrinks toward zero as the proportion approaches 0 or 1, where the outcome is close to certain.
 
 ## Variance as a function of $\hat{p}$
 
@@ -134,4 +202,4 @@ ggplot(curve_df, aes(x = p, y = variance)) +
        y = expression(paste("Variance  ", hat(p), "(1 - ", hat(p), ")")))
 ```
 
-Spread is zero at the extremes, where the outcome is certain, and largest at the coin flip. The default proportion lands well down the left slope: a loan is far more likely to be repaid than not, so its outcome is comparatively predictable.
+The default proportion lands well down the left slope, so these coded outcomes are comparatively predictable. Their standard deviation is `r number(sqrt(p_default * (1 - p_default)), accuracy = 0.001)`.
