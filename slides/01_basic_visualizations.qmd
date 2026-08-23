@@ -146,9 +146,9 @@ mk_dens <- function(adjust, title) {
     theme_minimal(base_size = 12)
 }
 
-mk_dens(0.3, "Wiggly (adjust = 0.3)") |
+mk_dens(2.5, "Smooth (adjust = 2.5)") |
   mk_dens(1,   "Default (adjust = 1)") |
-  mk_dens(2.5, "Smooth (adjust = 2.5)")
+  mk_dens(0.3, "Wiggly (adjust = 0.3)")
 ```
 
 A single interpretable knob, with a default computed from the data rather than picked by hand.
