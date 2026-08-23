@@ -138,7 +138,7 @@ If you find yourself looking at a distribution with two strong modes of similar 
 
 ## Measures of spread {#sec-measures-spread}
 
-Once we have a measure of where the "middle" of a distribution is we naturally want some measure of how close observations tend to be to the middle --- or how they are *spread* our around the center. The median price of a house in 78752 is `r dollar(round(median(austin_zip$latest_price)))`, but are there houses selling for around `r dollar(round(0.28*median(austin_zip$latest_price), -4))`? Or `r dollar(round(1.4*median(austin_zip$latest_price), -4))`? Are there a few houses with similarly high or low prices, or many?
+Once we have a measure of where the "middle" of a distribution is we naturally want some measure of how close observations tend to be to the middle --- or how they are *spread* out around the center. The median price of a house in 78752 is `r dollar(round(median(austin_zip$latest_price)))`, but are there houses selling for around `r dollar(round(0.28*median(austin_zip$latest_price), -4))`? Or `r dollar(round(1.4*median(austin_zip$latest_price), -4))`? Are there a few houses with similarly high or low prices, or many?
 
 Let's look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.
 
