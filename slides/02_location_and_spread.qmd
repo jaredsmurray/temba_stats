@@ -8,7 +8,6 @@ subtitle: "TEMBA Statistics 2026"
 #| include: false
 source("_setup.R")
 
-austin <- load_austin_subset()
 austin_full <- load_austin_full()
 
 austin_zip <- austin_full |>
@@ -21,16 +20,16 @@ p41 <- austin_full$latest_price[austin_full$zipcode == 78741]
 ## We're going to play a game
 
 ::: {.incremental}
-- You have to guess the sale price of a randomly selected house in one of two zipcodes.
-- You can pick the zipcode.
+- You have to guess the sale price of a randomly selected house in one of two ZIP codes.
+- You can pick the ZIP code.
 :::
 
-## Pick your zipcode
+## Pick your ZIP code
 
 ```{r}
 #| label: viz-zip-comparison
-#| fig-width: 9
-#| fig-height: 4
+#| fig-width: 12
+#| fig-height: 4.5
 zip_data <- austin_full |>
   filter(zipcode %in% c(78749, 78741)) |>
   mutate(zipcode = factor(zipcode))
@@ -46,7 +45,7 @@ p_hist <- ggplot(zip_data, aes(x = latest_price, fill = zipcode)) +
                  bins = 20, color = "white", alpha = 0.6,
                  position = "identity") +
   geom_rug(aes(color = zipcode), alpha = 0.3, show.legend = FALSE) +
-  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+  scale_x_continuous(labels = dollar_format()) +
   labs(x = "Sale price", y = "Density", fill = "ZIP code")
 
 p_box + p_hist
@@ -97,22 +96,6 @@ ggplot(austin_zip, aes(x = latest_price)) +
 
 The mean sits above the median because a few high-priced homes drag the average up. Report both, and pay attention to the gap --- a large gap signals skewness.
 
-## A single number can hide structure
-
-```{r}
-#| label: viz-house-age-center
-#| fig-width: 8
-#| fig-height: 4
-ggplot(austin, aes(x = age)) +
-  geom_histogram(aes(y = after_stat(density)),
-                 bins = 30, fill = "steelblue", color = "white") +
-  geom_density(alpha = 0.3) +
-  geom_rug(alpha = 0.1) +
-  labs(x = "House age (years)", y = "Density")
-```
-
-The mean age of `r round(mean(austin$age), 1)` years falls between the two peaks, where relatively few homes actually sit. When a distribution has more than one peak, no single number speaks for the whole thing.
-
 # Measures of spread
 
 ## Back to the game
@@ -133,7 +116,7 @@ $$
 
 ::: {.incremental}
 - We square the deviations so positive and negative ones don't cancel, then take the square root to get back to the original units.
-- For 78749 the standard deviation is `r dollar(round(sd(p49)))`; for 78741 it is `r dollar(round(sd(p41)))`. Prices in 78741 sit almost twice as far from their center, on average.
+- For 78749 the standard deviation is `r dollar(round(sd(p49)))`; for 78741 it is `r dollar(round(sd(p41)))` --- about 1.8 times the standard deviation in 78749.
 :::
 
 ## Variance
@@ -156,7 +139,7 @@ $$
 
 ## Changing units
 
-A **linear transformation** adjusts a variable by multiplying by a constant, adding a constant, or both: $y = ax + b$.
+A **linear transformation** multiplies a variable by a constant, adds a constant, or does both: $y = ax + b$. Every value gets the same rescaling and the same shift.
 
 ```{r}
 #| label: viz-linear-transform
@@ -166,14 +149,12 @@ p1 <- ggplot(austin_zip, aes(x = latest_price)) +
   geom_histogram(bins = 20, fill = "steelblue", color = "white") +
   geom_rug(alpha = 0.4) +
   scale_x_continuous(labels = dollar_format()) +
-  labs(x = "Price ($)", y = "Count", title = "Dollars") +
-  theme_minimal(base_size = 12)
+  labs(x = "Price ($)", y = "Count", title = "Dollars")
 
 p2 <- ggplot(austin_zip, aes(x = latest_price / 1000)) +
   geom_histogram(bins = 20, fill = "steelblue", color = "white") +
   geom_rug(alpha = 0.4) +
-  labs(x = "Price (thousands of dollars)", y = "Count", title = "Thousands of dollars") +
-  theme_minimal(base_size = 12)
+  labs(x = "Price (thousands of dollars)", y = "Count", title = "Thousands of dollars")
 
 p1 + p2
 ```
@@ -190,15 +171,12 @@ p3 <- ggplot(austin_zip, aes(x = latest_price - mean(latest_price))) +
   geom_histogram(bins = 20, fill = "steelblue", color = "white") +
   geom_rug(alpha = 0.4) +
   scale_x_continuous(labels = dollar_format()) +
-  labs(x = "Price - mean ($)", y = "Count", title = "Mean-centered (dollars)") +
-  theme_minimal(base_size = 12)
+  labs(x = "Centered price ($)", y = "Count", title = "Dollars")
 
 p4 <- ggplot(austin_zip, aes(x = (latest_price - mean(latest_price)) / 1000)) +
   geom_histogram(bins = 20, fill = "steelblue", color = "white") +
   geom_rug(alpha = 0.4) +
-  labs(x = "Price - mean price (thousands of dollars)", y = "Count",
-       title = "Mean-centered (thousands)") +
-  theme_minimal(base_size = 12)
+  labs(x = "Centered price ($000s)", y = "Count", title = "Thousands")
 
 p3 + p4
 ```
@@ -207,7 +185,7 @@ Subtracting the mean shifts the distribution to center on zero; the shape is unc
 
 ## What happens to the summaries?
 
-If $y_i = a x_i + b$ for every observation, then
+If $y_i = a x_i + b$ for every observation, where $a$ and $b$ are constants, then
 
 $$
 \bar{y} = a\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
@@ -217,4 +195,4 @@ $$
 s_y = |a|\,s_x, \qquad s^2_y = a^2\,s^2_x.
 $$
 
-Multiplying by $a$ scales both the center and the spread; adding $b$ shifts the center and leaves the spread alone. This is worth memorizing --- it comes up every time you change units.
+Adding $b$ shifts the center and leaves the spread alone; multiplying by $a$ scales both the center and the spread (and the spread doesn't care about the sign of $a$).
