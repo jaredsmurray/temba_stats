@@ -7,7 +7,6 @@ subtitle: "TEMBA Statistics 2026"
 #| label: setup
 #| include: false
 source("_setup.R")
-library(ggiraph)
 
 austin_full <- load_austin_full()
 austin <- load_austin_subset()
@@ -19,42 +18,6 @@ austin_zip <- austin_full |>
 ```
 
 ## A histogram counts observations in bins
-
-```{=html}
-<!-- Quarto's revealjs format never calls HTMLWidgets.staticRender(), so the
-     ggiraph/girafe figures imported from the book chapters render as empty
-     containers. Render them once the deck is ready, and cap their height so
-     the widget's fill-the-container default doesn't push the slide past 720px. -->
-<style>
-/* The three girafe figures are all 9 x 4.4in; box them at that aspect so the
-   widget's fill-the-container default can't clip the axis or overflow 720px. */
-.reveal .girafe.html-widget {
-  height: 500px !important;
-  max-width: 1000px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-</style>
-<script>
-(function () {
-  function renderWidgets() {
-    if (!window.HTMLWidgets) return;
-    try { window.HTMLWidgets.staticRender(); } catch (e) {}
-  }
-  document.addEventListener('DOMContentLoaded', renderWidgets);
-  window.addEventListener('load', renderWidgets);
-  [0, 200, 800, 2000].forEach(function (d) { setTimeout(renderWidgets, d); });
-  var iv = setInterval(function () {
-    if (window.Reveal && Reveal.on) {
-      clearInterval(iv);
-      Reveal.on('ready', renderWidgets);
-      Reveal.on('slidechanged', renderWidgets);
-      renderWidgets();
-    }
-  }, 100);
-})();
-</script>
-```
 
 ```{r}
 #| label: viz-hist-price-count
@@ -78,24 +41,12 @@ hist_df <- austin_zip |>
                    n, " home", ifelse(n == 1, "", "s"))
   )
 
-p_hist <- ggplot(hist_df, aes(x = mid, y = n, width = bw)) +
-  geom_col_interactive(
-    aes(tooltip = tip, data_id = bin_idx),
-    fill = "steelblue", color = "white"
-  ) +
+ggplot(hist_df, aes(x = mid, y = n, width = bw)) +
+  geom_col(fill = "steelblue", color = "white") +
   geom_rug(data = austin_zip, aes(x = latest_price), inherit.aes = FALSE,
            alpha = 0.4) +
   scale_x_continuous(labels = dollar_format()) +
   labs(x = "Sale price", y = "Count")
-
-girafe(
-  ggobj = p_hist,
-  options = list(
-    opts_hover(css = "fill:darkorange;"),
-    opts_tooltip(css = "background:white; padding:6px 8px; border:1px solid #ccc;
-                        border-radius:4px; font-size:13px; white-space:pre;")
-  )
-)
 ```
 
 `r nrow(austin_zip)` home sales in Austin ZIP 78752. Each tick on the baseline is one sale.
@@ -268,27 +219,11 @@ Both panels share one vertical scale: prices in 78722 sit higher and spread wide
 #| label: viz-gmat-ecdf
 #| fig-width: 9
 #| fig-height: 4.4
-gmat_plot <- gmat |>
-  mutate(tip = paste0("Score: ", score, "\n",
-                      "Percentile: ", pct, "%"))
-
-p_gmat <- ggplot(gmat_plot, aes(x = score, y = quantile)) +
+ggplot(gmat, aes(x = score, y = quantile)) +
   geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
-  geom_point_interactive(
-    aes(tooltip = tip, data_id = score),
-    size = 1.4, color = "steelblue"
-  ) +
+  geom_point(size = 1.4, color = "steelblue") +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "GMAT Focus Edition total score", y = "Cumulative percentage")
-
-girafe(
-  ggobj = p_gmat,
-  options = list(
-    opts_hover(css = "stroke:darkorange; fill:darkorange;"),
-    opts_tooltip(css = "background:white; padding:6px 8px; border:1px solid #ccc;
-                        border-radius:4px; font-size:13px; white-space:pre;")
-  )
-)
 ```
 
 GMAC's full concordance, 2020--2025, is one curve: the fraction of test takers at or below each score.
@@ -302,53 +237,13 @@ GMAC's full concordance, 2020--2025, is one curve: the fraction of test takers a
 ecdf_df <- austin_zip |>
   count(latest_price, name = "n_price") |>
   arrange(latest_price) |>
-  mutate(
-    ecdf = cumsum(n_price) / sum(n_price),
-    tip = paste0(
-      "Percentile: ", percent(ecdf, accuracy = 0.1), "\n",
-      "Price: ", dollar(latest_price)
-    )
-  )
- p_ecdf <- ggplot(ecdf_df, aes(x = latest_price, y = ecdf)) +
-  geom_step(
-    aes(group = 1),
-    direction = "hv",
-    color = "steelblue",
-    linewidth = 1
-  ) +
-  geom_segment_interactive(
-    aes(
-      x = latest_price, xend = 0,
-      y = ecdf, yend = ecdf,
-      data_id = latest_price
-    ),
-    color = "transparent", linewidth = 0.8, linetype = "dashed"
-  ) +
-  geom_segment_interactive(
-    aes(
-      x = latest_price, xend = latest_price,
-      y = ecdf, yend = 0,
-      data_id = latest_price
-    ),
-    color = "transparent", linewidth = 0.8, linetype = "dashed"
-  ) +
-  geom_point_interactive(
-    aes(tooltip = tip, data_id = latest_price),
-    size = 1,
-    color = "transparent"
-  ) +
+  mutate(ecdf = cumsum(n_price) / sum(n_price))
+
+ggplot(ecdf_df, aes(x = latest_price, y = ecdf)) +
+  geom_step(aes(group = 1), direction = "hv", color = "steelblue", linewidth = 1) +
   scale_x_continuous(labels = dollar_format()) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "Sale price", y = "Cumulative percentage")
-
-girafe(
-  ggobj = p_ecdf,
-  options = list(
-    opts_hover(css = "stroke:darkorange; fill:darkorange;"),
-    opts_tooltip(css = "background:white; padding:6px 8px; border:1px solid #ccc;
-                        border-radius:4px; font-size:13px; white-space:pre;")
-  )
-)
 ```
 
 The height at each price is the fraction of sales at or below it. There are no bins or bandwidths to choose, and the quartiles read off the plot directly.
