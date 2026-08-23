@@ -79,6 +79,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <style>
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -90,10 +94,6 @@ ul.task-list li input[type="checkbox"] {
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
-}
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
 }
 </style>
 
@@ -269,7 +269,7 @@ window.Quarto = {
 <p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
 <div id="notation-subscripts-summation" class="Notation">
 <div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details open="" id="details-subscripts-summation" aria-label="Details">
+<details id="details-subscripts-summation" open="" aria-label="Details">
 <summary>Details</summary>
 <p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
 <div class="cell">
@@ -328,7 +328,7 @@ Table&nbsp;3.1: The first four sale prices, labeled.
 <div id="defn-sample-mean" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
 <p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details id="formula-sample-mean" aria-label="Details and formulas" class="formula-details">
+<details id="formula-sample-mean" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
 <p><span class="math display">\[
@@ -368,7 +368,7 @@ Table&nbsp;3.1: The first four sale prices, labeled.
 </section>
 <section id="sec-measures-spread" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</h2>
-<p>Once we have a measure of where the “middle” of a distribution is we naturally want some measure of how close observations tend to be to the middle — or how they are <em>spread</em> our around the center. The median price of a house in 78752 is $351,478, but are there houses selling for around $100,000? Or $490,000? Are there a few houses with similarly high or low prices, or many?</p>
+<p>Once we have a measure of where the “middle” of a distribution is we naturally want some measure of how close observations tend to be to the middle — or how they are <em>spread</em> out around the center. The median price of a house in 78752 is $351,478, but are there houses selling for around $100,000? Or $490,000? Are there a few houses with similarly high or low prices, or many?</p>
 <p>Let’s look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -389,7 +389,7 @@ Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating
 <div id="defn-variance" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
 <p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details id="formula-variance" aria-label="Details and formulas" class="formula-details">
+<details id="formula-variance" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>The variance is given by</p>
 <p><span class="math display">\[
@@ -413,7 +413,7 @@ s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
 <div id="defn-standard-deviation" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
 <p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details id="formula-standard-deviation" aria-label="Details and formulas" class="formula-details">
+<details id="formula-standard-deviation" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p><span class="math display">\[
 s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
