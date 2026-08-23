@@ -166,13 +166,18 @@ Predict a random loan's outcome, knowing only the `r percent(mean(lending$defaul
 
 ## Variance of a 0/1 variable
 
-The variance of a 0/1 variable turns out to be a function of $\hat{p}$ alone:
+The variance of a 0/1 variable depends on $\hat{p}$ alone:
 
 $$
-s^2 \approx \hat{p}\,(1 - \hat{p}).
+s^2 \approx \hat{p}\,(1 - \hat{p}),
 $$
 
-In words, the variance is the chance that a randomly selected observation is a 1 times the chance a randomly selected observation is a 0. That product is largest at $\hat{p} = 0.5$. It shrinks toward zero as the proportion approaches 0 or 1, where the outcome is close to certain.
+the chance a randomly selected observation is a 1 times the chance it is a 0.
+
+::: {.incremental}
+- Largest at $\hat{p} = 0.5$: a coin flip.
+- Shrinks toward zero as $\hat{p}$ approaches 0 or 1: the outcome is nearly certain.
+:::
 
 ## Variance as a function of $\hat{p}$
 
@@ -197,4 +202,4 @@ ggplot(curve_df, aes(x = p, y = variance)) +
        y = expression(paste("Variance  ", hat(p), "(1 - ", hat(p), ")")))
 ```
 
-The default proportion lands well down the left slope, so these coded outcomes are comparatively predictable. Their standard deviation is `r number(sqrt(p_default * (1 - p_default)), accuracy = 0.001)`.
+At $\hat{p}$ = `r number(p_default, accuracy = 0.001)` the variance is `r number(p_default * (1 - p_default), accuracy = 0.001)`, well below its maximum of 0.25: defaults are fairly predictable. The standard deviation is `r number(sqrt(p_default * (1 - p_default)), accuracy = 0.001)`.

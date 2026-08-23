@@ -191,7 +191,7 @@ ggplot(curve_df, aes(x = p, y = variance)) +
        y = expression(paste("Variance  ", hat(p), "(1 - ", hat(p), ")")))
 ```
 
-The default proportion of $\hat{p} = `r round(p_default, 3)`$ lands well down the left slope of the curve. Among these recorded loans, repayment was far more common than default, so the coded outcomes are comparatively predictable. Reversing the coding would replace $\hat{p}$ with $1-\hat{p}$, but the product $\hat{p}(1-\hat{p})$ --- and so the variance --- would stay the same. The **standard deviation** is the square root of the variance. For the individual coded loan outcomes, it comes to `r round(sqrt(p_default * (1 - p_default)), 3)`.
+At the default proportion of $\hat{p} = `r round(p_default, 3)`$ the variance is `r round(p_default * (1 - p_default), 3)`, well below its maximum of 0.25. Repayment was far more common than default among these loans, so the coded outcomes are fairly predictable. Reversing the coding would replace $\hat{p}$ with $1-\hat{p}$, but the product $\hat{p}(1-\hat{p})$ --- and so the variance --- would stay the same. The **standard deviation** is the square root of the variance, `r round(sqrt(p_default * (1 - p_default)), 3)` for the coded loan outcomes.
 
 ## Visualizing categorical variables {#sec-cat-viz}
 
