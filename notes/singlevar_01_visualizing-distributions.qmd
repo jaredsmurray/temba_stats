@@ -55,7 +55,7 @@ gmat <- tribble(
   mutate(quantile = pct / 100)
 ```
 
-The first thing we want to do with a quantitative variable is see what values it takes and how often. We'll start with a concrete example: sale prices of single-family homes in ZIP code 78752 in Austin, Texas.
+We're going to begin with some simple data analysis: describing a single variable in our dataset. Our first example will be the sale prices of single-family homes in ZIP code 78752 in Austin, Texas. (Technically these are "last-listed" prices, but we won't worry too much about the distinction in these notes.)
 
 ```{r}
 #| label: austin-zip-subset
@@ -111,6 +111,7 @@ girafe(
 )
 ```
 
+You can hover over the bars in the plot above to see the exact range represented and the number of observations it contains.
 Most homes sold for somewhere between \$150,000 and \$600,000, with a cluster around \$250,000--\$450,000. A handful sold for over \$800,000, stretching the right side of the distribution out.
 
 ## Density plots {#sec-density-plots}

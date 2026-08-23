@@ -64,6 +64,6 @@ lectures:
     date: TBD
     topic: "Visualizing a single variable"
     readings: |
-      Lecture notes: [Chapter 1]({{notes}}/singlevar_01_visualizing-distributions.html)
+      Lecture notes: [Chapter 1]({{notes}}/singlevar_01_visualizing-distributions.html) and [Chapter 2]({{notes}}/singlevar_02_describing-distributions.html)
     materials:
       slides: [01_basic_visualizations]

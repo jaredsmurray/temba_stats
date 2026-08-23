@@ -158,7 +158,7 @@ austin_full |>
   labs(x = "Sale price", y = "Count")
 ```
 
-Same \$50,000 bins, but the count axes are on completely different scales.
+Same \$50,000 bins and the same count axis, but 78748 has more than ten times as many sales as 78722, so the smaller panel is squashed flat.
 
 ## Rescaled to density, the shapes are comparable
 
@@ -188,7 +188,7 @@ Both panels share one vertical scale: prices in 78722 sit higher and spread wide
 - Suppose you scored 655 on the GMAT Focus Edition.
 - Your score report says you're at the 90th percentile.
 - That means you did at least as well as about 90% of test takers: 655 is the **90th percentile** of GMAT scores.
-- In general, the **p-th percentile** is the value below which p% of the observations fall.
+- In general, the **p-th percentile** is the value at or below which p% of the observations fall.
 :::
 
 ## Median, quartiles, quantiles
