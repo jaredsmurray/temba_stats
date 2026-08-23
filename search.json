@@ -210,262 +210,11 @@
     "text": "Outliers\n\n\n\nNot everything extreme is an error: the $800K+ sales in 78752 are real, but a $13M listing in this dataset was a typo\nThe 1.5 × IQR box-plot rule flags potential outliers; it is not a substitute for judgment"
   },
   {
-    "objectID": "introstatgpt/working.html",
-    "href": "introstatgpt/working.html",
-    "title": "Working with IntroStatGPT and Codex",
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
     "section": "",
-    "text": "Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.\nThis page explains how to make clear requests and check the resulting analysis. For the analysis gallery, organizer, and Word-report workflow, see Use IntroStatGPT.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/working.html#be-precise",
-    "href": "introstatgpt/working.html#be-precise",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Be precise",
-    "text": "Be precise\nName the data, variables, operation, and output you want. Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask Codex to list the names and types first.\nUse this recipe:\n\nUsing [data or observations], use [variables] to [calculate, plot, or fit]. Return [the table, plot, model output, or saved result].\n\nFor example:\n\nUsing the housing data, keep observations with nonmissing PRICE and SQFT. Fit PRICE on SQFT and BATHS, treating ZIPCODE as categorical. Return the standardized regression table.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/working.html#keep-each-task-focused",
-    "href": "introstatgpt/working.html#keep-each-task-focused",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Keep each task focused",
-    "text": "Keep each task focused\nUse one task for one question or a closely related set of outputs. Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.\nStart a new task when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the IntroStatGPT workspace. In the new task, state your current goal and identify any existing output by its short label, such as P2 or T1.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/working.html#check-before-you-build",
-    "href": "introstatgpt/working.html#check-before-you-build",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Check before you build",
-    "text": "Check before you build\nCompare every output with your request before using it in the next step. Run one or two checks that could expose the mistake you are most worried about.\nAfter filtering or changing data, you can ask Codex to:\n\nShow the row count before and after the change.\nCount missing values in the variables used.\nShow the minimum and maximum of a new numeric variable.\nShow category counts after recoding or grouping.\n\nFor a plot or table, check:\n\nThe observations and variables used.\nThe labels, units, axes, and category order.\nImpossible values, unexpected categories, or empty groups.\nWhether counts or percentages add to the expected total.\n\nFor a model, you can ask Codex to:\n\nShow the exact formula it fit.\nReport how many observations it used and excluded.\nConfirm the reference group for a categorical variable.\nCreate a requested diagnostic plot.\n\nIf something looks wrong, name the mismatch and ask Codex to trace it. For example:\n\nI expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/working.html#ask-for-the-right-kind-of-help",
-    "href": "introstatgpt/working.html#ask-for-the-right-kind-of-help",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Ask for the right kind of help",
-    "text": "Ask for the right kind of help\nAsk Codex to inspect data, diagnose errors, trace an operation, or check its work. These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.\nThese prompts address common problems:\n\nIf you do not know the variable names, ask: “List the variable names and types in the housing data.”\nIf the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”\nIf an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”\nIf a request is ambiguous, ask: “Identify what is ambiguous in my request and ask me the questions needed to specify the statistical operation.”",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/working.html#save-what-you-want-to-keep",
-    "href": "introstatgpt/working.html#save-what-you-want-to-keep",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Save what you want to keep",
-    "text": "Save what you want to keep\nUse the analysis organizer to select the finished outputs you want in your report. Selecting an output preserves your report choice; it does not certify that the analysis is correct. Check the output first, then include it in the report and place it in the appropriate section. See Use IntroStatGPT for the organizer steps.\nAsk Codex for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask Codex to:\n\nState the data, filters, transformations, variables, and statistical operation used.\nRun the reproduction script in a clean R session.\nCompare the reproduced output with the saved output.\nReport errors, warnings, and differences without interpreting the result.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/working.html#before-you-finish",
-    "href": "introstatgpt/working.html#before-you-finish",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Before you finish",
-    "text": "Before you finish\n\nDoes the output use the requested observations and variables?\nDo the labels, units, and model formula match the request?\nDid you run one useful check and resolve anything unexpected?\nDid you include the version you want and place it in the correct report section?",
-    "crumbs": [
-      "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html",
-    "href": "introstatgpt/setup.html",
-    "title": "Install and set up IntroStatGPT",
-    "section": "",
-    "text": "Complete these steps before you first use IntroStatGPT. You do not need previous experience with R or computer programming.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#activate-your-ut-chatgpt-account",
-    "href": "introstatgpt/setup.html#activate-your-ut-chatgpt-account",
-    "title": "Install and set up IntroStatGPT",
-    "section": "1. Activate your UT ChatGPT account",
-    "text": "1. Activate your UT ChatGPT account\nUT Austin provides ChatGPT EDU to students, faculty, and staff.\n\nVisit the UT Austin AI tools page.\nSelect Log in to access OpenAI ChatGPT EDU.\nSign in with your UT EID email address: [your EID]@eid.utexas.edu.\nComplete UT authentication.\n\nUse this account when you sign in to the desktop app.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#install-r",
-    "href": "introstatgpt/setup.html#install-r",
-    "title": "Install and set up IntroStatGPT",
-    "section": "2. Install R",
-    "text": "2. Install R\nR performs the statistical calculations behind IntroStatGPT. Download it from The Comprehensive R Archive Network.\n\nWindows\n\nSelect Download R for Windows.\nSelect base.\nDownload the current R installer.\nOpen the installer and accept the default options.\n\n\n\nMac\n\nSelect Download R for macOS.\nDownload the installer for your Mac.\nOpen the downloaded .pkg file and follow the installation prompts.\n\nTo identify your Mac processor, select Apple menu &gt; About This Mac and look for Apple silicon or Intel.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#install-the-chatgpt-desktop-app",
-    "href": "introstatgpt/setup.html#install-the-chatgpt-desktop-app",
-    "title": "Install and set up IntroStatGPT",
-    "section": "3. Install the ChatGPT desktop app",
-    "text": "3. Install the ChatGPT desktop app\nFollow the official desktop-app instructions to install ChatGPT. Open the app and sign in with your UT ChatGPT account.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#download-introstatgpt",
-    "href": "introstatgpt/setup.html#download-introstatgpt",
-    "title": "Install and set up IntroStatGPT",
-    "section": "4. Download IntroStatGPT",
-    "text": "4. Download IntroStatGPT\nDownload IntroStatGPT_intensive.zip (13 MB), then extract it. The extracted folder normally has the same name as the ZIP file.\n\nWindows\n\nRight-click the downloaded ZIP file.\nSelect Extract All.\nMove the extracted IntroStatGPT folder to Documents.\n\n\n\nMac\n\nDouble-click the downloaded ZIP file.\nMove the extracted IntroStatGPT folder to Documents.\n\nWork from the extracted folder. Keep its internal files and folders in their original locations.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#open-the-extracted-folder-in-codex",
-    "href": "introstatgpt/setup.html#open-the-extracted-folder-in-codex",
-    "title": "Install and set up IntroStatGPT",
-    "section": "5. Open the extracted folder in Codex",
-    "text": "5. Open the extracted folder in Codex\n\nOpen the ChatGPT desktop app.\nEnter Codex.\nFrom the menu bar, choose File &gt; Open Folder.\nOpen Documents and select the IntroStatGPT folder you extracted in the previous step.\nSelect Open.\n\nSelect the extracted IntroStatGPT folder itself, rather than a CSV file or one of its subfolders. Codex now treats that folder and everything inside it as one workspace.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#run-the-initial-setup",
-    "href": "introstatgpt/setup.html#run-the-initial-setup",
-    "title": "Install and set up IntroStatGPT",
-    "section": "6. Run the initial setup",
-    "text": "6. Run the initial setup\nAfter the folder opens, start a task for this workspace:\n\nIn the left sidebar, select New task (the + button).\nConfirm that the IntroStatGPT folder name appears as the task’s workspace.\nClick the message box at the bottom of the task and send:\n\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\nCodex will check R and install the required R packages. The first setup may take a few minutes. Approve package installation if Codex requests permission.\nSetup is complete when Codex reports:\n\nSetup check passed.\n\nYou are now ready to use IntroStatGPT.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/setup.html#setup-troubleshooting",
-    "href": "introstatgpt/setup.html#setup-troubleshooting",
-    "title": "Install and set up IntroStatGPT",
-    "section": "Setup troubleshooting",
-    "text": "Setup troubleshooting\n\nCodex cannot find R\nClose and reopen the ChatGPT desktop app after installing R. Then send:\n\nCheck whether R is installed and available to this workspace.\n\n\n\nAn R package is missing\nSend:\n\nRun the workspace setup and install or update any missing or incompatible required packages.\n\n\n\nSetup still fails\nSend:\n\nDiagnose the setup failure. Tell me exactly what I need to do, but do not begin an analysis.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Install and set up IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEMBA Statistics",
-    "section": "",
-    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
-  },
-  {
-    "objectID": "index.html#materials",
-    "href": "index.html#materials",
-    "title": "TEMBA Statistics",
-    "section": "Materials",
-    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
-  },
-  {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "Data",
-    "section": "",
-    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba_stats/data/returns/returns.csv\")."
-  },
-  {
-    "objectID": "data.html#austin-house-listings",
-    "href": "data.html#austin-house-listings",
-    "title": "Data",
-    "section": "Austin house listings",
-    "text": "Austin house listings\n\naustin_houses.csv (8.7M)\naustin_houses_subset.csv (704K)"
-  },
-  {
-    "objectID": "data.html#ercot-hourly-load",
-    "href": "data.html#ercot-hourly-load",
-    "title": "Data",
-    "section": "ERCOT hourly load",
-    "text": "ERCOT hourly load\n\nload_1.csv ( 23M)\nload_2.csv ( 22M)\nload_3.csv ( 17M)"
-  },
-  {
-    "objectID": "data.html#sp-500-weekly-returns",
-    "href": "data.html#sp-500-weekly-returns",
-    "title": "Data",
-    "section": "S&P 500 weekly returns",
-    "text": "S&P 500 weekly returns\n\nreturns.csv ( 60K)\nreturns_prices.csv (108K)"
-  },
-  {
-    "objectID": "data.html#earnings-cps-asec-2023",
-    "href": "data.html#earnings-cps-asec-2023",
-    "title": "Data",
-    "section": "Earnings (CPS ASEC 2023)",
-    "text": "Earnings (CPS ASEC 2023)\n\ncps_asec_2023.csv (2.0M)"
-  },
-  {
-    "objectID": "data.html#lending-club-loans",
-    "href": "data.html#lending-club-loans",
-    "title": "Data",
-    "section": "Lending Club loans",
-    "text": "Lending Club loans\n\ndf_all.csv ( 29M)\ndf_subs.csv ( 19M)"
-  },
-  {
-    "objectID": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
-    "href": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
-    "title": "Data",
-    "section": "Survey of Household Economics and Decisionmaking (SHED 2025)",
-    "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
-  },
-  {
-    "objectID": "introstatgpt.html",
-    "href": "introstatgpt.html",
-    "title": "IntroStatGPT",
-    "section": "",
-    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; ChatGPT’s Codex runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt.html#start-here",
-    "href": "introstatgpt.html#start-here",
-    "title": "IntroStatGPT",
-    "section": "Start here",
-    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT and Codex — how to make requests that produce checkable output, how to check it, and what to save.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt.html#download",
-    "href": "introstatgpt.html#download",
-    "title": "IntroStatGPT",
-    "section": "Download",
-    "text": "Download\nIntroStatGPT_intensive.zip (13 MB) — the folder the setup page asks you to extract. It contains the IntroStatGPT setup and the course datasets.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "text": "Lecture slide decks. Each opens as a self-contained slideshow (press ? for keyboard shortcuts, E for print view).\n\nStatistics with IntroStatGPT\nVisualizing a Single Quantitative Variable\nMeasuring Location and Spread\nCategorical Variables"
   },
   {
     "objectID": "introstatgpt/use.html",
@@ -556,11 +305,325 @@
     ]
   },
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Slides",
+    "objectID": "introstatgpt.html",
+    "href": "introstatgpt.html",
+    "title": "IntroStatGPT",
     "section": "",
-    "text": "Lecture slide decks. Each opens as a self-contained slideshow (press ? for keyboard shortcuts, E for print view).\n\nVisualizing a Single Quantitative Variable\nMeasuring Location and Spread\nCategorical Variables"
+    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; ChatGPT’s Codex runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#start-here",
+    "href": "introstatgpt.html#start-here",
+    "title": "IntroStatGPT",
+    "section": "Start here",
+    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT and Codex — how to make requests that produce checkable output, how to check it, and what to save.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#download",
+    "href": "introstatgpt.html#download",
+    "title": "IntroStatGPT",
+    "section": "Download",
+    "text": "Download\nIntroStatGPT_intensive.zip (13 MB) — the folder the setup page asks you to extract. It contains the IntroStatGPT setup and the course datasets.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "Datasets used in the notes and slides, served from this site. Each dataset is documented in the notes’ data appendix (what it is, where it came from, and what the variables mean). Files are fetched from the pinned teaching-data release; see data_pin in the site repo.\nRight-click a link and choose “Save link as…” to download, or read it straight into R, e.g. read_csv(\"https://jaredsmurray.github.io/temba_stats/data/returns/returns.csv\")."
+  },
+  {
+    "objectID": "data.html#austin-house-listings",
+    "href": "data.html#austin-house-listings",
+    "title": "Data",
+    "section": "Austin house listings",
+    "text": "Austin house listings\n\naustin_houses.csv (8.7M)\naustin_houses_subset.csv (704K)"
+  },
+  {
+    "objectID": "data.html#ercot-hourly-load",
+    "href": "data.html#ercot-hourly-load",
+    "title": "Data",
+    "section": "ERCOT hourly load",
+    "text": "ERCOT hourly load\n\nload_1.csv ( 23M)\nload_2.csv ( 22M)\nload_3.csv ( 17M)"
+  },
+  {
+    "objectID": "data.html#sp-500-weekly-returns",
+    "href": "data.html#sp-500-weekly-returns",
+    "title": "Data",
+    "section": "S&P 500 weekly returns",
+    "text": "S&P 500 weekly returns\n\nreturns.csv ( 60K)\nreturns_prices.csv (108K)"
+  },
+  {
+    "objectID": "data.html#earnings-cps-asec-2023",
+    "href": "data.html#earnings-cps-asec-2023",
+    "title": "Data",
+    "section": "Earnings (CPS ASEC 2023)",
+    "text": "Earnings (CPS ASEC 2023)\n\ncps_asec_2023.csv (2.0M)"
+  },
+  {
+    "objectID": "data.html#lending-club-loans",
+    "href": "data.html#lending-club-loans",
+    "title": "Data",
+    "section": "Lending Club loans",
+    "text": "Lending Club loans\n\ndf_all.csv ( 29M)\ndf_subs.csv ( 19M)"
+  },
+  {
+    "objectID": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
+    "href": "data.html#survey-of-household-economics-and-decisionmaking-shed-2025",
+    "title": "Data",
+    "section": "Survey of Household Economics and Decisionmaking (SHED 2025)",
+    "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEMBA Statistics",
+    "section": "",
+    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+  },
+  {
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "TEMBA Statistics",
+    "section": "Materials",
+    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+  },
+  {
+    "objectID": "introstatgpt/setup.html",
+    "href": "introstatgpt/setup.html",
+    "title": "Install and set up IntroStatGPT",
+    "section": "",
+    "text": "Complete these steps before you first use IntroStatGPT. You do not need previous experience with R or computer programming.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#activate-your-ut-chatgpt-account",
+    "href": "introstatgpt/setup.html#activate-your-ut-chatgpt-account",
+    "title": "Install and set up IntroStatGPT",
+    "section": "1. Activate your UT ChatGPT account",
+    "text": "1. Activate your UT ChatGPT account\nUT Austin provides ChatGPT EDU to students, faculty, and staff.\n\nVisit the UT Austin AI tools page.\nSelect Log in to access OpenAI ChatGPT EDU.\nSign in with your UT EID email address: [your EID]@eid.utexas.edu.\nComplete UT authentication.\n\nUse this account when you sign in to the desktop app.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#install-r",
+    "href": "introstatgpt/setup.html#install-r",
+    "title": "Install and set up IntroStatGPT",
+    "section": "2. Install R",
+    "text": "2. Install R\nR performs the statistical calculations behind IntroStatGPT. Download it from The Comprehensive R Archive Network.\n\nWindows\n\nSelect Download R for Windows.\nSelect base.\nDownload the current R installer.\nOpen the installer and accept the default options.\n\n\n\nMac\n\nSelect Download R for macOS.\nDownload the installer for your Mac.\nOpen the downloaded .pkg file and follow the installation prompts.\n\nTo identify your Mac processor, select Apple menu &gt; About This Mac and look for Apple silicon or Intel.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#install-the-chatgpt-desktop-app",
+    "href": "introstatgpt/setup.html#install-the-chatgpt-desktop-app",
+    "title": "Install and set up IntroStatGPT",
+    "section": "3. Install the ChatGPT desktop app",
+    "text": "3. Install the ChatGPT desktop app\nFollow the official desktop-app instructions to install ChatGPT. Open the app and sign in with your UT ChatGPT account.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#download-introstatgpt",
+    "href": "introstatgpt/setup.html#download-introstatgpt",
+    "title": "Install and set up IntroStatGPT",
+    "section": "4. Download IntroStatGPT",
+    "text": "4. Download IntroStatGPT\nDownload IntroStatGPT_intensive.zip (13 MB), then extract it. The extracted folder normally has the same name as the ZIP file.\n\nWindows\n\nRight-click the downloaded ZIP file.\nSelect Extract All.\nMove the extracted IntroStatGPT folder to Documents.\n\n\n\nMac\n\nDouble-click the downloaded ZIP file.\nMove the extracted IntroStatGPT folder to Documents.\n\nWork from the extracted folder. Keep its internal files and folders in their original locations.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#open-the-extracted-folder-in-codex",
+    "href": "introstatgpt/setup.html#open-the-extracted-folder-in-codex",
+    "title": "Install and set up IntroStatGPT",
+    "section": "5. Open the extracted folder in Codex",
+    "text": "5. Open the extracted folder in Codex\n\nOpen the ChatGPT desktop app.\nEnter Codex.\nFrom the menu bar, choose File &gt; Open Folder.\nOpen Documents and select the IntroStatGPT folder you extracted in the previous step.\nSelect Open.\n\nSelect the extracted IntroStatGPT folder itself, rather than a CSV file or one of its subfolders. Codex now treats that folder and everything inside it as one workspace.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#run-the-initial-setup",
+    "href": "introstatgpt/setup.html#run-the-initial-setup",
+    "title": "Install and set up IntroStatGPT",
+    "section": "6. Run the initial setup",
+    "text": "6. Run the initial setup\nAfter the folder opens, start a task for this workspace:\n\nIn the left sidebar, select New task (the + button).\nConfirm that the IntroStatGPT folder name appears as the task’s workspace.\nClick the message box at the bottom of the task and send:\n\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\nCodex will check R and install the required R packages. The first setup may take a few minutes. Approve package installation if Codex requests permission.\nSetup is complete when Codex reports:\n\nSetup check passed.\n\nYou are now ready to use IntroStatGPT.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/setup.html#setup-troubleshooting",
+    "href": "introstatgpt/setup.html#setup-troubleshooting",
+    "title": "Install and set up IntroStatGPT",
+    "section": "Setup troubleshooting",
+    "text": "Setup troubleshooting\n\nCodex cannot find R\nClose and reopen the ChatGPT desktop app after installing R. Then send:\n\nCheck whether R is installed and available to this workspace.\n\n\n\nAn R package is missing\nSend:\n\nRun the workspace setup and install or update any missing or incompatible required packages.\n\n\n\nSetup still fails\nSend:\n\nDiagnose the setup failure. Tell me exactly what I need to do, but do not begin an analysis.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Install and set up IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html",
+    "href": "introstatgpt/working.html",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "",
+    "text": "Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.\nThis page explains how to make clear requests and check the resulting analysis. For the analysis gallery, organizer, and Word-report workflow, see Use IntroStatGPT.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html#be-precise",
+    "href": "introstatgpt/working.html#be-precise",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "Be precise",
+    "text": "Be precise\nName the data, variables, operation, and output you want. Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask Codex to list the names and types first.\nUse this recipe:\n\nUsing [data or observations], use [variables] to [calculate, plot, or fit]. Return [the table, plot, model output, or saved result].\n\nFor example:\n\nUsing the housing data, keep observations with nonmissing PRICE and SQFT. Fit PRICE on SQFT and BATHS, treating ZIPCODE as categorical. Return the standardized regression table.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html#keep-each-task-focused",
+    "href": "introstatgpt/working.html#keep-each-task-focused",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "Keep each task focused",
+    "text": "Keep each task focused\nUse one task for one question or a closely related set of outputs. Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.\nStart a new task when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the IntroStatGPT workspace. In the new task, state your current goal and identify any existing output by its short label, such as P2 or T1.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html#check-before-you-build",
+    "href": "introstatgpt/working.html#check-before-you-build",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "Check before you build",
+    "text": "Check before you build\nCompare every output with your request before using it in the next step. Run one or two checks that could expose the mistake you are most worried about.\nAfter filtering or changing data, you can ask Codex to:\n\nShow the row count before and after the change.\nCount missing values in the variables used.\nShow the minimum and maximum of a new numeric variable.\nShow category counts after recoding or grouping.\n\nFor a plot or table, check:\n\nThe observations and variables used.\nThe labels, units, axes, and category order.\nImpossible values, unexpected categories, or empty groups.\nWhether counts or percentages add to the expected total.\n\nFor a model, you can ask Codex to:\n\nShow the exact formula it fit.\nReport how many observations it used and excluded.\nConfirm the reference group for a categorical variable.\nCreate a requested diagnostic plot.\n\nIf something looks wrong, name the mismatch and ask Codex to trace it. For example:\n\nI expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html#ask-for-the-right-kind-of-help",
+    "href": "introstatgpt/working.html#ask-for-the-right-kind-of-help",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "Ask for the right kind of help",
+    "text": "Ask for the right kind of help\nAsk Codex to inspect data, diagnose errors, trace an operation, or check its work. These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.\nThese prompts address common problems:\n\nIf you do not know the variable names, ask: “List the variable names and types in the housing data.”\nIf the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”\nIf an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”\nIf a request is ambiguous, ask: “Identify what is ambiguous in my request and ask me the questions needed to specify the statistical operation.”",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html#save-what-you-want-to-keep",
+    "href": "introstatgpt/working.html#save-what-you-want-to-keep",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "Save what you want to keep",
+    "text": "Save what you want to keep\nUse the analysis organizer to select the finished outputs you want in your report. Selecting an output preserves your report choice; it does not certify that the analysis is correct. Check the output first, then include it in the report and place it in the appropriate section. See Use IntroStatGPT for the organizer steps.\nAsk Codex for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask Codex to:\n\nState the data, filters, transformations, variables, and statistical operation used.\nRun the reproduction script in a clean R session.\nCompare the reproduced output with the saved output.\nReport errors, warnings, and differences without interpreting the result.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/working.html#before-you-finish",
+    "href": "introstatgpt/working.html#before-you-finish",
+    "title": "Working with IntroStatGPT and Codex",
+    "section": "Before you finish",
+    "text": "Before you finish\n\nDoes the output use the requested observations and variables?\nDo the labels, units, and model formula match the request?\nDid you run one useful check and resolve anything unexpected?\nDid you include the version you want and place it in the correct report section?",
+    "crumbs": [
+      "IntroStatGPT",
+      "Working with IntroStatGPT and Codex"
+    ]
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#what-are-we-trying-to-learn",
+    "href": "slides/00_introstatgpt_workflow.html#what-are-we-trying-to-learn",
+    "title": "Statistics with IntroStatGPT",
+    "section": "What are we trying to learn?",
+    "text": "What are we trying to learn?\n\n\nBy the end of this course, you should be able to:\n\nsummarize and visualize data;\nreason about risk and uncertainty;\nchoose and evaluate statistical methods;\ndraw appropriate conclusions; and\ncommunicate credible analysis.\n\n\n\n\n\n\n\n\nThe target\n\n\nStatistical judgment—not memorized software commands.\n\n\n\n\n\nAbout 40 seconds. Connect directly to the syllabus learning goals. The course uses serious statistical computing, but evaluates concepts rather than code."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#why-not-simply-upload-the-data-to-a-chatbot",
+    "href": "slides/00_introstatgpt_workflow.html#why-not-simply-upload-the-data-to-a-chatbot",
+    "title": "Statistics with IntroStatGPT",
+    "section": "Why not simply upload the data to a chatbot?",
+    "text": "Why not simply upload the data to a chatbot?\nGeneral chatbots can produce useful statistical output, but their answers are not inherently reproducible or constrained.\nIn an early pilot:\n\nthe uploaded data contained 6 observations per group;\na summary table reported 15 observations per group; and\nrecomputing the table directly from the data exposed the error.\n\n\nAbout 60 seconds. The table looked plausible. The problem was not obvious from its presentation; it became visible only when the values were recomputed."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#what-the-course-workflow-needs",
+    "href": "slides/00_introstatgpt_workflow.html#what-the-course-workflow-needs",
+    "title": "Statistics with IntroStatGPT",
+    "section": "What the course workflow needs",
+    "text": "What the course workflow needs\n\nA durable record of the current analysis\nReproducible plots, tables, and calculations\nA controlled path from exploratory work to report output\nGuardrails that keep the AI from choosing the analysis, interpreting results, or writing conclusions\n\n\nAbout 45 seconds. These requirements motivate the local workspace and the division of labor on the next slide."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#what-introstatgpt-provides",
+    "href": "slides/00_introstatgpt_workflow.html#what-introstatgpt-provides",
+    "title": "Statistics with IntroStatGPT",
+    "section": "What IntroStatGPT provides",
+    "text": "What IntroStatGPT provides\n\nCodex carries out requested analyses in R.\nOutputs are saved locally as identifiable artifacts.\nThe analysis page collects the current plots and tables.\nStudents choose which artifacts belong in the report.\nReport output is assembled from the selected, reproducible artifacts.\nInterpretation and report prose remain the student’s work.\n\n\nAbout 60 seconds. Describe the system as a workflow around statistical software, not as an authority on which analysis or conclusion is correct."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#a-division-of-labor",
+    "href": "slides/00_introstatgpt_workflow.html#a-division-of-labor",
+    "title": "Statistics with IntroStatGPT",
+    "section": "A division of labor",
+    "text": "A division of labor\n\n\nStudent\n\nFormulate the question\nSpecify or choose the analysis\nEvaluate the output\nInterpret the evidence\nWrite the conclusions\n\n\nIntroStatGPT + Codex\n\nPerform specified computations\nCreate and revise plots and tables\nPreserve the resulting artifacts\nAssemble selected outputs into a report skeleton\n\n\n\nAbout 60 seconds. Emphasize that the tool produces analytic inputs. It does not take ownership of the question, method, interpretation, or decision."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#the-working-loop",
+    "href": "slides/00_introstatgpt_workflow.html#the-working-loop",
+    "title": "Statistics with IntroStatGPT",
+    "section": "The working loop",
+    "text": "The working loop\n\n  Request\n  →\n  Check\n  →\n  Revise\n  →\n  Organize\n  →\n  Interpret\n\n\nA polished graph is not evidence that the request, data, or method was right.\n\n\nAbout 60 seconds. This is the workflow students will complete today. Pause on Check: confirm observations, variables, units, labels, and statistical method."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#questions-to-ask-about-every-result",
+    "href": "slides/00_introstatgpt_workflow.html#questions-to-ask-about-every-result",
+    "title": "Statistics with IntroStatGPT",
+    "section": "Questions to ask about every result",
+    "text": "Questions to ask about every result\n\nWas the right analysis requested?\nDoes the output answer the question?\nWhat does the evidence support?\nWhat belongs in the final report?\n\n\nAbout 45 seconds. The interface reduces the cost of producing and revising output; it does not answer these questions for the student."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#responsibility-does-not-transfer",
+    "href": "slides/00_introstatgpt_workflow.html#responsibility-does-not-transfer",
+    "title": "Statistics with IntroStatGPT",
+    "section": "Responsibility does not transfer",
+    "text": "Responsibility does not transfer\n\nYou are responsible for everything you submit.\nYou should be able to explain what each table, plot, and model does.\nDisclose substantive AI help when an assignment requires it.\nFollow the stated AI rules for each activity.\nAI is not permitted on knowledge checks or the final exam.\n\nKnown-good tables and figures remain available when the AI workflow is unavailable or when you want to check your work.\n\nAbout 60 seconds. Keep the tone practical: access to the tool does not replace understanding, and course assessment does not depend on the tool functioning."
+  },
+  {
+    "objectID": "slides/00_introstatgpt_workflow.html#today",
+    "href": "slides/00_introstatgpt_workflow.html#today",
+    "title": "Statistics with IntroStatGPT",
+    "section": "Today",
+    "text": "Today\nWe’ll get IntroStatGPT set up and ready to use.\nStart by opening the setup instructions.\n\nTransition directly to the installation and setup page."
   },
   {
     "objectID": "slides/02_location_and_spread.html#were-going-to-play-a-game",
