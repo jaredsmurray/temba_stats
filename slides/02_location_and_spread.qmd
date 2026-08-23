@@ -1,0 +1,220 @@
+---
+title: "Measuring Location and Spread"
+subtitle: "TEMBA Statistics 2026"
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+
+austin <- load_austin_subset()
+austin_full <- load_austin_full()
+
+austin_zip <- austin_full |>
+  filter(zipcode == 78752)
+
+p49 <- austin_full$latest_price[austin_full$zipcode == 78749]
+p41 <- austin_full$latest_price[austin_full$zipcode == 78741]
+```
+
+## We're going to play a game
+
+::: {.incremental}
+- You have to guess the sale price of a randomly selected house in one of two zipcodes.
+- You can pick the zipcode.
+:::
+
+## Pick your zipcode
+
+```{r}
+#| label: viz-zip-comparison
+#| fig-width: 9
+#| fig-height: 4
+zip_data <- austin_full |>
+  filter(zipcode %in% c(78749, 78741)) |>
+  mutate(zipcode = factor(zipcode))
+
+p_box <- ggplot(zip_data, aes(x = zipcode, y = latest_price)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.3) +
+  stat_summary(fun = mean, geom = "point", shape = 4, size = 3, color = "darkred") +
+  scale_y_continuous(labels = dollar_format()) +
+  labs(x = "ZIP code", y = "Sale price")
+
+p_hist <- ggplot(zip_data, aes(x = latest_price, fill = zipcode)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, color = "white", alpha = 0.6,
+                 position = "identity") +
+  geom_rug(aes(color = zipcode), alpha = 0.3, show.legend = FALSE) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+  labs(x = "Sale price", y = "Density", fill = "ZIP code")
+
+p_box + p_hist
+```
+
+**Which zip, and what's your guess?**
+
+## The mean
+
+::: {.incremental}
+- For the `r nrow(austin_zip)` sales in ZIP 78752, the mean price is `r dollar(round(mean(austin_zip$latest_price)))`: add up all `r nrow(austin_zip)` prices and divide by `r nrow(austin_zip)`.
+- In notation, $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$.
+:::
+
+## The median
+
+::: {.incremental}
+- The median price in 78752 is `r dollar(round(median(austin_zip$latest_price)))`: the middle value when the prices are sorted, with half the sales below and half above.
+- Unlike the mean, the median doesn't care how extreme the extremes are.
+:::
+
+## Mean vs. median
+
+```{r}
+#| label: viz-price-mean-median
+#| fig-width: 8.5
+#| fig-height: 4.2
+mean_p <- mean(austin_zip$latest_price)
+med_p  <- median(austin_zip$latest_price)
+peak_p <- max(density(austin_zip$latest_price)$y)
+
+ggplot(austin_zip, aes(x = latest_price)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.4) +
+  geom_vline(xintercept = med_p, linetype = "dashed", color = "grey30") +
+  geom_vline(xintercept = mean_p, color = "darkorange", linewidth = 0.9) +
+  annotate("label", x = med_p, y = peak_p * 0.95, label = "median",
+           hjust = 1.1, size = 4.5, fill = "white", alpha = 0.9,
+           label.size = 0.25, color = "grey30") +
+  annotate("label", x = mean_p, y = peak_p * 0.8, label = "mean",
+           hjust = -0.15, size = 4.5, fill = "white", alpha = 0.9,
+           label.size = 0.25, color = "darkorange") +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Sale price", y = "Density")
+```
+
+The mean sits above the median because a few high-priced homes drag the average up. Report both, and pay attention to the gap --- a large gap signals skewness.
+
+## A single number can hide structure
+
+```{r}
+#| label: viz-house-age-center
+#| fig-width: 8
+#| fig-height: 4
+ggplot(austin, aes(x = age)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.1) +
+  labs(x = "House age (years)", y = "Density")
+```
+
+The mean age of `r round(mean(austin$age), 1)` years falls between the two peaks, where relatively few homes actually sit. When a distribution has more than one peak, no single number speaks for the whole thing.
+
+# Measures of spread
+
+## Back to the game
+
+::: {.incremental}
+- Your best guess is the mean or the median.
+- Whichever you choose, prices in 78741 vary more around that center, so your prediction error will tend to be larger there.
+- Measures of spread quantify how *un*predictable a variable is.
+:::
+
+## Standard deviation
+
+The **standard deviation** measures the typical distance of an observation from the mean:
+
+$$
+s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
+$$
+
+::: {.incremental}
+- We square the deviations so positive and negative ones don't cancel, then take the square root to get back to the original units.
+- For 78749 the standard deviation is `r dollar(round(sd(p49)))`; for 78741 it is `r dollar(round(sd(p41)))`. Prices in 78741 sit almost twice as far from their center, on average.
+:::
+
+## Variance
+
+::: {.incremental}
+- The **variance** is the standard deviation squared, $s^2$.
+- Its units --- dollars-squared here --- are impossible to picture, so we report the standard deviation when we want a readable number.
+- Variance earns its keep as a building block inside other calculations.
+:::
+
+## The interquartile range
+
+::: {.incremental}
+- The **IQR** is the distance between the 75th and 25th percentiles, $\text{IQR} = Q3 - Q1$: the width of the middle half of the data.
+- It comes to `r dollar(round(IQR(p49)))` in 78749 and `r dollar(round(IQR(p41)))` in 78741.
+- Like the median, the IQR ignores how extreme the extremes are.
+:::
+
+# Linear transformations
+
+## Changing units
+
+A **linear transformation** adjusts a variable by multiplying by a constant, adding a constant, or both: $y = ax + b$.
+
+```{r}
+#| label: viz-linear-transform
+#| fig-width: 10
+#| fig-height: 4
+p1 <- ggplot(austin_zip, aes(x = latest_price)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Price ($)", y = "Count", title = "Dollars") +
+  theme_minimal(base_size = 12)
+
+p2 <- ggplot(austin_zip, aes(x = latest_price / 1000)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  labs(x = "Price (thousands of dollars)", y = "Count", title = "Thousands of dollars") +
+  theme_minimal(base_size = 12)
+
+p1 + p2
+```
+
+The shape is identical; only the axis labels change.
+
+## Shifting: mean-centering
+
+```{r}
+#| label: viz-linear-transform-2
+#| fig-width: 10
+#| fig-height: 4
+p3 <- ggplot(austin_zip, aes(x = latest_price - mean(latest_price))) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Price - mean ($)", y = "Count", title = "Mean-centered (dollars)") +
+  theme_minimal(base_size = 12)
+
+p4 <- ggplot(austin_zip, aes(x = (latest_price - mean(latest_price)) / 1000)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  labs(x = "Price - mean price (thousands of dollars)", y = "Count",
+       title = "Mean-centered (thousands)") +
+  theme_minimal(base_size = 12)
+
+p3 + p4
+```
+
+Subtracting the mean shifts the distribution to center on zero; the shape is unchanged.
+
+## What happens to the summaries?
+
+If $y_i = a x_i + b$ for every observation, then
+
+$$
+\bar{y} = a\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
+$$
+
+$$
+s_y = |a|\,s_x, \qquad s^2_y = a^2\,s^2_x.
+$$
+
+Multiplying by $a$ scales both the center and the spread; adding $b$ shifts the center and leaves the spread alone. This is worth memorizing --- it comes up every time you change units.

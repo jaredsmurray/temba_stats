@@ -1,4 +1,4 @@
 repo=/Users/jm75583/repos/intro-stats-decks
 sha=8881cb9aba6785b4d7b55cfb02d0186a22ce317e
-date=2026-08-22T21:38:55Z
-files=slides/01_basic_visualizations.qmd
+date=2026-08-23T02:11:37Z
+files=slides/01_basic_visualizations.qmd slides/02_location_and_spread.qmd slides/03_categorical_variables.qmd slides/04_probability.qmd

@@ -6,3 +6,6 @@ Lecture slide decks. Each opens as a self-contained slideshow (press `?` for
 keyboard shortcuts, `E` for print view).
 
 1. [Visualizing a Single Quantitative Variable](slides/01_basic_visualizations.qmd)
+2. [Measuring Location and Spread](slides/02_location_and_spread.qmd)
+3. [Categorical Variables](slides/03_categorical_variables.qmd)
+4. [Probability](slides/04_probability.qmd)
