@@ -14,6 +14,23 @@ sources:
     - data/ercot/ercotproject/Data/load_2.csv
     - data/ercot/ercotproject/Data/load_3.csv
     - data/returns/returns.csv
+  slides/02_location_and_spread.qmd:
+    datasets:
+    - data/austin_houses/austin_houses.csv
+    - data/returns/returns_prices.csv
+  slides/03_categorical_variables.qmd:
+    datasets:
+    - data/lending_club/data/df_all.csv
+    - data/shed/shed_2025.csv
+  slides/04_probability.qmd:
+    datasets:
+    - data/austin_houses/austin_houses_subset.csv
+    - data/ercot/ercotproject/Data/load_1.csv
+    - data/ercot/ercotproject/Data/load_2.csv
+    - data/ercot/ercotproject/Data/load_3.csv
+    - data/lending_club/data/df_subs.csv
+    - data/mincer/cps_asec_2023.csv
+    - data/returns/returns.csv
 names:
   austin_houses: Austin houses
   mincer: Earnings (CPS)

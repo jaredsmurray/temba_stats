@@ -16,3 +16,4 @@ files/*exam*
 /.quarto/
 **/*.quarto_ipynb
 ._htmlbook_xref.json
+slides/*.html

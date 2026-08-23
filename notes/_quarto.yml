@@ -47,6 +47,11 @@ extensions:
 book:
   title: "TEMBA Statistics — Course Notes"
   author: ""
+  sidebar:
+    tools:
+      - icon: house-door
+        text: Course site
+        href: ../index.html
   chapters:
     - index.qmd
     - part: "Data analysis and visualization for one variable"

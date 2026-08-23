@@ -15,8 +15,8 @@
 
 canvas:
   host: https://utexas.instructure.com
-  course_id: 000000                            # TODO: fill in -- from the course's Canvas URL
-  page: welcome-to-temba-statistics            # TODO: fill in -- the course Front Page's slug
+  course_id: 1458659
+  page: welcome-to-temba-statistics
 
 # One slug drives every generated name: the page's provenance marker, the API
 # user agent, and the site-clone default in tools/lib/preamble.sh.
@@ -34,12 +34,12 @@ notes_url: https://jaredsmurray.github.io/temba_stats/notes
 
 preamble: |
   Welcome to TEMBA Statistics! Canvas will be your source for course materials
-  and communication. Please communicate with us via Canvas message so we can
-  prioritize you in our inboxes.
+  and announcements. The fastest way to reach me is email:
+  [jared.murray@mccombs.utexas.edu](mailto:jared.murray@mccombs.utexas.edu).
 
   **Instructor:** Jared Murray
 
-  **Syllabus:** {{file:syllabus.pdf}}
+  **Syllabus:** [Syllabus (PDF)]({{site}}/files/syllabus.pdf)
 
   **Course notes:** [TEMBA Statistics — Course Notes]({{notes}})
 
@@ -61,9 +61,15 @@ defaults:
 
 lectures:
   - lecture: 1
-    date: TBD
-    topic: "Visualizing a single variable"
+    date: 2026-08-23
+    topic: "Introduction; setting up our tools"
     readings: |
-      Lecture notes: [Chapter 1]({{notes}}/singlevar_01_visualizing-distributions.html) and [Chapter 2]({{notes}}/singlevar_02_describing-distributions.html)
+      [Syllabus]({{site}}/files/syllabus.pdf)
+    materials: {}
+  - lecture: 2
+    date: 2026-08-24
+    topic: "Describing and visualizing a single variable"
+    readings: |
+      Lecture notes: [Chapter 1]({{notes}}/singlevar_01_visualizing-distributions.html), [Chapter 2]({{notes}}/singlevar_02_describing-distributions.html), [Chapter 3]({{notes}}/singlevar_03_location-and-spread.html), [Chapter 4]({{notes}}/singlevar_04_transformations.html), and [Chapter 5]({{notes}}/singlevar_05_categorical.html)
     materials:
-      slides: [01_basic_visualizations]
+      slides: [01_basic_visualizations, 02_location_and_spread, 03_categorical_variables]

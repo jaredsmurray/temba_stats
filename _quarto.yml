@@ -7,9 +7,7 @@ project:
     - "!data/**"
     - "!cards/**"   # data cards land at public/cards/ (fetch_data.sh), gitignored — never render
     - "!files/**"
-    # Decks 02-04 are imported but not yet reviewed — withheld from the site.
-    - "!slides/02_location_and_spread.qmd"
-    - "!slides/03_categorical_variables.qmd"
+    # Deck 04 is imported but not yet reviewed — withheld from the site.
     - "!slides/04_probability.qmd"
   resources:
     - "files/*.pdf"
@@ -35,10 +33,13 @@ website:
         text: Home
       - href: notes/index.html
         text: Notes
+        target: _blank
       - href: slides.qmd
         text: Slides
       - href: data.qmd
         text: Data
+      - href: introstatgpt.qmd
+        text: IntroStatGPT
 
 format:
   html:
