@@ -87,7 +87,7 @@ p3 + p4
 These changes again amount to relabeling the axis. After we subtract the mean and change the units, each value tells us how many thousands of dollars its sale price was above or below the average. The sign gives the direction.
 
 ::: {.callout-note}
-## Key idea: Mean, median, and standard deviation of $ax + b$
+## Mean, median, and standard deviation of $ax + b$
 
 If $y_i = a x_i + b$ for every observation, where $a$ and $b$ are constants, then
 

@@ -363,7 +363,7 @@ For the price model, the quartiles land at `r dollar(round(q25))` and `r dollar(
 Linear transformations of random variables act just like linear transformations applied to columns in our datasets:
 
 ::: {.callout-note}
-## Key idea: Mean, median, and standard deviation of $aX + b$
+## Mean, median, and standard deviation of $aX + b$
 
 If $X$ is a random variable with mean $E[X] = \mu$ and standard deviation $SD(X) = \sigma$, and $a$ and $b$ are known constants, then $Y = aX + b$ has
 
