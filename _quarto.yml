@@ -17,6 +17,11 @@ project:
     - "data/ercot/ercotproject/Data/load_2.csv"
     - "data/ercot/ercotproject/Data/load_3.csv"
     - "data/returns/returns.csv"
+    - "data/returns/returns_prices.csv"
+    - "data/mincer/cps_asec_2023.csv"
+    - "data/lending_club/data/df_all.csv"
+    - "data/lending_club/data/df_subs.csv"
+    - "data/shed/shed_2025.csv"
 
 website:
   title: "TEMBA Statistics"

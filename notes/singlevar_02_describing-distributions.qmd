@@ -1,0 +1,146 @@
+---
+title: "Describing Distributions of Quantitative Variables"
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+austin <- read_csv("data/austin_houses/austin_houses_subset.csv",
+                    show_col_types = FALSE)
+returns <- read_csv("data/returns/returns.csv",
+                    show_col_types = FALSE)
+mincer <- read_csv("data/mincer/cps_asec_2023.csv",
+                   show_col_types = FALSE)
+
+load1 <- read_csv("data/ercot/ercotproject/Data/load_1.csv",
+                  show_col_types = FALSE)
+load2 <- read_csv("data/ercot/ercotproject/Data/load_2.csv",
+                  show_col_types = FALSE)
+load3 <- read_csv("data/ercot/ercotproject/Data/load_3.csv",
+                  show_col_types = FALSE)
+ercot <- bind_rows(load1, load2, load3) |>
+  filter(LOCATION == "North Central (DFW)") |>
+  mutate(datetime = parse_date_time(DATEHOUR, orders = c("ymd HM", "ymd HMS")),
+         year = year(datetime),
+         date = as.Date(datetime)) |>
+  filter(year >= 2016, year <= 2020) |>
+  summarize(load = mean(LOAD, na.rm = TRUE), .by = date)
+
+rm(load1, load2, load3)
+```
+
+Once we have a picture of a distribution, we need vocabulary to describe what we see. In practice there are four features of the distribution of a quantitative variable which tell us most of what we want to know: **location** (where is the center of the distribution, or what is a "typical value"?), **spread** (how far do values tend to range from the center?), **skewness** (is the distribution symmetric or stretched to one side?), and **modality** (how many peaks are there?). Extreme values or **outliers** --- observations far from the bulk of the data --- also merit comment, as they can impact analysis choices later or indicate data quality problems. 
+
+We'll begin in this section by looking at skewness, modality, and outliers/extreme values. These are easy to see from the visualizations introduced in the last chapter, and they will help us decide how to faithfully measure location and spread in the next chapter.
+
+## Symmetric and skewed distributions {#sec-symmetric-skewed}
+
+::: {.Definition #defn-skewness}
+## Symmetric and skewed distributions
+
+A distribution is approximately **symmetric** when its left and right halves
+are rough mirror images of each other. It is **right-skewed** when most values
+cluster at the lower end and a long tail stretches to the right, and
+**left-skewed** when the long tail stretches to the left instead.
+:::
+
+The weekly returns on the S&P 500 from October 2023 to September 2025 are approximately symmetric:
+
+```{r}
+#| label: fig-returns-symmetric
+#| fig-cap: "Weekly returns on the S&P 500 (SPY), October 2023 to September 2025. The distribution is roughly symmetric around zero."
+max_abs <- max(abs(returns$market))
+ggplot(returns, aes(x = market)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = percent_format(),
+                     limits = c(-max_abs, max_abs)) +
+  labs(x = "Weekly return", y = "Density")
+```
+
+The distribution is centered at a small positive value with roughly equal spread in both directions. Many variables in business and economics, however, are right-skewed. The daily ERCOT demand data from the last chapter is one example.
+
+```{r}
+#| label: fig-ercot-skewed
+#| fig-cap: "Daily mean electricity demand in the DFW region of ERCOT, 2016--2020. The distribution is moderately right-skewed, with a shoulder near 15,000 MW and an upper tail that occasionally passes 20,000 MW."
+ggplot(ercot, aes(x = load)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 40, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  scale_x_continuous(labels = comma_format()) +
+  labs(x = "Load (MW)", y = "Density")
+```
+
+About 70% of the daily means fall between 9,000 and 15,000 MW, while summer heat pushes the upper tail toward --- and occasionally above --- 20,000 MW. The mean (`r format(round(mean(ercot$load)), big.mark = ",")` MW) is pulled to the right of the median (`r format(round(median(ercot$load)), big.mark = ",")` MW) by those high-demand days.
+
+Similarly, if we look at the distribution of wages or salaries in a developed economy we tend to see pronounced right skew. Most people earn a moderate wage, but a few earn very high salaries that stretch the right tail of the distribution. For example, here are the hourly wages (or their salaried equivalent) for a representative sample of full-time U.S. workers, from the 2023 Current Population Survey, which records earnings for the 2022 calendar year:
+
+```{r}
+#| label: fig-wage-skew
+#| fig-cap: "Hourly wages of full-time U.S. workers (2022 earnings, from the 2023 CPS ASEC). The distribution is strongly right-skewed. A small number of workers earning above $150/hr are trimmed here so the bulk of the distribution stays legible."
+mincer |>
+  filter(hrly_wage <= 150) |>
+  ggplot(aes(x = hrly_wage)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 50, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Hourly wage", y = "Density")
+```
+
+The mean wage in the displayed data (`r dollar(round(mean(mincer$hrly_wage[mincer$hrly_wage <= 150])))`) sits above the median (`r dollar(round(median(mincer$hrly_wage[mincer$hrly_wage <= 150])))`) --- right skew again. A relatively small number of very high earners pull the mean up; the median is insensitive to them.
+
+## Multimodal distributions
+
+::: {.Definition #defn-modality}
+## Modality
+
+The **modes** of a distribution are its peaks. A distribution with a single
+peak is **unimodal** and one with two distinct peaks is **bimodal**. Any
+distribution with more than one peak is **multimodal**.
+:::
+
+Here's a bimodal example from the Austin housing dataset: the distribution of house ages in years:
+
+```{r}
+#| label: fig-austin-bimodal
+#| fig-cap: "Distribution of house ages in the Austin housing dataset. Two peaks are visible."
+ggplot(austin, aes(x = age)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.1) +
+  labs(x = "House age (years)", y = "Density")
+```
+
+One peak corresponds to relatively new construction (ages near 0--10 years) and another to homes built several decades ago (when these areas of Austin initially saw rapid development). Bimodality often signals that the data come from two distinct subpopulations, and you should investigate what's behind the two peaks before summarizing with a single number.
+
+Determining whether a distribution has one or more modes can be tricky, especially with small datasets. A histogram or density plot can help, but the choice of bin width or smoothing parameter can change the number of apparent peaks even when the overall shape we see remains about the same. But even in large datasets it isn't easy: take another look at @fig-ercot-skewed. Do you see one mode or two?
+
+In practice, we often rely on a combination of visualizations, statistical methods, and domain knowledge to decide whether a distribution is unimodal, bimodal, or multimodal --- if that decision is really important for our analysis.
+
+
+## Outliers and extreme values
+
+Outliers are extreme values that are far from the bulk of the data. They may be valid observations of unusual outcomes, or they can be invalid data points corrupted by errors during data entry, reporting, or web-scraping (for example). The S&P 500 returns include one week when the index fell `r percent(abs(min(returns$market)), accuracy = 0.1)`, the most negative return in the data. The ERCOT distribution includes `r comma(sum(ercot$load > 20000))` days with average demand above 20,000 MW, all in the top `r percent(mean(ercot$load > 20000), accuracy = 0.1)` of daily means. These extreme observations appear valid. By contrast, while cleaning the Austin housing data I found one home listed at about \$13 million. That was a typo --- an extra zero, confirmed against the original listing.
+
+How do we define an outlier? In the section on box plots in the last chapter we've already seen one definition of an outlier, but there are many others. None is definitive. These are best understood as rules of thumb rather than hard-and-fast definitions (which was the intent of John Tukey, who proposed the box plot outlier "rule" in the first place). Whether an observation is an outlier or extreme/unexpected value hinges on what we *expected* to see, and will therefore always be context dependent. Borrowing [a phrase from Justice Potter Stewart](https://en.wikipedia.org/wiki/I_know_it_when_I_see_it), when we're looking at a variable or two at a time you'll usually know an outlier when you see it.
+
+## Data used in this section {.unnumbered}
+
+- [Austin House Listings](appendix_data.qmd#sec-data-housing-kaggle)
+- [CPS ASEC Earnings](appendix_data.qmd#sec-data-earnings-cps)
+- [Weekly Asset Returns (2023–2025)](appendix_data.qmd#sec-data-returns-2025)
+- [ERCOT Hourly Load and Temperature Panel](appendix_data.qmd#sec-data-ercot-shaffer)

@@ -52,6 +52,16 @@ book:
     - part: "Visualizing and summarizing a single variable"
       chapters:
         - singlevar_01_visualizing-distributions.qmd
+        - singlevar_02_describing-distributions.qmd
+        - singlevar_03_location-and-spread.qmd
+        - singlevar_04_transformations.qmd
+        - singlevar_05_categorical.qmd
+    - part: "Probability"
+      chapters:
+        - prob_01_intro.qmd
+        - prob_02_probability-basics.qmd
+        - prob_03_distribution-parameters.qmd
+        - prob_04_normal.qmd
   appendices:
     - appendix_data.qmd
 

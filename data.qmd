@@ -12,15 +12,29 @@ into R, e.g. `read_csv("https://jaredsmurray.github.io/temba_stats/data/returns/
 
 ## Austin house listings
 
-- [`austin_houses.csv`](data/austin_houses/austin_houses.csv) (9 MB)
-- [`austin_houses_subset.csv`](data/austin_houses/austin_houses_subset.csv) (0.7 MB)
+- [`austin_houses.csv`](data/austin_houses/austin_houses.csv) (8.7M)
+- [`austin_houses_subset.csv`](data/austin_houses/austin_houses_subset.csv) (704K)
 
 ## ERCOT hourly load
 
-- [`load_1.csv`](data/ercot/ercotproject/Data/load_1.csv) (23 MB)
-- [`load_2.csv`](data/ercot/ercotproject/Data/load_2.csv) (22 MB)
-- [`load_3.csv`](data/ercot/ercotproject/Data/load_3.csv) (17 MB)
+- [`load_1.csv`](data/ercot/ercotproject/Data/load_1.csv) ( 23M)
+- [`load_2.csv`](data/ercot/ercotproject/Data/load_2.csv) ( 22M)
+- [`load_3.csv`](data/ercot/ercotproject/Data/load_3.csv) ( 17M)
 
 ## S&P 500 weekly returns
 
-- [`returns.csv`](data/returns/returns.csv)
+- [`returns.csv`](data/returns/returns.csv) ( 60K)
+- [`returns_prices.csv`](data/returns/returns_prices.csv) (108K)
+
+## Earnings (CPS ASEC 2023)
+
+- [`cps_asec_2023.csv`](data/mincer/cps_asec_2023.csv) (2.0M)
+
+## Lending Club loans
+
+- [`df_all.csv`](data/lending_club/data/df_all.csv) ( 29M)
+- [`df_subs.csv`](data/lending_club/data/df_subs.csv) ( 19M)
+
+## Survey of Household Economics and Decisionmaking (SHED 2025)
+
+- [`shed_2025.csv`](data/shed/shed_2025.csv) (1.8M)

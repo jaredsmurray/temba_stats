@@ -1,0 +1,412 @@
+---
+title: "Measures of Location and Spread (and Other Parameters of Probability Distributions)"
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+library(patchwork)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+austin <- read_csv("data/austin_houses/austin_houses_subset.csv",
+                   show_col_types = FALSE)
+
+# Lognormal price model from the previous chapter (method of moments)
+m <- mean(austin$latest_price)
+v <- var(austin$latest_price)
+sdlog <- sqrt(log(1 + v / m^2))
+mulog <- log(m) - log(1 + v / m^2) / 2
+
+# CME FedWatch marginals, retrieved 2026-07-09 (midpoints for numeric work)
+cme_july <- tribble(
+  ~bucket,       ~midpoint, ~prob,
+  "3.50--3.75%", 3.625,     0.759,
+  "3.75--4.00%", 3.875,     0.241
+)
+cme_sept <- tribble(
+  ~bucket,       ~midpoint, ~prob,
+  "3.50--3.75%", 3.625,     0.366,
+  "3.75--4.00%", 3.875,     0.509,
+  "4.00--4.25%", 4.125,     0.125
+)
+
+# Small-business loan example: $10,000 principal, 60% recovery on default,
+# default probability 0.25 (rounded from the data)
+principal <- 10000
+p_default <- 0.25
+payoff_12 <- c(11200, 6000)   # 12% interest
+payoff_16 <- c(11600, 6000)   # 16% interest
+probs     <- c(1 - p_default, p_default)
+
+ev_pay12 <- sum(probs * payoff_12)
+ev_pay16 <- sum(probs * payoff_16)
+sd_pay16 <- sqrt(sum(probs * (payoff_16 - ev_pay16)^2))
+
+# Risk-comparison loans (profit distributions)
+profit_A <- c(1400, -4000)                   # 14% interest, p(default) = .20
+probs_A  <- c(0.80, 0.20)
+ev_A <- sum(probs_A * profit_A)
+sd_A <- sqrt(sum(probs_A * (profit_A - ev_A)^2))
+
+profit_B <- c(800, -4000)                    # 8% interest, p(default) = .10
+probs_B  <- c(0.90, 0.10)
+ev_B <- sum(probs_B * profit_B)
+sd_B <- sqrt(sum(probs_B * (profit_B - ev_B)^2))
+
+stopifnot(
+  isTRUE(all.equal(ev_A, ev_B)),
+  isTRUE(all.equal(sd_A, 2160)),
+  isTRUE(all.equal(sd_B, 1440))
+)
+```
+
+The introduction to this part defined a **parameter** as a feature of a probability distribution. The mean, median, standard deviation, and quantiles we computed on columns of data all have exact counterparts computed on probability distributions. The formulas look almost the same. The only real change is what gets averaged: instead of summing over observations we have, we sum over outcomes that *could* happen, each weighted by its probability.
+
+## The mean of a random variable {#sec-rv-mean}
+
+:::: {.Definition #defn-expected-value}
+## Mean (expected value) of a random variable
+
+The **mean** of a random variable, also called its **expected value**, is a
+weighted average of its possible outcomes, with each outcome weighted by its
+probability. For a discrete random variable $X$ with possible outcomes
+$x_1, x_2, \dots, x_k$,
+
+$$
+E[X] = \Pr(X = x_1)\,x_1 + \dots + \Pr(X = x_k)\,x_k
+     = \sum_{i=1}^{k} \Pr(X = x_i)\,x_i.
+$$
+
+We often write $\mu$ for it: $E[X] = \mu$. The expected value is the long-run
+average outcome when the random process repeats many times.
+::::
+
+Compare this to the **sample mean** we computed in @sec-measures-center, which adds up the observed values and gives each one weight $1/n$. We can think of that as an expected value too, with respect to a probability distribution that puts probability $1/n$ on each observed value. When the data contain ties --- as for a binary variable like our default indicator --- we can collapse the sample mean to a weighted average of the distinct observed values, which looks even more like the formula above.
+
+As a simple first example consider the outcome of a single fair coin toss. Let $H = 1$ if the coin lands heads and $H = 0$ otherwise, so $E[H] = 0.5 \times 1 + 0.5 \times 0 = 0.5$. At first blush this looks odd --- the random variable only takes the values zero or one, so what does it mean to *expect* a value we can't see? Well, imagine flipping that coin many times over, say 1,000 times. The *average* of your thousand 0s and 1s will land very close to 0.5. Flip the coin for long enough and the average outcome will get arbitrarily close to 0.5.
+
+A slightly less abstract example: The default indicator $D$ for a new small-business loan has $E[D] = 0.75 \times 0 + 0.25 \times 1 = 0.25$ --- the expected value of *any* 0/1 random variable is just the probability of a 1, the model version of the proportion-is-a-mean fact from @sec-proportion-mean. In the long run, we expect about 25% of small-business loans to fail under this model.
+
+A similar calculation gives the expected payoff $E[X]$ on the \$10,000 loan at 12% interest:
+
+```{r}
+#| label: tbl-payoff-ev
+#| tbl-cap: "Computing the expected payoff of a \\$10,000 small-business loan at 12% interest. Each row multiplies an outcome by its probability; the expected value is the sum."
+#| echo: false
+tibble(
+  Outcome = c("Repaid: $11,200", "Default: $6,000", "**Expected value**"),
+  Probability = c("0.75", "0.25", ""),
+  `Probability × outcome` = c(dollar(0.75 * 11200), dollar(0.25 * 6000),
+                              dollar(sum(probs * payoff_12)))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+The lender expects to collect `r dollar(ev_pay12)` per loan, in the long-run-average sense: if we could fund many independent loans with this profile, the average payoff per loan will settle near `r dollar(ev_pay12)`. Whether that is good news depends on what the loan cost. Subtracting the \$10,000 principal turns payoffs into *profits* --- a gain of \$1,200 if repaid, a loss of \$4,000 if not --- and the expected profit is the expected payoff minus the principal: `r dollar(ev_pay12)` $-$ \$10,000 = `r dollar(ev_pay12 - principal)`. At 12% interest, this loan *loses* \$100 on average. A lender who funds 100 independent loans like it should expect to end up about \$10,000 in the hole.
+
+At 16% interest instead, the payoff when repaid becomes \$11,600, the expected payoff rises to `r dollar(ev_pay16)`, and the expected profit is now a positive `r dollar(ev_pay16 - principal)` per loan. How far an actual portfolio might stray from that expectation is a question we'll answer precisely when we combine random variables later in the course. It would be a bad idea in the long run to write loans where we expect to lose money.
+
+For one more example, let's revisit the FedWatch target-range probabilities from @sec-what-is-probability and @sec-prob-distributions. The probability distributions over target ranges after the July and September meetings are:
+
+```{r}
+#| label: tbl-cme-params
+#| tbl-cap: "Market-implied distributions for the FOMC target range (CME FedWatch, July 9, 2026), with each range's midpoint and its probability."
+#| tbl-subcap:
+#|   - "July 29 meeting"
+#|   - "September 16 meeting"
+#| layout-ncol: 2
+#| echo: false
+cme_july |>
+  mutate(midpoint = paste0(number(midpoint, accuracy = 0.001), "%"),
+         prob = number(prob, accuracy = 0.001)) |>
+  rename(`Target range` = bucket, Midpoint = midpoint, Probability = prob) |>
+  knitr::kable(align = c("l", "r", "r"))
+
+cme_sept |>
+  mutate(midpoint = paste0(number(midpoint, accuracy = 0.001), "%"),
+         prob = number(prob, accuracy = 0.001)) |>
+  rename(`Target range` = bucket, Midpoint = midpoint, Probability = prob) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+Weighting midpoints by probabilities gives an implied *expected* target-range midpoint of `r number(sum(cme_july$midpoint * cme_july$prob), accuracy = 0.001)`% after the July meeting and `r number(sum(cme_sept$midpoint * cme_sept$prob), accuracy = 0.001)`% after September.
+
+::: {.callout-warning}
+## Common mistake: An expected value need not be a possible outcome
+
+The mean of a random variable is a probability-weighted average, and averages
+land between outcomes as often as on them. As with the coin toss above ---
+$E[H] = 0.5$ never occurs --- the market-implied expected target-range midpoint
+of `r number(sum(cme_july$midpoint * cme_july$prob), accuracy = 0.001)`% is not
+the midpoint of any range the Fed can set: the target range moves in
+quarter-point steps, and
+`r number(sum(cme_july$midpoint * cme_july$prob), accuracy = 0.001)`% falls
+between two of the midpoints.
+:::
+
+The expected increases over the current midpoint of 3.625% are `r number(sum(cme_july$midpoint * cme_july$prob) - 3.625, accuracy = 0.001)` and `r number(sum(cme_sept$midpoint * cme_sept$prob) - 3.625, accuracy = 0.001)` percentage points --- about `r round(100 * (sum(cme_july$midpoint * cme_july$prob) - 3.625))` and `r round(100 * (sum(cme_sept$midpoint * cme_sept$prob) - 3.625))` basis points, in the units rate-watchers use (one basis point is a hundredth of a percentage point).
+
+## The median of a random variable {#sec-rv-median}
+
+The **median** of a distribution is its 0.5 quantile: the smallest value where the cumulative probability reaches or exceeds 0.50. For our house price model, the median is `r dollar(round(exp(mulog)))`:
+
+```{r}
+#| label: fig-price-median
+#| fig-cap: "The median of the Austin price model. Left: the density with exactly half its area shaded, up to the median. Right: the CDF crossing cumulative probability 0.50 at the same price."
+#| fig-width: 9
+#| fig-height: 4
+med <- exp(mulog)
+dens_df <- tibble(x = seq(1e4, 2e6, length.out = 800),
+                  y = dlnorm(x, meanlog = mulog, sdlog = sdlog))
+cdf_df <- tibble(x = dens_df$x, cdf = plnorm(x, mulog, sdlog))
+
+p_dens <- ggplot(dens_df, aes(x = x, y = y)) +
+  geom_area(data = filter(dens_df, x <= med),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("label", x = 1.05e6, y = max(dens_df$y) * 0.6,
+           label = "area = 0.50",
+           size = 3.6, fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  labs(x = "Sale price", y = "Density") +
+  theme_minimal(base_size = 10)
+
+p_cdf <- ggplot(cdf_df, aes(x = x, y = cdf)) +
+  geom_segment(aes(x = 0, xend = med, y = 0.5, yend = 0.5),
+               linetype = "dashed", color = "grey50") +
+  geom_segment(aes(x = med, xend = med, y = 0, yend = 0.5),
+               linetype = "dashed", color = "grey50") +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("point", x = med, y = 0.5, color = "darkorange", size = 3) +
+  annotate("label", x = med, y = 0.5,
+           label = paste0("median = ", dollar(round(med))),
+           hjust = -0.08, vjust = 1, size = 3.6,
+           fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Sale price", y = "Cumulative probability") +
+  theme_minimal(base_size = 10)
+
+p_dens | p_cdf
+```
+
+Just as we discussed in @sec-measures-center, the median can be a more robust measure of center than the mean for a skewed probability distribution; in the model above, the mean price is `r dollar(round(m))`, which is `r dollar(round(m - exp(mulog)))` *above* the median. The mean is pulled up by the long right tail of the distribution, just as it was in the observed data.
+
+## Variance and standard deviation {#sec-rv-variance}
+
+Like the sample variance computed with observed data, the variance of a random variable measures the average *squared* deviation from the mean. As with the mean, the average is weighted by each outcome's probability.
+
+::: {.Definition #defn-rv-variance}
+## Variance and standard deviation of a random variable
+
+The **variance** of a random variable $X$ with mean $\mu$ is the
+probability-weighted average of squared deviations from the mean. For a
+discrete random variable with possible outcomes $x_1, \dots, x_k$,
+
+$$
+\text{Var}(X) = \sum_{i=1}^{k} \Pr(X = x_i)\,(x_i - \mu)^2.
+$$
+
+We write $\sigma^2 = \text{Var}(X)$. The **standard deviation** is its square
+root, $SD(X) = \sigma = \sqrt{\text{Var}(X)}$. Just like its sample counterpart, the standard deviation is
+in the same units as $X$ and can be interpreted as a typical distance from the mean.
+:::
+
+In words: the variance is the expected squared distance between the random variable and its mean --- how wrong, on the squared-error scale, we expect to be if we predict $X$ by $\mu$. For the 16% loan, the payoff sits \$1,400 above its mean of `r dollar(ev_pay16)` when the loan is repaid and \$4,200 below it on default, so
+
+$$
+\text{Var}(X) = 0.75 \times (1{,}400)^2 + 0.25 \times (-4{,}200)^2 = `r gsub(",", "{,}", comma(sum(probs * (payoff_16 - ev_pay16)^2)), fixed = TRUE)`,
+$$
+
+and taking the square root brings us back to dollars: $SD(X)$ = `r dollar(round(sd_pay16))`. The standard deviation combines the two possible deviations --- `r dollar(abs(payoff_16[1] - ev_pay16))` when the loan is repaid and `r dollar(abs(payoff_16[2] - ev_pay16))` when it defaults --- into one probability-weighted measure of spread. The interpretation is the one we built for data in @sec-measures-spread: a bigger standard deviation means a less predictable outcome.
+
+::: {.Notation #notation-parameters-and-statistics}
+## Random variables, parameters, and statistics
+
+- Capital letters name random variables ($X$, $Y$, $D$).
+- Lowercase letters name particular values they might take ($x$, $y$).
+- Greek letters name parameters of a true probability or population distribution: $\mu$ for its mean, $\sigma^2$ for
+its variance, $\sigma$ for its standard deviation.
+- Lowercase Latin letters denote quantities computed from a single observed sample: $\bar{x}$ for a sample mean, $s^2$ and $s$ for a sample variance and standard deviation. They are lowercase because they are already-observed numbers, not random.
+- Uppercase Latin letters like $\bar X$ denote a quantity computed on a *random* sample --- in this case, the mean of that random sample. They're random variables because they're uncertain due to the random sampling. We'll work with $\bar X$ when we average random variables later in the course.
+
+When you see a Greek letter, it refers to something unknown we're trying to estimate. When you see a Latin letter, we have computed it (or could compute it) from data. Lowercase Latin letters ($\bar{x}$, $s$) are numbers we computed from our observed sample; uppercase Latin letters like $\bar{X}$ are random variables, because the samples they depend on are random.
+:::
+
+### Variance/Standard deviation measure unpredictability (risk) {#sec-risk}
+
+As in @sec-measures-spread, the spread of a probability distribution represents unpredictability or risk. The standard deviation is high when there is substantial probability placed on outcomes that are far from the expected value (the mean). Here are two hypothetical \$10,000 loans with the same expected profit but different risk profiles. Both assume that the lender recovers \$6,000 if the borrower defaults:
+
+```{r}
+#| label: tbl-loan-risk
+#| tbl-cap: "Two loans with the same expected profit and different risk. Loan A charges a higher rate to a riskier borrower; Loan B charges a lower rate to a safer one."
+#| echo: false
+tibble(
+  ` ` = c("Profit if repaid", "Profit if default", "Default probability",
+          "Expected profit", "Standard deviation"),
+  `Loan A (riskier borrower, 14%)` = c(dollar(profit_A[1]), dollar(profit_A[2]),
+                                       number(probs_A[2], accuracy = 0.01), dollar(ev_A),
+                                       dollar(sd_A)),
+  `Loan B (safer borrower, 8%)` = c(dollar(profit_B[1]), dollar(profit_B[2]),
+                                   number(probs_B[2], accuracy = 0.01), dollar(ev_B),
+                                   dollar(sd_B))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+```{r}
+#| label: fig-loan-risk
+#| fig-cap: "The two loans' profit distributions on a common scale, with expected profits marked by dashed lines."
+#| fig-width: 8
+#| fig-height: 3.6
+loan_pmfs <- bind_rows(
+  tibble(loan = "Loan A (riskier borrower, 14%)", profit = profit_A, prob = probs_A),
+  tibble(loan = "Loan B (safer borrower, 8%)", profit = profit_B, prob = probs_B)
+)
+ev_lines <- tibble(loan = unique(loan_pmfs$loan), ev = c(ev_A, ev_B))
+
+ggplot(loan_pmfs, aes(x = profit, y = prob)) +
+  geom_col(fill = "steelblue", width = 220) +
+  geom_vline(data = ev_lines, aes(xintercept = ev),
+             linetype = "dashed", color = "grey40") +
+  facet_wrap(vars(loan)) +
+  scale_x_continuous(labels = dollar_format(),
+                     breaks = c(-4000, -2000, 0, 2000)) +
+  scale_y_continuous(limits = c(0, 1),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(x = "Profit", y = "Probability") +
+  theme(panel.spacing = unit(2, "lines"))
+```
+
+::: {.callout-tip}
+## Interpretation: standard deviation as unpredictability (risk)
+
+Loan A and Loan B have the same expected profit of `r dollar(ev_A)`, so
+expected value alone cannot choose between them. Their standard deviations can:
+`r dollar(sd_A)` for Loan A against `r dollar(sd_B)` for Loan B. Loan A places
+more probability on outcomes far from that shared average in both directions,
+which is what a lender means by calling it the riskier loan. Writing many loans
+like either one is profitable in the long run, provided defaults are close to
+independent --- but a lender choosing between them gets one draw. At the same
+expected profit, a risk-averse lender takes Loan B.
+:::
+
+Both loans' long-run profitability rests on defaults being at least close to independent: one borrower's failure tells us nothing about the others. We'll define independence carefully later in the course.
+
+The same comparison drives how investors think about other investments. Two stocks can have return distributions with the same expected return but very different standard deviations; @fig-stock-risk shows such a pair.
+
+```{r}
+#| label: fig-stock-risk
+#| fig-cap: "Return distributions for two hypothetical stocks with the same expected return."
+#| fig-width: 7
+#| fig-height: 4
+stock_grid <- tibble(x = seq(-0.30, 0.30, length.out = 400)) |>
+  mutate(`Steady stock`   = dnorm(x, mean = 0.05, sd = 0.04),
+         `Volatile stock` = dnorm(x, mean = 0.05, sd = 0.12)) |>
+  pivot_longer(-x, names_to = "stock", values_to = "density")
+
+ggplot(stock_grid, aes(x = x, y = density, fill = stock, color = stock)) +
+  geom_area(alpha = 0.25, position = "identity") +
+  geom_vline(xintercept = 0.05, linetype = "dashed", color = "grey40") +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  scale_fill_brewer(palette = "Set2") +
+  scale_color_brewer(palette = "Set2") +
+  labs(x = "Annual return", y = "Density", fill = NULL, color = NULL)
+```
+
+You might be happy to hold the more volatile stock in your 401k if you're young, but the less time you have left to let your portfolio grow, the less attractive this option becomes.
+
+## Quantiles and the IQR {#sec-rv-quantiles}
+
+Percentiles and quantiles carry over from data to distributions the same way. The $p$-th quantile of a distribution is the smallest value where the cumulative probability reaches or exceeds $p$. For a continuous distribution, we can read it off the CDF by finding where the curve crosses height $p$. The median is the 0.5 quantile, and the **interquartile range** is the distance between the 0.25 and 0.75 quantiles, a spread measure in the units of the variable that ignores the tails entirely.
+
+```{r}
+#| label: fig-price-quantiles
+#| fig-cap: "Reading quantiles off the CDF of the Austin price model. Horizontal lines at cumulative probabilities 0.25, 0.50, and 0.75 cross the curve above the model's quartiles and median; the distance between the two outer drop-lines is the IQR."
+#| fig-width: 7
+#| fig-height: 4.5
+q25 <- qlnorm(0.25, mulog, sdlog)
+q50 <- qlnorm(0.50, mulog, sdlog)
+q75 <- qlnorm(0.75, mulog, sdlog)
+
+cdf_df <- tibble(x = seq(1e4, 2e6, length.out = 800),
+                 cdf = plnorm(x, mulog, sdlog))
+qs <- tibble(p = c(0.25, 0.50, 0.75), q = c(q25, q50, q75))
+
+ggplot(cdf_df, aes(x = x, y = cdf)) +
+  geom_segment(data = qs, aes(x = 0, xend = q, y = p, yend = p),
+               linetype = "dashed", color = "grey50") +
+  geom_segment(data = qs, aes(x = q, xend = q, y = 0, yend = p),
+               linetype = "dashed", color = "grey50") +
+  geom_line(color = "steelblue", linewidth = 1) +
+  geom_point(data = qs, aes(x = q, y = p), color = "darkorange", size = 2.5) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6), expand = expansion(mult = c(0, 0.02))) +
+  scale_y_continuous(limits = c(0, 1), expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Sale price", y = "Cumulative probability")
+```
+
+For the price model, the quartiles land at `r dollar(round(q25))` and `r dollar(round(q75))`, so the IQR is `r dollar(round(q75 - q25))`: under this model, the middle half of future sales falls in a band about `r dollar(round(q75 - q25))` wide. Quantiles also answer tail questions directly --- a seller wondering "what price will I beat with probability 0.75?" wants the 0.25 quantile, not the mean.
+
+## Shifting and scaling {#sec-shift-scale}
+
+Linear transformations of random variables act just like linear transformations applied to columns in our datasets:
+
+::: {.callout-note}
+## Key idea: Mean and standard deviation of $aX + b$
+
+If $X$ is a random variable with mean $E[X] = \mu$ and standard deviation $SD(X) = \sigma$, and $a$ and $b$ are known constants, then $Y = aX + b$ has
+
+$$
+E[Y] = a\,\mu + b, \qquad SD(Y) = |a|\,\sigma.
+$$
+:::
+
+In words: adding a constant shifts the center and leaves the spread alone, while multiplying by a constant scales both the center and the spread (and the spread doesn't care about the sign). These are exactly the same rules we encountered for the sample mean and variance/SD in @sec-linear-transformations.
+
+The profit on our 16% loan is $X - 10{,}000$, so its mean is `r dollar(ev_pay16)` $-$ \$10,000 = `r dollar(ev_pay16 - principal)` and its standard deviation is exactly the payoff's `r dollar(sd_pay16, accuracy = 0.01)` --- shifting can't make an uncertain payoff any more or less predictable. Scaling Loan B's \$10,000 principal up to \$100,000 sets $a = 10$: expected profit rises to `r dollar(10 * ev_B)`, and the standard deviation rises right along with it to `r dollar(10 * sd_B)`.
+
+We **standardize** a random variable by subtracting the mean and dividing by the standard deviation, producing a new random variable with mean 0 and standard deviation 1:
+
+$$
+Z = \frac{X - \mu}{\sigma}.
+$$
+
+The new random variable $Z$ measures how many standard deviations $X$ sits from its own mean. A realized value of $Z$ is a **z-score** and just like in @sec-zscores it measures the size of an observed difference *relative to* a typical difference, as measured by standard deviation.
+
+## Continuous random variables
+
+The expected value, variance, and standard deviation are all interpreted the same way for a continuous random variable, but the formulas change from sums to integrals:
+
+::: {.TechnicalDetail #technical-continuous-expectation}
+## Mean and variance as integrals
+
+If a continuous random variable $X$ has probability density function $f(x)$ then
+
+$$
+E[X] = \int x \, f(x) \, dx, \qquad
+\text{Var}(X) = \int (x - \mu)^2 \, f(x) \, dx,
+$$
+
+and $SD(X) = \sqrt{\text{Var}(X)}$ as always. The integrals play the role the
+sums played for discrete random variables: they average over every possible
+outcome, weighting by the density instead of by individual probabilities. The
+mean and variance of the Austin price model come from integrals of exactly this
+kind, and software evaluates them.
+:::
+
+The mean is still the long-run average, and the standard deviation still measures how far outcomes typically stray from it. The Austin price model's standard deviation is the square root of its variance, while its median and quartiles come from the CDF.
+
+## Data used in this section {.unnumbered}
+
+- [Austin House Listings](appendix_data.qmd#sec-data-housing-kaggle)

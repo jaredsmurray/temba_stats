@@ -1,0 +1,358 @@
+---
+title: "Transforming Quantitative Variables"
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+library(patchwork)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+austin_full <- read_csv("data/austin_houses/austin_houses.csv",
+                        show_col_types = FALSE)
+mincer <- read_csv("data/mincer/cps_asec_2023.csv",
+                   show_col_types = FALSE)
+returns_prices <- read_csv("data/returns/returns_prices.csv",
+                           show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+
+austin_zip <- austin_full |>
+  filter(zipcode == 78752)
+```
+
+Raw data do not always arrive in the form we want for an analysis or visualization. A **transformation** uses one or more existing values to produce a new variable with different properties. We will focus for now on three common transformations.
+
+## Linear transformations {#sec-linear-transformations}
+
+:::: {.Definition #defn-linear-transformation}
+## Linear transformation
+
+A **linear transformation** multiplies a variable by a positive constant, adds
+a constant, or does both: $y = ax + b$, where $a>0$. Every value gets the same
+rescaling and the same shift. We usually make one to change the units, the
+reference point, or both.
+::::
+
+Suppose you divide every Austin sale price by 1,000 so that you can report prices in thousands of dollars rather than dollars. The distribution keeps exactly the same shape. You have only relabeled its horizontal axis.
+
+```{r}
+#| label: fig-linear-transform
+#| fig-cap: "Sale prices in dollars (left) and thousands of dollars (right). The distribution has the same shape; only the axis labels change."
+#| fig-width: 10
+#| fig-height: 4
+p1 <- ggplot(austin_zip, aes(x = latest_price)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Price ($)", y = "Count", title = "Dollars")
+
+p2 <- ggplot(austin_zip, aes(x = latest_price / 1000)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+#  scale_x_continuous(labels = dollar_format(suffix = "K", prefix = "$")) +
+  labs(x = "Price (thousands of dollars)", y = "Count", title = "Thousands of dollars")
+
+p1 + p2
+```
+
+We can also shift each price by subtracting a reference value such as the mean or median.
+
+```{r}
+#| label: fig-linear-transform-2
+#| fig-cap: "Mean-centered sale prices in dollars (left) and thousands of dollars (right)."
+#| fig-width: 10
+#| fig-height: 4
+p3 <- ggplot(austin_zip, aes(x = latest_price - mean(latest_price))) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Centered price ($)", y = "Count", title = "Dollars")
+
+p4 <- ggplot(austin_zip, aes(x = (latest_price - mean(latest_price)) / 1000)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  labs(x = "Centered price ($000s)", y = "Count", title = "Thousands")
+
+p3 + p4
+```
+
+These changes again amount to relabeling the axis. After we subtract the mean and change the units, each value tells us how many thousands of dollars its sale price was above or below the average. The sign gives the direction.
+
+::: {.callout-note}
+## Key idea: Summary statistics after a linear transformation
+
+If $y_i = a x_i + b$ for every observation, with $a>0$, then
+
+$$
+\bar{y} = a\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
+$$
+
+$$
+s_y = a\,s_x, \qquad s^2_y = a^2\,s^2_x.
+$$
+
+Multiplying by $a$ rescales both the center and the spread. Adding $b$ shifts the center but leaves the spread unchanged.
+:::
+
+## z-scores and standardization {#sec-zscores}
+
+:::: {.Definition #defn-z-score}
+## z-score and standardization
+
+A **z-score** measures how many standard deviations a value lies from the mean.
+A home that sold one standard deviation above the mean price has a z-score of
+1, and a home that sold one standard deviation below has a z-score of $-1$. It is computed as
+
+$$
+z = \frac{x - \bar{x}}{s}.
+$$
+
+Taking the
+z-score of every observation produces a **standardized** variable, which has a
+mean of 0 and a standard deviation of 1. Standardization is a linear
+transformation, so it leaves the shape of the distribution unchanged.
+
+::::
+
+```{r}
+#| label: fig-zscore-transform
+#| fig-cap: "Austin 78752 sale prices before and after standardization. The distribution has the same shape; the horizontal axis now measures standard deviations from the mean."
+#| fig-width: 10
+#| fig-height: 4
+austin_zip <- austin_zip |>
+  mutate(price_z = (latest_price - mean(latest_price)) / sd(latest_price))
+
+p1 <- ggplot(austin_zip, aes(x = latest_price)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Price ($)", y = "Count", title = "Original scale")
+
+p2 <- ggplot(austin_zip, aes(x = price_z)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  geom_rug(alpha = 0.4) +
+  labs(x = "z-score", y = "Count", title = "z-scored")
+
+p1 + p2
+```
+
+A z-score compares an observed difference, $x_i - \bar x$, with the size of a *typical* difference, the standard deviation $s$. It measures the difference relative to the variable's spread. A \$50,000 difference is five standard deviations when $s=\$10,000$, but only half a standard deviation when $s=\$100,000$.
+
+As an example, consider home sale prices in ZIP codes 78749 and 78741. @fig-zip-spread-recap shows the distributions of prices in the two ZIP codes.
+
+```{r}
+#| label: fig-zip-spread-recap
+#| fig-cap: "Density-scaled histograms of sale prices in ZIP codes 78749 and 78741. Prices vary more in 78741 than in 78749."
+#| fig-width: 9
+#| fig-height: 4
+zip_data <- austin_full |>
+  filter(zipcode %in% c(78749, 78741)) |>
+  mutate(zipcode = factor(zipcode))
+
+ggplot(zip_data, aes(x = latest_price, fill = zipcode)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, color = "white", alpha = 0.6,
+                 position = "identity") +
+  geom_rug(aes(color = zipcode), alpha = 0.3, show.legend = FALSE) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Sale price", y = "Density", fill = "ZIP code")
+```
+
+Suppose one home in each ZIP code sold for \$600,000. Which sale lies farther above its local mean once we account for the different spreads? The mean sale price is `r dollar(round(mean(austin_full$latest_price[austin_full$zipcode == "78749"])))` in 78749 and `r dollar(round(mean(austin_full$latest_price[austin_full$zipcode == "78741"])))` in 78741. The lower mean in 78741 gives its \$600,000 sale the larger raw difference. But prices also vary more in 78741. We can account for both facts by comparing the two z-scores.
+
+For 78749, the z-score of the \$600,000 sale is
+
+$$
+z = \frac{600,000 - `r comma(round(mean(austin_full$latest_price[austin_full$zipcode == "78749"])))`}{`r comma(round(sd(austin_full$latest_price[austin_full$zipcode == "78749"])))`} \approx `r round((600000 - mean(austin_full$latest_price[austin_full$zipcode == "78749"])) / sd(austin_full$latest_price[austin_full$zipcode == "78749"]), 2)`
+$$
+
+This value measures how many standard deviations \$600,000 lies above the mean price in 78749. For 78741, we get
+
+$$
+z = \frac{600,000 - `r comma(round(mean(austin_full$latest_price[austin_full$zipcode == "78741"])))`}{`r comma(round(sd(austin_full$latest_price[austin_full$zipcode == "78741"])))`}\approx `r round((600000 - mean(austin_full$latest_price[austin_full$zipcode == "78741"])) / sd(austin_full$latest_price[austin_full$zipcode == "78741"]), 2)`
+$$
+
+On the standardized scale, then, \$600,000 lies farther above the mean in 78749.
+
+The histograms support the same comparison. The \$600,000 mark lies deeper in the right tail for 78749 than for 78741.
+
+## Percent changes and returns {#sec-returns}
+
+We often care more about a change relative to its baseline than about the raw change itself. A return on investment, for example, is the percentage change in value over a particular period. A \$10,000 gain on a \$100,000 investment is a 10% return, while the same gain on a \$1,000,000 investment is only a 1% return.
+
+We compute the relative change as
+
+$$
+r = \frac{\text{New value} - \text{Old value}}{\text{Old value}}.
+$$
+
+In words, we divide the change in value by the old value. A value of $r=0.10$ represents a 10% increase, while $r=-0.10$ represents a 10% decrease. We will write returns as proportions and give their percentage equivalents when useful.
+
+Turning a series of prices into returns changes more than the center or the units, so it is not a linear transformation. Like a z-score, however, a return lets us make apples-to-apples comparisons across settings. Ford and Tesla share prices and their dollar changes are not directly comparable, but the returns on a fixed investment in each company are.
+
+@fig-price-vs-returns shows two years of weekly observations for both stocks. The top row gives their prices, while the bottom row places their returns on a common scale.[^adjusted-prices]
+
+[^adjusted-prices]: The price series use split- and dividend-adjusted closing prices.
+
+```{r}
+#| label: fig-price-vs-returns
+#| fig-cap: "Two years of weekly Ford and Tesla data. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale."
+#| fig-width: 9
+#| fig-height: 6.5
+price_panel <- function(var, title) {
+  ggplot(returns_prices, aes(x = date, y = .data[[var]])) +
+    geom_line(color = "steelblue", linewidth = 0.5) +
+    scale_y_continuous(labels = dollar_format()) +
+    labs(x = NULL, y = "Share price", title = title)
+}
+return_panel <- function(var, title) {
+  ggplot(returns_prices, aes(x = date, y = .data[[var]])) +
+    geom_line(color = "steelblue", linewidth = 0.5) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+    scale_y_continuous(labels = percent_format(accuracy = 1),
+                       limits = c(-0.30, 0.30)) +
+    labs(x = NULL, y = "Weekly return", title = title)
+}
+(price_panel("F_price", "Ford") | price_panel("TSLA_price", "Tesla")) /
+  (return_panel("F", "Ford") | return_panel("TSLA", "Tesla"))
+```
+
+Rearranging the percent-change formula gives
+
+$$
+\text{New value} = \text{Old value} \times (1+r).
+$$
+
+Applying a percentage change multiplies the old value rather than adding a fixed amount. Suppose your salary is \$100,000 and you receive a 3% raise. Your new salary is \$100,000 $\times$ 1.03 = \$103,000. Another 3% raise produces a salary of \$103,000 $\times$ 1.03 = \$106,090. The second raise adds \$90 more because it applies to a larger base. Repeated proportional changes compound in this way.
+
+## Logarithms {#sec-logarithms}
+
+Many quantities are easier to compare in proportional terms than in dollar terms. A 3% raise depends on the current salary, while a fixed \$3,000 raise adds the same amount each year. **Logarithms** convert multiplication into addition: $\log(ab)=\log(a)+\log(b)$. That identity lets us add changes that would otherwise compound through multiplication.
+
+Logarithms are defined only for positive values. The plots below use base-10 logs, which make powers of 10 easy to label. The log returns later in this section use natural logs instead. The base changes the numerical units, but both scales turn equal ratios into equal distances.
+
+House prices provide one example. @fig-log-transform compares sale prices on the original and log scales.
+
+```{r}
+#| label: fig-log-transform
+#| fig-cap: "Austin sale prices on the original (left) and log (right) scales."
+#| fig-width: 10
+#| fig-height: 4
+p1 <- ggplot(austin_full %>% filter(latest_price < 5000000, latest_price > 50000), aes(x = latest_price)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Price ($)", y = "Density", title = "Original scale")
+
+p2 <- p1 + scale_x_log10(labels = dollar_format()) +
+  labs(x = "Price ($, log scale)", y = "Density", title = "Log scale")
+
+# p2 <- ggplot(austin_zip, aes(x = log(latest_price))) +
+#   geom_histogram(aes(y = after_stat(density)),
+#                  bins = 20, fill = "steelblue", color = "white") +
+#   geom_density(alpha = 0.3) +
+#   labs(x = "log(Price)", y = "Density", title = "Log scale") +
+#   theme_minimal()
+
+p1 + p2
+```
+
+::: {.callout-tip}
+## Interpretation: Equal distances on a log axis are equal ratios
+
+On the original price axis, \$1 million to \$2 million covers the same distance
+as \$2 million to \$3 million, because each interval adds \$1 million. On the
+log-scaled axis, \$100,000 to \$300,000 covers the same distance as \$1 million to \$3
+million, because the upper value is three times the lower in both cases.
+:::
+
+Hourly wages provide another example.
+
+```{r}
+#| label: fig-log-wage
+#| fig-cap: "Hourly wages on the original (left) and log (right) scales."
+#| fig-width: 10
+#| fig-height: 4
+w1 <- ggplot(filter(mincer, hrly_wage > 1), aes(x = hrly_wage)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Hourly wage", y = "Density")
+
+w2 <- w1 + scale_x_log10(labels = dollar_format(), breaks = c(1, 5, 25, 125, 625))
+
+w1 + w2
+```
+
+On the original scale, most wages cluster on the left while a thin tail stretches to the right. We saw the same shape for house prices. The log transformation does not remove that tail; it measures the gaps in multiplicative steps. The gap from \$10 to \$20 per hour is then the same as the gap from \$50 to \$100.
+
+## Log returns {#sec-log-returns}
+
+The return $r$ we defined in @sec-returns is formally called an arithmetic return, and it has a logarithmic counterpart, the log return.
+
+:::: {.Definition #defn-log-return}
+## Arithmetic and log returns
+
+An **arithmetic return** is the ordinary percentage change in price: the change
+in value divided by the value we started from. A **log return** is the natural
+logarithm of the ratio of the new price to the old one. A move from \$100 to
+\$110 is an arithmetic return of 0.10, or 10%, and a log return of about 0.0953.
+
+For a price that moves from $P_{t-1}$ to $P_t$,
+
+$$
+r_t = \frac{P_t - P_{t-1}}{P_{t-1}} = \frac{P_t}{P_{t-1}} - 1,
+\qquad
+g_t = \log\left(\frac{P_t}{P_{t-1}}\right) = \log(1 + r_t).
+$$
+
+The log return is the natural log of one plus the arithmetic return, and
+$r_t = e^{g_t} - 1$ converts a log return back to an arithmetic one.
+
+::::
+
+Arithmetic and log returns handle multiple periods differently. Arithmetic returns compound through multiplication, so the total return over $T$ periods is
+
+$$
+(1+r_1)(1+r_2)\cdots(1+r_T)-1.
+$$
+
+Each period changes the base for the next one. Log returns instead add across periods:
+
+$$
+g_1+g_2+\cdots+g_T = \log\left(\frac{P_T}{P_0}\right).
+$$
+
+The sum is the log return from the initial price $P_0$ to the final price $P_T$. Exponentiating that sum and subtracting 1 gives the same total arithmetic return as compounding the individual arithmetic returns.
+
+::: {.callout-warning}
+## Common mistake: A 10% loss and a 10% gain do not cancel
+
+A stock that falls from \$100 to \$90 and then rises by 10% ends at \$99, down
+1% overall. Equal percentage losses and gains apply to different starting
+values, so they do not offset. Log returns do add up:
+$\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101$, the log return
+from \$100 to \$99.
+:::
+
+Exponentiating that log return, $e^{-0.0101}-1\approx-0.01$, recovers the arithmetic return of about −1%. For small changes, arithmetic and log returns are nearly equal because $\log(1+r)\approx r$. An arithmetic return of 0.01 (1%) corresponds to a log return of about 0.00995. The difference grows with the return: an arithmetic return of 0.50 (50%) corresponds to a log return of about 0.4055.
+
+### Should I use log or arithmetic returns?
+
+Arithmetic returns give the more direct reading of an investment's percentage gain or loss. Log returns make successive changes easier to combine because we can add them across time. If you need to report the total percentage change in value, convert the cumulative log return back to an arithmetic return.
+
+## Data used in this section {.unnumbered}
+
+- [Austin House Listings](appendix_data.qmd#sec-data-housing-kaggle)
+- [CPS ASEC Earnings](appendix_data.qmd#sec-data-earnings-cps)
+- [Weekly Asset Returns (2023–2025)](appendix_data.qmd#sec-data-returns-2025)

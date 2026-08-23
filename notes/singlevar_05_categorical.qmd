@@ -1,0 +1,293 @@
+---
+title: "Categorical Variables"
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+lending <- read_csv("data/lending_club/data/df_all.csv",
+                    show_col_types = FALSE) |>
+  mutate(default = as.integer(loan_status == "Charged Off"))
+
+shed <- read_csv("data/shed/shed_2025.csv", show_col_types = FALSE)
+```
+
+The previous chapters described a single quantitative variable --- a price, an age, a wage --- with tools that assume the values are numbers we can order and average. A categorical variable breaks that assumption. We'll work with one dataset for most of this chapter: the `lending` data records `r comma(nrow(lending))` loans issued between 2008 and 2012 on LendingClub, a peer-to-peer platform that matched individual borrowers with investors. We'll look at two variables. The first is `purpose`, the reason the borrower gave for the loan --- consolidating debt, refinancing a credit card, funding a small business, and so on. The second is whether the loan **defaulted**: LendingClub eventually recorded each loan as either `Fully Paid` or `Charged Off`, the latter meaning the borrower stopped paying and the balance was written off as a loss.
+
+## Kinds of categorical variables
+
+::: {.Definition #defn-categorical-variable}
+## Categorical variable
+
+A **categorical variable** records which of several groups an observation
+belongs to. A **nominal** variable's categories have no natural order, so any
+ordering we impose is for our own convenience. An **ordinal** variable's
+categories fall in a natural order, but the spacing between them is not
+measurable. A **binary** variable has exactly two categories, and because that
+describes the number of categories rather than their order, a binary variable
+can be nominal or ordinal.
+:::
+
+The `purpose` variable is nominal: it takes fourteen values, including `debt_consolidation`, `credit_card`, `small_business`, and `car`. Nothing about the data says one should come before another.
+
+LendingClub's loan `grade` is ordinal: it runs from `A` (least risky) down to `G` (most risky). We know `A` comes before `B` comes before `C`, but the gap from `A` to `B` need not equal the gap from `F` to `G`. A national household survey we'll meet later in the chapter gives another example: when respondents rate national economic conditions as "poor," "only fair," "good," or "excellent," the four answers are ordered, but the distance between them is anyone's guess.
+
+Binary variables are everywhere: a loan being charged off, an employee leaving the company, and a survey respondent owning their home are all yes-or-no facts. Since there are only two levels, there's no meaningful nominal versus ordinal distinction to be made.
+
+## Frequency tables: counts and proportions
+
+::: {.Definition #defn-frequency-table}
+## Frequency table
+
+A **frequency table** lists each category of a variable and the number of
+observations that fall within it. Dividing each count by the total gives the
+**proportion** in each category, which puts counts from differently sized
+datasets on a comparable scale.
+:::
+
+Here is the table for loan `purpose`, sorted from most to least common.
+
+```{r}
+#| label: tbl-purpose-counts
+#| tbl-cap: "Loan purposes, sorted from most to least common, with the proportion of loans in each category (percentage in parentheses)."
+#| echo: false
+lending |>
+  count(purpose, name = "Count") |>
+  arrange(desc(Count)) |>
+  mutate(Proportion = paste0(number(Count / sum(Count), accuracy = 0.001),
+                             " (", percent(Count / sum(Count), accuracy = 0.1), ")")) |>
+  rename(Purpose = purpose) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+A table like this is the whole story for a nominal variable. There is no notion of "location" to report, because the labels have no order and no meaningful distance between them. We can loosely think of the "spread" of a categorical variable as how much the frequencies vary across categories --- a variable that takes one value 99% of the time has less spread than one whose labels are distributed more evenly. Statistical summaries of that kind of spread exist, but they're beyond the scope of this course.
+
+Binary variables are the exception: with two labels we can talk more meaningfully about location and spread by turning them into zeros and ones and treating them as a quantitative variable. We'll do that next, and then return to visualizing categorical variables more generally.
+
+## Dummy (indicator) variables {#sec-dummy-variables}
+
+It's often useful to map a categorical variable to a numeric one --- it's the first step to using categorical variables as predictors in a statistical model, for example. Here it will also reinforce what the sample mean and variance/standard deviation represent.
+
+::: {.Definition #defn-dummy-variable}
+## Dummy (indicator) variable
+
+A **dummy variable**, also called an **indicator variable**, is a column that
+equals 1 when an observation belongs to a category and 0 when it does not.
+Which category gets the 1 is our choice; the choice only changes how we interpret an analysis that uses the variable.
+:::
+
+Loan status is either `Fully Paid` or `Charged Off`, so we define a single dummy variable to indicate default:
+
+$$
+\text{default}_i =
+\begin{cases}
+1 & \text{if loan } i \text{ was charged off} \\
+0 & \text{if loan } i \text{ was fully paid.}
+\end{cases}
+$$
+
+In words: we label each loan with a 1 if it defaulted and a 0 if it did not. @tbl-dummy-map shows the recode on a handful of loans --- the text label on the left, the number it becomes on the right.
+
+```{r}
+#| label: tbl-dummy-map
+#| tbl-cap: "The `default` dummy variable for a few loans. `Charged Off` becomes 1; `Fully Paid` becomes 0."
+#| echo: false
+lending |>
+  filter(loan_status %in% c("Fully Paid", "Charged Off")) |>
+  slice(c(1, 3, 4, 2, 5)) |>
+  transmute(Purpose = purpose,
+            `Loan status` = loan_status,
+            default = default) |>
+  knitr::kable(align = c("l", "l", "r"))
+```
+
+That single column carries everything the two-category variable told us, in a form we can add up and average. So what do the mean and the standard deviation of a 0/1 column tell us?
+
+## A proportion is the mean of a 0/1 variable {#sec-proportion-mean}
+
+If we take the mean of a binary variable, we just get back the proportion of ones. Let $x_i$ be the value of the dummy variable for observation $i$, which is either 0 or 1. The sample mean is
+
+$$
+\hat{p} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{\text{number of 1s}}{n} = \text{proportion of 1s}.
+$$
+
+We write a sample proportion as $\hat{p}$ (read aloud as "p-hat"). It is a sample mean in disguise. For the loan data, the mean of the `default` dummy is $\hat{p} = `r number(mean(lending$default), accuracy = 0.001)`$ (`r percent(mean(lending$default), accuracy = 0.1)`). This is exactly the proportion of loans that were charged off. If we reversed the coding, the mean would instead be `r number(1 - mean(lending$default), accuracy = 0.001)`, the proportion of loans that were fully paid.
+
+## The spread of a 0/1 variable
+
+### Variance and unpredictability
+
+In @sec-measures-spread we framed the spread of a quantitative variable as a statement about **unpredictability**: prices in ZIP 78741 were harder to guess than prices in ZIP 78749 because they varied more around their center, however we measured that variability. The interpretation is the same for binary variables.
+
+Imagine that one of the `r comma(nrow(lending))` recorded loans is chosen at random and you have to predict whether it defaulted. All you know is that `r percent(mean(lending$default), accuracy = 0.1)` of these loans defaulted. Your best guess is "no default," and you will be right about `r percent(1 - mean(lending$default), accuracy = 0.1)` of the time. That is a fairly predictable outcome. A rarer recorded outcome would be easier still: if only one loan in a hundred had defaulted, guessing "no default" every time would be right 99% of the time. The closer the recorded proportion sits to zero --- or to one --- the less the outcome varies, and the easier it is to call.
+
+Where does prediction get hard? At a coin flip. If exactly half of the recorded loans had defaulted, you would be wrong at least half the time, and no guessing rule could do better. We'd therefore expect spread to be largest at 0.5 and smallest near zero or one.
+
+### Variance as a function of $\hat{p}$
+
+The variance of a binary variable has exactly that property. Let $\hat{p}$ be the proportion of 1s, which we just showed is the mean. The variance turns out to be a function of $\hat{p}$ alone.
+
+::: {.callout-note}
+## The variance of an indicator variable is approximately $\hat{p}(1-\hat{p})$
+
+An indicator (0/1) variable has sample variance
+$s^2 \approx \hat{p}\,(1-\hat{p})$ --- the chance that a randomly selected observation is a 1 times the chance a randomly selected observation is a 0. That
+product is largest at $\hat{p} = 0.5$, where the outcome is a coin flip, and it
+shrinks toward zero as the proportion approaches 0 or 1.
+:::
+
+::: {.TechnicalDetail #technical-p-one-minus-p}
+## Where does $\hat{p}(1-\hat{p})$ come from?
+
+Start from the definition of the sample variance and split the sum over the 0s and the 1s. Among $n$ observations there are $n\hat{p}$ ones and $n(1-\hat{p})$ zeros. Each 1 contributes a squared deviation of $(1-\hat{p})^2$ and each 0 contributes $(0-\hat{p})^2 = \hat{p}^2$, so
+
+$$
+\sum_{i=1}^{n}(x_i - \hat{p})^2
+= n\hat{p}\,(1-\hat{p})^2 + n(1-\hat{p})\,\hat{p}^2
+= n\hat{p}(1-\hat{p})\big[(1-\hat{p}) + \hat{p}\big]
+= n\hat{p}(1-\hat{p}).
+$$
+
+The bracket sums to 1, which is what makes everything collapse. Dividing by $n-1$ gives the sample variance,
+
+$$
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i-\hat{p})^2 = \frac{n}{n-1}\,\hat{p}(1-\hat{p}),
+$$
+
+and dividing by $n$ instead --- the population version --- leaves $\hat{p}(1-\hat{p})$ exactly. For any reasonably large $n$ the two are indistinguishable.
+:::
+
+@fig-variance-parabola shows how the variance changes as the proportion moves from 0 to 1.
+
+```{r}
+#| label: fig-variance-parabola
+#| fig-cap: "The variance of a 0/1 variable, $\\hat{p}(1-\\hat{p})$, as the proportion $\\hat{p}$ ranges from 0 to 1. Spread is zero at the extremes, where the outcome is certain, and largest at $\\hat{p} = 0.5$, where the outcome is a coin flip. The point marks the loan default proportion."
+#| fig-width: 7
+#| fig-height: 4.5
+p_default <- mean(lending$default)
+
+curve_df <- tibble(p = seq(0, 1, length.out = 200),
+                   variance = p * (1 - p))
+
+ggplot(curve_df, aes(x = p, y = variance)) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  geom_vline(xintercept = 0.5, linetype = "dashed", color = "grey60") +
+  annotate("point", x = p_default, y = p_default * (1 - p_default),
+           color = "darkred", size = 3) +
+  annotate("text", x = p_default, y = p_default * (1 - p_default),
+           label = "Loan default", hjust = -0.12, vjust = 1.6, color = "darkred") +
+  scale_x_continuous(limits = c(0, 1)) +
+  labs(x = expression(paste("Proportion  ", hat(p))),
+       y = expression(paste("Variance  ", hat(p), "(1 - ", hat(p), ")")))
+```
+
+The default proportion of $\hat{p} = `r round(p_default, 3)`$ lands well down the left slope of the curve. Among these recorded loans, repayment was far more common than default, so the coded outcomes are comparatively predictable. Reversing the coding would replace $\hat{p}$ with $1-\hat{p}$, but the product $\hat{p}(1-\hat{p})$ --- and so the variance --- would stay the same. The **standard deviation** is the square root of the variance. For the individual coded loan outcomes, it comes to `r round(sqrt(p_default * (1 - p_default)), 3)`.
+
+## Visualizing categorical variables {#sec-cat-viz}
+
+With the numerical summaries in hand, we can turn to charts and graphs. The goal for a categorical variable is almost always to show a **frequency, a percentage, or a share** across categories, and to let the reader easily make relevant comparisons.
+
+### Bar charts, dot plots, and pie charts
+
+A **bar chart** and a **dot plot** encode each category's value the same way: as a length, or a position, along a common axis. People read length and position more accurately than any other visual channel, so differences of a percentage point or two between categories stay visible. A **pie chart** encodes the same numbers as the angles and areas of wedges, which the eye judges less precisely --- two slices a few percentage points apart look the same, and ranking five middling slices is harder still. When are many categories, or comparison between them is the point, bar and dot plots keep the differences readable. Even when there are only a few categories you are almost always served poorly by a pie chart.
+
+### The distribution of loan purpose
+
+We already have the numbers for loan `purpose` in the frequency table at the start of the chapter. A chart turns that column of proportions into something the eye can rank at a glance. @fig-purpose-dist shows the share of loans in each purpose, sorted from most to least common.
+
+```{r}
+#| label: fig-purpose-dist
+#| fig-cap: "The distribution of loan purpose across all LendingClub loans, sorted from most to least common. Debt consolidation and credit-card refinancing account for most loans; the rest form a long tail."
+#| fig-width: 7
+#| fig-height: 5
+lending |>
+  count(purpose) |>
+  mutate(prop = n / sum(n),
+         purpose = fct_reorder(purpose, prop)) |>
+  ggplot(aes(x = purpose, y = prop)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(x = NULL, y = "Proportion of loans")
+```
+
+The shape is easier to see here than in the table: two categories account for most of the loans, and everything below `home_improvement` is a long tail of small proportions. With fourteen categories, labels under vertical bars would be cramped and tilted; laid on their sides they stay flat and readable, and sorting by length means the chart simultaneously communicates the distribution as well as a ranking of the categories.
+
+::: {.callout-note}
+## Key idea: Order categories by a meaningful summary
+
+Sort nominal categories by the summary the chart displays. When the variable
+is ordinal, keep its natural order --- sorting by size discards it.
+:::
+
+A **dot plot** shows the same proportions with one point per category (@fig-purpose-dot). The reader judges position along a common axis, the same channel the bars use, so the comparison is about as accurate either way. Dot plots are more compact, which is useful when you have a large number of categories. 
+
+```{r}
+#| label: fig-purpose-dot
+#| fig-cap: "The same loan-purpose distribution as a dot plot. Each category's proportion is one point read against a common axis."
+#| fig-width: 7
+#| fig-height: 5
+lending |>
+  count(purpose) |>
+  mutate(prop = n / sum(n),
+         purpose = fct_reorder(purpose, prop)) |>
+  ggplot(aes(x = prop, y = purpose)) +
+  geom_point(color = "steelblue", size = 3) +
+  scale_x_continuous(limits = c(0, NA)) +
+  labs(x = "Proportion of loans", y = NULL)
+```
+
+Both charts summarize `purpose` on its own. The more pointed question --- which purposes default most often --- asks how a *second* variable, `default`, shifts across these categories. That is a two-variable summary, and we take it up later in the course.
+
+### An ordinal example: rating the economy {#sec-ordinal-rating}
+
+Sorting by size was the right call for `purpose`, whose categories have no inherent order. Ordinal variables call for the opposite. Let's see an example: Each fall the Federal Reserve's Survey of Household Economics and Decisionmaking (SHED) asks a national sample of U.S. adults to rate economic conditions in this country today; the 2025 wave surveyed 12,934 people drawn from a panel built to represent the adult population. The answer falls into four ordered categories --- "poor," "only fair," "good," or "excellent." @fig-shed-outlook plots the 2025 responses in that natural order.
+
+```{r}
+#| label: fig-shed-outlook
+#| fig-cap: "How U.S. households rated national economic conditions (Survey of Household Economics and Decisionmaking, 2025). The four ordered categories run poor to excellent."
+#| fig-width: 6
+#| fig-height: 4
+shed |>
+  count(econ_conditions_country) |>
+  mutate(prop = n / sum(n),
+         econ_conditions_country = factor(econ_conditions_country,
+           levels = c("Poor", "Only fair", "Good", "Excellent"))) |>
+  ggplot(aes(x = econ_conditions_country, y = prop)) +
+  geom_col(fill = "steelblue") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(x = NULL, y = "Proportion of respondents")
+```
+
+The tallest bar is "only fair," but we leave it second from the left where it belongs. The categories are ordered, so their sequence is part of the message: reading left to right traces the ratings from worst to best, and sorting by height would throw that away. The layout also carries information a sorted chart would lose. Fewer than 2% of households answered "excellent," and seeing that bar at the end of the scale tells us almost nobody rates conditions at the top; sorted by size, the same bar reads as merely the rarest answer, with nothing to show it is the scale's endpoint.
+
+### Good practice and pitfalls
+
+A handful of choices separate a clear categorical chart from a cluttered one. The table below collects the ones that come up most.
+
+| Situation | Prefer | Avoid |
+| --- | --- | --- |
+| Few categories | A simple bar chart | Decorative or 3D charts |
+| Many categories | Horizontal bars, so labels stay flat | Crowded vertical bars with rotated labels |
+| Nominal categories | Sort by value when comparison is the point | Alphabetical order when you mean to rank |
+| Ordinal categories | Preserve the natural order (`A`–`G`, better–worse) | Re-sorting by frequency and destroying the order |
+| Long-tailed categories | Show the top categories plus a combined "Other" | Fifty tiny, unreadable bars |
+| Part-to-whole, few categories | A few labeled numbers, or a bar chart | A pie chart with many similar slices |
+| Any bar chart | Start the value axis at zero | A truncated axis that exaggerates differences |
+
+A good rule of thumb for any visualization is to make the interesting comparisons as obvious as possible without misleading your reader.
+
+## Data used in this section {.unnumbered}
+
+- [LendingClub Accepted Loans](appendix_data.qmd#sec-data-lendingclub-kaggle)
+- [Household economics (SHED)](appendix_data.qmd#sec-data-shed)

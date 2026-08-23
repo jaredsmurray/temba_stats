@@ -1,0 +1,408 @@
+---
+title: "The Normal Distribution"
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+library(patchwork)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+returns <- read_csv("data/returns/returns.csv",
+                    show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+
+mu_r <- mean(returns$market)
+sd_r <- sd(returns$market)
+
+mincer <- read_csv("data/mincer/cps_asec_2023.csv",
+                   show_col_types = FALSE)
+
+load1 <- read_csv("data/ercot/ercotproject/Data/load_1.csv",
+                  show_col_types = FALSE)
+load2 <- read_csv("data/ercot/ercotproject/Data/load_2.csv",
+                  show_col_types = FALSE)
+load3 <- read_csv("data/ercot/ercotproject/Data/load_3.csv",
+                  show_col_types = FALSE)
+ercot_daily <- bind_rows(load1, load2, load3) |>
+  filter(LOCATION == "North Central (DFW)") |>
+  mutate(datetime = parse_date_time(DATEHOUR, orders = c("ymd HM", "ymd HMS")),
+         year = year(datetime),
+         date = as.Date(datetime)) |>
+  filter(year >= 2016, year <= 2020) |>
+  summarize(load = mean(LOAD, na.rm = TRUE), .by = date)
+rm(load1, load2, load3)
+
+```
+
+This chapter introduces one of the most important families of continuous probability distributions: the normal distribution.
+
+## The probability density function {#sec-normal-pdf}
+
+:::: {.Definition #defn-normal-distribution}
+## Normal distribution
+
+The **normal distribution** (also known as the Gaussian distribution) is the
+symmetric continuous distribution governed entirely by two
+parameters: a mean $\mu$ and a variance $\sigma^2$. The mean locates the center
+of the density curve and the variance controls how wide it is.
+
+::: {#formula-normal-density .details .formula-details summary="Details and formulas"
+non-interactive-summary="Formula"}
+
+The density is
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}
+       \exp\!\left(-\frac{(x - \mu)^2}{2\sigma^2}\right).
+$$
+
+The exponent is a squared z-score, so the density falls off with the square of
+the distance from $\mu$ measured in standard deviations, and the leading
+constant is whatever makes the total area equal one. We never evaluate this by
+hand --- software computes normal densities, probabilities, and quantiles.
+
+:::
+::::
+
+A normal distribution's density is the symmetric bell-shaped curve in @fig-normal-params. Changing $\mu$ slides the curve left or right without altering its shape; changing $\sigma^2$ stretches or squeezes it without moving the center.
+
+```{r}
+#| label: fig-normal-params
+#| fig-cap: "Three normal densities. Increasing the mean from 0 to 2 slides the density to the right without changing its shape; increasing the variance from 1 to 4 spreads it out without moving its center."
+#| fig-width: 8
+#| fig-height: 4
+norm_grid <- tibble(x = seq(-7, 7, length.out = 500)) |>
+  mutate(`mean 0, variance 1` = dnorm(x, 0, 1),
+         `mean 2, variance 1` = dnorm(x, 2, 1),
+         `mean 0, variance 4` = dnorm(x, 0, 2)) |>
+  pivot_longer(-x, names_to = "dist", values_to = "density") |>
+  mutate(dist = factor(dist, levels = c("mean 0, variance 1",
+                                        "mean 2, variance 1",
+                                        "mean 0, variance 4")))
+
+ggplot(norm_grid, aes(x = x, y = density, color = dist)) +
+  geom_line(linewidth = 1) +
+  scale_color_brewer(palette = "Set2") +
+  labs(x = NULL, y = "Density", color = NULL) +
+  theme(legend.position = "top")
+```
+
+Since the normal distribution is symmetric, its mean and median are the same. 
+
+::: {.Notation #notation-normal-distribution}
+## $X \sim N(\mu, \sigma^2)$
+
+We write
+
+$$
+X \sim N(\mu, \sigma^2)
+$$
+
+to say that the random variable $X$ follows a normal distribution with mean
+$\mu$ and variance $\sigma^2$; the "$\sim$" reads "is distributed as."
+
+*The
+second parameter is the variance, not the standard deviation.* Most software for
+computing normal probabilities, densities, and quantiles takes the mean and
+*standard deviation* as arguments instead, so the two conventions have to be
+kept straight when moving between a written model and code.
+:::
+
+A shifted and scaled normal random variable is still normal: if $X \sim N(\mu, \sigma^2)$, then $Y = aX + b$ follows another normal distribution with mean and variance given by the shifting-and-scaling rules from @sec-shift-scale: $N(a\mu + b,\; a^2\sigma^2)$ (recall $SD(Y) = |a|\sigma$, so $Var(Y) = a^2\sigma^2$).
+
+## Computing probabilities {#sec-normal-probabilities}
+
+To illustrate probability computations with the normal distribution we'll build a model for weekly S&P 500 returns, using the historical mean and standard deviation as the parameters: $R \sim N(`r number(mu_r, accuracy = 0.0001)`, `r number(sd_r, accuracy = 0.0001)`^2)$ --- a mean weekly return of about `r percent(mu_r, accuracy = 0.01)` and a standard deviation of about `r percent(sd_r, accuracy = 0.01)`. @fig-returns-normal-model plots the estimated model over the data.
+
+```{r}
+#| label: fig-returns-normal-model
+#| fig-cap: "Weekly S&P 500 returns (density-scaled histogram) with the fitted normal model overlaid. The fitted density tracks the data well through the middle; the most extreme weeks sit a little further out than the model expects."
+#| fig-width: 7
+#| fig-height: 4.5
+ggplot(returns, aes(x = market)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, fill = "steelblue", color = "white") +
+  stat_function(fun = dnorm, args = list(mean = mu_r, sd = sd_r),
+                color = "darkorange", linewidth = 1) +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "Weekly return", y = "Density")
+```
+
+To be clear: Weekly returns are not literally normal --- a return can't fall below $-100\%$, and real markets tend to produce more extreme outcomes than a normal distribution would give. What we are claiming (for now!) is that the normal distribution is a *good enough approximation*: close enough to the true distribution, in the region we care about, that probability statements computed from it are useful. That's the case for any model, and to the extent we can, we should check whether our modeling assumptions are supported or not by the data available to us. We'll do that below.
+
+With that model in hand we can compute any probabilities of interest as areas under the curve.  
+
+- **A losing week.** $\Pr(R < 0) = `r number(pnorm(0, mu_r, sd_r), accuracy = 0.01)`$. Even in a market that drifts upward on average, the model gives roughly a `r percent(pnorm(0, mu_r, sd_r), accuracy = 1)` chance that any given week loses money.
+- **A bad week.** $\Pr(R < -3\%) = `r number(pnorm(-0.03, mu_r, sd_r), accuracy = 0.01)`$ --- about one week in every `r round(1 / pnorm(-0.03, mu_r, sd_r))`.
+- **A quiet week.** $\Pr(-1.5\% < R < 1.5\%) = `r number(pnorm(0.015, mu_r, sd_r) - pnorm(-0.015, mu_r, sd_r), accuracy = 0.01)`$.
+
+```{r}
+#| label: fig-returns-normal-probs
+#| fig-cap: "Four probability statements as areas under the fitted normal model for weekly returns. Each panel's title reports the probability; the shaded region is the corresponding area."
+#| fig-width: 9
+#| fig-height: 6
+norm_df <- tibble(x = seq(mu_r - 4 * sd_r, mu_r + 4 * sd_r, length.out = 500),
+                  y = dnorm(x, mu_r, sd_r))
+
+shade_panel <- function(lo, hi, title, prob, label_x = mu_r + 2.4 * sd_r) {
+  ggplot(norm_df, aes(x = x, y = y)) +
+    geom_area(data = filter(norm_df, x >= lo, x <= hi),
+              fill = "darkorange", alpha = 0.8) +
+    geom_line(color = "steelblue", linewidth = 0.9) +
+    annotate("label", x = label_x, y = max(norm_df$y) * 0.82,
+             label = paste0("area = ", number(prob, accuracy = 0.01)),
+             size = 3.4, fill = "white", alpha = 0.9, label.size = 0.25) +
+    scale_x_continuous(labels = percent_format(accuracy = 1)) +
+    labs(x = NULL, y = NULL, title = title) +
+    theme_minimal(base_size = 9.5)
+}
+
+p1 <- shade_panel(-Inf, 0,
+                  paste0("Pr(R < 0) = ",
+                         number(pnorm(0, mu_r, sd_r), accuracy = 0.01)),
+                  pnorm(0, mu_r, sd_r))
+p2 <- shade_panel(-Inf, -0.03,
+                  paste0("Pr(R < -3%) = ",
+                         number(pnorm(-0.03, mu_r, sd_r), accuracy = 0.01)),
+                  pnorm(-0.03, mu_r, sd_r))
+p3 <- shade_panel(-0.015, 0.015,
+                  paste0("Pr(-1.5% < R < 1.5%) = ",
+                         number(pnorm(0.015, mu_r, sd_r) - pnorm(-0.015, mu_r, sd_r),
+                                accuracy = 0.01)),
+                  pnorm(0.015, mu_r, sd_r) - pnorm(-0.015, mu_r, sd_r))
+p4 <- shade_panel(0, Inf,
+                  paste0("Pr(R >= 0) = ",
+                         number(1 - pnorm(0, mu_r, sd_r), accuracy = 0.01)),
+                  1 - pnorm(0, mu_r, sd_r),
+                  label_x = mu_r - 2.4 * sd_r)
+
+(p1 | p2) / (p3 | p4)
+```
+
+
+A few more probabilities reinforce our basic probability rules, and how they are used to compute probabilities for normal random variables:
+
+- **A non-losing week.** $\Pr(R \geq 0) = `r number(1 - pnorm(0, mu_r, sd_r), accuracy = 0.01)` = 1-\Pr(R < 0)$.
+- **A winning week.** $\Pr(R > 0) = \Pr(R \geq 0)$, because for a continuous distribution, $\Pr(R = 0) = 0$ and $\Pr(R \geq 0) = \Pr(R > 0) + \Pr(R = 0)$ since the two events are mutually exclusive.
+
+We can evaluate any normal probability we like using our basic probability rules and software that can evaluate the normal CDF to compute the areas like we did above. (The same is true for any continuous probability distribution.) Sketching the areas can be useful practice until you get the hang of this.
+
+For example, the interval probability $\Pr(-1.5\% < R < 1.5\%)$ can be computed a few different ways: We can start by computing $\Pr(R < 1.5\%)$ and then subtracting off $\Pr(R < -1.5\%)$ to eliminate the tail area we didn't want. Or we could recognize that $\Pr(-1.5\% < R < 1.5\%) = 1 - [\Pr(R < -1.5\%) + \Pr(R > 1.5\%)]$, since $R<-1.5\%$ and $R>1.5\%$ are the two mutually exclusive ways to land outside the interval. @fig-interval-two-ways sketches both routes.
+
+```{r}
+#| label: fig-interval-two-ways
+#| fig-cap: "Two routes to the same interval probability. Top row: start with everything below 1.5% and subtract the tail below -1.5%. Bottom row: start with total probability 1 and subtract the two tails outside the interval."
+#| fig-width: 10
+#| fig-height: 6
+#| echo: false
+shade <- function(lo, hi, title) {
+  ggplot(norm_df, aes(x = x, y = y)) +
+    geom_area(data = filter(norm_df, x >= lo, x <= hi),
+              fill = "darkorange", alpha = 0.8) +
+    geom_line(color = "steelblue", linewidth = 0.9) +
+    scale_x_continuous(labels = percent_format(accuracy = 1)) +
+    labs(x = NULL, y = NULL, title = title) +
+    theme_minimal(base_size = 9.5)
+}
+
+pA <- shade(-Inf, 0.015,
+            paste0("Pr(R < 1.5%) = ",
+                   number(pnorm(0.015, mu_r, sd_r), accuracy = 0.01)))
+pB <- shade(-Inf, -0.015,
+            paste0("minus  Pr(R < -1.5%) = ",
+                   number(pnorm(-0.015, mu_r, sd_r), accuracy = 0.01)))
+pC <- shade(-0.015, 0.015,
+            paste0("=  Pr(-1.5% < R < 1.5%) = ",
+                   number(pnorm(0.015, mu_r, sd_r) - pnorm(-0.015, mu_r, sd_r),
+                          accuracy = 0.01)))
+
+pD <- shade(-Inf, Inf, "total area = 1")
+pE <- ggplot(norm_df, aes(x = x, y = y)) +
+  geom_area(data = filter(norm_df, x <= -0.015),
+            fill = "darkorange", alpha = 0.8) +
+  geom_area(data = filter(norm_df, x >= 0.015),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 0.9) +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = NULL, y = NULL,
+       title = paste0("minus  two tails = ",
+                      number(pnorm(-0.015, mu_r, sd_r) + 1 - pnorm(0.015, mu_r, sd_r),
+                             accuracy = 0.01))) +
+  theme_minimal(base_size = 9.5)
+pF <- pC
+
+(pA | pB | pC) / (pD | pE | pF)
+```
+
+
+## The 68/95/99.7 rule {#sec-empirical-rule}
+
+For normal distributions, three particular areas come up over and over: the probability that an outcome lands within one, two, or three standard deviations of the mean.
+
+::: {.Definition #defn-68-95-997}
+## The 68/95/99.7 rule
+
+If $X \sim N(\mu, \sigma^2)$, then approximately:
+
+1. **68%** of the probability lies within **one** standard deviation of
+   the mean, $\mu \pm \sigma$.
+2. **95%** lies within **two** standard deviations, $\mu \pm 2\sigma$.
+3. **99.7%** lies within **three** standard deviations, $\mu \pm 3\sigma$.
+:::
+
+```{r}
+#| label: fig-empirical-rule
+#| fig-cap: "The 68/95/99.7 rule on the weekly-returns model. Each horizontal bar spans the interval mu plus-or-minus 1, 2, or 3 standard deviations; the label above each bar is the proportion of outcomes landing inside that interval."
+#| fig-width: 7.5
+#| fig-height: 4.5
+band_df <- tibble(k = c(3, 2, 1),
+                  lo = mu_r - k * sd_r, hi = mu_r + k * sd_r,
+                  fill = c("#c6dbef", "#6baed6", "#2171b5"))
+
+peak    <- dnorm(mu_r, mu_r, sd_r)
+y68     <- peak * 0.35
+y95     <- peak * 0.6
+y997    <- peak * 0.9
+bar_off <- 0.07 * peak
+tick    <- 0.03 * peak
+
+emp_bar <- function(k, ybar) {
+  list(
+    annotate("segment", x = mu_r - k * sd_r, xend = mu_r + k * sd_r,
+             y = ybar, yend = ybar, color = "grey20"),
+    annotate("segment", x = mu_r - k * sd_r, xend = mu_r - k * sd_r,
+             y = ybar - tick / 2, yend = ybar + tick / 2, color = "grey20"),
+    annotate("segment", x = mu_r + k * sd_r, xend = mu_r + k * sd_r,
+             y = ybar - tick / 2, yend = ybar + tick / 2, color = "grey20")
+  )
+}
+
+ggplot(norm_df, aes(x = x, y = y)) +
+  geom_area(data = filter(norm_df, x >= band_df$lo[1], x <= band_df$hi[1]),
+            fill = band_df$fill[1]) +
+  geom_area(data = filter(norm_df, x >= band_df$lo[2], x <= band_df$hi[2]),
+            fill = band_df$fill[2]) +
+  geom_area(data = filter(norm_df, x >= band_df$lo[3], x <= band_df$hi[3]),
+            fill = band_df$fill[3]) +
+  geom_line(color = "grey30", linewidth = 0.9) +
+  geom_vline(xintercept = mu_r, linetype = "dashed", color = "grey30") +
+  emp_bar(1, y68 - bar_off) +
+  emp_bar(2, y95 - bar_off) +
+  emp_bar(3, y997 - bar_off) +
+  annotate("label", x = mu_r, y = y68, label = "68%",
+           size = 3.8, fill = "white", alpha = 0.9, label.size = 0.25) +
+  annotate("label", x = mu_r, y = y95, label = "95%",
+           size = 3.6, fill = "white", alpha = 0.9, label.size = 0.25) +
+  annotate("label", x = mu_r, y = y997, label = "99.7%",
+           size = 3.4, fill = "white", alpha = 0.9, label.size = 0.25) +
+  annotate("label", x = mu_r, y = peak, label = "mu", parse = TRUE,
+           size = 3.6, fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(breaks = mu_r + c(-3, -2, -1, 0, 1, 2, 3) * sd_r,
+                     labels = function(x) percent(x, accuracy = 0.1)) +
+  labs(x = "Weekly return", y = "Density")
+```
+
+Applied to the returns model: about two weeks in three land between `r percent(mu_r - sd_r, accuracy = 0.1)` and `r percent(mu_r + sd_r, accuracy = 0.1)`; about 19 weeks in 20 land between `r percent(mu_r - 2 * sd_r, accuracy = 0.1)` and `r percent(mu_r + 2 * sd_r, accuracy = 0.1)`; and a week outside `r percent(mu_r - 3 * sd_r, accuracy = 0.1)` to `r percent(mu_r + 3 * sd_r, accuracy = 0.1)` should be a once-in-several-years event. The rule works in both directions. Given the parameters you can sketch the whole distribution in your head, and given an extreme outcome you can immediately place it: a $-4\%$ week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there's no dependence between consecutive weekly returns).
+
+
+## Z-scores, again {#sec-standard-normal}
+
+Standardizing a normal random variable --- $Z = (X - \mu)/\sigma$ --- produces the **standard normal distribution** $Z \sim N(0, 1)$. Since $Z$ now represents standard deviations from the mean, we know that *if a random variable is normally distributed*, we should see values more than 2 standard deviations from the mean about 5\% of the time, and values more than 3 standard deviations from the mean about 0.3\% of the time. Here z-scores tell us quite a bit about the associated probability of seeing an outcome at least as far from the mean as $Z$ --- but only because the random variable has a normal distribution.
+
+::: {.callout-warning}
+## Common mistake: Z-scores carry probabilities only for normal distributions
+
+These probability statements attach to z-scores *only when the underlying random variable is normal*. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean --- that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution's shape. A z-score of 2.5 is a once-in-eighty event under a normal distribution; under a heavy-tailed one it might be a monthly occurrence.
+:::
+
+The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks --- five or so out of our `r nrow(returns)` --- should land more than two standard deviations from the mean. In the data, `r sum(abs((returns$market - mu_r) / sd_r) > 2)` weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. Judging them by counting is crude; the next section builds a better diagnostic for checking normality (and more generally for comparing any two distributions).
+
+## QQ plots: checking normality {#sec-qq-plots}
+
+In the last section we checked the returns model at a single quantile, counting the weeks that landed more than two standard deviations from the mean. A **quantile-quantile (QQ) plot** makes that kind of comparison at every quantile at once. If a variable has a normal distribution, after standardization we know the median should be close to zero, the 2.5th percentile should be about -2, the 97.5th percentile about +2, and so on. The QQ plot puts the theoretical normal quantile on the horizontal axis and the corresponding observed quantile on the vertical axis. If the data are truly close to normal, the points will trace out a straight line. Large departures from the line mean normality is questionable, and *where* the points bend away tells you *how* the data deviate. The examples below show the common patterns.
+
+@fig-qq-animation builds the plot up one quantile at a time, using our z-scored weekly returns. Each frame fixes a single percentile and asks where it lands in two distributions: in the data (the blue line, dropped onto the density-scaled histogram at top) and in a standard normal (the purple line, on the standard normal density below). That pair of quantiles --- one observed, one theoretical --- becomes a single point on the plot at right. Sweeping from the 1st percentile to the 99th plots one point per comparison, and the points trace out the QQ curve.
+
+![Building a QQ plot for the z-scored weekly returns. Each frame matches one percentile between the data (blue, top) and the standard normal (purple, bottom) and records the pair as a point on the right. The finished curve stays close to the 45-degree line, bending away only at the extreme quantiles.](images/qq_animation.gif){#fig-qq-animation}
+
+@fig-qq-panels runs four variables through the same comparison, each with its QQ plot beside a histogram of its z-scores.
+
+```{r}
+#| label: fig-qq-panels
+#| fig-cap: "Left column: QQ plots of the z-scored variables against the standard normal, so the reference line is the same 45-degree line in every panel. Right column: histograms of the same z-scores with the standard normal density overlaid. Hourly wages are a random subsample of 5,000 workers; daily electricity demand is the mean hourly DFW load for each day from 2016–2020."
+#| fig-width: 9
+#| fig-height: 12
+qq_panel <- function(x, title) {
+  z <- (x - mean(x)) / sd(x)
+  tibble(z = z) |>
+    ggplot(aes(sample = z)) +
+    geom_abline(slope = 1, intercept = 0, color = "darkorange", linewidth = 0.8) +
+    stat_qq(color = "steelblue", alpha = 0.4, size = 0.8) +
+    labs(x = "Normal quantiles", y = "Observed quantiles (z-scores)",
+         title = title) +
+    theme_minimal(base_size = 10)
+}
+
+z_hist <- function(x) {
+  z <- (x - mean(x)) / sd(x)
+  tibble(z = z) |>
+    ggplot(aes(x = z)) +
+    geom_histogram(aes(y = after_stat(density)), bins = 30,
+                   fill = "steelblue", color = "white") +
+    stat_function(fun = dnorm, args = list(mean = 0, sd = 1),
+                  color = "darkorange", linewidth = 0.9) +
+    labs(x = "z-score", y = "Density") +
+    theme_minimal(base_size = 10)
+}
+
+set.seed(7)
+wage_sample <- sample(mincer$hrly_wage, 5000)
+
+(qq_panel(returns$market, "Weekly S&P 500 returns") | z_hist(returns$market)) /
+  (qq_panel(wage_sample, "Hourly wages") | z_hist(wage_sample)) /
+  (qq_panel(log(wage_sample), "Log hourly wages") | z_hist(log(wage_sample))) /
+  (qq_panel(ercot_daily$load, "Daily electricity demand (DFW)") |
+     z_hist(ercot_daily$load))
+```
+
+Each panel revisits a distribution whose shape we already know from the data chapters. The market returns track the line closely, with the smallest and largest weeks pulling slightly away from it --- the outlying weeks from the last section. In small datasets some variability at extreme quantiles is to be expected, but sustained deviations from the line are suspicious. For reference, here are QQ plots for a few randomly generated datasets of the same size as the S&P 500 data, each drawn from a standard normal distribution:
+
+```{r}
+#| label: fig-qq-reference
+#| fig-cap: "QQ plots for six simulated datasets of the same size as the returns data (n = 104), each drawn exactly from a normal distribution. Even perfectly normal data wobbles around the line at the extreme quantiles; deviations of this size are consistent with sampling variation."
+#| fig-width: 9
+#| fig-height: 5.6
+#| echo: false
+set.seed(11)
+ref_panel <- function(title) {
+  x <- rnorm(nrow(returns))
+  z <- (x - mean(x)) / sd(x)
+  tibble(z = z) |>
+    ggplot(aes(sample = z)) +
+    geom_abline(slope = 1, intercept = 0, color = "darkorange", linewidth = 0.8) +
+    stat_qq(color = "steelblue", alpha = 0.4, size = 0.8) +
+    labs(x = "Normal quantiles", y = "Observed quantiles (z-scores)",
+         title = title) +
+    theme_minimal(base_size = 10)
+}
+
+(ref_panel("Sample 1") | ref_panel("Sample 2") | ref_panel("Sample 3")) /
+  (ref_panel("Sample 4") | ref_panel("Sample 5") | ref_panel("Sample 6"))
+```
+
+Looking through the other examples, we see sustained deviations from normality. Hourly wages bow high above the line at the top: extreme earners are far larger than any normal distribution would produce --- strong right skew. The flat run of identical points at the very top is a survey artifact, not a distributional shape: the largest reported earnings are capped at a common value. Taking logs --- the transformation from Chapter 4 --- pulls the wage points much closer to the line, but we still see some evidence of heavier tails than expected. Daily electricity demand flattens out at both ends of the line: its extremes are less extreme than a normal's. The flat stretch of points cutting across the line in the middle of the panel is a different signal --- many days pile up at similar loads, suggesting a mode or "shoulder" --- and neither feature is consistent with a normal distribution.
+
+## Data used in this section {.unnumbered}
+
+- [CPS ASEC Earnings](appendix_data.qmd#sec-data-earnings-cps)
+- [Weekly Asset Returns (2023–2025)](appendix_data.qmd#sec-data-returns-2025)
+- [ERCOT Hourly Load and Temperature Panel](appendix_data.qmd#sec-data-ercot-shaffer)

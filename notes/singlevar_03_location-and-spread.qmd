@@ -1,0 +1,178 @@
+---
+title: "Measuring Location and Spread"
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+library(patchwork)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+austin_full <- read_csv("data/austin_houses/austin_houses.csv",
+                        show_col_types = FALSE)
+
+austin_zip <- austin_full |>
+  filter(zipcode == 78752)
+```
+
+Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.
+
+## Measures of center {#sec-measures-center}
+
+The two most common measures of center are the **mean** and the **median**.
+
+:::: {.Definition #defn-sample-mean}
+## Sample mean
+
+The **sample mean** is the arithmetic average of the observed values: add them
+up and divide by how many there are. We write it $\bar{x}$, read aloud as
+"x-bar."
+
+::: {#formula-sample-mean .details .formula-details summary="Details and formulas"
+display="show" non-interactive-summary="Formula"}
+
+For observations $x_1, x_2, \ldots, x_n$,
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i.
+$$
+
+The summation adds the $n$ observed values, and dividing by $n$ turns that
+total into an average.
+
+:::
+::::
+
+For our Austin 78752 prices, the mean is `r dollar(round(mean(austin_zip$latest_price)))`.
+
+::: {.Definition #defn-median}
+## Median
+
+The **median** is the middle value when the data are sorted from smallest to
+largest. It goes by three other names we have already seen: the 50th percentile,
+the 0.5 quantile, and the second quartile.
+:::
+
+For our prices, the median is `r dollar(round(median(austin_zip$latest_price)))`.
+
+:::: {.TechnicalDetail}
+## Medians when values tie
+
+When the number of observations is odd, the median is the middle sorted value. When it is even, we use the average of the two middle values. Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it.
+::::
+
+The mean here (`r dollar(round(mean(austin_zip$latest_price)))`) is higher than the median (`r dollar(round(median(austin_zip$latest_price)))`) because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.
+
+::: {.callout-note}
+## Mean or median?
+
+The mean and the median sit close together in a symmetric distribution. In a right-skewed distribution the mean sits above the median, and in a
+left-skewed distribution it sits below. A substantial gap
+between the two is therefore evidence of skewness, outliers, or some other
+asymmetry, which is a good reason to report both.
+:::
+
+Consider the bimodal distribution of house ages in the full Austin housing dataset (@fig-house-age-center).
+
+```{r}
+#| label: fig-house-age-center
+#| fig-cap: "Distribution of house ages in the full Austin housing dataset."
+ggplot(austin_full, aes(x = age)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30, fill = "steelblue", color = "white") +
+  geom_density(alpha = 0.3) +
+  geom_rug(alpha = 0.1) +
+  labs(x = "House age (years)", y = "Density")
+```
+
+The distribution has two broad peaks, while the mean age of `r round(mean(austin_full$age), 1)` years falls between them.
+
+
+## Measures of spread {#sec-measures-spread}
+
+Knowing the center of a distribution isn't enough --- we also need to know how much values vary around that center. We can think about the spread of a distribution as measuring how *un*predictable a variable is. Let's see an example. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.
+
+```{r}
+#| label: fig-zip-comparison
+#| fig-cap: "Sale prices by ZIP code: box plots (left) with x's indicating sample means and overlapping density-scaled histograms (right)."
+#| fig-width: 9
+#| fig-height: 4
+zip_data <- austin_full |>
+  filter(zipcode %in% c(78749, 78741)) |>
+  mutate(zipcode = factor(zipcode))
+
+p_box <- ggplot(zip_data, aes(x = zipcode, y = latest_price)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.3) +
+  stat_summary(fun = mean, geom = "point", shape = 4, size = 3, color = "darkred") +
+  scale_y_continuous(labels = dollar_format()) +
+  labs(x = "ZIP code", y = "Sale price")
+
+p_hist <- ggplot(zip_data, aes(x = latest_price, fill = zipcode)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20, color = "white", alpha = 0.6,
+                 position = "identity") +
+  geom_rug(aes(color = zipcode), alpha = 0.3, show.legend = FALSE) +
+  scale_x_continuous(labels = dollar_format()) +
+  labs(x = "Sale price", y = "Density", fill = "ZIP code")
+
+p_box + p_hist
+```
+
+Now imagine you need to guess the sale price for a new listing in each of those ZIP codes, using only the ZIP code to make your guess. Assuming our historical data is useful for making such a prediction, which price is going to be harder to accurately predict?
+
+
+You probably said 78741, because the values are more "spread out" than in 78749. Your best prediction for the sale price of a house in either ZIP code will be the mean or median (depending on how you define "best" mathematically). Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749.
+
+```{r}
+#| label: spread-setup
+#| include: false
+p49 <- austin_full$latest_price[austin_full$zipcode == 78749]
+p41 <- austin_full$latest_price[austin_full$zipcode == 78741]
+```
+
+:::: {.Definition #defn-standard-deviation}
+## Standard deviation
+
+The **standard deviation** measures the typical distance of an observation from the mean. We square the deviations so that positive and negative ones don't cancel out, then take the square root to get back to the original units.
+
+::: {.details .formula-details #formula-standard-deviation summary="Details and formulas" non-interactive-summary="Formula"}
+
+$$
+s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
+$$
+
+The standard deviation is the square root of the average squared distance from the mean. Dividing by $n-1$ rather than $n$ to form that average is a technical adjustment; in any case we care about, $n$ and $n-1$ are effectively the same.
+:::
+::::
+
+For 78749 the standard deviation is `r dollar(round(sd(p49)))`; for 78741 it is `r dollar(round(sd(p41)))`. That gap matches what we saw: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.
+
+:::: {.Definition #defn-variance}
+## Variance
+
+The **variance** is simply the standard deviation squared.
+::::
+
+For 78749 that comes to $s^2 = `r format(round(var(p49) / 1e9, 1), big.mark = ",")`$ billion dollars-squared, and for 78741 about $`r format(round(var(p41) / 1e9, 1), big.mark = ",")`$ billion. The variance is most useful as a measure of spread --- unpredictability --- when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.
+
+::: {.Definition #defn-iqr}
+## Interquartile range
+
+The **interquartile range** (IQR) is the distance between the 75th and 25th
+percentiles, $\text{IQR} = Q3 - Q1$ --- the width of the middle half of the
+data. Like the median, it is insensitive to the values of the most extreme observations.
+:::
+
+The IQR works out to `r dollar(round(IQR(p49)))` in 78749 and `r dollar(round(IQR(p41)))` in 78741. Because the extremes never enter the calculation, the IQR is a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.
+
+## Data used in this section {.unnumbered}
+
+- [Austin House Listings](appendix_data.qmd#sec-data-housing-kaggle)
