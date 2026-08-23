@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Create, organize, and compile statistical output">
 
-<title>TEMBA Statistics</title>
+<title>Use IntroStatGPT – TEMBA Statistics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,23 +30,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-629c56ba100745318e9dcb35146191d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-629c56ba100745318e9dcb35146191d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,14 +78,14 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">TEMBA Statistics</span>
     </a>
   </div>
@@ -95,23 +96,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notes/index.html" target="_blank"> 
+    <a class="nav-link" href="../notes/index.html" target="_blank"> 
 <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./slides.html"> 
+    <a class="nav-link" href="../slides.html"> 
 <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link" href="../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./introstatgpt.html"> 
+    <a class="nav-link active" href="../introstatgpt.html" aria-current="page"> 
 <span class="menu-text">IntroStatGPT</span></a>
   </li>  
 </ul>
@@ -120,10 +121,51 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introstatgpt/use.html">Use IntroStatGPT</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and set up IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/use.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Use IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/working.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with IntroStatGPT and Codex</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -131,9 +173,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TEMBA Statistics</h1>
+<h1 class="title">Use IntroStatGPT</h1>
 </div>
 
+<div>
+  <div class="description">
+    Create, organize, and compile statistical output
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -148,18 +195,132 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Course materials for TEMBA Statistics, taught by <a href="https://jaredsmurray.github.io">Jared Murray</a>.</p>
-<section id="materials" class="level2">
-<h2 class="anchored" data-anchor-id="materials">Materials</h2>
+<p>IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you <a href="../introstatgpt/setup.html">install and set up IntroStatGPT</a>.</p>
+<p>This page explains the IntroStatGPT workflow: create outputs, view the gallery, organize the report, and compile a Word document. For guidance on writing precise requests and checking the resulting analysis, see <a href="../introstatgpt/working.html">Working with IntroStatGPT and Codex</a>.</p>
+<section id="find-the-available-data" class="level2">
+<h2 class="anchored" data-anchor-id="find-the-available-data">Find the available data</h2>
+<p>Each IntroStatGPT folder contains the data for its activity. To see what is available, send:</p>
+<blockquote class="blockquote">
+<p>What datasets are available in this workspace? Give me their names and a short description of the variables in each. Do not begin an analysis.</p>
+</blockquote>
+<p>You can then refer to a dataset by the name IntroStatGPT reports. IntroStatGPT will locate the corresponding file.</p>
+</section>
+<section id="request-an-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="request-an-analysis">Request an analysis</h2>
+<p>Describe the statistical output you want. For example:</p>
+<blockquote class="blockquote">
+<p>Using the Austin housing data, restrict attention to ZIP code 78752. Make a histogram of sale price and a table containing the sample size, mean, median, standard deviation, and IQR.</p>
+</blockquote>
+<p>IntroStatGPT creates the requested outputs and shows them in the conversation. Outputs receive short identifiers:</p>
 <ul>
-<li><a href="notes/index.html" target="_blank">Course notes</a> — the textbook for the course.</li>
-<li><a href="./slides/01_basic_visualizations.html">Slides</a> — lecture decks.</li>
-<li><a href="./data.html">Data</a> — datasets used in the notes and in class.</li>
-<li><a href="./introstatgpt.html">IntroStatGPT</a> — using AI tools for the statistical computing in this course.</li>
+<li><code>P1</code>, <code>P2</code>, … for plots</li>
+<li><code>T1</code>, <code>T2</code>, … for tables</li>
+<li><code>R1</code>, <code>R2</code>, … for regression output</li>
 </ul>
-<p>Course materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas.</p>
+<p>Use these identifiers when requesting changes. IntroStatGPT creates statistical output; you are responsible for interpreting the results and writing conclusions.</p>
+</section>
+<section id="revise-an-output" class="level2">
+<h2 class="anchored" data-anchor-id="revise-an-output">Revise an output</h2>
+<p>For example:</p>
+<blockquote class="blockquote">
+<p>Revise P1 to use 30 bins and format the horizontal axis as dollars.</p>
+</blockquote>
+<p>This replaces the current version of <code>P1</code>. To retain both versions, request a fork:</p>
+<blockquote class="blockquote">
+<p>Fork P1. Keep the existing version and create a new version with 30 bins.</p>
+</blockquote>
+<p>The new output receives a new identifier.</p>
+</section>
+<section id="open-the-analysis-gallery" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-analysis-gallery">Open the analysis gallery</h2>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Open the analysis gallery.</p>
+</blockquote>
+<p>IntroStatGPT refreshes the gallery and returns an <strong>Open the analysis page</strong> link. Select it to open a live view of your current tables and plots.</p>
+<p>The gallery has four filters:</p>
+<ul>
+<li><strong>All</strong></li>
+<li><strong>In report</strong></li>
+<li><strong>Not in report</strong></li>
+<li><strong>Archived</strong></li>
+</ul>
+<p>If you close the gallery, ask IntroStatGPT to open it again.</p>
+</section>
+<section id="organize-your-work" class="level2">
+<h2 class="anchored" data-anchor-id="organize-your-work">Organize your work</h2>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Open the analysis organizer.</p>
+</blockquote>
+<p>The organizer appears in the conversation. Use it to:</p>
+<ul>
+<li>add or rename report sections;</li>
+<li>move outputs between sections;</li>
+<li>reorder outputs;</li>
+<li>include or exclude outputs from the report; and</li>
+<li>archive outputs you no longer need.</li>
+</ul>
+<p>Moving an output does not include it in the report. Use <strong>Include in report</strong> for every output you want in the Word document.</p>
+<p>When finished, select <strong>Apply organization</strong> and wait for IntroStatGPT to confirm that it saved the changes.</p>
+</section>
+<section id="create-a-word-report" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-word-report">Create a Word report</h2>
+<section id="prepare-the-report" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-the-report">Prepare the report</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Prepare the report for review.</p>
+</blockquote>
+<p>IntroStatGPT preserves the selected outputs, checks their placement, displays the report outline, and provides an approval token. Review the section and output order before approving it.</p>
+<p>If the outline is incorrect, return to the organizer, make the correction, and prepare the report again.</p>
+</section>
+<section id="approve-compilation" class="level3">
+<h3 class="anchored" data-anchor-id="approve-compilation">Approve compilation</h3>
+<p>When the outline is correct, reply with the exact approval requested by IntroStatGPT. For example:</p>
+<blockquote class="blockquote">
+<p>Approve report token ABC123.</p>
+</blockquote>
+<p>Use the token IntroStatGPT provides for your report. IntroStatGPT creates a Word document in the <code>reports</code> folder and reports its location.</p>
+<p>The document contains the report title, section headings, selected tables and plots, and space for your writing. Add your interpretations and conclusions in Microsoft Word.</p>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<section id="the-analysis-gallery-does-not-open" class="level3">
+<h3 class="anchored" data-anchor-id="the-analysis-gallery-does-not-open">The analysis gallery does not open</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Refresh the analysis gallery and give me a clickable Open the analysis page link. Do not open its source code.</p>
+</blockquote>
+</section>
+<section id="the-organizer-does-not-appear" class="level3">
+<h3 class="anchored" data-anchor-id="the-organizer-does-not-appear">The organizer does not appear</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Open the analysis organizer directly in this conversation. Do not open its HTML source in the editor.</p>
+</blockquote>
+</section>
+<section id="organizer-changes-are-missing" class="level3">
+<h3 class="anchored" data-anchor-id="organizer-changes-are-missing">Organizer changes are missing</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Check the current analysis-board revision, refresh the gallery, and give me the updated analysis-page link.</p>
+</blockquote>
+</section>
+<section id="report-preparation-fails" class="level3">
+<h3 class="anchored" data-anchor-id="report-preparation-fails">Report preparation fails</h3>
+<p>A selected output may still be in <strong>Unassigned</strong>. Open the organizer, move it into a named section, apply the organization, and prepare the report again.</p>
+</section>
+<section id="you-are-unsure-what-was-saved" class="level3">
+<h3 class="anchored" data-anchor-id="you-are-unsure-what-was-saved">You are unsure what was saved</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Tell me the current analysis-board revision, report selections, and section order.</p>
+</blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

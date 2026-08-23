@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TEMBA Statistics</title>
+<title>Install and set up IntroStatGPT – TEMBA Statistics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,23 +29,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-629c56ba100745318e9dcb35146191d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-629c56ba100745318e9dcb35146191d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,14 +77,14 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">TEMBA Statistics</span>
     </a>
   </div>
@@ -95,23 +95,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notes/index.html" target="_blank"> 
+    <a class="nav-link" href="../notes/index.html" target="_blank"> 
 <span class="menu-text">Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./slides.html"> 
+    <a class="nav-link" href="../slides.html"> 
 <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link" href="../data.html"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./introstatgpt.html"> 
+    <a class="nav-link active" href="../introstatgpt.html" aria-current="page"> 
 <span class="menu-text">IntroStatGPT</span></a>
   </li>  
 </ul>
@@ -120,10 +120,51 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introstatgpt/setup.html">Install and set up IntroStatGPT</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Install and set up IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Use IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/working.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with IntroStatGPT and Codex</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -131,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TEMBA Statistics</h1>
+<h1 class="title">Install and set up IntroStatGPT</h1>
 </div>
 
 
@@ -148,18 +189,118 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Course materials for TEMBA Statistics, taught by <a href="https://jaredsmurray.github.io">Jared Murray</a>.</p>
-<section id="materials" class="level2">
-<h2 class="anchored" data-anchor-id="materials">Materials</h2>
-<ul>
-<li><a href="notes/index.html" target="_blank">Course notes</a> — the textbook for the course.</li>
-<li><a href="./slides/01_basic_visualizations.html">Slides</a> — lecture decks.</li>
-<li><a href="./data.html">Data</a> — datasets used in the notes and in class.</li>
-<li><a href="./introstatgpt.html">IntroStatGPT</a> — using AI tools for the statistical computing in this course.</li>
-</ul>
-<p>Course materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas.</p>
+<p>Complete these steps before you first use IntroStatGPT. You do not need previous experience with R or computer programming.</p>
+<section id="activate-your-ut-chatgpt-account" class="level2">
+<h2 class="anchored" data-anchor-id="activate-your-ut-chatgpt-account">1. Activate your UT ChatGPT account</h2>
+<p>UT Austin provides ChatGPT EDU to students, faculty, and staff.</p>
+<ol type="1">
+<li>Visit the <a href="https://tech.utexas.edu/services-tools/ai">UT Austin AI tools page</a>.</li>
+<li>Select <strong>Log in to access OpenAI ChatGPT EDU</strong>.</li>
+<li>Sign in with your UT EID email address: <code>[your EID]@eid.utexas.edu</code>.</li>
+<li>Complete UT authentication.</li>
+</ol>
+<p>Use this account when you sign in to the desktop app.</p>
+</section>
+<section id="install-r" class="level2">
+<h2 class="anchored" data-anchor-id="install-r">2. Install R</h2>
+<p>R performs the statistical calculations behind IntroStatGPT. Download it from <a href="https://cloud.r-project.org/">The Comprehensive R Archive Network</a>.</p>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ol type="1">
+<li>Select <strong>Download R for Windows</strong>.</li>
+<li>Select <strong>base</strong>.</li>
+<li>Download the current R installer.</li>
+<li>Open the installer and accept the default options.</li>
+</ol>
+</section>
+<section id="mac" class="level3">
+<h3 class="anchored" data-anchor-id="mac">Mac</h3>
+<ol type="1">
+<li>Select <strong>Download R for macOS</strong>.</li>
+<li>Download the installer for your Mac.</li>
+<li>Open the downloaded <code>.pkg</code> file and follow the installation prompts.</li>
+</ol>
+<p>To identify your Mac processor, select <strong>Apple menu &gt; About This Mac</strong> and look for Apple silicon or Intel.</p>
+</section>
+</section>
+<section id="install-the-chatgpt-desktop-app" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-chatgpt-desktop-app">3. Install the ChatGPT desktop app</h2>
+<p>Follow the <a href="https://learn.chatgpt.com/docs/app">official desktop-app instructions</a> to install ChatGPT. Open the app and sign in with your UT ChatGPT account.</p>
+</section>
+<section id="download-introstatgpt" class="level2">
+<h2 class="anchored" data-anchor-id="download-introstatgpt">4. Download IntroStatGPT</h2>
+<p>Download <a href="../files/IntroStatGPT_intensive.zip">IntroStatGPT_intensive.zip</a> (13 MB), then extract it. The extracted folder normally has the same name as the ZIP file.</p>
+<section id="windows-1" class="level3">
+<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
+<ol type="1">
+<li>Right-click the downloaded ZIP file.</li>
+<li>Select <strong>Extract All</strong>.</li>
+<li>Move the extracted IntroStatGPT folder to Documents.</li>
+</ol>
+</section>
+<section id="mac-1" class="level3">
+<h3 class="anchored" data-anchor-id="mac-1">Mac</h3>
+<ol type="1">
+<li>Double-click the downloaded ZIP file.</li>
+<li>Move the extracted IntroStatGPT folder to Documents.</li>
+</ol>
+<p>Work from the extracted folder. Keep its internal files and folders in their original locations.</p>
+</section>
+</section>
+<section id="open-the-extracted-folder-in-codex" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-extracted-folder-in-codex">5. Open the extracted folder in Codex</h2>
+<ol type="1">
+<li>Open the ChatGPT desktop app.</li>
+<li>Enter Codex.</li>
+<li>From the menu bar, choose <strong>File &gt; Open Folder</strong>.</li>
+<li>Open Documents and select the IntroStatGPT folder you extracted in the previous step.</li>
+<li>Select <strong>Open</strong>.</li>
+</ol>
+<p>Select the extracted IntroStatGPT folder itself, rather than a CSV file or one of its subfolders. Codex now treats that folder and everything inside it as one workspace.</p>
+</section>
+<section id="run-the-initial-setup" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-initial-setup">6. Run the initial setup</h2>
+<p>After the folder opens, start a task for this workspace:</p>
+<ol type="1">
+<li>In the left sidebar, select <strong>New task</strong> (the <strong>+</strong> button).</li>
+<li>Confirm that the IntroStatGPT folder name appears as the task’s workspace.</li>
+<li>Click the message box at the bottom of the task and send:</li>
+</ol>
+<blockquote class="blockquote">
+<p>Set up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.</p>
+</blockquote>
+<p>Codex will check R and install the required R packages. The first setup may take a few minutes. Approve package installation if Codex requests permission.</p>
+<p>Setup is complete when Codex reports:</p>
+<blockquote class="blockquote">
+<p>Setup check passed.</p>
+</blockquote>
+<p>You are now ready to <a href="../introstatgpt/use.html">use IntroStatGPT</a>.</p>
+</section>
+<section id="setup-troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="setup-troubleshooting">Setup troubleshooting</h2>
+<section id="codex-cannot-find-r" class="level3">
+<h3 class="anchored" data-anchor-id="codex-cannot-find-r">Codex cannot find R</h3>
+<p>Close and reopen the ChatGPT desktop app after installing R. Then send:</p>
+<blockquote class="blockquote">
+<p>Check whether R is installed and available to this workspace.</p>
+</blockquote>
+</section>
+<section id="an-r-package-is-missing" class="level3">
+<h3 class="anchored" data-anchor-id="an-r-package-is-missing">An R package is missing</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Run the workspace setup and install or update any missing or incompatible required packages.</p>
+</blockquote>
+</section>
+<section id="setup-still-fails" class="level3">
+<h3 class="anchored" data-anchor-id="setup-still-fails">Setup still fails</h3>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Diagnose the setup failure. Tell me exactly what I need to do, but do not begin an analysis.</p>
+</blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

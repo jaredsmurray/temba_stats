@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-629c56ba100745318e9dcb35146191d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -121,10 +121,51 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introstatgpt.html">IntroStatGPT</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introstatgpt.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introstatgpt/setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and set up IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introstatgpt/use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Use IntroStatGPT</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introstatgpt/working.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with IntroStatGPT and Codex</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -154,9 +195,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Coming soon. This page will explain how we use AI tools (ChatGPT, Claude, and the like) as the interface to statistical software in this course: how to ask for an analysis precisely, how to check what comes back, and how to save your work. We will set it up together during the August residency.</p>
+<p>IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; ChatGPT’s Codex runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.</p>
+<section id="start-here" class="level2">
+<h2 class="anchored" data-anchor-id="start-here">Start here</h2>
+<ol type="1">
+<li><a href="./introstatgpt/setup.html">Install and set up IntroStatGPT</a> — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.</li>
+<li><a href="./introstatgpt/use.html">Use IntroStatGPT</a> — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.</li>
+<li><a href="./introstatgpt/working.html">Working with IntroStatGPT and Codex</a> — how to make requests that produce checkable output, how to check it, and what to save.</li>
+</ol>
+</section>
+<section id="download" class="level2">
+<h2 class="anchored" data-anchor-id="download">Download</h2>
+<p><a href="files/IntroStatGPT_intensive.zip">IntroStatGPT_intensive.zip</a> (13 MB) — the folder the setup page asks you to extract. It contains the IntroStatGPT setup and the course datasets.</p>
+<p>Your ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
