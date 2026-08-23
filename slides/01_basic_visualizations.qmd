@@ -219,9 +219,21 @@ Both panels share one vertical scale: prices in 78722 sit higher and spread wide
 #| label: viz-gmat-ecdf
 #| fig-width: 9
 #| fig-height: 4.4
+# Static stand-in for the book's hover marker: the 655 score from the text.
+mark <- gmat |> filter(score == 655) |>
+  mutate(tip = paste0("Score: ", score, "\n", "Percentile: ", pct, "%"))
+
 ggplot(gmat, aes(x = score, y = quantile)) +
   geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
   geom_point(size = 1.4, color = "steelblue") +
+  geom_segment(data = mark, aes(x = score, xend = -Inf, y = quantile, yend = quantile),
+               color = "darkorange", linewidth = 0.8, linetype = "dashed") +
+  geom_segment(data = mark, aes(x = score, xend = score, y = quantile, yend = -Inf),
+               color = "darkorange", linewidth = 0.8, linetype = "dashed") +
+  geom_point(data = mark, aes(x = score, y = quantile), color = "darkorange", size = 2.5) +
+  geom_label(data = mark, aes(x = score, y = quantile, label = tip),
+             hjust = -0.1, vjust = 1.3, size = 4, color = "grey20", fill = "white",
+             label.size = 0.2, lineheight = 0.9) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "GMAT Focus Edition total score", y = "Cumulative percentage")
 ```
@@ -239,8 +251,21 @@ ecdf_df <- austin_zip |>
   arrange(latest_price) |>
   mutate(ecdf = cumsum(n_price) / sum(n_price))
 
+# Static stand-in for the book's hover marker: the 70th percentile.
+mark <- ecdf_df |> filter(ecdf >= 0.70) |> slice(1) |>
+  mutate(tip = paste0("Percentile: ", percent(ecdf, accuracy = 0.1), "\n",
+                      "Price: ", dollar(latest_price)))
+
 ggplot(ecdf_df, aes(x = latest_price, y = ecdf)) +
   geom_step(aes(group = 1), direction = "hv", color = "steelblue", linewidth = 1) +
+  geom_segment(data = mark, aes(x = latest_price, xend = -Inf, y = ecdf, yend = ecdf),
+               color = "darkorange", linewidth = 0.8, linetype = "dashed") +
+  geom_segment(data = mark, aes(x = latest_price, xend = latest_price, y = ecdf, yend = -Inf),
+               color = "darkorange", linewidth = 0.8, linetype = "dashed") +
+  geom_point(data = mark, aes(x = latest_price, y = ecdf), color = "darkorange", size = 2.5) +
+  geom_label(data = mark, aes(x = latest_price, y = ecdf, label = tip),
+             hjust = -0.1, vjust = 1.3, size = 4, color = "grey20", fill = "white",
+             label.size = 0.2, lineheight = 0.9) +
   scale_x_continuous(labels = dollar_format()) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(x = "Sale price", y = "Cumulative percentage")
