@@ -87,13 +87,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -272,7 +272,7 @@ window.Quarto = {
 <p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
 <div id="notation-subscripts-summation" class="Notation">
 <div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details open="" aria-label="Details" id="details-subscripts-summation">
+<details id="details-subscripts-summation" open="" aria-label="Details">
 <summary>Details</summary>
 <p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
 <div class="cell">
@@ -331,7 +331,7 @@ Table&nbsp;3.1: The first four sale prices, labeled.
 <div id="defn-sample-mean" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
 <p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-sample-mean">
+<details id="formula-sample-mean" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
 <p><span class="math display">\[
@@ -392,7 +392,7 @@ Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating
 <div id="defn-variance" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
 <p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-variance">
+<details id="formula-variance" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>The variance is given by</p>
 <p><span class="math display">\[
@@ -416,7 +416,7 @@ s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
 <div id="defn-standard-deviation" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
 <p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-standard-deviation">
+<details id="formula-standard-deviation" class="formula-details" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p><span class="math display">\[
 s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
