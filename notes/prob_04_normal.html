@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Transforming Quantitative Variables – TEMBA Statistics — Course Notes</title>
+<title>9&nbsp; The Normal Distribution – TEMBA Statistics — Course Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./singlevar_05_categorical.html" rel="next">
-<link href="./singlevar_03_location-and-spread.html" rel="prev">
+<link href="./appendix_data.html" rel="next">
+<link href="./prob_03_distribution-parameters.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -77,14 +77,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -92,6 +84,14 @@ ul.task-list li input[type="checkbox"] {
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 </style>
 
@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_01_intro.html">Probability for one variable</a></li><li class="breadcrumb-item"><a href="./prob_04_normal.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,7 +200,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./singlevar_04_transformations.html" class="sidebar-item-text sidebar-link active">
+  <a href="./singlevar_04_transformations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span></a>
   </div>
 </li>
@@ -241,7 +241,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
+  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
   </div>
 </li>
@@ -274,10 +274,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-linear-transformations" id="toc-sec-linear-transformations" class="nav-link active" data-scroll-target="#sec-linear-transformations"><span class="header-section-number">4.1</span> Linear transformations</a></li>
-  <li><a href="#sec-zscores" id="toc-sec-zscores" class="nav-link" data-scroll-target="#sec-zscores"><span class="header-section-number">4.2</span> z-scores and standardization</a></li>
-  <li><a href="#sec-returns" id="toc-sec-returns" class="nav-link" data-scroll-target="#sec-returns"><span class="header-section-number">4.3</span> Percent changes and returns</a></li>
-  <li><a href="#sec-logarithms" id="toc-sec-logarithms" class="nav-link" data-scroll-target="#sec-logarithms"><span class="header-section-number">4.4</span> Logarithms</a></li>
+  <li><a href="#sec-normal-pdf" id="toc-sec-normal-pdf" class="nav-link active" data-scroll-target="#sec-normal-pdf"><span class="header-section-number">9.1</span> The probability density function</a></li>
+  <li><a href="#sec-normal-probabilities" id="toc-sec-normal-probabilities" class="nav-link" data-scroll-target="#sec-normal-probabilities"><span class="header-section-number">9.2</span> Computing probabilities</a></li>
+  <li><a href="#sec-empirical-rule" id="toc-sec-empirical-rule" class="nav-link" data-scroll-target="#sec-empirical-rule"><span class="header-section-number">9.3</span> The 68/95/99.7 rule</a></li>
+  <li><a href="#sec-standard-normal" id="toc-sec-standard-normal" class="nav-link" data-scroll-target="#sec-standard-normal"><span class="header-section-number">9.4</span> Z-scores, again</a></li>
+  <li><a href="#sec-qq-plots" id="toc-sec-qq-plots" class="nav-link" data-scroll-target="#sec-qq-plots"><span class="header-section-number">9.5</span> QQ plots: checking normality</a></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
@@ -285,9 +286,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_04_transformations.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_01_intro.html">Probability for one variable</a></li><li class="breadcrumb-item"><a href="./prob_04_normal.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></h1>
 </div>
 
 
@@ -304,288 +305,213 @@ window.Quarto = {
 </header>
 
 
-<p>Raw data do not always arrive in the form we want for an analysis or visualization. A <strong>transformation</strong> uses one or more existing values to produce a new variable with different properties. We will focus for now on three common transformations.</p>
-<section id="sec-linear-transformations" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-linear-transformations"><span class="header-section-number">4.1</span> Linear transformations</h2>
-<div id="defn-linear-transformation" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.1: </strong>Linear transformation</div><div class="fobx-body">
-<p>A <strong>linear transformation</strong> multiplies a variable by a constant, adds a constant, or does both: <span class="math inline">\(y = ax + b\)</span>. Every value gets the same rescaling and the same shift. We usually make one to change the units, the reference point, or both.</p>
+<p>This chapter introduces one of the most important families of continuous probability distributions: the normal distribution.</p>
+<section id="sec-normal-pdf" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sec-normal-pdf"><span class="header-section-number">9.1</span> The probability density function</h2>
+<div id="defn-normal-distribution" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 9.1: </strong>Normal distribution</div><div class="fobx-body">
+<p>The <strong>normal distribution</strong> (also known as the Gaussian distribution) is the symmetric continuous distribution governed entirely by two parameters: a mean <span class="math inline">\(\mu\)</span> and a variance <span class="math inline">\(\sigma^2\)</span>. The mean locates the center of the density curve and the variance controls how wide it is.</p>
+<details class="formula-details" aria-label="Details and formulas" id="formula-normal-density">
+<summary>Details and formulas</summary>
+<p>The density is</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}
+       \exp\!\left(-\frac{(x - \mu)^2}{2\sigma^2}\right).
+\]</span></p>
+<p>The exponent is a squared z-score, so the density falls off with the square of the distance from <span class="math inline">\(\mu\)</span> measured in standard deviations, and the leading constant is whatever makes the total area equal one. We never evaluate this by hand — software computes normal densities, probabilities, and quantiles.</p>
+</details>
 </div></div>
 </div>
-<p>Suppose you divide every Austin sale price by 1,000 so that you can report prices in thousands of dollars rather than dollars. The distribution keeps exactly the same shape. You have only relabeled its horizontal axis.</p>
+<p>A normal distribution’s density is the symmetric bell-shaped curve in <a href="#fig-normal-params" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>. Changing <span class="math inline">\(\mu\)</span> slides the curve left or right without altering its shape; changing <span class="math inline">\(\sigma^2\)</span> stretches or squeezes it without moving the center.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-linear-transform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-normal-params" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-linear-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-linear-transform-1.png" class="img-fluid figure-img" width="960">
+<div aria-describedby="fig-normal-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-normal-params-1.png" class="img-fluid figure-img" width="768">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Sale prices in dollars (left) and thousands of dollars (right). The distribution has the same shape; only the axis labels change.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-params-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Three normal densities. Increasing the mean from 0 to 2 slides the density to the right without changing its shape; increasing the variance from 1 to 4 spreads it out without moving its center.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>We can also shift each price by subtracting a reference value such as the mean or median.</p>
+<p>Since the normal distribution is symmetric, its mean and median are the same.</p>
+<div id="notation-normal-distribution" class="Notation">
+<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 9.1: </strong><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></div><div class="fobx-body">
+<p>We write</p>
+<p><span class="math display">\[
+X \sim N(\mu, \sigma^2)
+\]</span></p>
+<p>to say that the random variable <span class="math inline">\(X\)</span> follows a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>; the “<span class="math inline">\(\sim\)</span>” reads “is distributed as.”</p>
+<p><em>The second parameter is the variance, not the standard deviation.</em> Most software for computing normal probabilities, densities, and quantiles takes the mean and <em>standard deviation</em> as arguments instead, so the two conventions have to be kept straight when moving between a written model and code.</p>
+</div></div>
+</div>
+<p>A shifted and scaled normal random variable is still normal: if <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, then <span class="math inline">\(Y = aX + b\)</span> follows another normal distribution with mean and variance given by the shifting-and-scaling rules from <a href="prob_03_distribution-parameters.html#sec-shift-scale" class="quarto-xref"><span>Section 8.4</span></a>: <span class="math inline">\(N(a\mu + b,\; a^2\sigma^2)\)</span>.</p>
+</section>
+<section id="sec-normal-probabilities" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="sec-normal-probabilities"><span class="header-section-number">9.2</span> Computing probabilities</h2>
+<p>To illustrate probability computations with the normal distribution we’ll build a model for weekly S&amp;P 500 returns, using the historical mean and standard deviation as the parameters: <span class="math inline">\(R \sim N(0.0047, 0.0212^2)\)</span> — a mean weekly return of about 0.47% and a standard deviation of about 2.12%. <a href="#fig-returns-normal-model" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> plots the estimated model over the data.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-linear-transform-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-returns-normal-model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-linear-transform-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-linear-transform-2-1.png" class="img-fluid figure-img" width="960">
+<div aria-describedby="fig-returns-normal-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-returns-normal-model-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-transform-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.2: Mean-centered sale prices in dollars (left) and thousands of dollars (right).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-normal-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Weekly S&amp;P 500 returns (density-scaled histogram) with the fitted normal model overlaid. The fitted density tracks the data well through the middle; the most extreme weeks sit a little further out than the model expects.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>These changes again amount to relabeling the axis. After we subtract the mean and change the units, each value tells us how many thousands of dollars its sale price was above or below the average. The sign gives the direction.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>To be clear: Weekly returns are not literally normal — a return can’t fall below <span class="math inline">\(-100\%\)</span>, and real markets tend to produce more extreme outcomes than a normal distribution would give. What we are claiming (for now!) is that the normal distribution is a <em>good enough approximation</em>: close enough to the true distribution, in the region we care about, that probability statements computed from it are useful. That’s the case for any model, and to the extent we can, we should check whether our modeling assumptions are supported or not by the data available to us. We’ll do that below.</p>
+<p>With that model in hand we can compute any probabilities of interest as areas under the curve.</p>
+<ul>
+<li><strong>A losing week.</strong> <span class="math inline">\(\Pr(R &lt; 0) = 0.41\)</span>. Even in a market that drifts upward on average, the model gives roughly a 41% chance that any given week loses money.</li>
+<li><strong>A bad week.</strong> <span class="math inline">\(\Pr(R &lt; -3\%) = 0.05\)</span> — about one week in every 20.</li>
+<li><strong>A quiet week.</strong> <span class="math inline">\(\Pr(-1.5\% &lt; R &lt; 1.5\%) = 0.51\)</span>.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-returns-normal-probs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-returns-normal-probs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-returns-normal-probs-1.png" class="img-fluid figure-img" width="864">
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Mean, median, and standard deviation of <span class="math inline">\(ax + b\)</span>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-returns-normal-probs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Four probability statements as areas under the fitted normal model for weekly returns. Each panel’s title reports the probability; the shaded region is the corresponding area.
+</figcaption>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>If <span class="math inline">\(y_i = a x_i + b\)</span> for every observation, where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants, then</p>
-<p><span class="math display">\[
-\bar{y} = a\,\bar{x} + b, \qquad \text{median}(y) = a\,\text{median}(x) + b,
-\]</span></p>
-<p><span class="math display">\[
-s_y = |a|\,s_x, \qquad s^2_y = a^2\,s^2_x.
-\]</span></p>
-<p>Adding <span class="math inline">\(b\)</span> shifts the center and leaves the spread alone; multiplying by <span class="math inline">\(a\)</span> scales both the center and the spread (and the spread doesn’t care about the sign of <span class="math inline">\(a\)</span>).</p>
+</div>
+<p>A few more examples reinforce our basic probability rules, and how they are used to compute probabilities for normal random variables:</p>
+<ul>
+<li><strong>A non-losing week.</strong> <span class="math inline">\(\Pr(R \geq 0) = 0.59 = 1-\Pr(R &lt; 0)\)</span>.</li>
+<li><strong>A winning week.</strong> <span class="math inline">\(\Pr(R &gt; 0) = \Pr(R \geq 0)\)</span>, because for a continuous distribution, <span class="math inline">\(\Pr(R = 0) = 0\)</span> and <span class="math inline">\(\Pr(R \geq 0) = \Pr(R &gt; 0) + \Pr(R = 0)\)</span> since the two events are mutually exclusive.</li>
+</ul>
+<p>We can evaluate any normal probability we like using our basic probability rules and software that can evaluate the normal CDF to compute the areas like we did above. (The same is true for any continuous probability distribution.) Sketching the areas can be useful practice until you get the hang of this.</p>
+<p>For example, the interval probability <span class="math inline">\(\Pr(-1.5\% &lt; R &lt; 1.5\%)\)</span> can be computed a few different ways: We can start by computing <span class="math inline">\(\Pr(R &lt; 1.5\%)\)</span> and then subtracting off <span class="math inline">\(\Pr(R &lt; -1.5\%)\)</span> to eliminate the tail area we didn’t want. Or we could recognize that <span class="math inline">\(\Pr(-1.5\% &lt; R &lt; 1.5\%) = 1 - [\Pr(R &lt; -1.5\%) + \Pr(R &gt; 1.5\%)]\)</span>, since <span class="math inline">\(R&lt;-1.5\%\)</span> and <span class="math inline">\(R&gt;1.5\%\)</span> are the two mutually exclusive ways to land outside the interval. <a href="#fig-interval-two-ways" class="quarto-xref">Figure&nbsp;<span>9.4</span></a> sketches both routes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-interval-two-ways" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-interval-two-ways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-interval-two-ways-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interval-two-ways-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: Two routes to the same interval probability. Top row: start with everything below 1.5% and subtract the tail below -1.5%. Bottom row: start with total probability 1 and subtract the two tails outside the interval.
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="sec-zscores" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sec-zscores"><span class="header-section-number">4.2</span> z-scores and standardization</h2>
-<div id="defn-z-score" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 4.2: </strong>z-score and standardization</div><div class="fobx-body">
-<p>A <strong>z-score</strong> measures how many standard deviations a value lies from the mean. A home that sold one standard deviation above the mean price has a z-score of 1, and a home that sold one standard deviation below has a z-score of <span class="math inline">\(-1\)</span>. It is computed as</p>
-<p><span class="math display">\[
-z = \frac{x - \bar{x}}{s}.
-\]</span></p>
-<p>Taking the z-score of every observation produces a <strong>standardized</strong> variable, which has a mean of 0 and a standard deviation of 1. Standardization is a linear transformation:</p>
-<p><span class="math display">\[
-z = \frac{x - \bar{x}}{s}
-  = \underbrace{\left(\frac{1}{s}\right)}_{a}\, x
-  + \underbrace{\left(-\frac{\bar{x}}{s}\right)}_{b},
-\]</span></p>
-<p>so it leaves the shape of the distribution unchanged.</p>
+<section id="sec-empirical-rule" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="sec-empirical-rule"><span class="header-section-number">9.3</span> The 68/95/99.7 rule</h2>
+<p>For normal distributions, three particular areas come up over and over: the probability that an outcome lands within one, two, or three standard deviations of the mean.</p>
+<div id="defn-68-95-997" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 9.2: </strong>The 68/95/99.7 rule</div><div class="fobx-body">
+<p>If <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, then approximately:</p>
+<ol type="1">
+<li><strong>68%</strong> of the probability lies within <strong>one</strong> standard deviation of the mean, <span class="math inline">\(\mu \pm \sigma\)</span>.</li>
+<li><strong>95%</strong> lies within <strong>two</strong> standard deviations, <span class="math inline">\(\mu \pm 2\sigma\)</span>.</li>
+<li><strong>99.7%</strong> lies within <strong>three</strong> standard deviations, <span class="math inline">\(\mu \pm 3\sigma\)</span>.</li>
+</ol>
 </div></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-zscore-transform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-empirical-rule" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-zscore-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-zscore-transform-1.png" class="img-fluid figure-img" width="960">
+<div aria-describedby="fig-empirical-rule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-empirical-rule-1.png" class="img-fluid figure-img" width="720">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zscore-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.3: Austin 78752 sale prices before and after standardization. The distribution has the same shape; the horizontal axis now measures standard deviations from the mean.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-empirical-rule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.5: The 68/95/99.7 rule on the weekly-returns model. Each horizontal bar spans the interval mu plus-or-minus 1, 2, or 3 standard deviations; the label above each bar is the proportion of outcomes landing inside that interval.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A z-score compares an observed difference, <span class="math inline">\(x_i - \bar x\)</span>, with the size of a <em>typical</em> difference, the standard deviation <span class="math inline">\(s\)</span>. It measures the difference relative to the variable’s spread. A $50,000 difference is five standard deviations when <span class="math inline">\(s=\$10,000\)</span>, but only half a standard deviation when <span class="math inline">\(s=\$100,000\)</span>.</p>
-<p>As an example, consider home sale prices in ZIP codes 78749 and 78741. <a href="#fig-zip-spread-recap" class="quarto-xref">Figure&nbsp;<span>4.4</span></a> shows the distributions of prices in the two ZIP codes.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-zip-spread-recap" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-zip-spread-recap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-zip-spread-recap-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zip-spread-recap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.4: Density-scaled histograms of sale prices in ZIP codes 78749 and 78741. Prices vary more in 78741 than in 78749.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Suppose one home in each ZIP code sold for $600,000. Which sale lies farther above its local mean once we account for the different spreads? The mean sale price is $393,970 in 78749 and $379,545 in 78741. The lower mean in 78741 gives its $600,000 sale the larger raw difference. But prices also vary more in 78741. We can account for both facts by comparing the two z-scores.</p>
-<p>For 78749, the z-score of the $600,000 sale is</p>
-<p><span class="math display">\[
-z = \frac{600,000 - 393,970}{85,141} \approx 2.42
-\]</span></p>
-<p>This value measures how many standard deviations $600,000 lies above the mean price in 78749. For 78741, we get</p>
-<p><span class="math display">\[
-z = \frac{600,000 - 379,545}{151,824}\approx 1.45
-\]</span></p>
-<p>On the standardized scale, then, $600,000 lies farther above the mean in 78749.</p>
-<p>The histograms support the same comparison. The $600,000 mark lies deeper in the right tail for 78749 than for 78741.</p>
+<p>Applied to the returns model: about two weeks in three land between -1.6% and 2.6%; about 19 weeks in 20 land between -3.8% and 4.7%; and a week outside -5.9% to 6.8% should be a once-in-several-years event. The rule works in both directions. Given the parameters you can sketch the whole distribution in your head, and given an extreme outcome you can immediately place it: a <span class="math inline">\(-4\%\)</span> week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there’s no dependence between consecutive weekly returns).</p>
 </section>
-<section id="sec-returns" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sec-returns"><span class="header-section-number">4.3</span> Percent changes and returns</h2>
-<p>We often care more about a change relative to its baseline than about the raw change itself. A return on investment, for example, is the percentage change in value over a particular period. A $10,000 gain on a $100,000 investment is a 10% return, while the same gain on a $1,000,000 investment is only a 1% return.</p>
-<p>We compute the relative change as</p>
-<p><span class="math display">\[
-r = \frac{\text{New value} - \text{Old value}}{\text{Old value}}.
-\]</span></p>
-<p>In words, we divide the change in value by the old value. A value of <span class="math inline">\(r=0.10\)</span> represents a 10% increase, while <span class="math inline">\(r=-0.10\)</span> represents a 10% decrease. We will write returns as proportions and give their percentage equivalents when useful.</p>
-<p>Turning a series of prices into returns changes more than the center or the units, so it is not a linear transformation. Like a z-score, however, a return lets us make apples-to-apples comparisons across settings. Ford and Tesla share prices and their dollar changes are not directly comparable, but the returns on a fixed investment in each company are.</p>
-<p><a href="#fig-price-vs-returns" class="quarto-xref">Figure&nbsp;<span>4.5</span></a> shows two years of weekly observations for both stocks. The top row gives their prices, while the bottom row places their returns on a common scale.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-price-vs-returns" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-price-vs-returns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-price-vs-returns-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-price-vs-returns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.5: Two years of weekly Ford and Tesla weekly prices and returns. The top row shows share prices on separate dollar scales; the bottom row shows weekly returns on a shared percentage scale.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Rearranging the percent-change formula gives</p>
-<p><span class="math display">\[
-\text{New value} = \text{Old value} \times (1+r).
-\]</span></p>
-<p>Applying a percentage change multiplies the old value rather than adding a fixed amount. Suppose your salary is $100,000 and you receive a 3% raise. Your new salary is $100,000 <span class="math inline">\(\times\)</span> 1.03 = $103,000. Another 3% raise produces a salary of $103,000 <span class="math inline">\(\times\)</span> 1.03 = $106,090. The second raise adds $90 more because it applies to a larger base. Repeated proportional changes compound in this way.</p>
+<section id="sec-standard-normal" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-standard-normal"><span class="header-section-number">9.4</span> Z-scores, again</h2>
+<p>Standardizing a normal random variable — <span class="math inline">\(Z = (X - \mu)/\sigma\)</span> — produces the <strong>standard normal distribution</strong> <span class="math inline">\(Z \sim N(0, 1)\)</span>. Since <span class="math inline">\(Z\)</span> now represents standard deviations from the mean, we know that <em>if a random variable is normally distributed</em>, we should see values more than 2 standard deviations from the mean about 5% of the time, and values more than 3 standard deviations from the mean about 0.3% of the time. Here z-scores tell us quite a bit about the associated probability of seeing an outcome at least as far from the mean as <span class="math inline">\(Z\)</span> — but only because the random variable has a normal distribution.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common mistake: A 10% loss and a 10% gain do not cancel
+<span class="screen-reader-only">Warning</span>Common mistake: Z-scores carry probabilities only for normal distributions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A stock that falls from $100 to $90 and then rises by 10% ends at $99, down 1% overall. Equal percentage losses and gains apply to different starting values, so they do not offset. Log returns do add up: <span class="math inline">\(\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101\)</span>, the log return from $100 to $99.</p>
+<p>These probability statements attach to z-scores <em>only when the underlying random variable is normal</em>. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean — that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution’s shape. A z-score of 2.5 is a once-in-eighty event under a normal distribution; under a heavy-tailed one it might be a monthly occurrence.</p>
 </div>
 </div>
+<p>The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks — five or so out of our 104 — should land more than two standard deviations from the mean. In the data, 6 weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. Judging them by counting is crude; the next section builds a better diagnostic for checking normality (and more generally for comparing any two distributions).</p>
 </section>
-<section id="sec-logarithms" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-logarithms"><span class="header-section-number">4.4</span> Logarithms</h2>
-<p>Many quantities are easier to compare in proportional terms than in dollar terms. A 3% raise depends on the current salary, while a fixed $3,000 raise adds the same amount each year. <strong>Logarithms</strong> convert multiplication into addition: <span class="math inline">\(\log(ab)=\log(a)+\log(b)\)</span>. That identity lets us add changes that would otherwise compound through multiplication.</p>
-<p>Logarithms are defined only for positive values. The plots below use base-10 logs, which make powers of 10 easy to label. The log returns later in this section use natural logs instead. The base changes the numerical units, but both scales turn equal ratios into equal distances.</p>
-<p>House prices provide one example. <a href="#fig-log-transform" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> compares sale prices on the original and log scales.</p>
+<section id="sec-qq-plots" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="sec-qq-plots"><span class="header-section-number">9.5</span> QQ plots: checking normality</h2>
+<p>In the last section we checked the returns model at a single quantile, counting the weeks that landed more than two standard deviations from the mean. A <strong>quantile-quantile (QQ) plot</strong> makes that kind of comparison at every quantile at once. If a variable has a normal distribution, after standardization we know the median should be close to zero, the 2.5th percentile should be about -2, the 97.5th percentile about +2, and so on. The QQ plot puts the theoretical normal quantile on the horizontal axis and the corresponding observed quantile on the vertical axis. If the data are truly close to normal, the points will trace out a straight line. Large departures from the line mean normality is questionable, and <em>where</em> the points bend away tells you <em>how</em> the data deviate. The examples below show the common patterns.</p>
+<p><a href="#fig-qq-animation" class="quarto-xref">Figure&nbsp;<span>9.6</span></a> builds the plot up one quantile at a time, using our z-scored weekly returns. Each frame fixes a single percentile and asks where it lands in two distributions: in the data (the blue line, dropped onto the density-scaled histogram at top) and in a standard normal (the purple line, on the standard normal density below). That pair of quantiles — one observed, one theoretical — becomes a single point on the plot at right. Sweeping from the 1st percentile to the 99th plots one point per comparison, and the points trace out the QQ curve.</p>
+<div id="fig-qq-animation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qq-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/qq_animation.gif" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.6: Building a QQ plot for the z-scored weekly returns. Each frame matches one percentile between the data (blue, top) and the standard normal (purple, bottom) and records the pair as a point on the right. The finished curve stays close to the 45-degree line, bending away only at the extreme quantiles.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-qq-panels" class="quarto-xref">Figure&nbsp;<span>9.7</span></a> runs four variables through the same comparison, each with its QQ plot beside a histogram of its z-scores.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-log-transform" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-qq-panels" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-log-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-log-transform-1.png" class="img-fluid figure-img" width="960">
+<div aria-describedby="fig-qq-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-qq-panels-1.png" class="img-fluid figure-img" width="864">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-log-transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.6: Austin sale prices on the original (left) and log (right) scales.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.7: Left column: QQ plots of the z-scored variables against the standard normal, so the reference line is the same 45-degree line in every panel. Right column: histograms of the same z-scores with the standard normal density overlaid. Hourly wages are a random subsample of 5,000 workers; daily electricity demand is the mean hourly DFW load for each day from 2016–2020.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Interpretation: Equal distances on a log axis are equal ratios
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>On the original price axis, $1 million to $2 million covers the same distance as $2 million to $3 million, because each interval adds $1 million. On the log-scaled axis, $100,000 to $300,000 covers the same distance as $1 million to $3 million, because the upper value is three times the lower in both cases.</p>
-</div>
-</div>
-<p>Hourly wages provide another example.</p>
+<p>Each panel revisits a distribution whose shape we already know from the data chapters. The market returns track the line closely, with the smallest and largest weeks pulling slightly away from it — the outlying weeks from the last section. In small datasets some variability at extreme quantiles is to be expected, but sustained deviations from the line are suspicious. For reference, here are QQ plots for a few randomly generated datasets of the same size as the S&amp;P 500 data, each drawn from a standard normal distribution:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-log-wage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-qq-reference" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-log-wage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_04_transformations_files/figure-html/fig-log-wage-1.png" class="img-fluid figure-img" width="960">
+<div aria-describedby="fig-qq-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-qq-reference-1.png" class="img-fluid figure-img" width="864">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-log-wage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.7: Hourly wages on the original (left) and log (right) scales.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.8: QQ plots for six simulated datasets of the same size as the returns data (n = 104), each drawn exactly from a normal distribution. Even perfectly normal data wobbles around the line at the extreme quantiles; deviations of this size are consistent with sampling variation.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>On the original scale, most wages cluster on the left while a thin tail stretches to the right. We saw the same shape for house prices. The log transformation does not remove that tail; it measures the gaps in multiplicative steps. The gap from $10 to $20 per hour is then the same as the gap from $50 to $100.</p>
-<!---
-## Log returns {#sec-log-returns}
-
-The return $r$ we defined in @sec-returns is formally called an arithmetic return, and it has a logarithmic counterpart, the log return.
-
-:::: {.Definition #defn-log-return}
-## Arithmetic and log returns
-
-An **arithmetic return** is the ordinary percentage change in price: the change
-in value divided by the value we started from. A **log return** is the natural
-logarithm of the ratio of the new price to the old one. A move from \$100 to
-\$110 is an arithmetic return of 0.10, or 10%, and a log return of about 0.0953.
-
-For a price that moves from $P_{t-1}$ to $P_t$,
-
-$$
-r_t = \frac{P_t - P_{t-1}}{P_{t-1}} = \frac{P_t}{P_{t-1}} - 1,
-\qquad
-g_t = \log\left(\frac{P_t}{P_{t-1}}\right) = \log(1 + r_t).
-$$
-
-The log return is the natural log of one plus the arithmetic return, and
-$r_t = e^{g_t} - 1$ converts a log return back to an arithmetic one.
-
-::::
-
-Arithmetic and log returns handle multiple periods differently. Arithmetic returns compound through multiplication, so the total return over $T$ periods is
-
-$$
-(1+r_1)(1+r_2)\cdots(1+r_T)-1.
-$$
-
-Each period changes the base for the next one. Log returns instead add across periods:
-
-$$
-g_1+g_2+\cdots+g_T = \log\left(\frac{P_T}{P_0}\right).
-$$
-
-The sum is the log return from the initial price $P_0$ to the final price $P_T$. Exponentiating that sum and subtracting 1 gives the same total arithmetic return as compounding the individual arithmetic returns.
-
-::: {.callout-warning}
-## Common mistake: A 10% loss and a 10% gain do not cancel
-
-A stock that falls from \$100 to \$90 and then rises by 10% ends at \$99, down
-1% overall. Equal percentage losses and gains apply to different starting
-values, so they do not offset. Log returns do add up:
-$\log(90/100) + \log(99/90) = \log(99/100) \approx -0.0101$, the log return
-from \$100 to \$99.
-:::
-
-Exponentiating that log return, $e^{-0.0101}-1\approx-0.01$, recovers the arithmetic return of about −1%. For small changes, arithmetic and log returns are nearly equal because $\log(1+r)\approx r$. An arithmetic return of 0.01 (1%) corresponds to a log return of about 0.00995. The difference grows with the return: an arithmetic return of 0.50 (50%) corresponds to a log return of about 0.4055.
-
-### Should I use log or arithmetic returns?
-
-Arithmetic returns give the more direct reading of an investment's percentage gain or loss. Log returns make successive changes easier to combine because we can add them across time. If you need to report the total percentage change in value, convert the cumulative log return back to an arithmetic return.
---->
+<p>Looking through the other examples, we see sustained deviations from normality. Hourly wages bow high above the line at the top: extreme earners are far larger than any normal distribution would produce — strong right skew. The flat run of identical points at the very top is a survey artifact, not a distributional shape: the largest reported earnings are capped at a common value. Taking logs — the transformation from Chapter 4 — pulls the wage points much closer to the line, but we still see some evidence of heavier tails than expected. Daily electricity demand flattens out at both ends of the line: its extremes are less extreme than a normal’s. The flat stretch of points cutting across the line in the middle of the panel is a different signal — many days pile up at similar loads, suggesting a mode or “shoulder” — and neither feature is consistent with a normal distribution.</p>
 </section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
 <ul>
-<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a></li>
 <li><a href="./appendix_data.html#sec-data-earnings-cps">CPS ASEC Earnings</a></li>
 <li><a href="./appendix_data.html#sec-data-returns-2025">Weekly Asset Returns (2023–2025)</a></li>
+<li><a href="./appendix_data.html#sec-data-ercot-shaffer">ERCOT Hourly Load and Temperature Panel</a></li>
 </ul>
 
 
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>The price series use split- and dividend-adjusted closing prices.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -991,13 +917,13 @@ Arithmetic returns give the more direct reading of an investment's percentage ga
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./singlevar_03_location-and-spread.html" class="pagination-link" aria-label="Measuring Location and Spread">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span>
+      <a href="./prob_03_distribution-parameters.html" class="pagination-link" aria-label="Measures of Location and Spread (and Other Parameters of Probability Distributions)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./singlevar_05_categorical.html" class="pagination-link" aria-label="Categorical Variables">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix_data.html" class="pagination-link" aria-label="Datasets">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
