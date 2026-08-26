@@ -99,6 +99,10 @@ load_lending_subs <- function() {
     mutate(default = as.integer(loan_status == "Charged Off"))
 }
 
+load_shed <- function() {
+  read_csv("../data/shed/shed_2025.csv", show_col_types = FALSE)
+}
+
 load_returns <- function() {
   read_csv("../data/returns/returns.csv", show_col_types = FALSE) |>
     mutate(date = as.Date(date))
