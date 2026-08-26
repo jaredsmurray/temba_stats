@@ -1,0 +1,179 @@
+---
+title: "Statistics with IntroStatGPT"
+subtitle: "TEMBA Statistics 2026"
+---
+
+## What are we trying to learn?
+
+:::: {.columns}
+
+::: {.column width="58%"}
+
+By the end of this course, you should be able to:
+
+- summarize and visualize data;
+- reason about risk and uncertainty;
+- choose and evaluate statistical methods;
+- draw appropriate conclusions; and
+- communicate credible analysis.
+
+:::
+
+::: {.column width="36%"}
+
+::: {.callout-note appearance="simple"}
+## The target
+
+Statistical judgment—not memorized software commands.
+:::
+
+:::
+
+::::
+
+::: {.notes}
+About 40 seconds. Connect directly to the syllabus learning goals. The course
+uses serious statistical computing, but evaluates concepts rather than code.
+:::
+
+## Why not simply upload the data to a chatbot?
+
+General chatbots can produce useful statistical output, but their answers are
+not inherently reproducible or constrained.
+
+In an early pilot:
+
+- the uploaded data contained **6 observations per group**;
+- a summary table reported **15 observations per group**; and
+- recomputing the table directly from the data exposed the error.
+
+::: {.notes}
+About 60 seconds. The table looked plausible. The problem was not obvious from
+its presentation; it became visible only when the values were recomputed.
+:::
+
+## What the course workflow needs
+
+- A durable record of the current analysis
+- Reproducible plots, tables, and calculations
+- A controlled path from exploratory work to report output
+- Guardrails that keep the AI from choosing the analysis, interpreting results,
+  or writing conclusions
+
+::: {.notes}
+About 45 seconds. These requirements motivate the local workspace and the
+division of labor on the next slide.
+:::
+
+## What IntroStatGPT provides
+
+- Codex carries out requested analyses in R.
+- Outputs are saved locally as identifiable artifacts.
+- The analysis page collects the current plots and tables.
+- Students choose which artifacts belong in the report.
+- Report output is assembled from the selected, reproducible artifacts.
+- Interpretation and report prose remain the student's work.
+
+::: {.notes}
+About 60 seconds. Describe the system as a workflow around statistical software,
+not as an authority on which analysis or conclusion is correct.
+:::
+
+## A division of labor
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+### Student
+
+- Formulate the question
+- Specify or choose the analysis
+- Evaluate the output
+- Interpret the evidence
+- Write the conclusions
+
+:::
+
+::: {.column width="48%"}
+
+### IntroStatGPT + Codex
+
+- Perform specified computations
+- Create and revise plots and tables
+- Preserve the resulting artifacts
+- Assemble selected outputs into a report skeleton
+
+:::
+
+::::
+
+::: {.notes}
+About 60 seconds. Emphasize that the tool produces analytic inputs. It does not
+take ownership of the question, method, interpretation, or decision.
+:::
+
+## The working loop
+
+```{=html}
+<div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:80px;font-size:1.08em;font-weight:600;white-space:nowrap;">
+  <div style="padding:16px 20px;border:2px solid #4f6d8a;border-radius:12px;">Request</div>
+  <div aria-hidden="true">→</div>
+  <div style="padding:16px 20px;border:2px solid #4f6d8a;border-radius:12px;">Check</div>
+  <div aria-hidden="true">→</div>
+  <div style="padding:16px 20px;border:2px solid #4f6d8a;border-radius:12px;">Revise</div>
+  <div aria-hidden="true">→</div>
+  <div style="padding:16px 20px;border:2px solid #4f6d8a;border-radius:12px;">Organize</div>
+  <div aria-hidden="true">→</div>
+  <div style="padding:16px 20px;border:2px solid #4f6d8a;border-radius:12px;">Interpret</div>
+</div>
+```
+
+::: {.fragment .fade-in}
+
+**A polished graph is not evidence that the request, data, or method was right.**
+
+:::
+
+::: {.notes}
+About 60 seconds. This is the workflow students will complete today. Pause on
+Check: confirm observations, variables, units, labels, and statistical method.
+:::
+
+## Questions to ask about every result
+
+- Was the right analysis requested?
+- Does the output answer the question?
+- What does the evidence support?
+- What belongs in the final report?
+
+::: {.notes}
+About 45 seconds. The interface reduces the cost of producing and revising
+output; it does not answer these questions for the student.
+:::
+
+## Responsibility does not transfer
+
+- You are responsible for everything you submit.
+- You should be able to explain what each table, plot, and model does.
+- Disclose substantive AI help when an assignment requires it.
+- Follow the stated AI rules for each activity.
+- AI is not permitted on knowledge checks or the final exam.
+
+Known-good tables and figures remain available when the AI workflow is
+unavailable or when you want to check your work.
+
+::: {.notes}
+About 60 seconds. Keep the tone practical: access to the tool does not replace
+understanding, and course assessment does not depend on the tool functioning.
+:::
+
+## Today
+
+We'll get IntroStatGPT set up and ready to use.
+
+**Start by opening the [setup instructions](https://jaredsmurray.github.io/temba_stats/introstatgpt/setup.html).**
+
+::: {.notes}
+Transition directly to the installation and setup page.
+:::

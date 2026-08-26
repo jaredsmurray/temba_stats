@@ -1,0 +1,122 @@
+---
+title: "Install and set up IntroStatGPT"
+---
+
+Complete these steps before you first use IntroStatGPT. You do not need
+previous experience with R or computer programming.
+
+## 1. Activate your UT ChatGPT account
+
+UT Austin provides ChatGPT EDU to students, faculty, and staff.
+
+1. Visit the [UT Austin AI tools page](https://tech.utexas.edu/services-tools/ai).
+2. Select **Log in to access OpenAI ChatGPT EDU**.
+3. Sign in with your UT EID email address: `[your EID]@eid.utexas.edu`.
+4. Complete UT authentication.
+
+Use this account when you sign in to the desktop app.
+
+## 2. Install R
+
+R performs the statistical calculations behind IntroStatGPT. Download it from
+[The Comprehensive R Archive Network](https://cloud.r-project.org/).
+
+### Windows
+
+1. Select **Download R for Windows**.
+2. Select **base**.
+3. Download the current R installer.
+4. Open the installer and accept the default options.
+
+### Mac
+
+1. Select **Download R for macOS**.
+2. Download the installer for your Mac.
+3. Open the downloaded `.pkg` file and follow the installation prompts.
+
+To identify your Mac processor, select **Apple menu > About This Mac** and look
+for Apple silicon or Intel.
+
+## 3. Install the ChatGPT desktop app
+
+Follow the [official desktop-app instructions](https://learn.chatgpt.com/docs/app)
+to install ChatGPT. Open the app and sign in with your UT ChatGPT account.
+
+## 4. Download IntroStatGPT
+
+Download [IntroStatGPT_intensive.zip](../files/IntroStatGPT_intensive.zip) (13 MB), then extract it.
+The extracted folder normally has the same name as the ZIP file.
+
+### Windows
+
+1. Right-click the downloaded ZIP file.
+2. Select **Extract All**.
+3. Move the extracted IntroStatGPT folder to Documents.
+
+### Mac
+
+1. Double-click the downloaded ZIP file.
+2. Move the extracted IntroStatGPT folder to Documents.
+
+Work from the extracted folder. Keep its internal files and folders in their
+original locations.
+
+## 5. Open the extracted folder in Codex
+
+1. Open the ChatGPT desktop app.
+2. Enter Codex.
+3. From the menu bar, choose **File > Open Folder**.
+4. Open Documents and select the IntroStatGPT folder you extracted in the
+   previous step.
+5. Select **Open**.
+
+Select the extracted IntroStatGPT folder itself, rather than a CSV file or one
+of its subfolders. Codex now treats that folder and everything inside it as one
+workspace.
+
+## 6. Run the initial setup
+
+After the folder opens, start a task for this workspace:
+
+1. In the left sidebar, select **New task** (the **+** button).
+2. Confirm that the IntroStatGPT folder name appears as the task's workspace.
+3. Set the model and effort. At the bottom right of the message box, next to
+   the microphone, a selector shows the current model and effort, for example
+   **5.6 Luna Medium**. Click it and set it to **5.6 Luna** with **High**
+   effort. Codex remembers this for new tasks, but glance at it each time; lower
+   effort settings produce sloppier statistical output.
+4. Click the message box and send:
+
+> Set up this IntroStatGPT workspace and verify that it is ready. Do not begin an
+> analysis yet.
+
+Codex will check R and install the required R packages. The first setup may take
+a few minutes. Approve package installation if Codex requests permission.
+
+Setup is complete when Codex reports:
+
+> Setup check passed.
+
+You are now ready to [use IntroStatGPT](use.qmd).
+
+## Setup troubleshooting
+
+### Codex cannot find R
+
+Close and reopen the ChatGPT desktop app after installing R. Then send:
+
+> Check whether R is installed and available to this workspace.
+
+### An R package is missing
+
+Send:
+
+> Run the workspace setup and install or update any missing or incompatible
+> required packages.
+
+### Setup still fails
+
+Send:
+
+> Diagnose the setup failure. Tell me exactly what I need to do, but do not
+> begin an analysis.

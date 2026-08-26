@@ -3,7 +3,31 @@ title: "IntroStatGPT"
 description: "Using AI tools for the statistical computing in this course"
 ---
 
-Coming soon. This page will explain how we use AI tools (ChatGPT, Claude, and
-the like) as the interface to statistical software in this course: how to ask
-for an analysis precisely, how to check what comes back, and how to save your
-work. We will set it up together during the August residency.
+IntroStatGPT is how we do statistical computing in this course. You ask for a
+table, a graph, or a model fit in ordinary language; ChatGPT's Codex runs R
+behind the scenes and hands back the output, ready to check and drop into a
+report. You never write code from scratch, and you are evaluated on concepts,
+not code. What you still own is the important part: choosing the method,
+checking the output, and deciding what it means.
+
+## Start here
+
+1. [Install and set up IntroStatGPT](introstatgpt/setup.qmd) — do this once,
+   before you first use it. Activate your UT ChatGPT account, install R and the
+   ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.
+2. [Use IntroStatGPT](introstatgpt/use.qmd) — the everyday workflow: find the
+   available data, request an analysis, revise it, browse the gallery, organize
+   your outputs, and compile a Word report.
+3. [Working with IntroStatGPT and Codex](introstatgpt/working.qmd) — how to
+   make requests that produce checkable output, how to check it, and what to
+   save.
+
+## Download
+
+[IntroStatGPT_intensive.zip](files/IntroStatGPT_intensive.zip) (13 MB) — the
+folder the setup page asks you to extract. It contains the IntroStatGPT setup
+and the course datasets.
+
+Your ability to complete any assignment, quiz, or exam never depends on an AI
+tool working: known-good tables and figures are provided alongside every
+assignment, and you can use them to check your own output or instead of it.
