@@ -1,4 +1,4 @@
-# Shared preamble for the publishing scripts (ship.sh, publish.sh, canvas.sh).
+# Shared preamble for the public-site publishing scripts.
 # Source from the repo root:  . tools/lib/preamble.sh
 #
 # Defines SITE_CLONE — the single-branch gh-pages clone deploys compose onto —
@@ -13,16 +13,10 @@ targets_section() {
     targets.conf
 }
 
-# The clone path derives from the course_slug declared in schedule.yml, so a
-# new course gets its own clone without touching any script. SITE_CLONE in the
-# environment overrides for a one-off run.
+# This public repository serves one course site. SITE_CLONE in the environment
+# overrides the default for a one-off run.
 if [ -z "${SITE_CLONE:-}" ]; then
-  course_slug=$(grep -m1 '^course_slug:' schedule.yml 2>/dev/null | awk '{print $2}')
-  if [ -z "$course_slug" ]; then
-    echo "ERROR: schedule.yml has no course_slug and SITE_CLONE is unset." >&2
-    exit 1
-  fi
-  SITE_CLONE="$HOME/builds/${course_slug}_site"
+  SITE_CLONE="$HOME/builds/temba2026_site"
 fi
 export SITE_CLONE
 

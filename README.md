@@ -13,7 +13,7 @@ nothing private can reach the public site by accident.
 ```
 _quarto.yml        website project: output-dir _book, renders root pages + slides only
 index.qmd          landing page
-data.qmd           datasets placeholder (datasets are distributed via Canvas)
+data.qmd           public dataset documentation
 publish.sh         the only publish path (see below)
 slides/            lecture decks (revealjs)
   _metadata.yml    revealjs options for every deck in this directory
@@ -81,8 +81,8 @@ private. It writes `data/`, `cards/`, and `manifest.yml` here — all gitignored
 excluded from rendering, so no dataset or data card is published to the site.
 
 To publish a dataset deliberately, add a glob to `resources:` in `_quarto.yml` — only
-after checking its license in `teaching-data/LICENSING.md`. Restricted datasets go to
-Canvas Files instead.
+after checking its license in `teaching-data/LICENSING.md`. Restricted datasets remain
+outside the public repository.
 
 ## Freeze blind spot
 
