@@ -13,6 +13,9 @@ lending_subs <- read_csv("data/lending_club/data/df_subs.csv",
                          show_col_types = FALSE) |>
   mutate(default = as.integer(loan_status == "Charged Off"))
 
+shed <- read_csv("data/shed/shed_2025.csv", show_col_types = FALSE)
+shed_good_rate <- mean(shed$econ_conditions_country == "Good")
+
 sb_rate <- mean(lending_subs$default[lending_subs$purpose == "small_business"])
 dc_rate <- mean(lending_subs$default[lending_subs$purpose == "debt_consolidation"])
 # The parked draft block at the end of this file references this name; keep it
@@ -39,11 +42,9 @@ cme_joint <- tribble(
 )
 ```
 
-**Probability** is the mathematical language of uncertainty.  It lets us reason coherently
-about the relative chances of different outcomes and make good decisions
-with incomplete information. When a survey asks a few hundred or a few thousand Americans how they rate the economy, how accurately can we expect the results to reflect the opinions of the 260+ million adults in the country? When a manufacturing plant produces thousands of widgets daily, how can managers predict tomorrow's defect rate? What's the chance the Federal Reserve will keep rates steady at their next meeting? We can make these questions precise --- and answer some of them --- using probability.
 
-Up until now, we've been summarizing and analyzing data we already have. But in essentially every example we've seen, we really want to know about data we *don't* have: the economic-conditions ratings of all U.S. adults, the sale price of a new house, the Fed's target range after the next FOMC meeting. One way to think about probability is as describing data you don't have access to, either because it doesn't exist yet (the target range after the next FOMC meeting) or because you can't realistically observe it (the opinions of all U.S. adults). In either case, we can use probability to reason about what we *expect* to see in the future, how likely different outcomes are, and what decisions we should make in the face of that uncertainty.
+
+Up until now, we've been analyzing data we already have by computing or summarizing the distributions of its variables. In most of these examples we really want to know about data we *don't* have: the sale price of a *new* house, the economic of *all* U.S. adults (not just the ones we interviewed), load on the electrical grid tomorrow. The statistics and visualization tools we've seen describe data we have; we use **probability** to describe data we don't have, either because we didn't measure it or because the interesting events haven't happened yet. In either case, we can use probability to reason about what we *expect* to see in the future, how likely different outcomes are, and what decisions we should make in the face of that uncertainty.
 
 Let's look at an example. Suppose you're considering funding one of two LendingClub loans at the end of 2012 (where our data stop). Both loans are for the same amount. The first is a small-business loan and the second is a debt-consolidation loan. The two applications are otherwise identical (in terms, borrower credit history, etc.) and if paid in full you will get the same return on your investment. Which will you pick? Splitting the historical LendingClub loans by purpose gives us the default rate for each of these two kinds:
 
@@ -64,19 +65,30 @@ lending_subs |>
 
 Which loan would you fund, and what's the chance it would default?
 
-Without any additional information you'd probably pick the debt-consolidation loan and say there's a `r percent(dc_rate, accuracy = 0.1)` chance of default. You did a number of things all at once: you made the (at least partially) subjective decision that the historical data were *representative* of future outcomes, you constructed a rule for assigning probabilities to uncertain outcomes (a **probability model**), estimated its **parameters** (the two default probabilities), and used that model to make a decision. In the next few chapters we're going to make this process a little more formal and introduce some more sophisticated models.
+Without any additional information you'd probably pick the debt-consolidation loan and say there's a `r percent(dc_rate, accuracy = 0.1)` chance of default. You did a number of things all at once: you made the (at least partially) subjective decision that the historical data were *representative* of future outcomes, you constructed a rule for assigning probabilities to uncertain outcomes (a **probability model**), estimated its **parameters** (the two default probabilities), and used that model to make a decision. In the next few chapters we're going to make this process a bit more formal so we can continue to build on it.
 
 ## What is probability? {#sec-what-is-probability}
 
-We've made reference to probability several times above (and occasionally in earlier sections), but we haven't defined it yet. When we say there's an 80% chance that the Texas Longhorns football team will win their game against Oklahoma, we're making a probability statement: Numerically quantifying the chance that an uncertain event will take place. There are different ways we can think about that number. We could say that if we could play the game over and over and over, about 80% of the time (or four times out of five) Texas would win. Or we could say something like: Based on what I know about the game and the two teams, I think it's four times more likely that Texas will win than it is they will lose (or tie). 
+We've made reference to probability several times above, but we haven't defined it yet. What is probability? When we say there's an 80% chance that the Texas Longhorns football team will win their game against Oklahoma, we're making a probability statement: Numerically quantifying the chance that an uncertain event will take place. There are different ways we can think about that number. We could say that if we could play the game over and over and over, about 80% of the time (or four times out of five) Texas would win. Or we could say something like: Based on what I know about the game and the two teams, I think it's four times more likely that Texas will win than it is they will lose (or tie). 
 
-Both are valid interpretations of the same probability statement, but they come from different perspectives. The first is a **long-run frequency** interpretation: If we could repeat the game many times, the Longhorns would win about 80% of the time. A more natural long-run frequency that doesn't invoke an abstract thought experiment would be something like: among all historical games where the two teams were similar to the Texas and Oklahoma teams this year, the Texas-like team won about 80% of the time, so there's an 80% chance this Texas team will win the game this year.
+Both are valid interpretations of the same probability statement, but they come from different perspectives. The first is a **long-run frequency** interpretation: If we could repeat the game many times, the Longhorns would win about 80% of the time. A more natural long-run frequency interpretation would be something like: among all historical games where the two teams were similar to the Texas and Oklahoma teams this year, the Texas-like team won about 80% of the time, so there's an 80% chance this Texas team will win the game this year.
 
 The second is a **subjective** interpretation: It represents my personal belief about the outcome of a single game. I might have arrived at that belief by looking at historical data, but it is still a personal assessment of the chance of a single event. A subjective probability statement is often expressed in terms of betting odds: I would take a bet on Texas that returns my $4 stake plus at least $1 in profit if Texas wins, and I would not take a bet that paid less than that. That 80% chance is just another way of expressing the same idea: I think it's four times more likely that Texas will win than it is they will lose (or tie).
 
-The Federal Reserve sets a quarter-point-wide target range for its key interest rate. At each scheduled Federal Open Market Committee meeting, it can leave that range unchanged or move it by one or more quarter-point increments. An increase is a hike; a decrease is a cut.
+### A simpler example
 
-When fair betting markets with more or less rational participants exist, these kinds of subjective assessments, aggregated across many participants, can accurately represent uncertainty about future events. The [CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) tool uses the prices of futures contracts to estimate the probability of different outcomes for successive Federal Reserve meetings. By some natural metrics, [it is pretty accurate over short windows in many regimes](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5093703). The price of futures contracts represents, essentially, a consensus view of how likely each potential rate decision is.
+Let's consider an even simpler example: We're going to make a bet on a single coin toss. If the coin comes up heads I pay you a dollar. If it comes up tails you pay me two. Would you play this game with me? Maybe once, for fun, but probbaly not if the rules are I pay you $1,000 if you win and you pay me $2,000 if I do. You're assuming --  at least I'm assuming that you're assuming -- there's an equal chance that the coin comes up heads or tails when we play our game. That's a subjective probability assessment about the outcome of a one-off event.
+
+What's the long-run frequency interpretation? Imagine playing this game over, and over, and over. Now nobody wants to play the low-stakes $1/$2 version of the game; you might win a round or two and there's even a chance you'll be up after a few rounds. But play long enough and -- if the coin is fair -- we'll each have one close to half the bets, but you paid me twice what I paid you. The only fair game is one where our payouts are equal - the longer we play the closer to even we'll tend to be.
+
+### A real example: Forecasting the federal funds rate
+
+The Federal Reserve periodically sets a quarter-point-wide target range for its key interest rate ([the federal funds rate](https://en.wikipedia.org/wiki/Federal_funds_rate)). The fed funds rate is the interest rate that banks charge each other on overnight loans to shore up reserve balances. It's a key factor driving borrowing costs for all kinds of debt, including consumer debt like mortgages. Raising the fed funds rate generally leads to broader rate increases, cooling down a hot economy and tamping down inflation. Cutting it has the opposite effect, simulating spending and promoting higher employment rates.
+
+ At each scheduled Federal Open Market Committee (FOMC) meeting, the Fed can leave the target unchanged or move it by one or more quarter-point increments. These moves have enormous economic consquences, and there is great interest in forecasting them. The [CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) is a public probabilstic forecast of the target rate based on some modeling simplifications (targets shift at most 0.25%, or 25 basis points at each meeting) and trading on futures markets -- essentially bets placed by savvy investors on where they think rates will go. Balancing the money on either side of the wager gives an implied probability statement about how likely different FOMC decisions are. The price of futures contracts represents, essentially, a consensus view of how likely each potential rate decision is, the same way the Vegas money line on the Red River game (that is, the payout for a given wager) represents the consensus view of how likely it is Texas will win. By some natural metrics, [it is pretty accurate over short windows in many regimes](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5093703). 
+
+
+<!---
 
 ::: {.TechnicalDetail #technical-fedwatch-construction}
 ## Where the FedWatch probabilities come from
@@ -92,27 +104,44 @@ and the prices they pay imply a probability for each target range. Prices
 move with the news, so any probabilities you read off are a snapshot.
 :::
 
-Here is what those market prices implied on July 9, 2026, when the target range stood at 3.50--3.75% and the next two FOMC meetings were scheduled for July 29 and September 16. @tbl-cme-intro-margins shows the tool's probabilities for where the target range will sit after each meeting.
+-->
+
+I recorded CME's probabilistic forecast on July 9, 2026, when the target range stood at 3.50--3.75% and the next two FOMC meetings were scheduled for July 29 and September 16. @tbl-cme-intro-margins shows the probabilities for where the target range will sit after each meeting.
 
 ```{r}
 #| label: tbl-cme-intro-margins
 #| tbl-cap: "Market-implied probabilities for the FOMC target range after the next two meetings, as reported by CME FedWatch on July 9, 2026. The target range at the time was 3.50--3.75%."
+#| tbl-subcap:
+#|   - "July 29 meeting"
+#|   - "September 16 meeting"
+#| layout-ncol: 2
 #| echo: false
-full_join(cme_july, cme_sept, by = "bucket", suffix = c("_july", "_sept")) |>
+cme_july |>
+  complete(bucket = c("3.50--3.75%", "3.75--4.00%", "4.00--4.25%"),
+           fill = list(prob = 0)) |>
   arrange(bucket) |>
-  mutate(
-    `July 29` = ifelse(is.na(prob_july), "---", number(prob_july, accuracy = 0.001)),
-    `September 16` = number(prob_sept, accuracy = 0.001)
-  ) |>
-  select(`Target range` = bucket, `July 29`, `September 16`) |>
-  knitr::kable(align = c("l", "r", "r"))
+  mutate(prob = number(prob, accuracy = 0.001)) |>
+  rename(`Target range` = bucket, Probability = prob) |>
+  knitr::kable(align = c("l", "r"))
+
+cme_sept |>
+  complete(bucket = c("3.50--3.75%", "3.75--4.00%", "4.00--4.25%"),
+           fill = list(prob = 0)) |>
+  arrange(bucket) |>
+  mutate(prob = number(prob, accuracy = 0.001)) |>
+  rename(`Target range` = bucket, Probability = prob) |>
+  knitr::kable(align = c("l", "r"))
 ```
 
+These are the CME's subjective assessments of where the target will likely be one and two meetings into the future. These are *probability distributions*, as opposed to distributions of observed data. While the meetings are one-off events, this table of probabilities will, it turns out, act just like the tables of default rates we computed at the top of this section. 
+<!---
 The September branch probabilities do not come from the per-meeting totals in the table alone. CME estimates probabilities for each meeting from monthly Fed Funds futures prices, then combines successive meeting outcomes into cumulative paths. The marginal totals alone cannot tell us how September's chances depend on July's outcome.
+
+These distributions are inferred using some modeling assumptions and trading behavior on futures markets. Below we reproduce a more complete representation of the probability model, where successive Fed actions are represented in a branching decision tree. The probabilities attached to each branch are the probability of moving from of that branch to the corresponding "leaf" (outcome)
 
 ```{r}
 #| label: fig-cme-tree
-#| fig-cap: "The market's view of the next two FOMC meetings, drawn as a tree. Each left-to-right path is one way the two meetings could play out. The numbers on the first pair of branches are the market's chances for the July meeting; those on the September branches are its chances given everything to their left. Every July outcome fans out to all three September ranges; the dashed branches are moves to which the FedWatch model assigns zero probability under its assumptions."
+#| fig-cap: "The market's view of the next two FOMC meetings, drawn as a tree. Each left-to-right path is one way the two meetings could play out. The numbers on the first pair of branches are the market's chances for the July meeting; those on the September branches are its chances assuming everything to their left (i.e., decision at earlier meetings). The dashed branches are moves to which the FedWatch model assigns zero or near probability under its assumptions and futures trading."
 #| fig-width: 8.5
 #| fig-height: 6
 #| echo: false
@@ -206,10 +235,11 @@ The tree in @fig-cme-tree lays out how September's chances depend on what happen
 In reality there often isn't such a bright line between the long-run frequency and subjective interpretations. Subjective
 assessments are formed in part based on experience and historical outcomes, and long-run frequency statements often
 hinge on subjective assessments (e.g. how we choose "similar" prior games).
+--->
 
-### Probability distributions
+## Probability distributions and probabilty models
 
-In the first few sections of these notes we looked at ways to describe and visualize the distributions of observed variables in our dataset --- a density curve, a table of proportions. Probability gives us a way to describe the distribution of *unobserved* variables. A **probability distribution** is a rule (a mathematical function) that assigns probabilities to all possible outcomes of a random or uncertain process. Probabilities are numbers between 0 and 1 that follow rules we spell out in @sec-prob-rules. Based on our historical data about small-business loans, we might say there is a `r percent(sb_rate, accuracy = 0.1)` chance (a `r number(sb_rate, accuracy = 0.001)` probability) that a *new* small-business loan will default, and a `r percent(1 - sb_rate, accuracy = 0.1)` chance that it won't. That's a simple probability distribution. A probability distribution is a mathematical abstraction of the observed data distributions we've already seen, and it has its own mean, median, and standard deviation. We define those summaries in @sec-rv-mean.
+A **probability distribution** is a rule (a mathematical function) that assigns probabilities to all possible outcomes of a random or uncertain process. Probabilities are numbers between 0 and 1 that follow rules we spell out in @sec-prob-rules. Based on our historical data about small-business loans, we might say there is a `r percent(sb_rate, accuracy = 0.1)` chance (a `r number(sb_rate, accuracy = 0.001)` probability) that a *new* small-business loan will default, and a `r percent(1 - sb_rate, accuracy = 0.1)` chance that it won't. That's a simple probability distribution. A probability distribution is a mathematical abstraction of the observed data distributions we've already seen, and it has its own mean, median, and standard deviation. We define those summaries in @sec-rv-mean.
 
 ### What is a probability model?
 
@@ -239,22 +269,52 @@ Read the small-business row: a new small-business loan defaults with probability
 
 For a sufficiently interesting problem a probability model will almost always be wrong in some way. But a good probability model is useful if it captures the key features of the real-world process we're trying to understand. While you can write down a complete probability model mathematically or algorithmically without ever touching any data, typically the model will at least have some **parameters** that we estimate from data (e.g. by plugging historical default rates into our probability model as we just did). A **parameter** is just a feature of the probability distribution, and many of these are familiar to us from our work in earlier chapters --- the mean, the variance, the standard deviation. We defined these in terms of observed data, but each has an analogue for a probability distribution that describes unobserved data.
 
-## What is sampling, and what is a sample?
+## What is sampling, what is a sample, and what is a representative sample?
 
-We can think about **sampling** in two different ways: First and most familiar, as taking a sample from some broader overall population. The Federal Reserve's household survey, the source of the economic-conditions ratings we saw earlier, asks a sample of adults about their finances and the economy. Their answers describe the population at large. Let's simplify its goal to estimating the proportion of U.S. adults who rate national economic conditions good or excellent. Suppose the surveyors interview a sample of 1,000 adults, and 510 of them rate conditions good or excellent. What have we learned about the overall population? That depends entirely on how the sample is constructed.
+A *sample* is simply a collection of observations. Samples can be generated (broadly) in two different ways:
 
-Generally speaking, the highest quality surveys use **random** sampling to both ensure that a sample is *highly likely* to be representative of the population of interest and to help us quantify how different the sample and population ratings are likely to be. If we choose the sample completely at random from the population (e.g. by putting everyone's name on a lottery ticket and pulling them out of a bag), then it is unlikely that we'll get a sample with a disproportionate number of good-or-excellent ratings relative to the population of interest. The use of random sampling also tells us how to make uncertainty statements about how far our sample proportion of 0.51 (51%) is likely to be from the true population share who rate conditions good or excellent.
+**Finite-population sampling** takes from some broader overall population. The Federal Reserve's household survey SHED asks a randomly selected sample of adults about their finances and perceptions of the overall economy. We saw its economic-conditions ratings in [the chapter on categorical variables](singlevar_05_categorical.html#sec-ordinal-rating). The goal is to learn about the *whole* population, not just the people who happen to show up in the sample. The 2025 survey found, for example, that `r percent(shed_good_rate, accuracy = 0.1)` of the people in the sample rated economic conditions as "Good".
+
+
+**Probability-model sampling** generates repeated realizations of a random process, as when we flip a coin repeatedly, roll a die, or play Plinko. The board in @fig-plinko-sample stays fixed, but each chip can take a different path. Repeating the drop produces a sample of landing slots.
+
+![A Plinko chip bounces between pegs before landing in one of the slots at the bottom of the board. Repeating the drop can produce a different path and landing slot.](https://i.makeagif.com/media/8-23-2024/6JmKw9.gif){#fig-plinko-sample width="70%"}
+
+Source: ["Price is Right --- Plinko HUGE Win!!!"](https://makeagif.com/gif/price-is-right-plinko-huge-win-6JmKw9), MakeAGif.
+
+**Not all samples are random.** Before we continue, it's important to remember that not all samples are random. When you're in class, you and your classmates comprise a sample of all adults currently in the United States. But you're not a randomly selected sample, and as a cohort you differ from that overall population in important ways. If we tried to use you as "data" to learn about academic achievement in the overall population our estimate would be wildly inaccurate. We perfer random samples in the finite population setting because they are a strong hedge against this kind of bias -- most random samples are **representative** of the population from which they are drawn.
+
+**The way we use a random sample doesn't depend on the way we got it (usually).**
+ For the kinds of analyses we'll do, whether a sample is from a finite population we want to learn about or a probability model we want to estimate -- like the model for future loan defaults -- won't matter. In the economic conditions survey, close to 25% of U.S. adults rated the economy as "good". Let's imagine that in the true, complete population, exactly 25% of adults would rate the economy "Good" if asked. If we select one of them completely at random, so everyone has the same chance of getting picked, what is the chance that person has a "Good" rating? Twenty-five percent. 
+
+ Now imagine you [roll a fair four sided die](https://share.google/Ak9FQb15cyBp27V3r). What's the chance you get a four? Twenty five percent again. The proportion of 4's in 13,000 of these rolls looks just the proportion of respondents rating the economy "Good" when we sample them completely at random.
+
+ Now imagine we didn't know whether the die was fair, and all we saw were the outcomes of the 13,000 rolls (whether we got a four or not). We could use that to learn about whether the die was fair: If only ten percent of the rolls were fours, we'd be very, very suspicious that the true chance of rolling a 4 was less than 25%, and probably closer to 10%. If 25.000001% of the rolls were fours, we'd probably be willing to chalk that up to chance. 
+
+Similarly, we don't know the true proportion of adults in the U.S. who rate the economy "Good", but we do know the opinions of 13,000 randomly selected adults. It's close to 25%, which gives us pretty strong evidence that whatever the right answer is, it's probably also close to 25%. 
+
+The next section of these notes formalizes this idea -- how do we make *inferences* about a population or random process when we only have access to samples from them? For now, just know that we can move back and forth between these two notions of sampling whenever we want. It can be convenient to treat the 13,000 respondents to the survey as 13,000 dice rolls when we model them.
+ 
+
+ <!--
+ the true population proportion of economic optimists, or whethe
+
+Let's simplify its goal to estimating the proportion of U.S. adults who rate national economic conditions good or excellent. Suppose the surveyors interview a sample of 1,000 adults, and 510 of them rate conditions good or excellent. What have we learned about the overall population? That depends entirely on how the sample is constructed.
+
+Most of the highest quality surveys use **random** sampling to both ensure that a sample is *highly likely* to be representative of the population of interest and to help us quantify how different the sample and population ratings are likely to be. If we choose the sample completely at random from the population (e.g. by putting everyone's name on a lottery ticket and pulling them out of a bag), then it is unlikely that we'll get a sample with a disproportionate number of good-or-excellent ratings relative to the population of interest. The use of random sampling also tells us how to make uncertainty statements about how far our sample proportion of 0.51 (51%) is likely to be from the true population share who rate conditions good or excellent.
 
 We can also think about **sampling** as generating realizations of a random process (a probability distribution). When we flip a coin ten times and record the outcomes, we're generating a random sample of size $n=10$ from a probability distribution that assigns some chance to observing heads and some chance to observing tails. If it's a fair coin each outcome is equally likely. If we didn't know whether the coin was fair, we could try to answer that question by flipping it many times and recording the outcomes. If we flip a fair coin enough times, the proportion of heads should be close to one-half. Suppose we flip the coin 1,000 times and see 510 heads (a proportion of 0.51, or 51%). We can use the very same probability tools to ask whether this is evidence of an unfair coin, or whether we happened to produce more heads than tails simply by chance. In this case the "population" is the probability distribution of the coin flip, and the "sample" is the 1,000 flips we observed.
 
 To belabor the point, suppose that exactly 50% of adults rate conditions good or excellent. Now imagine randomly sampling a single adult such that *any* adult is equally likely to be chosen. The chance we'll get someone who rates conditions good or excellent is 50%. If we sample 1,000 adults from the population, what we've done is basically the same thing as flipping a coin 1,000 times and counting the number of heads. Our 1,000 survey responses are, for all intents and purposes, 1,000 coin flips.^[The two settings are not identical: after we sample one adult, the composition of the remaining population changes slightly, while one coin flip does not affect the next. With more than 260 million adults in the population, that difference is negligible for a sample of 1,000.] Now if we didn't know the exact population share who rate conditions good or excellent, or whether the coin was fair, we could use that observed data to estimate the population proportion or the true probability our coin will come up heads on a single flip in exactly the same way.
 
-For now, two things:
+-->
 
-1. We can use a sample from a larger population to learn about the population, and we can use a sample drawn from a probability distribution --- i.e., the observed outcomes of a random or unpredictable process like the one that determines the sale price of a house --- to learn about that distribution. 
-2. In either case the sample must *represent* the population or distribution we're trying to learn about:
+For now, there are two things to remember:
+
+1. We can use a sample from a larger population to learn about the population, and we can use a sample drawn from a random process --- i.e., the observed outcomes of a random or unpredictable process like the one that determines the sale price of a house --- to learn about the probability distribution that produces them, and to assess the relative likelihood of *future* random outcomes. 
+2. In either case the sample must *represent* the population or probability distribution we're trying to learn about:
     a. If we're using a sample to learn about a population, the sample cannot have systematic biases. We don't measure how the country rates economic conditions by standing outside Nordstrom's and asking people what they think about the economy, because we'll have systematically more affluent shoppers in our sample than in the population.
-    b. If our sample is historical data used to build a probability model, two things must hold. First, the model must be able to describe the historical data: some choice of its parameters should reproduce the important patterns we observed. Second, the historical data must represent the future outcomes we want the model to describe. If important conditions change over time --- say new tariffs alter small-business default rates --- then the historical data may no longer support useful probabilities for future loans, unless we can also model the effects of these changes.
+    b. If our sample is historical data used to build a probability model, two things must hold. First, the model must be able to describe the historical data: some choice of its parameters should reproduce the important patterns we observed. Second, the historical data must represent the future outcomes we want the model to describe. If important conditions change over time --- for example, if new tariffs alter small-business loan default rates --- then the historical data may no longer produce useful probabilities for future loans, unless we can also model the effects of these changes.
 
 
 
@@ -320,3 +380,4 @@ In the housing example, we can imagine that the "population" is some large numbe
 ## Data used in this section {.unnumbered}
 
 - [LendingClub Accepted Loans](appendix_data.qmd#sec-data-lendingclub-kaggle)
+- [Survey of Household Economics and Decisionmaking](appendix_data.qmd#sec-data-shed)

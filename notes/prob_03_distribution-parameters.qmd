@@ -154,54 +154,6 @@ between two of the midpoints.
 
 The expected increases over the current midpoint of 3.625% are `r number(sum(cme_july$midpoint * cme_july$prob) - 3.625, accuracy = 0.001)` and `r number(sum(cme_sept$midpoint * cme_sept$prob) - 3.625, accuracy = 0.001)` percentage points --- about `r round(100 * (sum(cme_july$midpoint * cme_july$prob) - 3.625))` and `r round(100 * (sum(cme_sept$midpoint * cme_sept$prob) - 3.625))` basis points, in the units rate-watchers use (one basis point is a hundredth of a percentage point).
 
-## The median of a random variable {#sec-rv-median}
-
-The **median** of a distribution is its 0.5 quantile: the smallest value where the cumulative probability reaches or exceeds 0.50. For our house price model, the median is `r dollar(round(exp(mulog)))`:
-
-```{r}
-#| label: fig-price-median
-#| fig-cap: "The median of the Austin price model. Left: the density with exactly half its area shaded, up to the median. Right: the CDF crossing cumulative probability 0.50 at the same price."
-#| fig-width: 9
-#| fig-height: 4
-med <- exp(mulog)
-dens_df <- tibble(x = seq(1e4, 2e6, length.out = 800),
-                  y = dlnorm(x, meanlog = mulog, sdlog = sdlog))
-cdf_df <- tibble(x = dens_df$x, cdf = plnorm(x, mulog, sdlog))
-
-p_dens <- ggplot(dens_df, aes(x = x, y = y)) +
-  geom_area(data = filter(dens_df, x <= med),
-            fill = "darkorange", alpha = 0.8) +
-  geom_line(color = "steelblue", linewidth = 1) +
-  annotate("label", x = 1.05e6, y = max(dens_df$y) * 0.6,
-           label = "area = 0.50",
-           size = 3.6, fill = "white", alpha = 0.9, label.size = 0.25) +
-  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
-                     limits = c(0, 2e6)) +
-  labs(x = "Sale price", y = "Density") +
-  theme_minimal(base_size = 10)
-
-p_cdf <- ggplot(cdf_df, aes(x = x, y = cdf)) +
-  geom_segment(aes(x = 0, xend = med, y = 0.5, yend = 0.5),
-               linetype = "dashed", color = "grey50") +
-  geom_segment(aes(x = med, xend = med, y = 0, yend = 0.5),
-               linetype = "dashed", color = "grey50") +
-  geom_line(color = "steelblue", linewidth = 1) +
-  annotate("point", x = med, y = 0.5, color = "darkorange", size = 3) +
-  annotate("label", x = med, y = 0.5,
-           label = paste0("median = ", dollar(round(med))),
-           hjust = -0.08, vjust = 1, size = 3.6,
-           fill = "white", alpha = 0.9, label.size = 0.25) +
-  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
-                     limits = c(0, 2e6)) +
-  scale_y_continuous(limits = c(0, 1)) +
-  labs(x = "Sale price", y = "Cumulative probability") +
-  theme_minimal(base_size = 10)
-
-p_dens | p_cdf
-```
-
-Just as we discussed in @sec-measures-center, the median can be a more robust measure of center than the mean for a skewed probability distribution; in the model above, the mean price is `r dollar(round(m))`, which is `r dollar(round(m - exp(mulog)))` *above* the median. The mean is pulled up by the long right tail of the distribution, just as it was in the observed data.
-
 ## Variance and standard deviation {#sec-rv-variance}
 
 Like the sample variance computed with observed data, the variance of a random variable measures the average *squared* deviation from the mean. As with the mean, the average is weighted by each outcome's probability.
@@ -328,7 +280,54 @@ You might be happy to hold the more volatile stock in your 401k if you're young,
 
 ## Quantiles and the IQR {#sec-rv-quantiles}
 
-Percentiles and quantiles carry over from data to distributions the same way. The $p$-th quantile of a distribution is the smallest value where the cumulative probability reaches or exceeds $p$. For a continuous distribution, we can read it off the CDF by finding where the curve crosses height $p$. The median is the 0.5 quantile, and the **interquartile range** is the distance between the 0.25 and 0.75 quantiles, a spread measure in the units of the variable that ignores the tails entirely.
+Percentiles and quantiles carry over from data to distributions the same way. The $p$-th quantile of a distribution is the smallest value where the cumulative probability reaches or exceeds $p$. For example: the **median** of a distribution is its 0.5 quantile: the smallest value where the cumulative probability reaches or exceeds 0.50. For our house price model, the median is `r dollar(round(exp(mulog)))`:
+
+```{r}
+#| label: fig-price-median
+#| fig-cap: "The median of the Austin price model. Left: the density with exactly half its area shaded, up to the median. Right: the CDF crossing cumulative probability 0.50 at the same price."
+#| fig-width: 9
+#| fig-height: 4
+med <- exp(mulog)
+dens_df <- tibble(x = seq(1e4, 2e6, length.out = 800),
+                  y = dlnorm(x, meanlog = mulog, sdlog = sdlog))
+cdf_df <- tibble(x = dens_df$x, cdf = plnorm(x, mulog, sdlog))
+
+p_dens <- ggplot(dens_df, aes(x = x, y = y)) +
+  geom_area(data = filter(dens_df, x <= med),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("label", x = 1.05e6, y = max(dens_df$y) * 0.6,
+           label = "area = 0.50",
+           size = 3.6, fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  labs(x = "Sale price", y = "Density") +
+  theme_minimal(base_size = 10)
+
+p_cdf <- ggplot(cdf_df, aes(x = x, y = cdf)) +
+  geom_segment(aes(x = 0, xend = med, y = 0.5, yend = 0.5),
+               linetype = "dashed", color = "grey50") +
+  geom_segment(aes(x = med, xend = med, y = 0, yend = 0.5),
+               linetype = "dashed", color = "grey50") +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("point", x = med, y = 0.5, color = "darkorange", size = 3) +
+  annotate("label", x = med, y = 0.5,
+           label = paste0("median = ", dollar(round(med))),
+           hjust = -0.08, vjust = 1, size = 3.6,
+           fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Sale price", y = "Cumulative probability") +
+  theme_minimal(base_size = 10)
+
+p_dens | p_cdf
+```
+
+Just as we discussed in @sec-measures-center, the median can be a more robust measure of center than the mean for a skewed probability distribution; in the model above, the mean price is `r dollar(round(m))`, which is `r dollar(round(m - exp(mulog)))` *above* the median. The mean is pulled up by the long right tail of the distribution, just as it was in the observed data.
+
+
+For a continuous distribution, we can read it off the CDF by finding where the curve crosses height $p$. The median is the 0.5 quantile, and the **interquartile range** is the distance between the 0.25 and 0.75 quantiles, a spread measure in the units of the variable that ignores the tails entirely.
 
 ```{r}
 #| label: fig-price-quantiles

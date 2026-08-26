@@ -2,4 +2,4 @@ repo=/Users/jm75583/repos/intro-stats
 sha=ad573a02b57a63002435031544b67ce449513b4a
 date=2026-08-23T02:04:42Z
 files=index.qmd singlevar_01_visualizing-distributions.qmd appendix_data.qmd singlevar_02_describing-distributions.qmd singlevar_03_location-and-spread.qmd singlevar_04_transformations.qmd singlevar_05_categorical.qmd prob_01_intro.qmd prob_02_probability-basics.qmd prob_03_distribution-parameters.qmd prob_04_normal.qmd
-local_edits=singlevar_01 singlevar_05 prob_03: forward crossrefs to un-imported chapters (twovar_01, twovar_03, prob_05, prob_07) reworded to "later in the course"; re-import with --force once those chapters exist
+local_edits=index.qmd: preface replaced with an offering-specific one (upstream copy in drafts/notes/preface_upstream.qmd); singlevar_01 singlevar_05 prob_03: forward crossrefs to un-imported chapters (twovar_01, twovar_03, prob_05, prob_07) reworded to "later in the course"; re-import with --force once those chapters exist

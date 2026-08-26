@@ -61,6 +61,12 @@ book:
         - singlevar_03_location-and-spread.qmd
         - singlevar_04_transformations.qmd
         - singlevar_05_categorical.qmd
+    - part: "Probability for one variable"
+      chapters:
+        - prob_01_intro.qmd
+        - prob_02_probability-basics.qmd
+        - prob_03_distribution-parameters.qmd
+        - prob_04_normal.qmd
   appendices:
     - appendix_data.qmd
 

@@ -189,7 +189,7 @@ p4 <- shade_panel(0, Inf,
 ```
 
 
-A few more probabilities reinforce our basic probability rules, and how they are used to compute probabilities for normal random variables:
+A few more examples reinforce our basic probability rules, and how they are used to compute probabilities for normal random variables:
 
 - **A non-losing week.** $\Pr(R \geq 0) = `r number(1 - pnorm(0, mu_r, sd_r), accuracy = 0.01)` = 1-\Pr(R < 0)$.
 - **A winning week.** $\Pr(R > 0) = \Pr(R \geq 0)$, because for a continuous distribution, $\Pr(R = 0) = 0$ and $\Pr(R \geq 0) = \Pr(R > 0) + \Pr(R = 0)$ since the two events are mutually exclusive.
