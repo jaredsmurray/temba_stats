@@ -137,7 +137,11 @@ while IFS=$'\t' read -r kind name path sha packaged; do
   target="${DEST}/${path}"
   mkdir -p "$(dirname "$target")"
 
-  if [ ! -f "$target" ]; then
+  if [ -f "${SRC}/${path}" ]; then
+    # Tracked files belong to the requested tag. Replace an older pin's copy
+    # before verification rather than validating stale destination contents.
+    cp "${SRC}/${path}" "$target"
+  elif [ ! -f "$target" ]; then
     if [ -n "$packaged" ] && [ -f "${DEST}/$(dirname "$path")/${packaged}" ]; then
       # Distribution ships a compressed form; materialize the canonical name.
       pk="${DEST}/$(dirname "$path")/${packaged}"
@@ -146,8 +150,6 @@ while IFS=$'\t' read -r kind name path sha packaged; do
               gunzip -c "$pk" > "$target" && rm -f "$pk" ;;
         *)    die "${path}: don't know how to unpack ${packaged}" ;;
       esac
-    elif [ -f "${SRC}/${path}" ]; then
-      cp "${SRC}/${path}" "$target"
     else
       printf 'MISSING  %s (%s)\n' "$path" "$name" >&2
       fail=1
