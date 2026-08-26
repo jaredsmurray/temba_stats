@@ -130,10 +130,6 @@ div.csl-indent {
   }
 }</script>
 <style>
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -145,6 +141,10 @@ div.csl-indent {
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -2208,7 +2208,7 @@ Table&nbsp;A.11: Variables in <code>codelines.csv</code>.
 </section>
 <section id="manager-perceptions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="manager-perceptions">Manager Perceptions</h3>
-<p>The perceptions dataset (<code>perceptions.csv</code>) contains one row per survey respondent-wave observation (<em>n</em> ≈ 2,660) and records employees’ self-reported beliefs about how working from home affects their productivity, collected at baseline (before the policy) and endline (after six months). The paper focuses on whether managers updated their perceptions over the course of the experiment.</p>
+<p>The perceptions dataset (<code>perceptions.csv</code>) contains one row per survey respondent-wave observation (<em>n</em> = 2,660) and records employees’ self-reported beliefs about how working from home affects their productivity, collected at baseline (before the policy) and endline (after six months). The paper focuses on whether managers updated their perceptions over the course of the experiment. The extract contains no respondent identifier, so baseline and endline observations cannot be paired by employee. The source export’s single-precision approximations at the plus/minus 30 midpoints are normalized here to exact values.</p>
 <div id="tbl-vars-wfh-bloom-perceptions" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-wfh-bloom-perceptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2232,34 +2232,28 @@ Table&nbsp;A.12: Variables in <code>perceptions.csv</code>.
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>prod_percent</code></td>
-<td>Ordinal</td>
-<td>−20 to 30</td>
-<td>Numeric midpoint encoding of the respondent’s self-reported productivity category. Values represent the midpoint percentage-point change in perceived efficiency (e.g., 20 = “15%–25% more efficient”, 0 = “About the same”, −10 = “5%–15% less efficient”). Outcome variable in the perceptions analysis.</td>
+<td><code>wave</code></td>
+<td>Categorical</td>
+<td>baseline / endline</td>
+<td>Survey timing. “baseline” was administered before the hybrid WFH policy began; “endline” was administered after six months. The file contains 1,315 baseline and 1,345 endline observations.</td>
 </tr>
 <tr class="even">
 <td><code>productivity</code></td>
 <td>Ordinal</td>
-<td>—</td>
-<td>Self-reported productivity category. Ordered levels from least to most positive: “15%–25% less efficient”, “5%–15% less efficient”, “About the same”, “5%–15% more efficient”, “15%–25% more efficient”, “25%–35% more efficient”.</td>
+<td>9 ordered levels</td>
+<td>Self-reported productivity category, ordered from strongest negative to strongest positive: “35% or more less efficient”, “25%-35% less efficient”, “15%-25% less efficient”, “5%-15% less efficient”, “About the same”, “5%-15% more efficient”, “15%-25% more efficient”, “25%-35% more efficient”, and “35% or more more efficient”.</td>
 </tr>
 <tr class="odd">
-<td><code>wave</code></td>
-<td>Categorical</td>
-<td>baseline / endline</td>
-<td>Survey timing. “baseline” was administered before the hybrid WFH policy began; “endline” was administered after six months. Used as the primary grouping variable in wave-level comparisons.</td>
-</tr>
-<tr class="even">
 <td><code>role</code></td>
 <td>Categorical</td>
 <td>Managers / Non-managers</td>
-<td>Whether the respondent held a managerial position. The paper finds that managers revised their perceptions from a perceived negative effect (−2.6% on average at baseline) to a positive one (+1.0% at endline), while non-managers’ perceptions shifted less dramatically.</td>
+<td>Whether the respondent held a managerial position. Counts are 314 managers and 1,001 non-managers at baseline, and 324 managers and 1,021 non-managers at endline.</td>
 </tr>
-<tr class="odd">
-<td><code>wave_n</code></td>
-<td>Derived (binary)</td>
-<td>0 / 1</td>
-<td>Numeric wave indicator constructed in <code>perceptions.R</code> (0 = baseline, 1 = endline). Used as the grouping variable in the wave-level t-test comparing overall productivity perceptions between baseline and endline.</td>
+<tr class="even">
+<td><code>prod_percent</code></td>
+<td>Discrete (numeric encoding)</td>
+<td>−42.5 to 42.5</td>
+<td>Midpoint encoding of the ordered response: −42.5, −30, −20, −10, 0, 10, 20, 30, and 42.5 from the most negative through the most positive category. The open-ended outer categories use −42.5 and 42.5.</td>
 </tr>
 </tbody>
 </table>
