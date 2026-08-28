@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="How to request, check, and save statistical analysis">
+<meta name="description" content="Install R and open an IntroStatGPT assignment in Claude Code">
 
-<title>Working with IntroStatGPT – TEMBA Statistics</title>
+<title>Set up IntroStatGPT with Claude Code – TEMBA Statistics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introstatgpt/working.html">Working with IntroStatGPT</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../introstatgpt/claude-code.html">Set up IntroStatGPT with Claude Code</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -152,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../introstatgpt/claude-code.html" class="sidebar-item-text sidebar-link">
+  <a href="../introstatgpt/claude-code.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Set up IntroStatGPT with Claude Code</span></a>
   </div>
 </li>
@@ -164,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../introstatgpt/working.html" class="sidebar-item-text sidebar-link active">
+  <a href="../introstatgpt/working.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Working with IntroStatGPT</span></a>
   </div>
 </li>
@@ -179,12 +179,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with IntroStatGPT</h1>
+<h1 class="title">Set up IntroStatGPT with Claude Code</h1>
 </div>
 
 <div>
   <div class="description">
-    How to request, check, and save statistical analysis
+    Install R and open an IntroStatGPT assignment in Claude Code
   </div>
 </div>
 
@@ -201,86 +201,84 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>IntroStatGPT can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.</p>
-<p>This page explains how to make clear requests and check the resulting analysis. For the analysis page and Word-report workflow, see <a href="../introstatgpt/use.html">Use IntroStatGPT</a>.</p>
-<section id="be-precise" class="level2">
-<h2 class="anchored" data-anchor-id="be-precise">Be precise</h2>
-<p><strong>Name the data, variables, operation, and output you want.</strong> Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask IntroStatGPT to list the names and types first.</p>
-<p>Use this recipe:</p>
-<blockquote class="blockquote">
-<p>Using <strong>[data or observations]</strong>, use <strong>[variables]</strong> to <strong>[calculate, plot, or fit]</strong>. Return <strong>[the table, plot, model output, or saved result]</strong>.</p>
-</blockquote>
-<p>For example:</p>
-<blockquote class="blockquote">
-<p>Using the housing data, keep observations with nonmissing <code>PRICE</code> and <code>SQFT</code>. Fit <code>PRICE</code> on <code>SQFT</code> and <code>BATHS</code>, treating <code>ZIPCODE</code> as categorical. Return the standardized regression table.</p>
-</blockquote>
-</section>
-<section id="keep-each-conversation-focused" class="level2">
-<h2 class="anchored" data-anchor-id="keep-each-conversation-focused">Keep each conversation focused</h2>
-<p><strong>Use one conversation for one question or a closely related set of outputs.</strong> Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.</p>
-<p>Start a new conversation when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the IntroStatGPT workspace. In the new conversation, state your current goal and identify any existing output by its short label, such as <code>P2</code> or <code>T1</code>.</p>
-</section>
-<section id="check-before-you-build" class="level2">
-<h2 class="anchored" data-anchor-id="check-before-you-build">Check before you build</h2>
-<p><strong>Compare every output with your request before using it in the next step.</strong> Run one or two checks that could expose the mistake you are most worried about.</p>
-<p>After filtering or changing data, you can ask IntroStatGPT to:</p>
+<p>The IntroStatGPT assignment folder contains the instructions and tools Claude Code needs. The assignment, data, saved output, and report files stay together in that folder.</p>
+<p>The standard course setup uses Codex with your UT ChatGPT account. Follow this page if you already have a Claude account with access to Claude Code.</p>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p>You need:</p>
 <ul>
-<li>Show the row count before and after the change.</li>
-<li>Count missing values in the variables used.</li>
-<li>Show the minimum and maximum of a new numeric variable.</li>
-<li>Show category counts after recoding or grouping.</li>
+<li><a href="https://cloud.r-project.org/">R</a> installed on your computer;</li>
+<li>the Claude desktop app; and</li>
+<li>a Claude account with access to the <strong>Code</strong> tab.</li>
 </ul>
-<p>For a plot or table, check:</p>
-<ul>
-<li>The observations and variables used.</li>
-<li>The labels, units, axes, and category order.</li>
-<li>Impossible values, unexpected categories, or empty groups.</li>
-<li>Whether counts or percentages add to the expected total.</li>
-</ul>
-<p>For a model, you can ask IntroStatGPT to:</p>
-<ul>
-<li>Show the exact formula it fit.</li>
-<li>Report how many observations it used and excluded.</li>
-<li>Confirm the reference group for a categorical variable.</li>
-<li>Create a requested diagnostic plot.</li>
-</ul>
-<p>If something looks wrong, name the mismatch and ask IntroStatGPT to trace it. For example:</p>
-<blockquote class="blockquote">
-<p>I expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step.</p>
-</blockquote>
+<p>Claude Code on desktop requires a Pro, Max, Team, or Enterprise subscription. See Anthropic’s <a href="https://code.claude.com/docs/en/desktop-quickstart">Claude Code desktop setup</a> for the current download and account requirements. On Windows, install <a href="https://git-scm.com/downloads/win">Git for Windows</a> before starting a local Code session.</p>
 </section>
-<section id="ask-for-the-right-kind-of-help" class="level2">
-<h2 class="anchored" data-anchor-id="ask-for-the-right-kind-of-help">Ask for the right kind of help</h2>
-<p><strong>Ask IntroStatGPT to inspect data, diagnose errors, trace an operation, or check its work.</strong> These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.</p>
-<p>These prompts address common problems:</p>
-<ul>
-<li>If you do not know the variable names, ask: “List the variable names and types in the housing data.”</li>
-<li>If the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”</li>
-<li>If an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”</li>
-<li>If a request is ambiguous, ask: “Identify what is ambiguous in my request and ask me the questions needed to specify the statistical operation.”</li>
-</ul>
+<section id="download-and-extract-the-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="download-and-extract-the-assignment">1. Download and extract the assignment</h2>
+<p>For Homework 1, download <a href="../files/IntroStatGPT_homework_01_2026-08-28.zip">IntroStatGPT_homework_01_2026-08-28.zip</a>. Extract it and move the resulting folder to Documents.</p>
+<p>Keep the folder’s files and subfolders in their original locations. Work from the extracted folder rather than from the ZIP file.</p>
 </section>
-<section id="build-from-the-outputs-you-checked" class="level2">
-<h2 class="anchored" data-anchor-id="build-from-the-outputs-you-checked">Build from the outputs you checked</h2>
-<p><strong>Name the finished outputs you want when you ask IntroStatGPT to create the report.</strong> Including an output does not certify that the analysis is correct. Check the output first, then identify it by its P or T label and place it under the appropriate report heading. Review the complete outline before you approve the Word build. See <a href="../introstatgpt/use.html#create-a-word-report">Use IntroStatGPT</a> for the report steps.</p>
-<p>Ask IntroStatGPT for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask IntroStatGPT to:</p>
+<section id="open-the-assignment-in-claude-code" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-assignment-in-claude-code">2. Open the assignment in Claude Code</h2>
 <ol type="1">
-<li>State the data, filters, transformations, variables, and statistical operation used.</li>
-<li>Run the reproduction script in a clean R session.</li>
-<li>Compare the reproduced output with the saved output.</li>
-<li>Report errors, warnings, and differences without interpreting the result.</li>
+<li>Open the Claude desktop app and sign in.</li>
+<li>Select the <strong>Code</strong> tab.</li>
+<li>Select <strong>Local</strong>.</li>
+<li>Select <strong>Select folder</strong> and choose the extracted IntroStatGPT assignment folder.</li>
+<li>Start a new session in that folder.</li>
 </ol>
+<p>Use <strong>Local</strong> so Claude can run R and work with the assignment files on your computer.</p>
 </section>
-<section id="before-you-finish" class="level2">
-<h2 class="anchored" data-anchor-id="before-you-finish">Before you finish</h2>
-<ul>
-<li>Does the output use the requested observations and variables?</li>
-<li>Do the labels, units, and model formula match the request?</li>
-<li>Did you run one useful check and resolve anything unexpected?</li>
-<li>Does the proposed report outline include the outputs you want under the correct headings?</li>
-</ul>
+<section id="set-up-the-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-the-assignment">3. Set up the assignment</h2>
+<p>Send:</p>
+<blockquote class="blockquote">
+<p>Set up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.</p>
+</blockquote>
+<p>Claude checks R, the required packages, and the assignment data. If packages are missing, it asks for permission before installing them. Approve the installation when the request lists the required R packages and says they will be installed in your personal R library.</p>
+<p>Setup is complete when Claude reports that the assignment data and required R packages are ready.</p>
+</section>
+<section id="complete-the-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="complete-the-assignment">4. Complete the assignment</h2>
+<p>For each <strong>Generate output</strong> panel:</p>
+<ol type="1">
+<li>Start a new session in the same assignment folder.</li>
+<li>Ask for the data, variables, table, plot, labels, and other specifications named in the panel.</li>
+<li>Review the output in the conversation and on the analysis page.</li>
+<li>Ask for a specific correction when something is missing or hard to read.</li>
+<li>Answer the assignment questions in your own words.</li>
+</ol>
+<p>Claude may ask for permission before running R or writing analysis files. Approve a request when it matches the setup or statistical output you asked it to create.</p>
+</section>
+<section id="build-the-word-report" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-word-report">5. Build the Word report</h2>
+<p>After generating the required output, ask Claude to create the assignment report. Identify the outputs by their P and T labels and state the report headings and order required by the assignment.</p>
+<p>Claude shows the proposed report outline in the conversation. Review the headings, included outputs, and order. Describe any changes, then approve the outline and ask Claude to build the Word report.</p>
+<p>Download the Word report from the link Claude provides. Add your written answers in Word, export the completed document to PDF, and submit the PDF.</p>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<section id="the-code-tab-asks-you-to-upgrade" class="level3">
+<h3 class="anchored" data-anchor-id="the-code-tab-asks-you-to-upgrade">The Code tab asks you to upgrade</h3>
+<p>Your Claude account does not currently include Claude Code. Use Codex or the backup report skeleton supplied with the assignment.</p>
+</section>
+<section id="claude-cannot-find-r" class="level3">
+<h3 class="anchored" data-anchor-id="claude-cannot-find-r">Claude cannot find R</h3>
+<p>Close and reopen the Claude desktop app after installing R. Reopen the assignment folder and send:</p>
+<blockquote class="blockquote">
+<p>Check whether R is installed and available to this workspace.</p>
+</blockquote>
+</section>
+<section id="claude-cannot-find-the-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="claude-cannot-find-the-assignment">Claude cannot find the assignment</h3>
+<p>Confirm that the selected project is the extracted IntroStatGPT folder itself, not the ZIP file, a CSV file, or one of the folder’s subdirectories.</p>
+</section>
+<section id="you-reopen-the-assignment-later" class="level3">
+<h3 class="anchored" data-anchor-id="you-reopen-the-assignment-later">You reopen the assignment later</h3>
+<p>Select the same extracted folder in the <strong>Code</strong> tab. Saved tables, plots, and reports remain in that folder and are available in a new session.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

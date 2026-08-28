@@ -147,7 +147,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../introstatgpt/setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Install and set up IntroStatGPT</span></a>
+ <span class="menu-text">Set up IntroStatGPT with Codex</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../introstatgpt/claude-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set up IntroStatGPT with Claude Code</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -159,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../introstatgpt/working.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Working with IntroStatGPT and Codex</span></a>
+ <span class="menu-text">Working with IntroStatGPT</span></a>
   </div>
 </li>
     </ul>
@@ -195,8 +201,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you <a href="../introstatgpt/setup.html">install and set up IntroStatGPT</a>.</p>
-<p>This page explains the IntroStatGPT workflow: create outputs, review them on the analysis page, and build a Word report. For guidance on writing precise requests and checking the resulting analysis, see <a href="../introstatgpt/working.html">Working with IntroStatGPT and Codex</a>.</p>
+<p>IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you set it up with <a href="../introstatgpt/setup.html">Codex</a> or <a href="../introstatgpt/claude-code.html">Claude Code</a>.</p>
+<p>This page explains the IntroStatGPT workflow: create outputs, review them on the analysis page, and build a Word report. For guidance on writing precise requests and checking the resulting analysis, see <a href="../introstatgpt/working.html">Working with IntroStatGPT</a>.</p>
 <section id="find-the-available-data" class="level2">
 <h2 class="anchored" data-anchor-id="find-the-available-data">Find the available data</h2>
 <p>Each IntroStatGPT folder contains the data for its activity. To see what is available, send:</p>
@@ -207,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="request-an-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="request-an-analysis">Request an analysis</h2>
-<p>Before your first request in a task, confirm the selector at the bottom right of the message box reads <strong>5.6 Luna High</strong> (see the <a href="../introstatgpt/setup.html#run-the-initial-setup">setup page</a>). Then describe the statistical output you want. For example:</p>
+<p>If you are using Codex, confirm that the selector at the bottom right of the message box reads <strong>5.6 Luna High</strong> (see the <a href="../introstatgpt/setup.html#run-the-initial-setup">Codex setup page</a>). Then describe the statistical output you want. For example:</p>
 <blockquote class="blockquote">
 <p>Using the Austin housing data, restrict attention to ZIP code 78752. Make a histogram of sale price and a table containing the sample size, mean, median, standard deviation, and IQR.</p>
 </blockquote>
@@ -263,8 +269,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="troubleshooting" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
-<section id="output-is-sloppy-incomplete-or-ignores-part-of-the-request" class="level3">
-<h3 class="anchored" data-anchor-id="output-is-sloppy-incomplete-or-ignores-part-of-the-request">Output is sloppy, incomplete, or ignores part of the request</h3>
+<section id="codex-output-is-sloppy-incomplete-or-ignores-part-of-the-request" class="level3">
+<h3 class="anchored" data-anchor-id="codex-output-is-sloppy-incomplete-or-ignores-part-of-the-request">Codex output is sloppy, incomplete, or ignores part of the request</h3>
 <p>Check the selector at the bottom right of the message box. It should read <strong>5.6 Luna High</strong>; a lower effort setting or a different model is the most common cause. Switch it and resend the request.</p>
 </section>
 <section id="the-analysis-page-does-not-open" class="level3">

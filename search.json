@@ -548,207 +548,269 @@
   {
     "objectID": "introstatgpt/working.html",
     "href": "introstatgpt/working.html",
-    "title": "Working with IntroStatGPT and Codex",
+    "title": "Working with IntroStatGPT",
     "section": "",
-    "text": "Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.\nThis page explains how to make clear requests and check the resulting analysis. For the analysis page and Word-report workflow, see Use IntroStatGPT.",
+    "text": "IntroStatGPT can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.\nThis page explains how to make clear requests and check the resulting analysis. For the analysis page and Word-report workflow, see Use IntroStatGPT.",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
     "objectID": "introstatgpt/working.html#be-precise",
     "href": "introstatgpt/working.html#be-precise",
-    "title": "Working with IntroStatGPT and Codex",
+    "title": "Working with IntroStatGPT",
     "section": "Be precise",
-    "text": "Be precise\nName the data, variables, operation, and output you want. Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask Codex to list the names and types first.\nUse this recipe:\n\nUsing [data or observations], use [variables] to [calculate, plot, or fit]. Return [the table, plot, model output, or saved result].\n\nFor example:\n\nUsing the housing data, keep observations with nonmissing PRICE and SQFT. Fit PRICE on SQFT and BATHS, treating ZIPCODE as categorical. Return the standardized regression table.",
+    "text": "Be precise\nName the data, variables, operation, and output you want. Specific requests give you an output that you can check against the prompt. If you do not know the variable names, ask IntroStatGPT to list the names and types first.\nUse this recipe:\n\nUsing [data or observations], use [variables] to [calculate, plot, or fit]. Return [the table, plot, model output, or saved result].\n\nFor example:\n\nUsing the housing data, keep observations with nonmissing PRICE and SQFT. Fit PRICE on SQFT and BATHS, treating ZIPCODE as categorical. Return the standardized regression table.",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
-    "objectID": "introstatgpt/working.html#keep-each-task-focused",
-    "href": "introstatgpt/working.html#keep-each-task-focused",
-    "title": "Working with IntroStatGPT and Codex",
-    "section": "Keep each task focused",
-    "text": "Keep each task focused\nUse one task for one question or a closely related set of outputs. Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.\nStart a new task when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the IntroStatGPT workspace. In the new task, state your current goal and identify any existing output by its short label, such as P2 or T1.",
+    "objectID": "introstatgpt/working.html#keep-each-conversation-focused",
+    "href": "introstatgpt/working.html#keep-each-conversation-focused",
+    "title": "Working with IntroStatGPT",
+    "section": "Keep each conversation focused",
+    "text": "Keep each conversation focused\nUse one conversation for one question or a closely related set of outputs. Ask for one meaningful analysis step, inspect the result, and then continue. This makes it easier to find the step where a problem entered.\nStart a new conversation when you change questions or variables, or when repeated revisions stop helping. Saved output remains in the IntroStatGPT workspace. In the new conversation, state your current goal and identify any existing output by its short label, such as P2 or T1.",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
     "objectID": "introstatgpt/working.html#check-before-you-build",
     "href": "introstatgpt/working.html#check-before-you-build",
-    "title": "Working with IntroStatGPT and Codex",
+    "title": "Working with IntroStatGPT",
     "section": "Check before you build",
-    "text": "Check before you build\nCompare every output with your request before using it in the next step. Run one or two checks that could expose the mistake you are most worried about.\nAfter filtering or changing data, you can ask Codex to:\n\nShow the row count before and after the change.\nCount missing values in the variables used.\nShow the minimum and maximum of a new numeric variable.\nShow category counts after recoding or grouping.\n\nFor a plot or table, check:\n\nThe observations and variables used.\nThe labels, units, axes, and category order.\nImpossible values, unexpected categories, or empty groups.\nWhether counts or percentages add to the expected total.\n\nFor a model, you can ask Codex to:\n\nShow the exact formula it fit.\nReport how many observations it used and excluded.\nConfirm the reference group for a categorical variable.\nCreate a requested diagnostic plot.\n\nIf something looks wrong, name the mismatch and ask Codex to trace it. For example:\n\nI expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step.",
+    "text": "Check before you build\nCompare every output with your request before using it in the next step. Run one or two checks that could expose the mistake you are most worried about.\nAfter filtering or changing data, you can ask IntroStatGPT to:\n\nShow the row count before and after the change.\nCount missing values in the variables used.\nShow the minimum and maximum of a new numeric variable.\nShow category counts after recoding or grouping.\n\nFor a plot or table, check:\n\nThe observations and variables used.\nThe labels, units, axes, and category order.\nImpossible values, unexpected categories, or empty groups.\nWhether counts or percentages add to the expected total.\n\nFor a model, you can ask IntroStatGPT to:\n\nShow the exact formula it fit.\nReport how many observations it used and excluded.\nConfirm the reference group for a categorical variable.\nCreate a requested diagnostic plot.\n\nIf something looks wrong, name the mismatch and ask IntroStatGPT to trace it. For example:\n\nI expected about 300 observations, but this table uses 217. Show the row count after each filtering or missing-data step.",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
     "objectID": "introstatgpt/working.html#ask-for-the-right-kind-of-help",
     "href": "introstatgpt/working.html#ask-for-the-right-kind-of-help",
-    "title": "Working with IntroStatGPT and Codex",
+    "title": "Working with IntroStatGPT",
     "section": "Ask for the right kind of help",
-    "text": "Ask for the right kind of help\nAsk Codex to inspect data, diagnose errors, trace an operation, or check its work. These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.\nThese prompts address common problems:\n\nIf you do not know the variable names, ask: “List the variable names and types in the housing data.”\nIf the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”\nIf an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”\nIf a request is ambiguous, ask: “Identify what is ambiguous in my request and ask me the questions needed to specify the statistical operation.”",
+    "text": "Ask for the right kind of help\nAsk IntroStatGPT to inspect data, diagnose errors, trace an operation, or check its work. These are mechanical questions that the harness can answer. If the remaining question is which method to choose, what a result means, or what conclusion to draw, use your course materials or ask your instructor. The harness leaves those decisions to you.\nThese prompts address common problems:\n\nIf you do not know the variable names, ask: “List the variable names and types in the housing data.”\nIf the output may not match the request, ask: “Restate the exact variables, filter, and model used for ‘Housing price model,’ then check them against my request.”\nIf an output fails, ask: “Diagnose why this output did not render and fix the mechanical problem.”\nIf a request is ambiguous, ask: “Identify what is ambiguous in my request and ask me the questions needed to specify the statistical operation.”",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
     "objectID": "introstatgpt/working.html#build-from-the-outputs-you-checked",
     "href": "introstatgpt/working.html#build-from-the-outputs-you-checked",
-    "title": "Working with IntroStatGPT and Codex",
+    "title": "Working with IntroStatGPT",
     "section": "Build from the outputs you checked",
-    "text": "Build from the outputs you checked\nName the finished outputs you want when you ask IntroStatGPT to create the report. Including an output does not certify that the analysis is correct. Check the output first, then identify it by its P or T label and place it under the appropriate report heading. Review the complete outline before you approve the Word build. See Use IntroStatGPT for the report steps.\nAsk Codex for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask Codex to:\n\nState the data, filters, transformations, variables, and statistical operation used.\nRun the reproduction script in a clean R session.\nCompare the reproduced output with the saved output.\nReport errors, warnings, and differences without interpreting the result.",
+    "text": "Build from the outputs you checked\nName the finished outputs you want when you ask IntroStatGPT to create the report. Including an output does not certify that the analysis is correct. Check the output first, then identify it by its P or T label and place it under the appropriate report heading. Review the complete outline before you approve the Word build. See Use IntroStatGPT for the report steps.\nAsk IntroStatGPT for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask IntroStatGPT to:\n\nState the data, filters, transformations, variables, and statistical operation used.\nRun the reproduction script in a clean R session.\nCompare the reproduced output with the saved output.\nReport errors, warnings, and differences without interpreting the result.",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
     "objectID": "introstatgpt/working.html#before-you-finish",
     "href": "introstatgpt/working.html#before-you-finish",
-    "title": "Working with IntroStatGPT and Codex",
+    "title": "Working with IntroStatGPT",
     "section": "Before you finish",
     "text": "Before you finish\n\nDoes the output use the requested observations and variables?\nDo the labels, units, and model formula match the request?\nDid you run one useful check and resolve anything unexpected?\nDoes the proposed report outline include the outputs you want under the correct headings?",
     "crumbs": [
       "IntroStatGPT",
-      "Working with IntroStatGPT and Codex"
+      "Working with IntroStatGPT"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html",
     "href": "introstatgpt/setup.html",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "",
     "text": "Complete these steps before you first use IntroStatGPT. You do not need previous experience with R or computer programming.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#activate-your-ut-chatgpt-account",
     "href": "introstatgpt/setup.html#activate-your-ut-chatgpt-account",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "1. Activate your UT ChatGPT account",
     "text": "1. Activate your UT ChatGPT account\nUT Austin provides ChatGPT EDU to students, faculty, and staff.\n\nVisit the UT Austin AI tools page.\nSelect Log in to access OpenAI ChatGPT EDU.\nSign in with your UT EID email address: [your EID]@eid.utexas.edu.\nComplete UT authentication.\n\nUse this account when you sign in to the desktop app.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#install-r",
     "href": "introstatgpt/setup.html#install-r",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "2. Install R",
     "text": "2. Install R\nR performs the statistical calculations behind IntroStatGPT. Download it from The Comprehensive R Archive Network.\n\nWindows\n\nSelect Download R for Windows.\nSelect base.\nDownload the current R installer.\nOpen the installer and accept the default options.\n\n\n\nMac\n\nSelect Download R for macOS.\nDownload the installer for your Mac.\nOpen the downloaded .pkg file and follow the installation prompts.\n\nTo identify your Mac processor, select Apple menu &gt; About This Mac and look for Apple silicon or Intel.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#install-the-chatgpt-desktop-app",
     "href": "introstatgpt/setup.html#install-the-chatgpt-desktop-app",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "3. Install the ChatGPT desktop app",
     "text": "3. Install the ChatGPT desktop app\nFollow the official desktop-app instructions to install ChatGPT. Open the app and sign in with your UT ChatGPT account.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#download-the-introstatgpt-folder-for-your-work",
     "href": "introstatgpt/setup.html#download-the-introstatgpt-folder-for-your-work",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "4. Download the IntroStatGPT folder for your work",
-    "text": "4. Download the IntroStatGPT folder for your work\nUse the download listed with the work you are doing:\n\nFor Homework 1, download IntroStatGPT_homework_01_2026-08-27.zip (13 MB).\nFor the in-class Intensive examples and course-note activities, download IntroStatGPT_intensive_2026-08-26.zip (13 MB).\n\nExtract the ZIP file. Each download produces its own IntroStatGPT folder.\n\nWindows\n\nRight-click the downloaded ZIP file.\nSelect Extract All.\nMove the extracted IntroStatGPT folder to Documents.\n\n\n\nMac\n\nDouble-click the downloaded ZIP file.\nMove the extracted IntroStatGPT folder to Documents.\n\nWork from the extracted folder for the activity you are completing. Keep its internal files and folders in their original locations.",
+    "text": "4. Download the IntroStatGPT folder for your work\nUse the download listed with the work you are doing:\n\nFor Homework 1, download IntroStatGPT_homework_01_2026-08-28.zip (13 MB).\nFor the in-class Intensive examples and course-note activities, download IntroStatGPT_intensive_2026-08-26.zip (13 MB).\n\nExtract the ZIP file. Each download produces its own IntroStatGPT folder.\n\nWindows\n\nRight-click the downloaded ZIP file.\nSelect Extract All.\nMove the extracted IntroStatGPT folder to Documents.\n\n\n\nMac\n\nDouble-click the downloaded ZIP file.\nMove the extracted IntroStatGPT folder to Documents.\n\nWork from the extracted folder for the activity you are completing. Keep its internal files and folders in their original locations.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#open-the-extracted-folder-in-codex",
     "href": "introstatgpt/setup.html#open-the-extracted-folder-in-codex",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "5. Open the extracted folder in Codex",
     "text": "5. Open the extracted folder in Codex\n\nOpen the ChatGPT desktop app.\nEnter Codex.\nFrom the menu bar, choose File &gt; Open Folder.\nOpen Documents and select the IntroStatGPT folder you extracted in the previous step.\nSelect Open.\n\nSelect the extracted IntroStatGPT folder itself, rather than a CSV file or one of its subfolders. Codex now treats that folder and everything inside it as one workspace.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#run-the-initial-setup",
     "href": "introstatgpt/setup.html#run-the-initial-setup",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "6. Run the initial setup",
     "text": "6. Run the initial setup\nRun this check the first time you open each extracted IntroStatGPT folder. After the folder opens, start a task for this workspace:\n\nIn the left sidebar, select New task (the + button).\nConfirm that the IntroStatGPT folder name appears as the task’s workspace.\nSet the model and effort. At the bottom right of the message box, next to the microphone, a selector shows the current model and effort, for example 5.6 Luna Medium. Click it and set it to 5.6 Luna with High effort. Codex remembers this for new tasks, but glance at it each time; lower effort settings produce sloppier statistical output.\nClick the message box and send:\n\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\nCodex will check R and install the required R packages. The first setup may take a few minutes. Approve package installation if Codex requests permission.\nSetup is complete when Codex reports:\n\nSetup check passed.\n\nYou are now ready to use IntroStatGPT.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
     "objectID": "introstatgpt/setup.html#setup-troubleshooting",
     "href": "introstatgpt/setup.html#setup-troubleshooting",
-    "title": "Install and set up IntroStatGPT",
+    "title": "Set up IntroStatGPT with Codex",
     "section": "Setup troubleshooting",
     "text": "Setup troubleshooting\n\nCodex cannot find R\nClose and reopen the ChatGPT desktop app after installing R. Then send:\n\nCheck whether R is installed and available to this workspace.\n\n\n\nAn R package is missing\nSend:\n\nRun the workspace setup and install or update any missing or incompatible required packages.\n\n\n\nSetup still fails\nSend:\n\nDiagnose the setup failure. Tell me exactly what I need to do, but do not begin an analysis.",
     "crumbs": [
       "IntroStatGPT",
-      "Install and set up IntroStatGPT"
+      "Set up IntroStatGPT with Codex"
     ]
   },
   {
-    "objectID": "introstatgpt.html",
-    "href": "introstatgpt.html",
-    "title": "IntroStatGPT",
+    "objectID": "introstatgpt/claude-code.html",
+    "href": "introstatgpt/claude-code.html",
+    "title": "Set up IntroStatGPT with Claude Code",
     "section": "",
-    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; ChatGPT’s Codex runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
+    "text": "The IntroStatGPT assignment folder contains the instructions and tools Claude Code needs. The assignment, data, saved output, and report files stay together in that folder.\nThe standard course setup uses Codex with your UT ChatGPT account. Follow this page if you already have a Claude account with access to Claude Code.",
     "crumbs": [
-      "IntroStatGPT"
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
     ]
   },
   {
-    "objectID": "introstatgpt.html#start-here",
-    "href": "introstatgpt.html#start-here",
-    "title": "IntroStatGPT",
-    "section": "Start here",
-    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT and Codex — how to make requests that produce checkable output, how to check it, and what to save.",
+    "objectID": "introstatgpt/claude-code.html#before-you-begin",
+    "href": "introstatgpt/claude-code.html#before-you-begin",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "Before you begin",
+    "text": "Before you begin\nYou need:\n\nR installed on your computer;\nthe Claude desktop app; and\na Claude account with access to the Code tab.\n\nClaude Code on desktop requires a Pro, Max, Team, or Enterprise subscription. See Anthropic’s Claude Code desktop setup for the current download and account requirements. On Windows, install Git for Windows before starting a local Code session.",
     "crumbs": [
-      "IntroStatGPT"
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
     ]
   },
   {
-    "objectID": "introstatgpt.html#homework-1",
-    "href": "introstatgpt.html#homework-1",
-    "title": "IntroStatGPT",
-    "section": "Homework 1",
-    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-27.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment.\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nSample Homework 1 chat — one complete output-generation conversation. It creates the required tables and figures but does not answer the homework questions.\nHomework 1 report skeleton — known-good copies of the required tables and figures, with no written answers. Use it if IntroStatGPT is unavailable or to check your output.\n\nSubmit the PDF you export from Word.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "objectID": "introstatgpt/claude-code.html#download-and-extract-the-assignment",
+    "href": "introstatgpt/claude-code.html#download-and-extract-the-assignment",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "1. Download and extract the assignment",
+    "text": "1. Download and extract the assignment\nFor Homework 1, download IntroStatGPT_homework_01_2026-08-28.zip. Extract it and move the resulting folder to Documents.\nKeep the folder’s files and subfolders in their original locations. Work from the extracted folder rather than from the ZIP file.",
     "crumbs": [
-      "IntroStatGPT"
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
     ]
   },
   {
-    "objectID": "introstatgpt.html#intensive",
-    "href": "introstatgpt.html#intensive",
-    "title": "IntroStatGPT",
-    "section": "Intensive",
-    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
+    "objectID": "introstatgpt/claude-code.html#open-the-assignment-in-claude-code",
+    "href": "introstatgpt/claude-code.html#open-the-assignment-in-claude-code",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "2. Open the assignment in Claude Code",
+    "text": "2. Open the assignment in Claude Code\n\nOpen the Claude desktop app and sign in.\nSelect the Code tab.\nSelect Local.\nSelect Select folder and choose the extracted IntroStatGPT assignment folder.\nStart a new session in that folder.\n\nUse Local so Claude can run R and work with the assignment files on your computer.",
     "crumbs": [
-      "IntroStatGPT"
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
     ]
+  },
+  {
+    "objectID": "introstatgpt/claude-code.html#set-up-the-assignment",
+    "href": "introstatgpt/claude-code.html#set-up-the-assignment",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "3. Set up the assignment",
+    "text": "3. Set up the assignment\nSend:\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\nClaude checks R, the required packages, and the assignment data. If packages are missing, it asks for permission before installing them. Approve the installation when the request lists the required R packages and says they will be installed in your personal R library.\nSetup is complete when Claude reports that the assignment data and required R packages are ready.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/claude-code.html#complete-the-assignment",
+    "href": "introstatgpt/claude-code.html#complete-the-assignment",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "4. Complete the assignment",
+    "text": "4. Complete the assignment\nFor each Generate output panel:\n\nStart a new session in the same assignment folder.\nAsk for the data, variables, table, plot, labels, and other specifications named in the panel.\nReview the output in the conversation and on the analysis page.\nAsk for a specific correction when something is missing or hard to read.\nAnswer the assignment questions in your own words.\n\nClaude may ask for permission before running R or writing analysis files. Approve a request when it matches the setup or statistical output you asked it to create.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/claude-code.html#build-the-word-report",
+    "href": "introstatgpt/claude-code.html#build-the-word-report",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "5. Build the Word report",
+    "text": "5. Build the Word report\nAfter generating the required output, ask Claude to create the assignment report. Identify the outputs by their P and T labels and state the report headings and order required by the assignment.\nClaude shows the proposed report outline in the conversation. Review the headings, included outputs, and order. Describe any changes, then approve the outline and ask Claude to build the Word report.\nDownload the Word report from the link Claude provides. Add your written answers in Word, export the completed document to PDF, and submit the PDF.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/claude-code.html#troubleshooting",
+    "href": "introstatgpt/claude-code.html#troubleshooting",
+    "title": "Set up IntroStatGPT with Claude Code",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nThe Code tab asks you to upgrade\nYour Claude account does not currently include Claude Code. Use Codex or the backup report skeleton supplied with the assignment.\n\n\nClaude cannot find R\nClose and reopen the Claude desktop app after installing R. Reopen the assignment folder and send:\n\nCheck whether R is installed and available to this workspace.\n\n\n\nClaude cannot find the assignment\nConfirm that the selected project is the extracted IntroStatGPT folder itself, not the ZIP file, a CSV file, or one of the folder’s subdirectories.\n\n\nYou reopen the assignment later\nSelect the same extracted folder in the Code tab. Saved tables, plots, and reports remain in that folder and are available in a new session.",
+    "crumbs": [
+      "IntroStatGPT",
+      "Set up IntroStatGPT with Claude Code"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEMBA Statistics",
+    "section": "",
+    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+  },
+  {
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "TEMBA Statistics",
+    "section": "Materials",
+    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
   },
   {
     "objectID": "data.html",
@@ -800,18 +862,44 @@
     "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEMBA Statistics",
+    "objectID": "introstatgpt.html",
+    "href": "introstatgpt.html",
+    "title": "IntroStatGPT",
     "section": "",
-    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
   },
   {
-    "objectID": "index.html#materials",
-    "href": "index.html#materials",
-    "title": "TEMBA Statistics",
-    "section": "Materials",
-    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+    "objectID": "introstatgpt.html#start-here",
+    "href": "introstatgpt.html#start-here",
+    "title": "IntroStatGPT",
+    "section": "Start here",
+    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT — how to make requests that produce checkable output, how to check it, and what to save.\n\nThe course setup uses Codex with your UT ChatGPT account. If you already have a Claude account with access to Claude Code, you may instead set up IntroStatGPT with Claude Code.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-1",
+    "href": "introstatgpt.html#homework-1",
+    "title": "IntroStatGPT",
+    "section": "Homework 1",
+    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-28.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets. It works with Codex and Claude Code.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment.\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nSample Homework 1 chat — one complete output-generation conversation. It creates the required tables and figures but does not answer the homework questions.\nHomework 1 report skeleton — known-good copies of the required tables and figures, with no written answers. Use it if IntroStatGPT is unavailable or to check your output.\n\nSubmit the PDF you export from Word.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#intensive",
+    "href": "introstatgpt.html#intensive",
+    "title": "IntroStatGPT",
+    "section": "Intensive",
+    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html",
@@ -825,63 +913,63 @@
     "href": "introstatgpt/homework-01-sample-chat.html#overall-sales-and-price-distributions",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Overall sales and price distributions",
-    "text": "Overall sales and price distributions\n\n\nStudent\n\nUsing all observations in the Kroger cheese data, make a histogram of vol with density on the vertical axis and a density curve. Make the same kind of histogram for price, with dollars on the horizontal axis. Then fork the price histogram so I keep it and also have a version with roughly twice as many bins. Give all three plots descriptive titles and clear axis labels.\n\n\n\nCodex\n\nCreated P1: Overall weekly sales volume.\n\n\n\n\nHistogram and density curve of weekly cheese sales.\n\n\n\nCreated P2: Overall retail price.\n\n\n\n\nHistogram and density curve of retail price.\n\n\n\nForked P2 and created P3: Overall retail price with narrower bins. P2 is still available.\n\n\n\n\nRetail-price histogram with narrower bins."
+    "text": "Overall sales and price distributions\n\n\nStudent\n\nUsing all observations in the Kroger cheese data, make a histogram of vol with density on the vertical axis and a density curve. Make the same kind of histogram for price, with dollars on the horizontal axis. Then fork the price histogram so I keep it and also have a version with roughly twice as many bins. Give all three plots descriptive titles and clear axis labels.\n\n\n\nIntroStatGPT\n\nCreated P1: Overall weekly sales volume.\n\n\n\n\nHistogram and density curve of weekly cheese sales.\n\n\n\nCreated P2: Overall retail price.\n\n\n\n\nHistogram and density curve of retail price.\n\n\n\nForked P2 and created P3: Overall retail price with narrower bins. P2 is still available.\n\n\n\n\nRetail-price histogram with narrower bins."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#sales-volume-distributions-by-display-status",
     "href": "introstatgpt/homework-01-sample-chat.html#sales-volume-distributions-by-display-status",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Sales-volume distributions by display status",
-    "text": "Sales-volume distributions by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make histograms of vol in separate panels for observations with and without a promotional display. Put density on the vertical axis, add a density curve, and use common horizontal and vertical scales. Label the groups Promotional display and No display and give the plot a descriptive title and clear axis labels.\n\n\n\nCodex\n\nCreated P4: Weekly sales volume by display status.\n\n\n\n\nWeekly sales-volume distributions by display status."
+    "text": "Sales-volume distributions by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make histograms of vol in separate panels for observations with and without a promotional display. Put density on the vertical axis, add a density curve, and use common horizontal and vertical scales. Label the groups Promotional display and No display and give the plot a descriptive title and clear axis labels.\n\n\n\nIntroStatGPT\n\nCreated P4: Weekly sales volume by display status.\n\n\n\n\nWeekly sales-volume distributions by display status."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#sales-volume-summaries-by-display-status",
     "href": "introstatgpt/homework-01-sample-chat.html#sales-volume-summaries-by-display-status",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Sales-volume summaries by display status",
-    "text": "Sales-volume summaries by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make one summary table for vol with rows for all observations, promotional-display observations, and no-display observations. Include the sample size, missing count, mean, standard deviation, 25th percentile, median, 75th percentile, IQR, minimum, and maximum. Also make side-by-side box plots for the two display groups on a common axis. Use the labels Promotional display and No display and give both outputs clear titles and labels.\n\n\n\nCodex\n\nCreated T1: Weekly sales-volume summary by display status.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nSample size\nMissing\nMean\nSD\nQ1\nMedian\nQ3\nIQR\nMinimum\nMaximum\n\n\n\n\nAll observations\n706\n0\n4,771.5\n2,485.0\n3,128.5\n4,255\n5,737.5\n2,609\n799\n14,534\n\n\nPromotional display\n485\n0\n5,182.7\n2,603.2\n3,510.0\n4,549\n6,292.0\n2,782\n799\n14,534\n\n\nNo display\n221\n0\n3,869.2\n1,920.7\n2,380.0\n3,498\n4,680.0\n2,300\n1,237\n11,318\n\n\n\nCreated P5: Weekly sales-volume box plots by display status.\n\n\n\n\nWeekly sales-volume box plots by display status."
+    "text": "Sales-volume summaries by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make one summary table for vol with rows for all observations, promotional-display observations, and no-display observations. Include the sample size, missing count, mean, standard deviation, 25th percentile, median, 75th percentile, IQR, minimum, and maximum. Also make side-by-side box plots for the two display groups on a common axis. Use the labels Promotional display and No display and give both outputs clear titles and labels.\n\n\n\nIntroStatGPT\n\nCreated T1: Weekly sales-volume summary by display status.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nSample size\nMissing\nMean\nSD\nQ1\nMedian\nQ3\nIQR\nMinimum\nMaximum\n\n\n\n\nAll observations\n706\n0\n4,771.5\n2,485.0\n3,128.5\n4,255\n5,737.5\n2,609\n799\n14,534\n\n\nPromotional display\n485\n0\n5,182.7\n2,603.2\n3,510.0\n4,549\n6,292.0\n2,782\n799\n14,534\n\n\nNo display\n221\n0\n3,869.2\n1,920.7\n2,380.0\n3,498\n4,680.0\n2,300\n1,237\n11,318\n\n\n\nCreated P5: Weekly sales-volume box plots by display status.\n\n\n\n\nWeekly sales-volume box plots by display status."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#price-distributions-by-display-status",
     "href": "introstatgpt/homework-01-sample-chat.html#price-distributions-by-display-status",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Price distributions by display status",
-    "text": "Price distributions by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make a summary table for price with one row for each display group. Include the sample size, missing count, mean, standard deviation, 25th percentile, median, 75th percentile, IQR, minimum, and maximum, and format prices in dollars. Also make price histograms in separate panels for the two groups. Put density on the vertical axis, add a density curve, and use common horizontal and vertical scales. Use the labels Promotional display and No display and give both outputs clear titles and labels.\n\n\n\nCodex\n\nCreated T2: Retail price summary by display status.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nSample size\nMissing\nMean\nSD\nQ1\nMedian\nQ3\nIQR\nMinimum\nMaximum\n\n\n\n\nPromotional display\n485\n0\n$2.57\n$0.28\n$2.41\n$2.50\n$2.69\n$0.28\n$1.72\n$3.83\n\n\nNo display\n221\n0\n$2.79\n$0.41\n$2.47\n$2.73\n$3.03\n$0.56\n$2.03\n$3.74\n\n\n\nCreated P6: Retail price distributions by display status.\n\n\n\n\nRetail-price distributions by display status."
+    "text": "Price distributions by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make a summary table for price with one row for each display group. Include the sample size, missing count, mean, standard deviation, 25th percentile, median, 75th percentile, IQR, minimum, and maximum, and format prices in dollars. Also make price histograms in separate panels for the two groups. Put density on the vertical axis, add a density curve, and use common horizontal and vertical scales. Use the labels Promotional display and No display and give both outputs clear titles and labels.\n\n\n\nIntroStatGPT\n\nCreated T2: Retail price summary by display status.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nSample size\nMissing\nMean\nSD\nQ1\nMedian\nQ3\nIQR\nMinimum\nMaximum\n\n\n\n\nPromotional display\n485\n0\n$2.57\n$0.28\n$2.41\n$2.50\n$2.69\n$0.28\n$1.72\n$3.83\n\n\nNo display\n221\n0\n$2.79\n$0.41\n$2.47\n$2.73\n$3.03\n$0.56\n$2.03\n$3.74\n\n\n\nCreated P6: Retail price distributions by display status.\n\n\n\n\nRetail-price distributions by display status."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#attrition-variable-summary",
     "href": "introstatgpt/homework-01-sample-chat.html#attrition-variable-summary",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Attrition variable summary",
-    "text": "Attrition variable summary\n\n\nStudent\n\nUsing the Bloom attrition data, summarize treat and attrite_perc. Report the software type, number of missing values, and distinct observed values for each variable.\n\n\n\nCodex\n\nCreated T3: Attrition variable summary.\n\n\n\nVariable\nSoftware type\nMissing\nDistinct observed values\n\n\n\n\ntreat\ncharacter\n0\nControl; Treatment\n\n\nattrite_perc\ndouble\n0\n0; 100"
+    "text": "Attrition variable summary\n\n\nStudent\n\nUsing the Bloom attrition data, summarize treat and attrite_perc. Report the software type, number of missing values, and distinct observed values for each variable.\n\n\n\nIntroStatGPT\n\nCreated T3: Attrition variable summary.\n\n\n\nVariable\nSoftware type\nMissing\nDistinct observed values\n\n\n\n\ntreat\ncharacter\n0\nControl; Treatment\n\n\nattrite_perc\ndouble\n0\n0; 100"
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#employee-attrition-comparison",
     "href": "introstatgpt/homework-01-sample-chat.html#employee-attrition-comparison",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Employee attrition comparison",
-    "text": "Employee attrition comparison\n\n\nStudent\n\nUsing the Bloom attrition data, make a table by treatment group with the group sample size, Stayed and Left counts, and percentages within each group. attrite_perc is 100 for an employee who left and 0 for an employee who stayed. Use Control and Hybrid WFH for the treatment labels and Stayed and Left for the outcome labels.\n\n\n\nCodex\n\nCreated T4: Employee attrition comparison.\n\n\n\nGroup\nSample size\nStayed\nLeft\nStayed (%)\nLeft (%)\n\n\n\n\nControl\n820\n761\n59\n92.8%\n7.2%\n\n\nHybrid WFH\n792\n754\n38\n95.2%\n4.8%"
+    "text": "Employee attrition comparison\n\n\nStudent\n\nUsing the Bloom attrition data, make a table by treatment group with the group sample size, Stayed and Left counts, and percentages within each group. attrite_perc is 100 for an employee who left and 0 for an employee who stayed. Use Control and Hybrid WFH for the treatment labels and Stayed and Left for the outcome labels.\n\n\n\nIntroStatGPT\n\nCreated T4: Employee attrition comparison.\n\n\n\nGroup\nSample size\nStayed\nLeft\nStayed (%)\nLeft (%)\n\n\n\n\nControl\n820\n761\n59\n92.8%\n7.2%\n\n\nHybrid WFH\n792\n754\n38\n95.2%\n4.8%"
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#perceptions-variable-summary",
     "href": "introstatgpt/homework-01-sample-chat.html#perceptions-variable-summary",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Perceptions variable summary",
-    "text": "Perceptions variable summary\n\n\nStudent\n\nUsing the Bloom perceptions data, summarize wave, role, and productivity. Report the software type, number of missing values, and number of distinct observed values for each variable.\n\n\n\nCodex\n\nCreated T5: Perceptions variable summary.\n\n\n\nVariable\nSoftware type\nMissing\nDistinct observed values\n\n\n\n\nwave\ncharacter\n0\n2\n\n\nrole\ncharacter\n0\n2\n\n\nproductivity\ncharacter\n0\n9"
+    "text": "Perceptions variable summary\n\n\nStudent\n\nUsing the Bloom perceptions data, summarize wave, role, and productivity. Report the software type, number of missing values, and number of distinct observed values for each variable.\n\n\n\nIntroStatGPT\n\nCreated T5: Perceptions variable summary.\n\n\n\nVariable\nSoftware type\nMissing\nDistinct observed values\n\n\n\n\nwave\ncharacter\n0\n2\n\n\nrole\ncharacter\n0\n2\n\n\nproductivity\ncharacter\n0\n9"
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#managers-perceptions-table-and-plot",
     "href": "introstatgpt/homework-01-sample-chat.html#managers-perceptions-table-and-plot",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Managers’ perceptions table and plot",
-    "text": "Managers’ perceptions table and plot\n\n\nStudent\n\nUsing the Bloom perceptions data, keep only managers at baseline. Make a table with the count and proportion for every original productivity response and confirm that it includes 314 managers. Keep the original labels in their natural order from the strongest expected loss to the strongest expected gain, not in frequency order. Also make a horizontal bar chart using proportions and the same labels and order.\n\n\n\nCodex\n\nCreated T6: Managers’ baseline productivity perceptions. The counts total 314 managers.\n\n\n\nOriginal response\nCount\nProportion\n\n\n\n\n35%+ less efficient\n9\n2.9%\n\n\n25%-35% less efficient\n9\n2.9%\n\n\n15%-25% less efficient\n24\n7.6%\n\n\n5%-15% less efficient\n43\n13.7%\n\n\nAbout the same\n186\n59.2%\n\n\n5%-15% more efficient\n24\n7.6%\n\n\n15%-25% more efficient\n10\n3.2%\n\n\n25%-35% more efficient\n5\n1.6%\n\n\n35%+ more efficient\n4\n1.3%\n\n\n\nCreated P7: Managers’ baseline productivity perceptions plot.\n\n\n\n\nManagers’ baseline productivity perceptions in their natural order."
+    "text": "Managers’ perceptions table and plot\n\n\nStudent\n\nUsing the Bloom perceptions data, keep only managers at baseline. Make a table with the count and proportion for every original productivity response and confirm that it includes 314 managers. Keep the original labels in their natural order from the strongest expected loss to the strongest expected gain, not in frequency order. Also make a horizontal bar chart using proportions and the same labels and order.\n\n\n\nIntroStatGPT\n\nCreated T6: Managers’ baseline productivity perceptions. The counts total 314 managers.\n\n\n\nOriginal response\nCount\nProportion\n\n\n\n\n35%+ less efficient\n9\n2.9%\n\n\n25%-35% less efficient\n9\n2.9%\n\n\n15%-25% less efficient\n24\n7.6%\n\n\n5%-15% less efficient\n43\n13.7%\n\n\nAbout the same\n186\n59.2%\n\n\n5%-15% more efficient\n24\n7.6%\n\n\n15%-25% more efficient\n10\n3.2%\n\n\n25%-35% more efficient\n5\n1.6%\n\n\n35%+ more efficient\n4\n1.3%\n\n\n\nCreated P7: Managers’ baseline productivity perceptions plot.\n\n\n\n\nManagers’ baseline productivity perceptions in their natural order."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#build-the-report-skeleton",
     "href": "introstatgpt/homework-01-sample-chat.html#build-the-report-skeleton",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Build the report skeleton",
-    "text": "Build the report skeleton\n\n\nStudent\n\nCreate a report called Homework 1. Put P1, P2, P3, P4, T1, P5, T2, and P6 under Weekly cheese sales and promotional displays. Put T3, T4, T5, T6, and P7 under Hybrid work, attrition, and productivity perceptions. Keep the outputs in the order I listed and show me the outline before you build it.\n\n\n\nCodex\n\nHere is the proposed report outline.\nWeekly cheese sales and promotional displays: P1, P2, P3, P4, T1, P5, T2, P6\nHybrid work, attrition, and productivity perceptions: T3, T4, T5, T6, P7\nDescribe any changes, or approve this outline to build the Word report.\n\n\n\nStudent\n\nI approve this outline. Build the Word report.\n\n\n\nCodex\n\nBuilt version 1 of the Homework 1 report skeleton."
+    "text": "Build the report skeleton\n\n\nStudent\n\nCreate a report called Homework 1. Put P1, P2, P3, P4, T1, P5, T2, and P6 under Weekly cheese sales and promotional displays. Put T3, T4, T5, T6, and P7 under Hybrid work, attrition, and productivity perceptions. Keep the outputs in the order I listed and show me the outline before you build it.\n\n\n\nIntroStatGPT\n\nHere is the proposed report outline.\nWeekly cheese sales and promotional displays: P1, P2, P3, P4, T1, P5, T2, P6\nHybrid work, attrition, and productivity perceptions: T3, T4, T5, T6, P7\nDescribe any changes, or approve this outline to build the Word report.\n\n\n\nStudent\n\nI approve this outline. Build the Word report.\n\n\n\nIntroStatGPT\n\nBuilt version 1 of the Homework 1 report skeleton."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#what-to-do-next",
@@ -895,7 +983,7 @@
     "href": "introstatgpt/use.html",
     "title": "Use IntroStatGPT",
     "section": "",
-    "text": "IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you install and set up IntroStatGPT.\nThis page explains the IntroStatGPT workflow: create outputs, review them on the analysis page, and build a Word report. For guidance on writing precise requests and checking the resulting analysis, see Working with IntroStatGPT and Codex.",
+    "text": "IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you set it up with Codex or Claude Code.\nThis page explains the IntroStatGPT workflow: create outputs, review them on the analysis page, and build a Word report. For guidance on writing precise requests and checking the resulting analysis, see Working with IntroStatGPT.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
@@ -917,7 +1005,7 @@
     "href": "introstatgpt/use.html#request-an-analysis",
     "title": "Use IntroStatGPT",
     "section": "Request an analysis",
-    "text": "Request an analysis\nBefore your first request in a task, confirm the selector at the bottom right of the message box reads 5.6 Luna High (see the setup page). Then describe the statistical output you want. For example:\n\nUsing the Austin housing data, restrict attention to ZIP code 78752. Make a histogram of sale price and a table containing the sample size, mean, median, standard deviation, and IQR.\n\nIntroStatGPT creates the requested outputs and shows them in the conversation. Outputs receive short identifiers:\n\nP1, P2, … for plots\nT1, T2, … for tables\nR1, R2, … for regression output\n\nUse these identifiers when requesting changes. IntroStatGPT creates statistical output; you are responsible for interpreting the results and writing conclusions.",
+    "text": "Request an analysis\nIf you are using Codex, confirm that the selector at the bottom right of the message box reads 5.6 Luna High (see the Codex setup page). Then describe the statistical output you want. For example:\n\nUsing the Austin housing data, restrict attention to ZIP code 78752. Make a histogram of sale price and a table containing the sample size, mean, median, standard deviation, and IQR.\n\nIntroStatGPT creates the requested outputs and shows them in the conversation. Outputs receive short identifiers:\n\nP1, P2, … for plots\nT1, T2, … for tables\nR1, R2, … for regression output\n\nUse these identifiers when requesting changes. IntroStatGPT creates statistical output; you are responsible for interpreting the results and writing conclusions.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
@@ -961,7 +1049,7 @@
     "href": "introstatgpt/use.html#troubleshooting",
     "title": "Use IntroStatGPT",
     "section": "Troubleshooting",
-    "text": "Troubleshooting\n\nOutput is sloppy, incomplete, or ignores part of the request\nCheck the selector at the bottom right of the message box. It should read 5.6 Luna High; a lower effort setting or a different model is the most common cause. Switch it and resend the request.\n\n\nThe analysis page does not open\nSend:\n\nRefresh the analysis page and give me a clickable Open the analysis page link.\n\n\n\nThe report outline is wrong\nName the output by its P or T identifier, describe where it belongs, and ask IntroStatGPT to show the revised outline before building.\n\n\nThe report does not contain a recent revision\nSend:\n\nUpdate the report to use the current version of P2 and give me the new Word report link.",
+    "text": "Troubleshooting\n\nCodex output is sloppy, incomplete, or ignores part of the request\nCheck the selector at the bottom right of the message box. It should read 5.6 Luna High; a lower effort setting or a different model is the most common cause. Switch it and resend the request.\n\n\nThe analysis page does not open\nSend:\n\nRefresh the analysis page and give me a clickable Open the analysis page link.\n\n\n\nThe report outline is wrong\nName the output by its P or T identifier, describe where it belongs, and ask IntroStatGPT to show the revised outline before building.\n\n\nThe report does not contain a recent revision\nSend:\n\nUpdate the report to use the current version of P2 and give me the new Word report link.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
