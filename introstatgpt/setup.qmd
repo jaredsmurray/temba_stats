@@ -42,10 +42,18 @@ for Apple silicon or Intel.
 Follow the [official desktop-app instructions](https://learn.chatgpt.com/docs/app)
 to install ChatGPT. Open the app and sign in with your UT ChatGPT account.
 
-## 4. Download IntroStatGPT
+## 4. Download the IntroStatGPT folder for your work
 
-Download [IntroStatGPT_intensive.zip](../files/IntroStatGPT_intensive.zip) (13 MB), then extract it.
-The extracted folder normally has the same name as the ZIP file.
+Use the download listed with the work you are doing:
+
+- For Homework 1, download
+  [IntroStatGPT_homework_01_2026-08-27.zip](../files/IntroStatGPT_homework_01_2026-08-27.zip)
+  (13 MB).
+- For the in-class Intensive examples and course-note activities, download
+  [IntroStatGPT_intensive_2026-08-26.zip](../files/IntroStatGPT_intensive_2026-08-26.zip)
+  (13 MB).
+
+Extract the ZIP file. Each download produces its own IntroStatGPT folder.
 
 ### Windows
 
@@ -58,8 +66,8 @@ The extracted folder normally has the same name as the ZIP file.
 1. Double-click the downloaded ZIP file.
 2. Move the extracted IntroStatGPT folder to Documents.
 
-Work from the extracted folder. Keep its internal files and folders in their
-original locations.
+Work from the extracted folder for the activity you are completing. Keep its
+internal files and folders in their original locations.
 
 ## 5. Open the extracted folder in Codex
 
@@ -76,6 +84,7 @@ workspace.
 
 ## 6. Run the initial setup
 
+Run this check the first time you open each extracted IntroStatGPT folder.
 After the folder opens, start a task for this workspace:
 
 1. In the left sidebar, select **New task** (the **+** button).
