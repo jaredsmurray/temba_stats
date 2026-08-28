@@ -711,18 +711,44 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEMBA Statistics",
+    "objectID": "introstatgpt.html",
+    "href": "introstatgpt.html",
+    "title": "IntroStatGPT",
     "section": "",
-    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
+    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; ChatGPT’s Codex runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
   },
   {
-    "objectID": "index.html#materials",
-    "href": "index.html#materials",
-    "title": "TEMBA Statistics",
-    "section": "Materials",
-    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
+    "objectID": "introstatgpt.html#start-here",
+    "href": "introstatgpt.html#start-here",
+    "title": "IntroStatGPT",
+    "section": "Start here",
+    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT and Codex — how to make requests that produce checkable output, how to check it, and what to save.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#download",
+    "href": "introstatgpt.html#download",
+    "title": "IntroStatGPT",
+    "section": "Download",
+    "text": "Download\nIntroStatGPT_intensive.zip (13 MB) — the folder the setup page asks you to extract. It contains the IntroStatGPT setup files, Homework 1, and the course datasets.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-1",
+    "href": "introstatgpt.html#homework-1",
+    "title": "IntroStatGPT",
+    "section": "Homework 1",
+    "text": "Homework 1\nUse these files together:\n\nHomework 1: Describing and Comparing Distributions — the assignment.\nIntroStatGPT: Homework Workflow — how to generate output, organize it, and export your report.\nSample Homework 1 chat — one complete output-generation conversation. It creates the required tables and figures but does not answer the homework questions.\nHomework 1 report skeleton — known-good copies of the required tables and figures, with no written answers. Use it if IntroStatGPT is unavailable or to check your output.\n\nSubmit the PDF you export from Word.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
   },
   {
     "objectID": "data.html",
@@ -774,34 +800,95 @@
     "text": "Survey of Household Economics and Decisionmaking (SHED 2025)\n\nshed_2025.csv (1.8M)"
   },
   {
-    "objectID": "introstatgpt.html",
-    "href": "introstatgpt.html",
-    "title": "IntroStatGPT",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEMBA Statistics",
     "section": "",
-    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; ChatGPT’s Codex runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "text": "Course materials for TEMBA Statistics, taught by Jared Murray."
   },
   {
-    "objectID": "introstatgpt.html#start-here",
-    "href": "introstatgpt.html#start-here",
-    "title": "IntroStatGPT",
-    "section": "Start here",
-    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT and Codex — how to make requests that produce checkable output, how to check it, and what to save.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "TEMBA Statistics",
+    "section": "Materials",
+    "text": "Materials\n\nCourse notes — the textbook for the course.\nSlides — lecture decks.\nData — datasets used in the notes and in class.\nIntroStatGPT — using AI tools for the statistical computing in this course.\n\nCourse materials are being assembled; expect this page to fill in as the semester approaches. Announcements, assignments, and grades live in Canvas."
   },
   {
-    "objectID": "introstatgpt.html#download",
-    "href": "introstatgpt.html#download",
-    "title": "IntroStatGPT",
-    "section": "Download",
-    "text": "Download\nIntroStatGPT_intensive.zip (13 MB) — the folder the setup page asks you to extract. It contains the IntroStatGPT setup and the course datasets.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "objectID": "introstatgpt/homework-01-sample-chat.html",
+    "href": "introstatgpt/homework-01-sample-chat.html",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "",
+    "text": "This example shows one complete way to generate the required Homework 1 output. It is a model, not a script you must follow word for word. The chat creates tables and plots but does not answer or interpret the homework questions."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#overall-sales-and-price-distributions",
+    "href": "introstatgpt/homework-01-sample-chat.html#overall-sales-and-price-distributions",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Overall sales and price distributions",
+    "text": "Overall sales and price distributions\n\n\nStudent\n\nUsing all observations in the Kroger cheese data, make a histogram of vol with density on the vertical axis and a density curve. Make the same kind of histogram for price, with dollars on the horizontal axis. Then fork the price histogram so I keep it and also have a version with roughly twice as many bins. Give all three plots descriptive titles and clear axis labels.\n\n\n\nCodex\n\nCreated P1: Overall weekly sales volume.\n\n\n\n\nHistogram and density curve of weekly cheese sales.\n\n\n\nCreated P2: Overall retail price.\n\n\n\n\nHistogram and density curve of retail price.\n\n\n\nForked P2 and created P3: Overall retail price with narrower bins. P2 is still available.\n\n\n\n\nRetail-price histogram with narrower bins."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#sales-volume-distributions-by-display-status",
+    "href": "introstatgpt/homework-01-sample-chat.html#sales-volume-distributions-by-display-status",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Sales-volume distributions by display status",
+    "text": "Sales-volume distributions by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make histograms of vol in separate panels for observations with and without a promotional display. Put density on the vertical axis, add a density curve, and use common horizontal and vertical scales. Label the groups Promotional display and No display and give the plot a descriptive title and clear axis labels.\n\n\n\nCodex\n\nCreated P4: Weekly sales volume by display status.\n\n\n\n\nWeekly sales-volume distributions by display status."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#sales-volume-summaries-by-display-status",
+    "href": "introstatgpt/homework-01-sample-chat.html#sales-volume-summaries-by-display-status",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Sales-volume summaries by display status",
+    "text": "Sales-volume summaries by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make one summary table for vol with rows for all observations, promotional-display observations, and no-display observations. Include the sample size, missing count, mean, standard deviation, 25th percentile, median, 75th percentile, IQR, minimum, and maximum. Also make side-by-side box plots for the two display groups on a common axis. Use the labels Promotional display and No display and give both outputs clear titles and labels.\n\n\n\nCodex\n\nCreated T1: Weekly sales-volume summary by display status.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nSample size\nMissing\nMean\nSD\nQ1\nMedian\nQ3\nIQR\nMinimum\nMaximum\n\n\n\n\nAll observations\n706\n0\n4,771.5\n2,485.0\n3,128.5\n4,255\n5,737.5\n2,609\n799\n14,534\n\n\nPromotional display\n485\n0\n5,182.7\n2,603.2\n3,510.0\n4,549\n6,292.0\n2,782\n799\n14,534\n\n\nNo display\n221\n0\n3,869.2\n1,920.7\n2,380.0\n3,498\n4,680.0\n2,300\n1,237\n11,318\n\n\n\nCreated P5: Weekly sales-volume box plots by display status.\n\n\n\n\nWeekly sales-volume box plots by display status."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#price-distributions-by-display-status",
+    "href": "introstatgpt/homework-01-sample-chat.html#price-distributions-by-display-status",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Price distributions by display status",
+    "text": "Price distributions by display status\n\n\nStudent\n\nUsing the Kroger cheese data, make a summary table for price with one row for each display group. Include the sample size, missing count, mean, standard deviation, 25th percentile, median, 75th percentile, IQR, minimum, and maximum, and format prices in dollars. Also make price histograms in separate panels for the two groups. Put density on the vertical axis, add a density curve, and use common horizontal and vertical scales. Use the labels Promotional display and No display and give both outputs clear titles and labels.\n\n\n\nCodex\n\nCreated T2: Retail price summary by display status.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nSample size\nMissing\nMean\nSD\nQ1\nMedian\nQ3\nIQR\nMinimum\nMaximum\n\n\n\n\nPromotional display\n485\n0\n$2.57\n$0.28\n$2.41\n$2.50\n$2.69\n$0.28\n$1.72\n$3.83\n\n\nNo display\n221\n0\n$2.79\n$0.41\n$2.47\n$2.73\n$3.03\n$0.56\n$2.03\n$3.74\n\n\n\nCreated P6: Retail price distributions by display status.\n\n\n\n\nRetail-price distributions by display status."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#attrition-variable-summary",
+    "href": "introstatgpt/homework-01-sample-chat.html#attrition-variable-summary",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Attrition variable summary",
+    "text": "Attrition variable summary\n\n\nStudent\n\nUsing the Bloom attrition data, summarize treat and attrite_perc. Report the software type, number of missing values, and distinct observed values for each variable.\n\n\n\nCodex\n\nCreated T3: Attrition variable summary.\n\n\n\nVariable\nSoftware type\nMissing\nDistinct observed values\n\n\n\n\ntreat\ncharacter\n0\nControl; Treatment\n\n\nattrite_perc\ndouble\n0\n0; 100"
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#employee-attrition-comparison",
+    "href": "introstatgpt/homework-01-sample-chat.html#employee-attrition-comparison",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Employee attrition comparison",
+    "text": "Employee attrition comparison\n\n\nStudent\n\nUsing the Bloom attrition data, make a table by treatment group with the group sample size, Stayed and Left counts, and percentages within each group. attrite_perc is 100 for an employee who left and 0 for an employee who stayed. Use Control and Hybrid WFH for the treatment labels and Stayed and Left for the outcome labels.\n\n\n\nCodex\n\nCreated T4: Employee attrition comparison.\n\n\n\nGroup\nSample size\nStayed\nLeft\nStayed (%)\nLeft (%)\n\n\n\n\nControl\n820\n761\n59\n92.8%\n7.2%\n\n\nHybrid WFH\n792\n754\n38\n95.2%\n4.8%"
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#perceptions-variable-summary",
+    "href": "introstatgpt/homework-01-sample-chat.html#perceptions-variable-summary",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Perceptions variable summary",
+    "text": "Perceptions variable summary\n\n\nStudent\n\nUsing the Bloom perceptions data, summarize wave, role, and productivity. Report the software type, number of missing values, and number of distinct observed values for each variable.\n\n\n\nCodex\n\nCreated T5: Perceptions variable summary.\n\n\n\nVariable\nSoftware type\nMissing\nDistinct observed values\n\n\n\n\nwave\ncharacter\n0\n2\n\n\nrole\ncharacter\n0\n2\n\n\nproductivity\ncharacter\n0\n9"
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#managers-perceptions-table-and-plot",
+    "href": "introstatgpt/homework-01-sample-chat.html#managers-perceptions-table-and-plot",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Managers’ perceptions table and plot",
+    "text": "Managers’ perceptions table and plot\n\n\nStudent\n\nUsing the Bloom perceptions data, keep only managers at baseline. Make a table with the count and proportion for every original productivity response and confirm that it includes 314 managers. Keep the original labels in their natural order from the strongest expected loss to the strongest expected gain, not in frequency order. Also make a horizontal bar chart using proportions and the same labels and order.\n\n\n\nCodex\n\nCreated T6: Managers’ baseline productivity perceptions. The counts total 314 managers.\n\n\n\nOriginal response\nCount\nProportion\n\n\n\n\n35%+ less efficient\n9\n2.9%\n\n\n25%-35% less efficient\n9\n2.9%\n\n\n15%-25% less efficient\n24\n7.6%\n\n\n5%-15% less efficient\n43\n13.7%\n\n\nAbout the same\n186\n59.2%\n\n\n5%-15% more efficient\n24\n7.6%\n\n\n15%-25% more efficient\n10\n3.2%\n\n\n25%-35% more efficient\n5\n1.6%\n\n\n35%+ more efficient\n4\n1.3%\n\n\n\nCreated P7: Managers’ baseline productivity perceptions plot.\n\n\n\n\nManagers’ baseline productivity perceptions in their natural order."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#build-the-report-skeleton",
+    "href": "introstatgpt/homework-01-sample-chat.html#build-the-report-skeleton",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "Build the report skeleton",
+    "text": "Build the report skeleton\n\n\nStudent\n\nOpen the analysis organizer so I can arrange the required output for my report.\n\n\n\nCodex\n\nThe analysis organizer is ready.\n\n\n\nStudent\n\nI selected P1 through P6 and T1 through T2 under Weekly cheese sales and promotional displays. I selected T3 through T6 and P7 under Hybrid work, attrition, and productivity perceptions. I kept them in the same order as the homework and applied the changes. Prepare the Word report for review.\n\n\n\nCodex\n\nThe report is ready for review.\nWeekly cheese sales and promotional displays: P1, P2, P3, P4, T1, P5, T2, P6\nHybrid work, attrition, and productivity perceptions: T3, T4, T5, T6, P7\nPlease approve this arrangement before I build the Word report.\n\n\n\nStudent\n\nI approve this arrangement. Build the Word report.\n\n\n\nCodex\n\nBuilt the Homework 1 report skeleton."
+  },
+  {
+    "objectID": "introstatgpt/homework-01-sample-chat.html#what-to-do-next",
+    "href": "introstatgpt/homework-01-sample-chat.html#what-to-do-next",
+    "title": "Homework 1: Example IntroStatGPT Chat",
+    "section": "What to do next",
+    "text": "What to do next\nOpen the Word skeleton, add your numbered answers near the output they use, and export the completed document to PDF. The supplied skeleton is also available as a backup if IntroStatGPT does not finish your report or as a check on output you generated yourself."
   },
   {
     "objectID": "introstatgpt/use.html",
