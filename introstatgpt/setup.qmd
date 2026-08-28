@@ -1,5 +1,6 @@
 ---
-title: "Install and set up IntroStatGPT"
+title: "Set up IntroStatGPT with Codex"
+description: "Install R and open an IntroStatGPT assignment in Codex"
 ---
 
 Complete these steps before you first use IntroStatGPT. You do not need
@@ -47,7 +48,7 @@ to install ChatGPT. Open the app and sign in with your UT ChatGPT account.
 Use the download listed with the work you are doing:
 
 - For Homework 1, download
-  [IntroStatGPT_homework_01_2026-08-27.zip](../files/IntroStatGPT_homework_01_2026-08-27.zip)
+  [IntroStatGPT_homework_01_2026-08-28.zip](../files/IntroStatGPT_homework_01_2026-08-28.zip)
   (13 MB).
 - For the in-class Intensive examples and course-note activities, download
   [IntroStatGPT_intensive_2026-08-26.zip](../files/IntroStatGPT_intensive_2026-08-26.zip)

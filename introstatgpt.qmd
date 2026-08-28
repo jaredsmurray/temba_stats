@@ -4,11 +4,11 @@ description: "Using AI tools for the statistical computing in this course"
 ---
 
 IntroStatGPT is how we do statistical computing in this course. You ask for a
-table, a graph, or a model fit in ordinary language; ChatGPT's Codex runs R
-behind the scenes and hands back the output, ready to check and drop into a
-report. You never write code from scratch, and you are evaluated on concepts,
-not code. What you still own is the important part: choosing the method,
-checking the output, and deciding what it means.
+table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind
+the scenes and hands back the output, ready to check and drop into a report.
+You never write code from scratch, and you are evaluated on concepts, not code.
+What you still own is the important part: choosing the method, checking the
+output, and deciding what it means.
 
 ## Start here
 
@@ -18,18 +18,22 @@ checking the output, and deciding what it means.
 2. [Use IntroStatGPT](introstatgpt/use.qmd) — the everyday workflow: find the
    available data, request an analysis, revise it, browse the gallery, organize
    your outputs, and compile a Word report.
-3. [Working with IntroStatGPT and Codex](introstatgpt/working.qmd) — how to
+3. [Working with IntroStatGPT](introstatgpt/working.qmd) — how to
    make requests that produce checkable output, how to check it, and what to
    save.
+
+The course setup uses Codex with your UT ChatGPT account. If you already have a
+Claude account with access to Claude Code, you may instead [set up IntroStatGPT
+with Claude Code](introstatgpt/claude-code.qmd).
 
 ## Homework 1
 
 <!-- Published harness ZIPs are immutable. Add a dated file and retire the old
 link rather than replacing a ZIP in place. -->
 
-Download [IntroStatGPT_homework_01_2026-08-27.zip](files/IntroStatGPT_homework_01_2026-08-27.zip)
+Download [IntroStatGPT_homework_01_2026-08-28.zip](files/IntroStatGPT_homework_01_2026-08-28.zip)
 (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1,
-and the course datasets.
+and the course datasets. It works with Codex and Claude Code.
 
 Use the workspace with these files:
 

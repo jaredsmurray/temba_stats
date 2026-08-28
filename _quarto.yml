@@ -46,6 +46,7 @@ website:
       contents:
         - introstatgpt.qmd
         - introstatgpt/setup.qmd
+        - introstatgpt/claude-code.qmd
         - introstatgpt/use.qmd
         - introstatgpt/working.qmd
 

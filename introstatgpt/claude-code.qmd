@@ -1,0 +1,113 @@
+---
+title: "Set up IntroStatGPT with Claude Code"
+description: "Install R and open an IntroStatGPT assignment in Claude Code"
+---
+
+The IntroStatGPT assignment folder contains the instructions and tools Claude
+Code needs. The assignment, data, saved output, and report files stay together
+in that folder.
+
+The standard course setup uses Codex with your UT ChatGPT account. Follow this
+page if you already have a Claude account with access to Claude Code.
+
+## Before you begin
+
+You need:
+
+- [R](https://cloud.r-project.org/) installed on your computer;
+- the Claude desktop app; and
+- a Claude account with access to the **Code** tab.
+
+Claude Code on desktop requires a Pro, Max, Team, or Enterprise subscription.
+See Anthropic's [Claude Code desktop setup](https://code.claude.com/docs/en/desktop-quickstart)
+for the current download and account requirements. On Windows, install
+[Git for Windows](https://git-scm.com/downloads/win) before starting a local
+Code session.
+
+## 1. Download and extract the assignment
+
+For Homework 1, download
+[IntroStatGPT_homework_01_2026-08-28.zip](../files/IntroStatGPT_homework_01_2026-08-28.zip).
+Extract it and move the resulting folder to Documents.
+
+Keep the folder's files and subfolders in their original locations. Work from
+the extracted folder rather than from the ZIP file.
+
+## 2. Open the assignment in Claude Code
+
+1. Open the Claude desktop app and sign in.
+2. Select the **Code** tab.
+3. Select **Local**.
+4. Select **Select folder** and choose the extracted IntroStatGPT assignment
+   folder.
+5. Start a new session in that folder.
+
+Use **Local** so Claude can run R and work with the assignment files on your
+computer.
+
+## 3. Set up the assignment
+
+Send:
+
+> Set up this IntroStatGPT workspace and verify that it is ready. Do not begin
+> an analysis yet.
+
+Claude checks R, the required packages, and the assignment data. If packages
+are missing, it asks for permission before installing them. Approve the
+installation when the request lists the required R packages and says they will
+be installed in your personal R library.
+
+Setup is complete when Claude reports that the assignment data and required R
+packages are ready.
+
+## 4. Complete the assignment
+
+For each **Generate output** panel:
+
+1. Start a new session in the same assignment folder.
+2. Ask for the data, variables, table, plot, labels, and other specifications
+   named in the panel.
+3. Review the output in the conversation and on the analysis page.
+4. Ask for a specific correction when something is missing or hard to read.
+5. Answer the assignment questions in your own words.
+
+Claude may ask for permission before running R or writing analysis files.
+Approve a request when it matches the setup or statistical output you asked it
+to create.
+
+## 5. Build the Word report
+
+After generating the required output, ask Claude to create the assignment
+report. Identify the outputs by their P and T labels and state the report
+headings and order required by the assignment.
+
+Claude shows the proposed report outline in the conversation. Review the
+headings, included outputs, and order. Describe any changes, then approve the
+outline and ask Claude to build the Word report.
+
+Download the Word report from the link Claude provides. Add your written
+answers in Word, export the completed document to PDF, and submit the PDF.
+
+## Troubleshooting
+
+### The Code tab asks you to upgrade
+
+Your Claude account does not currently include Claude Code. Use Codex or the
+backup report skeleton supplied with the assignment.
+
+### Claude cannot find R
+
+Close and reopen the Claude desktop app after installing R. Reopen the
+assignment folder and send:
+
+> Check whether R is installed and available to this workspace.
+
+### Claude cannot find the assignment
+
+Confirm that the selected project is the extracted IntroStatGPT folder itself,
+not the ZIP file, a CSV file, or one of the folder's subdirectories.
+
+### You reopen the assignment later
+
+Select the same extracted folder in the **Code** tab. Saved tables, plots, and
+reports remain in that folder and are available in a new session.

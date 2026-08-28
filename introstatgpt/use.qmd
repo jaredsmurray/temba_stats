@@ -4,13 +4,13 @@ description: "Create, review, and compile statistical output"
 ---
 
 IntroStatGPT lets you request statistical tables and graphs in ordinary
-language. Begin after you [install and set up
-IntroStatGPT](setup.qmd).
+language. Begin after you set it up with [Codex](setup.qmd) or [Claude
+Code](claude-code.qmd).
 
 This page explains the IntroStatGPT workflow: create outputs, review them on the
 analysis page, and build a Word report. For guidance on writing
 precise requests and checking the resulting analysis, see [Working with
-IntroStatGPT and Codex](working.qmd).
+IntroStatGPT](working.qmd).
 
 ## Find the available data
 
@@ -25,10 +25,10 @@ will locate the corresponding file.
 
 ## Request an analysis
 
-Before your first request in a task, confirm the selector at the bottom right
-of the message box reads **5.6 Luna High** (see the
-[setup page](setup.qmd#run-the-initial-setup)). Then describe the statistical
-output you want. For example:
+If you are using Codex, confirm that the selector at the bottom right of the
+message box reads **5.6 Luna High** (see the [Codex setup
+page](setup.qmd#run-the-initial-setup)). Then describe the statistical output
+you want. For example:
 
 > Using the Austin housing data, restrict attention to ZIP code 78752. Make a
 > histogram of sale price and a table containing the sample size, mean, median,
@@ -103,7 +103,7 @@ earlier version.
 
 ## Troubleshooting
 
-### Output is sloppy, incomplete, or ignores part of the request
+### Codex output is sloppy, incomplete, or ignores part of the request
 
 Check the selector at the bottom right of the message box. It should read
 **5.6 Luna High**; a lower effort setting or a different model is the most

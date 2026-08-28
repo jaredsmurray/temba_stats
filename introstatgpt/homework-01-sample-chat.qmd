@@ -26,7 +26,7 @@ Set up IntroStatGPT for Homework 1.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Setup is complete. The assignment data and required R packages are ready.
@@ -48,7 +48,7 @@ Give all three plots descriptive titles and clear axis labels.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **P1: Overall weekly sales volume**.
@@ -87,7 +87,7 @@ plot a descriptive title and clear axis labels.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **P4: Weekly sales volume by display status**.
@@ -115,7 +115,7 @@ titles and labels.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **T1: Weekly sales-volume summary by display status**.
@@ -151,7 +151,7 @@ and **No display** and give both outputs clear titles and labels.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **T2: Retail price summary by display status**.
@@ -182,7 +182,7 @@ variable.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **T3: Attrition variable summary**.
@@ -209,7 +209,7 @@ Use **Control** and **Hybrid WFH** for the treatment labels and **Stayed** and
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **T4: Employee attrition comparison**.
@@ -234,7 +234,7 @@ observed values for each variable.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **T5: Perceptions variable summary**.
@@ -263,7 +263,7 @@ the same labels and order.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Created **T6: Managers' baseline productivity perceptions**. The counts total
@@ -303,7 +303,7 @@ the outputs in the order I listed and show me the outline before you build it.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Here is the proposed report outline.
@@ -326,7 +326,7 @@ I approve this outline. Build the Word report.
 
 ::: {.turn .codex}
 ::: {.speaker}
-Codex
+IntroStatGPT
 :::
 
 Built version 1 of the [Homework 1 report skeleton](../files/homework-01-report-skeleton.docx).

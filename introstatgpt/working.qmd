@@ -1,9 +1,9 @@
 ---
-title: "Working with IntroStatGPT and Codex"
+title: "Working with IntroStatGPT"
 description: "How to request, check, and save statistical analysis"
 ---
 
-Codex can prepare data, fit models, and create tables and plots. You still
+IntroStatGPT can prepare data, fit models, and create tables and plots. You still
 choose the method, check the output, and decide what the results mean.
 
 This page explains how to make clear requests and check the resulting analysis.
@@ -14,7 +14,7 @@ IntroStatGPT](use.qmd).
 
 **Name the data, variables, operation, and output you want.** Specific requests
 give you an output that you can check against the prompt. If you do not know the
-variable names, ask Codex to list the names and types first.
+variable names, ask IntroStatGPT to list the names and types first.
 
 Use this recipe:
 
@@ -27,15 +27,15 @@ For example:
 > Fit `PRICE` on `SQFT` and `BATHS`, treating `ZIPCODE` as categorical. Return
 > the standardized regression table.
 
-## Keep each task focused
+## Keep each conversation focused
 
-**Use one task for one question or a closely related set of outputs.** Ask for
+**Use one conversation for one question or a closely related set of outputs.** Ask for
 one meaningful analysis step, inspect the result, and then continue. This makes
 it easier to find the step where a problem entered.
 
-Start a new task when you change questions or variables, or when repeated
+Start a new conversation when you change questions or variables, or when repeated
 revisions stop helping. Saved output remains in the IntroStatGPT workspace. In
-the new task, state your current goal and identify any existing output by its
+the new conversation, state your current goal and identify any existing output by its
 short label, such as `P2` or `T1`.
 
 ## Check before you build
@@ -43,7 +43,7 @@ short label, such as `P2` or `T1`.
 **Compare every output with your request before using it in the next step.** Run
 one or two checks that could expose the mistake you are most worried about.
 
-After filtering or changing data, you can ask Codex to:
+After filtering or changing data, you can ask IntroStatGPT to:
 
 - Show the row count before and after the change.
 - Count missing values in the variables used.
@@ -57,14 +57,14 @@ For a plot or table, check:
 - Impossible values, unexpected categories, or empty groups.
 - Whether counts or percentages add to the expected total.
 
-For a model, you can ask Codex to:
+For a model, you can ask IntroStatGPT to:
 
 - Show the exact formula it fit.
 - Report how many observations it used and excluded.
 - Confirm the reference group for a categorical variable.
 - Create a requested diagnostic plot.
 
-If something looks wrong, name the mismatch and ask Codex to trace it. For
+If something looks wrong, name the mismatch and ask IntroStatGPT to trace it. For
 example:
 
 > I expected about 300 observations, but this table uses 217. Show the row
@@ -72,7 +72,7 @@ example:
 
 ## Ask for the right kind of help
 
-**Ask Codex to inspect data, diagnose errors, trace an operation, or check its
+**Ask IntroStatGPT to inspect data, diagnose errors, trace an operation, or check its
 work.** These are mechanical questions that the harness can answer. If the
 remaining question is which method to choose, what a result means, or what
 conclusion to draw, use your course materials or ask your instructor. The
@@ -99,8 +99,8 @@ the appropriate report heading. Review the complete outline before you approve
 the Word build. See [Use IntroStatGPT](use.qmd#create-a-word-report) for the
 report steps.
 
-Ask Codex for the clean R reproduction script when you want to inspect or
-reproduce an output. For an important or complicated result, ask Codex to:
+Ask IntroStatGPT for the clean R reproduction script when you want to inspect or
+reproduce an output. For an important or complicated result, ask IntroStatGPT to:
 
 1. State the data, filters, transformations, variables, and statistical
    operation used.
