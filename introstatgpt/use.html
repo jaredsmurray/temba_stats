@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Create, organize, and compile statistical output">
+<meta name="description" content="Create, review, and compile statistical output">
 
 <title>Use IntroStatGPT – TEMBA Statistics</title>
 <style>
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Create, organize, and compile statistical output
+    Create, review, and compile statistical output
   </div>
 </div>
 
@@ -196,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you <a href="../introstatgpt/setup.html">install and set up IntroStatGPT</a>.</p>
-<p>This page explains the IntroStatGPT workflow: create outputs, view the gallery, organize the report, and compile a Word document. For guidance on writing precise requests and checking the resulting analysis, see <a href="../introstatgpt/working.html">Working with IntroStatGPT and Codex</a>.</p>
+<p>This page explains the IntroStatGPT workflow: create outputs, review them on the analysis page, and build a Word report. For guidance on writing precise requests and checking the resulting analysis, see <a href="../introstatgpt/working.html">Working with IntroStatGPT and Codex</a>.</p>
 <section id="find-the-available-data" class="level2">
 <h2 class="anchored" data-anchor-id="find-the-available-data">Find the available data</h2>
 <p>Each IntroStatGPT folder contains the data for its activity. To see what is available, send:</p>
@@ -231,58 +231,34 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p>The new output receives a new identifier.</p>
 </section>
-<section id="open-the-analysis-gallery" class="level2">
-<h2 class="anchored" data-anchor-id="open-the-analysis-gallery">Open the analysis gallery</h2>
-<p>Send:</p>
+<section id="open-the-analysis-page" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-analysis-page">Open the analysis page</h2>
+<p>After creating or revising an output, IntroStatGPT provides an <strong>Open the analysis page</strong> link. Select it to review your current tables and plots.</p>
+<p>If you close the page, send:</p>
 <blockquote class="blockquote">
-<p>Open the analysis gallery.</p>
+<p>Refresh the analysis page and give me a clickable Open the analysis page link.</p>
 </blockquote>
-<p>IntroStatGPT refreshes the gallery and returns an <strong>Open the analysis page</strong> link. Select it to open a live view of your current tables and plots.</p>
-<p>The gallery has four filters:</p>
-<ul>
-<li><strong>All</strong></li>
-<li><strong>In report</strong></li>
-<li><strong>Not in report</strong></li>
-<li><strong>Archived</strong></li>
-</ul>
-<p>If you close the gallery, ask IntroStatGPT to open it again.</p>
-</section>
-<section id="organize-your-work" class="level2">
-<h2 class="anchored" data-anchor-id="organize-your-work">Organize your work</h2>
-<p>Send:</p>
-<blockquote class="blockquote">
-<p>Open the analysis organizer.</p>
-</blockquote>
-<p>The organizer appears in the conversation. Use it to:</p>
-<ul>
-<li>add or rename report sections;</li>
-<li>move outputs between sections;</li>
-<li>reorder outputs;</li>
-<li>include or exclude outputs from the report; and</li>
-<li>archive outputs you no longer need.</li>
-</ul>
-<p>Moving an output does not include it in the report. Use <strong>Include in report</strong> for every output you want in the Word document.</p>
-<p>When finished, select <strong>Apply organization</strong> and wait for IntroStatGPT to confirm that it saved the changes.</p>
 </section>
 <section id="create-a-word-report" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-word-report">Create a Word report</h2>
-<section id="prepare-the-report" class="level3">
-<h3 class="anchored" data-anchor-id="prepare-the-report">Prepare the report</h3>
+<section id="propose-the-report" class="level3">
+<h3 class="anchored" data-anchor-id="propose-the-report">Propose the report</h3>
 <p>Send:</p>
 <blockquote class="blockquote">
-<p>Prepare the report for review.</p>
+<p>Create a report from P1, P2, T1, and T2. Put P1 and P2 under Descriptive plots and T1 and T2 under Summary tables. Show me the outline before you build it.</p>
 </blockquote>
-<p>IntroStatGPT preserves the selected outputs, checks their placement, displays the report outline, and provides an approval token. Review the section and output order before approving it.</p>
-<p>If the outline is incorrect, return to the organizer, make the correction, and prepare the report again.</p>
+<p>Use the identifiers for your own outputs and the section names required by your assignment. IntroStatGPT displays the proposed outline in the conversation. Review the included outputs, headings, and order before approving it.</p>
+<p>If the outline is incorrect, describe the change. IntroStatGPT shows the revised outline for another review.</p>
 </section>
 <section id="approve-compilation" class="level3">
 <h3 class="anchored" data-anchor-id="approve-compilation">Approve compilation</h3>
-<p>When the outline is correct, reply with the exact approval requested by IntroStatGPT. For example:</p>
+<p>When the outline is correct, reply:</p>
 <blockquote class="blockquote">
-<p>Approve report token ABC123.</p>
+<p>I approve this outline. Build the Word report.</p>
 </blockquote>
-<p>Use the token IntroStatGPT provides for your report. IntroStatGPT creates a Word document in the <code>reports</code> folder and reports its location.</p>
+<p>IntroStatGPT builds the first version and provides a link to the Word document.</p>
 <p>The document contains the report title, section headings, selected tables and plots, and space for your writing. Add your interpretations and conclusions in Microsoft Word.</p>
+<p>If you revise an included output and want the report to use the revision, ask IntroStatGPT to update the report. It creates a new version and keeps the earlier version.</p>
 </section>
 </section>
 <section id="troubleshooting" class="level2">
@@ -291,36 +267,22 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="output-is-sloppy-incomplete-or-ignores-part-of-the-request">Output is sloppy, incomplete, or ignores part of the request</h3>
 <p>Check the selector at the bottom right of the message box. It should read <strong>5.6 Luna High</strong>; a lower effort setting or a different model is the most common cause. Switch it and resend the request.</p>
 </section>
-<section id="the-analysis-gallery-does-not-open" class="level3">
-<h3 class="anchored" data-anchor-id="the-analysis-gallery-does-not-open">The analysis gallery does not open</h3>
+<section id="the-analysis-page-does-not-open" class="level3">
+<h3 class="anchored" data-anchor-id="the-analysis-page-does-not-open">The analysis page does not open</h3>
 <p>Send:</p>
 <blockquote class="blockquote">
-<p>Refresh the analysis gallery and give me a clickable Open the analysis page link. Do not open its source code.</p>
+<p>Refresh the analysis page and give me a clickable Open the analysis page link.</p>
 </blockquote>
 </section>
-<section id="the-organizer-does-not-appear" class="level3">
-<h3 class="anchored" data-anchor-id="the-organizer-does-not-appear">The organizer does not appear</h3>
+<section id="the-report-outline-is-wrong" class="level3">
+<h3 class="anchored" data-anchor-id="the-report-outline-is-wrong">The report outline is wrong</h3>
+<p>Name the output by its P or T identifier, describe where it belongs, and ask IntroStatGPT to show the revised outline before building.</p>
+</section>
+<section id="the-report-does-not-contain-a-recent-revision" class="level3">
+<h3 class="anchored" data-anchor-id="the-report-does-not-contain-a-recent-revision">The report does not contain a recent revision</h3>
 <p>Send:</p>
 <blockquote class="blockquote">
-<p>Open the analysis organizer directly in this conversation. Do not open its HTML source in the editor.</p>
-</blockquote>
-</section>
-<section id="organizer-changes-are-missing" class="level3">
-<h3 class="anchored" data-anchor-id="organizer-changes-are-missing">Organizer changes are missing</h3>
-<p>Send:</p>
-<blockquote class="blockquote">
-<p>Check the current analysis-board revision, refresh the gallery, and give me the updated analysis-page link.</p>
-</blockquote>
-</section>
-<section id="report-preparation-fails" class="level3">
-<h3 class="anchored" data-anchor-id="report-preparation-fails">Report preparation fails</h3>
-<p>A selected output may still be in <strong>Unassigned</strong>. Open the organizer, move it into a named section, apply the organization, and prepare the report again.</p>
-</section>
-<section id="you-are-unsure-what-was-saved" class="level3">
-<h3 class="anchored" data-anchor-id="you-are-unsure-what-was-saved">You are unsure what was saved</h3>
-<p>Send:</p>
-<blockquote class="blockquote">
-<p>Tell me the current analysis-board revision, report selections, and section order.</p>
+<p>Update the report to use the current version of P2 and give me the new Word report link.</p>
 </blockquote>
 
 

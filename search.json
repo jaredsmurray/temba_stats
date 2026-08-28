@@ -550,7 +550,7 @@
     "href": "introstatgpt/working.html",
     "title": "Working with IntroStatGPT and Codex",
     "section": "",
-    "text": "Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.\nThis page explains how to make clear requests and check the resulting analysis. For the analysis gallery, organizer, and Word-report workflow, see Use IntroStatGPT.",
+    "text": "Codex can prepare data, fit models, and create tables and plots. You still choose the method, check the output, and decide what the results mean.\nThis page explains how to make clear requests and check the resulting analysis. For the analysis page and Word-report workflow, see Use IntroStatGPT.",
     "crumbs": [
       "IntroStatGPT",
       "Working with IntroStatGPT and Codex"
@@ -601,11 +601,11 @@
     ]
   },
   {
-    "objectID": "introstatgpt/working.html#save-what-you-want-to-keep",
-    "href": "introstatgpt/working.html#save-what-you-want-to-keep",
+    "objectID": "introstatgpt/working.html#build-from-the-outputs-you-checked",
+    "href": "introstatgpt/working.html#build-from-the-outputs-you-checked",
     "title": "Working with IntroStatGPT and Codex",
-    "section": "Save what you want to keep",
-    "text": "Save what you want to keep\nUse the analysis organizer to select the finished outputs you want in your report. Selecting an output preserves your report choice; it does not certify that the analysis is correct. Check the output first, then include it in the report and place it in the appropriate section. See Use IntroStatGPT for the organizer steps.\nAsk Codex for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask Codex to:\n\nState the data, filters, transformations, variables, and statistical operation used.\nRun the reproduction script in a clean R session.\nCompare the reproduced output with the saved output.\nReport errors, warnings, and differences without interpreting the result.",
+    "section": "Build from the outputs you checked",
+    "text": "Build from the outputs you checked\nName the finished outputs you want when you ask IntroStatGPT to create the report. Including an output does not certify that the analysis is correct. Check the output first, then identify it by its P or T label and place it under the appropriate report heading. Review the complete outline before you approve the Word build. See Use IntroStatGPT for the report steps.\nAsk Codex for the clean R reproduction script when you want to inspect or reproduce an output. For an important or complicated result, ask Codex to:\n\nState the data, filters, transformations, variables, and statistical operation used.\nRun the reproduction script in a clean R session.\nCompare the reproduced output with the saved output.\nReport errors, warnings, and differences without interpreting the result.",
     "crumbs": [
       "IntroStatGPT",
       "Working with IntroStatGPT and Codex"
@@ -616,7 +616,7 @@
     "href": "introstatgpt/working.html#before-you-finish",
     "title": "Working with IntroStatGPT and Codex",
     "section": "Before you finish",
-    "text": "Before you finish\n\nDoes the output use the requested observations and variables?\nDo the labels, units, and model formula match the request?\nDid you run one useful check and resolve anything unexpected?\nDid you include the version you want and place it in the correct report section?",
+    "text": "Before you finish\n\nDoes the output use the requested observations and variables?\nDo the labels, units, and model formula match the request?\nDid you run one useful check and resolve anything unexpected?\nDoes the proposed report outline include the outputs you want under the correct headings?",
     "crumbs": [
       "IntroStatGPT",
       "Working with IntroStatGPT and Codex"
@@ -667,11 +667,11 @@
     ]
   },
   {
-    "objectID": "introstatgpt/setup.html#download-introstatgpt",
-    "href": "introstatgpt/setup.html#download-introstatgpt",
+    "objectID": "introstatgpt/setup.html#download-the-introstatgpt-folder-for-your-work",
+    "href": "introstatgpt/setup.html#download-the-introstatgpt-folder-for-your-work",
     "title": "Install and set up IntroStatGPT",
-    "section": "4. Download IntroStatGPT",
-    "text": "4. Download IntroStatGPT\nDownload IntroStatGPT_intensive.zip (13 MB), then extract it. The extracted folder normally has the same name as the ZIP file.\n\nWindows\n\nRight-click the downloaded ZIP file.\nSelect Extract All.\nMove the extracted IntroStatGPT folder to Documents.\n\n\n\nMac\n\nDouble-click the downloaded ZIP file.\nMove the extracted IntroStatGPT folder to Documents.\n\nWork from the extracted folder. Keep its internal files and folders in their original locations.",
+    "section": "4. Download the IntroStatGPT folder for your work",
+    "text": "4. Download the IntroStatGPT folder for your work\nUse the download listed with the work you are doing:\n\nFor Homework 1, download IntroStatGPT_homework_01_2026-08-27.zip (13 MB).\nFor the in-class Intensive examples and course-note activities, download IntroStatGPT_intensive_2026-08-26.zip (13 MB).\n\nExtract the ZIP file. Each download produces its own IntroStatGPT folder.\n\nWindows\n\nRight-click the downloaded ZIP file.\nSelect Extract All.\nMove the extracted IntroStatGPT folder to Documents.\n\n\n\nMac\n\nDouble-click the downloaded ZIP file.\nMove the extracted IntroStatGPT folder to Documents.\n\nWork from the extracted folder for the activity you are completing. Keep its internal files and folders in their original locations.",
     "crumbs": [
       "IntroStatGPT",
       "Install and set up IntroStatGPT"
@@ -693,7 +693,7 @@
     "href": "introstatgpt/setup.html#run-the-initial-setup",
     "title": "Install and set up IntroStatGPT",
     "section": "6. Run the initial setup",
-    "text": "6. Run the initial setup\nAfter the folder opens, start a task for this workspace:\n\nIn the left sidebar, select New task (the + button).\nConfirm that the IntroStatGPT folder name appears as the task’s workspace.\nSet the model and effort. At the bottom right of the message box, next to the microphone, a selector shows the current model and effort, for example 5.6 Luna Medium. Click it and set it to 5.6 Luna with High effort. Codex remembers this for new tasks, but glance at it each time; lower effort settings produce sloppier statistical output.\nClick the message box and send:\n\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\nCodex will check R and install the required R packages. The first setup may take a few minutes. Approve package installation if Codex requests permission.\nSetup is complete when Codex reports:\n\nSetup check passed.\n\nYou are now ready to use IntroStatGPT.",
+    "text": "6. Run the initial setup\nRun this check the first time you open each extracted IntroStatGPT folder. After the folder opens, start a task for this workspace:\n\nIn the left sidebar, select New task (the + button).\nConfirm that the IntroStatGPT folder name appears as the task’s workspace.\nSet the model and effort. At the bottom right of the message box, next to the microphone, a selector shows the current model and effort, for example 5.6 Luna Medium. Click it and set it to 5.6 Luna with High effort. Codex remembers this for new tasks, but glance at it each time; lower effort settings produce sloppier statistical output.\nClick the message box and send:\n\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\nCodex will check R and install the required R packages. The first setup may take a few minutes. Approve package installation if Codex requests permission.\nSetup is complete when Codex reports:\n\nSetup check passed.\n\nYou are now ready to use IntroStatGPT.",
     "crumbs": [
       "IntroStatGPT",
       "Install and set up IntroStatGPT"
@@ -731,21 +731,21 @@
     ]
   },
   {
-    "objectID": "introstatgpt.html#download",
-    "href": "introstatgpt.html#download",
+    "objectID": "introstatgpt.html#homework-1",
+    "href": "introstatgpt.html#homework-1",
     "title": "IntroStatGPT",
-    "section": "Download",
-    "text": "Download\nIntroStatGPT_intensive.zip (13 MB) — the folder the setup page asks you to extract. It contains the IntroStatGPT setup files, Homework 1, and the course datasets.",
+    "section": "Homework 1",
+    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-27.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment.\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nSample Homework 1 chat — one complete output-generation conversation. It creates the required tables and figures but does not answer the homework questions.\nHomework 1 report skeleton — known-good copies of the required tables and figures, with no written answers. Use it if IntroStatGPT is unavailable or to check your output.\n\nSubmit the PDF you export from Word.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
     "crumbs": [
       "IntroStatGPT"
     ]
   },
   {
-    "objectID": "introstatgpt.html#homework-1",
-    "href": "introstatgpt.html#homework-1",
+    "objectID": "introstatgpt.html#intensive",
+    "href": "introstatgpt.html#intensive",
     "title": "IntroStatGPT",
-    "section": "Homework 1",
-    "text": "Homework 1\nUse these files together:\n\nHomework 1: Describing and Comparing Distributions — the assignment.\nIntroStatGPT: Homework Workflow — how to generate output, organize it, and export your report.\nSample Homework 1 chat — one complete output-generation conversation. It creates the required tables and figures but does not answer the homework questions.\nHomework 1 report skeleton — known-good copies of the required tables and figures, with no written answers. Use it if IntroStatGPT is unavailable or to check your output.\n\nSubmit the PDF you export from Word.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "section": "Intensive",
+    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
     "crumbs": [
       "IntroStatGPT"
     ]
@@ -881,7 +881,7 @@
     "href": "introstatgpt/homework-01-sample-chat.html#build-the-report-skeleton",
     "title": "Homework 1: Example IntroStatGPT Chat",
     "section": "Build the report skeleton",
-    "text": "Build the report skeleton\n\n\nStudent\n\nOpen the analysis organizer so I can arrange the required output for my report.\n\n\n\nCodex\n\nThe analysis organizer is ready.\n\n\n\nStudent\n\nI selected P1 through P6 and T1 through T2 under Weekly cheese sales and promotional displays. I selected T3 through T6 and P7 under Hybrid work, attrition, and productivity perceptions. I kept them in the same order as the homework and applied the changes. Prepare the Word report for review.\n\n\n\nCodex\n\nThe report is ready for review.\nWeekly cheese sales and promotional displays: P1, P2, P3, P4, T1, P5, T2, P6\nHybrid work, attrition, and productivity perceptions: T3, T4, T5, T6, P7\nPlease approve this arrangement before I build the Word report.\n\n\n\nStudent\n\nI approve this arrangement. Build the Word report.\n\n\n\nCodex\n\nBuilt the Homework 1 report skeleton."
+    "text": "Build the report skeleton\n\n\nStudent\n\nCreate a report called Homework 1. Put P1, P2, P3, P4, T1, P5, T2, and P6 under Weekly cheese sales and promotional displays. Put T3, T4, T5, T6, and P7 under Hybrid work, attrition, and productivity perceptions. Keep the outputs in the order I listed and show me the outline before you build it.\n\n\n\nCodex\n\nHere is the proposed report outline.\nWeekly cheese sales and promotional displays: P1, P2, P3, P4, T1, P5, T2, P6\nHybrid work, attrition, and productivity perceptions: T3, T4, T5, T6, P7\nDescribe any changes, or approve this outline to build the Word report.\n\n\n\nStudent\n\nI approve this outline. Build the Word report.\n\n\n\nCodex\n\nBuilt version 1 of the Homework 1 report skeleton."
   },
   {
     "objectID": "introstatgpt/homework-01-sample-chat.html#what-to-do-next",
@@ -895,7 +895,7 @@
     "href": "introstatgpt/use.html",
     "title": "Use IntroStatGPT",
     "section": "",
-    "text": "IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you install and set up IntroStatGPT.\nThis page explains the IntroStatGPT workflow: create outputs, view the gallery, organize the report, and compile a Word document. For guidance on writing precise requests and checking the resulting analysis, see Working with IntroStatGPT and Codex.",
+    "text": "IntroStatGPT lets you request statistical tables and graphs in ordinary language. Begin after you install and set up IntroStatGPT.\nThis page explains the IntroStatGPT workflow: create outputs, review them on the analysis page, and build a Word report. For guidance on writing precise requests and checking the resulting analysis, see Working with IntroStatGPT and Codex.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
@@ -935,22 +935,11 @@
     ]
   },
   {
-    "objectID": "introstatgpt/use.html#open-the-analysis-gallery",
-    "href": "introstatgpt/use.html#open-the-analysis-gallery",
+    "objectID": "introstatgpt/use.html#open-the-analysis-page",
+    "href": "introstatgpt/use.html#open-the-analysis-page",
     "title": "Use IntroStatGPT",
-    "section": "Open the analysis gallery",
-    "text": "Open the analysis gallery\nSend:\n\nOpen the analysis gallery.\n\nIntroStatGPT refreshes the gallery and returns an Open the analysis page link. Select it to open a live view of your current tables and plots.\nThe gallery has four filters:\n\nAll\nIn report\nNot in report\nArchived\n\nIf you close the gallery, ask IntroStatGPT to open it again.",
-    "crumbs": [
-      "IntroStatGPT",
-      "Use IntroStatGPT"
-    ]
-  },
-  {
-    "objectID": "introstatgpt/use.html#organize-your-work",
-    "href": "introstatgpt/use.html#organize-your-work",
-    "title": "Use IntroStatGPT",
-    "section": "Organize your work",
-    "text": "Organize your work\nSend:\n\nOpen the analysis organizer.\n\nThe organizer appears in the conversation. Use it to:\n\nadd or rename report sections;\nmove outputs between sections;\nreorder outputs;\ninclude or exclude outputs from the report; and\narchive outputs you no longer need.\n\nMoving an output does not include it in the report. Use Include in report for every output you want in the Word document.\nWhen finished, select Apply organization and wait for IntroStatGPT to confirm that it saved the changes.",
+    "section": "Open the analysis page",
+    "text": "Open the analysis page\nAfter creating or revising an output, IntroStatGPT provides an Open the analysis page link. Select it to review your current tables and plots.\nIf you close the page, send:\n\nRefresh the analysis page and give me a clickable Open the analysis page link.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
@@ -961,7 +950,7 @@
     "href": "introstatgpt/use.html#create-a-word-report",
     "title": "Use IntroStatGPT",
     "section": "Create a Word report",
-    "text": "Create a Word report\n\nPrepare the report\nSend:\n\nPrepare the report for review.\n\nIntroStatGPT preserves the selected outputs, checks their placement, displays the report outline, and provides an approval token. Review the section and output order before approving it.\nIf the outline is incorrect, return to the organizer, make the correction, and prepare the report again.\n\n\nApprove compilation\nWhen the outline is correct, reply with the exact approval requested by IntroStatGPT. For example:\n\nApprove report token ABC123.\n\nUse the token IntroStatGPT provides for your report. IntroStatGPT creates a Word document in the reports folder and reports its location.\nThe document contains the report title, section headings, selected tables and plots, and space for your writing. Add your interpretations and conclusions in Microsoft Word.",
+    "text": "Create a Word report\n\nPropose the report\nSend:\n\nCreate a report from P1, P2, T1, and T2. Put P1 and P2 under Descriptive plots and T1 and T2 under Summary tables. Show me the outline before you build it.\n\nUse the identifiers for your own outputs and the section names required by your assignment. IntroStatGPT displays the proposed outline in the conversation. Review the included outputs, headings, and order before approving it.\nIf the outline is incorrect, describe the change. IntroStatGPT shows the revised outline for another review.\n\n\nApprove compilation\nWhen the outline is correct, reply:\n\nI approve this outline. Build the Word report.\n\nIntroStatGPT builds the first version and provides a link to the Word document.\nThe document contains the report title, section headings, selected tables and plots, and space for your writing. Add your interpretations and conclusions in Microsoft Word.\nIf you revise an included output and want the report to use the revision, ask IntroStatGPT to update the report. It creates a new version and keeps the earlier version.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
@@ -972,7 +961,7 @@
     "href": "introstatgpt/use.html#troubleshooting",
     "title": "Use IntroStatGPT",
     "section": "Troubleshooting",
-    "text": "Troubleshooting\n\nOutput is sloppy, incomplete, or ignores part of the request\nCheck the selector at the bottom right of the message box. It should read 5.6 Luna High; a lower effort setting or a different model is the most common cause. Switch it and resend the request.\n\n\nThe analysis gallery does not open\nSend:\n\nRefresh the analysis gallery and give me a clickable Open the analysis page link. Do not open its source code.\n\n\n\nThe organizer does not appear\nSend:\n\nOpen the analysis organizer directly in this conversation. Do not open its HTML source in the editor.\n\n\n\nOrganizer changes are missing\nSend:\n\nCheck the current analysis-board revision, refresh the gallery, and give me the updated analysis-page link.\n\n\n\nReport preparation fails\nA selected output may still be in Unassigned. Open the organizer, move it into a named section, apply the organization, and prepare the report again.\n\n\nYou are unsure what was saved\nSend:\n\nTell me the current analysis-board revision, report selections, and section order.",
+    "text": "Troubleshooting\n\nOutput is sloppy, incomplete, or ignores part of the request\nCheck the selector at the bottom right of the message box. It should read 5.6 Luna High; a lower effort setting or a different model is the most common cause. Switch it and resend the request.\n\n\nThe analysis page does not open\nSend:\n\nRefresh the analysis page and give me a clickable Open the analysis page link.\n\n\n\nThe report outline is wrong\nName the output by its P or T identifier, describe where it belongs, and ask IntroStatGPT to show the revised outline before building.\n\n\nThe report does not contain a recent revision\nSend:\n\nUpdate the report to use the current version of P2 and give me the new Word report link.",
     "crumbs": [
       "IntroStatGPT",
       "Use IntroStatGPT"
