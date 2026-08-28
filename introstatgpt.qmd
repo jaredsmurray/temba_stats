@@ -26,7 +26,24 @@ checking the output, and deciding what it means.
 
 [IntroStatGPT_intensive.zip](files/IntroStatGPT_intensive.zip) (13 MB) — the
 folder the setup page asks you to extract. It contains the IntroStatGPT setup
-and the course datasets.
+files, Homework 1, and the course datasets.
+
+## Homework 1
+
+Use these files together:
+
+1. [Homework 1: Describing and Comparing Distributions](files/homework-01.pdf)
+   — the assignment.
+2. [IntroStatGPT: Homework Workflow](files/homework-01-workflow.pdf) — how to
+   generate output, organize it, and export your report.
+3. [Sample Homework 1 chat](introstatgpt/homework-01-sample-chat.qmd) — one
+   complete output-generation conversation. It creates the required tables and
+   figures but does not answer the homework questions.
+4. [Homework 1 report skeleton](files/homework-01-report-skeleton.docx) —
+   known-good copies of the required tables and figures, with no written
+   answers. Use it if IntroStatGPT is unavailable or to check your output.
+
+Submit the PDF you export from Word.
 
 Your ability to complete any assignment, quiz, or exam never depends on an AI
 tool working: known-good tables and figures are provided alongside every

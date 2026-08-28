@@ -10,6 +10,7 @@ project:
   resources:
     - "files/*.pdf"
     - "files/*.zip"
+    - "files/*.docx"
     # Datasets served to students: only the files the imported notes/decks read.
     # Add entries as chapters/decks are imported (see data.qmd).
     - "data/austin_houses/austin_houses.csv"
