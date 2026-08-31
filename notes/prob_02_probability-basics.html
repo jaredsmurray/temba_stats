@@ -85,13 +85,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 </style>
 
@@ -355,7 +355,21 @@ window.Quarto = {
 \Pr(A \text{ or } B) = \Pr(A) + \Pr(B) - \Pr(A \text{ and } B).
 \]</span></p>
 <p>In words: add the two chances, then subtract the chance of both happening at once, because that piece got counted twice.</p>
-<p>The market-implied Fed forecasts we met last chapter obey these rules by construction. As of July 9, 2026, the CME FedWatch tool assigned probability 0.759 to the July target range being 3.50–3.75% and 0.241 to 3.75–4.00%. The two events are mutually exclusive — the Fed sets one range — and the market considers no other outcome possible, so the probabilities sum to 1.</p>
+<div id="exercise-overlapping-events" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.1: </strong>Overlapping and mutually exclusive events</div><div class="fobx-body">
+<p>For one e-commerce order, the probability of a return is 0.18, the probability of a customer-service contact is 0.24, and the probability of both is 0.09. Find the probability that the order is returned or produces a customer-service contact. Why would adding 0.18 and 0.24 give the wrong answer?</p>
+<p>A separate order must use exactly one of two shipping methods: standard or express. Their probabilities are 0.68 and 0.32. Find the probability that the order uses standard or express shipping, and explain why no overlap correction is needed.</p>
+<details class="solution-details" id="solution-overlapping-events" aria-label="Solution">
+<summary>Solution</summary>
+<p>Returns and customer-service contacts can overlap, so the addition rule gives</p>
+<p><span class="math display">\[
+0.18+0.24-0.09=0.33.
+\]</span></p>
+<p>Adding only the first two probabilities would count the 0.09 overlap twice. Standard and express shipping are mutually exclusive and cover the two possible methods, so their union has probability <span class="math inline">\(0.68+0.32=1\)</span>.</p>
+</details>
+</div></div>
+</div>
+<p>The market-implied Fed forecasts we met last chapter obey these rules by construction. As of July 9, 2026, the CME FedWatch tool assigned probability 0.754 to the July target range being 3.50–3.75% and 0.246 to 3.75–4.00%. The two events are mutually exclusive — the Fed sets one range — and the market considers no other outcome possible, so the probabilities sum to 1.</p>
 </section>
 <section id="sec-discrete-continuous" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="sec-discrete-continuous"><span class="header-section-number">7.3</span> Discrete and continuous random variables</h2>
@@ -369,6 +383,15 @@ window.Quarto = {
 </div>
 <p>Our default indicator <span class="math inline">\(D\)</span> (two possible values) and the loan payoff <span class="math inline">\(X\)</span> (two possible dollar amounts) are discrete. The sale price of a house and next week’s return on the S&amp;P 500 are naturally modeled as continuous.</p>
 <p>In the language of observed data, continuous random variables are always quantitative. But not every quantitative variable is continuous: the number of loans in a portfolio that default is a <em>count</em> — quantitative, but discrete, because its possible values (0, 1, 2, …) form a list. Categorical variables, once coded as numbers the way we coded <span class="math inline">\(D\)</span>, are always discrete.</p>
+<div id="exercise-workplace-random-variables" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.2: </strong>Three workplace outcomes</div><div class="fobx-body">
+<p>The Bloom hybrid-work study records whether an employee leaves the firm, the number of lines of code an engineer writes in a day, and the time an employee spends commuting. Define a random variable for each corresponding future outcome and classify it as discrete or continuous. Why does the count remain discrete even when it has many possible values?</p>
+<details class="solution-details" id="solution-workplace-random-variables" aria-label="Solution">
+<summary>Solution</summary>
+<p>Let <span class="math inline">\(L=1\)</span> if an employee leaves and <span class="math inline">\(L=0\)</span> otherwise. This binary random variable is discrete. Let <span class="math inline">\(C\)</span> be the number of lines of code written in one day. It is also discrete because its possible values form a list of counts: <span class="math inline">\(0,1,2,\ldots\)</span>. Let <span class="math inline">\(T\)</span> be commute time. We model it as continuous because it can take any value in a range rather than only distinct counts.</p>
+</details>
+</div></div>
+</div>
 <div id="technical-continuous-abstraction" class="TechnicalDetail">
 <details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 7.1: </strong>“Continuous” is an abstraction</summary><div>
 <p>Strictly speaking, many random variables we call continuous are not. A house price is quoted to the penny, so its possible values technically form a (very long) list. When the possible values are packed densely enough, treating the variable as continuous is simpler and costs us nothing. Some variables genuinely mix the two — a household’s annual medical spending can be exactly zero, or any positive amount — and we won’t concern ourselves with those here.</p>
@@ -425,6 +448,47 @@ Table&nbsp;7.1: Probability distribution of the default indicator <span class="m
 </div>
 </figure>
 </div>
+</div>
+<div id="exercise-support-escalation-pmf" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.3: </strong>Complete a support-ticket distribution</div><div class="fobx-body">
+<p>The bars show the probability distribution of <span class="math inline">\(X\)</span>, the number of times a support ticket is escalated. Complete the missing bar.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-support-pmf-prompt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-support-pmf-prompt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-support-pmf-prompt-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-pmf-prompt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Three probabilities in the support-ticket PMF. Draw the fourth bar so that the completed picture is a probability distribution.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Which bar represents no escalation? Which bars together represent at least one escalation?</li>
+<li>What two visual checks confirm that the completed picture is a valid PMF?</li>
+</ol>
+<details class="solution-details" id="solution-support-escalation-pmf" aria-label="Solution">
+<summary>Solution</summary>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-support-pmf-solution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-support-pmf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-support-pmf-solution-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-pmf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: The completed PMF. The leftmost bar is no escalation; the other three bars together are at least one escalation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The missing bar has height 0.05 because the four bars must sum to one. The leftmost bar has height 0.52, so the other three bars together have probability <span class="math inline">\(1-0.52=0.48\)</span>. Every bar is nonnegative and their heights sum to one.</p>
+</details>
+</div></div>
 </div>
 <p>The payoff variable <span class="math inline">\(X\)</span> attaches dollar amounts to the same two outcomes. Suppose the loan is for $10,000 at 12% interest, and that a defaulted loan recovers 60% of the principal — numbers in the ballpark of our LendingClub data, rounded for clarity. Then <span class="math inline">\(X\)</span> is $11,200 if the loan is repaid and $6,000 if it defaults:</p>
 <div class="cell">
@@ -489,20 +553,20 @@ Table&nbsp;7.3: Market-implied probability distributions for the FOMC target ran
 <tr class="odd">
 <td style="text-align: left;">3.50–3.75%</td>
 <td style="text-align: right;">3.625%</td>
-<td style="text-align: right;">0.759</td>
-<td style="text-align: right;">0.366</td>
+<td style="text-align: right;">0.754</td>
+<td style="text-align: right;">0.377</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3.75–4.00%</td>
 <td style="text-align: right;">3.875%</td>
-<td style="text-align: right;">0.241</td>
-<td style="text-align: right;">0.509</td>
+<td style="text-align: right;">0.246</td>
+<td style="text-align: right;">0.500</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4.00–4.25%</td>
 <td style="text-align: right;">4.125%</td>
 <td style="text-align: right;">—</td>
-<td style="text-align: right;">0.125</td>
+<td style="text-align: right;">0.123</td>
 </tr>
 </tbody>
 </table>
@@ -519,7 +583,7 @@ Table&nbsp;7.3: Market-implied probability distributions for the FOMC target ran
 <img src="prob_02_probability-basics_files/figure-html/fig-cme-pmfs-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cme-pmfs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: The same two distributions as bar charts. Each bar is one possible target range; heights are probabilities and sum to one within each panel. The September distribution spreads over three ranges because a second meeting adds a second chance for the range to move (the market prices essentially no chance of a cut, so no lower range is shown).
+Figure&nbsp;7.3: The same two distributions as bar charts. Each bar is one possible target range; heights are probabilities and sum to one within each panel. The September distribution spreads over three ranges because a second meeting adds a second chance for the range to move (the market prices essentially no chance of a cut, so no lower range is shown).
 </figcaption>
 </figure>
 </div>
@@ -535,7 +599,7 @@ Figure&nbsp;7.1: The same two distributions as bar charts. Each bar is one possi
 <p>A <strong>probability density function (PDF)</strong> assigns probabilities to <em>intervals</em> of possible outcomes for a continuous random variable. The probability assigned to an interval is the area under the curve over that interval. The curve is never negative, and the total area beneath it is one.</p>
 </div></div>
 </div>
-<p><a href="#fig-price-model-density" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows a density curve for the sale price of a house that will come on the market in one of our three Austin ZIP codes. It’s anchored on our observed data, but that’s not important for now (we’ll talk about how to fit probability models to data soon). The shaded region’s area gives the probability that the sale price lands between $400,000 and $500,000.</p>
+<p><a href="#fig-price-model-density" class="quarto-xref">Figure&nbsp;<span>7.4</span></a> shows a density curve for the sale price of a house that will come on the market in one of our three Austin ZIP codes. It’s anchored on our observed data, but that’s not important for now (we’ll talk about how to fit probability models to data soon). The shaded region’s area gives the probability that the sale price lands between $400,000 and $500,000.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-price-model-density" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -544,7 +608,7 @@ Figure&nbsp;7.1: The same two distributions as bar charts. Each bar is one possi
 <img src="prob_02_probability-basics_files/figure-html/fig-price-model-density-1.png" class="img-fluid figure-img" width="720">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-price-model-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.2: A probability density function for the sale price of a future home sale in the three-ZIP Austin subset. The shaded area is the probability that the sale price lands between $400,000 and $500,000.
+Figure&nbsp;7.4: A probability density function for the sale price of a future home sale in the three-ZIP Austin subset. The shaded area is the probability that the sale price lands between $400,000 and $500,000.
 </figcaption>
 </figure>
 </div>
@@ -578,7 +642,48 @@ Figure&nbsp;7.2: A probability density function for the sale price of a future h
 <p>The <strong>cumulative distribution function (CDF)</strong> of a random variable gives <span class="math inline">\(\Pr(X \leq x)\)</span> — the probability accumulated up to the threshold <span class="math inline">\(x\)</span> — for every possible threshold <span class="math inline">\(x\)</span>. It starts at 0 on the far left and rises to 1 on the far right. Every random variable has a CDF, whether it is discrete, continuous, or a mixture of the two, while a density function exists only for continuous variables. For a discrete random variable the CDF is a step function that jumps at each possible outcome, and the height of the jump is that outcome’s probability.</p>
 </div></div>
 </div>
-<p>Plotting the accumulated area under the density against the threshold <span class="math inline">\(x\)</span> traces the CDF, the model analogue of the empirical CDF we drew for observed prices in the first chapter. The relationship runs both ways: the density at <span class="math inline">\(x\)</span> is the rate at which cumulative probability accumulates as the threshold passes <span class="math inline">\(x\)</span> (if you’ve had calculus: the PDF is the derivative of the CDF). <a href="#fig-price-model-cdf" class="quarto-xref">Figure&nbsp;<span>7.3</span></a> shows the pair for a single threshold ($500K) and probability.</p>
+<div id="exercise-support-escalation-cdf" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.4: </strong>Accumulate the support-ticket distribution</div><div class="fobx-body">
+<p>The left panel repeats the completed PMF. On the empty axes, draw the CDF by accumulating the bar heights from left to right.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-support-cdf-prompt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-support-cdf-prompt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-support-cdf-prompt-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-cdf-prompt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: Left: the completed PMF for the number of escalations. Right: axes on which to draw its cumulative distribution function.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Circle the CDF height that gives the probability of at most one escalation.</li>
+<li>Mark the jump at two escalations. How does its height recover the probability of exactly two escalations?</li>
+</ol>
+<details class="solution-details" id="solution-support-escalation-cdf" aria-label="Solution">
+<summary>Solution</summary>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-support-cdf-solution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-support-cdf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-support-cdf-solution-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-cdf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.6: The PMF and CDF of the number of escalations. Each CDF jump has the same height as the corresponding PMF bar.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The CDF reaches 0.83 at one escalation, so the probability of at most one is 0.83. At two escalations it rises from 0.83 to 0.95. That jump has height <span class="math inline">\(0.95-0.83=0.12\)</span>, matching the PMF bar at two.</p>
+</details>
+</div></div>
+</div>
+<p>Plotting the accumulated area under the density against the threshold <span class="math inline">\(x\)</span> traces the CDF, the model analogue of the empirical CDF we drew for observed prices in the first chapter. The relationship runs both ways: the density at <span class="math inline">\(x\)</span> is the rate at which cumulative probability accumulates as the threshold passes <span class="math inline">\(x\)</span> (if you’ve had calculus: the PDF is the derivative of the CDF). <a href="#fig-price-model-cdf" class="quarto-xref">Figure&nbsp;<span>7.7</span></a> shows the pair for a single threshold ($500K) and probability.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-price-model-cdf" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -587,7 +692,7 @@ Figure&nbsp;7.2: A probability density function for the sale price of a future h
 <img src="prob_02_probability-basics_files/figure-html/fig-price-model-cdf-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-price-model-cdf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.3: Left: the model density with the area below $500,000 shaded. Right: the model’s cumulative distribution function, tracing that accumulated area as the threshold moves. The marked point on the right equals the shaded area on the left.
+Figure&nbsp;7.7: Left: the model density with the area below $500,000 shaded. Right: the model’s cumulative distribution function, tracing that accumulated area as the threshold moves. The marked point on the right equals the shaded area on the left.
 </figcaption>
 </figure>
 </div>
@@ -600,9 +705,57 @@ Figure&nbsp;7.3: Left: the model density with the area below $500,000 shaded. Ri
 <img src="images/cdf_accumulation.gif" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cdf-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.4: Tracing out the CDF. As the threshold sweeps from left to right, the shaded area under the density (left) accumulates, and the CDF (right) records the running total, climbing from 0 toward 1.
+Figure&nbsp;7.8: Tracing out the CDF. As the threshold sweeps from left to right, the shaded area under the density (left) accumulates, and the CDF (right) records the running total, climbing from 0 toward 1.
 </figcaption>
 </figure>
+</div>
+<div id="exercise-continuous-delivery-cdf" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.5: </strong>Areas and a continuous CDF</div><div class="fobx-body">
+<p>The PDF below describes a non-normal model for delivery time <span class="math inline">\(T\)</span>, measured in days. On a copy of the density, shade the area representing each probability before calculating it: <span class="math inline">\(\Pr(T\leq 3)\)</span>, <span class="math inline">\(\Pr(2&lt;T\leq 5)\)</span>, and <span class="math inline">\(\Pr(T&gt;5)\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-delivery-density-exercise" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A non-normal, stepped delivery-time density with vertical markers at 2, 3, and 5 days.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-delivery-density-exercise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-delivery-density-exercise-1.png" class="img-fluid figure-img" alt="A non-normal, stepped delivery-time density with vertical markers at 2, 3, and 5 days." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-delivery-density-exercise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.9: A non-normal PDF for delivery time. The vertical lines mark the thresholds used in the exercise.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The model’s CDF has <span class="math inline">\(F(2)=0.28\)</span>, <span class="math inline">\(F(3)=0.67\)</span>, and <span class="math inline">\(F(5)=0.94\)</span>. Use these values to compute the three probabilities. Why would changing <span class="math inline">\(2&lt;T\leq 5\)</span> to <span class="math inline">\(2\leq T&lt;5\)</span> leave the probability unchanged?</p>
+<details class="solution-details" id="solution-continuous-delivery-cdf" aria-label="Solution">
+<summary>Solution</summary>
+<p>The first probability is the area to the left of 3, the second is the area between 2 and 5, and the third is the area to the right of 5. The CDF gives</p>
+<p><span class="math display">\[
+\Pr(T\leq 3)=F(3)=0.67,
+\]</span></p>
+<p><span class="math display">\[
+\Pr(2&lt;T\leq 5)=F(5)-F(2)=0.94-0.28=0.66,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\Pr(T&gt;5)=1-F(5)=0.06.
+\]</span></p>
+<p>A continuous distribution assigns probability zero to any one exact value. Adding or removing the endpoints 2 and 5 therefore does not change the area.</p>
+</details>
+</div></div>
+</div>
+<div id="exercise-marketing-channel-union" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.6: </strong>Overlapping marketing channels</div><div class="fobx-body">
+<p>For one customer, a retailer’s model assigns probability 0.42 to opening an email promotion, 0.28 to viewing the matching social-media promotion, and 0.15 to doing both. Find the probability that the customer sees at least one of the promotions. Then find the probability that the customer sees neither.</p>
+<details class="solution-details" id="solution-marketing-channel-union" aria-label="Solution">
+<summary>Solution</summary>
+<p>The probability of at least one exposure is</p>
+<p><span class="math display">\[
+0.42+0.28-0.15=0.55.
+\]</span></p>
+<p>The complement rule gives a probability of <span class="math inline">\(1-0.55=0.45\)</span> that the customer sees neither promotion.</p>
+</details>
+</div></div>
 </div>
 <p>Just as we boiled a column of data down to a mean and a standard deviation, we can boil a probability distribution down to a few numbers that locate its center and measure its spread. Those numbers are among the distribution’s <strong>parameters</strong> — features of a probability distribution, of which center and spread are the first two we’ll study — and they are where the next chapter begins.</p>
 </section>

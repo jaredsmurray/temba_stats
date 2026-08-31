@@ -81,10 +81,6 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
@@ -92,6 +88,10 @@ ul.task-list li input[type="checkbox"] {
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 </style>
 
@@ -366,6 +366,23 @@ Table&nbsp;8.1: Computing the expected payoff of a $10,000 small-business loan a
 </div>
 <p>The lender expects to collect $9,900 per loan, in the long-run-average sense: if we could fund many independent loans with this profile, the average payoff per loan will settle near $9,900. Whether that is good news depends on what the loan cost. Subtracting the $10,000 principal turns payoffs into <em>profits</em> — a gain of $1,200 if repaid, a loss of $4,000 if not — and the expected profit is the expected payoff minus the principal: $9,900 <span class="math inline">\(-\)</span> $10,000 = -$100. At 12% interest, this loan <em>loses</em> $100 on average. A lender who funds 100 independent loans like it should expect to end up about $10,000 in the hole.</p>
 <p>At 16% interest instead, the payoff when repaid becomes $11,600, the expected payoff rises to $10,200, and the expected profit is now a positive $200 per loan. How far an actual portfolio might stray from that expectation is a question we’ll answer precisely when we combine random variables later in the course. It would be a bad idea in the long run to write loans where we expect to lose money.</p>
+<div id="exercise-warranty-expected-cost" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.1: </strong>Expected warranty cost</div><div class="fobx-body">
+<p>Let <span class="math inline">\(W\)</span> be the seller’s one-year warranty cost for one appliance. The possible costs are $0 with probability 0.82, $120 with probability 0.15, and $600 with probability 0.03.</p>
+<ol type="1">
+<li>Compute the expected warranty cost per appliance.</li>
+<li>Explain why no individual appliance has the expected warranty cost, even though the expected value is useful for budgeting across many appliances.</li>
+</ol>
+<details id="solution-warranty-expected-cost" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The expected cost is</p>
+<p><span class="math display">\[
+E[W]=0.82(0)+0.15(120)+0.03(600)=\$36.
+\]</span></p>
+<p>An individual warranty costs $0, $120, or $600, so none costs $36. Across many appliances, however, the average warranty cost per appliance should land near $36 if the model continues to describe the outcomes well.</p>
+</details>
+</div></div>
+</div>
 <p>For one more example, let’s revisit the FedWatch target-range probabilities from <a href="prob_01_intro.html#sec-what-is-probability" class="quarto-xref"><span>Section 6.1</span></a> and <a href="prob_02_probability-basics.html#sec-prob-distributions" class="quarto-xref"><span>Section 7.4</span></a>. The probability distributions over target ranges after the July and September meetings are:</p>
 <div id="tbl-cme-params" class="quarto-layout-panel anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -492,6 +509,16 @@ Table&nbsp;8.2: Market-implied distributions for the FOMC target range (CME FedW
 <p>When you see a Greek letter, it refers to something unknown we’re trying to estimate. When you see a Latin letter, we have computed it (or could compute it) from data. Lowercase Latin letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>) are numbers we computed from our observed sample; uppercase Latin letters like <span class="math inline">\(\bar{X}\)</span> are random variables, because the samples they depend on are random.</p>
 </div></div>
 </div>
+<div id="exercise-statistic-or-parameter" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.2: </strong>Statistic or parameter?</div><div class="fobx-body">
+<p>A company observed 500 warranty outcomes. Their sample mean was $38 and their sample standard deviation was $105. A probability model for future warranties has mean <span class="math inline">\(\mu=\$36\)</span> and standard deviation <span class="math inline">\(\sigma=\$110\)</span>.</p>
+<p>Which two numbers are sample statistics, and which two are probability-model parameters?</p>
+<details id="solution-statistic-or-parameter" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The observed sample mean of $38 and sample standard deviation of $105 are statistics. The model mean <span class="math inline">\(\mu=\$36\)</span> and model standard deviation <span class="math inline">\(\sigma=\$110\)</span> are parameters of the probability distribution.</p>
+</details>
+</div></div>
+</div>
 <section id="sec-risk" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="sec-risk"><span class="header-section-number">8.2.1</span> Variance/Standard deviation measure unpredictability (risk)</h3>
 <p>As in <a href="singlevar_03_location-and-spread.html#sec-measures-spread" class="quarto-xref"><span>Section 3.2</span></a>, the spread of a probability distribution represents unpredictability or risk. The standard deviation is high when there is substantial probability placed on outcomes that are far from the expected value (the mean). Here are two hypothetical $10,000 loans with the same expected profit but different risk profiles. Both assume that the lender recovers $6,000 if the borrower defaults:</p>
@@ -576,6 +603,23 @@ Figure&nbsp;8.1: The two loans’ profit distributions on a common scale, with e
 <p>Loan A and Loan B have the same expected profit of $320, so expected value alone cannot choose between them. Their standard deviations can: $2,160 for Loan A against $1,440 for Loan B. Loan A places more probability on outcomes far from that shared average in both directions, which is what a lender means by calling it the riskier loan. Writing many loans like either one is profitable in the long run, provided defaults are close to independent — but a lender choosing between them gets one draw. At the same expected profit, a risk-averse lender takes Loan B.</p>
 </div>
 </div>
+<div id="exercise-equal-mean-different-risk" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.3: </strong>Equal expected profit, different uncertainty</div><div class="fobx-body">
+<p>Project A earns either $0 or $40,000 with equal probability. Project B earns either $15,000 or $25,000 with equal probability.</p>
+<ol type="1">
+<li>Compute the mean and standard deviation of each profit distribution.</li>
+<li>Why might a risk-averse manager prefer Project B even though the projects have the same expected profit?</li>
+</ol>
+<details id="solution-equal-mean-different-risk" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>Both projects have expected profit</p>
+<p><span class="math display">\[
+0.5(0)+0.5(40{,}000)=0.5(15{,}000)+0.5(25{,}000)=\$20{,}000.
+\]</span></p>
+<p>Project A’s outcomes sit $20,000 on either side of the mean, so its standard deviation is $20,000. Project B’s outcomes sit $5,000 on either side, so its standard deviation is $5,000. Project B offers the same expected profit with less uncertainty.</p>
+</details>
+</div></div>
+</div>
 <p>Both loans’ long-run profitability rests on defaults being at least close to independent: one borrower’s failure tells us nothing about the others. We’ll define independence carefully later in the course.</p>
 <p>The same comparison drives how investors think about other investments. Two stocks can have return distributions with the same expected return but very different standard deviations; <a href="#fig-stock-risk" class="quarto-xref">Figure&nbsp;<span>8.2</span></a> shows such a pair.</p>
 <div class="cell">
@@ -629,6 +673,20 @@ Figure&nbsp;8.4: Reading quantiles off the CDF of the Austin price model. Horizo
 </div>
 </div>
 <p>For the price model, the quartiles land at $354,282 and $672,536, so the IQR is $318,254: under this model, the middle half of future sales falls in a band about $318,254 wide. Quantiles also answer tail questions directly — a seller wondering “what price will I beat with probability 0.75?” wants the 0.25 quantile, not the mean.</p>
+<div id="exercise-call-volume-quantiles" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.4: </strong>Quantiles for staffing</div><div class="fobx-body">
+<p>A call center’s model for next-hour call volume assigns probabilities 0.10, 0.25, 0.40, 0.20, and 0.05 to 20, 30, 40, 50, and 60 calls.</p>
+<ol type="1">
+<li>Find the median, first quartile, third quartile, and IQR.</li>
+<li>If managers want enough staff for at least 75% of hours, which call-volume threshold should they use?</li>
+</ol>
+<details id="solution-call-volume-quantiles" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The cumulative probabilities at 20, 30, 40, 50, and 60 calls are 0.10, 0.35, 0.75, 0.95, and 1. The first quartile is 30 calls, the median is 40 calls, and the third quartile is 40 calls. The IQR is therefore <span class="math inline">\(40-30=10\)</span> calls.</p>
+<p>The smallest threshold whose cumulative probability reaches at least 0.75 is 40 calls, so that staffing level covers at least 75% of modeled hours.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-shift-scale" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="sec-shift-scale"><span class="header-section-number">8.4</span> Shifting and scaling</h2>
@@ -655,6 +713,49 @@ SD(Y) = |a|\,\sigma, \qquad Var(Y) = a^2\,\sigma^2.
 </div>
 <p>These are exactly the same rules we encountered for the sample mean, median, and variance/SD in <a href="singlevar_04_transformations.html#sec-linear-transformations" class="quarto-xref"><span>Section 4.1</span></a>.</p>
 <p>The profit on our 16% loan is <span class="math inline">\(X - 10{,}000\)</span>, so its mean is $10,200 <span class="math inline">\(-\)</span> $10,000 = $200 and its standard deviation is exactly the payoff’s $2,424.87 — shifting can’t make an uncertain payoff any more or less predictable. Scaling Loan B’s $10,000 principal up to $100,000 sets <span class="math inline">\(a = 10\)</span>: expected profit rises to $3,200, and the standard deviation rises right along with it to $14,400.</p>
+<div id="exercise-warranty-contract-price" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.5: </strong>Warranty pricing</div><div class="fobx-body">
+<p>Return to the warranty cost <span class="math inline">\(W\)</span> from the <a href="#exercise-warranty-expected-cost">earlier warranty exercise</a>. A service contract covers that cost and adds $18 in administrative cost, so the seller’s total cost for one contract is <span class="math inline">\(C=W+18\)</span>.</p>
+<ol type="1">
+<li>Use the earlier expected value to compute <span class="math inline">\(E[C]\)</span>.</li>
+<li>What is the smallest whole-dollar contract price that gives the seller nonnegative expected profit?</li>
+<li>What is the expected profit at that price?</li>
+</ol>
+<details id="solution-warranty-contract-price" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>Adding the fixed administrative cost shifts the expected cost:</p>
+<p><span class="math display">\[
+E[C]=E[W]+18=36+18=\$54.
+\]</span></p>
+<p>A $54 price gives expected profit <span class="math inline">\(54-54=\$0\)</span>, so $54 is the smallest whole-dollar price with nonnegative expected profit.</p>
+</details>
+</div></div>
+</div>
+<div id="exercise-revenue-currency-transformation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.6: </strong>Convert revenue and subtract a fixed fee</div><div class="fobx-body">
+<p>A European contract’s revenue <span class="math inline">\(X\)</span> has mean €120,000 and standard deviation €20,000. At a fixed exchange rate of $1.10 per euro, net dollar revenue is <span class="math inline">\(Y=1.10X-5{,}000\)</span> after a fixed legal fee.</p>
+<ol type="1">
+<li>Find the mean, variance, and standard deviation of <span class="math inline">\(Y\)</span>.</li>
+<li>Which part of the transformation changes the spread, and by what factor?</li>
+</ol>
+<details id="solution-revenue-currency-transformation" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The transformed mean is</p>
+<p><span class="math display">\[
+E[Y]=1.10(120{,}000)-5{,}000=\$127{,}000.
+\]</span></p>
+<p>The variance and standard deviation are</p>
+<p><span class="math display">\[
+\operatorname{Var}(Y)=1.10^2(20{,}000^2)=484{,}000{,}000
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+SD(Y)=1.10(20{,}000)=\$22{,}000.
+\]</span></p>
+<p>Multiplication by 1.10 scales the standard deviation by 1.10 and the variance by <span class="math inline">\(1.10^2\)</span>. Subtracting the fixed $5,000 fee shifts the center but does not change the spread.</p>
+</details>
+</div></div>
+</div>
 <p>We <strong>standardize</strong> a random variable by subtracting the mean and dividing by the standard deviation, producing a new random variable with mean 0 and standard deviation 1:</p>
 <p><span class="math display">\[
 Z = \frac{X - \mu}{\sigma}.

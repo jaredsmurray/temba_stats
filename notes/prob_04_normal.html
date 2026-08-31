@@ -77,21 +77,21 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
-}
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
 }
 </style>
 
@@ -311,7 +311,7 @@ window.Quarto = {
 <div id="defn-normal-distribution" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 9.1: </strong>Normal distribution</div><div class="fobx-body">
 <p>The <strong>normal distribution</strong> (also known as the Gaussian distribution) is the symmetric continuous distribution governed entirely by two parameters: a mean <span class="math inline">\(\mu\)</span> and a variance <span class="math inline">\(\sigma^2\)</span>. The mean locates the center of the density curve and the variance controls how wide it is.</p>
-<details aria-label="Details and formulas" id="formula-normal-density" class="formula-details">
+<details class="formula-details" id="formula-normal-density" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>The density is</p>
 <p><span class="math display">\[
@@ -348,6 +348,19 @@ X \sim N(\mu, \sigma^2)
 <p><em>The second parameter is the variance, not the standard deviation.</em> Most software for computing normal probabilities, densities, and quantiles takes the mean and <em>standard deviation</em> as arguments instead, so the two conventions have to be kept straight when moving between a written model and code.</p>
 </div></div>
 </div>
+<div id="exercise-read-normal-model" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.1: </strong>Reading a normal model</div><div class="fobx-body">
+<p>A distribution center models next week’s demand for a product as</p>
+<p><span class="math display">\[
+X \sim N(500, 80^2),
+\]</span></p>
+<p>where <span class="math inline">\(X\)</span> is measured in units. State the mean, variance, and standard deviation, including units. Which two values would you supply to software that asks for the mean and standard deviation?</p>
+<details class="solution-details" id="solution-read-normal-model" aria-label="Solution">
+<summary>Solution</summary>
+<p>The mean is 500 units, the variance is <span class="math inline">\(80^2 = 6{,}400\)</span> units squared, and the standard deviation is 80 units. Software that asks for a mean and standard deviation should receive 500 and 80, not 500 and 6,400.</p>
+</details>
+</div></div>
+</div>
 <p>A shifted and scaled normal random variable is still normal: if <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span>, then <span class="math inline">\(Y = aX + b\)</span> follows another normal distribution with mean and variance given by the shifting-and-scaling rules from <a href="prob_03_distribution-parameters.html#sec-shift-scale" class="quarto-xref"><span>Section 8.4</span></a>: <span class="math inline">\(N(a\mu + b,\; a^2\sigma^2)\)</span>.</p>
 </section>
 <section id="sec-normal-probabilities" class="level2" data-number="9.2">
@@ -368,6 +381,21 @@ Figure&nbsp;9.2: Weekly S&amp;P 500 returns (density-scaled histogram) with the 
 </div>
 </div>
 <p>To be clear: Weekly returns are not literally normal — a return can’t fall below <span class="math inline">\(-100\%\)</span>, and real markets tend to produce more extreme outcomes than a normal distribution would give. What we are claiming (for now!) is that the normal distribution is a <em>good enough approximation</em>: close enough to the true distribution, in the region we care about, that probability statements computed from it are useful. That’s the case for any model, and to the extent we can, we should check whether our modeling assumptions are supported or not by the data available to us. We’ll do that below.</p>
+<div id="exercise-normal-model-plausibility" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.2: </strong>Which normal model is most plausible?</div><div class="fobx-body">
+<p>A consultant proposes a normal model for each of the following variables:</p>
+<ol type="1">
+<li>package weight from a calibrated filling machine;</li>
+<li>annual insurance claim cost per customer, when many customers have no claim and a few have very large claims;</li>
+<li>the percentage of a firm’s customers who renew their contracts next year.</li>
+</ol>
+<p>For each variable, identify a feature that supports or undermines a normal model. Which variable is most plausibly modeled as normal without a transformation?</p>
+<details class="solution-details" id="solution-normal-model-plausibility" aria-label="Solution">
+<summary>Solution</summary>
+<p>Package weight is continuous and may fluctuate roughly symmetrically around a machine’s target, so it is the most plausible candidate. Annual claim cost has a pile of observations at zero and a long right tail, which conflicts with a normal model. A renewal percentage is bounded between 0% and 100%; a normal approximation could be reasonable if its center is far from both bounds and its spread is small, but the bounds can otherwise matter.</p>
+</details>
+</div></div>
+</div>
 <p>With that model in hand we can compute any probabilities of interest as areas under the curve.</p>
 <ul>
 <li><strong>A losing week.</strong> <span class="math inline">\(\Pr(R &lt; 0) = 0.41\)</span>. Even in a market that drifts upward on average, the model gives roughly a 41% chance that any given week loses money.</li>
@@ -409,6 +437,28 @@ Figure&nbsp;9.4: Two routes to the same interval probability. Top row: start wit
 </div>
 </div>
 </div>
+<div id="exercise-normal-service-probabilities" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.3: </strong>Service-time probabilities</div><div class="fobx-body">
+<p>A logistics team models delivery time within a city as <span class="math inline">\(T \sim N(42, 9^2)\)</span> minutes. For each probability, first sketch the relevant area under a normal curve and then calculate it.</p>
+<ol type="1">
+<li>What is the probability that a delivery takes more than 60 minutes?</li>
+<li>What is the probability that a delivery takes between 35 and 50 minutes?</li>
+</ol>
+<details class="solution-details" id="solution-normal-service-probabilities" aria-label="Solution">
+<summary>Solution</summary>
+<p>For the first probability, shade the area to the right of 60. Subtract the normal CDF at 60 from one:</p>
+<p><span class="math display">\[
+\Pr(T&gt;60)=1-F_T(60)\approx 0.0228.
+\]</span></p>
+<p>For the second, shade the area between 35 and 50 and subtract the two CDF values:</p>
+<p><span class="math display">\[
+\Pr(35&lt;T&lt;50)
+=F_T(50)-F_T(35)
+\approx 0.5946.
+\]</span></p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-empirical-rule" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="sec-empirical-rule"><span class="header-section-number">9.3</span> The 68/95/99.7 rule</h2>
@@ -438,6 +488,24 @@ Figure&nbsp;9.5: The 68/95/99.7 rule on the weekly-returns model. Each horizonta
 </div>
 </div>
 <p>Applied to the returns model: about two weeks in three land between -1.6% and 2.6%; about 19 weeks in 20 land between -3.8% and 4.7%; and a week outside -5.9% to 6.8% should be a once-in-several-years event. The rule works in both directions. Given the parameters you can sketch the whole distribution in your head, and given an extreme outcome you can immediately place it: a <span class="math inline">\(-4\%\)</span> week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there’s no dependence between consecutive weekly returns).</p>
+<div id="exercise-filling-empirical-rule" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.4: </strong>Applying the 68/95/99.7 rule</div><div class="fobx-body">
+<p>A filling machine produces bottles with a mean fill of 355 milliliters and a standard deviation of 3 milliliters. Assume fill amounts are normally distributed.</p>
+<ol type="1">
+<li>Give the intervals containing approximately 68%, 95%, and 99.7% of fills.</li>
+<li>A bottle contains 346 milliliters. How many standard deviations below the mean is it?</li>
+<li>Approximately what percentage of bottles are at least that far from the mean in either direction?</li>
+</ol>
+<details class="solution-details" id="solution-filling-empirical-rule" aria-label="Solution">
+<summary>Solution</summary>
+<p>The three intervals are 352 to 358 milliliters, 349 to 361 milliliters, and 346 to 364 milliliters. For the 346-milliliter bottle,</p>
+<p><span class="math display">\[
+z=\frac{346-355}{3}=-3.
+\]</span></p>
+<p>It is three standard deviations below the mean. The 68/95/99.7 rule places about 99.7% of bottles within three standard deviations, so approximately 0.3% are at least that far from the mean in either direction.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-standard-normal" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="sec-standard-normal"><span class="header-section-number">9.4</span> Z-scores, again</h2>
@@ -452,8 +520,25 @@ Figure&nbsp;9.5: The 68/95/99.7 rule on the weekly-returns model. Each horizonta
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These probability statements attach to z-scores <em>only when the underlying random variable is normal</em>. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean — that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution’s shape. A z-score of 2.5 is a once-in-eighty event under a normal distribution; under a heavy-tailed one it might be a monthly occurrence.</p>
+<p>These probability statements attach to z-scores <em>only when the underlying random variable is normal</em>. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean — that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution’s shape. Under a normal distribution, an observation at least 2.5 standard deviations from the mean, <span class="math inline">\(|Z| \geq 2.5\)</span>, is a once-in-eighty event; under a heavy-tailed one it might be a monthly occurrence.</p>
 </div>
+</div>
+<div id="exercise-skewed-z-score" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.5: </strong>What a z-score does—and does not—tell us</div><div class="fobx-body">
+<p>Suppose a strongly right-skewed measure of engineering productivity has a mean of 420 and a standard deviation of 500. One engineer’s observed value is 1,420.</p>
+<ol type="1">
+<li>Calculate the z-score and interpret it.</li>
+<li>Can you use a normal probability table or normal-distribution software to determine the probability of observing a value at least this large? Explain.</li>
+</ol>
+<details class="solution-details" id="solution-skewed-z-score" aria-label="Solution">
+<summary>Solution</summary>
+<p>The z-score is</p>
+<p><span class="math display">\[
+z=\frac{1{,}420-420}{500}=2.
+\]</span></p>
+<p>The observed productivity is two standard deviations above the mean. That interpretation is valid for any distribution. A normal tail probability is not justified, however, because the distribution is strongly right-skewed rather than normal. The z-score alone does not determine a probability.</p>
+</details>
+</div></div>
 </div>
 <p>The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks — five or so out of our 104 — should land more than two standard deviations from the mean. In the data, 6 weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. Judging them by counting is crude; the next section builds a better diagnostic for checking normality (and more generally for comparing any two distributions).</p>
 </section>
@@ -502,6 +587,20 @@ Figure&nbsp;9.8: QQ plots for six simulated datasets of the same size as the ret
 </div>
 </div>
 <p>Looking through the other examples, we see sustained deviations from normality. Hourly wages bow high above the line at the top: extreme earners are far larger than any normal distribution would produce — strong right skew. The flat run of identical points at the very top is a survey artifact, not a distributional shape: the largest reported earnings are capped at a common value. Taking logs — the transformation from Chapter 4 — pulls the wage points much closer to the line, but we still see some evidence of heavier tails than expected. Daily electricity demand flattens out at both ends of the line: its extremes are less extreme than a normal’s. The flat stretch of points cutting across the line in the middle of the panel is a different signal — many days pile up at similar loads, suggesting a mode or “shoulder” — and neither feature is consistent with a normal distribution.</p>
+<div id="exercise-qq-model-check" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.6: </strong>Comparing asset returns with QQ plots</div><div class="fobx-body">
+<p>Using the weekly AAPL and MSTR returns in the course data, create a histogram and a normal QQ plot for each variable using software of your choice.</p>
+<ol type="1">
+<li>Which asset’s weekly returns are better approximated by a normal distribution? Cite a feature of the plots that supports your conclusion.</li>
+<li>For the less-normal variable, would a normal model be more vulnerable when estimating the middle 50% of returns or the probability of an extreme weekly loss? Explain.</li>
+</ol>
+<details class="solution-details" id="solution-qq-model-check" aria-label="Solution">
+<summary>Solution</summary>
+<p>AAPL returns are better approximated by a normal distribution: their histogram is more nearly symmetric and most of their QQ points stay closer to a straight line. The endpoints still depart from the line, so the approximation is not perfect. MSTR returns show stronger right skew and a more pronounced departure in the upper tail.</p>
+<p>For MSTR, a normal model is more vulnerable when estimating an extreme-tail probability. Its middle quantiles lie closer to the reference line than its tails do, so an estimate of the middle 50% is less sensitive to the visible departure from normality than an estimate involving an extreme weekly loss.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>

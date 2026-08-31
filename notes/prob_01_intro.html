@@ -77,24 +77,53 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles/callouts.css">
 </head>
@@ -250,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#a-simpler-example" id="toc-a-simpler-example" class="nav-link" data-scroll-target="#a-simpler-example"><span class="header-section-number">6.1.1</span> A simpler example</a></li>
   <li><a href="#a-real-example-forecasting-the-federal-funds-rate" id="toc-a-real-example-forecasting-the-federal-funds-rate" class="nav-link" data-scroll-target="#a-real-example-forecasting-the-federal-funds-rate"><span class="header-section-number">6.1.2</span> A real example: Forecasting the federal funds rate</a></li>
   </ul></li>
-  <li><a href="#probability-distributions-and-probabilty-models" id="toc-probability-distributions-and-probabilty-models" class="nav-link" data-scroll-target="#probability-distributions-and-probabilty-models"><span class="header-section-number">6.2</span> Probability distributions and probabilty models</a>
+  <li><a href="#probability-distributions-and-probability-models" id="toc-probability-distributions-and-probability-models" class="nav-link" data-scroll-target="#probability-distributions-and-probability-models"><span class="header-section-number">6.2</span> Probability distributions and probability models</a>
   <ul class="collapse">
   <li><a href="#what-is-a-probability-model" id="toc-what-is-a-probability-model" class="nav-link" data-scroll-target="#what-is-a-probability-model"><span class="header-section-number">6.2.1</span> What is a probability model?</a></li>
   </ul></li>
@@ -281,7 +310,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Up until now, we’ve been analyzing data we already have by computing or summarizing the distributions of its variables. In most of these examples we really want to know about data we <em>don’t</em> have: the sale price of a <em>new</em> house, the economic of <em>all</em> U.S. adults (not just the ones we interviewed), load on the electrical grid tomorrow. The statistics and visualization tools we’ve seen describe data we have; we use <strong>probability</strong> to describe data we don’t have, either because we didn’t measure it or because the interesting events haven’t happened yet. In either case, we can use probability to reason about what we <em>expect</em> to see in the future, how likely different outcomes are, and what decisions we should make in the face of that uncertainty.</p>
+<p>Up until now, we’ve been analyzing data we already have by computing or summarizing the distributions of its variables. In most of these examples we really want to know about data we <em>don’t</em> have: the sale price of a <em>new</em> house, the economic views of <em>all</em> U.S. adults (not just the ones we interviewed), load on the electrical grid tomorrow. The statistics and visualization tools we’ve seen describe data we have; we use <strong>probability</strong> to describe data we don’t have, either because we didn’t measure it or because the interesting events haven’t happened yet. In either case, we can use probability to reason about what we <em>expect</em> to see in the future, how likely different outcomes are, and what decisions we should make in the face of that uncertainty.</p>
 <p>Let’s look at an example. Suppose you’re considering funding one of two LendingClub loans at the end of 2012 (where our data stop). Both loans are for the same amount. The first is a small-business loan and the second is a debt-consolidation loan. The two applications are otherwise identical (in terms, borrower credit history, etc.) and if paid in full you will get the same return on your investment. Which will you pick? Splitting the historical LendingClub loans by purpose gives us the default rate for each of these two kinds:</p>
 <div class="cell">
 <div id="tbl-two-loan-defaults" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -326,13 +355,27 @@ Table&nbsp;6.1: Historical default rates for small-business and debt-consolidati
 <p>The second is a <strong>subjective</strong> interpretation: It represents my personal belief about the outcome of a single game. I might have arrived at that belief by looking at historical data, but it is still a personal assessment of the chance of a single event. A subjective probability statement is often expressed in terms of betting odds: I would take a bet on Texas that returns my $4 stake plus at least $1 in profit if Texas wins, and I would not take a bet that paid less than that. That 80% chance is just another way of expressing the same idea: I think it’s four times more likely that Texas will win than it is they will lose (or tie).</p>
 <section id="a-simpler-example" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="a-simpler-example"><span class="header-section-number">6.1.1</span> A simpler example</h3>
-<p>Let’s consider an even simpler example: We’re going to make a bet on a single coin toss. If the coin comes up heads I pay you a dollar. If it comes up tails you pay me two. Would you play this game with me? Maybe once, for fun, but probbaly not if the rules are I pay you $1,000 if you win and you pay me $2,000 if I do. You’re assuming – at least I’m assuming that you’re assuming – there’s an equal chance that the coin comes up heads or tails when we play our game. That’s a subjective probability assessment about the outcome of a one-off event.</p>
-<p>What’s the long-run frequency interpretation? Imagine playing this game over, and over, and over. Now nobody wants to play the low-stakes $1/$2 version of the game; you might win a round or two and there’s even a chance you’ll be up after a few rounds. But play long enough and – if the coin is fair – we’ll each have one close to half the bets, but you paid me twice what I paid you. The only fair game is one where our payouts are equal - the longer we play the closer to even we’ll tend to be.</p>
+<p>Let’s consider an even simpler example: We’re going to make a bet on a single coin toss. If the coin comes up heads I pay you a dollar. If it comes up tails you pay me two. Would you play this game with me? Maybe once, for fun, but probably not if the rules are I pay you $1,000 if you win and you pay me $2,000 if I do. You’re assuming — at least I’m assuming that you’re assuming — there’s an equal chance that the coin comes up heads or tails when we play our game. That’s a subjective probability assessment about the outcome of a one-off event.</p>
+<p>What’s the long-run frequency interpretation? Imagine playing this game over, and over, and over. Now nobody wants to play the low-stakes $1/$2 version of the game; you might win a round or two and there’s even a chance you’ll be up after a few rounds. But play long enough and — if the coin is fair — we’ll each have won close to half the bets, but you paid me twice what I paid you. The only fair game is one where our payouts are equal — the longer we play the closer to even we’ll tend to be.</p>
+<div id="exercise-forecast-interpretations" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.1: </strong>Two readings of one forecast</div><div class="fobx-body">
+<p>A prediction market assigns a probability of 0.70 to the Federal Reserve holding its target range at its next meeting.</p>
+<ol type="1">
+<li>Explain 0.70 as a subjective probability about this meeting.</li>
+<li>Suppose we collect 100 different events that each received a forecast near 0.70. What would a well-calibrated set of forecasts imply about the number of events that occur?</li>
+</ol>
+<details id="solution-forecast-interpretations" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The probability summarizes the market’s current assessment that holding the target range is more likely than changing it. It applies to this one meeting; we do not imagine replaying the same meeting many times.</p>
+<p>Across many different events assigned probabilities near 0.70, a calibrated forecasting process should see about 70 of every 100 events occur. A particular set may produce more or fewer than 70 because its outcomes remain uncertain.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="a-real-example-forecasting-the-federal-funds-rate" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="a-real-example-forecasting-the-federal-funds-rate"><span class="header-section-number">6.1.2</span> A real example: Forecasting the federal funds rate</h3>
-<p>The Federal Reserve periodically sets a quarter-point-wide target range for its key interest rate (<a href="https://en.wikipedia.org/wiki/Federal_funds_rate">the federal funds rate</a>). The fed funds rate is the interest rate that banks charge each other on overnight loans to shore up reserve balances. It’s a key factor driving borrowing costs for all kinds of debt, including consumer debt like mortgages. Raising the fed funds rate generally leads to broader rate increases, cooling down a hot economy and tamping down inflation. Cutting it has the opposite effect, simulating spending and promoting higher employment rates.</p>
-<p>At each scheduled Federal Open Market Committee (FOMC) meeting, the Fed can leave the target unchanged or move it by one or more quarter-point increments. These moves have enormous economic consquences, and there is great interest in forecasting them. The <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html">CME FedWatch</a> is a public probabilstic forecast of the target rate based on some modeling simplifications (targets shift at most 0.25%, or 25 basis points at each meeting) and trading on futures markets – essentially bets placed by savvy investors on where they think rates will go. Balancing the money on either side of the wager gives an implied probability statement about how likely different FOMC decisions are. The price of futures contracts represents, essentially, a consensus view of how likely each potential rate decision is, the same way the Vegas money line on the Red River game (that is, the payout for a given wager) represents the consensus view of how likely it is Texas will win. By some natural metrics, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5093703">it is pretty accurate over short windows in many regimes</a>.</p>
+<p>The Federal Reserve periodically sets a quarter-point-wide target range for its key interest rate (<a href="https://en.wikipedia.org/wiki/Federal_funds_rate">the federal funds rate</a>). The fed funds rate is the interest rate that banks charge each other on overnight loans to shore up reserve balances. It’s a key factor driving borrowing costs for all kinds of debt, including consumer debt like mortgages. Raising the fed funds rate generally leads to broader rate increases, cooling down a hot economy and tamping down inflation. Cutting it has the opposite effect, stimulating spending and promoting higher employment rates.</p>
+<p>At each scheduled Federal Open Market Committee (FOMC) meeting, the Fed can leave the target unchanged or move it by one or more quarter-point increments. These moves have enormous economic consequences, and there is great interest in forecasting them. The <a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html">CME FedWatch</a> is a public probabilistic forecast of the target rate based on some modeling simplifications (targets shift at most 0.25%, or 25 basis points at each meeting) and trading on futures markets — essentially bets placed by savvy investors on where they think rates will go. Balancing the money on either side of the wager gives an implied probability statement about how likely different FOMC decisions are. The price of futures contracts represents, essentially, a consensus view of how likely each potential rate decision is, the same way the Vegas money line on the Red River game (that is, the payout for a given wager) represents the consensus view of how likely it is Texas will win. By some natural metrics, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5093703">it is pretty accurate over short windows in many regimes</a>.</p>
 <!---
 
 ::: {.TechnicalDetail #technical-fedwatch-construction}
@@ -428,7 +471,7 @@ Table&nbsp;6.2: Market-implied probabilities for the FOMC target range after the
 </div>
 </figure>
 </div>
-<p>These are the CME’s subjective assessments of where the target will likely be one and two meetings into the future. These are <em>probability distributions</em>, as opposed to distributions of observed data. While the meetings are one-off events, this table of probabilities will, it turns out, act just like the tables of default rates we computed at the top of this section. <!---
+<p>These probabilities are implied by prices in federal funds futures markets. They aggregate market participants’ assessments of where the target will likely be one and two meetings into the future. These are <em>probability distributions</em>, as opposed to distributions of observed data. While the meetings are one-off events, this table of probabilities will, it turns out, act just like the tables of default rates we computed at the top of this section. <!---
 The September branch probabilities do not come from the per-meeting totals in the table alone. CME estimates probabilities for each meeting from monthly Fed Funds futures prices, then combines successive meeting outcomes into cumulative paths. The marginal totals alone cannot tell us how September's chances depend on July's outcome.
 
 These distributions are inferred using some modeling assumptions and trading behavior on futures markets. Below we reproduce a more complete representation of the probability model, where successive Fed actions are represented in a branching decision tree. The probabilities attached to each branch are the probability of moving from of that branch to the corresponding "leaf" (outcome)
@@ -449,8 +492,8 @@ hinge on subjective assessments (e.g. how we choose "similar" prior games).
 ---></p>
 </section>
 </section>
-<section id="probability-distributions-and-probabilty-models" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="probability-distributions-and-probabilty-models"><span class="header-section-number">6.2</span> Probability distributions and probabilty models</h2>
+<section id="probability-distributions-and-probability-models" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="probability-distributions-and-probability-models"><span class="header-section-number">6.2</span> Probability distributions and probability models</h2>
 <p>A <strong>probability distribution</strong> is a rule (a mathematical function) that assigns probabilities to all possible outcomes of a random or uncertain process. Probabilities are numbers between 0 and 1 that follow rules we spell out in <a href="prob_02_probability-basics.html#sec-prob-rules" class="quarto-xref"><span>Section 7.2</span></a>. Based on our historical data about small-business loans, we might say there is a 25.8% chance (a 0.258 probability) that a <em>new</em> small-business loan will default, and a 74.2% chance that it won’t. That’s a simple probability distribution. A probability distribution is a mathematical abstraction of the observed data distributions we’ve already seen, and it has its own mean, median, and standard deviation. We define those summaries in <a href="prob_03_distribution-parameters.html#sec-rv-mean" class="quarto-xref"><span>Section 8.1</span></a>.</p>
 <section id="what-is-a-probability-model" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="what-is-a-probability-model"><span class="header-section-number">6.2.1</span> What is a probability model?</h3>
@@ -495,6 +538,23 @@ Table&nbsp;6.3: A probability model for a future loan’s outcome, given its pur
 </div>
 </div>
 <p>Read the small-business row: a new small-business loan defaults with probability 0.258 and is repaid with probability 0.742. That’s the two-outcome distribution from the last section, now written down for both kinds of loan.</p>
+<div id="exercise-churn-model-part-a" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.2: </strong>A churn model, part A</div><div class="fobx-body">
+<p>A software company observed 90 cancellations among 1,200 annual subscriptions last year.</p>
+<ol type="1">
+<li>Compute the historical churn rate.</li>
+<li>The company uses that rate as a probability model for 200 otherwise similar renewals. About how many cancellations does the model predict?</li>
+</ol>
+<details id="solution-churn-model-part-a" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The historical churn rate is</p>
+<p><span class="math display">\[
+\frac{90}{1{,}200}=0.075,
+\]</span></p>
+<p>or 7.5%. Applying that rate to 200 similar renewals predicts about <span class="math inline">\(200(0.075)=15\)</span> cancellations.</p>
+</details>
+</div></div>
+</div>
 <p>For a sufficiently interesting problem a probability model will almost always be wrong in some way. But a good probability model is useful if it captures the key features of the real-world process we’re trying to understand. While you can write down a complete probability model mathematically or algorithmically without ever touching any data, typically the model will at least have some <strong>parameters</strong> that we estimate from data (e.g.&nbsp;by plugging historical default rates into our probability model as we just did). A <strong>parameter</strong> is just a feature of the probability distribution, and many of these are familiar to us from our work in earlier chapters — the mean, the variance, the standard deviation. We defined these in terms of observed data, but each has an analogue for a probability distribution that describes unobserved data.</p>
 </section>
 </section>
@@ -514,14 +574,28 @@ Figure&nbsp;6.1: A Plinko chip bounces between pegs before landing in one of the
 </figure>
 </div>
 <p>Source: <a href="https://makeagif.com/gif/price-is-right-plinko-huge-win-6JmKw9">“Price is Right — Plinko HUGE Win!!!”</a>, MakeAGif.</p>
-<p><strong>Not all samples are random.</strong> Before we continue, it’s important to remember that not all samples are random. When you’re in class, you and your classmates comprise a sample of all adults currently in the United States. But you’re not a randomly selected sample, and as a cohort you differ from that overall population in important ways. If we tried to use you as “data” to learn about academic achievement in the overall population our estimate would be wildly inaccurate. We perfer random samples in the finite population setting because they are a strong hedge against this kind of bias – most random samples are <strong>representative</strong> of the population from which they are drawn.</p>
-<p><strong>The way we use a random sample doesn’t depend on the way we got it (usually).</strong> For the kinds of analyses we’ll do, whether a sample is from a finite population we want to learn about or a probability model we want to estimate – like the model for future loan defaults – won’t matter. In the economic conditions survey, close to 25% of U.S. adults rated the economy as “good”. Let’s imagine that in the true, complete population, exactly 25% of adults would rate the economy “Good” if asked. If we select one of them completely at random, so everyone has the same chance of getting picked, what is the chance that person has a “Good” rating? Twenty-five percent.</p>
-<p>Now imagine you <a href="https://share.google/Ak9FQb15cyBp27V3r">roll a fair four sided die</a>. What’s the chance you get a four? Twenty five percent again. The proportion of 4’s in 13,000 of these rolls looks just the proportion of respondents rating the economy “Good” when we sample them completely at random.</p>
+<p><strong>Not all samples are random.</strong> Before we continue, it’s important to remember that not all samples are random. When you’re in class, you and your classmates comprise a sample of all adults currently in the United States. But you’re not a randomly selected sample, and as a cohort you differ from that overall population in important ways. If we tried to use you as “data” to learn about academic achievement in the overall population our estimate would be wildly inaccurate. We prefer random samples in the finite population setting because they are a strong hedge against this kind of bias — most random samples are <strong>representative</strong> of the population from which they are drawn.</p>
+<div id="exercise-representativeness-claim" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.3: </strong>Representativeness changes the claim</div><div class="fobx-body">
+<p>A retailer wants to estimate the share of all customers who use curbside pickup. Team A randomly selects 400 loyalty-program members. Team B randomly selects 400 customers from everyone who clicked a curbside-pickup email. Each team finds that 36% of its sample uses curbside pickup.</p>
+<ol type="1">
+<li>How many curbside-pickup users did each team observe?</li>
+<li>What is the narrowest population that each result can credibly describe without further assumptions?</li>
+<li>Why does neither result, by itself, represent all of the retailer’s customers?</li>
+</ol>
+<details id="solution-representativeness-claim" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>Each team observed <span class="math inline">\(400(0.36)=144\)</span> curbside-pickup users. Team A’s random sample can represent loyalty-program members, while Team B’s random sample can represent customers who clicked the email. Neither sampling frame includes all customers, and both groups may differ systematically from customers outside the frame.</p>
+</details>
+</div></div>
+</div>
+<p><strong>The way we use a random sample doesn’t depend on the way we got it (usually).</strong> For the kinds of analyses we’ll do, whether a sample is from a finite population we want to learn about or a probability model we want to estimate — like the model for future loan defaults — won’t matter. In the economic conditions survey, close to 25% of U.S. adults rated the economy as “good”. Let’s imagine that in the true, complete population, exactly 25% of adults would rate the economy “Good” if asked. If we select one of them completely at random, so everyone has the same chance of getting picked, what is the chance that person has a “Good” rating? Twenty-five percent.</p>
+<p>Now imagine you <a href="https://share.google/Ak9FQb15cyBp27V3r">roll a fair four-sided die</a>. What’s the chance you get a four? Twenty-five percent again. The proportion of 4’s in 13,000 of these rolls looks just like the proportion of respondents rating the economy “Good” when we sample them completely at random.</p>
 <p>Now imagine we didn’t know whether the die was fair, and all we saw were the outcomes of the 13,000 rolls (whether we got a four or not). We could use that to learn about whether the die was fair: If only ten percent of the rolls were fours, we’d be very, very suspicious that the true chance of rolling a 4 was less than 25%, and probably closer to 10%. If 25.000001% of the rolls were fours, we’d probably be willing to chalk that up to chance.</p>
 <p>Similarly, we don’t know the true proportion of adults in the U.S. who rate the economy “Good”, but we do know the opinions of 13,000 randomly selected adults. It’s close to 25%, which gives us pretty strong evidence that whatever the right answer is, it’s probably also close to 25%.</p>
-<p>The next section of these notes formalizes this idea – how do we make <em>inferences</em> about a population or random process when we only have access to samples from them? For now, just know that we can move back and forth between these two notions of sampling whenever we want. It can be convenient to treat the 13,000 respondents to the survey as 13,000 dice rolls when we model them.</p>
+<p>The next section of these notes formalizes this idea — how do we make <em>inferences</em> about a population or random process when we only have access to samples from them? For now, just know that we can move back and forth between these two notions of sampling whenever we want. It can be convenient to treat the 13,000 respondents to the survey as 13,000 dice rolls when we model them.</p>
 <p><!--
- the true population proportion of economic optimists, or whethe
+ the true population proportion of economic optimists, or whether
 
 Let's simplify its goal to estimating the proportion of U.S. adults who rate national economic conditions good or excellent. Suppose the surveyors interview a sample of 1,000 adults, and 510 of them rate conditions good or excellent. What have we learned about the overall population? That depends entirely on how the sample is constructed.
 
@@ -541,6 +615,15 @@ To belabor the point, suppose that exactly 50% of adults rate conditions good or
 <li>If our sample is historical data used to build a probability model, two things must hold. First, the model must be able to describe the historical data: some choice of its parameters should reproduce the important patterns we observed. Second, the historical data must represent the future outcomes we want the model to describe. If important conditions change over time — for example, if new tariffs alter small-business loan default rates — then the historical data may no longer produce useful probabilities for future loans, unless we can also model the effects of these changes.</li>
 </ol></li>
 </ol>
+<div id="exercise-churn-model-part-b" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.4: </strong>A churn model, part B</div><div class="fobx-body">
+<p>Return to the <a href="#exercise-churn-model-part-a">earlier churn model</a>. The company raised annual subscription prices by 15% this year. Why does that change make last year’s churn rate a less credible model for this year’s renewals?</p>
+<details id="solution-churn-model-part-b" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The model treats last year’s subscriptions as representative of this year’s renewals. A 15% price increase changes an important condition that may affect the decision to renew, so customers facing the new price are no longer otherwise similar to those in the historical data. The old rate may therefore understate or overstate this year’s churn probability.</p>
+</details>
+</div></div>
+</div>
 <!--- PARKED pre-reorder draft (2026-08-17): adjacency language is stale under
 the current chapter order, and the survey framing still uses the retired
 expectations construct ("expect the economy to improve") — if unparked, apply
