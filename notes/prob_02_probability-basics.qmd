@@ -23,19 +23,20 @@ lending_subs <- read_csv("data/lending_club/data/df_subs.csv",
 austin <- read_csv("data/austin_houses/austin_houses_subset.csv",
                    show_col_types = FALSE)
 
-# CME FedWatch market-implied probabilities, retrieved 2026-07-09.
-# Buckets are FOMC target ranges; midpoints used for numeric work.
+# CME FedWatch historical probabilities reported for 2026-07-09.
+# These are the exact rows from the July 29 and September 16 meeting CSVs.
+# Buckets are FOMC target ranges; midpoints are used for numeric work.
 cme_july <- tribble(
   ~bucket,        ~midpoint, ~prob,
-  "3.50–3.75%", 3.625,  0.759,
-  "3.75–4.00%", 3.875,  0.241
+  "3.50–3.75%", 3.625,  0.754138,
+  "3.75–4.00%", 3.875,  0.245862
 )
 
 cme_sept <- tribble(
   ~bucket,        ~midpoint, ~prob,
-  "3.50–3.75%", 3.625,  0.366,
-  "3.75–4.00%", 3.875,  0.509,
-  "4.00–4.25%", 4.125,  0.125
+  "3.50–3.75%", 3.625,  0.376530,
+  "3.75–4.00%", 3.875,  0.500363,
+  "4.00–4.25%", 4.125,  0.123107
 )
 ```
 
@@ -90,6 +91,35 @@ $$
 
 In words: add the two chances, then subtract the chance of both happening at once, because that piece got counted twice.
 
+:::: {.Exercise #exercise-overlapping-events}
+## Overlapping and mutually exclusive events
+
+For one e-commerce order, the probability of a return is 0.18, the
+probability of a customer-service contact is 0.24, and the probability of both
+is 0.09. Find the probability that the order is returned or produces a
+customer-service contact. Why would adding 0.18 and 0.24 give the wrong answer?
+
+A separate order must use exactly one of two shipping methods: standard or
+express. Their probabilities are 0.68 and 0.32. Find the probability that the
+order uses standard or express shipping, and explain why no overlap correction
+is needed.
+
+::: {#solution-overlapping-events .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+Returns and customer-service contacts can overlap, so the addition rule gives
+
+$$
+0.18+0.24-0.09=0.33.
+$$
+
+Adding only the first two probabilities would count the 0.09 overlap twice.
+Standard and express shipping are mutually exclusive and cover the two
+possible methods, so their union has probability $0.68+0.32=1$.
+
+:::
+::::
+
 The market-implied Fed forecasts we met last chapter obey these rules by construction. As of July 9, 2026, the CME FedWatch tool assigned probability `r number(cme_july$prob[1], accuracy = 0.001)` to the July target range being 3.50--3.75% and `r number(cme_july$prob[2], accuracy = 0.001)` to 3.75--4.00%. The two events are mutually exclusive --- the Fed sets one range --- and the market considers no other outcome possible, so the probabilities sum to `r number(sum(cme_july$prob), accuracy = 1)`.
 
 ## Discrete and continuous random variables {#sec-discrete-continuous}
@@ -114,6 +144,27 @@ variable's distribution.
 Our default indicator $D$ (two possible values) and the loan payoff $X$ (two possible dollar amounts) are discrete. The sale price of a house and next week's return on the S&P 500 are naturally modeled as continuous.
 
 In the language of observed data, continuous random variables are always quantitative. But not every quantitative variable is continuous: the number of loans in a portfolio that default is a *count* --- quantitative, but discrete, because its possible values (0, 1, 2, ...) form a list. Categorical variables, once coded as numbers the way we coded $D$, are always discrete.
+
+:::: {.Exercise #exercise-workplace-random-variables}
+## Three workplace outcomes
+
+The Bloom hybrid-work study records whether an employee leaves the firm, the
+number of lines of code an engineer writes in a day, and the time an employee
+spends commuting. Define a random variable for each corresponding future
+outcome and classify it as discrete or continuous. Why does the count remain
+discrete even when it has many possible values?
+
+::: {#solution-workplace-random-variables .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+Let $L=1$ if an employee leaves and $L=0$ otherwise. This binary random
+variable is discrete. Let $C$ be the number of lines of code written in one
+day. It is also discrete because its possible values form a list of counts:
+$0,1,2,\ldots$. Let $T$ be commute time. We model it as continuous because it
+can take any value in a range rather than only distinct counts.
+
+:::
+::::
 
 ::: {.TechnicalDetail #technical-continuous-abstraction}
 ## "Continuous" is an abstraction
@@ -163,6 +214,67 @@ tribble(
 ) |>
   knitr::kable(align = c("l", "l", "r"))
 ```
+
+:::: {.Exercise #exercise-support-escalation-pmf}
+## Complete a support-ticket distribution
+
+The bars show the probability distribution of $X$, the number of times a
+support ticket is escalated. Complete the missing bar.
+
+```{r}
+#| label: fig-support-pmf-prompt
+#| fig-cap: "Three probabilities in the support-ticket PMF. Draw the fourth bar so that the completed picture is a probability distribution."
+#| fig-width: 7
+#| fig-height: 3.8
+#| echo: false
+support_pmf <- tibble(
+  escalations = 0:3,
+  probability = c(0.52, 0.31, 0.12, 0.05)
+)
+
+ggplot(filter(support_pmf, escalations < 3),
+       aes(x = factor(escalations, levels = 0:3), y = probability)) +
+  geom_col(fill = "steelblue", width = 0.65) +
+  geom_text(aes(label = number(probability, accuracy = 0.01)),
+            vjust = -0.5) +
+  annotate("rect", xmin = 3.67, xmax = 4.33, ymin = 0, ymax = 0.58,
+           fill = NA, color = "grey55", linetype = "dashed") +
+  annotate("text", x = 4, y = 0.08, label = "?", size = 7) +
+  scale_x_discrete(drop = FALSE) +
+  scale_y_continuous(limits = c(0, 0.60),
+                     expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Number of escalations, X", y = "Probability")
+```
+
+1. Which bar represents no escalation? Which bars together represent at least
+   one escalation?
+2. What two visual checks confirm that the completed picture is a valid PMF?
+
+::: {#solution-support-escalation-pmf .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+```{r}
+#| label: fig-support-pmf-solution
+#| fig-cap: "The completed PMF. The leftmost bar is no escalation; the other three bars together are at least one escalation."
+#| fig-width: 7
+#| fig-height: 3.8
+#| echo: false
+ggplot(support_pmf,
+       aes(x = factor(escalations), y = probability)) +
+  geom_col(fill = "steelblue", width = 0.65) +
+  geom_text(aes(label = number(probability, accuracy = 0.01)),
+            vjust = -0.5) +
+  scale_y_continuous(limits = c(0, 0.60),
+                     expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Number of escalations, X", y = "Probability")
+```
+
+The missing bar has height 0.05 because the four bars must sum to one. The
+leftmost bar has height 0.52, so the other three bars together have probability
+$1-0.52=0.48$. Every bar is nonnegative and their heights sum to one.
+
+:::
+::::
 
 The payoff variable $X$ attaches dollar amounts to the same two outcomes. Suppose the loan is for \$10,000 at 12% interest, and that a defaulted loan recovers 60% of the principal --- numbers in the ballpark of our LendingClub data, rounded for clarity. Then $X$ is \$11,200 if the loan is repaid and \$6,000 if it defaults:
 
@@ -298,6 +410,84 @@ that jumps at each possible outcome, and the height of the jump is that
 outcome's probability.
 :::
 
+:::: {.Exercise #exercise-support-escalation-cdf}
+## Accumulate the support-ticket distribution
+
+The left panel repeats the completed PMF. On the empty axes, draw the CDF by
+accumulating the bar heights from left to right.
+
+```{r}
+#| label: fig-support-cdf-prompt
+#| fig-cap: "Left: the completed PMF for the number of escalations. Right: axes on which to draw its cumulative distribution function."
+#| fig-width: 9
+#| fig-height: 3.8
+#| echo: false
+p_support_pmf <- ggplot(support_pmf,
+                        aes(x = escalations, y = probability)) +
+  geom_col(fill = "steelblue", width = 0.65) +
+  geom_text(aes(label = number(probability, accuracy = 0.01)),
+            vjust = -0.5) +
+  scale_x_continuous(breaks = 0:3) +
+  scale_y_continuous(limits = c(0, 0.60),
+                     expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Number of escalations, X", y = "Probability", title = "PMF")
+
+p_support_cdf_blank <- ggplot() +
+  scale_x_continuous(breaks = 0:3, limits = c(-0.5, 3.5)) +
+  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
+  labs(x = "Threshold, x", y = "Accumulated probability",
+       title = "CDF: Pr(X ≤ x)")
+
+p_support_pmf | p_support_cdf_blank
+```
+
+1. Circle the CDF height that gives the probability of at most one escalation.
+2. Mark the jump at two escalations. How does its height recover the probability
+   of exactly two escalations?
+
+::: {#solution-support-escalation-cdf .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+```{r}
+#| label: fig-support-cdf-solution
+#| fig-cap: "The PMF and CDF of the number of escalations. Each CDF jump has the same height as the corresponding PMF bar."
+#| fig-width: 9
+#| fig-height: 3.8
+#| echo: false
+support_cdf <- bind_rows(
+  tibble(x = -0.5, cumulative_probability = 0),
+  transmute(support_pmf,
+            x = escalations,
+            cumulative_probability = cumsum(probability)),
+  tibble(x = 3.5, cumulative_probability = 1)
+)
+
+p_support_cdf <- ggplot(support_cdf,
+                        aes(x = x, y = cumulative_probability)) +
+  geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
+  geom_point(data = filter(support_cdf, x %in% 0:3),
+             color = "steelblue", size = 2.5) +
+  annotate("segment", x = 2, xend = 2, y = 0.83, yend = 0.95,
+           color = "darkorange", linewidth = 1.5) +
+  annotate("label", x = 2.25, y = 0.89, label = "jump = 0.12",
+           size = 3.5, fill = "white") +
+  annotate("label", x = 1, y = 0.83, label = "at most 1 = 0.83",
+           hjust = -0.08, vjust = 1.2, size = 3.5, fill = "white") +
+  scale_x_continuous(breaks = 0:3, limits = c(-0.5, 3.5)) +
+  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
+  labs(x = "Threshold, x", y = "Accumulated probability",
+       title = "CDF: Pr(X ≤ x)")
+
+p_support_pmf | p_support_cdf
+```
+
+The CDF reaches 0.83 at one escalation, so the probability of at most one is
+0.83. At two escalations it rises from 0.83 to 0.95. That jump has height
+$0.95-0.83=0.12$, matching the PMF bar at two.
+
+:::
+::::
+
 Plotting the accumulated area under the density against the threshold $x$ traces the CDF, the model analogue of the empirical CDF we drew for observed prices in the first chapter. The relationship runs both ways: the density at $x$ is the rate at which cumulative probability accumulates as the threshold passes $x$ (if you've had calculus: the PDF is the derivative of the CDF). @fig-price-model-cdf shows the pair for a single threshold (\$500K) and probability.
 
 ```{r}
@@ -341,6 +531,90 @@ p_dens | p_cdf
 Varying the threshold traces out the CDF:
 
 ![Tracing out the CDF. As the threshold sweeps from left to right, the shaded area under the density (left) accumulates, and the CDF (right) records the running total, climbing from 0 toward 1.](images/cdf_accumulation.gif){#fig-cdf-animation}
+
+:::: {.Exercise #exercise-continuous-delivery-cdf}
+## Areas and a continuous CDF
+
+The PDF below describes a non-normal model for delivery time $T$, measured in
+days. On a copy of the density, shade the area representing each probability
+before calculating it: $\Pr(T\leq 3)$, $\Pr(2<T\leq 5)$, and $\Pr(T>5)$.
+
+```{r}
+#| label: fig-delivery-density-exercise
+#| fig-cap: "A non-normal PDF for delivery time. The vertical lines mark the thresholds used in the exercise."
+#| fig-alt: "A non-normal, stepped delivery-time density with vertical markers at 2, 3, and 5 days."
+#| fig-width: 7
+#| fig-height: 3.5
+#| echo: false
+delivery_pdf_exercise <- tribble(
+  ~xmin, ~xmax, ~density,
+  0,     2,     0.140,
+  2,     3,     0.390,
+  3,     5,     0.135,
+  5,     7,     0.030
+)
+
+ggplot(delivery_pdf_exercise) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = density),
+            fill = "steelblue", alpha = 0.35, color = "steelblue") +
+  geom_vline(xintercept = c(2, 3, 5), linetype = "dashed", color = "grey40") +
+  scale_x_continuous(breaks = c(0, 2, 3, 5, 7)) +
+  scale_y_continuous(breaks = NULL) +
+  labs(x = "Delivery time (days)", y = "Density")
+```
+
+The model's CDF has $F(2)=0.28$, $F(3)=0.67$, and $F(5)=0.94$. Use these
+values to compute the three probabilities. Why would changing
+$2<T\leq 5$ to $2\leq T<5$ leave the probability unchanged?
+
+::: {#solution-continuous-delivery-cdf .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The first probability is the area to the left of 3, the second is the area
+between 2 and 5, and the third is the area to the right of 5. The CDF gives
+
+$$
+\Pr(T\leq 3)=F(3)=0.67,
+$$
+
+$$
+\Pr(2<T\leq 5)=F(5)-F(2)=0.94-0.28=0.66,
+$$
+
+and
+
+$$
+\Pr(T>5)=1-F(5)=0.06.
+$$
+
+A continuous distribution assigns probability zero to any one exact value.
+Adding or removing the endpoints 2 and 5 therefore does not change the area.
+
+:::
+::::
+
+:::: {.Exercise #exercise-marketing-channel-union}
+## Overlapping marketing channels
+
+For one customer, a retailer's model assigns probability 0.42 to opening an
+email promotion, 0.28 to viewing the matching social-media promotion, and
+0.15 to doing both. Find the probability that the customer sees at least one
+of the promotions. Then find the probability that the customer sees neither.
+
+::: {#solution-marketing-channel-union .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The probability of at least one exposure is
+
+$$
+0.42+0.28-0.15=0.55.
+$$
+
+The complement rule gives a probability of $1-0.55=0.45$ that the customer
+sees neither promotion.
+
+:::
+::::
 
 Just as we boiled a column of data down to a mean and a standard deviation, we can boil a probability distribution down to a few numbers that locate its center and measure its spread. Those numbers are among the distribution's **parameters** --- features of a probability distribution, of which center and spread are the first two we'll study --- and they are where the next chapter begins.
 

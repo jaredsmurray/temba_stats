@@ -41,12 +41,14 @@ Use the workspace with these files:
    — the assignment.
 2. [IntroStatGPT: Homework Workflow](files/homework-01-workflow.pdf) — how to
    generate output, review the report outline, and export your report.
-3. [Sample Homework 1 chat](introstatgpt/homework-01-sample-chat.qmd) — one
-   complete output-generation conversation. It creates the required tables and
-   figures but does not answer the homework questions.
-4. [Homework 1 report skeleton](files/homework-01-report-skeleton.docx) —
-   known-good copies of the required tables and figures, with no written
-   answers. Use it if IntroStatGPT is unavailable or to check your output.
+3. **Optional:** [Sample Homework 1 chat](introstatgpt/homework-01-sample-chat.qmd)
+   — try generating the required output yourself first. If you get stuck, use
+   this complete output-generation conversation to check your requests and
+   output. It does not answer the homework questions.
+4. **Optional:** [Homework 1 report skeleton](files/homework-01-report-skeleton.docx)
+   — try building your own report first. This file contains known-good copies
+   of the required tables and figures, with no written answers. Use it to check
+   your output or as a backup if IntroStatGPT is unavailable.
 
 Submit the PDF you export from Word.
 

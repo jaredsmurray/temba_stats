@@ -117,6 +117,29 @@ computing normal probabilities, densities, and quantiles takes the mean and
 kept straight when moving between a written model and code.
 :::
 
+:::: {.Exercise #exercise-read-normal-model}
+## Reading a normal model
+
+A distribution center models next week's demand for a product as
+
+$$
+X \sim N(500, 80^2),
+$$
+
+where $X$ is measured in units. State the mean, variance, and standard
+deviation, including units. Which two values would you supply to software that
+asks for the mean and standard deviation?
+
+::: {#solution-read-normal-model .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The mean is 500 units, the variance is $80^2 = 6{,}400$ units squared, and the
+standard deviation is 80 units. Software that asks for a mean and standard
+deviation should receive 500 and 80, not 500 and 6,400.
+
+:::
+::::
+
 A shifted and scaled normal random variable is still normal: if $X \sim N(\mu, \sigma^2)$, then $Y = aX + b$ follows another normal distribution with mean and variance given by the shifting-and-scaling rules from @sec-shift-scale: $N(a\mu + b,\; a^2\sigma^2)$.
 
 ## Computing probabilities {#sec-normal-probabilities}
@@ -138,6 +161,33 @@ ggplot(returns, aes(x = market)) +
 ```
 
 To be clear: Weekly returns are not literally normal --- a return can't fall below $-100\%$, and real markets tend to produce more extreme outcomes than a normal distribution would give. What we are claiming (for now!) is that the normal distribution is a *good enough approximation*: close enough to the true distribution, in the region we care about, that probability statements computed from it are useful. That's the case for any model, and to the extent we can, we should check whether our modeling assumptions are supported or not by the data available to us. We'll do that below.
+
+:::: {.Exercise #exercise-normal-model-plausibility}
+## Which normal model is most plausible?
+
+A consultant proposes a normal model for each of the following variables:
+
+1. package weight from a calibrated filling machine;
+2. annual insurance claim cost per customer, when many customers have no claim
+   and a few have very large claims;
+3. the percentage of a firm's customers who renew their contracts next year.
+
+For each variable, identify a feature that supports or undermines a normal
+model. Which variable is most plausibly modeled as normal without a
+transformation?
+
+::: {#solution-normal-model-plausibility .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+Package weight is continuous and may fluctuate roughly symmetrically around a
+machine's target, so it is the most plausible candidate. Annual claim cost has
+a pile of observations at zero and a long right tail, which conflicts with a
+normal model. A renewal percentage is bounded between 0% and 100%; a normal
+approximation could be reasonable if its center is far from both bounds and its
+spread is small, but the bounds can otherwise matter.
+
+:::
+::::
 
 With that model in hand we can compute any probabilities of interest as areas under the curve.  
 
@@ -243,6 +293,38 @@ pF <- pC
 (pA | pB | pC) / (pD | pE | pF)
 ```
 
+:::: {.Exercise #exercise-normal-service-probabilities}
+## Service-time probabilities
+
+A logistics team models delivery time within a city as
+$T \sim N(42, 9^2)$ minutes. For each probability, first sketch the relevant
+area under a normal curve and then calculate it.
+
+1. What is the probability that a delivery takes more than 60 minutes?
+2. What is the probability that a delivery takes between 35 and 50 minutes?
+
+::: {#solution-normal-service-probabilities .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+For the first probability, shade the area to the right of 60. Subtract the
+normal CDF at 60 from one:
+
+$$
+\Pr(T>60)=1-F_T(60)\approx 0.0228.
+$$
+
+For the second, shade the area between 35 and 50 and subtract the two CDF
+values:
+
+$$
+\Pr(35<T<50)
+=F_T(50)-F_T(35)
+\approx 0.5946.
+$$
+
+:::
+::::
+
 
 ## The 68/95/99.7 rule {#sec-empirical-rule}
 
@@ -313,6 +395,36 @@ ggplot(norm_df, aes(x = x, y = y)) +
 
 Applied to the returns model: about two weeks in three land between `r percent(mu_r - sd_r, accuracy = 0.1)` and `r percent(mu_r + sd_r, accuracy = 0.1)`; about 19 weeks in 20 land between `r percent(mu_r - 2 * sd_r, accuracy = 0.1)` and `r percent(mu_r + 2 * sd_r, accuracy = 0.1)`; and a week outside `r percent(mu_r - 3 * sd_r, accuracy = 0.1)` to `r percent(mu_r + 3 * sd_r, accuracy = 0.1)` should be a once-in-several-years event. The rule works in both directions. Given the parameters you can sketch the whole distribution in your head, and given an extreme outcome you can immediately place it: a $-4\%$ week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there's no dependence between consecutive weekly returns).
 
+:::: {.Exercise #exercise-filling-empirical-rule}
+## Applying the 68/95/99.7 rule
+
+A filling machine produces bottles with a mean fill of 355 milliliters and a
+standard deviation of 3 milliliters. Assume fill amounts are normally
+distributed.
+
+1. Give the intervals containing approximately 68%, 95%, and 99.7% of fills.
+2. A bottle contains 346 milliliters. How many standard deviations below the
+   mean is it?
+3. Approximately what percentage of bottles are at least that far from the
+   mean in either direction?
+
+::: {#solution-filling-empirical-rule .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The three intervals are 352 to 358 milliliters, 349 to 361 milliliters, and 346
+to 364 milliliters. For the 346-milliliter bottle,
+
+$$
+z=\frac{346-355}{3}=-3.
+$$
+
+It is three standard deviations below the mean. The 68/95/99.7 rule places
+about 99.7% of bottles within three standard deviations, so approximately 0.3%
+are at least that far from the mean in either direction.
+
+:::
+::::
+
 
 ## Z-scores, again {#sec-standard-normal}
 
@@ -321,8 +433,35 @@ Standardizing a normal random variable --- $Z = (X - \mu)/\sigma$ --- produces t
 ::: {.callout-warning}
 ## Common mistake: Z-scores carry probabilities only for normal distributions
 
-These probability statements attach to z-scores *only when the underlying random variable is normal*. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean --- that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution's shape. A z-score of 2.5 is a once-in-eighty event under a normal distribution; under a heavy-tailed one it might be a monthly occurrence.
+These probability statements attach to z-scores *only when the underlying random variable is normal*. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean --- that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution's shape. Under a normal distribution, an observation at least 2.5 standard deviations from the mean, $|Z| \geq 2.5$, is a once-in-eighty event; under a heavy-tailed one it might be a monthly occurrence.
 :::
+
+:::: {.Exercise #exercise-skewed-z-score}
+## What a z-score does—and does not—tell us
+
+Suppose a strongly right-skewed measure of engineering productivity has a mean
+of 420 and a standard deviation of 500. One engineer's observed value is 1,420.
+
+1. Calculate the z-score and interpret it.
+2. Can you use a normal probability table or normal-distribution software to
+   determine the probability of observing a value at least this large? Explain.
+
+::: {#solution-skewed-z-score .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The z-score is
+
+$$
+z=\frac{1{,}420-420}{500}=2.
+$$
+
+The observed productivity is two standard deviations above the mean. That
+interpretation is valid for any distribution. A normal tail probability is not
+justified, however, because the distribution is strongly right-skewed rather
+than normal. The z-score alone does not determine a probability.
+
+:::
+::::
 
 The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks --- five or so out of our `r nrow(returns)` --- should land more than two standard deviations from the mean. In the data, `r sum(abs((returns$market - mu_r) / sd_r) > 2)` weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. Judging them by counting is crude; the next section builds a better diagnostic for checking normality (and more generally for comparing any two distributions).
 
@@ -400,6 +539,35 @@ ref_panel <- function(title) {
 ```
 
 Looking through the other examples, we see sustained deviations from normality. Hourly wages bow high above the line at the top: extreme earners are far larger than any normal distribution would produce --- strong right skew. The flat run of identical points at the very top is a survey artifact, not a distributional shape: the largest reported earnings are capped at a common value. Taking logs --- the transformation from Chapter 4 --- pulls the wage points much closer to the line, but we still see some evidence of heavier tails than expected. Daily electricity demand flattens out at both ends of the line: its extremes are less extreme than a normal's. The flat stretch of points cutting across the line in the middle of the panel is a different signal --- many days pile up at similar loads, suggesting a mode or "shoulder" --- and neither feature is consistent with a normal distribution.
+
+:::: {.Exercise #exercise-qq-model-check}
+## Comparing asset returns with QQ plots
+
+Using the weekly AAPL and MSTR returns in the course data, create a histogram
+and a normal QQ plot for each variable using software of your choice.
+
+1. Which asset's weekly returns are better approximated by a normal
+   distribution? Cite a feature of the plots that supports your conclusion.
+2. For the less-normal variable, would a normal model be more vulnerable when
+   estimating the middle 50% of returns or the probability of an extreme weekly
+   loss? Explain.
+
+::: {#solution-qq-model-check .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+AAPL returns are better approximated by a normal distribution: their histogram
+is more nearly symmetric and most of their QQ points stay closer to a straight
+line. The endpoints still depart from the line, so the approximation is not
+perfect. MSTR returns show stronger right skew and a more pronounced departure
+in the upper tail.
+
+For MSTR, a normal model is more vulnerable when estimating an extreme-tail
+probability. Its middle quantiles lie closer to the reference line than its
+tails do, so an estimate of the middle 50% is less sensitive to the visible
+departure from normality than an estimate involving an extreme weekly loss.
+
+:::
+::::
 
 ## Data used in this section {.unnumbered}
 

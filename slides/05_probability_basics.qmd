@@ -1,0 +1,375 @@
+---
+title: "Probability Basics"
+subtitle: "TEMBA Statistics 2026"
+fig-align: center
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+
+lending_subs <- load_lending_subs()
+austin <- load_austin_subset()
+
+sb_rate <- mean(lending_subs$default[lending_subs$purpose == "small_business"])
+
+# Lognormal price model for the three-ZIP Austin subset
+m <- mean(austin$latest_price)
+v <- var(austin$latest_price)
+sdlog <- sqrt(log(1 + v / m^2))
+mulog <- log(m) - log(1 + v / m^2) / 2
+
+support_pmf <- tibble(
+  escalations = 0:3,
+  probability = c(0.52, 0.31, 0.12, 0.05)
+)
+```
+
+## Random variables
+
+::: {.callout-note}
+## Definition: Random variable
+
+A **random variable** is a number about which we are uncertain, either because we have incomplete information or because it depends on what happens in the future. We write random variables as capital letters: $X$, $Y$, and $D$.
+:::
+
+::: {.incremental}
+- Let $D=1$ if a new loan defaults and $D=0$ if it is repaid.
+- Let $X$ be the loan's payoff in dollars.
+- Uncertain categories become random variables by coding, just as observed categories did.
+:::
+
+## Events and probability
+
+::: {.incremental}
+- An **event** is a collection of possible outcomes. Examples include "the loan defaults" ($D = 1$) and "the payoff is at least \$10,000" ($X \geq 10{,}000$).
+- A **probability** is a number in $[0, 1]$ attached to an event --- the higher the number, the more likely the event.
+:::
+
+## The three fundamental probability rules
+
+::: {.incremental}
+1. **Probabilities are non-negative.** $\Pr(A) \geq 0$.
+2. **Something must happen.** $\Pr(\text{all possible outcomes}) = 1$.
+3. **Mutually exclusive events add.** If $A$ and $B$ can't both happen, $\Pr(A \text{ or } B) = \Pr(A) + \Pr(B)$.
+:::
+
+::: {.fragment}
+Everything else we do with probabilities follows from these three rules.
+:::
+
+## Complement and addition rules
+
+The **complement rule**:
+
+$$
+\Pr(\text{not } A) = 1 - \Pr(A)
+$$
+
+::: {.fragment}
+The **addition rule**, when events can overlap:
+
+$$
+\Pr(A \text{ or } B) = \Pr(A) + \Pr(B) - \Pr(A \text{ and } B)
+$$
+
+We subtract the overlap because it got counted twice.
+:::
+
+## Overlapping and mutually exclusive events {.smaller}
+
+For one e-commerce order,
+
+$$
+\Pr(\text{return})=0.18,\quad
+\Pr(\text{contact})=0.24,\quad
+\Pr(\text{both})=0.09.
+$$
+
+What is the probability that the order is returned or produces a customer-service contact?
+
+::: {.fragment}
+$$
+0.18+0.24-0.09=0.33.
+$$
+
+A separate order must use exactly one of two methods: standard with probability 0.68 or express with probability 0.32. These events cannot overlap, so their union has probability $0.68+0.32=1$.
+:::
+
+## Discrete and continuous random variables
+
+::: {.incremental}
+- A **discrete** random variable takes specific, distinct values that we can list. Examples include $D$, $X$, and counts.
+- A **continuous** random variable can take any value in a range. Examples include prices and returns.
+- The distinction differs from quantitative versus categorical: a count is quantitative but discrete.
+:::
+
+## The distribution of the default indicator
+
+For the running small-business loan, we round its historical `r percent(sb_rate, accuracy = 0.1)` default rate to 0.25.
+
+```{r}
+#| label: table-default-pmf
+tribble(
+  ~Outcome, ~`Meaning`, ~Probability,
+  "$D = 1$", "Loan defaults", "0.25",
+  "$D = 0$", "Loan is repaid", "0.75"
+) |>
+  knitr::kable(align = c("l", "l", "r"))
+```
+
+::: {.fragment}
+::: {.callout-note}
+## Definition: Probability mass function
+
+A **PMF** assigns a probability to each possible outcome of a discrete random variable. The probabilities are non-negative and sum to one. This is the probability-model analogue of the proportion column in a frequency table.
+:::
+:::
+
+## Complete a support-ticket PMF
+
+$X$ is the number of times a support ticket is escalated. What height completes its PMF?
+
+:::: {.r-stack}
+::: {.fragment .fade-out data-fragment-index="1"}
+```{r}
+#| label: viz-support-pmf-prompt
+#| fig-width: 8
+#| fig-height: 3.8
+ggplot(filter(support_pmf, escalations < 3),
+       aes(x = factor(escalations, levels = 0:3), y = probability)) +
+  geom_col(fill = "steelblue", width = 0.65) +
+  geom_text(aes(label = number(probability, accuracy = 0.01)),
+            vjust = -0.5, size = 5) +
+  annotate("rect", xmin = 3.67, xmax = 4.33, ymin = 0, ymax = 0.58,
+           fill = NA, color = "grey55", linetype = "dashed") +
+  annotate("text", x = 4, y = 0.08, label = "?", size = 8) +
+  scale_x_discrete(drop = FALSE) +
+  scale_y_continuous(limits = c(0, 0.60),
+                     expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Number of escalations, X", y = "Probability")
+```
+:::
+
+::: {.fragment .fade-in data-fragment-index="1"}
+```{r}
+#| label: viz-support-pmf-solution
+#| fig-width: 8
+#| fig-height: 3.8
+ggplot(support_pmf,
+       aes(x = factor(escalations), y = probability,
+           fill = escalations == 0)) +
+  geom_col(width = 0.65, show.legend = FALSE) +
+  geom_text(aes(label = number(probability, accuracy = 0.01)),
+            vjust = -0.5, size = 5) +
+  annotate("segment", x = 2, xend = 4, y = 0.40, yend = 0.40,
+           color = "darkorange", linewidth = 1) +
+  annotate("segment", x = 2, xend = 2, y = 0.38, yend = 0.42,
+           color = "darkorange", linewidth = 1) +
+  annotate("segment", x = 4, xend = 4, y = 0.38, yend = 0.42,
+           color = "darkorange", linewidth = 1) +
+  annotate("label", x = 3, y = 0.43, label = "at least one: 0.48",
+           color = "darkorange", fill = "white", size = 4.5) +
+  scale_fill_manual(values = c(`TRUE` = "steelblue", `FALSE` = "darkorange")) +
+  scale_y_continuous(limits = c(0, 0.60),
+                     expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Number of escalations, X", y = "Probability")
+```
+:::
+::::
+
+## The loan payoff distribution
+
+This distribution describes a \$10,000 loan at 12% interest, with 60% of principal recovered in default.
+
+```{r}
+#| label: table-payoff-pmf
+tribble(
+  ~Outcome, ~`Meaning`, ~Probability,
+  "$X = \\$11{,}200$", "Loan is repaid (principal + interest)", "0.75",
+  "$X = \\$6{,}000$", "Loan defaults (60% of principal recovered)", "0.25"
+) |>
+  knitr::kable(align = c("l", "l", "r"))
+```
+
+Because the outcomes are now dollar amounts, we can ask what payoff the lender should *expect*.
+
+## The FedWatch distributions as bar charts
+
+The [CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) distributions recorded on July 9, 2026 are discrete PMFs.
+
+```{r}
+#| label: viz-cme-pmfs
+#| fig-width: 9
+#| fig-height: 4
+p_july <- ggplot(cme_july, aes(x = bucket, y = prob)) +
+  geom_col(fill = "steelblue", width = 0.6) +
+  geom_text(aes(label = number(prob, accuracy = 0.001)), vjust = -0.5, size = 4.2) +
+  scale_y_continuous(limits = c(0, 0.85),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(x = NULL, y = "Probability", title = "July 29 meeting") +
+  theme_minimal(base_size = 13)
+
+p_sept <- ggplot(cme_sept, aes(x = bucket, y = prob)) +
+  geom_col(fill = "steelblue", width = 0.6) +
+  geom_text(aes(label = number(prob, accuracy = 0.001)), vjust = -0.5, size = 4.2) +
+  scale_y_continuous(limits = c(0, 0.85),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(x = NULL, y = NULL, title = "September 16 meeting") +
+  theme_minimal(base_size = 13)
+
+p_july | p_sept
+```
+
+Unlike a distribution of observed data, these heights are probabilities for outcomes that have not happened yet.
+
+## Probability density functions
+
+::: {.callout-note}
+## Definition: Probability density function
+
+A **PDF** assigns probabilities to **intervals** of a continuous random variable: the probability of an interval is the area under the curve over it. The curve is never negative, and the total area is one.
+:::
+
+::: {.incremental}
+- The height of the curve is *not* a probability --- only areas are.
+- Any single exact value has probability zero.
+:::
+
+## A price model for a future sale
+
+```{r}
+#| label: viz-price-model-density
+#| fig-width: 9
+#| fig-height: 4.2
+dens_df <- tibble(x = seq(1e4, 2e6, length.out = 800),
+                  y = dlnorm(x, meanlog = mulog, sdlog = sdlog))
+p_interval <- plnorm(5e5, mulog, sdlog) - plnorm(4e5, mulog, sdlog)
+
+ggplot(dens_df, aes(x = x, y = y)) +
+  geom_area(data = filter(dens_df, x >= 4e5, x <= 5e5),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("label", x = 9.5e5, y = max(dens_df$y) * 0.55,
+           label = paste0("area = ", number(p_interval, accuracy = 0.01),
+                          "\nPr($400K < X < $500K)"),
+           size = 4.4, fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  labs(x = "Sale price", y = "Density")
+```
+
+This probability model is anchored on the historical prices. Under the model, the next sale price $X$ lands between \$400K and \$500K with probability `r number(p_interval, accuracy = 0.01)`.
+
+## The cumulative distribution function
+
+The **CDF** plots the accumulated probability $\Pr(X \leq x)$ against the price threshold $x$.
+
+```{r}
+#| label: viz-price-model-cdf
+#| fig-width: 9.5
+#| fig-height: 4
+x0 <- 5e5
+p_below <- plnorm(x0, mulog, sdlog)
+
+cdf_df <- tibble(x = dens_df$x, cdf = plnorm(x, mulog, sdlog))
+
+p_dens <- ggplot(dens_df, aes(x = x, y = y)) +
+  geom_area(data = filter(dens_df, x <= x0),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("label", x = 1.05e6, y = max(dens_df$y) * 0.6,
+           label = paste0("area = ", number(p_below, accuracy = 0.01)),
+           size = 4.2, fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  labs(x = "Sale price", y = "Density") +
+  theme_minimal(base_size = 12)
+
+p_cdf <- ggplot(cdf_df, aes(x = x, y = cdf)) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("point", x = x0, y = p_below, color = "darkorange", size = 3) +
+  annotate("label", x = x0, y = p_below, parse = TRUE,
+           label = paste0('Pr(X <= "$500K") == ', number(p_below, accuracy = 0.01)),
+           hjust = -0.08, vjust = 1, size = 4.2,
+           fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Sale price", y = "Cumulative probability") +
+  theme_minimal(base_size = 12)
+
+p_dens | p_cdf
+```
+
+The marked point on the right equals the shaded area on the left. The CDF rises fastest where the density places the most probability.
+
+## Build the support-ticket CDF
+
+Accumulate the PMF bar heights from left to right. Where does the CDF show $\Pr(X\leq 1)$? How does its jump at 2 recover $\Pr(X=2)$?
+
+:::: {.r-stack}
+::: {.fragment .fade-out data-fragment-index="1"}
+```{r}
+#| label: viz-support-cdf-prompt
+#| fig-width: 9
+#| fig-height: 3.7
+p_support_pmf <- ggplot(support_pmf,
+                        aes(x = escalations, y = probability)) +
+  geom_col(fill = "steelblue", width = 0.65) +
+  geom_text(aes(label = number(probability, accuracy = 0.01)),
+            vjust = -0.5, size = 4.3) +
+  scale_x_continuous(breaks = 0:3) +
+  scale_y_continuous(limits = c(0, 0.60),
+                     expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Number of escalations, X", y = "Probability", title = "PMF") +
+  theme_minimal(base_size = 12)
+
+p_support_cdf_blank <- ggplot() +
+  scale_x_continuous(breaks = 0:3, limits = c(-0.5, 3.5)) +
+  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
+  labs(x = "Threshold, x", y = "Accumulated probability", title = "CDF") +
+  theme_minimal(base_size = 12)
+
+p_support_pmf | p_support_cdf_blank
+```
+:::
+
+::: {.fragment .fade-in data-fragment-index="1"}
+```{r}
+#| label: viz-support-cdf-solution
+#| fig-width: 9
+#| fig-height: 3.7
+support_cdf <- bind_rows(
+  tibble(x = -0.5, cumulative_probability = 0),
+  transmute(support_pmf,
+            x = escalations,
+            cumulative_probability = cumsum(probability)),
+  tibble(x = 3.5, cumulative_probability = 1)
+)
+
+p_support_cdf <- ggplot(support_cdf,
+                        aes(x = x, y = cumulative_probability)) +
+  geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
+  geom_point(data = filter(support_cdf, x %in% 0:3),
+             color = "steelblue", size = 2.5) +
+  annotate("segment", x = 2, xend = 2, y = 0.83, yend = 0.95,
+           color = "darkorange", linewidth = 1.5) +
+  annotate("label", x = 2.28, y = 0.89, label = "jump = 0.12",
+           size = 3.5, fill = "white") +
+  annotate("label", x = 1, y = 0.83, label = "at most 1 = 0.83",
+           hjust = -0.08, vjust = 1.2, size = 3.5, fill = "white") +
+  scale_x_continuous(breaks = 0:3, limits = c(-0.5, 3.5)) +
+  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
+  labs(x = "Threshold, x", y = "Accumulated probability", title = "CDF") +
+  theme_minimal(base_size = 12)
+
+p_support_pmf | p_support_cdf
+```
+:::
+::::
+
+## Tracing out the CDF
+
+![](assets/images/cdf_accumulation.gif){fig-align="center"}

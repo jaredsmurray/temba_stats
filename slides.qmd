@@ -11,4 +11,7 @@ keyboard shortcuts, `E` for print view).
 2. [Measuring Location and Spread](slides/02_location_and_spread.qmd)
 3. [Categorical Variables](slides/03_categorical_variables.qmd)
 
-4. [Probability](slides/04_probability.qmd)
+4. [Introduction to Probability and Sampling](slides/04_probability.qmd)
+5. [Probability Basics](slides/05_probability_basics.qmd)
+6. [Parameters of Probability Distributions](slides/06_distribution_parameters.qmd)
+7. [The Normal Distribution](slides/07_normal_distribution.qmd)

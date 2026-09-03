@@ -1,0 +1,424 @@
+---
+title: "Parameters of Probability Distributions"
+subtitle: "TEMBA Statistics 2026"
+fig-align: center
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+
+austin <- load_austin_subset()
+
+# Lognormal price model for the three-ZIP Austin subset (method of moments)
+m <- mean(austin$latest_price)
+v <- var(austin$latest_price)
+sdlog <- sqrt(log(1 + v / m^2))
+mulog <- log(m) - log(1 + v / m^2) / 2
+
+dens_df <- tibble(
+  x = seq(1e4, 2e6, length.out = 800),
+  y = dlnorm(x, meanlog = mulog, sdlog = sdlog)
+)
+cdf_df <- tibble(x = dens_df$x, cdf = plnorm(x, mulog, sdlog))
+
+# Small-business loan example: $10,000 principal, 60% recovery on default,
+# default probability 0.25 (rounded from the historical 25.8% rate)
+principal <- 10000
+p_default <- 0.25
+payoff_12 <- c(11200, 6000)
+payoff_16 <- c(11600, 6000)
+probs     <- c(1 - p_default, p_default)
+
+ev_pay12 <- sum(probs * payoff_12)
+ev_pay16 <- sum(probs * payoff_16)
+sd_pay16 <- sqrt(sum(probs * (payoff_16 - ev_pay16)^2))
+
+# Risk-comparison loans from the notes
+profit_A <- c(1400, -4000)
+probs_A  <- c(0.80, 0.20)
+ev_A <- sum(probs_A * profit_A)
+sd_A <- sqrt(sum(probs_A * (profit_A - ev_A)^2))
+
+profit_B <- c(800, -4000)
+probs_B  <- c(0.90, 0.10)
+ev_B <- sum(probs_B * profit_B)
+sd_B <- sqrt(sum(probs_B * (profit_B - ev_B)^2))
+```
+
+## What payoff should the lender expect?
+
+We use the small-business loan and round its historical default rate to 0.25. The \$10,000 loan charges 12% interest and recovers 60% of principal after default.
+
+```{r}
+#| label: table-payoff-question
+tribble(
+  ~Outcome, ~Probability,
+  "Repaid: $11,200", "0.75",
+  "Default: $6,000", "0.25"
+) |>
+  knitr::kable(align = c("l", "r"))
+```
+
+## The mean of a random variable
+
+::: {.callout-note}
+## Definition: Mean (expected value) of a random variable
+
+The mean is a weighted average of the possible outcomes, with each outcome weighted by its probability:
+
+$$
+E[X] = \sum_{i=1}^{k} \Pr(X = x_i)\,x_i
+$$
+
+We often write $\mu$: $E[X] = \mu$.
+:::
+
+The expected value is the long-run average outcome when the random process repeats many times. For a fair coin coded $X = 1$ for heads and $X = 0$ for tails, $E[X] = 0.5$. If you flip long enough, the average of your 0s and 1s will get arbitrarily close to 0.5.
+
+## The expected payoff at 12%
+
+```{r}
+#| label: table-payoff-ev
+tibble(
+  Outcome = c("Repaid: $11,200", "Default: $6,000", "**Expected value**"),
+  Probability = c("0.75", "0.25", ""),
+  `Probability × outcome` = c(dollar(0.75 * 11200), dollar(0.25 * 6000),
+                              dollar(sum(probs * payoff_12)))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+Subtracting the \$10,000 principal gives an expected profit of `r dollar(ev_pay12 - principal)`: at 12% interest, this loan *loses* \$100 on average.
+
+## Raising the rate to 16%
+
+```{r}
+#| label: table-payoff-ev-16
+tibble(
+  Outcome = c("Repaid: $11,600", "Default: $6,000", "**Expected value**"),
+  Probability = c("0.75", "0.25", ""),
+  `Probability × outcome` = c(dollar(0.75 * 11600), dollar(0.25 * 6000),
+                              dollar(ev_pay16))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+At 16% interest, the expected profit is `r dollar(ev_pay16 - principal)` per loan. The loan is now profitable on average.
+
+## Example: the expected Fed rate {.smaller}
+
+The [CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) model assigns probabilities to target ranges after each meeting.
+
+:::: {.columns}
+
+::: {.column width="48%"}
+**July 29 meeting**
+
+```{r}
+#| label: table-cme-params-july
+cme_july |>
+  mutate(midpoint = paste0(number(midpoint, accuracy = 0.001), "%"),
+         prob = number(prob, accuracy = 0.001)) |>
+  rename(`Target range` = bucket, Midpoint = midpoint, Probability = prob) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+**September 16 meeting**
+
+```{r}
+#| label: table-cme-params-sept
+cme_sept |>
+  mutate(midpoint = paste0(number(midpoint, accuracy = 0.001), "%"),
+         prob = number(prob, accuracy = 0.001)) |>
+  rename(`Target range` = bucket, Midpoint = midpoint, Probability = prob) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+:::
+
+::::
+
+Weighting midpoints by probabilities gives an implied expected target rate of `r number(sum(cme_july$midpoint * cme_july$prob), accuracy = 0.001)`% after July and `r number(sum(cme_sept$midpoint * cme_sept$prob), accuracy = 0.001)`% after September. Neither is a possible outcome --- the range moves in quarter-point steps.
+
+## Expected warranty cost {.smaller}
+
+The seller's one-year warranty cost for one appliance has this distribution:
+
+```{r}
+#| label: table-warranty-cost
+tibble(
+  Cost = c(cell_usd(0), cell_usd(120), cell_usd(600)),
+  Probability = c("0.82", "0.15", "0.03")
+) |>
+  knitr::kable(align = c("r", "r"))
+```
+
+What is the expected cost per appliance? Why is that value useful even if no individual warranty has that cost?
+
+::: {.fragment}
+$$
+E[W]=0.82(0)+0.15(120)+0.03(600)=\$36.
+$$
+
+An individual warranty costs $0, $120, or $600. Across many appliances, the average warranty cost should land near $36 if the model continues to describe the outcomes.
+:::
+
+## Two loans, same expected profit {.smaller}
+
+::: {.columns}
+
+::: {.column width="48%"}
+**Loan A (higher-risk borrower, 14%)**
+
+```{r}
+#| label: table-loan-a-pmf
+tibble(
+  Profit = c(dollar(profit_A[1]), dollar(profit_A[2]), "**Expected profit**"),
+  Probability = c(number(probs_A[1], accuracy = 0.01),
+                  number(probs_A[2], accuracy = 0.01), ""),
+  `Probability × profit` = c(dollar(probs_A[1] * profit_A[1]),
+                             dollar(probs_A[2] * profit_A[2]),
+                             dollar(ev_A))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+**Loan B (lower-risk borrower, 8%)**
+
+```{r}
+#| label: table-loan-b-pmf
+tibble(
+  Profit = c(dollar(profit_B[1]), dollar(profit_B[2]), "**Expected profit**"),
+  Probability = c(number(probs_B[1], accuracy = 0.01),
+                  number(probs_B[2], accuracy = 0.01), ""),
+  `Probability × profit` = c(dollar(probs_B[1] * profit_B[1]),
+                             dollar(probs_B[2] * profit_B[2]),
+                             dollar(ev_B))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+:::
+
+:::
+
+Both loans earn `r dollar(ev_B)` on average. **Which would you rather fund?**
+
+## Variance and standard deviation
+
+::: {.callout-note}
+## Definition: Variance and standard deviation of a random variable
+
+The probability-weighted average of squared deviations from the mean:
+
+$$
+\text{Var}(X) = \sum_{i=1}^{k} \Pr(X = x_i)\,(x_i - \mu)^2
+$$
+
+We write $\sigma^2 = \text{Var}(X)$. The **standard deviation** $\sigma = \sqrt{\text{Var}(X)}$ is back in the units of $X$.
+:::
+
+The variance is the expected squared distance between the random variable and its mean --- how wrong we expect to be if we predict $X$ by $\mu$.
+
+## Notation for distributions and samples {.smaller}
+
+| Symbol | Meaning |
+|:--|:--|
+| $X$ | A random variable whose value is uncertain. |
+| $x$ | A possible or realized value of $X$. |
+| $\mu$, $\sigma$ | Parameters of a probability distribution. |
+| $\bar{x}$, $s$ | Statistics computed from an observed sample. |
+
+Greek letters describe distribution parameters. Latin letters describe values or statistics.
+
+::: {.fragment}
+**Quick check:** The observed sample mean is $38 and $\mu=\$36$ in a model for future warranties. Which number is a statistic, and which is a parameter?
+:::
+
+## Standard deviation measures risk {.smaller}
+
+The standard deviation of an uncertain payoff measures its unpredictability, or **risk**.
+
+```{r}
+#| label: table-loan-risk
+tibble(
+  ` ` = c("Profit if repaid", "Profit if default", "Default probability",
+          "Expected profit", "Standard deviation"),
+  `Loan A (higher-risk borrower, 14%)` = c(dollar(profit_A[1]), dollar(profit_A[2]),
+                                     number(probs_A[2], accuracy = 0.01), dollar(ev_A), dollar(round(sd_A))),
+  `Loan B (lower-risk borrower, 8%)` = c(dollar(profit_B[1]), dollar(profit_B[2]),
+                                   number(probs_B[2], accuracy = 0.01), dollar(ev_B), dollar(round(sd_B)))
+) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+The standard deviation increases when more probability falls on outcomes far from the expected value. If Loan B were for \$100,000 instead of \$10,000, its standard deviation would increase tenfold. Its default probability would stay fixed.
+
+## Two stocks with the same expected return
+
+```{r}
+#| label: viz-stock-risk
+#| fig-width: 8
+#| fig-height: 4
+stock_grid <- tibble(x = seq(-0.30, 0.30, length.out = 400)) |>
+  mutate(`Steady stock`   = dnorm(x, mean = 0.05, sd = 0.04),
+         `Volatile stock` = dnorm(x, mean = 0.05, sd = 0.12)) |>
+  pivot_longer(-x, names_to = "stock", values_to = "density")
+
+ggplot(stock_grid, aes(x = x, y = density, fill = stock, color = stock)) +
+  geom_area(alpha = 0.25, position = "identity") +
+  geom_vline(xintercept = 0.05, linetype = "dashed", color = "grey40") +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  scale_fill_manual(values = c("Steady stock" = "steelblue",
+                               "Volatile stock" = "darkorange")) +
+  scale_color_manual(values = c("Steady stock" = "steelblue",
+                                "Volatile stock" = "darkorange")) +
+  labs(x = "Annual return", y = "Density", fill = NULL, color = NULL)
+```
+
+The two stocks have the same expected return, but the volatile stock has a larger standard deviation.
+
+## The median of a random variable
+
+The median splits the probability in half: the smallest value where the cumulative probability reaches 0.50. For the price model, that's `r dollar(round(exp(mulog)))`.
+
+```{r}
+#| label: viz-price-median
+#| fig-width: 9.5
+#| fig-height: 4
+med <- exp(mulog)
+
+p_dens <- ggplot(dens_df, aes(x = x, y = y)) +
+  geom_area(data = filter(dens_df, x <= med),
+            fill = "darkorange", alpha = 0.8) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("label", x = 1.05e6, y = max(dens_df$y) * 0.6,
+           label = "area = 0.50",
+           size = 4.2, fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  labs(x = "Sale price", y = "Density") +
+  theme_minimal(base_size = 12)
+
+p_cdf <- ggplot(cdf_df, aes(x = x, y = cdf)) +
+  geom_segment(aes(x = 0, xend = med, y = 0.5, yend = 0.5),
+               linetype = "dashed", color = "grey50") +
+  geom_segment(aes(x = med, xend = med, y = 0, yend = 0.5),
+               linetype = "dashed", color = "grey50") +
+  geom_line(color = "steelblue", linewidth = 1) +
+  annotate("point", x = med, y = 0.5, color = "darkorange", size = 3) +
+  annotate("label", x = med, y = 0.5,
+           label = paste0("median = ", dollar(round(med))),
+           hjust = -0.08, vjust = 1, size = 4.2,
+           fill = "white", alpha = 0.9, label.size = 0.25) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "Sale price", y = "Cumulative probability") +
+  theme_minimal(base_size = 12)
+
+p_dens | p_cdf
+```
+
+The model's mean price of `r dollar(round(m))` sits `r dollar(round(m - exp(mulog)))` above the median, pulled up by the long right tail just as in the observed data.
+
+## Quantiles and the IQR
+
+The $p$-th quantile is the smallest value where cumulative probability reaches $p$.
+
+```{r}
+#| label: viz-price-quantiles
+#| fig-width: 8
+#| fig-height: 3.8
+q25 <- qlnorm(0.25, mulog, sdlog)
+q50 <- qlnorm(0.50, mulog, sdlog)
+q75 <- qlnorm(0.75, mulog, sdlog)
+
+qs <- tibble(
+  p = c(0.25, 0.50, 0.75),
+  q = c(q25, q50, q75),
+  label = c("Q1", "Median", "Q3")
+)
+
+ggplot(cdf_df, aes(x = x, y = cdf)) +
+  geom_segment(data = qs, aes(x = 0, xend = q, y = p, yend = p),
+               linetype = "dashed", color = "grey50") +
+  geom_segment(data = qs, aes(x = q, xend = q, y = 0, yend = p),
+               linetype = "dashed", color = "grey50") +
+  geom_line(color = "steelblue", linewidth = 1) +
+  geom_point(data = qs, aes(x = q, y = p), color = "darkorange", size = 3) +
+  geom_label(data = qs, aes(x = q, y = p, label = label),
+             hjust = -0.15, vjust = 1.15, size = 4,
+             fill = "white", alpha = 0.9, label.size = 0.2) +
+  scale_x_continuous(labels = dollar_format(scale = 1e-3, suffix = "K"),
+                     limits = c(0, 2e6), expand = expansion(mult = c(0, 0.02))) +
+  scale_y_continuous(limits = c(0, 1), expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "Sale price", y = "Cumulative probability")
+```
+
+The middle half of future prices runs from `r dollar(round(q25))` to `r dollar(round(q75))`, an IQR of `r dollar(round(q75 - q25))`.
+
+## Quantiles for staffing {.smaller}
+
+A call center models next-hour call volume as follows. Find $Q_1$, the median, $Q_3$, the IQR, and the smallest threshold that covers at least 75% of hours.
+
+:::: {.r-stack}
+::: {.fragment .fade-out data-fragment-index="1"}
+```{r}
+#| label: table-call-volume-prompt
+tibble(
+  Calls = c(20, 30, 40, 50, 60),
+  Probability = c("0.10", "0.25", "0.40", "0.20", "0.05")
+) |>
+  knitr::kable(align = c("r", "r"))
+```
+:::
+
+::: {.fragment .fade-in data-fragment-index="1"}
+```{r}
+#| label: table-call-volume-solution
+tibble(
+  Calls = c(20, 30, 40, 50, 60),
+  Probability = c("0.10", "0.25", "0.40", "0.20", "0.05"),
+  `Cumulative probability` = c("0.10", "0.35", "0.75", "0.95", "1.00")
+) |>
+  knitr::kable(align = c("r", "r", "r"))
+```
+:::
+::::
+
+::: {.fragment data-fragment-index="1"}
+$Q_1=30$, the median and $Q_3$ are both 40, and the IQR is 10 calls. Staffing for 40 calls covers at least 75% of modeled hours.
+:::
+
+## Shifting and scaling {.smaller}
+
+::: {.callout-note}
+## Mean, median, variance, and standard deviation of $aX + b$
+
+If $m$ is the median of $X$, then
+
+$$
+E[aX + b] = a\,\mu + b, \qquad \operatorname{median}(aX+b)=a\,m+b,
+$$
+
+$$
+\operatorname{Var}(aX+b)=a^2\sigma^2, \qquad SD(aX + b) = |a|\,\sigma.
+$$
+:::
+
+::: {.incremental}
+- Adding a constant shifts the center and leaves the spread alone --- shifting can't make an uncertain payoff more or less predictable.
+- Multiplying by a constant scales both the center and the spread.
+- A special case is **standardization**: $Z = \frac{X - \mu}{\sigma}$. The standardized random variable has mean 0 and standard deviation 1, and a realized value of $Z$ is a **z-score**.
+:::
