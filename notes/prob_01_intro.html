@@ -85,13 +85,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -364,7 +364,7 @@ Table&nbsp;6.1: Historical default rates for small-business and debt-consolidati
 <li>Explain 0.70 as a subjective probability about this meeting.</li>
 <li>Suppose we collect 100 different events that each received a forecast near 0.70. What would a well-calibrated set of forecasts imply about the number of events that occur?</li>
 </ol>
-<details id="solution-forecast-interpretations" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" class="solution-details" id="solution-forecast-interpretations">
 <summary>Solution</summary>
 <p>The probability summarizes the market’s current assessment that holding the target range is more likely than changing it. It applies to this one meeting; we do not imagine replaying the same meeting many times.</p>
 <p>Across many different events assigned probabilities near 0.70, a calibrated forecasting process should see about 70 of every 100 events occur. A particular set may produce more or fewer than 70 because its outcomes remain uncertain.</p>
@@ -545,7 +545,7 @@ Table&nbsp;6.3: A probability model for a future loan’s outcome, given its pur
 <li>Compute the historical churn rate.</li>
 <li>The company uses that rate as a probability model for 200 otherwise similar renewals. About how many cancellations does the model predict?</li>
 </ol>
-<details id="solution-churn-model-part-a" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" class="solution-details" id="solution-churn-model-part-a">
 <summary>Solution</summary>
 <p>The historical churn rate is</p>
 <p><span class="math display">\[
@@ -583,7 +583,7 @@ Figure&nbsp;6.1: A Plinko chip bounces between pegs before landing in one of the
 <li>What is the narrowest population that each result can credibly describe without further assumptions?</li>
 <li>Why does neither result, by itself, represent all of the retailer’s customers?</li>
 </ol>
-<details id="solution-representativeness-claim" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" class="solution-details" id="solution-representativeness-claim">
 <summary>Solution</summary>
 <p>Each team observed <span class="math inline">\(400(0.36)=144\)</span> curbside-pickup users. Team A’s random sample can represent loyalty-program members, while Team B’s random sample can represent customers who clicked the email. Neither sampling frame includes all customers, and both groups may differ systematically from customers outside the frame.</p>
 </details>
@@ -618,7 +618,7 @@ To belabor the point, suppose that exactly 50% of adults rate conditions good or
 <div id="exercise-churn-model-part-b" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.4: </strong>A churn model, part B</div><div class="fobx-body">
 <p>Return to the <a href="#exercise-churn-model-part-a">earlier churn model</a>. The company raised annual subscription prices by 15% this year. Why does that change make last year’s churn rate a less credible model for this year’s renewals?</p>
-<details id="solution-churn-model-part-b" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" class="solution-details" id="solution-churn-model-part-b">
 <summary>Solution</summary>
 <p>The model treats last year’s subscriptions as representative of this year’s renewals. A 15% price increase changes an important condition that may affect the decision to renew, so customers facing the new price are no longer otherwise similar to those in the historical data. The old rate may therefore understate or overstate this year’s churn probability.</p>
 </details>

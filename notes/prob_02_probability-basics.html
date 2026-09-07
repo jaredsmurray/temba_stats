@@ -77,10 +77,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -88,6 +84,10 @@ ul.task-list li input[type="checkbox"] {
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 .Exercise {
   --color1: #E7F4F5;
@@ -359,7 +359,7 @@ window.Quarto = {
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.1: </strong>Overlapping and mutually exclusive events</div><div class="fobx-body">
 <p>For one e-commerce order, the probability of a return is 0.18, the probability of a customer-service contact is 0.24, and the probability of both is 0.09. Find the probability that the order is returned or produces a customer-service contact. Why would adding 0.18 and 0.24 give the wrong answer?</p>
 <p>A separate order must use exactly one of two shipping methods: standard or express. Their probabilities are 0.68 and 0.32. Find the probability that the order uses standard or express shipping, and explain why no overlap correction is needed.</p>
-<details class="solution-details" id="solution-overlapping-events" aria-label="Solution">
+<details id="solution-overlapping-events" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>Returns and customer-service contacts can overlap, so the addition rule gives</p>
 <p><span class="math display">\[
@@ -386,7 +386,7 @@ window.Quarto = {
 <div id="exercise-workplace-random-variables" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.2: </strong>Three workplace outcomes</div><div class="fobx-body">
 <p>The Bloom hybrid-work study records whether an employee leaves the firm, the number of lines of code an engineer writes in a day, and the time an employee spends commuting. Define a random variable for each corresponding future outcome and classify it as discrete or continuous. Why does the count remain discrete even when it has many possible values?</p>
-<details class="solution-details" id="solution-workplace-random-variables" aria-label="Solution">
+<details id="solution-workplace-random-variables" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>Let <span class="math inline">\(L=1\)</span> if an employee leaves and <span class="math inline">\(L=0\)</span> otherwise. This binary random variable is discrete. Let <span class="math inline">\(C\)</span> be the number of lines of code written in one day. It is also discrete because its possible values form a list of counts: <span class="math inline">\(0,1,2,\ldots\)</span>. Let <span class="math inline">\(T\)</span> be commute time. We model it as continuous because it can take any value in a range rather than only distinct counts.</p>
 </details>
@@ -470,16 +470,16 @@ Figure&nbsp;7.1: Three probabilities in the support-ticket PMF. Draw the fourth 
 <li>Which bar represents no escalation? Which bars together represent at least one escalation?</li>
 <li>What two visual checks confirm that the completed picture is a valid PMF?</li>
 </ol>
-<details class="solution-details" id="solution-support-escalation-pmf" aria-label="Solution">
+<details id="solution-support-escalation-pmf" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-support-pmf-solution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-support-pmf-worked" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-support-pmf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="prob_02_probability-basics_files/figure-html/fig-support-pmf-solution-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-support-pmf-worked-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-support-pmf-worked-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-pmf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-pmf-worked-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.2: The completed PMF. The leftmost bar is no escalation; the other three bars together are at least one escalation.
 </figcaption>
 </figure>
@@ -663,16 +663,16 @@ Figure&nbsp;7.5: Left: the completed PMF for the number of escalations. Right: a
 <li>Circle the CDF height that gives the probability of at most one escalation.</li>
 <li>Mark the jump at two escalations. How does its height recover the probability of exactly two escalations?</li>
 </ol>
-<details class="solution-details" id="solution-support-escalation-cdf" aria-label="Solution">
+<details id="solution-support-escalation-cdf" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-support-cdf-solution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-support-cdf-worked" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-support-cdf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="prob_02_probability-basics_files/figure-html/fig-support-cdf-solution-1.png" class="img-fluid figure-img" width="864">
+<div aria-describedby="fig-support-cdf-worked-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_02_probability-basics_files/figure-html/fig-support-cdf-worked-1.png" class="img-fluid figure-img" width="864">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-cdf-solution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-support-cdf-worked-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7.6: The PMF and CDF of the number of escalations. Each CDF jump has the same height as the corresponding PMF bar.
 </figcaption>
 </figure>
@@ -727,7 +727,7 @@ Figure&nbsp;7.9: A non-normal PDF for delivery time. The vertical lines mark the
 </div>
 </div>
 <p>The model’s CDF has <span class="math inline">\(F(2)=0.28\)</span>, <span class="math inline">\(F(3)=0.67\)</span>, and <span class="math inline">\(F(5)=0.94\)</span>. Use these values to compute the three probabilities. Why would changing <span class="math inline">\(2&lt;T\leq 5\)</span> to <span class="math inline">\(2\leq T&lt;5\)</span> leave the probability unchanged?</p>
-<details class="solution-details" id="solution-continuous-delivery-cdf" aria-label="Solution">
+<details id="solution-continuous-delivery-cdf" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The first probability is the area to the left of 3, the second is the area between 2 and 5, and the third is the area to the right of 5. The CDF gives</p>
 <p><span class="math display">\[
@@ -747,7 +747,7 @@ Figure&nbsp;7.9: A non-normal PDF for delivery time. The vertical lines mark the
 <div id="exercise-marketing-channel-union" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.6: </strong>Overlapping marketing channels</div><div class="fobx-body">
 <p>For one customer, a retailer’s model assigns probability 0.42 to opening an email promotion, 0.28 to viewing the matching social-media promotion, and 0.15 to doing both. Find the probability that the customer sees at least one of the promotions. Then find the probability that the customer sees neither.</p>
-<details class="solution-details" id="solution-marketing-channel-union" aria-label="Solution">
+<details id="solution-marketing-channel-union" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The probability of at least one exposure is</p>
 <p><span class="math display">\[
