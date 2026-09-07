@@ -6,7 +6,7 @@ format:
     toc: true
     embed-resources: true
     theme: cosmo
-    css: ps_01_student_chat.css
+    css: homework-01-sample-chat.css
 ---
 
 This example shows one complete way to generate the required Homework 1
@@ -54,20 +54,20 @@ IntroStatGPT
 Created **P1: Overall weekly sales volume**.
 
 ::: {.artifact}
-![Histogram and density curve of weekly cheese sales.](ps_01_student_chat_assets/01-overall-volume.png)
+![Histogram and density curve of weekly cheese sales.](homework-01-sample-chat-assets/01-overall-volume.png)
 :::
 
 Created **P2: Overall retail price**.
 
 ::: {.artifact}
-![Histogram and density curve of retail price.](ps_01_student_chat_assets/02-overall-price.png)
+![Histogram and density curve of retail price.](homework-01-sample-chat-assets/02-overall-price.png)
 :::
 
 Forked P2 and created **P3: Overall retail price with narrower bins**. P2 is
 still available.
 
 ::: {.artifact}
-![Retail-price histogram with narrower bins.](ps_01_student_chat_assets/03-overall-price-narrower-bins.png)
+![Retail-price histogram with narrower bins.](homework-01-sample-chat-assets/03-overall-price-narrower-bins.png)
 :::
 :::
 
@@ -93,7 +93,7 @@ IntroStatGPT
 Created **P4: Weekly sales volume by display status**.
 
 ::: {.artifact}
-![Weekly sales-volume distributions by display status.](ps_01_student_chat_assets/04-volume-by-display.png)
+![Weekly sales-volume distributions by display status.](homework-01-sample-chat-assets/04-volume-by-display.png)
 :::
 :::
 
@@ -129,7 +129,7 @@ Created **T1: Weekly sales-volume summary by display status**.
 Created **P5: Weekly sales-volume box plots by display status**.
 
 ::: {.artifact}
-![Weekly sales-volume box plots by display status.](ps_01_student_chat_assets/05-volume-boxplots.png)
+![Weekly sales-volume box plots by display status.](homework-01-sample-chat-assets/05-volume-boxplots.png)
 :::
 :::
 
@@ -164,7 +164,7 @@ Created **T2: Retail price summary by display status**.
 Created **P6: Retail price distributions by display status**.
 
 ::: {.artifact}
-![Retail-price distributions by display status.](ps_01_student_chat_assets/06-price-by-display.png)
+![Retail-price distributions by display status.](homework-01-sample-chat-assets/06-price-by-display.png)
 :::
 :::
 
@@ -284,7 +284,7 @@ Created **T6: Managers' baseline productivity perceptions**. The counts total
 Created **P7: Managers' baseline productivity perceptions plot**.
 
 ::: {.artifact}
-![Managers' baseline productivity perceptions in their natural order.](ps_01_student_chat_assets/07-manager-perceptions.png)
+![Managers' baseline productivity perceptions in their natural order.](homework-01-sample-chat-assets/07-manager-perceptions.png)
 :::
 :::
 
