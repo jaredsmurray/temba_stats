@@ -38,7 +38,7 @@ and the course datasets. It works with Codex and Claude Code.
 Use the workspace with these files:
 
 1. [Homework 1: Describing and Comparing Distributions](files/homework-01.pdf)
-   — the assignment.
+   — the assignment. [Solutions (Canvas login required)](https://utexas.instructure.com/courses/1458659/pages/homework-1-solutions).
 2. [IntroStatGPT: Homework Workflow](files/homework-01-workflow.pdf) — how to
    generate output, review the report outline, and export your report.
 3. **Optional:** [Sample Homework 1 chat](introstatgpt/homework-01-sample-chat.qmd)
