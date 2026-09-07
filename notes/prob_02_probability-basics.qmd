@@ -254,7 +254,7 @@ ggplot(filter(support_pmf, escalations < 3),
 display="show" non-interactive-summary="Solution"}
 
 ```{r}
-#| label: fig-support-pmf-solution
+#| label: fig-support-pmf-worked
 #| fig-cap: "The completed PMF. The leftmost bar is no escalation; the other three bars together are at least one escalation."
 #| fig-width: 7
 #| fig-height: 3.8
@@ -449,7 +449,7 @@ p_support_pmf | p_support_cdf_blank
 display="show" non-interactive-summary="Solution"}
 
 ```{r}
-#| label: fig-support-cdf-solution
+#| label: fig-support-cdf-worked
 #| fig-cap: "The PMF and CDF of the number of escalations. Each CDF jump has the same height as the corresponding PMF bar."
 #| fig-width: 9
 #| fig-height: 3.8
