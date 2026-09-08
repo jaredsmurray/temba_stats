@@ -1,0 +1,202 @@
+---
+title: "Independence"
+subtitle: "TEMBA Statistics 2026"
+format:
+  revealjs:
+    chalkboard: true
+    embed-resources: false
+execute:
+  freeze: false
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+library(scales)
+
+loans_ind <- read.csv("../data/lending_club/data/df_subs.csv")
+purpose_ind <- c("small_business", "debt_consolidation", "home_improvement")
+loan_counts_ind <- table(factor(loans_ind$purpose, levels = purpose_ind),
+                         factor(loans_ind$loan_status,
+                                levels = c("Charged Off", "Fully Paid")))
+loan_n_ind <- sum(loan_counts_ind)
+loan_joint_ind <- loan_counts_ind / loan_n_ind
+loan_default_ind <- sum(loan_counts_ind[, 1]) / loan_n_ind
+loan_rates_ind <- loan_counts_ind[, 1] / rowSums(loan_counts_ind)
+stopifnot(loan_n_ind == nrow(loans_ind), loan_n_ind == 58456,
+          all(rowSums(loan_counts_ind) == c(3191, 49409, 5856)),
+          abs(sum(loan_joint_ind) - 1) < 1e-12,
+          abs(sum(loan_joint_ind[, 1]) - loan_default_ind) < 1e-12)
+
+# July 9, 2026 published CME histories; the supported moves determine zeros.
+july_ind <- c(0.754138, 0.245862)
+sept_ind <- c(0.376530, 0.500363, 0.123107)
+cme_ind <- matrix(c(sept_ind[1], july_ind[1] - sept_ind[1], 0,
+                    0, july_ind[2] - sept_ind[3], sept_ind[3]),
+                  nrow = 2, byrow = TRUE,
+                  dimnames = list(c("3.50–3.75%", "3.75–4.00%"),
+                                  c("3.50–3.75%", "3.75–4.00%", "4.00–4.25%")))
+stopifnot(all(cme_ind >= 0), abs(sum(cme_ind) - 1) < 1e-12,
+          max(abs(rowSums(cme_ind) - july_ind)) < 1e-12,
+          max(abs(colSums(cme_ind) - sept_ind)) < 1e-12)
+
+ad_ind <- c(A = 0.6, B = 0.4)
+device_ind <- c(Phone = 0.5, Tablet = 0.2, Computer = 0.3)
+model_ind <- outer(ad_ind, device_ind)
+stopifnot(abs(sum(model_ind) - 1) < 1e-12,
+          max(abs(rowSums(model_ind) - ad_ind)) < 1e-12,
+          max(abs(colSums(model_ind) - device_ind)) < 1e-12,
+          max(abs(sweep(model_ind, 1, ad_ind, "/") -
+                    matrix(device_ind, 2, 3, byrow = TRUE))) < 1e-12,
+          max(abs(sweep(model_ind, 2, device_ind, "/") -
+                    matrix(ad_ind, 2, 3))) < 1e-12)
+
+shed_ind <- read.csv("../data/shed/shed_2025.csv")
+employment_ind <- c("Not working", "Working full-time", "Working part-time")
+ratings_ind <- c("Excellent", "Good", "Only fair", "Poor")
+shed_counts_ind <- table(factor(shed_ind$employment_status, levels = employment_ind),
+                         factor(shed_ind$econ_conditions_country, levels = ratings_ind))
+shed_cond_ind <- prop.table(shed_counts_ind, 1)
+shed_marg_ind <- colSums(shed_counts_ind) / sum(shed_counts_ind)
+shed_gap_ind <- max(abs(sweep(shed_cond_ind, 2, shed_marg_ind, "-")))
+stopifnot(sum(shed_counts_ind) == nrow(shed_ind), nrow(shed_ind) == 12934,
+          max(abs(rowSums(shed_cond_ind) - 1)) < 1e-12,
+          abs(sum(shed_marg_ind) - 1) < 1e-12,
+          round(100 * shed_gap_ind, 1) == 1.4)
+```
+
+## Does loan purpose change the distribution?
+
+The [LendingClub subset](../notes/appendix_data.html#sec-data-lendingclub-kaggle) gives these historical default rates.
+
+```{r}
+#| label: table-ind-loan-rates
+#| fig-width: 9
+#| fig-height: 3.9
+data.frame(Purpose = c("Small business", "Debt consolidation", "Home improvement"),
+           Loans = comma(rowSums(loan_counts_ind)),
+           `Default rate` = percent(loan_rates_ind, accuracy = 0.1),
+           check.names = FALSE) |>
+  knitr::kable(align = c("l", "r", "r"), row.names = FALSE)
+```
+
+The overall rate is `r percent(loan_default_ind, accuracy = 0.1)`. Which purposes change our assessment of default?
+
+## Independence means unchanged distributions
+
+Two variables are **independent** when learning one does not change the distribution of the other.
+
+$$
+\Pr(X=x\mid Y=y)=\Pr(X=x).
+$$
+
+For discrete variables, this must hold for every $x$ and every conditioning value $y$ with positive probability. The same property holds in the reverse direction.
+
+## Independent joint probabilities factor
+
+For discrete variables, independence is equivalent to
+
+$$
+\Pr(X=x,Y=y)=\Pr(X=x)\Pr(Y=y)
+$$
+
+for every pair of outcomes.
+
+Each interior cell must equal its row margin times its column margin. One failed equality establishes dependence.
+
+## Two promotional offers
+
+A system assigns free shipping independently of a discount.
+
+| Shipping offer | Discount | No discount | Total |
+|---|---:|---:|---:|
+| Free shipping | ? | ? | 0.25 |
+| No free shipping | ? | ? | 0.75 |
+| Total | 0.40 | 0.60 | 1.00 |
+
+Complete the model. What should the probability of receiving both offers be?
+
+## Can this model meet the specification?
+
+An engineer proposes probability **0.20** for receiving both offers, keeping the same margins.
+
+| Shipping offer | Discount | No discount | Total |
+|---|---:|---:|---:|
+| Free shipping | 0.20 | ? | 0.25 |
+| No free shipping | ? | ? | 0.75 |
+| Total | 0.40 | 0.60 | 1.00 |
+
+Give two verdicts: can this be a valid model, and can it satisfy independence? Complete the remaining cells to justify your answer.
+
+## The independent model
+
+| Shipping offer | Discount | No discount | Total |
+|---|---:|---:|---:|
+| Free shipping | 0.10 | 0.15 | 0.25 |
+| No free shipping | 0.30 | 0.45 | 0.75 |
+| Total | 0.40 | 0.60 | 1.00 |
+
+The conditional discount probabilities are $0.10/0.25=0.40$ and $0.30/0.75=0.40$.
+
+Learning the shipping offer leaves the discount distribution unchanged.
+
+## A valid model can be dependent
+
+| Shipping offer | Discount | No discount | Total |
+|---|---:|---:|---:|
+| Free shipping | 0.20 | 0.05 | 0.25 |
+| No free shipping | 0.20 | 0.55 | 0.75 |
+| Total | 0.40 | 0.60 | 1.00 |
+
+All cells are nonnegative and sum to one, with the required margins.
+
+But $0.20\ne0.25(0.40)$. The conditional discount probabilities are 0.80 with free shipping and about 0.267 without it.
+
+## One cell can disprove independence
+
+| | Purchase | No purchase | Total |
+|---|---:|---:|---:|
+| Store visit | 0.18 | 0.22 | 0.40 |
+| No store visit | 0.12 | 0.48 | 0.60 |
+| Total | 0.30 | 0.70 | 1.00 |
+
+Purchases can also occur online. Find one numerical comparison that establishes dependence.
+
+## The product check fails
+
+Independence would require
+
+$$
+\Pr(\text{visit and purchase})=0.40(0.30)=0.12.
+$$
+
+The model assigns 0.18 to that cell, so store visits and purchases are dependent.
+
+We do not need to check the remaining cells once one equality fails.
+
+## Similar observed distributions
+
+The [2025 SHED survey](../notes/appendix_data.html#sec-data-shed) records ratings of national economic conditions. These percentages are unweighted.
+
+```{r}
+#| label: table-ind-shed
+#| fig-width: 9
+#| fig-height: 3.9
+shed_display_ind <- rbind(shed_cond_ind, Overall = shed_marg_ind)
+shed_display_ind[] <- percent(shed_display_ind, accuracy = 0.1)
+knitr::kable(shed_display_ind, align = rep("r", 4))
+```
+
+The largest difference from an overall category share is `r number(100*shed_gap_ind, accuracy = 0.1)` percentage points. Does similarity establish exact population independence?
+
+## Sample similarity and model independence
+
+Sample proportions generally differ even when a population model has independence. Rounding can also conceal differences.
+
+The SHED table suggests that employment status tells us relatively little about these ratings in this extract. It does not establish exact independence in the population.
+
+For quantitative variables, independence likewise requires the entire conditional distribution to stay unchanged: its location, spread, and shape.

@@ -1,0 +1,248 @@
+---
+title: "Joint, Marginal, and Conditional Distributions"
+subtitle: "TEMBA Statistics 2026"
+format:
+  revealjs:
+    chalkboard: true
+    embed-resources: false
+execute:
+  freeze: false
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+library(tidyverse)
+library(scales)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+
+
+lending_subs <- read_csv("../data/lending_club/data/df_subs.csv",
+                         show_col_types = FALSE) |>
+  mutate(default = as.integer(loan_status == "Charged Off"))
+
+# Historical LendingClub counts and the resulting probability model for a
+# future loan. All loan calculations below derive from this single crosstab.
+loan_counts <- lending_subs |>
+  count(purpose, loan_status) |>
+  pivot_wider(names_from = loan_status, values_from = n, values_fill = 0) |>
+  transmute(purpose,
+            repaid = `Fully Paid`,
+            default = `Charged Off`,
+            Total = repaid + default) |>
+  arrange(desc(Total))
+
+loan_n <- sum(loan_counts$Total)
+
+loan_joint <- loan_counts |>
+  transmute(purpose,
+            repaid = repaid / loan_n,
+            default = default / loan_n)
+
+loan_small <- loan_counts |> filter(purpose == "small_business")
+loan_debt <- loan_counts |> filter(purpose == "debt_consolidation")
+loan_home <- loan_counts |> filter(purpose == "home_improvement")
+loan_default_n <- sum(loan_counts$default)
+
+stopifnot(
+  isTRUE(all.equal(sum(loan_joint$repaid) + sum(loan_joint$default), 1)),
+  isTRUE(all.equal(rowSums(loan_joint[-1]),
+                   loan_counts$Total / loan_n)),
+  isTRUE(all.equal(sum(loan_joint$default),
+                   loan_default_n / loan_n)),
+  isTRUE(all.equal(
+    loan_small$default / loan_small$Total,
+    (loan_small$default / loan_n) / (loan_small$Total / loan_n)
+  ))
+)
+
+
+p3 <- function(x) number(x, accuracy = 0.001)
+p4 <- function(x) number(x, accuracy = 0.0001)
+```
+
+## Loan purpose and default
+
+The [LendingClub extract](../notes/appendix_data.html#sec-data-lendingclub-kaggle) contains `r comma(loan_n)` completed loans with these three purposes.
+
+```{r}
+#| label: table-purpose-default-counts
+#| fig-width: 9
+#| fig-height: 3.9
+purpose_counts <- lending_subs |>
+  count(purpose, loan_status) |>
+  pivot_wider(names_from = loan_status, values_from = n, values_fill = 0) |>
+  mutate(Total = `Fully Paid` + `Charged Off`) |>
+  arrange(desc(Total))
+
+purpose_counts |>
+  bind_rows(summarise(purpose_counts, purpose = "**Total**",
+                      across(where(is.numeric), sum))) |>
+  mutate(across(where(is.numeric), comma)) |>
+  mutate(purpose = str_to_sentence(str_replace_all(purpose, "_", " "))) |>
+  rename(Purpose = purpose) |>
+  knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+Which purpose has the greatest default rate? Which denominator would you use?
+
+## A cross-tabulation records combinations
+
+A **cross-tabulation** counts observations in every combination of two categories.
+
+```{r}
+#| label: table-joint-margins
+#| fig-width: 9
+#| fig-height: 3.9
+loan_counts |>
+  transmute(Purpose = str_to_sentence(str_replace_all(purpose, "_", " ")), Repaid = repaid, Default = default, Total) |>
+  bind_rows(summarise(loan_counts, Purpose = "Total", Repaid = sum(repaid), Default = sum(default), Total = sum(Total))) |>
+  knitr::kable(format.args = list(big.mark = ","))
+```
+
+The interior cells describe pairs of outcomes. The margins summarize each variable on its own.
+
+## Joint and marginal proportions
+
+Both use the full sample as their denominator.
+
+```{r}
+#| label: table-joint-divisions
+#| fig-width: 9
+#| fig-height: 3.9
+tibble(Question = c("Small business and default", "Small business, either outcome"),
+       Calculation = c(paste(comma(loan_small$default), "/", comma(loan_n)), paste(comma(loan_small$Total), "/", comma(loan_n))),
+       Proportion = number(c(loan_small$default, loan_small$Total)/loan_n, accuracy = 0.0001)) |>
+  knitr::kable()
+```
+
+A **joint proportion** describes a combination. A **marginal proportion** describes one category, summing over the other variable.
+
+## Conditional proportions select a group
+
+Among small-business loans, what proportion defaulted?
+
+```{r}
+#| label: table-conditional-small
+#| fig-width: 9
+#| fig-height: 3.9
+tibble(Outcome = c("Repaid", "Default", "Total"),
+       Count = comma(c(loan_small$repaid, loan_small$default, loan_small$Total)),
+       `Conditional proportion` = number(c(loan_small$repaid, loan_small$default, loan_small$Total)/loan_small$Total, accuracy = 0.001)) |>
+  knitr::kable()
+```
+
+The **conditional distribution** divides each count by the selected group's total. Its proportions sum to one.
+
+## Reversing the condition changes the denominator
+
+```{r}
+#| label: table-reversed-condition
+#| fig-width: 9
+#| fig-height: 3.9
+tibble(Question = c("Default, given small business", "Small business, given default"),
+       Calculation = c(paste(comma(loan_small$default), "/", comma(loan_small$Total)), paste(comma(loan_small$default), "/", comma(loan_default_n))),
+       Proportion = number(c(loan_small$default/loan_small$Total, loan_small$default/loan_default_n), accuracy = 0.001)) |>
+  knitr::kable()
+```
+
+Name the population described by each row. Why can the same numerator answer two different questions?
+
+## Hybrid work and attrition
+
+[Bloom, Han, and Liang](../notes/appendix_data.html#sec-data-wfh-bloom) randomly assigned 1,612 employees to two work schedules.
+
+| Assigned schedule | Stayed | Left | Total |
+|---|---:|---:|---:|
+| Control | 761 | 59 | 820 |
+| Hybrid | 754 | 38 | 792 |
+| Total | 1,515 | 97 | 1,612 |
+
+How does attrition compare between the two schedules?
+
+## Which number belongs in the briefing?
+
+Three statements use the same 38 employees:
+
+1. About 2.4% of all employees were assigned hybrid work and left.
+2. About 4.8% of hybrid employees left.
+3. About 39.2% of employees who left were assigned hybrid work.
+
+Are any numerically wrong? Which answers the comparison question?
+
+**In pairs:** prepare a two-sentence briefing. Include the other schedule and identify both denominators.
+
+## Attrition within each schedule
+
+| Assigned schedule | Stayed | Left | Denominator |
+|---|---:|---:|---:|
+| Control | 0.9280 | 0.0720 | 820 |
+| Hybrid | 0.9520 | 0.0480 | 792 |
+
+All three earlier statements were numerically correct. Only the second described attrition within a schedule.
+
+About 4.8% of hybrid employees left, compared with 7.2% of control employees. Each row is a complete conditional distribution.
+
+## From observed proportions to a probability model
+
+We can use historical proportions as estimated probabilities for a future loan if the historical loans represent that future population.
+
+```{r}
+#| label: table-loan-joint
+#| fig-width: 9
+#| fig-height: 3.9
+loan_joint |>
+  mutate(purpose = case_when(
+           purpose == "debt_consolidation" ~ "Debt consolidation (P = 1)",
+           purpose == "home_improvement" ~ "Home improvement (P = 2)",
+           purpose == "small_business" ~ "Small business (P = 3)"
+         ),
+         across(where(is.numeric), \(x) number(x, accuracy = 0.001))) |>
+  rename(Purpose = purpose, `Repaid (D = 0)` = repaid,
+         `Default (D = 1)` = default) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+The six interior probabilities are nonnegative and sum to one. The numbers now describe possible outcomes for a future loan.
+
+## Conditioning a probability table
+
+$$
+\Pr(A\mid B)=\frac{\Pr(A\text{ and }B)}{\Pr(B)},\qquad \Pr(B)>0.
+$$
+
+Keep the outcomes consistent with the condition, then divide by their total probability.
+
+For the loan model, dividing the small-business/default joint probability by the small-business margin gives the same rate as dividing their counts.
+
+## Complete a renewal model
+
+| Current tier | Renews | Does not renew | Total |
+|---|---:|---:|---:|
+| Basic | 0.42 | 0.28 | 0.70 |
+| Premium | 0.24 | ? | 0.30 |
+| Total | ? | ? | 1.00 |
+
+Find the missing cell and column margins. Then find the renewal probability given Premium.
+
+An analyst calls 0.24 the Premium renewal rate. Is that the right interpretation?
+
+## Renewal probabilities
+
+| Current tier | Renews | Does not renew | Total |
+|---|---:|---:|---:|
+| Basic | 0.42 | 0.28 | 0.70 |
+| Premium | 0.24 | 0.06 | 0.30 |
+| Total | 0.66 | 0.34 | 1.00 |
+
+The Premium renewal probability is $0.24/0.30=0.80$.
+
+The joint probability 0.24 describes being Premium **and** renewing. Its denominator is the entire customer population.

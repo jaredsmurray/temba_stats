@@ -2,7 +2,7 @@
 title: "Slides"
 ---
 
-Lecture slide decks. Each opens as a self-contained slideshow (press `?` for
+Lecture slide decks. Each opens as a slideshow (press `?` for
 keyboard shortcuts, `E` for print view).
 
 0. [Statistics with IntroStatGPT](slides/00_introstatgpt_workflow.qmd)
@@ -15,3 +15,12 @@ keyboard shortcuts, `E` for print view).
 5. [Probability Basics](slides/05_probability_basics.qmd)
 6. [Parameters of Probability Distributions](slides/06_distribution_parameters.qmd)
 7. [The Normal Distribution](slides/07_normal_distribution.qmd)
+
+## Chapters 10–14
+
+- [10. Joint, Marginal, and Conditional Distributions](slides/10_joint_conditional_distributions.qmd)
+- [12. Independence](slides/12_independence.qmd)
+- [13. Visualizing and Summarizing Two Quantitative Variables](slides/13_quantitative-quantitative.qmd)
+- [14. Combining Random Variables](slides/14_combining_random_variables.qmd)
+
+These decks support pen annotations: press `C` to write on the slide or `B` to open the chalkboard.

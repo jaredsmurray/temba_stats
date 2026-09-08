@@ -1,0 +1,376 @@
+---
+title: "Visualizing and Summarizing Two Quantitative Variables"
+subtitle: "TEMBA Statistics 2026"
+format:
+  revealjs:
+    chalkboard: true
+    embed-resources: false
+execute:
+  freeze: false
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("_setup.R")
+# Companion: ../notes/prob_08_quantitative-quantitative.qmd (Chapter 13).
+
+austin <- read_csv("../data/austin_houses/austin_houses_subset.csv",
+                   show_col_types = FALSE)
+
+returns <- read_csv("../data/returns/returns.csv", show_col_types = FALSE) |>
+  mutate(date = as.Date(date))
+
+load1 <- read_csv("../data/ercot/ercotproject/Data/load_1.csv",
+                  show_col_types = FALSE)
+load2 <- read_csv("../data/ercot/ercotproject/Data/load_2.csv",
+                  show_col_types = FALSE)
+load3 <- read_csv("../data/ercot/ercotproject/Data/load_3.csv",
+                  show_col_types = FALSE)
+ercot <- bind_rows(load1, load2, load3) |>
+  filter(LOCATION == "North Central (DFW)") |>
+  mutate(datetime = parse_date_time(DATEHOUR, orders = c("ymd HM", "ymd HMS")),
+         year = year(datetime),
+         date = as.Date(datetime)) |>
+  filter(year >= 2016, year <= 2020) |>
+  summarize(LOAD = mean(LOAD, na.rm = TRUE),
+            date = first(date),
+            .by = c(datetime, LOCATION))
+rm(load1, load2, load3)
+
+weather <- read_csv("../data/ercot/ercotproject/Data/weather_ncent.csv",
+                    show_col_types = FALSE) |>
+  mutate(datetime = parse_date_time(DATEHOUR, orders = c("ymd HM", "ymd HMS")),
+         year = year(datetime)) |>
+  filter(year >= 2016, year <= 2020) |>
+  summarize(HourlyDryBulbTemperature = mean(HourlyDryBulbTemperature, na.rm = TRUE),
+            .by = c(datetime, LOCATION))
+
+ercot_temp <- ercot |>
+  inner_join(weather, by = c("datetime", "LOCATION")) |>
+  filter(!is.na(HourlyDryBulbTemperature), !is.na(LOAD))
+
+ercot_daily <- ercot_temp |>
+  summarize(temp = mean(HourlyDryBulbTemperature, na.rm = TRUE),
+            load = mean(LOAD, na.rm = TRUE),
+            .by = date)
+rm(weather)
+```
+
+## Price and living area
+
+Each point is one [Austin home sale](../notes/appendix_data.html#sec-data-housing-kaggle).
+
+```{r}
+#| label: viz-austin-price-sqft
+#| fig-width: 9
+#| fig-height: 3.7
+ggplot(austin, aes(x = living_area_sq_ft, y = latest_price)) +
+  geom_point(alpha = 0.3, color = "steelblue") +
+  scale_x_continuous(labels = comma_format()) +
+  scale_y_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+  labs(x = "Living area (sq ft)", y = "Sale price")
+```
+
+Describe the trend and the spread of prices among similarly sized homes.
+
+## A smooth curve summarizes nearby outcomes
+
+[DFW daily electricity demand and temperature](../notes/appendix_data.html#sec-data-ercot-shaffer), 2016–2020.
+
+```{r}
+#| label: viz-ercot-load-temp
+#| fig-width: 9
+#| fig-height: 3.7
+# Windowed running-line smoother. Keep h and the grid IDENTICAL to
+# working/loess_animation.R, which animates this exact construction.
+h <- 8
+x_grid <- seq(min(ercot_daily$temp) + h, max(ercot_daily$temp) - h, length.out = 80)
+
+local_fit <- function(x0) {
+  window <- filter(ercot_daily, abs(temp - x0) <= h)
+  fit <- lm(load ~ temp, data = window)
+  predict(fit, newdata = tibble(temp = x0))
+}
+smooth_df <- tibble(temp = x_grid, load = map_dbl(x_grid, local_fit))
+load_at_50 <- unname(local_fit(50))
+
+ggplot(ercot_daily, aes(x = temp, y = load)) +
+  geom_point(alpha = 0.3, size = 0.8, color = "grey50") +
+  geom_line(data = smooth_df, color = "steelblue", linewidth = 1.1) +
+  scale_y_continuous(labels = comma_format()) +
+  labs(x = expression("Temperature ("*degree*"F)"), y = "Load (MW)")
+```
+
+At 50°F, the curve is about `r comma(round(load_at_50, -3))` MW. What does the surrounding scatter tell us?
+
+## Conditional location and spread
+
+The smoother describes average demand among days with nearby temperatures.
+
+The scatter around it describes variation among individual days at those temperatures.
+
+Knowing the temperature narrows our assessment of demand, but does not determine the load on a particular day.
+
+## A smoother also helps with housing prices
+
+```{r}
+#| label: viz-austin-price-sqft-smooth
+#| fig-width: 9
+#| fig-height: 4.1
+ggplot(austin, aes(x = living_area_sq_ft, y = latest_price)) +
+  geom_point(alpha = 0.25, color = "grey50") +
+  geom_smooth(method = "loess", span = 0.75, se = FALSE,
+              color = "steelblue", linewidth = 1) +
+  scale_x_continuous(labels = comma_format()) +
+  scale_y_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
+  labs(x = "Living area (sq ft)", y = "Sale price")
+```
+
+Fewer large homes determine the curve at the right. Small bends there need not describe a stable population pattern.
+
+## A roughly linear relationship
+
+Each point pairs one week's [Tesla and S&P 500 returns](../notes/appendix_data.html#sec-data-returns-2025).
+
+```{r}
+#| label: viz-tsla-market
+#| fig-width: 9
+#| fig-height: 3.7
+ggplot(returns, aes(x = market, y = TSLA)) +
+  geom_point(alpha = 0.7, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey60") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey60") +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "S&P 500 weekly return", y = "Tesla weekly return")
+```
+
+The broad trend is upward and roughly straight, with considerable variation around it.
+
+## Correlation summarizes linear association
+
+The sample **correlation**, $r$, ranges from $-1$ to $1$ and describes the direction and strength of linear association.
+
+- Positive values describe upward association; negative values describe downward association.
+- Values nearer $1$ or $-1$ describe stronger linear association.
+- At $1$ or $-1$, all points lie on a straight line.
+
+Correlation has no units. Both variables must vary for it to be defined.
+
+## Different population correlations
+
+```{r}
+#| label: viz-corr-panels
+#| fig-width: 9.5
+#| fig-height: 5.5
+set.seed(42)
+rs <- c(1, 0.75, 0.5, 0.25, 0, -0.25, -0.5, -0.75, -1)
+n <- 500
+
+corr_panels <- map_dfr(rs, function(r) {
+  x <- rnorm(n)
+  y <- r * x + sqrt(1 - r^2) * rnorm(n)
+  tibble(x = x, y = y, panel = match(r, rs),
+         label = number(r, accuracy = 0.01))
+}) |>
+  mutate(label = factor(label, levels = unique(label)))
+
+ggplot(corr_panels, aes(x = x, y = y)) +
+  geom_point(size = 0.4, alpha = 0.4, color = "steelblue") +
+  facet_wrap(~label, ncol = 3) +
+  coord_equal() +
+  theme_minimal(base_size = 20) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(),
+        panel.grid = element_blank()) +
+  labs(x = NULL, y = NULL)
+```
+
+Each cloud contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them.
+
+## What would you ask to see?
+
+A report gives essentially the same correlation, $r=0.82$, for four datasets.
+
+The author proposes using the same description of the relationship for all four.
+
+What else would you ask to see before approving the summary?
+
+## Anscombe's quartet
+
+```{r}
+#| label: viz-anscombe
+#| fig-width: 8
+#| fig-height: 6
+#| fig-align: center
+data(anscombe)
+
+anscombe_long <- tibble(
+  set = rep(1:4, each = nrow(anscombe)),
+  x = c(anscombe$x1, anscombe$x2, anscombe$x3, anscombe$x4),
+  y = c(anscombe$y1, anscombe$y2, anscombe$y3, anscombe$y4)
+) |>
+  mutate(
+    set = factor(set, levels = 1:4, labels = paste("Set", 1:4)),
+    r = cor(x, y),
+    .by = set
+  )
+
+label_data <- anscombe_long |>
+  distinct(set, r) |>
+  mutate(
+    x = -Inf,
+    y = Inf,
+    label = sprintf("r = %.2f", r)
+  )
+
+ggplot(anscombe_long, aes(x = x, y = y)) +
+  geom_point(color = "steelblue", alpha = 0.8) +
+  geom_label(
+    data = label_data,
+    aes(x = x, y = y, label = label),
+    hjust = -0.1, vjust = 1.2, size = 3.85, fill = "white", alpha = 0.9, label.size = 0.25, inherit.aes = FALSE
+  ) +
+  facet_wrap(~set, ncol = 2) +
+  theme(aspect.ratio = 3 / 4) +
+  labs(x = "x", y = "y")
+```
+
+
+## What the four plots add
+
+- The upper-left panel has a roughly linear pattern.
+- The upper-right panel follows a curve.
+- In the lower-left panel, one point departs from the others' straight pattern.
+- In the lower-right panel, one observation accounts for the positive correlation.
+
+A correlation alone cannot distinguish these cases.
+
+## Similar correlations can describe different patterns
+
+```{r}
+#| label: viz-corr-linear-only
+#| fig-width: 10
+#| fig-height: 4.1
+p_tsla <- ggplot(returns, aes(x = market, y = TSLA)) +
+  geom_point(alpha = 0.7, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey60") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey60") +
+  annotate("label", x = -Inf, y = Inf,
+           label = sprintf("r = %.2f", cor(returns$market, returns$TSLA)),
+           hjust = -0.1, vjust = 1.2, size = 3.5) +
+  scale_x_continuous(labels = percent_format(accuracy = 1)) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  labs(x = "S&P 500 weekly return", y = "Tesla weekly return")
+
+p_ercot <- ggplot(ercot_daily, aes(x = temp, y = load)) +
+  geom_point(alpha = 0.3, size = 0.8, color = "steelblue") +
+  scale_y_continuous(labels = comma_format()) +
+  annotate("label", x = -Inf, y = Inf,
+           label = sprintf("r = %.2f", cor(ercot_daily$temp, ercot_daily$load)),
+           hjust = -0.1, vjust = 1.2, size = 3.5) +
+  labs(x = expression("Temperature ("*degree*"F)"), y = "Load (MW)")
+
+p_tsla | p_ercot
+```
+
+Compare the scatter around each trend with the overall variation in its outcome. Which relationship does the correlation describe less well?
+
+## Zero correlation does not establish independence
+
+Correlation measures linear association. A strong curved relationship can have a correlation near zero.
+
+Independence requires the **entire conditional distribution** to stay unchanged. Even exactly zero correlation is insufficient.
+
+A sample correlation near zero also does not establish independence in a population. Inspect the scatterplot.
+
+## Covariance retains the measurement scales
+
+The sample **covariance** combines correlation and standard deviations:
+
+$$
+s_{xy}=r\,s_xs_y.
+$$
+
+It has the same sign as correlation, but its magnitude depends on the units. For size and price, its units are square feet times dollars.
+
+If prices change from dollars to thousands of dollars, what happens to covariance? What happens to correlation?
+
+## Changing units does not weaken the relationship
+
+| Quantity | Dollars → thousands of dollars |
+|---|---|
+| Price standard deviation | Divides by 1,000. |
+| Covariance of size and price | Divides by 1,000. |
+| Correlation of size and price | Stays the same. |
+
+Covariance is not restricted to the interval from $-1$ to $1$. Its numerical scale changes with the variables' scales.
+
+## Covariance in a probability model
+
+For random variables with finite variances,
+
+$$
+\operatorname{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)].
+$$
+
+Here $\mu_X$ and $\mu_Y$ are the model means. Covariance is the probability-weighted average of the products of deviations.
+
+For positive standard deviations,
+
+$$
+\operatorname{Cov}(X,Y)=\operatorname{Corr}(X,Y)\operatorname{SD}(X)\operatorname{SD}(Y).
+$$
+
+## A joint model for two meeting outcomes
+
+[CME FedWatch](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html), July 9, 2026: a model for July and September target ranges. A midpoint of 3.625 represents 3.50–3.75%.
+
+```{r}
+#| label: table-cme-cov-model
+#| fig-width: 9
+#| fig-height: 3.9
+cme_model <- tibble(
+  x = c(3.625, 3.625, 3.875, 3.875),
+  y = c(3.625, 3.875, 3.875, 4.125),
+  p = c(0.376530, 0.377608, 0.122755, 0.123107)
+)
+mx <- sum(cme_model$x*cme_model$p)
+my <- sum(cme_model$y*cme_model$p)
+sx <- sqrt(sum(cme_model$p*(cme_model$x-mx)^2))
+sy <- sqrt(sum(cme_model$p*(cme_model$y-my)^2))
+cov_model <- sum(cme_model$p*(cme_model$x-mx)*(cme_model$y-my))
+cor_model <- cov_model/(sx*sy)
+stopifnot(abs(sum(cme_model$p)-1)<1e-12,
+          abs(sum(cme_model$p[cme_model$x==3.625])-0.754138)<1e-12,
+          abs(sum(cme_model$p[cme_model$y==3.875])-0.500363)<1e-12)
+cme_model |>
+  transmute(`July midpoint` = x, `September midpoint` = y,
+            Probability = number(p, accuracy = 0.0001)) |>
+  knitr::kable(align = c("r", "r", "r"))
+```
+
+The model has correlation `r number(cor_model, accuracy = 0.01)` and covariance `r number(cov_model, accuracy = 0.0001)` squared percentage points.
+
+## Obtain covariance from correlation and spread
+
+Two random variables have standard deviations 2 and 3 and correlation $-0.5$.
+
+Calculate their covariance. What does its sign tell you?
+
+Would correlation alone determine covariance if the standard deviations were unknown?
+
+## Covariance connects to combinations
+
+$$
+\operatorname{Cov}(X,Y)=(-0.5)(2)(3)=-3.
+$$
+
+The variables have negative linear association; their scales determine the magnitude of covariance.
+
+Independent variables with finite, positive variances have zero covariance and correlation. The converse fails.
+
+Covariance enters the variance of a combination even when the component variables have a nonlinear relationship.
