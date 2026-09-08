@@ -1,0 +1,659 @@
+---
+title: "Joint, Marginal, and Conditional Distributions"
+filters:
+  - details
+  - custom-numbered-blocks
+custom-numbered-blocks:
+  appearances:
+    concept:
+      container: foldbox
+      boxstyle: foldbox.simple
+      collapse: false
+      colors: ['#F4EAF0', '#7C3F58']
+    reference:
+      container: foldbox
+      boxstyle: foldbox.simple
+      collapse: false
+      colors: ['#EEF1F3', '#5B6770']
+    practice:
+      container: foldbox
+      boxstyle: foldbox.simple
+      collapse: false
+      colors: ['#E7F4F5', '#147D85']
+  classes:
+    Exercise:
+      appearance: practice
+    Definition:
+      appearance: concept
+    Notation:
+      appearance: reference
+    TechnicalDetail:
+      appearance: reference
+      label: "Technical detail"
+      collapse: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+
+# Figures render at their intrinsic size (fig-width x 96px), capped by the
+# ~702px content column -- they are never upscaled to fill it. So axis text
+# lands at its true point size, and base_size, not fig-width, is what makes it
+# legible next to 17px body text. At 13, tick labels are ~14px.
+theme_set(theme_minimal(base_size = 13))
+
+lending_subs <- read_csv("data/lending_club/data/df_subs.csv",
+                         show_col_types = FALSE) |>
+  mutate(default = as.integer(loan_status == "Charged Off"))
+
+# Historical LendingClub counts and the resulting probability model for a
+# future loan. All loan calculations below derive from this single crosstab.
+loan_counts <- lending_subs |>
+  count(purpose, loan_status) |>
+  pivot_wider(names_from = loan_status, values_from = n, values_fill = 0) |>
+  transmute(purpose,
+            repaid = `Fully Paid`,
+            default = `Charged Off`,
+            Total = repaid + default) |>
+  arrange(desc(Total))
+
+loan_n <- sum(loan_counts$Total)
+
+loan_joint <- loan_counts |>
+  transmute(purpose,
+            repaid = repaid / loan_n,
+            default = default / loan_n)
+
+loan_small <- loan_counts |> filter(purpose == "small_business")
+loan_debt <- loan_counts |> filter(purpose == "debt_consolidation")
+loan_home <- loan_counts |> filter(purpose == "home_improvement")
+loan_default_n <- sum(loan_counts$default)
+
+stopifnot(
+  isTRUE(all.equal(sum(loan_joint$repaid) + sum(loan_joint$default), 1)),
+  isTRUE(all.equal(rowSums(loan_joint[-1]),
+                   loan_counts$Total / loan_n)),
+  isTRUE(all.equal(sum(loan_joint$default),
+                   loan_default_n / loan_n)),
+  isTRUE(all.equal(
+    loan_small$default / loan_small$Total,
+    (loan_small$default / loan_n) / (loan_small$Total / loan_n)
+  ))
+)
+
+
+p3 <- function(x) number(x, accuracy = 0.001)
+p4 <- function(x) number(x, accuracy = 0.0001)
+```
+
+We want to understand the relationship between default risk and loan purpose. That relationship is an important input into the business decision of whether to write a loan and how to set its terms. Which loan purposes have the greatest default risk?
+
+## Cross-tabulations and contingency tables {#sec-crosstabs}
+
+We'll start with counts, because everything else in this chapter is a count divided by some total.
+
+::: {.Definition #defn-cross-tabulation}
+## Cross-tabulation
+
+A **cross-tabulation** or **"crosstab"** --- also called a **contingency table**
+--- counts how many observations fall into each *combination* of two variables'
+categories. It has one row per category of the first variable, one column per
+category of the second, and a count in every cell. Its **margins**, the row and
+column of totals, are the frequency tables for the individual variables.
+:::
+
+Fourteen purposes make for a bulky table. We want every calculation in this section small enough to check by hand, so we'll narrow to the `r comma(nrow(lending_subs))` loans with three of the more interesting purposes: debt consolidation, home improvement, and small business. @tbl-purpose-default-counts shows their crosstab with loan status.
+
+```{r}
+#| label: tbl-purpose-default-counts
+#| tbl-cap: "Cross-tabulation of loan purpose and final loan status for the three-purpose subset. Each cell counts the loans with that combination of purpose and outcome; the margins recover the one-variable frequency tables."
+#| echo: false
+purpose_counts <- lending_subs |>
+  count(purpose, loan_status) |>
+  pivot_wider(names_from = loan_status, values_from = n, values_fill = 0) |>
+  mutate(Total = `Fully Paid` + `Charged Off`) |>
+  arrange(desc(Total))
+
+purpose_counts |>
+  bind_rows(summarise(purpose_counts, purpose = "**Total**",
+                      across(where(is.numeric), sum))) |>
+  mutate(across(where(is.numeric), comma)) |>
+  rename(Purpose = purpose) |>
+  knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+Look at the margins first, the row and column labeled `Total`. The `Total` column on the right is a frequency table of `purpose` --- the same one-variable summary we built earlier, computed on this subset --- and the bottom row is the frequency table of loan status: `r comma(sum(lending_subs$default == 0))` fully paid, `r comma(sum(lending_subs$default))` charged off. The interior cells record how the two variables tend to move **together**.
+
+With two variables there are three different totals we could divide each count by, and each choice answers a different question. Take the cell for small-business loans that charged off. Dividing it by the grand total gives the share of all loans that are small business *and* charged off:
+
+$$
+\frac{`r comma(sum(lending_subs$purpose == "small_business" & lending_subs$default == 1))`}{`r comma(nrow(lending_subs))`} = `r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 1), accuracy = 0.001)`.
+$$
+
+::: {.Definition #defn-joint-proportion}
+## Joint proportion
+
+A **joint proportion** divides an interior cell of a crosstab by the grand
+total. It is the share of all observations with that combination of
+categories. The collection of all the joint proportions is the **joint
+distribution** of the two variables.
+:::
+
+Dividing the small-business row total --- the two cells in that row added together --- by the grand total gives the share of all loans that are small business:
+
+$$
+\frac{`r comma(sum(lending_subs$purpose == "small_business" & lending_subs$default == 0))` + `r comma(sum(lending_subs$purpose == "small_business" & lending_subs$default == 1))`}{`r comma(nrow(lending_subs))`}
+= \frac{`r comma(sum(lending_subs$purpose == "small_business"))`}{`r comma(nrow(lending_subs))`}
+= `r number(mean(lending_subs$purpose == "small_business"), accuracy = 0.001)`.
+$$
+
+::: {.Definition #defn-marginal-proportion}
+## Marginal proportion
+
+A **marginal proportion** divides a row or column total by the grand total. It
+gives one category's share without separating the observations by the other
+variable. Equivalently, we can add the joint proportions across the
+corresponding row or column.
+:::
+
+For small-business loans, the marginal proportion is the sum of the two joint
+proportions in that row:
+
+$$
+`r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 0), accuracy = 0.001)`
++ `r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 1), accuracy = 0.001)`
+= `r number(mean(lending_subs$purpose == "small_business"), accuracy = 0.001)`.
+$$
+
+The crosstab has everything we need to answer the opening question: which loan purposes have the greatest default risk? To compute the small-business default rate, the only relevant information is about small-business loans, so we ignore the other rows and divide by the small-business loan total rather than the grand total. From the counts in @tbl-purpose-default-counts, `r comma(sum(lending_subs$purpose == "small_business" & lending_subs$default == 1))` of the `r comma(sum(lending_subs$purpose == "small_business"))` small-business loans charged off:
+
+$$
+\frac{`r comma(sum(lending_subs$purpose == "small_business" & lending_subs$default == 1))`}{`r comma(sum(lending_subs$purpose == "small_business"))`} = `r number(mean(lending_subs$default[lending_subs$purpose == "small_business"]), accuracy = 0.001)`.
+$$
+
+::: {.Definition #defn-conditional-proportion}
+## Conditional proportion
+
+A **conditional proportion** divides a cell by its row or column total rather
+than the grand total. It is the share in one category of one variable among
+observations in one category of the other. The conditional proportions across
+all categories of the variable being summarized form its **conditional
+distribution**.
+
+The direction of the conditioning matters. Among small-business loans, the
+share that charged off is
+`r number(mean(lending_subs$default[lending_subs$purpose == "small_business"]), accuracy = 0.001)`.
+Among charged-off loans, the share issued to small businesses is
+`r number(mean(lending_subs$purpose[lending_subs$default == 1] == "small_business"), accuracy = 0.001)`.
+Both calculations begin with the same cell but divide by different totals.
+:::
+
+@tbl-default-rate-by-purpose collects the default rates for all three purposes.
+
+```{r}
+#| label: tbl-default-rate-by-purpose
+#| tbl-cap: "Default rate by loan purpose: the proportion of loans charged off, given each purpose. Purposes are sorted from highest to lowest default rate."
+#| echo: false
+lending_subs |>
+  group_by(purpose) |>
+  summarise(n = n(), default_rate = mean(default)) |>
+  arrange(desc(default_rate)) |>
+  mutate(n = comma(n),
+         default_rate = number(default_rate, accuracy = 0.001)) |>
+  rename(Purpose = purpose, Loans = n, `Default rate` = default_rate) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+:::: {.Exercise #exercise-hybrid-work-attrition}
+## Hybrid work and attrition
+
+Bloom, Han, and Liang randomly assigned 1,612 employees to a control schedule
+or a hybrid schedule with two work-from-home days per week [@wfh-bloom]. During
+the study, the following employees stayed at or left the firm:
+
+| Assigned schedule | Stayed | Left | Total |
+|---|---:|---:|---:|
+| Control | 761 | 59 | 820 |
+| Hybrid WFH | 754 | 38 | 792 |
+| **Total** | **1,515** | **97** | **1,612** |
+
+1. Choose one employee at random from the study. Find the joint probability
+   that the employee was assigned to Hybrid WFH and left the firm.
+2. Find the marginal distribution of assigned schedule.
+3. Find the marginal distribution of attrition status.
+4. Find the conditional distribution of attrition status within each assigned
+   schedule. Check that each conditional distribution sums to one.
+5. Find $\Pr(\text{Hybrid WFH}\mid\text{Left})$.
+6. Explain why the answer to part 5 differs from
+   $\Pr(\text{Left}\mid\text{Hybrid WFH})$. Name the denominator in each
+   calculation.
+
+::: {#solution-hybrid-work-attrition .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The Hybrid WFH/Left cell contains 38 of the 1,612 employees, so its joint
+probability is
+
+$$
+\frac{38}{1612}=0.0236.
+$$
+
+The row totals give the marginal distribution of assigned schedule:
+
+$$
+\Pr(\text{Control})=\frac{820}{1612}=0.5087,
+\qquad
+\Pr(\text{Hybrid WFH})=\frac{792}{1612}=0.4913.
+$$
+
+The column totals give the marginal distribution of attrition status:
+
+$$
+\Pr(\text{Stayed})=\frac{1515}{1612}=0.9398,
+\qquad
+\Pr(\text{Left})=\frac{97}{1612}=0.0602.
+$$
+
+Within the control group, the conditional distribution of attrition status is
+
+$$
+\Pr(\text{Stayed}\mid\text{Control})=\frac{761}{820}=0.9280,
+\qquad
+\Pr(\text{Left}\mid\text{Control})=\frac{59}{820}=0.0720.
+$$
+
+Within the Hybrid WFH group, the corresponding distribution is
+
+$$
+\Pr(\text{Stayed}\mid\text{Hybrid WFH})=\frac{754}{792}=0.9520,
+\qquad
+\Pr(\text{Left}\mid\text{Hybrid WFH})=\frac{38}{792}=0.0480.
+$$
+
+Each pair sums to one because every employee in that schedule either stayed or
+left. Reversing the condition gives
+
+$$
+\Pr(\text{Hybrid WFH}\mid\text{Left})=\frac{38}{97}=0.3918.
+$$
+
+The two conditional probabilities share the same numerator, 38 employees, but
+use different denominators. The first conditions on the 97 employees who left;
+the second conditions on the 792 employees assigned to Hybrid WFH.
+
+:::
+::::
+
+## From crosstabs to joint distributions {#sec-joint-marginal-conditional-proportions}
+
+Counts depend on the overall sample size. Dividing every count by the grand
+total normalizes the table: the interior cells now sum to one. A proportion and
+its percentage are the same number ---
+`r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 1), accuracy = 0.001)`
+is `r percent(mean(lending_subs$purpose == "small_business" & lending_subs$default == 1), accuracy = 0.1)`
+--- and from here on we'll write everything as proportions.
+
+@tbl-purpose-default-joint shows the result of dividing every count in @tbl-purpose-default-counts by the grand total, `r comma(nrow(lending_subs))`.
+
+```{r}
+#| label: tbl-purpose-default-joint
+#| tbl-cap: "Joint proportions of purpose and loan status: each count from the crosstab divided by the grand total. All interior cells together sum to one; the margins give each variable's own distribution."
+#| echo: false
+joint <- lending_subs |>
+  count(purpose, loan_status) |>
+  mutate(prop = n / sum(n)) |>
+  select(-n) |>
+  pivot_wider(names_from = loan_status, values_from = prop) |>
+  mutate(Total = `Fully Paid` + `Charged Off`) |>
+  arrange(desc(Total))
+
+joint |>
+  bind_rows(summarise(joint, purpose = "**Total**",
+                      across(where(is.numeric), sum))) |>
+  mutate(across(where(is.numeric), \(x) number(x, accuracy = 0.001))) |>
+  rename(Purpose = purpose) |>
+  knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+The interior cells are the joint proportions we computed from the count table.
+The margins are the corresponding one-variable distributions. As we saw above,
+the marginal proportion of small-business loans is the sum of the two joint
+proportions in that row:
+
+$$
+`r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 0), accuracy = 0.001)`
++ `r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 1), accuracy = 0.001)`
+= `r number(mean(lending_subs$purpose == "small_business"), accuracy = 0.001)`.
+$$
+
+The fully-paid and charged-off small-business loans together account for
+`r number(mean(lending_subs$purpose == "small_business"), accuracy = 0.001)` of
+all the loans in the table.
+
+The normalized table also gives the conditional proportion. Dividing the joint
+proportion for "small business and charged off" by the marginal proportion of
+small-business loans gives the same default rate we computed from counts.
+Because the table is rounded to three decimals, we carry one extra digit in the
+calculation:
+
+$$
+\frac{`r number(mean(lending_subs$purpose == "small_business" & lending_subs$default == 1), accuracy = 0.0001)`}{`r number(mean(lending_subs$purpose == "small_business"), accuracy = 0.0001)`} = `r number(mean(lending_subs$default[lending_subs$purpose == "small_business"]), accuracy = 0.001)`.
+$$
+
+A conditional proportion is therefore the joint proportion divided by the
+marginal proportion of the conditioning variable. Dividing count by count or
+proportion by proportion gives the same answer because the grand total cancels.
+
+This normalized crosstab is the observed-data version of the joint probability
+tables in the next section. The same correspondence held for one-variable
+distributions in @sec-prob-distributions: probabilities for future outcomes
+follow the same structure as proportions in observed data. Here it extends to
+two variables.
+
+## A probability model for future loans {#sec-loan-probability-model}
+
+So far we have read @tbl-purpose-default-joint as a record of what happened to `r comma(loan_n)` historical loans with these three purposes. If those loans are representative of future loans with the same purposes, the table gives estimated probabilities for a future loan drawn from this restricted population.
+
+::: {.Definition #defn-joint-distribution}
+## Joint probability distribution
+
+For two discrete random variables, a **joint probability distribution**
+assigns a probability to every *pair* of outcomes. Laid out as a table --- one
+variable in the rows, the other in the columns --- it follows the same rules
+as any probability distribution: every cell is non-negative, and all the cells
+together sum to one.
+:::
+
+Let $P$ code the purpose of a future loan from this restricted population: $P=1$ for debt consolidation, $P=2$ for home improvement, and $P=3$ for small business. The numbers are labels, not quantities; they let us represent a categorical outcome with a numerical random variable. Let $D$ be the loan's eventual default indicator. We will use the historical relative frequencies as a probability model for that loan: the probability assigned to each purpose--outcome pair is its count divided by `r comma(loan_n)`. For example,
+
+$$
+\Pr(\text{small business and default})
+= \Pr(P = 3 \text{ and } D = 1)
+= \frac{`r comma(loan_small$default)`}{`r comma(loan_n)`}
+= `r number(loan_small$default / loan_n, accuracy = 0.001)`.
+$$
+
+Dividing each of the six interior counts by `r comma(loan_n)` produces the
+complete joint distribution in @tbl-loan-joint.
+
+```{r}
+#| label: tbl-loan-joint
+#| tbl-cap: "The joint probability distribution of purpose and outcome for a future loan from the three-purpose population, estimated from the historical relative frequencies."
+#| echo: false
+loan_joint |>
+  mutate(purpose = case_when(
+           purpose == "debt_consolidation" ~ "Debt consolidation (P = 1)",
+           purpose == "home_improvement" ~ "Home improvement (P = 2)",
+           purpose == "small_business" ~ "Small business (P = 3)"
+         ),
+         across(where(is.numeric), \(x) number(x, accuracy = 0.001))) |>
+  rename(Purpose = purpose, `Repaid (D = 0)` = repaid,
+         `Default (D = 1)` = default) |>
+  knitr::kable(align = c("l", "r", "r"))
+```
+
+The six cells cover every possible purpose--outcome pair in this model, and their
+probabilities add to `r number(sum(loan_joint$repaid) + sum(loan_joint$default), accuracy = 1)`.
+This is Rule 2 from @sec-prob-rules: one of these pairs must occur.
+
+Rule 3 lets us add probabilities for mutually exclusive pairs. In this model, a loan can
+default as a debt-consolidation, home-improvement, or small-business loan, so
+
+$$
+\begin{aligned}
+\Pr(D = 1)
+&= \Pr(P = 1 \text{ and } D = 1)
+ + \Pr(P = 2 \text{ and } D = 1)
+ + \Pr(P = 3 \text{ and } D = 1) \\
+&= `r number(loan_debt$default / loan_n, accuracy = 0.001)`
+ + `r number(loan_home$default / loan_n, accuracy = 0.001)`
+ + `r number(loan_small$default / loan_n, accuracy = 0.001)` \\
+&= `r number(loan_default_n / loan_n, accuracy = 0.001)`.
+\end{aligned}
+$$
+
+The probability of default is therefore the sum of the three joint
+probabilities in the default column.
+
+::: {.Definition #defn-marginal-distribution}
+## Marginal probability distribution
+
+A **marginal probability distribution** gives the probability distribution of
+one variable on its own. We obtain it from a joint distribution by summing over
+all possible outcomes of the other variable.
+:::
+
+Adding the row and column sums to @tbl-loan-joint gives both marginal
+distributions.
+
+```{r}
+#| label: tbl-loan-joint-margins
+#| tbl-cap: "The joint probability distribution with the marginal distributions of purpose and outcome added in the right column and bottom row."
+#| echo: false
+loan_joint |>
+  mutate(Total = repaid + default) |>
+  bind_rows(summarise(loan_joint |> mutate(Total = repaid + default),
+                      purpose = "**Total**",
+                      across(where(is.numeric), sum))) |>
+  mutate(purpose = case_when(
+           purpose == "debt_consolidation" ~ "Debt consolidation (P = 1)",
+           purpose == "home_improvement" ~ "Home improvement (P = 2)",
+           purpose == "small_business" ~ "Small business (P = 3)",
+           TRUE ~ purpose
+         ),
+         across(where(is.numeric), \(x) number(x, accuracy = 0.001))) |>
+  rename(Purpose = purpose, `Repaid (D = 0)` = repaid,
+         `Default (D = 1)` = default) |>
+  knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+These one-variable distributions appear in the margins of the joint table,
+which is where the name *marginal* comes from. For example, summing the two
+small-business joint probabilities gives its marginal probability:
+
+$$
+\Pr(P = 3)
+= `r number(loan_small$repaid / loan_n, accuracy = 0.001)`
++ `r number(loan_small$default / loan_n, accuracy = 0.001)`
+= `r number(loan_small$Total / loan_n, accuracy = 0.001)`.
+$$
+
+The marginal distribution of $D$ answers "what is the default probability for a future loan with one of these three purposes before we know which one?" But it deliberately averages over purposes, and we know from @tbl-default-rate-by-purpose that purpose matters. The sharper question is conditional: *given* that the loan is for a small business, what is the chance it defaults?
+
+### Conditional probability
+
+::: {.Definition #defn-conditional-probability-joint}
+## Conditional probability
+
+For events $A$ and $B$ with $\Pr(B) > 0$, the **conditional probability of $A$
+given $B$** is
+
+$$
+\Pr(A \mid B) = \frac{\Pr(A \text{ and } B)}{\Pr(B)}.
+$$
+
+The bar "$\mid$" reads "given that" or "conditional on." To condition on $B$,
+keep only the probability that is consistent with $B$ and rescale it so it sums
+to one again. That is what dividing the joint probability by the marginal
+probability of $B$ does.
+:::
+
+The formula is exactly the joint-over-marginal arithmetic we did with proportions in @sec-joint-marginal-conditional-proportions, now stated as a definition.
+
+On the table, conditioning is a two-step procedure: keep the row or column consistent with the condition, then *renormalize* the remaining probabilities by dividing by their total. Conditioning on $P = 3$ keeps the small-business row. Its total is the marginal probability $\Pr(P = 3)$. Dividing each joint probability in that row by $\Pr(P = 3)$ gives the conditional distribution in @tbl-small-business-conditional.
+
+```{r}
+#| label: tbl-small-business-conditional
+#| tbl-cap: "The conditional distribution of default status for a future small-business loan. Joint and marginal probabilities are rounded to four decimals; conditional probabilities are computed from the unrounded model."
+#| echo: false
+loan_small_joint <- loan_joint |> filter(purpose == "small_business")
+small_business_marginal <- loan_small_joint$repaid + loan_small_joint$default
+
+tibble(
+  Outcome = c("$D = 0$", "$D = 1$", "**Total**"),
+  Meaning = c("Loan is repaid", "Loan defaults", ""),
+  `Joint probability in the $P = 3$ row` = c(
+    p4(loan_small_joint$repaid),
+    p4(loan_small_joint$default),
+    p4(small_business_marginal)
+  ),
+  `Divide by $\\Pr(P = 3)$` = c(
+    paste0(p4(loan_small_joint$repaid), " / ", p4(small_business_marginal)),
+    paste0(p4(loan_small_joint$default), " / ", p4(small_business_marginal)),
+    paste0(p4(small_business_marginal), " / ", p4(small_business_marginal))
+  ),
+  `Conditional probability` = c(
+    p3(loan_small_joint$repaid / small_business_marginal),
+    p3(loan_small_joint$default / small_business_marginal),
+    number(1, accuracy = 0.001)
+  )
+) |>
+  knitr::kable(align = c("l", "l", "r", "r", "r"))
+```
+
+Together, the probabilities `r p3(loan_small_joint$repaid / small_business_marginal)` and `r p3(loan_small_joint$default / small_business_marginal)` form the conditional distribution of $D$ given $P = 3$. Because this probability model uses the historical relative frequencies, they match the conditional proportions computed from counts in @sec-crosstabs; @sec-prob-distributions rounded the default probability to 0.25 for its introductory example.
+
+Among the three purposes, small-business loans have the largest default
+probability: $\Pr(D = 1 \mid P = 3) =
+`r number(loan_small$default / loan_small$Total, accuracy = 0.001)`$. This is
+the relevant comparison when we ask which loan purpose has the greatest
+default risk.
+
+The reverse conditional answers a different question: among the loans that
+defaulted, what share were for small businesses?
+
+$$
+\Pr(P = 3 \mid D = 1)
+= \frac{`r comma(loan_small$default)`}{`r comma(loan_default_n)`}
+= `r number(loan_small$default / loan_default_n, accuracy = 0.001)`.
+$$
+
+Small-business loans account for only
+`r number(loan_small$Total / loan_n, accuracy = 0.001)` of all loans. Even with
+the largest default risk, they make up only
+`r number(loan_small$default / loan_default_n, accuracy = 0.001)` of the
+defaulted loans.
+
+Most defaulted loans are debt-consolidation loans:
+
+$$
+\Pr(P = 1 \mid D = 1)
+= \frac{`r comma(loan_debt$default)`}{`r comma(loan_default_n)`}
+= `r number(loan_debt$default / loan_default_n, accuracy = 0.001)`.
+$$
+
+Debt-consolidation loans have a lower default probability,
+$\Pr(D = 1 \mid P = 1) =
+`r number(loan_debt$default / loan_debt$Total, accuracy = 0.001)`$, but they
+account for `r number(loan_debt$Total / loan_n, accuracy = 0.001)` of all
+loans. Their large base rate explains why they also account for most defaults.
+
+:::: {.Exercise #exercise-complete-renewal-model}
+## Complete a renewal model
+
+A subscription company uses the following joint probability model for a
+randomly selected customer next year. One probability is missing.
+
+| Current tier | Renews | Does not renew | Total |
+|---|---:|---:|---:|
+| Basic | 0.42 | 0.28 | 0.70 |
+| Premium | 0.24 | ? | 0.30 |
+| **Total** | ? | ? | **1.00** |
+
+1. Find the missing Premium/Does not renew joint probability.
+2. Complete the marginal distribution of renewal status.
+3. Find the conditional distribution of renewal status for Basic customers.
+4. Find the conditional distribution of renewal status for Premium customers.
+5. Find $\Pr(\text{Premium}\mid\text{Renews})$.
+6. An analyst says 0.24 is the Premium renewal rate. Explain what 0.24
+   represents and give the Premium renewal rate.
+
+::: {#solution-complete-renewal-model .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The Premium row must sum to its marginal probability of 0.30, so the missing
+joint probability is
+
+$$
+0.30-0.24=0.06.
+$$
+
+Adding down the columns gives the marginal renewal distribution:
+
+$$
+\Pr(\text{Renews})=0.42+0.24=0.66,
+\qquad
+\Pr(\text{Does not renew})=0.28+0.06=0.34.
+$$
+
+The completed joint probability model is
+
+| Current tier | Renews | Does not renew | Total |
+|---|---:|---:|---:|
+| Basic | 0.42 | 0.28 | 0.70 |
+| Premium | 0.24 | 0.06 | 0.30 |
+| **Total** | **0.66** | **0.34** | **1.00** |
+
+For Basic customers, divide the two joint probabilities in the Basic row by
+the row's marginal probability, 0.70:
+
+$$
+\Pr(\text{Renews}\mid\text{Basic})=\frac{0.42}{0.70}=0.60,
+\qquad
+\Pr(\text{Does not renew}\mid\text{Basic})=\frac{0.28}{0.70}=0.40.
+$$
+
+For Premium customers, divide by 0.30:
+
+$$
+\Pr(\text{Renews}\mid\text{Premium})=\frac{0.24}{0.30}=0.80,
+\qquad
+\Pr(\text{Does not renew}\mid\text{Premium})=\frac{0.06}{0.30}=0.20.
+$$
+
+Among renewing customers, the Premium share is
+
+$$
+\Pr(\text{Premium}\mid\text{Renews})=\frac{0.24}{0.66}=0.3636.
+$$
+
+The value 0.24 is the joint probability that a customer is Premium and renews.
+The Premium renewal rate conditions on Premium customers, so it is
+$0.24/0.30=0.80$.
+
+:::
+::::
+
+::: {.callout-warning}
+## Common mistake: $\Pr(A \mid B)$ and $\Pr(B \mid A)$ are different numbers
+
+Conditional probabilities are asymmetric. The two share a numerator --- the
+joint probability of $A$ and $B$ --- but divide it by different *base rates*
+(marginal probabilities), so one can be tiny while the other is close to one.
+:::
+
+Most tall people aren't in the NBA, but most people in the NBA are tall:
+$\Pr(\text{NBA} \mid \text{tall})$ is minuscule while
+$\Pr(\text{tall} \mid \text{NBA})$ is close to one. Mathematically,
+
+$$
+\Pr(\text{NBA} \mid \text{tall}) = \frac{\Pr(\text{NBA and tall})}{\Pr(\text{tall})},
+\qquad
+\Pr(\text{tall} \mid \text{NBA}) = \frac{\Pr(\text{NBA and tall})}{\Pr(\text{NBA})}.
+$$
+
+Adult heights are roughly normal, so about half of adults are taller than
+average. The first conditional therefore divides a tiny joint probability by
+about 0.5 and stays tiny. The second divides that same joint probability by the
+much smaller probability of being in the NBA, producing a conditional
+probability near 1.
+
+
+## Data used in this section {.unnumbered}
+
+- [LendingClub Accepted Loans](appendix_data.qmd#sec-data-lendingclub-kaggle)
+- [Bloom, Han & Liang Hybrid WFH Experiment](appendix_data.qmd#sec-data-wfh-bloom)

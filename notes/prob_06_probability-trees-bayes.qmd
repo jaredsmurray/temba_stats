@@ -1,0 +1,768 @@
+---
+title: "Probability Trees, Total Probability, and Bayes' Rule"
+filters:
+  - details
+  - custom-numbered-blocks
+custom-numbered-blocks:
+  appearances:
+    concept:
+      container: foldbox
+      boxstyle: foldbox.simple
+      collapse: false
+      colors: ['#F4EAF0', '#7C3F58']
+    reference:
+      container: foldbox
+      boxstyle: foldbox.simple
+      collapse: false
+      colors: ['#EEF1F3', '#5B6770']
+    practice:
+      container: foldbox
+      boxstyle: foldbox.simple
+      collapse: false
+      colors: ['#E7F4F5', '#147D85']
+  classes:
+    Exercise:
+      appearance: practice
+    Definition:
+      appearance: concept
+    Notation:
+      appearance: reference
+    TechnicalDetail:
+      appearance: reference
+      label: "Technical detail"
+      collapse: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+#| echo: false
+library(tidyverse)
+library(scales)
+
+theme_set(theme_minimal(base_size = 13))
+
+# CME FedWatch target-range distributions reported for July 9, 2026. These
+# values are the exact rows from CME's historical-probability CSV downloads
+# for the July 29 and September 16 meetings. Midpoints stand in for ranges.
+cme_marginals <- tribble(
+  ~meeting,              ~target_range, ~midpoint, ~probability,
+  as.Date("2026-07-29"), "3.50--3.75%", 3.625,     0.754138,
+  as.Date("2026-07-29"), "3.75--4.00%", 3.875,     0.245862,
+  as.Date("2026-09-16"), "3.50--3.75%", 3.625,     0.376530,
+  as.Date("2026-09-16"), "3.75--4.00%", 3.875,     0.500363,
+  as.Date("2026-09-16"), "4.00--4.25%", 4.125,     0.123107
+)
+
+cme_july_marg <- cme_marginals |>
+  filter(meeting == as.Date("2026-07-29")) |>
+  transmute(july = target_range, july_mid = midpoint, prob = probability)
+cme_sept_marg <- cme_marginals |>
+  filter(meeting == as.Date("2026-09-16")) |>
+  transmute(sept = target_range, sept_mid = midpoint, prob = probability)
+
+p_july_hold <- cme_july_marg$prob[cme_july_marg$july == "3.50--3.75%"]
+p_july_hike <- cme_july_marg$prob[cme_july_marg$july == "3.75--4.00%"]
+p_sept_low <- cme_sept_marg$prob[cme_sept_marg$sept == "3.50--3.75%"]
+p_sept_3875 <- cme_sept_marg$prob[cme_sept_marg$sept == "3.75--4.00%"]
+p_sept_high <- cme_sept_marg$prob[cme_sept_marg$sept == "4.00--4.25%"]
+
+# Under CME's traditional conditional method, both meetings support a hold or
+# a 25-basis-point hike in this snapshot. The structural zeros and the two
+# reported marginal distributions uniquely determine the four path
+# probabilities. Tiny differences between corresponding conditional
+# probabilities come from rounding in the published histories.
+cme_joint <- tribble(
+  ~july,          ~sept,          ~july_mid, ~sept_mid, ~prob,
+  "3.50--3.75%",  "3.50--3.75%",  3.625,     3.625,     p_sept_low,
+  "3.50--3.75%",  "3.75--4.00%",  3.625,     3.875,     p_july_hold - p_sept_low,
+  "3.75--4.00%",  "3.75--4.00%",  3.875,     3.875,     p_july_hike - p_sept_high,
+  "3.75--4.00%",  "4.00--4.25%",  3.875,     4.125,     p_sept_high
+)
+
+cme_july_marg <- cme_joint |>
+  summarise(prob = sum(prob), .by = c(july, july_mid))
+cme_sept_marg <- cme_joint |>
+  summarise(prob = sum(prob), .by = c(sept, sept_mid))
+
+# Named cells and margins of the CME table, for the prose
+cme_p <- function(j, s) {
+  v <- cme_joint |> filter(july == j, sept == s) |> pull(prob)
+  if (length(v) == 0) 0 else v
+}
+p_hold_hold <- cme_p("3.50--3.75%", "3.50--3.75%")
+p_hold_hike <- cme_p("3.50--3.75%", "3.75--4.00%")
+p_hike_hold <- cme_p("3.75--4.00%", "3.75--4.00%")
+p_hike_hike <- cme_p("3.75--4.00%", "4.00--4.25%")
+cond_hold_hold <- p_hold_hold / p_july_hold
+cond_hold_hike <- p_hold_hike / p_july_hold
+cond_hike_hold <- p_hike_hold / p_july_hike
+cond_hike_hike <- p_hike_hike / p_july_hike
+
+stopifnot(
+  isTRUE(all.equal(cond_hold_hold + cond_hold_hike, 1)),
+  isTRUE(all.equal(cond_hike_hold + cond_hike_hike, 1)),
+  isTRUE(all.equal(p_july_hike * cond_hike_hike, p_hike_hike)),
+  isTRUE(all.equal(p_july_hold * cond_hold_hike +
+                     p_july_hike * cond_hike_hold,
+                   p_sept_3875)),
+  isTRUE(all.equal(cme_july_marg$prob,
+                   cme_marginals |>
+                     filter(meeting == as.Date("2026-07-29")) |>
+                     pull(probability))),
+  isTRUE(all.equal(cme_sept_marg$prob,
+                   cme_marginals |>
+                     filter(meeting == as.Date("2026-09-16")) |>
+                     pull(probability)))
+)
+
+plot_rate_branches <- function(root, outcomes, actions, probs,
+                               root_heading, outcome_heading) {
+  branches <- tibble(
+    x = 0, y = 0, xend = 1, yend = c(1, 0, -1),
+    outcome = outcomes, action = actions, prob = probs,
+    zero = probs == 0
+  )
+
+  ggplot(branches) +
+    geom_segment(aes(x = x, y = y, xend = xend, yend = yend,
+                     color = zero, linetype = zero), linewidth = 0.7) +
+    geom_label(aes(x = 1, y = yend, label = outcome, color = zero),
+               fill = "white", label.size = 0.25, size = 3.5) +
+    geom_label(aes(x = 0.58, y = 0.58 * yend,
+                   label = paste0(action, "\n", number(prob, accuracy = 0.0001)),
+                   color = zero),
+               fill = "white", label.size = 0.25, size = 3.1) +
+    annotate("label", x = 0, y = 0, label = root,
+             fill = "white", label.size = 0.25, size = 3.5) +
+    annotate("text", x = 0, y = 1.45, label = root_heading,
+             fontface = "bold", size = 3.8) +
+    annotate("text", x = 1, y = 1.45, label = outcome_heading,
+             fontface = "bold", size = 3.8) +
+    scale_color_manual(values = c(`FALSE` = "black", `TRUE` = "grey60")) +
+    scale_linetype_manual(values = c(`FALSE` = "solid", `TRUE` = "dashed")) +
+    guides(color = "none", linetype = "none") +
+    coord_cartesian(xlim = c(-0.25, 1.25), ylim = c(-1.25, 1.65),
+                    clip = "off") +
+    theme_void()
+}
+
+p4 <- function(x) number(x, accuracy = 0.0001)
+```
+
+## The Fed's two meetings {#sec-fed-two-meetings}
+
+CME FedWatch uses futures prices to estimate probabilities for future federal
+funds target ranges. In the July 9, 2026 snapshot we use here, its model allows
+a hold or a 25-basis-point hike at each of the next two meetings. A hike of
+25 basis points raises the target range by 0.25 percentage points.
+
+::: {.TechnicalDetail #technical-fedwatch-two-meetings}
+## How FedWatch constructs the meeting probabilities
+
+FedWatch uses monthly federal funds futures prices to infer the expected change
+in the effective federal funds rate at each scheduled meeting. It expresses
+that expected change in 25-basis-point increments, then splits probability
+between the two adjacent increments that bracket it. For example, an expected
+15-basis-point increase becomes a 0.4 probability of a hold and a 0.6
+probability of a 25-basis-point hike.
+
+The method does not limit the Fed to a single 25-basis-point move. An expected
+72.5-basis-point increase would instead become a 0.1 probability of a
+50-basis-point hike and a 0.9 probability of a 75-basis-point hike. Expected
+decreases produce the corresponding pair of cuts. [CME's methodology](https://www.cmegroup.com/articles/2023/understanding-the-cme-group-fedwatch-tool-methodology.html)
+gives the complete construction.
+:::
+
+On July 9, the target range was 3.50--3.75%. Futures prices implied a
+probability of `r p4(p_july_hike)` that the Fed would hike at its July 29
+meeting and a probability of `r p4(p_july_hold)` that it would hold. The
+FedWatch model assigns zero probability to a cut in this snapshot. We can arrange the
+nearby outcomes in a branching tree:
+
+```{r}
+#| label: fig-cme-july-tree
+#| fig-cap: "Market-implied probabilities for the July 29 target range, as reported by CME FedWatch on July 9, 2026. The dashed branch shows a nearby move outside the two supported outcomes in this snapshot."
+#| fig-width: 7.3
+#| fig-height: 3.2
+#| echo: false
+plot_rate_branches(
+  root = "3.50--3.75%\n(current)",
+  outcomes = c("3.25--3.50%", "3.50--3.75%", "3.75--4.00%"),
+  actions = c("cut", "hold", "hike"),
+  probs = c(0, p_july_hold, p_july_hike),
+  root_heading = "July 9",
+  outcome_heading = "After July 29 meeting"
+)
+```
+
+If the Fed were to hike rates at the July meeting, a hold in September
+would leave the target at 3.75--4.00%, while another hike would raise it to
+4.00--4.25%. We reconstruct the conditional branch probabilities from CME's
+published target-range probabilities under this model. The probability of a
+September hike given a July hike is `r p4(cond_hike_hike)`:
+
+```{r}
+#| label: fig-cme-sept-given-hike
+#| fig-cap: "September meeting probabilities after a July hike. Here hold and hike describe the September move; the leaves show the resulting target ranges."
+#| fig-width: 7.3
+#| fig-height: 3.2
+#| echo: false
+plot_rate_branches(
+  root = "3.75--4.00%\n(after July hike)",
+  outcomes = c("3.50--3.75%", "3.75--4.00%", "4.00--4.25%"),
+  actions = c("cut", "hold", "hike"),
+  probs = c(0, cond_hike_hold, cond_hike_hike),
+  root_heading = "After July 29 meeting",
+  outcome_heading = "After September 16 meeting"
+)
+```
+
+These are **conditional probabilities** because they answer an "if" question:
+**If** the Fed hikes in July, what is the chance of another hike in September?
+The action on a September branch is a move relative to the July target; the
+leaf at the end of that branch is the resulting September target range.
+
+If instead the Fed holds the target steady in July, the possible September
+outcomes start from 3.50--3.75%. The same September move probabilities now
+lead to different target ranges:
+
+```{r}
+#| label: fig-cme-sept-given-hold
+#| fig-cap: "September meeting probabilities after a July hold. CME applies the same meeting-level move distribution after either July branch."
+#| fig-width: 7.3
+#| fig-height: 3.2
+#| echo: false
+plot_rate_branches(
+  root = "3.50--3.75%\n(after July hold)",
+  outcomes = c("3.25--3.50%", "3.50--3.75%", "3.75--4.00%"),
+  actions = c("cut", "hold", "hike"),
+  probs = c(0, cond_hold_hold, cond_hold_hike),
+  root_heading = "After July 29 meeting",
+  outcome_heading = "After September 16 meeting"
+)
+```
+
+A September hold after a July hike also lands at 3.75--4.00%, giving us a
+second path to that target range.
+
+We can collect these possibilities into one tree representing the different
+paths the target range could take over the two meetings:
+
+```{r}
+#| label: fig-cme-tree-joint
+#| fig-cap: "The probability tree implied by CME FedWatch's traditional conditional method. The first branches carry July's marginal probabilities; the second branches apply September's meeting-level move probabilities after each July outcome. Dashed branches show nearby moves outside the supported pair."
+#| fig-width: 8.5
+#| fig-height: 6
+#| echo: false
+
+# Marginal July probabilities (the conditioning denominators)
+p_july_hold <- cme_july_marg$prob[cme_july_marg$july == "3.50--3.75%"]
+p_july_hike <- cme_july_marg$prob[cme_july_marg$july == "3.75--4.00%"]
+
+# Joint P(July = j, Sept = s); 0 outside the modeled paths
+joint_p <- function(j, s) {
+  v <- cme_joint |> filter(july == j, sept == s) |> pull(prob)
+  if (length(v) == 0) 0 else v
+}
+
+# Each July state fans out to a cut, hold, or hike in September.
+transitions <- tribble(
+  ~from_lab,      ~from_y,  ~to_lab,        ~leaf_y,  ~action,
+  "3.50--3.75%",   1.5,     "3.25--3.50%",   2.7,     "cut",
+  "3.50--3.75%",   1.5,     "3.50--3.75%",   1.8,     "hold",
+  "3.50--3.75%",   1.5,     "3.75--4.00%",   0.9,     "hike",
+  "3.75--4.00%",  -1.5,     "3.50--3.75%",  -0.9,     "cut",
+  "3.75--4.00%",  -1.5,     "3.75--4.00%",  -1.8,     "hold",
+  "3.75--4.00%",  -1.5,     "4.00--4.25%",  -2.7,     "hike"
+) |>
+  mutate(
+    denom = if_else(from_lab == "3.50--3.75%", p_july_hold, p_july_hike),
+    cond  = map2_dbl(from_lab, to_lab, joint_p) / denom,
+    zero  = cond == 0
+  )
+
+# Nodes: root, two July states, six September leaves (leaves may be zero-prob)
+nodes <- tribble(
+  ~x, ~y,    ~lab,                       ~zero,
+  0,  0,     "3.50--3.75%\n(current)",   FALSE,
+  1,  1.5,   "3.50--3.75%",              FALSE,
+  1, -1.5,   "3.75--4.00%",              FALSE
+) |>
+  bind_rows(transmute(transitions, x = 2, y = leaf_y, lab = to_lab, zero = zero))
+
+# Edges: root -> July, then each July state -> all three September ranges
+edges <- bind_rows(
+  tibble(x = 0, y = 0, xend = 1, yend = c(1.5, -1.5), zero = FALSE),
+  transmute(transitions, x = 1, y = from_y, xend = 2, yend = leaf_y, zero = zero)
+)
+
+branch_labels <- bind_rows(
+  tibble(x = 0.5, y = c(0.9, -0.9),
+         lab = c(paste0("hold\n", number(p_july_hold, accuracy = 0.0001)),
+                 paste0("hike\n", number(p_july_hike, accuracy = 0.0001))),
+         zero = FALSE),
+  transmute(transitions,
+            x = 1.62, y = from_y + 0.6 * (leaf_y - from_y),
+            lab = if_else(zero, "0",
+                          paste0(action, "\n", number(cond, accuracy = 0.0001))),
+            zero = zero)
+)
+
+ggplot() +
+  geom_segment(data = filter(edges, !zero),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               color = "grey40") +
+  geom_segment(data = filter(edges, zero),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               color = "grey70", linetype = "dashed") +
+  geom_label(data = nodes, aes(x = x, y = y, label = lab, color = zero),
+             fill = "white", label.size = 0.25, size = 3.3) +
+  geom_label(data = branch_labels, aes(x = x, y = y, label = lab, color = zero),
+             fill = "white", alpha = 0.9, size = 2.9) +
+  annotate("text", x = 0, y = 3.2, label = "Today (July 9)",
+           fontface = "bold", size = 3.6) +
+  annotate("text", x = 1, y = 3.2, label = "July 29 meeting",
+           fontface = "bold", size = 3.6) +
+  annotate("text", x = 2, y = 3.2, label = "September 16 meeting",
+           fontface = "bold", size = 3.6) +
+  scale_color_manual(values = c(`FALSE` = "black", `TRUE` = "grey60")) +
+  guides(color = "none") +
+  theme_void() +
+  xlim(-0.3, 2.3) +
+  ylim(-3.0, 3.5)
+```
+
+We omitted the July-cut branch from the full tree because a cut was outside the
+two moves supported by this snapshot; the dashed September paths remain for
+reference. The tree is another way to represent a **joint probability
+distribution** over the target ranges after the July and September meetings.
+The probabilities on the branches leaving any one node sum to 1.
+Its first branches show the marginal distribution for July. The next set of
+branches applies the September meeting's move distribution after each July
+outcome. Together they let us reconstruct the joint distribution and the
+marginal distribution of the September target range.
+
+## Multiplying along a path
+
+Consider the joint probability of two hikes, which corresponds to a
+4.00--4.25% target range in September. The probability of a July hike is
+`r p4(p_july_hike)`, and *given* a July hike, the probability of another hike
+is `r p4(cond_hike_hike)`. We defined conditional probability as
+
+$$
+\Pr(A \mid B) = \frac{\Pr(A \text{ and } B)}{\Pr(B)}.
+$$
+
+For $\Pr(B)>0$, multiplying both sides by $\Pr(B)$ gives the **product rule**:
+
+$$
+\Pr(A \text{ and } B) = \Pr(B)\Pr(A \mid B).
+$$
+
+The first factor is the probability of reaching the July branch; the second
+is the probability of the September move given that July outcome. Their
+product is the probability of the full path. Therefore, the probability of
+two consecutive hikes is
+
+$$
+\begin{aligned}
+&\Pr(\text{July hike and September hike}) \\
+&\qquad = \Pr(\text{July hike})
+   \Pr(\text{September hike} \mid \text{July hike}) \\
+&\qquad = `r p4(p_july_hike)` \times `r p4(cond_hike_hike)`
+ \approx `r p4(p_hike_hike)`.
+\end{aligned}
+$$
+
+## The law of total probability
+
+Now suppose we are interested in the probability that the target range is
+3.75--4.00% in September. There are two ways to get there: a hold followed by
+a hike, or a hike followed by a hold. The two paths are mutually exclusive, so
+we add their joint probabilities:
+
+$$
+\begin{aligned}
+\Pr(\text{September target } 3.75\text{--}4.00\%)
+&= \underbrace{`r p4(p_july_hold)` \times `r p4(cond_hold_hike)`}_{
+     \substack{\text{hold in July,}\\\text{then hike in September}}}
+ + \underbrace{`r p4(p_july_hike)` \times `r p4(cond_hike_hold)`}_{
+     \substack{\text{hike in July,}\\\text{then hold in September}}} \\
+&\approx `r p4(p_hold_hike)` + `r p4(p_hike_hold)` \\
+&= `r p4(p_sept_3875)`.
+\end{aligned}
+$$
+
+This calculation recovers CME's reported September probability from the two
+paths that lead to that target range.
+
+The tree highlights both complete paths in dark red, with each path's
+probability to the right of its September outcome:
+
+```{r}
+#| label: fig-cme-total-probability-tree
+#| fig-cap: "The two dark-red paths end at a September target range of 3.75--4.00%. Each path probability is the product of its July probability and its conditional September probability. Values are rounded to four decimals; dashed branches have probability zero."
+#| fig-width: 11
+#| fig-height: 6
+#| echo: false
+
+total_paths <- transitions |>
+  mutate(selected = to_lab == "3.75--4.00%",
+         ink = case_when(selected ~ "darkred", zero ~ "grey65",
+                         TRUE ~ "grey40"),
+         product = paste0(p4(denom), " × ", p4(cond), " ≈ ",
+                          p4(denom * cond)))
+total_edges <- bind_rows(
+  tibble(x = 0, y = 0, xend = 1, yend = c(1.5, -1.5),
+         ink = "darkred", zero = FALSE),
+  transmute(total_paths, x = 1, y = from_y, xend = 2,
+            yend = leaf_y, ink, zero)
+)
+total_nodes <- nodes |>
+  mutate(ink = if_else(x < 2 | lab == "3.75--4.00%", "darkred",
+                       if_else(zero, "grey65", "grey40")))
+total_labels <- branch_labels |>
+  mutate(ink = c(rep("darkred", 2), total_paths$ink))
+
+ggplot() +
+  geom_segment(data = total_edges,
+               aes(x, y, xend = xend, yend = yend,
+                   color = ink, linetype = zero), linewidth = 0.7) +
+  geom_label(data = total_nodes, aes(x, y, label = lab, color = ink),
+             fill = "white", size = 3.3) +
+  geom_label(data = total_labels, aes(x, y, label = lab, color = ink),
+             fill = "white", size = 2.9) +
+  geom_text(data = total_paths,
+            aes(x = 2.3, y = leaf_y, label = product, color = ink),
+            hjust = 0, size = 3.2) +
+  annotate("text", x = c(0, 1, 2, 2.95), y = 3.2,
+           label = c("Today (July 9)", "July 29 meeting",
+                     "September 16 meeting", "Path probability"),
+           fontface = "bold", size = 3.5) +
+  scale_color_identity() +
+  scale_linetype_manual(values = c(`FALSE` = "solid", `TRUE` = "dashed")) +
+  guides(linetype = "none") +
+  coord_cartesian(xlim = c(-0.3, 3.65), ylim = c(-3, 3.5), clip = "off") +
+  theme_void()
+```
+
+The **law of total probability** applies the same calculation to any event
+$B$. Suppose $A_1,\ldots,A_k$ are mutually exclusive and exhaustive events:
+exactly one of them occurs. For events $A_i$ with positive probability,
+
+$$
+\Pr(B)=\sum_{i=1}^k \Pr(A_i)\Pr(B\mid A_i).
+$$
+
+Each term is the joint probability of $A_i$ and $B$. Adding these terms accounts
+for every way $B$ can occur, just as summing a column of a joint probability
+table gives its marginal probability.
+
+Computing the other joint probabilities and summing the rows and columns gives
+a complete probability table like the one we started with for LendingClub:
+
+```{r}
+#| label: tbl-cme-joint
+#| tbl-cap: "The joint distribution implied by CME FedWatch's traditional conditional method for the July and September 2026 meetings, using probabilities reported on July 9, 2026. Values are rounded to four decimals."
+#| echo: false
+cme_wide <- tibble(
+  july = c("3.50--3.75%", "3.75--4.00%"),
+  `3.25--3.50%` = c(0, 0),
+  `3.50--3.75%` = c(p_hold_hold, 0),
+  `3.75--4.00%` = c(p_hold_hike, p_hike_hold),
+  `4.00--4.25%` = c(0, p_hike_hike)
+) |>
+  mutate(`July marginal` = rowSums(across(where(is.numeric))))
+
+cme_wide |>
+  bind_rows(summarise(cme_wide, july = "**September marginal**",
+                      across(where(is.numeric), sum))) |>
+  mutate(across(where(is.numeric), \(x) number(x, accuracy = 0.0001))) |>
+  rename(`July \\\\ September` = july) |>
+  knitr::kable(align = c("l", "r", "r", "r", "r", "r"))
+```
+
+The table and the tree encode the same information about the joint
+distribution in different ways. When events unfold sequentially, the tree is
+often more convenient because each path records the order in which the events
+occur.
+
+The loan table's conditional default distribution changes across purposes. In
+the FedWatch construction, the September *move* distribution stays essentially
+the same across July branches, even though the resulting September target
+range depends on July's target.
+
+## Worked example: Fraud screening {#sec-fraud-screening}
+
+Suppose an online retailer uses a system that flags transactions for manual
+review. In our model, 0.5% of transactions are fraudulent. The system flags
+95% of fraudulent transactions and 2% of legitimate transactions. Given that
+the system flags a transaction, what is the probability that it is fraudulent?
+
+Let $F$ denote the event that a transaction is fraudulent and $A$ the event
+that the system flags it. The 95% rate is a share *of fraudulent transactions*,
+so it gives $\Pr(A\mid F)$. Our inputs are
+
+$$
+\Pr(F)=0.005,\qquad
+\Pr(A\mid F)=0.95,\qquad
+\Pr(A\mid F^c)=0.02,
+$$
+
+where $F^c$ means the transaction is legitimate. The question asks for the
+reverse conditional, $\Pr(F\mid A)$.
+
+The tree shows the two possible screening outcomes within each transaction
+status and the probability of each complete path:
+
+```{r}
+#| label: fig-fraud-screening-tree
+#| fig-cap: "Fraud-screening probability tree. Multiplying the branch probabilities gives each joint probability on the right. The two flagged paths contribute to the overall probability of a flag."
+#| fig-width: 10
+#| fig-height: 4.8
+#| echo: false
+
+fraud_paths <- tribble(
+  ~status,       ~from_y, ~outcome,      ~leaf_y, ~prior, ~conditional,
+  "Fraudulent",   1.1,   "Flagged",       2.0,   0.005,  0.95,
+  "Fraudulent",   1.1,   "Not flagged",   0.5,   0.005,  0.05,
+  "Legitimate",  -1.1,   "Flagged",      -0.5,   0.995,  0.02,
+  "Legitimate",  -1.1,   "Not flagged",  -2.0,   0.995,  0.98
+) |>
+  mutate(product = paste0(number(prior, accuracy = 0.001), " × ",
+                          number(conditional, accuracy = 0.01), " = ",
+                          number(prior * conditional, accuracy = 0.00001)))
+fraud_edges <- bind_rows(
+  tibble(x = 0, y = 0, xend = 1, yend = c(1.1, -1.1)),
+  transmute(fraud_paths, x = 1, y = from_y, xend = 2, yend = leaf_y)
+)
+fraud_nodes <- bind_rows(
+  tibble(x = c(0, 1, 1), y = c(0, 1.1, -1.1),
+         label = c("Transaction", "Fraudulent", "Legitimate")),
+  transmute(fraud_paths, x = 2, y = leaf_y, label = outcome)
+)
+fraud_labels <- bind_rows(
+  tibble(x = 0.48, y = c(0.72, -0.72), label = c("0.005", "0.995")),
+  transmute(fraud_paths, x = 1.55, y = from_y + 0.6 * (leaf_y - from_y),
+            label = number(conditional, accuracy = 0.01))
+)
+
+ggplot() +
+  geom_segment(data = fraud_edges,
+               aes(x, y, xend = xend, yend = yend), color = "grey40") +
+  geom_label(data = fraud_nodes, aes(x, y, label = label),
+             fill = "white", size = 3.4) +
+  geom_label(data = fraud_labels, aes(x, y, label = label),
+             fill = "white", size = 3.1) +
+  geom_text(data = fraud_paths, aes(x = 2.3, y = leaf_y, label = product),
+            hjust = 0, size = 3.3) +
+  annotate("text", x = c(0, 1, 2, 2.95), y = 2.5,
+           label = c("Transaction", "Actual status", "Screening outcome",
+                     "Path probability"), fontface = "bold", size = 3.5) +
+  coord_cartesian(xlim = c(-0.25, 3.65), ylim = c(-2.3, 2.7), clip = "off") +
+  theme_void()
+```
+
+Fraudulent transactions make up 0.5% of all transactions, and the system flags
+95% of that group. Multiplying these two shares gives the joint probability
+that a transaction is fraudulent and flagged:
+
+$$
+\Pr(F\text{ and }A)=0.005\times0.95=0.00475.
+$$
+
+A flag can also come from a legitimate transaction. Adding the probabilities
+of these two paths gives the overall probability of a flag:
+
+$$
+\begin{aligned}
+\Pr(A)
+&=\Pr(F)\Pr(A\mid F)+\Pr(F^c)\Pr(A\mid F^c)\\
+&=0.005\times0.95+0.995\times0.02\\
+&=0.00475+0.01990=0.02465.
+\end{aligned}
+$$
+
+Among flagged transactions, the fraudulent share is therefore
+
+$$
+\Pr(F\mid A)
+=\frac{\Pr(F\text{ and }A)}{\Pr(A)}
+=\frac{0.00475}{0.02465}
+\approx0.193.
+$$
+
+About 19.3% of flagged transactions are fraudulent. The system catches 95% of
+fraud, but legitimate transactions are much more common, so even their 2%
+flag rate produces more flags than the fraudulent transactions do.
+
+We can represent these rates with a hypothetical group of 100,000
+transactions. Of the 500 fraudulent transactions, the system flags
+$500\times0.95=475$. Of the 99,500 legitimate transactions, it flags
+$99{,}500\times0.02=1{,}990$:
+
+| Actual status | Flagged | Not flagged | Total |
+|---|---:|---:|---:|
+| Fraudulent | 475 | 25 | 500 |
+| Legitimate | 1,990 | 97,510 | 99,500 |
+| **Total** | **2,465** | **97,535** | **100,000** |
+
+Conditioning on a flag keeps the 2,465 transactions in the Flagged column.
+The fraudulent share is $475/2{,}465\approx0.193$. A flag raises the probability
+of fraud from 0.005 to about 0.193, even though most flagged transactions are
+legitimate.
+
+## Bayes' rule {#sec-bayes-rule}
+
+The fraud calculation starts with a probability of a flag *given fraud* and
+uses it to find the probability of fraud *given a flag*. Substituting the
+product rule into the conditional-probability definition gives **Bayes' rule**:
+
+$$
+\Pr(F\mid A)
+=\frac{\Pr(F)\Pr(A\mid F)}{\Pr(A)}.
+$$
+
+The numerator is the probability of a fraudulent transaction that produces a
+flag. Dividing by the probability of a flag restricts the comparison to the
+flagged transactions, as in the conditional tables in
+[Chapter 10](prob_05_multivariate-distributions.qmd#defn-conditional-probability-joint).
+
+More generally, let $A_1,\ldots,A_k$ be mutually exclusive and exhaustive
+events with positive probabilities, and suppose $\Pr(B)>0$. Combining the
+product rule and the law of total probability gives
+
+$$
+\Pr(A_j\mid B)
+=\frac{\Pr(A_j)\Pr(B\mid A_j)}
+       {\sum_{i=1}^k\Pr(A_i)\Pr(B\mid A_i)}.
+$$
+
+We multiply each starting probability $\Pr(A_i)$ by the conditional probability
+of the observed event $B$ within that group. These products are the joint
+probabilities of each group and $B$. Dividing by their sum makes the
+conditional probabilities add to 1, just as we renormalized the selected
+entries of a joint table in Chapter 10.
+
+:::: {.Exercise #exercise-supplier-risk-tree}
+## Supplier risk as a probability tree
+
+A buyer orders 60% of its components from Supplier A and 40% from Supplier B.
+The probability that a component is defective is 0.02 given Supplier A and
+0.05 given Supplier B.
+
+1. Draw a probability tree whose first branches identify the supplier and
+   whose second branches identify whether the component is defective or not
+   defective. Label every branch.
+2. Compute the probability of each of the four paths.
+3. Use the path probabilities to construct the joint probability table of
+   supplier and defect status, including both marginal distributions.
+4. Find the marginal probability that a component is defective.
+5. Given that a component is defective, find the probability that it came from
+   Supplier B.
+6. Explain why the answer to part 5 exceeds the marginal probability of
+   ordering from Supplier B.
+
+::: {#solution-supplier-risk-tree .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The first branches have probabilities 0.60 for Supplier A and 0.40 for Supplier
+B. The second-stage branch probabilities are 0.02 Defective and 0.98 Not
+defective after Supplier A, and 0.05 Defective and 0.95 Not defective after
+Supplier B. The completed tree is
+
+```{r}
+#| label: fig-supplier-risk-tree
+#| fig-cap: "Completed supplier-risk probability tree. The first branches show the marginal supplier probabilities; the second branches show the conditional defect-status probabilities within each supplier."
+#| fig-width: 8
+#| fig-height: 4.5
+#| echo: false
+
+supplier_edges <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  0,  0, 1,  1.1,
+  0,  0, 1, -1.1,
+  1,  1.1, 2,  2.0,
+  1,  1.1, 2,  0.5,
+  1, -1.1, 2, -0.5,
+  1, -1.1, 2, -2.0
+)
+
+supplier_nodes <- tribble(
+  ~x, ~y, ~label,
+  0,  0, "Component",
+  1,  1.1, "Supplier A",
+  1, -1.1, "Supplier B",
+  2,  2.0, "Defective",
+  2,  0.5, "Not defective",
+  2, -0.5, "Defective",
+  2, -2.0, "Not defective"
+)
+
+supplier_branch_labels <- tribble(
+  ~x, ~y, ~label,
+  0.48,  0.72, "A\n0.60",
+  0.48, -0.72, "B\n0.40",
+  1.53,  1.75, "Defective\n0.02",
+  1.55,  0.68, "Not defective\n0.98",
+  1.55, -0.68, "Defective\n0.05",
+  1.53, -1.75, "Not defective\n0.95"
+)
+
+ggplot() +
+  geom_segment(data = supplier_edges,
+               aes(x = x, y = y, xend = xend, yend = yend),
+               color = "grey40") +
+  geom_label(data = supplier_nodes, aes(x = x, y = y, label = label),
+             fill = "white", label.size = 0.25, size = 3.4) +
+  geom_label(data = supplier_branch_labels,
+             aes(x = x, y = y, label = label),
+             fill = "white", label.size = 0, size = 3.0) +
+  annotate("text", x = 0, y = 2.45, label = "Random component",
+           fontface = "bold", size = 3.6) +
+  annotate("text", x = 1, y = 2.45, label = "Supplier",
+           fontface = "bold", size = 3.6) +
+  annotate("text", x = 2, y = 2.45, label = "Defect status",
+           fontface = "bold", size = 3.6) +
+  coord_cartesian(xlim = c(-0.25, 2.3), ylim = c(-2.35, 2.6), clip = "off") +
+  theme_void()
+```
+
+Multiplying along each path gives the four joint probabilities:
+
+$$
+\begin{aligned}
+\Pr(A\text{ and Defective}) &= 0.60(0.02)=0.012, \\
+\Pr(A\text{ and Not defective}) &= 0.60(0.98)=0.588, \\
+\Pr(B\text{ and Defective}) &= 0.40(0.05)=0.020, \\
+\Pr(B\text{ and Not defective}) &= 0.40(0.95)=0.380.
+\end{aligned}
+$$
+
+The path probabilities and their margins form the joint table:
+
+| Supplier | Defective | Not defective | Total |
+|---|---:|---:|---:|
+| A | 0.012 | 0.588 | 0.600 |
+| B | 0.020 | 0.380 | 0.400 |
+| **Total** | **0.032** | **0.968** | **1.000** |
+
+Adding the two paths that end in a defect gives
+$\Pr(\text{Defective})=0.012+0.020=0.032$. Among defective components, the
+Supplier B share is
+
+$$
+\Pr(B\mid\text{Defective})=\frac{0.020}{0.032}=0.625.
+$$
+
+Supplier B's defective path has probability $0.40(0.05)=0.020$, compared with
+$0.60(0.02)=0.012$ for Supplier A. Conditioning on a defect therefore raises
+Supplier B's share from 40% of all components to 62.5% of defective components.
+
+:::
+::::
+
+## Data used in this section {.unnumbered}
+
+- [CME FedWatch historical probabilities](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html), July 9, 2026, with the construction documented in [CME's methodology](https://www.cmegroup.com/articles/2023/understanding-the-cme-group-fedwatch-tool-methodology.html)

@@ -1,0 +1,270 @@
+---
+title: "Independence"
+filters:
+  - details
+  - custom-numbered-blocks
+---
+
+```{r}
+#| label: setup-independence
+#| include: false
+library(scales)
+
+loans_ind <- read.csv("data/lending_club/data/df_subs.csv")
+purpose_ind <- c("small_business", "debt_consolidation", "home_improvement")
+loan_counts_ind <- table(factor(loans_ind$purpose, levels = purpose_ind),
+                         factor(loans_ind$loan_status,
+                                levels = c("Charged Off", "Fully Paid")))
+loan_n_ind <- sum(loan_counts_ind)
+loan_joint_ind <- loan_counts_ind / loan_n_ind
+loan_default_ind <- sum(loan_counts_ind[, 1]) / loan_n_ind
+loan_rates_ind <- loan_counts_ind[, 1] / rowSums(loan_counts_ind)
+stopifnot(loan_n_ind == nrow(loans_ind), loan_n_ind == 58456,
+          all(rowSums(loan_counts_ind) == c(3191, 49409, 5856)),
+          abs(sum(loan_joint_ind) - 1) < 1e-12,
+          abs(sum(loan_joint_ind[, 1]) - loan_default_ind) < 1e-12)
+
+# July 9, 2026 published CME histories; the supported moves determine zeros.
+july_ind <- c(0.754138, 0.245862)
+sept_ind <- c(0.376530, 0.500363, 0.123107)
+cme_ind <- matrix(c(sept_ind[1], july_ind[1] - sept_ind[1], 0,
+                    0, july_ind[2] - sept_ind[3], sept_ind[3]),
+                  nrow = 2, byrow = TRUE,
+                  dimnames = list(c("3.50–3.75%", "3.75–4.00%"),
+                                  c("3.50–3.75%", "3.75–4.00%", "4.00–4.25%")))
+stopifnot(all(cme_ind >= 0), abs(sum(cme_ind) - 1) < 1e-12,
+          max(abs(rowSums(cme_ind) - july_ind)) < 1e-12,
+          max(abs(colSums(cme_ind) - sept_ind)) < 1e-12)
+
+ad_ind <- c(A = 0.6, B = 0.4)
+device_ind <- c(Phone = 0.5, Tablet = 0.2, Computer = 0.3)
+model_ind <- outer(ad_ind, device_ind)
+stopifnot(abs(sum(model_ind) - 1) < 1e-12,
+          max(abs(rowSums(model_ind) - ad_ind)) < 1e-12,
+          max(abs(colSums(model_ind) - device_ind)) < 1e-12,
+          max(abs(sweep(model_ind, 1, ad_ind, "/") -
+                    matrix(device_ind, 2, 3, byrow = TRUE))) < 1e-12,
+          max(abs(sweep(model_ind, 2, device_ind, "/") -
+                    matrix(ad_ind, 2, 3))) < 1e-12)
+
+shed_ind <- read.csv("data/shed/shed_2025.csv")
+employment_ind <- c("Not working", "Working full-time", "Working part-time")
+ratings_ind <- c("Excellent", "Good", "Only fair", "Poor")
+shed_counts_ind <- table(factor(shed_ind$employment_status, levels = employment_ind),
+                         factor(shed_ind$econ_conditions_country, levels = ratings_ind))
+shed_cond_ind <- prop.table(shed_counts_ind, 1)
+shed_marg_ind <- colSums(shed_counts_ind) / sum(shed_counts_ind)
+shed_gap_ind <- max(abs(sweep(shed_cond_ind, 2, shed_marg_ind, "-")))
+stopifnot(sum(shed_counts_ind) == nrow(shed_ind), nrow(shed_ind) == 12934,
+          max(abs(rowSums(shed_cond_ind) - 1)) < 1e-12,
+          abs(sum(shed_marg_ind) - 1) < 1e-12,
+          round(100 * shed_gap_ind, 1) == 1.4)
+```
+
+## Independence {#sec-independence}
+
+A conditional distribution tells us how the distribution of one variable changes when we learn the value of another. In our running example, once we know a LendingClub loan is for a small business we know it's more likely to default than average --- the new information changes our assessment of how likely a default is. 
+
+What would it mean if the chance of default was the same for each loan purpose? Or, put in the language of probability, what would it mean if the conditional distribution of defaults was identical for every loan purpose? Intuitively we would say that the chance a loan defaults doesn't *depend* on why the borrower took out the loan --- loan purpose and defaults would be *independent*. If even one conditional distribution differs from its marginal distribution, the variables are **dependent**. Formally this reduces to the following definition:
+
+::: {.Definition #defn-independence}
+## Independent random variables
+
+Two discrete random variables $X$ and $Y$ are independent if
+
+$$
+\Pr(X=x,Y=y)=\Pr(X=x)\Pr(Y=y)
+$$
+
+for every pair of outcomes $x$ and $y$. That is, each joint probability equals the product of its two marginal probabilities. Equivalently,
+
+$$
+\Pr(X=x\mid Y=y)=\Pr(X=x)
+$$
+
+for every $x$ and every $y$ with $\Pr(Y=y)>0$. The distribution of $X$ stays the same whichever value of $Y$ we learn.
+:::
+
+The conditional form expresses the idea of unchanged information; the product form gives us a direct check on a joint table. They agree because a conditional probability is the joint probability divided by the probability of the condition. If the joint probability is $\Pr(X=x)\Pr(Y=y)$, dividing by $\Pr(Y=y)$ leaves $\Pr(X=x)$.
+
+Independence works in both directions. The product is unchanged when we swap $X$ and $Y$, so independence also gives $\Pr(Y=y\mid X=x)=\Pr(Y=y)$ whenever $\Pr(X=x)>0$. To establish independence from a joint table, every interior cell must satisfy the product equality in the definition. One failing cell is enough to establish dependence.
+
+## Loan purpose and default
+
+The `r comma(loan_n_ind)` LendingClub loans in our three-purpose subset give us conditional default rates to compare with the overall rate. @tbl-ind-loan-rates reports historical relative frequencies: each rate divides the number of charged-off loans by the number of loans with that purpose.
+
+```{r}
+#| label: tbl-ind-loan-rates
+#| tbl-cap: "Historical default rates for the three-purpose LendingClub subset."
+#| echo: false
+data.frame(Purpose = c("Small business", "Debt consolidation", "Home improvement"),
+           Loans = comma(rowSums(loan_counts_ind)),
+           `Default rate` = percent(loan_rates_ind, accuracy = 0.1),
+           check.names = FALSE) |>
+  knitr::kable(align = c("l", "r", "r"), row.names = FALSE)
+```
+
+The overall default rate is `r percent(loan_default_ind, accuracy = 0.1)`. Knowing that a loan funded a small business raises the historical rate to `r percent(loan_rates_ind[1], accuracy = 0.1)`, a difference of `r number(round(100 * loan_rates_ind[1], 1) - round(100 * loan_default_ind, 1), accuracy = 0.1)` percentage points. Knowing that it funded home improvement lowers the rate to `r percent(loan_rates_ind[3], accuracy = 0.1)`. Purpose changes the default distribution.
+
+If we use these historical relative frequencies as a probability model for a future loan from the same three-purpose population, purpose and default are dependent in that model. The small-business/default cell also fails the product check:
+
+$$
+\underbrace{\Pr(\text{small business and default})}_{`r number(loan_joint_ind[1, 1], accuracy = 0.0001)`}
+\ne
+\underbrace{\Pr(\text{small business})\Pr(\text{default})}_{`r number(sum(loan_joint_ind[1, ]) * loan_default_ind, accuracy = 0.0001)`}.
+$$
+
+The joint probability exceeds the product because default is more common among small-business loans than overall. The debt-consolidation rate rounds to the same value as the overall rate, but that does not establish independence: the other purposes differ, and the definition requires equality for every outcome. These comparisons describe an association; they do not establish that changing a loan's stated purpose would change its default risk.
+
+## Target ranges at two Fed meetings
+
+CME FedWatch uses federal funds futures prices to assign market-implied probabilities to future federal funds target ranges. Here we use its July 9, 2026 snapshot for the target range after the July 29 and September 16 Federal Open Market Committee meetings. The supported moves at each meeting in this snapshot are a hold or an increase of 0.25 percentage points.
+
+Those supported moves constrain the combinations of July and September outcomes. A September target of 4.00–4.25% requires July already to have reached 3.75–4.00%; starting September at 3.50–3.75% would require a larger increase than this snapshot supports. Similarly, a July target of 3.75–4.00% cannot be followed by a September target of 3.50–3.75% under these moves. @tbl-ind-cme retains these impossible combinations as zeros. They are constraints of this probability model, not claims about everything the Fed could conceivably do.
+
+```{r}
+#| label: tbl-ind-cme
+#| tbl-cap: "Joint market-implied probabilities for the July and September target ranges, using the July 9, 2026 CME FedWatch snapshot. Rows give July ranges; columns give September ranges."
+#| echo: false
+cme_display_ind <- rbind(cbind(cme_ind, Total = rowSums(cme_ind)),
+                         Total = c(colSums(cme_ind), 1))
+knitr::kable(cme_display_ind, digits = 6,
+             align = c("r", "r", "r", "r"))
+```
+
+Independence would assign a positive probability to July at 3.50–3.75% together with September at 4.00–4.25%, because both outcomes have positive marginal probabilities. The table assigns that combination zero:
+
+$$
+\begin{aligned}
+\Pr(\text{July }3.50\text{–}3.75\%,\ \text{September }4.00\text{–}4.25\%)
+&=0,\\
+\Pr(\text{July }3.50\text{–}3.75\%)\Pr(\text{September }4.00\text{–}4.25\%)
+&=0.754138\times0.123107\\
+&\approx `r number(july_ind[1] * sept_ind[3], accuracy = 0.00001)`.
+\end{aligned}
+$$
+
+The conditional interpretation is sharper still. Among the outcomes with September at 4.00–4.25%, none has July at 3.50–3.75%, so
+
+$$
+\Pr(\text{July }3.50\text{–}3.75\%\mid
+       \text{September }4.00\text{–}4.25\%)=0.
+$$
+
+Before learning September's outcome, the probability of that July range is `r number(july_ind[1], accuracy = 0.0001)`. After learning that September reached the highest range, July's higher range is certain under this model. LendingClub's purpose categories changed the chance of default while leaving both repayment and default possible; this September outcome rules out one July outcome entirely.
+
+## An independent probability model
+
+Suppose a website assigns advertisement A with probability 0.6 and advertisement B with probability 0.4. Its assignment mechanism uses the same probabilities for every device type. Suppose also that a visit comes from a phone with probability 0.5, a tablet with probability 0.2, and a computer with probability 0.3. These are assumptions of a constructed model.
+
+Because the advertisement probabilities stay the same across devices, advertisement and device are independent in this model. Multiplying each advertisement margin by each device margin gives @tbl-ind-ad-device. For example, the probability of advertisement A and a phone is $0.6\times0.5=0.30$.
+
+```{r}
+#| label: tbl-ind-ad-device
+#| tbl-cap: "An independent model for advertisement and device. Every joint probability is its row margin times its column margin."
+#| echo: false
+model_display_ind <- rbind(cbind(model_ind, Total = rowSums(model_ind)),
+                           Total = c(colSums(model_ind), 1))
+knitr::kable(model_display_ind, digits = 2)
+```
+
+Conditioning on a phone gives $\Pr(A\mid\text{phone})=0.30/0.50=0.60$. Conditioning on a tablet gives $0.12/0.20=0.60$, and conditioning on a computer gives $0.18/0.30=0.60$. The conditional probability of B is 0.40 for all three devices, so each conditional advertisement distribution matches its margin exactly.
+
+The device distribution also stays unchanged when we learn the advertisement. Dividing the A row by 0.60 gives $(0.50,0.20,0.30)$; dividing the B row by 0.40 gives the same three probabilities. We can check every conditional here because the model has only six cells. The equality follows from how the model assigns advertisements, even if a finite sample of visits produces slightly different proportions.
+
+## Economic ratings and employment
+
+The 2025 Survey of Household Economics and Decisionmaking (SHED), the Federal Reserve survey of U.S. adults used earlier, records respondents' ratings of current national economic conditions. We will compare those ratings across `employment_status`: not working, working full-time, and working part-time. @tbl-ind-shed uses all `r comma(nrow(shed_ind))` respondents in our extract, with one observation per respondent and no survey weights.
+
+```{r}
+#| label: tbl-ind-shed
+#| tbl-cap: "Conditional percentages rating national economic conditions in each category, by employment status. The overall row uses all respondents. Percentages are unweighted and may not sum to 100 after rounding."
+#| echo: false
+shed_display_ind <- rbind(shed_cond_ind, Overall = shed_marg_ind)
+shed_display_ind[] <- percent(shed_display_ind, accuracy = 0.1)
+knitr::kable(shed_display_ind, align = rep("r", 4))
+```
+
+The rating distributions are similar across employment groups. The largest departure from an overall category share is `r number(100 * shed_gap_ind, accuracy = 0.1)` percentage points: `r percent(shed_cond_ind[1, "Good"], accuracy = 0.1)` of respondents who are not working rate conditions “good,” compared with `r percent(shed_marg_ind["Good"], accuracy = 0.1)` overall. Employment status tells us relatively little about the distribution of these ratings in this extract.
+
+These conditional proportions are nearly unchanged, but they are not exactly equal. Even if employment status and ratings were independent in a population model, random sampling would generally produce some differences among the observed proportions. Conversely, rounding can make two sample proportions look identical even when they differ. This table provides evidence about whether independence might be a useful approximation; it does not establish exact independence in the U.S. adult population.
+
+Independence is an exact property of a probability model. In the website example we specified a mechanism that makes every joint probability equal to its product of margins. For SHED, we observe responses and must judge whether such a model adequately approximates the relationship. The unweighted table alone also does not account for the survey's sampling design.
+
+## Quantitative variables
+
+The same unchanged-distribution idea applies when one or both variables are quantitative. For example, independence between income and age would require the entire income distribution to stay the same across ages: its location, spread, and shape would all have to agree.  In the next chapter we develop measures of certain kinds of dependence between quantitative variables that are important in practice --- correlation and covariance.
+
+## Exercises
+
+:::: {.Exercise #exercise-ind-delivery}
+## Delivery delays
+
+A retailer's historical records show that 8% of all deliveries arrived late. Among standard deliveries, 10% arrived late; among express deliveries, 2% arrived late. Treat these historical proportions as the probabilities for a future delivery.
+
+1. Are delivery service and late arrival independent in this model? Give a numerical comparison that supports your answer.
+2. Find the conditional probability of an on-time arrival given express service, and compare it with the marginal probability of an on-time arrival.
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+The variables are dependent because $\Pr(\text{late}\mid\text{express})=0.02$ differs from $\Pr(\text{late})=0.08$. The standard-service comparison also fails: $0.10\ne0.08$. An express delivery arrives on time with conditional probability $1-0.02=0.98$, compared with the marginal probability $1-0.08=0.92$. Learning the service changes both probabilities in the arrival-status distribution.
+:::
+::::
+
+:::: {.Exercise #exercise-ind-complete-table}
+## Two promotional offers
+
+A store independently assigns a free-shipping offer and a discount offer to each visitor. The probability of free shipping is 0.25, and the probability of a discount is 0.40.
+
+1. Complete the joint probability table below.
+2. Compute the conditional probability of a discount given free shipping and given no free shipping. Compare both with the discount margin.
+
+| Shipping offer | Discount | No discount | Total |
+|---|---:|---:|---:|
+| Free shipping | ? | ? | 0.25 |
+| No free shipping | ? | ? | 0.75 |
+| Total | 0.40 | 0.60 | 1.00 |
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+Multiply each row margin by each column margin. The first row contains $0.25(0.40)=0.10$ and $0.25(0.60)=0.15$; the second contains $0.75(0.40)=0.30$ and $0.75(0.60)=0.45$. The four cells sum to one and recover the supplied margins.
+
+The conditional discount probabilities are $0.10/0.25=0.40$ with free shipping and $0.30/0.75=0.40$ without it. Both equal the marginal probability 0.40, as independence requires.
+:::
+::::
+
+:::: {.Exercise #exercise-ind-cell-check}
+## Store visits and purchases
+
+The following probability model describes whether a customer visits a store and whether the customer purchases that week. Purchases can also occur online.
+
+| | Purchase | No purchase | Total |
+|---|---:|---:|---:|
+| Store visit | 0.18 | 0.22 | 0.40 |
+| No store visit | 0.12 | 0.48 | 0.60 |
+| Total | 0.30 | 0.70 | 1.00 |
+
+Find one cell that disproves independence. State what independence would require for that cell and compare it with the table.
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+Independence would require $\Pr(\text{visit and purchase})=0.40(0.30)=0.12$. The table assigns 0.18 to that combination, so store visits and purchases are dependent. We do not need to check the remaining cells once this equality fails.
+:::
+::::
+
+:::: {.Exercise #exercise-ind-sample-model}
+## Similar survey results
+
+A survey finds that 40.4% of urban respondents and 39.6% of rural respondents prefer a proposed service. A report concludes, “Residence and preference are independent because the percentages are almost the same.” Explain what the table supports and what is too strong about the conclusion. Would reporting both percentages as 40% establish independence?
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+The reported proportions suggest similar preference distributions in the two groups, so independence may be a useful approximation. Independence itself requires exact equality of the conditional and marginal distributions in a probability model. Sample proportions vary, and the table does not establish that equality in the population. Rounding both to 40% discards information; it cannot establish independence.
+:::
+::::
+
+## Sources {.unnumbered}
+
+- The [LendingClub data description](appendix_data.qmd#sec-data-lendingclub-kaggle) documents the historical loan extract.
+- The [CME FedWatch historical probabilities](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) supply the July 9, 2026 snapshot; [CME's methodology](https://www.cmegroup.com/articles/2023/understanding-the-cme-group-fedwatch-tool-methodology.html) explains the model construction.
+- The [SHED data description](appendix_data.qmd#sec-data-shed) documents the 2025 household survey extract.

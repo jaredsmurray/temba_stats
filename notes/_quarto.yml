@@ -67,6 +67,17 @@ book:
         - prob_02_probability-basics.qmd
         - prob_03_distribution-parameters.qmd
         - prob_04_normal.qmd
+    - part: "Probability Models for Multiple Variables"
+      chapters:
+        - prob_05_multivariate-distributions.qmd
+        - prob_06_probability-trees-bayes.qmd
+        - prob_07_independence.qmd
+    - part: "Analyzing and Combining Quantitative Variables"
+      chapters:
+        - prob_08_quantitative-quantitative.qmd
+    - part: "Combining Random Variables"
+      chapters:
+        - prob_09_combining-random-variables.qmd
   appendices:
     - appendix_data.qmd
 
