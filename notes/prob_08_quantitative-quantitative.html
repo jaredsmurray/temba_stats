@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Visualizing and Summarizing Two Quantitative Variables – TEMBA Statistics — Course Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./prob_09_combining-random-variables.html" rel="next">
+<link href="./prob_07_independence.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/foldbox/foldbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles/callouts.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_08_quantitative-quantitative.html">Analyzing and Combining Quantitative Variables</a></li><li class="breadcrumb-item"><a href="./prob_08_quantitative-quantitative.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing and Summarizing Two Quantitative Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEMBA Statistics — Course Notes</a> 
+        <div class="sidebar-tools-main">
+    <a href="./../index.html" title="Course site" class="quarto-navigation-tool px-1" aria-label="Course site"><i class="bi bi-house-door"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data analysis and visualization for one variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_01_visualizing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualizing a Single Quantitative Variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_02_describing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_04_transformations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_05_categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Probability for one variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Probability Models for Multiple Variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_05_multivariate-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Joint, Marginal, and Conditional Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_06_probability-trees-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_07_independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analyzing and Combining Quantitative Variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_08_quantitative-quantitative.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing and Summarizing Two Quantitative Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Combining Random Variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_09_combining-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Combining Random Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-scatterplots" id="toc-sec-scatterplots" class="nav-link active" data-scroll-target="#sec-scatterplots"><span class="header-section-number">13.1</span> Scatterplots</a></li>
+  <li><a href="#sec-nonlinear" id="toc-sec-nonlinear" class="nav-link" data-scroll-target="#sec-nonlinear"><span class="header-section-number">13.2</span> Smooth curves</a></li>
+  <li><a href="#sec-cov-cor" id="toc-sec-cov-cor" class="nav-link" data-scroll-target="#sec-cov-cor"><span class="header-section-number">13.3</span> Linear Relationships and Correlation</a></li>
+  <li><a href="#sec-corr-limits" id="toc-sec-corr-limits" class="nav-link" data-scroll-target="#sec-corr-limits"><span class="header-section-number">13.4</span> Correlation and non-linear relationships</a>
+  <ul class="collapse">
+  <li><a href="#sec-corr-linear-only" id="toc-sec-corr-linear-only" class="nav-link" data-scroll-target="#sec-corr-linear-only"><span class="header-section-number">13.4.1</span> Nonlinear relationships</a></li>
+  <li><a href="#sec-anscombe" id="toc-sec-anscombe" class="nav-link" data-scroll-target="#sec-anscombe"><span class="header-section-number">13.4.2</span> Extreme observations</a></li>
+  </ul></li>
+  <li><a href="#sec-covariance" id="toc-sec-covariance" class="nav-link" data-scroll-target="#sec-covariance"><span class="header-section-number">13.5</span> Covariance</a></li>
+  <li><a href="#sec-rv-correlation" id="toc-sec-rv-correlation" class="nav-link" data-scroll-target="#sec-rv-correlation"><span class="header-section-number">13.6</span> Covariance and correlation in probability models</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">13.7</span> Practice</a></li>
+  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_08_quantitative-quantitative.html">Analyzing and Combining Quantitative Variables</a></li><li class="breadcrumb-item"><a href="./prob_08_quantitative-quantitative.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing and Summarizing Two Quantitative Variables</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing and Summarizing Two Quantitative Variables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Up to now you’ve seen probability for multiple categorical variables; in this section we extend those ideas to quantitative variables, including those modeled as continuous random variables. The joint and conditional distributions from <a href="./prob_05_multivariate-distributions.html">Chapter 10</a> and independence from <a href="./prob_07_independence.html#sec-independence">Chapter 12</a> have natural analogues for continuous random variables. Their formulas involve more complicated mathematics, so here we focus primarily on visual descriptions and building intuition. We follow the trajectory of <a href="./prob_05_multivariate-distributions.html#sec-joint-marginal-conditional-proportions">Chapter 10</a>: describing the observed joint distribution of two variables in data, and then introducing related probability concepts. We begin with the <em>scatterplot</em>.</p>
+<section id="sec-scatterplots" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="sec-scatterplots"><span class="header-section-number">13.1</span> Scatterplots</h2>
+<p>A <strong>scatterplot</strong> puts one variable on each axis and draws a point for every observation. <a href="#fig-austin-price-sqft" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> plots 1,103 Austin home sales from three ZIP codes (78721, 78723, and 78731), the same homes whose ages we plotted in <a href="./singlevar_02_describing-distributions.html#fig-austin-bimodal">Chapter 2</a>, with living area on the x-axis and sale price on the y-axis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-austin-price-sqft" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-austin-price-sqft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-austin-price-sqft-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-austin-price-sqft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: Sale price versus living area for Austin homes in three ZIP codes. Each point is one home. Prices tend to rise with size, but homes of the same size sell for a wide range of prices.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A scatterplot gives us a quick visual description of how the two variables tend to move <em>together</em>. Here we see a positive relationship — larger houses tend to sell for more — that is close to <em>linear</em>. A straight line describes the broad pattern reasonably well. We see some evidence that the variability in prices is larger for bigger houses — the range of prices for houses around 1,000 sqft is narrower than the range of prices for houses around 3,000 sqft, for example.</p>
+<p>When the sample size is large a scatterplot can turn into an unreadable blob. Even when the sample size is small, if one or both variables have many ties it can be difficult to read the scatterplot. For example, the CPS data from <a href="./singlevar_02_describing-distributions.html#sec-symmetric-skewed">Chapter 2</a> has both problems. The sample size is large (44,690 workers) and one of the key variables — years of education, <code>educ_years</code> — takes only a handful of distinct values. A naive scatterplot (<a href="#fig-mincer-wage-educ" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>, left panel) piles tens of thousands of workers onto a few vertical lines.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mincer-wage-educ" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mincer-wage-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-mincer-wage-educ-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mincer-wage-educ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.2: Hourly wage versus years of education for full-time U.S. workers (2023 CPS; wages under $150/hr shown). Left: the raw scatterplot stacks thousands of workers onto a few vertical lines. Middle: jitter spreads the ties apart, but the strips stay solid. Right: adding transparency, so that darker regions hold more workers, makes the plot readable.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To fix the ties we can apply <strong>jitter</strong>, which adds a little random horizontal shake to the reported years of education so identical x-values spread apart (<a href="#fig-mincer-wage-educ" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>, middle panel). Even then we see wider but mostly dark strips. The right panel of <a href="#fig-mincer-wage-educ" class="quarto-xref">Figure&nbsp;<span>13.2</span></a> adds <strong>transparency</strong>, so densely-packed areas appear darker than less-dense areas. (<a href="#fig-austin-price-sqft" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> also uses a little transparency if you look closely.)</p>
+<p>Another viable option is to treat years of education as an ordinal categorical variable when we create our plots. Either approach works; the best option depends on the purpose of the visualization and the audience.</p>
+<p>Wages tend to increase with years of education. The spread of wages seems to increase with education as well.</p>
+</section>
+<section id="sec-nonlinear" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="sec-nonlinear"><span class="header-section-number">13.2</span> Smooth curves</h2>
+<p>Electricity demand is high on both hot and cold days, when households and businesses use more cooling or heating. The ERCOT data below pair daily average electricity demand with daily average temperature in the Dallas–Fort Worth region from 2016 through 2020. Each point represents one day. To help visualize the trend in load (<span class="math inline">\(Y\)</span>) as the temperature (<span class="math inline">\(X\)</span>) increases, we can add a <strong>smoother</strong>, a curve that passes through the “middle” of the observed loads at nearby temperatures. This can be a useful visual guide, especially when the sample size is large and the data exhibit a lot of variability. Here are the ERCOT data with a smoother overlaid:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ercot-load-temp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ercot-load-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-ercot-load-temp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ercot-load-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.3: Daily average electricity demand versus daily average temperature in the DFW region. The curve summarizes how average demand varies with temperature.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected the curve bends upward at both ends: demand is lower on mild days and higher at temperature extremes. You can think about the curve as representing the <em>average</em> load across all days where the temperature takes a specific value. For example, the curve passes through about 12,000 MW at 50°F. That is, according to the smooth summary, if we observe load on many 50°F days, the average load would be about 12,000 MW. The spread of the points around the curve near 50°F depicts how difficult it is to predict load for an individual 50°F day. These are <em>conditional</em> location and spread: given that it is 50°F outside, what is our best guess for load, and how wrong are we likely to be?</p>
+<div id="technical-smoother-construction" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 13.1: </strong>Constructing a smooth curve</summary><div>
+<p>The curve above uses a moving temperature window. Within each window we fit a straight line to demand and temperature, then use its height at the window’s center as one point on the curve. Moving the window and connecting those heights produces the curve. A wider window averages over more of the data; a narrower window follows local variation more closely.</p>
+<div id="fig-loess-anim" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-loess-anim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/loess_construction.gif" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loess-anim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.4: The shaded window moves across the temperature range. The orange line uses only observations inside that window; its height at the center supplies one point on the blue curve.
+</figcaption>
+</figure>
+</div>
+</div></details>
+</div>
+<p>The Austin housing data have more scatter around their trend. Below are the same homes with a smooth curve estimating average price from nearby homes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-austin-price-sqft-smooth" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-austin-price-sqft-smooth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-austin-price-sqft-smooth-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-austin-price-sqft-smooth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.5: A smooth curve for the Austin homes. Prices increase with size, with considerable house-to-house variation around the curve.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The curve bends gently, but small bends need not reflect a stable relationship in the population. We should be particularly cautious among the larger homes, where fewer observations determine the curve. A smoother can help us see a relationship without requiring it to be linear; it will generally not be perfectly straight even when the underlying relationship is linear.</p>
+</section>
+<section id="sec-cov-cor" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="sec-cov-cor"><span class="header-section-number">13.3</span> Linear Relationships and Correlation</h2>
+<p>The Austin scatterplot has a roughly straight upward pattern; the ERCOT plot has a pronounced curve. What is a <em>linear</em> relationship? We will make it precise in later chapters, but the idea is simple: the relationship is linear if the smooth curve we would draw through the middle of the points would be a straight line.</p>
+<p>For example, the weekly asset returns introduced in <a href="./singlevar_02_describing-distributions.html#sec-symmetric-skewed">Chapter 2</a> include Tesla and the S&amp;P 500 market index. The scatterplot below pairs their returns for 104 weeks, from October 2023 through September 2025. Each point represents one week.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-tsla-market" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tsla-market-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-tsla-market-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tsla-market-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.6: Tesla and S&amp;P 500 weekly returns. The broad pattern is upward and roughly linear, with considerable variation in Tesla returns for similar market returns.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>When is a relationship <em>non</em>linear? When it cannot be described well by a straight line; the ERCOT data above are a classic example of a nonlinear relationship.</p>
+<p><strong>Correlation</strong> summarizes the direction and strength of a <em>linear</em> relationship. It is useful as a one-number summary of how two variables tend to move together, <strong>provided they have a linear relationship</strong>. It is also useful because, together with their standard deviations, it tells us what happens to the spread when we create a linear combination of two variables, like when we build an investment portfolio or turn forecasted revenue and costs into profit, even if the original random variables have a nonlinear relationship. We will come back to this in <a href="./prob_09_combining-random-variables.html#sec-lincom-rules">Chapter 14</a>.</p>
+<div id="defn-correlation" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 13.1: </strong>Correlation</div><div class="fobx-body">
+<p>The sample <strong>correlation</strong>, written <span class="math inline">\(r\)</span>, ranges from <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>.</p>
+<ul>
+<li>Positive correlation describes an upward linear association; negative correlation describes a downward linear association.</li>
+<li>A correlation of <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span> means all points lie on a straight line, sloping upward or downward respectively.</li>
+<li>Values nearer <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span> indicate stronger linear association. A correlation of zero means no linear association.</li>
+</ul>
+<p>Correlation has no units. Changing square feet to square meters, for example, does not change the correlation between house size and price. Both variables must vary for their correlation to be defined.</p>
+</div></div>
+</div>
+<p>The simulated scatterplots below show different strengths and directions of linear association. Each panel contains 500 observations from a probability model with the labelled <strong>population correlation</strong>. These labels describe the generating models; the sample correlations <span class="math inline">\(r\)</span> fluctuate around them.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-panels" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-corr-panels-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.7: Samples of 500 observations from models with the labelled population correlations. Zero is in the center; at either extreme all points lie on a straight line.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>For the Austin homes, the correlation between size and price is <span class="math inline">\(r=0.77\)</span>. The positive value agrees with the upward pattern in the scatterplot, while the departures from a perfect straight line leave the correlation below 1.</p>
+</section>
+<section id="sec-corr-limits" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="sec-corr-limits"><span class="header-section-number">13.4</span> Correlation and non-linear relationships</h2>
+<p>Correlation can miss nonlinear relationships, and it is also sensitive to outliers and other extreme observations. Anscombe’s quartet is a set of four famous datasets that have the same correlation, <span class="math inline">\(r=0.82\)</span>, despite displaying very different patterns:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-anscombe" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anscombe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-anscombe-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anscombe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.8: Anscombe’s quartet: four datasets with very different relationships between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> that nevertheless share the same correlation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The upper-left panel has a roughly linear pattern. The upper-right panel has a curve that the correlation does not describe. In the lower-left panel, one point departs from the straight pattern followed by the others. In the lower-right panel, one observation accounts for the positive correlation; the remaining observations all have the same <span class="math inline">\(x\)</span> value.</p>
+<section id="sec-corr-linear-only" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="sec-corr-linear-only"><span class="header-section-number">13.4.1</span> Nonlinear relationships</h3>
+<p>Would knowing the market return help us predict Tesla’s return more than knowing the temperature helps us predict electricity demand? Compare the scatter around each trend with the overall range of its y-variable.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-corr-linear-only" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-corr-linear-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-corr-linear-only-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-linear-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.9: Two relationships with similar sample correlations. Left: Tesla and S&amp;P 500 weekly returns. Right: daily electricity demand and temperature in the DFW region. Demand follows a curved pattern that its linear correlation does not describe.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Demand follows its curved trend much more closely than Tesla returns follow their upward trend, relative to the overall variation in each outcome. In these data, temperature tells us more about demand than market returns tell us about Tesla returns. Yet the correlations are similar: 0.48 for Tesla and the market, and 0.51 for demand and temperature. Correlation does not describe the increase in demand at <em>both</em> temperature extremes.</p>
+</section>
+<section id="sec-anscombe" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="sec-anscombe"><span class="header-section-number">13.4.2</span> Extreme observations</h3>
+<p>A distant point can change correlation substantially, as the lower two Anscombe panels show. We should check whether such an observation is a data error or a valid but unusual case. A valid observation can still make one summary an incomplete description of the rest of the data.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Limits of correlation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Correlation summarizes linear association. A correlation near zero can occur even when a strong nonlinear relationship is present, and a few extreme observations can change the value substantially. Even an exactly zero correlation does not establish independence: independence requires the entire conditional distribution to stay unchanged, as in <a href="./prob_07_independence.html#sec-independence">Chapter 12</a>. Inspect the scatterplot alongside the correlation, because the number alone cannot tell us whether either of these problems is present.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-covariance" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="sec-covariance"><span class="header-section-number">13.5</span> Covariance</h2>
+<p>Covariance also describes how two variables vary together, but retains their measurement scales. For house size and price, its units are square feet times dollars. Changing either unit changes the covariance, even though the underlying relationship stays the same.</p>
+<div id="defn-covariance" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 13.2: </strong>Covariance</div><div class="fobx-body">
+<p>The sample <strong>covariance</strong>, written <span class="math inline">\(s_{xy}\)</span>, is positive when the variables have positive linear association and negative when they have negative linear association. It is related to correlation by</p>
+<p><span class="math display">\[
+s_{xy}=r\,s_xs_y.
+\]</span></p>
+<p>The covariance combines the correlation with the standard deviations of the two variables. Unlike correlation, its magnitude depends on their scales and is not restricted to the interval from <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>.</p>
+</div></div>
+</div>
+<p>For the Austin homes, the covariance between size and price is 158,246,850 square-foot-dollars. The positive sign agrees with the positive correlation; the number’s magnitude depends on the units in which we recorded both variables.</p>
+<div id="technical-covariance-geometry" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 13.2: </strong>Products of deviations</summary><div>
+<p>For paired observations <span class="math inline">\((x_i,y_i)\)</span>, the sample covariance is</p>
+<p><span class="math display">\[
+s_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y}).
+\]</span></p>
+<p>It summarizes products of the deviations from the two sample means.</p>
+<p>For each observation, ask whether <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are on the same side of their respective averages, and how far. When a bigger-than-average house also has a bigger-than-average price, both deviations are positive and the product is positive; when both are below average, two negatives again multiply to a positive. Points that are above average on one variable and below on the other contribute negative products, and the covariance averages these products across all observations.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cov-quadrants" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cov-quadrants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-cov-quadrants-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cov-quadrants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.10: The price–size scatterplot divided into quadrants at the mean point.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure below shades a rectangle for two example homes, each with area <span class="math inline">\(|(x_i-\bar x)(y_i-\bar y)|\)</span>, with color indicating whether the product contributes positively or negatively to the covariance.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cov-rectangles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cov-rectangles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-cov-rectangles-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cov-rectangles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.11: The covariance as signed areas, drawn for two homes. Each rectangle runs from the mean point to one observation; its area is the size of that observation’s product of deviations. The green rectangle counts positively (above average on both size and price), the red one negatively (smaller than average but pricier than average).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Dividing by both sample standard deviations gives the correlation:</p>
+<p><span class="math display">\[
+r=\frac{s_{xy}}{s_xs_y}=s_{z_xz_y},
+\qquad z_{x,i}=\frac{x_i-\bar{x}}{s_x},\quad
+z_{y,i}=\frac{y_i-\bar{y}}{s_y}.
+\]</span></p>
+<p>Here <span class="math inline">\(z_{x,i}\)</span> and <span class="math inline">\(z_{y,i}\)</span> are the two z-scores for observation <span class="math inline">\(i\)</span>, and <span class="math inline">\(s_{z_xz_y}\)</span> is the sample covariance of the two columns of z-scores. Standardizing both variables removes their original units.</p>
+</div></details>
+</div>
+</section>
+<section id="sec-rv-correlation" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="sec-rv-correlation"><span class="header-section-number">13.6</span> Covariance and correlation in probability models</h2>
+<p>Covariance and correlation are also defined for pairs of quantitative <em>random</em> variables. As with expected value and variance, we replace averages computed from data with probability-weighted averages. Their signs, units, and behavior under changes of scale are the same as for covariance and correlation computed from two columns in a dataset.</p>
+<div id="defn-rv-covariance" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 13.3: </strong>Covariance of random variables</div><div class="fobx-body">
+<p>For random variables with finite variances and means <span class="math inline">\(\mu_X\)</span> and <span class="math inline">\(\mu_Y\)</span>,</p>
+<p><span class="math display">\[
+\operatorname{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)].
+\]</span></p>
+<p>The covariance is the probability-weighted average of the product of the two deviations. Its sign describes the direction of linear association, and its units are the units of <span class="math inline">\(X\)</span> times those of <span class="math inline">\(Y\)</span>.</p>
+</div></div>
+</div>
+<div id="defn-rv-correlation-box" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 13.4: </strong>Correlation of random variables</div><div class="fobx-body">
+<p>When both standard deviations are positive, the <strong>correlation</strong> is</p>
+<p><span class="math display">\[
+\operatorname{Corr}(X,Y)=
+\frac{\operatorname{Cov}(X,Y)}{\operatorname{SD}(X)\operatorname{SD}(Y)}.
+\]</span></p>
+<p>It gives the same unitless measure of linear association for a probability model that <span class="math inline">\(r\)</span> gives for data. Equivalently,</p>
+<p><span class="math display">\[
+\operatorname{Cov}(X,Y)=\operatorname{Corr}(X,Y)
+\operatorname{SD}(X)\operatorname{SD}(Y).
+\]</span></p>
+<p>The model’s correlation and its two standard deviations together determine its covariance.</p>
+</div></div>
+</div>
+<p>In the July 9, 2026 FedWatch model from Chapter 12, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are the midpoints of the target ranges after the July and September meetings. The table below shows their possible pairs and probabilities. The midpoints use percentage points: 3.625 is the midpoint of the 3.50–3.75% range.</p>
+<div class="cell">
+<div id="tbl-cme-cov-model" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cme-cov-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.1: Joint probabilities for July and September target-range midpoints in the July 9, 2026 FedWatch model.
+</figcaption>
+<div aria-describedby="tbl-cme-cov-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">July midpoint</th>
+<th style="text-align: right;">September midpoint</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3.625</td>
+<td style="text-align: right;">3.625</td>
+<td style="text-align: right;">0.3765</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3.625</td>
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">0.3776</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">0.1228</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">4.125</td>
+<td style="text-align: right;">0.1231</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The correlation is 0.65, a positive linear association between the two meeting outcomes. Its covariance is 0.0116 squared percentage points. These summaries describe this probability model, rather than a historical sample of meeting outcomes.</p>
+<div id="technical-model-covariance" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 13.3: </strong>Computing a model covariance</summary><div>
+<p>For a discrete model, multiply each pair’s probability by its product of deviations and sum:</p>
+<p><span class="math display">\[
+\operatorname{Cov}(X,Y)=\sum_{x,y}\Pr(X=x,Y=y)(x-\mu_X)(y-\mu_Y).
+\]</span></p>
+<p>The FedWatch calculation uses the means and probabilities from the joint model above. The contribution table gives the signs and sizes of the terms.</p>
+<div class="cell">
+<div id="tbl-cme-cov" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cme-cov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.2: Contributions to the covariance, in squared percentage points.
+</figcaption>
+<div aria-describedby="tbl-cme-cov-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">July midpoint</th>
+<th style="text-align: right;">September midpoint</th>
+<th style="text-align: right;">Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3.625</td>
+<td style="text-align: right;">3.625</td>
+<td style="text-align: right;">0.00432</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3.625</td>
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">-0.00147</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">0.00147</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3.875</td>
+<td style="text-align: right;">4.125</td>
+<td style="text-align: right;">0.00727</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div></details>
+</div>
+<p>Independent random variables with finite, positive variances have zero covariance and zero correlation. The converse fails: zero correlation does not rule out nonlinear dependence.</p>
+<div id="technical-independent-covariance" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 13.4: </strong>Independence and covariance</summary><div>
+<p>Under independence, the expectation of the product factors:</p>
+<p><span class="math display">\[
+E[(X-\mu_X)(Y-\mu_Y)]
+=E[X-\mu_X]E[Y-\mu_Y]=0.
+\]</span></p>
+<p>Each expected deviation is zero, so the covariance is zero.</p>
+</div></details>
+</div>
+</section>
+<section id="practice" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="practice"><span class="header-section-number">13.7</span> Practice</h2>
+<div id="exercise-correlation-interpretation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.1: </strong>Reading relationships</div><div class="fobx-body">
+<ol type="1">
+<li>In Anscombe’s quartet, which plots would make a correlation alone an incomplete description? Explain what you would report alongside it.</li>
+<li>Suppose we convert every Austin price from dollars to thousands of dollars. What happens to the price standard deviation, the covariance with size, and the correlation with size?</li>
+<li>Two random variables have standard deviations 2 and 3 and correlation <span class="math inline">\(-0.5\)</span>. Find their covariance.</li>
+<li>A report finds a sample correlation near zero and concludes that two measured variables are independent. What could a scatterplot reveal that the report missed?</li>
+</ol>
+<details class="solution-details" id="details-1" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>The upper-right panel’s curve and the lower two panels’ unusual observations require description alongside correlation. Even the upper-left panel’s correlation does not describe the variables’ units or ranges.</li>
+<li>The price standard deviation and covariance with size each become one-thousandth as large. Correlation stays the same.</li>
+<li>The covariance is <span class="math inline">\(-0.5\times2\times3=-3\)</span>.</li>
+<li>The scatterplot could reveal a strong curved relationship despite the near-zero correlation. Correlation summarizes linear association; a sample correlation near zero does not establish independence in the population.</li>
+</ol>
+</details>
+</div></div>
+</div>
+</section>
+<section id="data-used-in-this-section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
+<ul>
+<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a></li>
+<li><a href="./appendix_data.html#sec-data-earnings-cps">CPS ASEC Earnings</a></li>
+<li><a href="./appendix_data.html#sec-data-ercot-shaffer">ERCOT Hourly Load and Temperature Panel</a></li>
+<li><a href="./appendix_data.html#sec-data-returns-2025">Weekly Asset Returns (2023–2025)</a></li>
+<li><a href="https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html">CME FedWatch</a>, July 9, 2026; the joint model follows the construction used in Chapter 12.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./prob_07_independence.html" class="pagination-link" aria-label="Independence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./prob_09_combining-random-variables.html" class="pagination-link" aria-label="Combining Random Variables">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Combining Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
