@@ -18,135 +18,6 @@ execute:
 source("_setup.R")
 ```
 
-## A portfolio combines two returns
-
-A 60/40 portfolio has 60% of its capital in the first asset and 40% in the second.
-
-| Asset | Portfolio weight | This week's return | Contribution |
-|---|---:|---:|---:|
-| First | 0.60 | 0.02 | 0.012 |
-| Second | 0.40 | −0.01 | −0.004 |
-| Portfolio | 1.00 | | 0.008 |
-
-The portfolio earns 0.8%. Its return is a weighted average of the two asset returns.
-
-## Linear combinations
-
-A **linear combination** has the form
-
-$$
-Z=aX+bY+c.
-$$
-
-A portfolio has weights $a=w$, $b=1-w$, and $c=0$.
-
-Profit can be revenue minus variable costs minus a fixed cost. The fixed cost shifts every possible profit by the same amount.
-
-## Means combine with the same weights
-
-For finite expected values,
-
-$$
-E[aX+bY+c]=aE[X]+bE[Y]+c.
-$$
-
-The rule holds whether or not the variables are independent.
-
-For a portfolio,
-
-$$
-E[R_p]=wE[R_1]+(1-w)E[R_2].
-$$
-
-Its expected return is the weighted average of the assets' expected returns.
-
-## Variance includes covariance
-
-For finite variances,
-
-$$
-\operatorname{Var}(aX+bY+c)
-=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\operatorname{Cov}(X,Y).
-$$
-
-Each variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.
-
-Zero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation.
-
-## Portfolio variance
-
-$$
-\begin{aligned}
-\operatorname{Var}(R_p)={}&w^2\operatorname{Var}(R_1)\\
-&+(1-w)^2\operatorname{Var}(R_2)\\
-&+2w(1-w)\operatorname{Cov}(R_1,R_2).
-\end{aligned}
-$$
-
-For nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses.
-
-## Two equally variable stocks
-
-Each stock has expected annual return 10% and annual SD 20%. An equal-weight portfolio has expected return 10%.
-
-$$
-\operatorname{Var}(R_p)=0.02+0.02\operatorname{Corr}(R_1,R_2).
-$$
-
-| Correlation | Portfolio SD |
-|---|---:|
-| 0 | ? |
-| −0.5 | ? |
-
-Calculate the two standard deviations. Does diversification require negative correlation?
-
-## Correlation changes portfolio variability
-
-```{r}
-#| label: table-risk-correlation
-#| fig-width: 9
-#| fig-height: 3.9
-cases <- tibble(correlation = c(1, 0.5, 0, -0.5, -1)) |>
-  mutate(risk = sqrt(0.02 + 0.02 * correlation))
-cases |>
-  transmute(Correlation = correlation,
-            `Portfolio standard deviation` = percent(risk, accuracy = 0.1)) |>
-  knitr::kable(align = c("r", "r"))
-```
-
-The individual stocks each have SD 20%. Even positive correlation below 1 reduces the variability of this equal-weight portfolio.
-
-## Portfolio SD as correlation varies
-
-```{r}
-#| label: viz-risk-vs-corr
-#| fig-width: 9
-#| fig-height: 4.2
-risk_curve <- tibble(correlation = seq(-1, 1, length.out = 201)) |>
-  mutate(risk = sqrt(0.02 + 0.02 * correlation))
-ggplot(risk_curve, aes(correlation, risk)) +
-  geom_hline(yintercept = 0.20, linetype = "dashed", color = "grey50") +
-  geom_line(color = "steelblue", linewidth = 1) +
-  geom_point(data = cases, color = "darkorange", size = 2.5) +
-  scale_x_continuous(breaks = seq(-1, 1, 0.5)) +
-  scale_y_continuous(labels = percent) +
-  labs(x = "Correlation between stock returns",
-       y = "Portfolio standard deviation")
-```
-
-## The same rules apply to sample summaries
-
-For a column $z_i=ax_i+by_i+c$,
-
-$$
-\bar z=a\bar x+b\bar y+c,
-$$
-$$
-s_z^2=a^2s_x^2+b^2s_y^2+2ab s_{xy}.
-$$
-
-These identities give the historical mean and variance of the combined column. Using them to describe future returns requires an assumption that the past is informative about the future.
-
 ```{r}
 #| label: setup-three-funds
 #| include: false
@@ -166,17 +37,9 @@ cor_mat  <- cor(portfolios[funds])
 asset_cols <- c(SPY = "#66C2A5", EFA = "#FC8D62", TLT = "#8DA0CB")
 ```
 
-## Annualized sample summaries
-
-We multiply a weekly sample mean by 52 and a weekly sample SD by $\sqrt{52}$.
-
-The mean is an annualized arithmetic mean, not a compounded annual return. The SD scaling assumes uncorrelated weekly returns with a common variance.
-
-The next comparisons use annualized sample summaries on this same scale.
-
 ## Choose a fund to add to SPY
 
-The [three-fund data](../notes/appendix_data.html#sec-data-portfolios-2025) contain `r nrow(portfolios)` weekly returns. Each ETF holds a basket of assets. Summaries are annualized.
+The [three-fund data](../notes/appendix_data.html#sec-data-portfolios-2025) contain `r nrow(portfolios)` weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.
 
 ```{r}
 #| label: table-asset-summary-three
@@ -191,7 +54,114 @@ tibble(Fund = funds,
   knitr::kable(align = c("l", "l", "r", "r"))
 ```
 
-You currently hold only SPY. Would you add EFA or TLT? Make a provisional choice and state what information you still need.
+You currently hold only SPY. Would you add EFA or TLT? What information would help you decide?
+
+::: {.notes}
+Means are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow.
+:::
+
+
+## A portfolio combines two returns
+
+Suppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.
+
+| Fund | Weight | Weekly return | Contribution |
+|---|---:|---:|---:|
+| SPY | 0.60 | 0.02 | 0.012 |
+| EFA | 0.40 | 0.01 | 0.004 |
+| Portfolio | 1.00 | | 0.016 |
+
+The portfolio earns **1.6%**. Its return is the weighted average of the two fund returns.
+
+## Linear combinations
+
+A **linear combination** has the form
+
+$$
+Z=aX+bY+c.
+$$
+
+$X$ and $Y$ are random variables; $a$, $b$, and $c$ are fixed numbers. The weights $a$ and $b$ scale the two variables, and $c$ shifts their combination.
+
+## The portfolio as a linear combination
+
+Let $R_{\mathrm{SPY}}$ and $R_{\mathrm{EFA}}$ denote the two fund returns, and let $w$ be the fraction invested in SPY.
+
+$$
+\begin{aligned}
+R_p &= wR_{\mathrm{SPY}}+(1-w)R_{\mathrm{EFA}}\\
+    &= 0.60R_{\mathrm{SPY}}+0.40R_{\mathrm{EFA}}\\
+    &= 0.60(0.02)+0.40(0.01)\\
+    &= 0.016.
+\end{aligned}
+$$
+
+Here $a=w$, $b=1-w$, and $c=0$. The last two lines use the illustrative week's returns.
+
+## Profit as a linear combination
+
+Let $R$ be revenue, $V$ variable costs, and $F$ fixed costs. Revenue and variable costs are random; $F$ is a fixed amount.
+
+$$
+\begin{aligned}
+\text{Profit} &= \text{Revenue}-\text{Variable costs}-\text{Fixed costs}\\
+P &= R-V-F\\
+  &= 1\,R+(-1)\,V-F.
+\end{aligned}
+$$
+
+Here $a=1$, $b=-1$, and $c=-F$. For example, in thousands of dollars,
+
+$$
+P=1{,}000-600-100=300.
+$$
+
+## Means combine with the same weights
+
+For finite expected values,
+
+$$
+E[aX+bY+c]=aE[X]+bE[Y]+c.
+$$
+
+The rule holds whether or not the variables are independent. Expected profit is therefore
+
+$$
+E[P]=E[R]-E[V]-F.
+$$
+
+Apply the same weights to the expected values, then add the fixed amount.
+
+## What happens to expected portfolio returns?
+
+Use the annualized sample means as estimates of expected returns:
+
+| SPY | EFA | TLT |
+|---:|---:|---:|
+| `r percent(ann_mean["SPY"], accuracy = 0.1)` | `r percent(ann_mean["EFA"], accuracy = 0.1)` | `r percent(ann_mean["TLT"], accuracy = 0.1)` |
+
+$$
+\begin{aligned}
+E[R_p]&=wE[R_{\mathrm{SPY}}]+(1-w)E[R_{\mathrm{other}}].
+\end{aligned}
+$$
+
+What happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair.
+
+## Why accept a lower expected return?
+
+```{r}
+#| label: table-expected-return-mixes
+tibble(Portfolio = c("All SPY", "60% SPY + 40% EFA", "60% SPY + 40% TLT"),
+       `Estimated expected return` = percent(c(ann_mean["SPY"],
+          0.6 * ann_mean["SPY"] + 0.4 * ann_mean["EFA"],
+          0.6 * ann_mean["SPY"] + 0.4 * ann_mean["TLT"]), accuracy = 0.1)) |>
+  knitr::kable(align = c("l", "r"))
+```
+
+Adding either fund reduces estimated expected return. Why might we choose to do that?
+
+What would we need to know about the variability of the combined return?
 
 ## How do the funds move with SPY?
 
@@ -255,6 +225,71 @@ matched <- bind_rows(efa_minvar, tlt_matched)
 stopifnot(abs(tlt_matched$sd^2 - efa_minvar$sd^2) < 1e-10)
 
 ```
+
+## Variance includes covariance
+
+For finite variances,
+
+$$
+\operatorname{Var}(aX+bY+c)
+=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\operatorname{Cov}(X,Y).
+$$
+
+Each variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.
+
+Zero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation.
+
+## Portfolio variance
+
+$$
+\begin{aligned}
+\operatorname{Var}(R_p)={}&w^2\operatorname{Var}(R_1)\\
+&+(1-w)^2\operatorname{Var}(R_2)\\
+&+2w(1-w)\operatorname{Cov}(R_1,R_2).
+\end{aligned}
+$$
+
+For nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses.
+
+## Portfolio SD as correlation varies
+
+:::: {.columns}
+::: {.column width="60%"}
+
+```{r}
+#| label: viz-risk-vs-corr
+#| fig-width: 5.6
+#| fig-height: 5.3
+cases <- tibble(correlation = c(1, 0.5, 0, -0.5, -1)) |>
+  mutate(risk = sqrt(0.02 + 0.02 * correlation))
+risk_curve <- tibble(correlation = seq(-1, 1, length.out = 201)) |>
+  mutate(risk = sqrt(0.02 + 0.02 * correlation))
+ggplot(risk_curve, aes(correlation, risk)) +
+  geom_hline(yintercept = 0.20, linetype = "dashed", color = "grey50") +
+  geom_line(color = "steelblue", linewidth = 1) +
+  geom_point(data = cases, color = "darkorange", size = 2.5) +
+  scale_x_continuous(breaks = seq(-1, 1, 0.5)) +
+  scale_y_continuous(labels = percent) +
+  labs(x = "Correlation between stock returns",
+       y = "Portfolio standard deviation") +
+  theme(aspect.ratio = 1)
+```
+
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
+
+Two stocks each have annual SD 20%. An equal-weight portfolio has
+
+$$
+\operatorname{SD}(R_p)=\sqrt{0.02+0.02\rho},
+$$
+
+where $\rho$ is the correlation between their returns.
+
+Correlation below 1 reduces portfolio SD. Negative correlation is not required.
+
+:::
+::::
 
 ## TLT can attain lower portfolio risk
 

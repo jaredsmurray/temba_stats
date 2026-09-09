@@ -62,29 +62,40 @@ rm(weather)
 
 ## Price and living area
 
-Each point is one [Austin home sale](../notes/appendix_data.html#sec-data-housing-kaggle).
+:::: {.columns}
+::: {.column width="60%"}
 
 ```{r}
 #| label: viz-austin-price-sqft
-#| fig-width: 9
-#| fig-height: 3.7
+#| fig-width: 5.6
+#| fig-height: 5.3
 ggplot(austin, aes(x = living_area_sq_ft, y = latest_price)) +
   geom_point(alpha = 0.3, color = "steelblue") +
   scale_x_continuous(labels = comma_format()) +
   scale_y_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
-  labs(x = "Living area (sq ft)", y = "Sale price")
+  labs(x = "Living area (sq ft)", y = "Sale price") +
+  theme(aspect.ratio = 1)
 ```
+
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
+
+Each point is one [Austin home sale](../notes/appendix_data.html#sec-data-housing-kaggle).
 
 Describe the trend and the spread of prices among similarly sized homes.
 
+:::
+::::
+
 ## A smooth curve summarizes nearby outcomes
 
-[DFW daily electricity demand and temperature](../notes/appendix_data.html#sec-data-ercot-shaffer), 2016–2020.
+:::: {.columns}
+::: {.column width="60%"}
 
 ```{r}
 #| label: viz-ercot-load-temp
-#| fig-width: 9
-#| fig-height: 3.7
+#| fig-width: 5.6
+#| fig-height: 5.3
 # Windowed running-line smoother. Keep h and the grid IDENTICAL to
 # working/loess_animation.R, which animates this exact construction.
 h <- 8
@@ -98,16 +109,39 @@ local_fit <- function(x0) {
 smooth_df <- tibble(temp = x_grid, load = map_dbl(x_grid, local_fit))
 load_at_50 <- unname(local_fit(50))
 
-ggplot(ercot_daily, aes(x = temp, y = load)) +
+p_demand <- ggplot(ercot_daily, aes(x = temp, y = load)) +
   geom_point(alpha = 0.3, size = 0.8, color = "grey50") +
   geom_line(data = smooth_df, color = "steelblue", linewidth = 1.1) +
   scale_y_continuous(labels = comma_format()) +
-  labs(x = expression("Temperature ("*degree*"F)"), y = "Load (MW)")
+  labs(x = expression("Temperature ("*degree*"F)"), y = "Load (MW)") +
+  theme(aspect.ratio = 1)
+p_demand
 ```
+
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
+
+[DFW daily electricity demand and temperature](../notes/appendix_data.html#sec-data-ercot-shaffer), 2016–2020.
 
 At 50°F, the curve is about `r comma(round(load_at_50, -3))` MW. What does the surrounding scatter tell us?
 
+:::
+::::
+
 ## Conditional location and spread
+
+:::: {.columns}
+::: {.column width="60%"}
+
+```{r}
+#| label: viz-demand-interpretation
+#| fig-width: 5.6
+#| fig-height: 5.3
+p_demand
+```
+
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
 
 The smoother describes average demand among days with nearby temperatures.
 
@@ -115,41 +149,64 @@ The scatter around it describes variation among individual days at those tempera
 
 Knowing the temperature narrows our assessment of demand, but does not determine the load on a particular day.
 
+:::
+::::
+
 ## A smoother also helps with housing prices
+
+:::: {.columns}
+::: {.column width="60%"}
 
 ```{r}
 #| label: viz-austin-price-sqft-smooth
-#| fig-width: 9
-#| fig-height: 4.1
+#| fig-width: 5.6
+#| fig-height: 5.3
 ggplot(austin, aes(x = living_area_sq_ft, y = latest_price)) +
   geom_point(alpha = 0.25, color = "grey50") +
   geom_smooth(method = "loess", span = 0.75, se = FALSE,
               color = "steelblue", linewidth = 1) +
   scale_x_continuous(labels = comma_format()) +
   scale_y_continuous(labels = dollar_format(scale = 1e-3, suffix = "K")) +
-  labs(x = "Living area (sq ft)", y = "Sale price")
+  labs(x = "Living area (sq ft)", y = "Sale price") +
+  theme(aspect.ratio = 1)
 ```
+
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
 
 Fewer large homes determine the curve at the right. Small bends there need not describe a stable population pattern.
 
+:::
+::::
+
 ## A roughly linear relationship
 
-Each point pairs one week's [Tesla and S&P 500 returns](../notes/appendix_data.html#sec-data-returns-2025).
+:::: {.columns}
+::: {.column width="60%"}
 
 ```{r}
 #| label: viz-tsla-market
-#| fig-width: 9
-#| fig-height: 3.7
+#| fig-width: 5.6
+#| fig-height: 5.3
 ggplot(returns, aes(x = market, y = TSLA)) +
   geom_point(alpha = 0.7, color = "steelblue") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey60") +
   geom_vline(xintercept = 0, linetype = "dashed", color = "grey60") +
   scale_x_continuous(labels = percent_format(accuracy = 1)) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
-  labs(x = "S&P 500 weekly return", y = "Tesla weekly return")
+  labs(x = "S&P 500 weekly return", y = "Tesla weekly return") +
+  theme(aspect.ratio = 1)
 ```
 
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
+
+Each point pairs one week's [Tesla and S&P 500 returns](../notes/appendix_data.html#sec-data-returns-2025).
+
 The broad trend is upward and roughly straight, with considerable variation around it.
+
+:::
+::::
 
 ## Correlation summarizes linear association
 
@@ -163,10 +220,13 @@ Correlation has no units. Both variables must vary for it to be defined.
 
 ## Different population correlations
 
+:::: {.columns}
+::: {.column width="60%"}
+
 ```{r}
 #| label: viz-corr-panels
-#| fig-width: 9.5
-#| fig-height: 5.5
+#| fig-width: 5.6
+#| fig-height: 5.3
 set.seed(42)
 rs <- c(1, 0.75, 0.5, 0.25, 0, -0.25, -0.5, -0.75, -1)
 n <- 500
@@ -189,15 +249,13 @@ ggplot(corr_panels, aes(x = x, y = y)) +
   labs(x = NULL, y = NULL)
 ```
 
-Each cloud contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them.
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
 
-## What would you ask to see?
+Each scatterplot contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them.
 
-A report gives essentially the same correlation, $r=0.82$, for four datasets.
-
-The author proposes using the same description of the relationship for all four.
-
-What else would you ask to see before approving the summary?
+:::
+::::
 
 ## Anscombe's quartet
 
@@ -240,14 +298,12 @@ ggplot(anscombe_long, aes(x = x, y = y)) +
 ```
 
 
-## What the four plots add
+## Limitations of correlation
 
-- The upper-left panel has a roughly linear pattern.
-- The upper-right panel follows a curve.
-- In the lower-left panel, one point departs from the others' straight pattern.
-- In the lower-right panel, one observation accounts for the positive correlation.
+- Correlation can describe nonlinear relationships poorly.
+- Extreme observations can substantially change the correlation.
 
-A correlation alone cannot distinguish these cases.
+Inspect the scatterplot alongside the correlation.
 
 ## Similar correlations can describe different patterns
 
@@ -281,11 +337,37 @@ Compare the scatter around each trend with the overall variation in its outcome.
 
 ## Zero correlation does not establish independence
 
-Correlation measures linear association. A strong curved relationship can have a correlation near zero.
+:::: {.columns}
+::: {.column width="60%"}
 
-Independence requires the **entire conditional distribution** to stay unchanged. Even exactly zero correlation is insufficient.
+```{r}
+#| label: viz-zero-correlation-nonlinear
+#| fig-width: 5.6
+#| fig-height: 5.3
+set.seed(2026)
+nonlinear <- tibble(x = seq(-2, 2, length.out = 500)) |>
+  mutate(y = x^2 + rnorm(n(), sd = 0.25))
+r_nonlinear <- cor(nonlinear$x, nonlinear$y)
+ggplot(nonlinear, aes(x, y)) +
+  geom_point(alpha = 0.5, size = 1, color = "steelblue") +
+  annotate("label", x = -Inf, y = Inf,
+           label = sprintf("r = %.2f", r_nonlinear),
+           hjust = -0.1, vjust = 1.2, size = 5) +
+  labs(x = "x", y = "y") +
+  theme(aspect.ratio = 1)
+```
 
-A sample correlation near zero also does not establish independence in a population. Inspect the scatterplot.
+:::
+::: {.column style="width: 40%; font-size: 0.85em;"}
+
+We simulated $y=x^2+\text{noise}$ at 500 evenly spaced values of $x$.
+
+The noise has mean zero and SD 0.25. The conditional mean of $y$ changes with $x$, despite a sample correlation of **`r sprintf("%.2f", r_nonlinear)`**.
+
+Independence requires the entire conditional distribution to stay unchanged.
+
+:::
+::::
 
 ## Covariance retains the measurement scales
 
@@ -295,7 +377,9 @@ $$
 s_{xy}=r\,s_xs_y.
 $$
 
-It has the same sign as correlation, but its magnitude depends on the units. For size and price, its units are square feet times dollars.
+$s_{xy}$ is the sample covariance, $r$ the sample correlation, and $s_x$ and $s_y$ the sample standard deviations.
+
+Covariance has the same sign as correlation. Its units are the product of the variables' units.
 
 If prices change from dollars to thousands of dollars, what happens to covariance? What happens to correlation?
 

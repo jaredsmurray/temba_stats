@@ -178,9 +178,37 @@ The model assigns 0.18 to that cell, so store visits and purchases are dependent
 
 We do not need to check the remaining cells once one equality fails.
 
+## Economic ratings by employment status
+
+The [2025 SHED survey](../notes/appendix_data.html#sec-data-shed) records national economic ratings. Percentages are unweighted.
+
+```{r}
+#| label: viz-ind-shed-bars
+#| fig-width: 11
+#| fig-height: 4.2
+shed_bars <- as.data.frame(shed_cond_ind, responseName = "share")
+names(shed_bars)[1:2] <- c("employment", "rating")
+shed_panel_labels <- setNames(
+  paste0(employment_ind, "
+(n = ", comma(rowSums(shed_counts_ind)), ")"),
+  employment_ind)
+ggplot(shed_bars, aes(rating, share)) +
+  geom_col(fill = "steelblue", width = 0.7) +
+  facet_wrap(~employment, nrow = 1,
+             labeller = labeller(employment = shed_panel_labels)) +
+  scale_y_continuous(labels = percent, limits = c(0, 0.5)) +
+  scale_x_discrete(labels = c("Excellent", "Good", "Only\nfair", "Poor")) +
+  labs(x = NULL, y = "Share of respondents") +
+  theme_minimal(base_size = 20) +
+  theme(panel.grid.major.x = element_blank(),
+        axis.text.x = element_text(size = 14))
+```
+
+How much does the distribution change across employment groups?
+
 ## Similar observed distributions
 
-The [2025 SHED survey](../notes/appendix_data.html#sec-data-shed) records ratings of national economic conditions. These percentages are unweighted.
+Each row reports percentages within an employment group; $n$ is its sample size.
 
 ```{r}
 #| label: table-ind-shed
@@ -188,7 +216,11 @@ The [2025 SHED survey](../notes/appendix_data.html#sec-data-shed) records rating
 #| fig-height: 3.9
 shed_display_ind <- rbind(shed_cond_ind, Overall = shed_marg_ind)
 shed_display_ind[] <- percent(shed_display_ind, accuracy = 0.1)
-knitr::kable(shed_display_ind, align = rep("r", 4))
+shed_display_ind <- data.frame(
+  `Employment status` = c(employment_ind, "Overall"),
+  n = comma(c(rowSums(shed_counts_ind), sum(shed_counts_ind))),
+  shed_display_ind, check.names = FALSE, row.names = NULL)
+knitr::kable(shed_display_ind, align = c("l", rep("r", 5)), row.names = FALSE)
 ```
 
 The largest difference from an overall category share is `r number(100*shed_gap_ind, accuracy = 0.1)` percentage points. Does similarity establish exact population independence?

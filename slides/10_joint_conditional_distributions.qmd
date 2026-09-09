@@ -126,6 +126,23 @@ tibble(Question = c("Small business and default", "Small business, either outcom
 
 A **joint proportion** describes a combination. A **marginal proportion** describes one category, summing over the other variable.
 
+## The full table as proportions
+
+```{r}
+#| label: table-joint-proportions-full
+loan_counts |>
+  transmute(Purpose = str_to_sentence(str_replace_all(purpose, "_", " ")),
+            Repaid = repaid / loan_n, Default = default / loan_n,
+            Total = Total / loan_n) |>
+  bind_rows(summarise(loan_counts, Purpose = "Total",
+                      Repaid = sum(repaid) / loan_n,
+                      Default = sum(default) / loan_n, Total = 1)) |>
+  mutate(across(where(is.numeric), ~number(.x, accuracy = 0.0001))) |>
+  knitr::kable(align = c("l", "r", "r", "r"))
+```
+
+Every entry uses all `r comma(loan_n)` loans as its denominator. The interior proportions sum to one; the margins summarize each variable.
+
 ## Conditional proportions select a group
 
 Among small-business loans, what proportion defaulted?
