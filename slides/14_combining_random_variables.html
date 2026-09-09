@@ -141,171 +141,9 @@
 </div>
 
 </section>
-<section id="a-portfolio-combines-two-returns" class="slide level2">
-<h2>A portfolio combines two returns</h2>
-<p>A 60/40 portfolio has 60% of its capital in the first asset and 40% in the second.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Asset</th>
-<th style="text-align: right;">Portfolio weight</th>
-<th style="text-align: right;">This week’s return</th>
-<th style="text-align: right;">Contribution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>First</td>
-<td style="text-align: right;">0.60</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.012</td>
-</tr>
-<tr class="even">
-<td>Second</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: right;">−0.01</td>
-<td style="text-align: right;">−0.004</td>
-</tr>
-<tr class="odd">
-<td>Portfolio</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;">0.008</td>
-</tr>
-</tbody>
-</table>
-<p>The portfolio earns 0.8%. Its return is a weighted average of the two asset returns.</p>
-</section>
-<section id="linear-combinations" class="slide level2">
-<h2>Linear combinations</h2>
-<p>A <strong>linear combination</strong> has the form</p>
-<p><span class="math display">\[
-Z=aX+bY+c.
-\]</span></p>
-<p>A portfolio has weights <span class="math inline">\(a=w\)</span>, <span class="math inline">\(b=1-w\)</span>, and <span class="math inline">\(c=0\)</span>.</p>
-<p>Profit can be revenue minus variable costs minus a fixed cost. The fixed cost shifts every possible profit by the same amount.</p>
-</section>
-<section id="means-combine-with-the-same-weights" class="slide level2">
-<h2>Means combine with the same weights</h2>
-<p>For finite expected values,</p>
-<p><span class="math display">\[
-E[aX+bY+c]=aE[X]+bE[Y]+c.
-\]</span></p>
-<p>The rule holds whether or not the variables are independent.</p>
-<p>For a portfolio,</p>
-<p><span class="math display">\[
-E[R_p]=wE[R_1]+(1-w)E[R_2].
-\]</span></p>
-<p>Its expected return is the weighted average of the assets’ expected returns.</p>
-</section>
-<section id="variance-includes-covariance" class="slide level2">
-<h2>Variance includes covariance</h2>
-<p>For finite variances,</p>
-<p><span class="math display">\[
-\operatorname{Var}(aX+bY+c)
-=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\operatorname{Cov}(X,Y).
-\]</span></p>
-<p>Each variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.</p>
-<p>Zero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation.</p>
-</section>
-<section id="portfolio-variance" class="slide level2">
-<h2>Portfolio variance</h2>
-<p><span class="math display">\[
-\begin{aligned}
-\operatorname{Var}(R_p)={}&amp;w^2\operatorname{Var}(R_1)\\
-&amp;+(1-w)^2\operatorname{Var}(R_2)\\
-&amp;+2w(1-w)\operatorname{Cov}(R_1,R_2).
-\end{aligned}
-\]</span></p>
-<p>For nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses.</p>
-</section>
-<section id="two-equally-variable-stocks" class="slide level2">
-<h2>Two equally variable stocks</h2>
-<p>Each stock has expected annual return 10% and annual SD 20%. An equal-weight portfolio has expected return 10%.</p>
-<p><span class="math display">\[
-\operatorname{Var}(R_p)=0.02+0.02\operatorname{Corr}(R_1,R_2).
-\]</span></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Correlation</th>
-<th style="text-align: right;">Portfolio SD</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td style="text-align: right;">?</td>
-</tr>
-<tr class="even">
-<td>−0.5</td>
-<td style="text-align: right;">?</td>
-</tr>
-</tbody>
-</table>
-<p>Calculate the two standard deviations. Does diversification require negative correlation?</p>
-</section>
-<section id="correlation-changes-portfolio-variability" class="slide level2">
-<h2>Correlation changes portfolio variability</h2>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Correlation</th>
-<th style="text-align: right;">Portfolio standard deviation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1.0</td>
-<td style="text-align: right;">20.0%</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.5</td>
-<td style="text-align: right;">17.3%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">14.1%</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">-0.5</td>
-<td style="text-align: right;">10.0%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">-1.0</td>
-<td style="text-align: right;">0.0%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>The individual stocks each have SD 20%. Even positive correlation below 1 reduces the variability of this equal-weight portfolio.</p>
-</section>
-<section id="portfolio-sd-as-correlation-varies" class="slide level2">
-<h2>Portfolio SD as correlation varies</h2>
-
-<img data-src="14_combining_random_variables_files/figure-revealjs/viz-risk-vs-corr-1.png" width="864" class="r-stretch"></section>
-<section id="the-same-rules-apply-to-sample-summaries" class="slide level2">
-<h2>The same rules apply to sample summaries</h2>
-<p>For a column <span class="math inline">\(z_i=ax_i+by_i+c\)</span>,</p>
-<p><span class="math display">\[
-\bar z=a\bar x+b\bar y+c,
-\]</span> <span class="math display">\[
-s_z^2=a^2s_x^2+b^2s_y^2+2ab s_{xy}.
-\]</span></p>
-<p>These identities give the historical mean and variance of the combined column. Using them to describe future returns requires an assumption that the past is informative about the future.</p>
-</section>
-<section id="annualized-sample-summaries" class="slide level2">
-<h2>Annualized sample summaries</h2>
-<p>We multiply a weekly sample mean by 52 and a weekly sample SD by <span class="math inline">\(\sqrt{52}\)</span>.</p>
-<p>The mean is an annualized arithmetic mean, not a compounded annual return. The SD scaling assumes uncorrelated weekly returns with a common variance.</p>
-<p>The next comparisons use annualized sample summaries on this same scale.</p>
-</section>
 <section id="choose-a-fund-to-add-to-spy" class="slide level2">
 <h2>Choose a fund to add to SPY</h2>
-<p>The <a href="../notes/appendix_data.html#sec-data-portfolios-2025">three-fund data</a> contain 104 weekly returns. Each ETF holds a basket of assets. Summaries are annualized.</p>
+<p>The <a href="../notes/appendix_data.html#sec-data-portfolios-2025">three-fund data</a> contain 104 weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top">
@@ -340,12 +178,208 @@ s_z^2=a^2s_x^2+b^2s_y^2+2ab s_{xy}.
 </table>
 </div>
 </div>
-<p>You currently hold only SPY. Would you add EFA or TLT? Make a provisional choice and state what information you still need.</p>
+<p>You currently hold only SPY. Would you add EFA or TLT? What information would help you decide?</p>
+<aside class="notes">
+<p>Means are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-portfolio-combines-two-returns" class="slide level2">
+<h2>A portfolio combines two returns</h2>
+<p>Suppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Fund</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: right;">Weekly return</th>
+<th style="text-align: right;">Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SPY</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.012</td>
+</tr>
+<tr class="even">
+<td>EFA</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td>Portfolio</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">0.016</td>
+</tr>
+</tbody>
+</table>
+<p>The portfolio earns <strong>1.6%</strong>. Its return is the weighted average of the two fund returns.</p>
+</section>
+<section id="linear-combinations" class="slide level2">
+<h2>Linear combinations</h2>
+<p>A <strong>linear combination</strong> has the form</p>
+<p><span class="math display">\[
+Z=aX+bY+c.
+\]</span></p>
+<p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables; <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span> are fixed numbers. The weights <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> scale the two variables, and <span class="math inline">\(c\)</span> shifts their combination.</p>
+</section>
+<section id="the-portfolio-as-a-linear-combination" class="slide level2">
+<h2>The portfolio as a linear combination</h2>
+<p>Let <span class="math inline">\(R_{\mathrm{SPY}}\)</span> and <span class="math inline">\(R_{\mathrm{EFA}}\)</span> denote the two fund returns, and let <span class="math inline">\(w\)</span> be the fraction invested in SPY.</p>
+<p><span class="math display">\[
+\begin{aligned}
+R_p &amp;= wR_{\mathrm{SPY}}+(1-w)R_{\mathrm{EFA}}\\
+    &amp;= 0.60R_{\mathrm{SPY}}+0.40R_{\mathrm{EFA}}\\
+    &amp;= 0.60(0.02)+0.40(0.01)\\
+    &amp;= 0.016.
+\end{aligned}
+\]</span></p>
+<p>Here <span class="math inline">\(a=w\)</span>, <span class="math inline">\(b=1-w\)</span>, and <span class="math inline">\(c=0\)</span>. The last two lines use the illustrative week’s returns.</p>
+</section>
+<section id="profit-as-a-linear-combination" class="slide level2">
+<h2>Profit as a linear combination</h2>
+<p>Let <span class="math inline">\(R\)</span> be revenue, <span class="math inline">\(V\)</span> variable costs, and <span class="math inline">\(F\)</span> fixed costs. Revenue and variable costs are random; <span class="math inline">\(F\)</span> is a fixed amount.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Profit} &amp;= \text{Revenue}-\text{Variable costs}-\text{Fixed costs}\\
+P &amp;= R-V-F\\
+  &amp;= 1\,R+(-1)\,V-F.
+\end{aligned}
+\]</span></p>
+<p>Here <span class="math inline">\(a=1\)</span>, <span class="math inline">\(b=-1\)</span>, and <span class="math inline">\(c=-F\)</span>. For example, in thousands of dollars,</p>
+<p><span class="math display">\[
+P=1{,}000-600-100=300.
+\]</span></p>
+</section>
+<section id="means-combine-with-the-same-weights" class="slide level2">
+<h2>Means combine with the same weights</h2>
+<p>For finite expected values,</p>
+<p><span class="math display">\[
+E[aX+bY+c]=aE[X]+bE[Y]+c.
+\]</span></p>
+<p>The rule holds whether or not the variables are independent. Expected profit is therefore</p>
+<p><span class="math display">\[
+E[P]=E[R]-E[V]-F.
+\]</span></p>
+<p>Apply the same weights to the expected values, then add the fixed amount.</p>
+</section>
+<section id="what-happens-to-expected-portfolio-returns" class="slide level2">
+<h2>What happens to expected portfolio returns?</h2>
+<p>Use the annualized sample means as estimates of expected returns:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">SPY</th>
+<th style="text-align: right;">EFA</th>
+<th style="text-align: right;">TLT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">24.4%</td>
+<td style="text-align: right;">19.7%</td>
+<td style="text-align: right;">6.2%</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\begin{aligned}
+E[R_p]&amp;=wE[R_{\mathrm{SPY}}]+(1-w)E[R_{\mathrm{other}}].
+\end{aligned}
+\]</span></p>
+<p>What happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair.</p>
+</section>
+<section id="why-accept-a-lower-expected-return" class="slide level2">
+<h2>Why accept a lower expected return?</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Portfolio</th>
+<th style="text-align: right;">Estimated expected return</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All SPY</td>
+<td style="text-align: right;">24.4%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60% SPY + 40% EFA</td>
+<td style="text-align: right;">22.5%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">60% SPY + 40% TLT</td>
+<td style="text-align: right;">17.1%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Adding either fund reduces estimated expected return. Why might we choose to do that?</p>
+<p>What would we need to know about the variability of the combined return?</p>
 </section>
 <section id="how-do-the-funds-move-with-spy" class="slide level2">
 <h2>How do the funds move with SPY?</h2>
 
 <img data-src="14_combining_random_variables_files/figure-revealjs/viz-scatter-spy-three-1.png" width="960" class="r-stretch"><p>Revise your choice if needed. Refer to the relationship visible in each plot.</p>
+</section>
+<section id="variance-includes-covariance" class="slide level2">
+<h2>Variance includes covariance</h2>
+<p>For finite variances,</p>
+<p><span class="math display">\[
+\operatorname{Var}(aX+bY+c)
+=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\operatorname{Cov}(X,Y).
+\]</span></p>
+<p>Each variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.</p>
+<p>Zero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation.</p>
+</section>
+<section id="portfolio-variance" class="slide level2">
+<h2>Portfolio variance</h2>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{Var}(R_p)={}&amp;w^2\operatorname{Var}(R_1)\\
+&amp;+(1-w)^2\operatorname{Var}(R_2)\\
+&amp;+2w(1-w)\operatorname{Cov}(R_1,R_2).
+\end{aligned}
+\]</span></p>
+<p>For nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses.</p>
+</section>
+<section id="portfolio-sd-as-correlation-varies" class="slide level2">
+<h2>Portfolio SD as correlation varies</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="14_combining_random_variables_files/figure-revealjs/viz-risk-vs-corr-1.png" width="537"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width: 40%; font-size: 0.85em;">
+<p>Two stocks each have annual SD 20%. An equal-weight portfolio has</p>
+<p><span class="math display">\[
+\operatorname{SD}(R_p)=\sqrt{0.02+0.02\rho},
+\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is the correlation between their returns.</p>
+<p>Correlation below 1 reduces portfolio SD. Negative correlation is not required.</p>
+</div></div>
 </section>
 <section id="tlt-can-attain-lower-portfolio-risk" class="slide level2">
 <h2>TLT can attain lower portfolio risk</h2>

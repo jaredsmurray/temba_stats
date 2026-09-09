@@ -376,15 +376,22 @@
 <p>The model assigns 0.18 to that cell, so store visits and purchases are dependent.</p>
 <p>We do not need to check the remaining cells once one equality fails.</p>
 </section>
+<section id="economic-ratings-by-employment-status" class="slide level2">
+<h2>Economic ratings by employment status</h2>
+<p>The <a href="../notes/appendix_data.html#sec-data-shed">2025 SHED survey</a> records national economic ratings. Percentages are unweighted.</p>
+
+<img data-src="12_independence_files/figure-revealjs/viz-ind-shed-bars-1.png" width="1056" class="r-stretch"><p>How much does the distribution change across employment groups?</p>
+</section>
 <section id="similar-observed-distributions" class="slide level2">
 <h2>Similar observed distributions</h2>
-<p>The <a href="../notes/appendix_data.html#sec-data-shed">2025 SHED survey</a> records ratings of national economic conditions. These percentages are unweighted.</p>
+<p>Each row reports percentages within an employment group; <span class="math inline">\(n\)</span> is its sample size.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
+<th style="text-align: left;">Employment status</th>
+<th style="text-align: right;">n</th>
 <th style="text-align: right;">Excellent</th>
 <th style="text-align: right;">Good</th>
 <th style="text-align: right;">Only fair</th>
@@ -394,6 +401,7 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Not working</td>
+<td style="text-align: right;">4,961</td>
 <td style="text-align: right;">2.0%</td>
 <td style="text-align: right;">25.9%</td>
 <td style="text-align: right;">43.8%</td>
@@ -401,6 +409,7 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">Working full-time</td>
+<td style="text-align: right;">6,128</td>
 <td style="text-align: right;">2.0%</td>
 <td style="text-align: right;">23.7%</td>
 <td style="text-align: right;">44.8%</td>
@@ -408,6 +417,7 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Working part-time</td>
+<td style="text-align: right;">1,845</td>
 <td style="text-align: right;">1.5%</td>
 <td style="text-align: right;">23.4%</td>
 <td style="text-align: right;">44.6%</td>
@@ -415,6 +425,7 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">Overall</td>
+<td style="text-align: right;">12,934</td>
 <td style="text-align: right;">1.9%</td>
 <td style="text-align: right;">24.5%</td>
 <td style="text-align: right;">44.4%</td>

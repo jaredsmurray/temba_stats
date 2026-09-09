@@ -1315,18 +1315,18 @@
     "title": "Parameters of Probability Distributions"
   },
   {
-    "objectID": "slides.html",
     "href": "slides.html",
-    "title": "Slides",
+    "objectID": "slides.html",
     "section": "",
-    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view)."
+    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view).",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#chapters-1014",
     "href": "slides.html#chapters-1014",
-    "title": "Slides",
+    "objectID": "slides.html#chapters-1014",
     "section": "Chapters 10–14",
-    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard."
+    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard.",
+    "title": "Slides"
   },
   {
     "objectID": "slides/10_joint_conditional_distributions.html#loan-purpose-and-default",
@@ -1348,6 +1348,13 @@
     "title": "Joint, Marginal, and Conditional Distributions",
     "section": "Joint and marginal proportions",
     "text": "Joint and marginal proportions\nBoth use the full sample as their denominator.\n\n\n\n\n\nQuestion\nCalculation\nProportion\n\n\n\n\nSmall business and default\n822 / 58,456\n0.0141\n\n\nSmall business, either outcome\n3,191 / 58,456\n0.0546\n\n\n\n\n\nA joint proportion describes a combination. A marginal proportion describes one category, summing over the other variable."
+  },
+  {
+    "objectID": "slides/10_joint_conditional_distributions.html#the-full-table-as-proportions",
+    "href": "slides/10_joint_conditional_distributions.html#the-full-table-as-proportions",
+    "title": "Joint, Marginal, and Conditional Distributions",
+    "section": "The full table as proportions",
+    "text": "The full table as proportions\n\n\n\n\n\nPurpose\nRepaid\nDefault\nTotal\n\n\n\n\nDebt consolidation\n0.7061\n0.1391\n0.8452\n\n\nHome improvement\n0.0879\n0.0123\n0.1002\n\n\nSmall business\n0.0405\n0.0141\n0.0546\n\n\nTotal\n0.8346\n0.1654\n1.0000\n\n\n\n\n\nEvery entry uses all 58,456 loans as its denominator. The interior proportions sum to one; the margins summarize each variable."
   },
   {
     "objectID": "slides/10_joint_conditional_distributions.html#conditional-proportions-select-a-group",
@@ -1476,11 +1483,18 @@
     "text": "The product check fails\nIndependence would require\n\\[\n\\Pr(\\text{visit and purchase})=0.40(0.30)=0.12.\n\\]\nThe model assigns 0.18 to that cell, so store visits and purchases are dependent.\nWe do not need to check the remaining cells once one equality fails."
   },
   {
+    "objectID": "slides/12_independence.html#economic-ratings-by-employment-status",
+    "href": "slides/12_independence.html#economic-ratings-by-employment-status",
+    "title": "Independence",
+    "section": "Economic ratings by employment status",
+    "text": "Economic ratings by employment status\nThe 2025 SHED survey records national economic ratings. Percentages are unweighted.\n\nHow much does the distribution change across employment groups?"
+  },
+  {
     "objectID": "slides/12_independence.html#similar-observed-distributions",
     "href": "slides/12_independence.html#similar-observed-distributions",
     "title": "Independence",
     "section": "Similar observed distributions",
-    "text": "Similar observed distributions\nThe 2025 SHED survey records ratings of national economic conditions. These percentages are unweighted.\n\n\n\n\n\n\nExcellent\nGood\nOnly fair\nPoor\n\n\n\n\nNot working\n2.0%\n25.9%\n43.8%\n28.3%\n\n\nWorking full-time\n2.0%\n23.7%\n44.8%\n29.5%\n\n\nWorking part-time\n1.5%\n23.4%\n44.6%\n30.6%\n\n\nOverall\n1.9%\n24.5%\n44.4%\n29.2%\n\n\n\n\n\nThe largest difference from an overall category share is 1.4 percentage points. Does similarity establish exact population independence?"
+    "text": "Similar observed distributions\nEach row reports percentages within an employment group; \\(n\\) is its sample size.\n\n\n\n\n\nEmployment status\nn\nExcellent\nGood\nOnly fair\nPoor\n\n\n\n\nNot working\n4,961\n2.0%\n25.9%\n43.8%\n28.3%\n\n\nWorking full-time\n6,128\n2.0%\n23.7%\n44.8%\n29.5%\n\n\nWorking part-time\n1,845\n1.5%\n23.4%\n44.6%\n30.6%\n\n\nOverall\n12,934\n1.9%\n24.5%\n44.4%\n29.2%\n\n\n\n\n\nThe largest difference from an overall category share is 1.4 percentage points. Does similarity establish exact population independence?"
   },
   {
     "objectID": "slides/12_independence.html#sample-similarity-and-model-independence",
@@ -1494,35 +1508,35 @@
     "href": "slides/13_quantitative-quantitative.html#price-and-living-area",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "Price and living area",
-    "text": "Price and living area\nEach point is one Austin home sale.\n\nDescribe the trend and the spread of prices among similarly sized homes."
+    "text": "Price and living area\n\n\n\n\n\n\n\n\n\n\n\n\nEach point is one Austin home sale.\nDescribe the trend and the spread of prices among similarly sized homes."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#a-smooth-curve-summarizes-nearby-outcomes",
     "href": "slides/13_quantitative-quantitative.html#a-smooth-curve-summarizes-nearby-outcomes",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "A smooth curve summarizes nearby outcomes",
-    "text": "A smooth curve summarizes nearby outcomes\nDFW daily electricity demand and temperature, 2016–2020.\n\nAt 50°F, the curve is about 12,000 MW. What does the surrounding scatter tell us?"
+    "text": "A smooth curve summarizes nearby outcomes\n\n\n\n\n\n\n\n\n\n\n\n\nDFW daily electricity demand and temperature, 2016–2020.\nAt 50°F, the curve is about 12,000 MW. What does the surrounding scatter tell us?"
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#conditional-location-and-spread",
     "href": "slides/13_quantitative-quantitative.html#conditional-location-and-spread",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "Conditional location and spread",
-    "text": "Conditional location and spread\nThe smoother describes average demand among days with nearby temperatures.\nThe scatter around it describes variation among individual days at those temperatures.\nKnowing the temperature narrows our assessment of demand, but does not determine the load on a particular day."
+    "text": "Conditional location and spread\n\n\n\n\n\n\n\n\n\n\n\n\nThe smoother describes average demand among days with nearby temperatures.\nThe scatter around it describes variation among individual days at those temperatures.\nKnowing the temperature narrows our assessment of demand, but does not determine the load on a particular day."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#a-smoother-also-helps-with-housing-prices",
     "href": "slides/13_quantitative-quantitative.html#a-smoother-also-helps-with-housing-prices",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "A smoother also helps with housing prices",
-    "text": "A smoother also helps with housing prices\n\nFewer large homes determine the curve at the right. Small bends there need not describe a stable population pattern."
+    "text": "A smoother also helps with housing prices\n\n\n\n\n\n\n\n\n\n\n\n\nFewer large homes determine the curve at the right. Small bends there need not describe a stable population pattern."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#a-roughly-linear-relationship",
     "href": "slides/13_quantitative-quantitative.html#a-roughly-linear-relationship",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "A roughly linear relationship",
-    "text": "A roughly linear relationship\nEach point pairs one week’s Tesla and S&P 500 returns.\n\nThe broad trend is upward and roughly straight, with considerable variation around it."
+    "text": "A roughly linear relationship\n\n\n\n\n\n\n\n\n\n\n\n\nEach point pairs one week’s Tesla and S&P 500 returns.\nThe broad trend is upward and roughly straight, with considerable variation around it."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#correlation-summarizes-linear-association",
@@ -1536,14 +1550,7 @@
     "href": "slides/13_quantitative-quantitative.html#different-population-correlations",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "Different population correlations",
-    "text": "Different population correlations\n\nEach cloud contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them."
-  },
-  {
-    "objectID": "slides/13_quantitative-quantitative.html#what-would-you-ask-to-see",
-    "href": "slides/13_quantitative-quantitative.html#what-would-you-ask-to-see",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
-    "section": "What would you ask to see?",
-    "text": "What would you ask to see?\nA report gives essentially the same correlation, \\(r=0.82\\), for four datasets.\nThe author proposes using the same description of the relationship for all four.\nWhat else would you ask to see before approving the summary?"
+    "text": "Different population correlations\n\n\n\n\n\n\n\n\n\n\n\n\nEach scatterplot contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#anscombes-quartet",
@@ -1553,11 +1560,11 @@
     "text": "Anscombe’s quartet"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#what-the-four-plots-add",
-    "href": "slides/13_quantitative-quantitative.html#what-the-four-plots-add",
+    "objectID": "slides/13_quantitative-quantitative.html#limitations-of-correlation",
+    "href": "slides/13_quantitative-quantitative.html#limitations-of-correlation",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
-    "section": "What the four plots add",
-    "text": "What the four plots add\n\nThe upper-left panel has a roughly linear pattern.\nThe upper-right panel follows a curve.\nIn the lower-left panel, one point departs from the others’ straight pattern.\nIn the lower-right panel, one observation accounts for the positive correlation.\n\nA correlation alone cannot distinguish these cases."
+    "section": "Limitations of correlation",
+    "text": "Limitations of correlation\n\nCorrelation can describe nonlinear relationships poorly.\nExtreme observations can substantially change the correlation.\n\nInspect the scatterplot alongside the correlation."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#similar-correlations-can-describe-different-patterns",
@@ -1571,14 +1578,14 @@
     "href": "slides/13_quantitative-quantitative.html#zero-correlation-does-not-establish-independence",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "Zero correlation does not establish independence",
-    "text": "Zero correlation does not establish independence\nCorrelation measures linear association. A strong curved relationship can have a correlation near zero.\nIndependence requires the entire conditional distribution to stay unchanged. Even exactly zero correlation is insufficient.\nA sample correlation near zero also does not establish independence in a population. Inspect the scatterplot."
+    "text": "Zero correlation does not establish independence\n\n\n\n\n\n\n\n\n\n\n\n\nWe simulated \\(y=x^2+\\text{noise}\\) at 500 evenly spaced values of \\(x\\).\nThe noise has mean zero and SD 0.25. The conditional mean of \\(y\\) changes with \\(x\\), despite a sample correlation of 0.01.\nIndependence requires the entire conditional distribution to stay unchanged."
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#covariance-retains-the-measurement-scales",
     "href": "slides/13_quantitative-quantitative.html#covariance-retains-the-measurement-scales",
     "title": "Visualizing and Summarizing Two Quantitative Variables",
     "section": "Covariance retains the measurement scales",
-    "text": "Covariance retains the measurement scales\nThe sample covariance combines correlation and standard deviations:\n\\[\ns_{xy}=r\\,s_xs_y.\n\\]\nIt has the same sign as correlation, but its magnitude depends on the units. For size and price, its units are square feet times dollars.\nIf prices change from dollars to thousands of dollars, what happens to covariance? What happens to correlation?"
+    "text": "Covariance retains the measurement scales\nThe sample covariance combines correlation and standard deviations:\n\\[\ns_{xy}=r\\,s_xs_y.\n\\]\n\\(s_{xy}\\) is the sample covariance, \\(r\\) the sample correlation, and \\(s_x\\) and \\(s_y\\) the sample standard deviations.\nCovariance has the same sign as correlation. Its units are the product of the variables’ units.\nIf prices change from dollars to thousands of dollars, what happens to covariance? What happens to correlation?"
   },
   {
     "objectID": "slides/13_quantitative-quantitative.html#changing-units-does-not-weaken-the-relationship",
@@ -1616,25 +1623,67 @@
     "text": "Covariance connects to combinations\n\\[\n\\operatorname{Cov}(X,Y)=(-0.5)(2)(3)=-3.\n\\]\nThe variables have negative linear association; their scales determine the magnitude of covariance.\nIndependent variables with finite, positive variances have zero covariance and correlation. The converse fails.\nCovariance enters the variance of a combination even when the component variables have a nonlinear relationship."
   },
   {
+    "objectID": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
+    "href": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
+    "title": "Combining Random Variables",
+    "section": "Choose a fund to add to SPY",
+    "text": "Choose a fund to add to SPY\nThe three-fund data contain 104 weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.\n\n\n\n\n\nFund\nHolds\nMean\nSD\n\n\n\n\nSPY\nU.S. stocks (S&P 500)\n24.4%\n15.3%\n\n\nEFA\nDeveloped-market stocks\n19.7%\n15.1%\n\n\nTLT\nLong-term U.S. Treasuries\n6.2%\n15.1%\n\n\n\n\n\nYou currently hold only SPY. Would you add EFA or TLT? What information would help you decide?\n\nMeans are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow."
+  },
+  {
     "objectID": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
     "href": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
     "title": "Combining Random Variables",
     "section": "A portfolio combines two returns",
-    "text": "A portfolio combines two returns\nA 60/40 portfolio has 60% of its capital in the first asset and 40% in the second.\n\n\n\nAsset\nPortfolio weight\nThis week’s return\nContribution\n\n\n\n\nFirst\n0.60\n0.02\n0.012\n\n\nSecond\n0.40\n−0.01\n−0.004\n\n\nPortfolio\n1.00\n\n0.008\n\n\n\nThe portfolio earns 0.8%. Its return is a weighted average of the two asset returns."
+    "text": "A portfolio combines two returns\nSuppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.\n\n\n\nFund\nWeight\nWeekly return\nContribution\n\n\n\n\nSPY\n0.60\n0.02\n0.012\n\n\nEFA\n0.40\n0.01\n0.004\n\n\nPortfolio\n1.00\n\n0.016\n\n\n\nThe portfolio earns 1.6%. Its return is the weighted average of the two fund returns."
   },
   {
     "objectID": "slides/14_combining_random_variables.html#linear-combinations",
     "href": "slides/14_combining_random_variables.html#linear-combinations",
     "title": "Combining Random Variables",
     "section": "Linear combinations",
-    "text": "Linear combinations\nA linear combination has the form\n\\[\nZ=aX+bY+c.\n\\]\nA portfolio has weights \\(a=w\\), \\(b=1-w\\), and \\(c=0\\).\nProfit can be revenue minus variable costs minus a fixed cost. The fixed cost shifts every possible profit by the same amount."
+    "text": "Linear combinations\nA linear combination has the form\n\\[\nZ=aX+bY+c.\n\\]\n\\(X\\) and \\(Y\\) are random variables; \\(a\\), \\(b\\), and \\(c\\) are fixed numbers. The weights \\(a\\) and \\(b\\) scale the two variables, and \\(c\\) shifts their combination."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
+    "href": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
+    "title": "Combining Random Variables",
+    "section": "The portfolio as a linear combination",
+    "text": "The portfolio as a linear combination\nLet \\(R_{\\mathrm{SPY}}\\) and \\(R_{\\mathrm{EFA}}\\) denote the two fund returns, and let \\(w\\) be the fraction invested in SPY.\n\\[\n\\begin{aligned}\nR_p &= wR_{\\mathrm{SPY}}+(1-w)R_{\\mathrm{EFA}}\\\\\n    &= 0.60R_{\\mathrm{SPY}}+0.40R_{\\mathrm{EFA}}\\\\\n    &= 0.60(0.02)+0.40(0.01)\\\\\n    &= 0.016.\n\\end{aligned}\n\\]\nHere \\(a=w\\), \\(b=1-w\\), and \\(c=0\\). The last two lines use the illustrative week’s returns."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
+    "href": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
+    "title": "Combining Random Variables",
+    "section": "Profit as a linear combination",
+    "text": "Profit as a linear combination\nLet \\(R\\) be revenue, \\(V\\) variable costs, and \\(F\\) fixed costs. Revenue and variable costs are random; \\(F\\) is a fixed amount.\n\\[\n\\begin{aligned}\n\\text{Profit} &= \\text{Revenue}-\\text{Variable costs}-\\text{Fixed costs}\\\\\nP &= R-V-F\\\\\n  &= 1\\,R+(-1)\\,V-F.\n\\end{aligned}\n\\]\nHere \\(a=1\\), \\(b=-1\\), and \\(c=-F\\). For example, in thousands of dollars,\n\\[\nP=1{,}000-600-100=300.\n\\]"
   },
   {
     "objectID": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
     "href": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
     "title": "Combining Random Variables",
     "section": "Means combine with the same weights",
-    "text": "Means combine with the same weights\nFor finite expected values,\n\\[\nE[aX+bY+c]=aE[X]+bE[Y]+c.\n\\]\nThe rule holds whether or not the variables are independent.\nFor a portfolio,\n\\[\nE[R_p]=wE[R_1]+(1-w)E[R_2].\n\\]\nIts expected return is the weighted average of the assets’ expected returns."
+    "text": "Means combine with the same weights\nFor finite expected values,\n\\[\nE[aX+bY+c]=aE[X]+bE[Y]+c.\n\\]\nThe rule holds whether or not the variables are independent. Expected profit is therefore\n\\[\nE[P]=E[R]-E[V]-F.\n\\]\nApply the same weights to the expected values, then add the fixed amount."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
+    "href": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
+    "title": "Combining Random Variables",
+    "section": "What happens to expected portfolio returns?",
+    "text": "What happens to expected portfolio returns?\nUse the annualized sample means as estimates of expected returns:\n\n\n\nSPY\nEFA\nTLT\n\n\n\n\n24.4%\n19.7%\n6.2%\n\n\n\n\\[\n\\begin{aligned}\nE[R_p]&=wE[R_{\\mathrm{SPY}}]+(1-w)E[R_{\\mathrm{other}}].\n\\end{aligned}\n\\]\nWhat happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
+    "href": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
+    "title": "Combining Random Variables",
+    "section": "Why accept a lower expected return?",
+    "text": "Why accept a lower expected return?\n\n\n\n\n\nPortfolio\nEstimated expected return\n\n\n\n\nAll SPY\n24.4%\n\n\n60% SPY + 40% EFA\n22.5%\n\n\n60% SPY + 40% TLT\n17.1%\n\n\n\n\n\nAdding either fund reduces estimated expected return. Why might we choose to do that?\nWhat would we need to know about the variability of the combined return?"
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
+    "href": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
+    "title": "Combining Random Variables",
+    "section": "How do the funds move with SPY?",
+    "text": "How do the funds move with SPY?\n\nRevise your choice if needed. Refer to the relationship visible in each plot."
   },
   {
     "objectID": "slides/14_combining_random_variables.html#variance-includes-covariance",
@@ -1651,53 +1700,11 @@
     "text": "Portfolio variance\n\\[\n\\begin{aligned}\n\\operatorname{Var}(R_p)={}&w^2\\operatorname{Var}(R_1)\\\\\n&+(1-w)^2\\operatorname{Var}(R_2)\\\\\n&+2w(1-w)\\operatorname{Cov}(R_1,R_2).\n\\end{aligned}\n\\]\nFor nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses."
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#two-equally-variable-stocks",
-    "href": "slides/14_combining_random_variables.html#two-equally-variable-stocks",
-    "title": "Combining Random Variables",
-    "section": "Two equally variable stocks",
-    "text": "Two equally variable stocks\nEach stock has expected annual return 10% and annual SD 20%. An equal-weight portfolio has expected return 10%.\n\\[\n\\operatorname{Var}(R_p)=0.02+0.02\\operatorname{Corr}(R_1,R_2).\n\\]\n\n\n\nCorrelation\nPortfolio SD\n\n\n\n\n0\n?\n\n\n−0.5\n?\n\n\n\nCalculate the two standard deviations. Does diversification require negative correlation?"
-  },
-  {
-    "objectID": "slides/14_combining_random_variables.html#correlation-changes-portfolio-variability",
-    "href": "slides/14_combining_random_variables.html#correlation-changes-portfolio-variability",
-    "title": "Combining Random Variables",
-    "section": "Correlation changes portfolio variability",
-    "text": "Correlation changes portfolio variability\n\n\n\n\n\nCorrelation\nPortfolio standard deviation\n\n\n\n\n1.0\n20.0%\n\n\n0.5\n17.3%\n\n\n0.0\n14.1%\n\n\n-0.5\n10.0%\n\n\n-1.0\n0.0%\n\n\n\n\n\nThe individual stocks each have SD 20%. Even positive correlation below 1 reduces the variability of this equal-weight portfolio."
-  },
-  {
     "objectID": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
     "href": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
     "title": "Combining Random Variables",
     "section": "Portfolio SD as correlation varies",
-    "text": "Portfolio SD as correlation varies"
-  },
-  {
-    "objectID": "slides/14_combining_random_variables.html#the-same-rules-apply-to-sample-summaries",
-    "href": "slides/14_combining_random_variables.html#the-same-rules-apply-to-sample-summaries",
-    "title": "Combining Random Variables",
-    "section": "The same rules apply to sample summaries",
-    "text": "The same rules apply to sample summaries\nFor a column \\(z_i=ax_i+by_i+c\\),\n\\[\n\\bar z=a\\bar x+b\\bar y+c,\n\\] \\[\ns_z^2=a^2s_x^2+b^2s_y^2+2ab s_{xy}.\n\\]\nThese identities give the historical mean and variance of the combined column. Using them to describe future returns requires an assumption that the past is informative about the future."
-  },
-  {
-    "objectID": "slides/14_combining_random_variables.html#annualized-sample-summaries",
-    "href": "slides/14_combining_random_variables.html#annualized-sample-summaries",
-    "title": "Combining Random Variables",
-    "section": "Annualized sample summaries",
-    "text": "Annualized sample summaries\nWe multiply a weekly sample mean by 52 and a weekly sample SD by \\(\\sqrt{52}\\).\nThe mean is an annualized arithmetic mean, not a compounded annual return. The SD scaling assumes uncorrelated weekly returns with a common variance.\nThe next comparisons use annualized sample summaries on this same scale."
-  },
-  {
-    "objectID": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
-    "href": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
-    "title": "Combining Random Variables",
-    "section": "Choose a fund to add to SPY",
-    "text": "Choose a fund to add to SPY\nThe three-fund data contain 104 weekly returns. Each ETF holds a basket of assets. Summaries are annualized.\n\n\n\n\n\nFund\nHolds\nMean\nSD\n\n\n\n\nSPY\nU.S. stocks (S&P 500)\n24.4%\n15.3%\n\n\nEFA\nDeveloped-market stocks\n19.7%\n15.1%\n\n\nTLT\nLong-term U.S. Treasuries\n6.2%\n15.1%\n\n\n\n\n\nYou currently hold only SPY. Would you add EFA or TLT? Make a provisional choice and state what information you still need."
-  },
-  {
-    "objectID": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
-    "href": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
-    "title": "Combining Random Variables",
-    "section": "How do the funds move with SPY?",
-    "text": "How do the funds move with SPY?\n\nRevise your choice if needed. Refer to the relationship visible in each plot."
+    "text": "Portfolio SD as correlation varies\n\n\n\n\n\n\n\n\n\n\n\n\nTwo stocks each have annual SD 20%. An equal-weight portfolio has\n\\[\n\\operatorname{SD}(R_p)=\\sqrt{0.02+0.02\\rho},\n\\]\nwhere \\(\\rho\\) is the correlation between their returns.\nCorrelation below 1 reduces portfolio SD. Negative correlation is not required."
   },
   {
     "objectID": "slides/14_combining_random_variables.html#tlt-can-attain-lower-portfolio-risk",

@@ -1,9 +1,8 @@
 {
-  "baseline_commit": "60199e165476b1344dfe2f781737a6dc1a009b2d",
-  "release": "20260908T220333-h656g2py",
+  "baseline_commit": "6c6580766de00b2df69627f80fee848a11daf091",
+  "release": "20260909T220919-vl1ba4oj",
   "scope": null,
   "selected": [
-    "slides.qmd",
     "slides/10_joint_conditional_distributions.qmd",
     "slides/12_independence.qmd",
     "slides/13_quantitative-quantitative.qmd",
@@ -48,5 +47,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "ea8c7d69a98821e6540d950426a02a67a438e650"
+  "source_commit": "5bdcc7b0d27ce6eb9ff1720903fd9ddca2d2b510"
 }
