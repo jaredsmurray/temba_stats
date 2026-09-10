@@ -1,13 +1,8 @@
 {
-  "baseline_commit": "6c6580766de00b2df69627f80fee848a11daf091",
-  "release": "20260909T220919-vl1ba4oj",
-  "scope": null,
-  "selected": [
-    "slides/10_joint_conditional_distributions.qmd",
-    "slides/12_independence.qmd",
-    "slides/13_quantitative-quantitative.qmd",
-    "slides/14_combining_random_variables.qmd"
-  ],
+  "baseline_commit": "d0589306f77f33d3c161344d86c4214b68a3cb0c",
+  "release": "20260910T043700-hhzzq8tp",
+  "scope": "notes",
+  "selected": [],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -47,5 +42,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "5bdcc7b0d27ce6eb9ff1720903fd9ddca2d2b510"
+  "source_commit": "bdc2d03577c5d3ec91b62c89784a6dcaa07e8727"
 }

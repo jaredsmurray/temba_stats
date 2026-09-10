@@ -77,6 +77,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -84,10 +88,6 @@ ul.task-list li input[type="checkbox"] {
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
-}
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
 }
 .Notation {
   --color1: #EEF1F3;
@@ -665,7 +665,7 @@ Figure&nbsp;11.6: Fraud-screening probability tree. Multiplying the branch proba
 <li>Given that a component is defective, find the probability that it came from Supplier B.</li>
 <li>Explain why the answer to part 5 exceeds the marginal probability of ordering from Supplier B.</li>
 </ol>
-<details class="solution-details" id="solution-supplier-risk-tree" aria-label="Solution">
+<details id="solution-supplier-risk-tree" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The first branches have probabilities 0.60 for Supplier A and 0.40 for Supplier B. The second-stage branch probabilities are 0.02 Defective and 0.98 Not defective after Supplier A, and 0.05 Defective and 0.95 Not defective after Supplier B. The completed tree is</p>
 <div class="cell">
