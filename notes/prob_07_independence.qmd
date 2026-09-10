@@ -178,11 +178,15 @@ The 2025 Survey of Household Economics and Decisionmaking (SHED), the Federal Re
 
 ```{r}
 #| label: tbl-ind-shed
-#| tbl-cap: "Conditional percentages rating national economic conditions in each category, by employment status. The overall row uses all respondents. Percentages are unweighted and may not sum to 100 after rounding."
+#| tbl-cap: "Conditional percentages rating national economic conditions in each category, by employment status. The n column gives the number of respondents in each group; the overall row uses all respondents. Percentages are unweighted and may not sum to 100 after rounding."
 #| echo: false
 shed_display_ind <- rbind(shed_cond_ind, Overall = shed_marg_ind)
 shed_display_ind[] <- percent(shed_display_ind, accuracy = 0.1)
-knitr::kable(shed_display_ind, align = rep("r", 4))
+shed_display_ind <- data.frame(
+  `Employment status` = c(employment_ind, "Overall"),
+  n = comma(c(rowSums(shed_counts_ind), sum(shed_counts_ind))),
+  shed_display_ind, check.names = FALSE, row.names = NULL)
+knitr::kable(shed_display_ind, align = c("l", rep("r", 5)), row.names = FALSE)
 ```
 
 The rating distributions are similar across employment groups. The largest departure from an overall category share is `r number(100 * shed_gap_ind, accuracy = 0.1)` percentage points: `r percent(shed_cond_ind[1, "Good"], accuracy = 0.1)` of respondents who are not working rate conditions “good,” compared with `r percent(shed_marg_ind["Good"], accuracy = 0.1)` overall. Employment status tells us relatively little about the distribution of these ratings in this extract.
