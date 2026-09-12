@@ -85,13 +85,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -347,7 +347,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-covariance" id="toc-sec-covariance" class="nav-link" data-scroll-target="#sec-covariance"><span class="header-section-number">13.5</span> Covariance</a></li>
   <li><a href="#sec-rv-correlation" id="toc-sec-rv-correlation" class="nav-link" data-scroll-target="#sec-rv-correlation"><span class="header-section-number">13.6</span> Covariance and correlation in probability models</a></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">13.7</span> Practice</a></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
@@ -411,6 +410,29 @@ Figure&nbsp;13.2: Hourly wage versus years of education for full-time U.S. worke
 <p>To fix the ties we can apply <strong>jitter</strong>, which adds a little random horizontal shake to the reported years of education so identical x-values spread apart (<a href="#fig-mincer-wage-educ" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>, middle panel). Even then we see wider but mostly dark strips. The right panel of <a href="#fig-mincer-wage-educ" class="quarto-xref">Figure&nbsp;<span>13.2</span></a> adds <strong>transparency</strong>, so densely-packed areas appear darker than less-dense areas. (<a href="#fig-austin-price-sqft" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> also uses a little transparency if you look closely.)</p>
 <p>Another viable option is to treat years of education as an ordinal categorical variable when we create our plots. Either approach works; the best option depends on the purpose of the visualization and the audience.</p>
 <p>Wages tend to increase with years of education. The spread of wages seems to increase with education as well.</p>
+<div id="exercise-route-scatter" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.1: </strong>Delivery routes</div><div class="fobx-body">
+<p>The plot shows synthetic data for 60 delivery routes. Each point pairs a route’s distance with its delivery time. Describe how delivery time changes with distance. Is the spread of times for routes near 10 miles about the same as for routes near 40 miles?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exercise-route-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exercise-route-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-exercise-route-scatter-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exercise-route-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.3: Synthetic distances and delivery times for 60 routes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<details class="solution-details" aria-label="Solution" id="details-1">
+<summary>Solution</summary>
+<p>Delivery time tends to increase with distance. The vertical spread is wider near 40 miles than near 10 miles. Delivery times vary more around the upward trend at longer distances.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-nonlinear" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="sec-nonlinear"><span class="header-section-number">13.2</span> Smooth curves</h2>
@@ -423,13 +445,26 @@ Figure&nbsp;13.2: Hourly wage versus years of education for full-time U.S. worke
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-ercot-load-temp-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ercot-load-temp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.3: Daily average electricity demand versus daily average temperature in the DFW region. The curve summarizes how average demand varies with temperature.
+Figure&nbsp;13.4: Daily average electricity demand versus daily average temperature in the DFW region. The curve summarizes how average demand varies with temperature.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>As expected the curve bends upward at both ends: demand is lower on mild days and higher at temperature extremes. You can think about the curve as representing the <em>average</em> load across all days where the temperature takes a specific value. For example, the curve passes through about 12,000 MW at 50°F. That is, according to the smooth summary, if we observe load on many 50°F days, the average load would be about 12,000 MW. The spread of the points around the curve near 50°F depicts how difficult it is to predict load for an individual 50°F day. These are <em>conditional</em> location and spread: given that it is 50°F outside, what is our best guess for load, and how wrong are we likely to be?</p>
+<p>As expected the curve bends upward at both ends: demand is lower on mild days and higher at temperature extremes.</p>
+<div id="tip-smoother-conditional-average" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip&nbsp;13.1: Reading a conditional average
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can think about the curve as representing the <em>average</em> load across all days where the temperature takes a specific value. For example, the curve passes through about 12,000 MW at 50°F. That is, according to the smooth summary, if we observe load on many 50°F days, the average load would be about 12,000 MW. The spread of the points around the curve near 50°F depicts how difficult it is to predict load for an individual 50°F day. These are <em>conditional</em> location and spread: given that it is 50°F outside, what is our best guess for load, and how wrong are we likely to be?</p>
+</div>
+</div>
 <div id="technical-smoother-construction" class="TechnicalDetail">
 <details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 13.1: </strong>Constructing a smooth curve</summary><div>
 <p>The curve above uses a moving temperature window. Within each window we fit a straight line to demand and temperature, then use its height at the window’s center as one point on the curve. Moving the window and connecting those heights produces the curve. A wider window averages over more of the data; a narrower window follows local variation more closely.</p>
@@ -439,7 +474,7 @@ Figure&nbsp;13.3: Daily average electricity demand versus daily average temperat
 <img src="images/loess_construction.gif" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loess-anim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.4: The shaded window moves across the temperature range. The orange line uses only observations inside that window; its height at the center supplies one point on the blue curve.
+Figure&nbsp;13.5: The shaded window moves across the temperature range. The orange line uses only observations inside that window; its height at the center supplies one point on the blue curve.
 </figcaption>
 </figure>
 </div>
@@ -454,13 +489,34 @@ Figure&nbsp;13.4: The shaded window moves across the temperature range. The oran
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-austin-price-sqft-smooth-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-austin-price-sqft-smooth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.5: A smooth curve for the Austin homes. Prices increase with size, with considerable house-to-house variation around the curve.
+Figure&nbsp;13.6: A smooth curve for the Austin homes. Prices increase with size, with considerable house-to-house variation around the curve.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<div id="warning-smoother-bends" class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Small bends in a smoother
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The curve bends gently, but small bends need not reflect a stable relationship in the population. We should be particularly cautious among the larger homes, where fewer observations determine the curve. A smoother can help us see a relationship without requiring it to be linear; it will generally not be perfectly straight even when the underlying relationship is linear.</p>
+</div>
+</div>
+<div id="exercise-smoother-individual" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.2: </strong>A prediction for one day</div><div class="fobx-body">
+<p>A planner reads the smooth curve in <a href="#fig-ercot-load-temp" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> at 50°F and says, “On a 50°F day, electricity demand will be 12,000 MW.” How would you revise this statement? What part of the plot helps you judge how far an individual day’s demand might be from that value?</p>
+<details class="solution-details" aria-label="Solution" id="details-2">
+<summary>Solution</summary>
+<p>The curve estimates <em>average</em> demand on days near 50°F at about 12,000 MW. Individual days can have higher or lower demand. The vertical spread of the points near 50°F shows the variation around that average.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-cov-cor" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="sec-cov-cor"><span class="header-section-number">13.3</span> Linear Relationships and Correlation</h2>
@@ -474,7 +530,7 @@ Figure&nbsp;13.5: A smooth curve for the Austin homes. Prices increase with size
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-tsla-market-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tsla-market-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.6: Tesla and S&amp;P 500 weekly returns. The broad pattern is upward and roughly linear, with considerable variation in Tesla returns for similar market returns.
+Figure&nbsp;13.7: Tesla and S&amp;P 500 weekly returns. The broad pattern is upward and roughly linear, with considerable variation in Tesla returns for similar market returns.
 </figcaption>
 </figure>
 </div>
@@ -493,7 +549,7 @@ Figure&nbsp;13.6: Tesla and S&amp;P 500 weekly returns. The broad pattern is upw
 <p>Correlation has no units. Changing square feet to square meters, for example, does not change the correlation between house size and price. Both variables must vary for their correlation to be defined.</p>
 </div></div>
 </div>
-<p>The simulated scatterplots below show different strengths and directions of linear association. Each panel contains 500 observations from a probability model with the labelled <strong>population correlation</strong>. These labels describe the generating models; the sample correlations <span class="math inline">\(r\)</span> fluctuate around them.</p>
+<p>The simulated scatterplots below show different strengths and directions of linear association. Each panel contains 500 observations from a probability model with the labelled population correlation.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corr-panels" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -502,13 +558,36 @@ Figure&nbsp;13.6: Tesla and S&amp;P 500 weekly returns. The broad pattern is upw
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-corr-panels-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.7: Samples of 500 observations from models with the labelled population correlations. Zero is in the center; at either extreme all points lie on a straight line.
+Figure&nbsp;13.8: Samples of 500 observations from models with the labelled population correlations. Zero is in the center; at either extreme all points lie on a straight line.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>For the Austin homes, the correlation between size and price is <span class="math inline">\(r=0.77\)</span>. The positive value agrees with the upward pattern in the scatterplot, while the departures from a perfect straight line leave the correlation below 1.</p>
+<div id="exercise-depot-correlation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.3: </strong>Comparing two depots</div><div class="fobx-body">
+<p>The two panels show synthetic data for 80 deliveries at each of two depots. Both panels use the same axis scales and show a similar upward trend in delivery time with distance. Which depot has the larger correlation between distance and time? Explain why the shared trend does not imply equal correlations.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exercise-depot-correlation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exercise-depot-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-exercise-depot-correlation-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exercise-depot-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.9: Synthetic delivery distances and times at two depots, shown on common scales.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<details class="solution-details" aria-label="Solution" id="details-3">
+<summary>Solution</summary>
+<p>Both correlations are positive, but Depot A has the larger correlation because its points fall closer to a straight line. At Depot B, delivery times vary more at each distance. Correlation describes how closely the points follow the linear trend, as well as its direction.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-corr-limits" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="sec-corr-limits"><span class="header-section-number">13.4</span> Correlation and non-linear relationships</h2>
@@ -521,7 +600,7 @@ Figure&nbsp;13.7: Samples of 500 observations from models with the labelled popu
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-anscombe-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anscombe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.8: Anscombe’s quartet: four datasets with very different relationships between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> that nevertheless share the same correlation.
+Figure&nbsp;13.10: Anscombe’s quartet: four datasets with very different relationships between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> that nevertheless share the same correlation.
 </figcaption>
 </figure>
 </div>
@@ -539,7 +618,7 @@ Figure&nbsp;13.8: Anscombe’s quartet: four datasets with very different relati
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-corr-linear-only-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-linear-only-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.9: Two relationships with similar sample correlations. Left: Tesla and S&amp;P 500 weekly returns. Right: daily electricity demand and temperature in the DFW region. Demand follows a curved pattern that its linear correlation does not describe.
+Figure&nbsp;13.11: Two relationships with similar sample correlations. Left: Tesla and S&amp;P 500 weekly returns. Right: daily electricity demand and temperature in the DFW region. Demand follows a curved pattern that its linear correlation does not describe.
 </figcaption>
 </figure>
 </div>
@@ -550,6 +629,7 @@ Figure&nbsp;13.9: Two relationships with similar sample correlations. Left: Tesl
 <section id="sec-anscombe" class="level3" data-number="13.4.2">
 <h3 data-number="13.4.2" class="anchored" data-anchor-id="sec-anscombe"><span class="header-section-number">13.4.2</span> Extreme observations</h3>
 <p>A distant point can change correlation substantially, as the lower two Anscombe panels show. We should check whether such an observation is a data error or a valid but unusual case. A valid observation can still make one summary an incomplete description of the rest of the data.</p>
+<p>An extreme observation need not have a large effect. In the Tesla–S&amp;P 500 data, the market’s worst week ended on April 04, 2025: the S&amp;P 500 returned -9.1% and Tesla returned -9.2%. Removing that week changes the correlation from 0.48467 to 0.48470 — almost no change. The positive association in this scatterplot does not depend on the market’s worst week.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -562,6 +642,30 @@ Figure&nbsp;13.9: Two relationships with similar sample correlations. Left: Tesl
 <div class="callout-body-container callout-body">
 <p>Correlation summarizes linear association. A correlation near zero can occur even when a strong nonlinear relationship is present, and a few extreme observations can change the value substantially. Even an exactly zero correlation does not establish independence: independence requires the entire conditional distribution to stay unchanged, as in <a href="./prob_07_independence.html#sec-independence">Chapter 12</a>. Inspect the scatterplot alongside the correlation, because the number alone cannot tell us whether either of these problems is present.</p>
 </div>
+</div>
+<div id="exercise-correlation-interpretation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.4: </strong>One large campaign</div><div class="fobx-body">
+<p>The plot shows synthetic advertising spending and sales for 41 campaigns. The orange point represents a national campaign; the other campaigns ran in individual cities. The company reports the correlation using all 41 campaigns as evidence that spending closely predicts sales for its city campaigns.</p>
+<p>How do you expect the correlation to change if we leave out the national campaign? Does the company’s conclusion describe the city campaigns well? Explain using the plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exercise-campaign-correlation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exercise-campaign-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-exercise-campaign-correlation-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exercise-campaign-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.12: Synthetic spending and sales for 40 city campaigns and one national campaign.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<details class="solution-details" aria-label="Solution" id="details-4">
+<summary>Solution</summary>
+<p>The correlation falls from 0.91 to 0.35. The national campaign has much higher spending and sales than all the city campaigns, making the overall association look strong. Among the city campaigns, sales vary considerably at similar spending levels. The correlation across all 41 campaigns overstates how closely spending and sales track each other among the city campaigns.</p>
+</details>
+</div></div>
 </div>
 </section>
 </section>
@@ -594,7 +698,7 @@ s_{xy}=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y}).
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-cov-quadrants-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cov-quadrants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.10: The price–size scatterplot divided into quadrants at the mean point.
+Figure&nbsp;13.13: The price–size scatterplot divided into quadrants at the mean point.
 </figcaption>
 </figure>
 </div>
@@ -609,7 +713,7 @@ Figure&nbsp;13.10: The price–size scatterplot divided into quadrants at the me
 <img src="prob_08_quantitative-quantitative_files/figure-html/fig-cov-rectangles-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cov-rectangles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.11: The covariance as signed areas, drawn for two homes. Each rectangle runs from the mean point to one observation; its area is the size of that observation’s product of deviations. The green rectangle counts positively (above average on both size and price), the red one negatively (smaller than average but pricier than average).
+Figure&nbsp;13.14: The covariance as signed areas, drawn for two homes. Each rectangle runs from the mean point to one observation; its area is the size of that observation’s product of deviations. The green rectangle counts positively (above average on both size and price), the red one negatively (smaller than average but pricier than average).
 </figcaption>
 </figure>
 </div>
@@ -623,6 +727,15 @@ z_{y,i}=\frac{y_i-\bar{y}}{s_y}.
 \]</span></p>
 <p>Here <span class="math inline">\(z_{x,i}\)</span> and <span class="math inline">\(z_{y,i}\)</span> are the two z-scores for observation <span class="math inline">\(i\)</span>, and <span class="math inline">\(s_{z_xz_y}\)</span> is the sample covariance of the two columns of z-scores. Standardizing both variables removes their original units.</p>
 </div></details>
+</div>
+<div id="exercise-covariance-units" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.5: </strong>Changing price units</div><div class="fobx-body">
+<p>Suppose we convert every Austin price from dollars to thousands of dollars. What happens to the standard deviation of price, the covariance between price and size, and the correlation between price and size?</p>
+<details class="solution-details" aria-label="Solution" id="details-5">
+<summary>Solution</summary>
+<p>The standard deviation of price and the covariance between price and size each become one-thousandth as large. The correlation between price and size stays the same.</p>
+</details>
+</div></div>
 </div>
 </section>
 <section id="sec-rv-correlation" class="level2" data-number="13.6">
@@ -650,6 +763,16 @@ z_{y,i}=\frac{y_i-\bar{y}}{s_y}.
 \operatorname{SD}(X)\operatorname{SD}(Y).
 \]</span></p>
 <p>The model’s correlation and its two standard deviations together determine its covariance.</p>
+</div></div>
+</div>
+<div id="exercise-model-covariance" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.6: </strong>Comparing sales across stores</div><div class="fobx-body">
+<p>A retailer models weekly sales at three stores, measured in thousands of dollars. The standard deviations of sales are 4 at Store A, 6 at Store B, and 12 at Store C. The correlation between sales at A and B is 0.8; between A and C it is 0.4.</p>
+<p>Calculate the covariance between sales at A and B and between sales at A and C. Which pair has the stronger linear association? Explain why the covariances alone do not answer that question.</p>
+<details class="solution-details" aria-label="Solution" id="details-6">
+<summary>Solution</summary>
+<p>Both covariances are 19.2 in squared thousands of dollars: <span class="math inline">\(0.8(4)(6)=19.2\)</span> for A and B, and <span class="math inline">\(0.4(4)(12)=19.2\)</span> for A and C. Sales at A and B have the stronger linear association, with correlation 0.8 rather than 0.4. The larger standard deviation at C produces the same covariance despite the weaker correlation.</p>
+</details>
 </div></div>
 </div>
 <p>In the July 9, 2026 FedWatch model from Chapter 12, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are the midpoints of the target ranges after the July and September meetings. The table below shows their possible pairs and probabilities. The midpoints use percentage points: 3.625 is the midpoint of the 3.50–3.75% range.</p>
@@ -762,25 +885,27 @@ E[(X-\mu_X)(Y-\mu_Y)]
 <p>Each expected deviation is zero, so the covariance is zero.</p>
 </div></details>
 </div>
-</section>
-<section id="practice" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="practice"><span class="header-section-number">13.7</span> Practice</h2>
-<div id="exercise-correlation-interpretation" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.1: </strong>Reading relationships</div><div class="fobx-body">
-<ol type="1">
-<li>In Anscombe’s quartet, which plots would make a correlation alone an incomplete description? Explain what you would report alongside it.</li>
-<li>Suppose we convert every Austin price from dollars to thousands of dollars. What happens to the price standard deviation, the covariance with size, and the correlation with size?</li>
-<li>Two random variables have standard deviations 2 and 3 and correlation <span class="math inline">\(-0.5\)</span>. Find their covariance.</li>
-<li>A report finds a sample correlation near zero and concludes that two measured variables are independent. What could a scatterplot reveal that the report missed?</li>
-</ol>
-<details id="details-1" class="solution-details" aria-label="Solution">
+<div id="exercise-zero-correlation-independence" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.7: </strong>Temperature and measurement error</div><div class="fobx-body">
+<p>The plot shows synthetic operating temperatures and measurement errors for a sensor. An error of zero means the sensor reads correctly; positive and negative errors mean it reads too high or too low.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-exercise-sensor-error" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exercise-sensor-error-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_08_quantitative-quantitative_files/figure-html/fig-exercise-sensor-error-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exercise-sensor-error-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.15: Synthetic operating temperatures and measurement errors for 600 sensor readings.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The sample correlation is 0.07, and the errors average close to zero throughout the temperature range. An engineer concludes that measurement error is independent of temperature. Does the plot support that conclusion? If the sensor must measure within 1 mm of the correct value, would you be equally comfortable using it near 20°C and near 40°C?</p>
+<details class="solution-details" aria-label="Solution" id="details-7">
 <summary>Solution</summary>
-<ol type="1">
-<li>The upper-right panel’s curve and the lower two panels’ unusual observations require description alongside correlation. Even the upper-left panel’s correlation does not describe the variables’ units or ranges.</li>
-<li>The price standard deviation and covariance with size each become one-thousandth as large. Correlation stays the same.</li>
-<li>The covariance is <span class="math inline">\(-0.5\times2\times3=-3\)</span>.</li>
-<li>The scatterplot could reveal a strong curved relationship despite the near-zero correlation. Correlation summarizes linear association; a sample correlation near zero does not establish independence in the population.</li>
-</ol>
+<p>The errors spread farther from zero at higher temperatures, even though their average stays near zero. The conditional distribution of error changes with temperature, so the plot contradicts independence. Errors near 20°C mostly fall within 1 mm of zero; many errors near 40°C exceed that tolerance. The sensor is more precise at the lower temperatures.</p>
 </details>
 </div></div>
 </div>

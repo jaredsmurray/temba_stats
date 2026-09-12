@@ -85,13 +85,13 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -436,7 +436,7 @@ Table&nbsp;8.1: Computing the expected payoff of a $10,000 small-business loan a
 <li>Compute the expected warranty cost per appliance.</li>
 <li>Explain why no individual appliance has the expected warranty cost, even though the expected value is useful for budgeting across many appliances.</li>
 </ol>
-<details id="solution-warranty-expected-cost" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="solution-warranty-expected-cost" class="solution-details">
 <summary>Solution</summary>
 <p>The expected cost is</p>
 <p><span class="math display">\[
@@ -560,6 +560,43 @@ Table&nbsp;8.2: Market-implied distributions for the FOMC target range (CME FedW
 \text{Var}(X) = 0.75 \times (1{,}400)^2 + 0.25 \times (-4{,}200)^2 = 5{,}880{,}000,
 \]</span></p>
 <p>and taking the square root brings us back to dollars: <span class="math inline">\(SD(X)\)</span> = $2,425. The standard deviation combines the two possible deviations — $1,400 when the loan is repaid and $4,200 when it defaults — into one probability-weighted measure of spread. The interpretation is the one we built for data in <a href="singlevar_03_location-and-spread.html#sec-measures-spread" class="quarto-xref"><span>Section 3.2</span></a>: a bigger standard deviation means a less predictable outcome.</p>
+<div id="exercise-repair-time-moments" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.2: </strong>Repair time</div><div class="fobx-body">
+<p>A repair shop uses this probability distribution for the time <span class="math inline">\(X\)</span>, in hours, needed for a repair:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Repair time <span class="math inline">\(x\)</span> (hours)</th>
+<th style="text-align: right;">1</th>
+<th style="text-align: right;">2</th>
+<th style="text-align: right;">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\Pr(X=x)\)</span></td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+</tbody>
+</table>
+<p>Compute the mean, variance, and standard deviation of <span class="math inline">\(X\)</span>. State the units of each result.</p>
+<details aria-label="Solution" id="solution-repair-time-moments" class="solution-details">
+<summary>Solution</summary>
+<p>The mean weights each repair time by its probability:</p>
+<p><span class="math display">\[
+\mu=0.50(1)+0.30(2)+0.20(4)=1.9\text{ hours}.
+\]</span></p>
+<p>Weighting the squared deviations from 1.9 gives</p>
+<p><span class="math display">\[
+\text{Var}(X)=0.50(1-1.9)^2+0.30(2-1.9)^2+0.20(4-1.9)^2
+=1.29\text{ hours}^2.
+\]</span></p>
+<p>The standard deviation is <span class="math inline">\(\sqrt{1.29}\approx1.14\)</span> hours. The mean describes the long-run average repair time; the standard deviation measures the spread of repair times around it, in hours rather than squared hours.</p>
+</details>
+</div></div>
+</div>
 <div id="notation-parameters-and-statistics" class="Notation">
 <div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 8.1: </strong>Random variables, parameters, and statistics</div><div class="fobx-body">
 <ul>
@@ -570,16 +607,6 @@ Table&nbsp;8.2: Market-implied distributions for the FOMC target range (CME FedW
 <li>Uppercase Latin letters like <span class="math inline">\(\bar X\)</span> denote a quantity computed on a <em>random</em> sample — in this case, the mean of that random sample. They’re random variables because they’re uncertain due to the random sampling. We’ll work with <span class="math inline">\(\bar X\)</span> when we average random variables later in the course.</li>
 </ul>
 <p>When you see a Greek letter, it refers to something unknown we’re trying to estimate. When you see a Latin letter, we have computed it (or could compute it) from data. Lowercase Latin letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>) are numbers we computed from our observed sample; uppercase Latin letters like <span class="math inline">\(\bar{X}\)</span> are random variables, because the samples they depend on are random.</p>
-</div></div>
-</div>
-<div id="exercise-statistic-or-parameter" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 8.2: </strong>Statistic or parameter?</div><div class="fobx-body">
-<p>A company observed 500 warranty outcomes. Their sample mean was $38 and their sample standard deviation was $105. A probability model for future warranties has mean <span class="math inline">\(\mu=\$36\)</span> and standard deviation <span class="math inline">\(\sigma=\$110\)</span>.</p>
-<p>Which two numbers are sample statistics, and which two are probability-model parameters?</p>
-<details id="solution-statistic-or-parameter" class="solution-details" aria-label="Solution">
-<summary>Solution</summary>
-<p>The observed sample mean of $38 and sample standard deviation of $105 are statistics. The model mean <span class="math inline">\(\mu=\$36\)</span> and model standard deviation <span class="math inline">\(\sigma=\$110\)</span> are parameters of the probability distribution.</p>
-</details>
 </div></div>
 </div>
 <section id="sec-risk" class="level3" data-number="8.2.1">
@@ -671,9 +698,9 @@ Figure&nbsp;8.1: The two loans’ profit distributions on a common scale, with e
 <p>Project A earns either $0 or $40,000 with equal probability. Project B earns either $15,000 or $25,000 with equal probability.</p>
 <ol type="1">
 <li>Compute the mean and standard deviation of each profit distribution.</li>
-<li>Why might a risk-averse manager prefer Project B even though the projects have the same expected profit?</li>
+<li>Why might a manager prefer Project B even though the projects have the same expected profit?</li>
 </ol>
-<details id="solution-equal-mean-different-risk" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="solution-equal-mean-different-risk" class="solution-details">
 <summary>Solution</summary>
 <p>Both projects have expected profit</p>
 <p><span class="math display">\[
@@ -743,7 +770,7 @@ Figure&nbsp;8.4: Reading quantiles off the CDF of the Austin price model. Horizo
 <li>Find the median, first quartile, third quartile, and IQR.</li>
 <li>If managers want enough staff for at least 75% of hours, which call-volume threshold should they use?</li>
 </ol>
-<details id="solution-call-volume-quantiles" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="solution-call-volume-quantiles" class="solution-details">
 <summary>Solution</summary>
 <p>The cumulative probabilities at 20, 30, 40, 50, and 60 calls are 0.10, 0.35, 0.75, 0.95, and 1. The first quartile is 30 calls, the median is 40 calls, and the third quartile is 40 calls. The IQR is therefore <span class="math inline">\(40-30=10\)</span> calls.</p>
 <p>The smallest threshold whose cumulative probability reaches at least 0.75 is 40 calls, so that staffing level covers at least 75% of modeled hours.</p>
@@ -784,7 +811,7 @@ SD(Y) = |a|\,\sigma, \qquad Var(Y) = a^2\,\sigma^2.
 <li>What is the smallest whole-dollar contract price that gives the seller nonnegative expected profit?</li>
 <li>What is the expected profit at that price?</li>
 </ol>
-<details id="solution-warranty-contract-price" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="solution-warranty-contract-price" class="solution-details">
 <summary>Solution</summary>
 <p>Adding the fixed administrative cost shifts the expected cost:</p>
 <p><span class="math display">\[
@@ -801,7 +828,7 @@ E[C]=E[W]+18=36+18=\$54.
 <li>Find the mean, variance, and standard deviation of <span class="math inline">\(Y\)</span>.</li>
 <li>Which part of the transformation changes the spread, and by what factor?</li>
 </ol>
-<details id="solution-revenue-currency-transformation" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="solution-revenue-currency-transformation" class="solution-details">
 <summary>Solution</summary>
 <p>The transformed mean is</p>
 <p><span class="math display">\[

@@ -77,19 +77,19 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.TechnicalDetail {
+.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.Notation {
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
@@ -343,7 +343,6 @@ window.Quarto = {
   <li><a href="#an-independent-probability-model" id="toc-an-independent-probability-model" class="nav-link" data-scroll-target="#an-independent-probability-model"><span class="header-section-number">12.4</span> An independent probability model</a></li>
   <li><a href="#economic-ratings-and-employment" id="toc-economic-ratings-and-employment" class="nav-link" data-scroll-target="#economic-ratings-and-employment"><span class="header-section-number">12.5</span> Economic ratings and employment</a></li>
   <li><a href="#quantitative-variables" id="toc-quantitative-variables" class="nav-link" data-scroll-target="#quantitative-variables"><span class="header-section-number">12.6</span> Quantitative variables</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">12.7</span> Exercises</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
@@ -388,7 +387,20 @@ window.Quarto = {
 </div></div>
 </div>
 <p>The conditional form expresses the idea of unchanged information; the product form gives us a direct check on a joint table. They agree because a conditional probability is the joint probability divided by the probability of the condition. If the joint probability is <span class="math inline">\(\Pr(X=x)\Pr(Y=y)\)</span>, dividing by <span class="math inline">\(\Pr(Y=y)\)</span> leaves <span class="math inline">\(\Pr(X=x)\)</span>.</p>
-<p>Independence works in both directions. The product is unchanged when we swap <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, so independence also gives <span class="math inline">\(\Pr(Y=y\mid X=x)=\Pr(Y=y)\)</span> whenever <span class="math inline">\(\Pr(X=x)&gt;0\)</span>. To establish independence from a joint table, every interior cell must satisfy the product equality in the definition. One failing cell is enough to establish dependence.</p>
+<p>Independence works in both directions. The product is unchanged when we swap <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, so independence also gives <span class="math inline">\(\Pr(Y=y\mid X=x)=\Pr(Y=y)\)</span> whenever <span class="math inline">\(\Pr(X=x)&gt;0\)</span>.</p>
+<div id="tip-checking-independence" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip&nbsp;12.1: Checking independence in a joint table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To establish independence from a joint table, every interior cell must satisfy the product equality in the definition. One failing cell is enough to establish dependence.</p>
+</div>
+</div>
 </section>
 <section id="loan-purpose-and-default" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="loan-purpose-and-default"><span class="header-section-number">12.2</span> Loan purpose and default</h2>
@@ -440,6 +452,19 @@ Table&nbsp;12.1: Historical default rates for the three-purpose LendingClub subs
 \underbrace{\Pr(\text{small business})\Pr(\text{default})}_{0.0090}.
 \]</span></p>
 <p>The joint probability exceeds the product because default is more common among small-business loans than overall. The debt-consolidation rate rounds to the same value as the overall rate, but that does not establish independence: the other purposes differ, and the definition requires equality for every outcome. These comparisons describe an association; they do not establish that changing a loan’s stated purpose would change its default risk.</p>
+<div id="exercise-ind-delivery" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.1: </strong>Delivery delays</div><div class="fobx-body">
+<p>A retailer’s historical records show that 8% of all deliveries arrived late. Among standard deliveries, 10% arrived late; among express deliveries, 2% arrived late. Treat these historical proportions as the probabilities for a future delivery.</p>
+<ol type="1">
+<li>Are delivery service and late arrival independent in this model? Give a numerical comparison that supports your answer.</li>
+<li>Find the conditional probability of an on-time arrival given express service, and compare it with the marginal probability of an on-time arrival.</li>
+</ol>
+<details id="details-1" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The variables are dependent because <span class="math inline">\(\Pr(\text{late}\mid\text{express})=0.02\)</span> differs from <span class="math inline">\(\Pr(\text{late})=0.08\)</span>. The standard-service comparison also fails: <span class="math inline">\(0.10\ne0.08\)</span>. An express delivery arrives on time with conditional probability <span class="math inline">\(1-0.02=0.98\)</span>, compared with the marginal probability <span class="math inline">\(1-0.08=0.92\)</span>. Learning the service changes both probabilities in the arrival-status distribution.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="target-ranges-at-two-fed-meetings" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="target-ranges-at-two-fed-meetings"><span class="header-section-number">12.3</span> Target ranges at two Fed meetings</h2>
@@ -508,6 +533,46 @@ Table&nbsp;12.2: Joint market-implied probabilities for the July and September t
        \text{September }4.00\text{–}4.25\%)=0.
 \]</span></p>
 <p>Before learning September’s outcome, the probability of that July range is 0.7541. After learning that September reached the highest range, July’s higher range is certain under this model. LendingClub’s purpose categories changed the chance of default while leaving both repayment and default possible; this September outcome rules out one July outcome entirely.</p>
+<div id="exercise-ind-cell-check" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.2: </strong>Store visits and purchases</div><div class="fobx-body">
+<p>The following probability model describes whether a customer visits a store and whether the customer purchases that week. Purchases can also occur online.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Purchase</th>
+<th style="text-align: right;">No purchase</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Store visit</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="even">
+<td>No store visit</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.60</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Find one cell that disproves independence. State what independence would require for that cell and compare it with the table.</p>
+<details id="details-2" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>Independence would require <span class="math inline">\(\Pr(\text{visit and purchase})=0.40(0.30)=0.12\)</span>. The table assigns 0.18 to that combination, so store visits and purchases are dependent. We do not need to check the remaining cells once this equality fails.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="an-independent-probability-model" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="an-independent-probability-model"><span class="header-section-number">12.4</span> An independent probability model</h2>
@@ -562,6 +627,50 @@ Table&nbsp;12.3: An independent model for advertisement and device. Every joint 
 </div>
 <p>Conditioning on a phone gives <span class="math inline">\(\Pr(A\mid\text{phone})=0.30/0.50=0.60\)</span>. Conditioning on a tablet gives <span class="math inline">\(0.12/0.20=0.60\)</span>, and conditioning on a computer gives <span class="math inline">\(0.18/0.30=0.60\)</span>. The conditional probability of B is 0.40 for all three devices, so each conditional advertisement distribution matches its margin exactly.</p>
 <p>The device distribution also stays unchanged when we learn the advertisement. Dividing the A row by 0.60 gives <span class="math inline">\((0.50,0.20,0.30)\)</span>; dividing the B row by 0.40 gives the same three probabilities. We can check every conditional here because the model has only six cells. The equality follows from how the model assigns advertisements, even if a finite sample of visits produces slightly different proportions.</p>
+<div id="exercise-ind-complete-table" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.3: </strong>Two promotional offers</div><div class="fobx-body">
+<p>A store independently assigns a free-shipping offer and a discount offer to each visitor. The probability of free shipping is 0.25, and the probability of a discount is 0.40.</p>
+<ol type="1">
+<li>Complete the joint probability table below.</li>
+<li>Compute the conditional probability of a discount given free shipping and given no free shipping. Compare both with the discount margin.</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Shipping offer</th>
+<th style="text-align: right;">Discount</th>
+<th style="text-align: right;">No discount</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Free shipping</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="even">
+<td>No free shipping</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">?</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+<details id="details-3" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>Multiply each row margin by each column margin. The first row contains <span class="math inline">\(0.25(0.40)=0.10\)</span> and <span class="math inline">\(0.25(0.60)=0.15\)</span>; the second contains <span class="math inline">\(0.75(0.40)=0.30\)</span> and <span class="math inline">\(0.75(0.60)=0.45\)</span>. The four cells sum to one and recover the supplied margins.</p>
+<p>The conditional discount probabilities are <span class="math inline">\(0.10/0.25=0.40\)</span> with free shipping and <span class="math inline">\(0.30/0.75=0.40\)</span> without it. Both equal the marginal probability 0.40, as independence requires.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="economic-ratings-and-employment" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="economic-ratings-and-employment"><span class="header-section-number">12.5</span> Economic ratings and employment</h2>
@@ -626,118 +735,31 @@ Table&nbsp;12.4: Conditional percentages rating national economic conditions in 
 </div>
 </div>
 <p>The rating distributions are similar across employment groups. The largest departure from an overall category share is 1.4 percentage points: 25.9% of respondents who are not working rate conditions “good,” compared with 24.5% overall. Employment status tells us relatively little about the distribution of these ratings in this extract.</p>
+<div id="warning-sample-independence" class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Similar sample proportions do not establish independence
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>These conditional proportions are nearly unchanged, but they are not exactly equal. Even if employment status and ratings were independent in a population model, random sampling would generally produce some differences among the observed proportions. Conversely, rounding can make two sample proportions look identical even when they differ. This table provides evidence about whether independence might be a useful approximation; it does not establish exact independence in the U.S. adult population.</p>
+</div>
+</div>
 <p>Independence is an exact property of a probability model. In the website example we specified a mechanism that makes every joint probability equal to its product of margins. For SHED, we observe responses and must judge whether such a model adequately approximates the relationship. The unweighted table alone also does not account for the survey’s sampling design.</p>
 </section>
 <section id="quantitative-variables" class="level2" data-number="12.6">
 <h2 data-number="12.6" class="anchored" data-anchor-id="quantitative-variables"><span class="header-section-number">12.6</span> Quantitative variables</h2>
 <p>The same unchanged-distribution idea applies when one or both variables are quantitative. For example, independence between income and age would require the entire income distribution to stay the same across ages: its location, spread, and shape would all have to agree. In the next chapter we develop measures of certain kinds of dependence between quantitative variables that are important in practice — correlation and covariance.</p>
-</section>
-<section id="exercises" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">12.7</span> Exercises</h2>
-<div id="exercise-ind-delivery" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.1: </strong>Delivery delays</div><div class="fobx-body">
-<p>A retailer’s historical records show that 8% of all deliveries arrived late. Among standard deliveries, 10% arrived late; among express deliveries, 2% arrived late. Treat these historical proportions as the probabilities for a future delivery.</p>
-<ol type="1">
-<li>Are delivery service and late arrival independent in this model? Give a numerical comparison that supports your answer.</li>
-<li>Find the conditional probability of an on-time arrival given express service, and compare it with the marginal probability of an on-time arrival.</li>
-</ol>
-<details class="solution-details" id="details-1" aria-label="Solution">
+<div id="exercise-ind-equal-means" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.4: </strong>Waiting times at two branches</div><div class="fobx-body">
+<p>In a synthetic model, a customer visits either of two branches with probability 0.5 each. At Branch A, the waiting time is 8 or 12 minutes, each with conditional probability 0.5. At Branch B, it is 2 or 18 minutes, each with conditional probability 0.5.</p>
+<p>Both branches have a mean waiting time of 10 minutes. Are branch and waiting time independent? Compare the conditional distributions, including their spreads, and give one probability that changes when we learn the branch.</p>
+<details id="details-4" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
-<p>The variables are dependent because <span class="math inline">\(\Pr(\text{late}\mid\text{express})=0.02\)</span> differs from <span class="math inline">\(\Pr(\text{late})=0.08\)</span>. The standard-service comparison also fails: <span class="math inline">\(0.10\ne0.08\)</span>. An express delivery arrives on time with conditional probability <span class="math inline">\(1-0.02=0.98\)</span>, compared with the marginal probability <span class="math inline">\(1-0.08=0.92\)</span>. Learning the service changes both probabilities in the arrival-status distribution.</p>
-</details>
-</div></div>
-</div>
-<div id="exercise-ind-complete-table" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.2: </strong>Two promotional offers</div><div class="fobx-body">
-<p>A store independently assigns a free-shipping offer and a discount offer to each visitor. The probability of free shipping is 0.25, and the probability of a discount is 0.40.</p>
-<ol type="1">
-<li>Complete the joint probability table below.</li>
-<li>Compute the conditional probability of a discount given free shipping and given no free shipping. Compare both with the discount margin.</li>
-</ol>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Shipping offer</th>
-<th style="text-align: right;">Discount</th>
-<th style="text-align: right;">No discount</th>
-<th style="text-align: right;">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Free shipping</td>
-<td style="text-align: right;">?</td>
-<td style="text-align: right;">?</td>
-<td style="text-align: right;">0.25</td>
-</tr>
-<tr class="even">
-<td>No free shipping</td>
-<td style="text-align: right;">?</td>
-<td style="text-align: right;">?</td>
-<td style="text-align: right;">0.75</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: right;">0.60</td>
-<td style="text-align: right;">1.00</td>
-</tr>
-</tbody>
-</table>
-<details class="solution-details" id="details-2" aria-label="Solution">
-<summary>Solution</summary>
-<p>Multiply each row margin by each column margin. The first row contains <span class="math inline">\(0.25(0.40)=0.10\)</span> and <span class="math inline">\(0.25(0.60)=0.15\)</span>; the second contains <span class="math inline">\(0.75(0.40)=0.30\)</span> and <span class="math inline">\(0.75(0.60)=0.45\)</span>. The four cells sum to one and recover the supplied margins.</p>
-<p>The conditional discount probabilities are <span class="math inline">\(0.10/0.25=0.40\)</span> with free shipping and <span class="math inline">\(0.30/0.75=0.40\)</span> without it. Both equal the marginal probability 0.40, as independence requires.</p>
-</details>
-</div></div>
-</div>
-<div id="exercise-ind-cell-check" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.3: </strong>Store visits and purchases</div><div class="fobx-body">
-<p>The following probability model describes whether a customer visits a store and whether the customer purchases that week. Purchases can also occur online.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: right;">Purchase</th>
-<th style="text-align: right;">No purchase</th>
-<th style="text-align: right;">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Store visit</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">0.40</td>
-</tr>
-<tr class="even">
-<td>No store visit</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.60</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.70</td>
-<td style="text-align: right;">1.00</td>
-</tr>
-</tbody>
-</table>
-<p>Find one cell that disproves independence. State what independence would require for that cell and compare it with the table.</p>
-<details class="solution-details" id="details-3" aria-label="Solution">
-<summary>Solution</summary>
-<p>Independence would require <span class="math inline">\(\Pr(\text{visit and purchase})=0.40(0.30)=0.12\)</span>. The table assigns 0.18 to that combination, so store visits and purchases are dependent. We do not need to check the remaining cells once this equality fails.</p>
-</details>
-</div></div>
-</div>
-<div id="exercise-ind-sample-model" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.4: </strong>Similar survey results</div><div class="fobx-body">
-<p>A survey finds that 40.4% of urban respondents and 39.6% of rural respondents prefer a proposed service. A report concludes, “Residence and preference are independent because the percentages are almost the same.” Explain what the table supports and what is too strong about the conclusion. Would reporting both percentages as 40% establish independence?</p>
-<details class="solution-details" id="details-4" aria-label="Solution">
-<summary>Solution</summary>
-<p>The reported proportions suggest similar preference distributions in the two groups, so independence may be a useful approximation. Independence itself requires exact equality of the conditional and marginal distributions in a probability model. Sample proportions vary, and the table does not establish that equality in the population. Rounding both to 40% discards information; it cannot establish independence.</p>
+<p>The variables are dependent. Although both means are 10 minutes, Branch A’s waiting times are 2 minutes from that mean, while Branch B’s are 8 minutes from it. For example, the conditional probability of waiting 2 minutes is zero at Branch A and 0.5 at Branch B. Learning the branch changes the waiting-time distribution; equal means do not make the entire distributions identical.</p>
 </details>
 </div></div>
 </div>

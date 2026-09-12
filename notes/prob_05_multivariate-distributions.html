@@ -96,10 +96,6 @@ div.csl-indent {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -111,6 +107,10 @@ div.csl-indent {
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -474,6 +474,51 @@ Table&nbsp;10.1: Cross-tabulation of loan purpose and final loan status for the 
 + 0.014
 = 0.055.
 \]</span></p>
+<div id="exercise-hybrid-work-margins" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 10.1: </strong>Hybrid work: joint and marginal proportions</div><div class="fobx-body">
+<p>Recall the <a href="./prob_02_probability-basics.html#exercise-workplace-random-variables">Bloom, Han, and Liang hybrid-work experiment</a> from Chapter 7. The researchers assigned Trip.com employees either to work in the office five days a week or to work from home two days a week <span class="citation" data-cites="wfh-bloom">(<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">Bloom et al. 2024</a>)</span>. The table records how many employees in each group stayed at or left the firm:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Assigned schedule</th>
+<th style="text-align: right;">Stayed</th>
+<th style="text-align: right;">Left</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Control</td>
+<td style="text-align: right;">761</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">820</td>
+</tr>
+<tr class="even">
+<td>Hybrid WFH</td>
+<td style="text-align: right;">754</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">792</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>1,515</strong></td>
+<td style="text-align: right;"><strong>97</strong></td>
+<td style="text-align: right;"><strong>1,612</strong></td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Find the joint proportion of employees who were assigned to Hybrid WFH and left the firm.</li>
+<li>Find the marginal distribution of assigned schedule.</li>
+<li>Find the marginal distribution of attrition status.</li>
+</ol>
+<details id="solution-hybrid-work-margins" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The Hybrid WFH/Left cell contains 38 of the 1,612 employees, so its joint proportion is <span class="math inline">\(38/1612=0.0236\)</span>.</p>
+<p>The row totals give the marginal distribution of assigned schedule: <span class="math inline">\(820/1612=0.5087\)</span> for Control and <span class="math inline">\(792/1612=0.4913\)</span> for Hybrid WFH. The column totals give the marginal distribution of attrition status: <span class="math inline">\(1515/1612=0.9398\)</span> stayed and <span class="math inline">\(97/1612=0.0602\)</span> left. Each distribution divides by all 1,612 employees and sums to one.</p>
+</details>
+</div></div>
+</div>
 <p>The crosstab has everything we need to answer the opening question: which loan purposes have the greatest default risk? To compute the small-business default rate, the only relevant information is about small-business loans, so we ignore the other rows and divide by the small-business loan total rather than the grand total. From the counts in <a href="#tbl-purpose-default-counts" class="quarto-xref">Table&nbsp;<span>10.1</span></a>, 822 of the 3,191 small-business loans charged off:</p>
 <p><span class="math display">\[
 \frac{822}{3,191} = 0.258.
@@ -525,8 +570,8 @@ Table&nbsp;10.2: Default rate by loan purpose: the proportion of loans charged o
 </div>
 </div>
 <div id="exercise-hybrid-work-attrition" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 10.1: </strong>Hybrid work and attrition</div><div class="fobx-body">
-<p>Bloom, Han, and Liang randomly assigned 1,612 employees to a control schedule or a hybrid schedule with two work-from-home days per week <span class="citation" data-cites="wfh-bloom">(<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">Bloom et al. 2024</a>)</span>. During the study, the following employees stayed at or left the firm:</p>
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 10.2: </strong>Hybrid work: conditional distributions</div><div class="fobx-body">
+<p>Return to the <a href="#exercise-hybrid-work-margins">hybrid-work study</a>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -557,32 +602,14 @@ Table&nbsp;10.2: Default rate by loan purpose: the proportion of loans charged o
 </tr>
 </tbody>
 </table>
+<p>Choose one employee at random from the study.</p>
 <ol type="1">
-<li>Choose one employee at random from the study. Find the joint probability that the employee was assigned to Hybrid WFH and left the firm.</li>
-<li>Find the marginal distribution of assigned schedule.</li>
-<li>Find the marginal distribution of attrition status.</li>
 <li>Find the conditional distribution of attrition status within each assigned schedule. Check that each conditional distribution sums to one.</li>
 <li>Find <span class="math inline">\(\Pr(\text{Hybrid WFH}\mid\text{Left})\)</span>.</li>
-<li>Explain why the answer to part 5 differs from <span class="math inline">\(\Pr(\text{Left}\mid\text{Hybrid WFH})\)</span>. Name the denominator in each calculation.</li>
+<li>Explain why the answer to part 2 differs from <span class="math inline">\(\Pr(\text{Left}\mid\text{Hybrid WFH})\)</span>. Name the denominator in each calculation.</li>
 </ol>
-<details class="solution-details" id="solution-hybrid-work-attrition" aria-label="Solution">
+<details id="solution-hybrid-work-attrition" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
-<p>The Hybrid WFH/Left cell contains 38 of the 1,612 employees, so its joint probability is</p>
-<p><span class="math display">\[
-\frac{38}{1612}=0.0236.
-\]</span></p>
-<p>The row totals give the marginal distribution of assigned schedule:</p>
-<p><span class="math display">\[
-\Pr(\text{Control})=\frac{820}{1612}=0.5087,
-\qquad
-\Pr(\text{Hybrid WFH})=\frac{792}{1612}=0.4913.
-\]</span></p>
-<p>The column totals give the marginal distribution of attrition status:</p>
-<p><span class="math display">\[
-\Pr(\text{Stayed})=\frac{1515}{1612}=0.9398,
-\qquad
-\Pr(\text{Left})=\frac{97}{1612}=0.0602.
-\]</span></p>
 <p>Within the control group, the conditional distribution of attrition status is</p>
 <p><span class="math display">\[
 \Pr(\text{Stayed}\mid\text{Control})=\frac{761}{820}=0.9280,
@@ -674,12 +701,30 @@ Table&nbsp;10.3: Joint proportions of purpose and loan status: each count from t
 <section id="sec-loan-probability-model" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="sec-loan-probability-model"><span class="header-section-number">10.3</span> A probability model for future loans</h2>
 <p>So far we have read <a href="#tbl-purpose-default-joint" class="quarto-xref">Table&nbsp;<span>10.3</span></a> as a record of what happened to 58,456 historical loans with these three purposes. If those loans are representative of future loans with the same purposes, the table gives estimated probabilities for a future loan drawn from this restricted population.</p>
+<div id="exercise-observed-future-share" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 10.3: </strong>From an observed share to a future probability</div><div class="fobx-body">
+<p>Suppose a lender records 40 defaults among 200 completed loans with the same three purposes used in this chapter. An analyst computes <span class="math inline">\(40/200=0.20\)</span>.</p>
+<ol type="1">
+<li>What does 0.20 describe about these completed loans?</li>
+<li>Under what assumption could the analyst use 0.20 as an estimated default probability for a future loan from this three-purpose population?</li>
+</ol>
+<details id="solution-observed-future-share" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<p>The value 0.20 is the observed proportion of the 200 loans that defaulted. It describes those completed loans. To use it as an estimated probability for a future loan, we assume that these historical loans represent the future three-purpose population, including its mix of purposes and default behavior. The observed proportion alone does not establish that assumption.</p>
+</details>
+</div></div>
+</div>
 <div id="defn-joint-distribution" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 10.5: </strong>Joint probability distribution</div><div class="fobx-body">
 <p>For two discrete random variables, a <strong>joint probability distribution</strong> assigns a probability to every <em>pair</em> of outcomes. Laid out as a table — one variable in the rows, the other in the columns — it follows the same rules as any probability distribution: every cell is non-negative, and all the cells together sum to one.</p>
 </div></div>
 </div>
-<p>Let <span class="math inline">\(P\)</span> code the purpose of a future loan from this restricted population: <span class="math inline">\(P=1\)</span> for debt consolidation, <span class="math inline">\(P=2\)</span> for home improvement, and <span class="math inline">\(P=3\)</span> for small business. The numbers are labels, not quantities; they let us represent a categorical outcome with a numerical random variable. Let <span class="math inline">\(D\)</span> be the loan’s eventual default indicator. We will use the historical relative frequencies as a probability model for that loan: the probability assigned to each purpose–outcome pair is its count divided by 58,456. For example,</p>
+<div id="notation-loan-outcomes" class="Notation">
+<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 10.1: </strong>Loan purpose and default</div><div class="fobx-body">
+<p>Let <span class="math inline">\(P\)</span> code the purpose of a future loan from this restricted population: <span class="math inline">\(P=1\)</span> for debt consolidation, <span class="math inline">\(P=2\)</span> for home improvement, and <span class="math inline">\(P=3\)</span> for small business. The numbers are labels, not quantities; they let us represent a categorical outcome with a numerical random variable. Let <span class="math inline">\(D\)</span> be the loan’s eventual default indicator.</p>
+</div></div>
+</div>
+<p>We will use the historical relative frequencies as a probability model for that loan: the probability assigned to each purpose–outcome pair is its count divided by 58,456. For example,</p>
 <p><span class="math display">\[
 \Pr(\text{small business and default})
 = \Pr(P = 3 \text{ and } D = 1)
@@ -890,7 +935,7 @@ Table&nbsp;10.6: The conditional distribution of default status for a future sma
 <p>Debt-consolidation loans have a lower default probability, <span class="math inline">\(\Pr(D = 1 \mid P = 1) =
 0.165\)</span>, but they account for 0.845 of all loans. Their large base rate explains why they also account for most defaults.</p>
 <div id="exercise-complete-renewal-model" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 10.2: </strong>Complete a renewal model</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 10.4: </strong>Complete a renewal model</div><div class="fobx-body">
 <p>A subscription company uses the following joint probability model for a randomly selected customer next year. One probability is missing.</p>
 <table class="caption-top table">
 <thead>
@@ -930,7 +975,7 @@ Table&nbsp;10.6: The conditional distribution of default status for a future sma
 <li>Find <span class="math inline">\(\Pr(\text{Premium}\mid\text{Renews})\)</span>.</li>
 <li>An analyst says 0.24 is the Premium renewal rate. Explain what 0.24 represents and give the Premium renewal rate.</li>
 </ol>
-<details class="solution-details" id="solution-complete-renewal-model" aria-label="Solution">
+<details id="solution-complete-renewal-model" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The Premium row must sum to its marginal probability of 0.30, so the missing joint probability is</p>
 <p><span class="math display">\[
@@ -999,7 +1044,7 @@ Table&nbsp;10.6: The conditional distribution of default status for a future sma
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common mistake: <span class="math inline">\(\Pr(A \mid B)\)</span> and <span class="math inline">\(\Pr(B \mid A)\)</span> are different numbers
+<span class="screen-reader-only">Warning</span>Reversing the condition changes the denominator
 </div>
 </div>
 <div class="callout-body-container callout-body">

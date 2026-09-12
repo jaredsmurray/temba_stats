@@ -96,21 +96,21 @@ div.csl-indent {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -367,7 +367,6 @@ window.Quarto = {
   <li><a href="#sec-portfolio-optimization" id="toc-sec-portfolio-optimization" class="nav-link" data-scroll-target="#sec-portfolio-optimization"><span class="header-section-number">14.4.1</span> Choosing the weights</a></li>
   <li><a href="#sec-sharpe" id="toc-sec-sharpe" class="nav-link" data-scroll-target="#sec-sharpe"><span class="header-section-number">14.4.2</span> Return per unit of variability</a></li>
   </ul></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">14.5</span> Practice</a></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
@@ -412,6 +411,15 @@ Z=aX+bY+c,
 </div></div>
 </div>
 <p>The portfolio has <span class="math inline">\(a=w\)</span>, <span class="math inline">\(b=1-w\)</span>, and <span class="math inline">\(c=0\)</span>. Profit provides another example: if <span class="math inline">\(X\)</span> is revenue, <span class="math inline">\(Y\)</span> is variable cost, and fixed costs are $100,000, then profit is <span class="math inline">\(X-Y-100{,}000\)</span>. Both revenue and variable costs are uncertain; the fixed cost shifts every possible profit by the same amount.</p>
+<div id="exercise-catering-profit" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.1: </strong>Writing daily profit</div><div class="fobx-body">
+<p>A caterer earns $8 per standard lunch box and $12 per premium lunch box after variable costs. Daily fixed costs are $500. Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be the uncertain numbers of standard and premium boxes sold that day. Write daily profit as a linear combination of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and identify <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>.</p>
+<details class="solution-details" aria-label="Solution" id="details-1">
+<summary>Solution</summary>
+<p>Daily profit is <span class="math inline">\(P=8X+12Y-500\)</span> dollars, so <span class="math inline">\(a=8\)</span>, <span class="math inline">\(b=12\)</span>, and <span class="math inline">\(c=-500\)</span>. The first two terms give earnings after variable costs; subtracting $500 accounts for the fixed costs.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-lincom-rules" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="sec-lincom-rules"><span class="header-section-number">14.2</span> The mean and variance of a linear combination</h2>
@@ -434,6 +442,15 @@ E[aX+bY+c]=aE[X]+bE[Y]+c.
 \]</span></p>
 <p>We combine the expected values with the same weights and constant as the random variables. The rule holds whether or not the variables are independent.</p>
 </div>
+</div>
+<div id="exercise-catering-mean" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.2: </strong>Expected daily profit</div><div class="fobx-body">
+<p>For a caterer with daily profit <span class="math inline">\(P=8X+12Y-500\)</span> dollars, <span class="math inline">\(X\)</span> is the number of standard lunch boxes sold and <span class="math inline">\(Y\)</span> is the number of premium boxes sold. Suppose <span class="math inline">\(E[X]=80\)</span> and <span class="math inline">\(E[Y]=30\)</span>. Find expected daily profit. Would dependence between the two sales counts change this calculation?</p>
+<details class="solution-details" aria-label="Solution" id="details-2">
+<summary>Solution</summary>
+<p>Expected daily profit is <span class="math inline">\(8(80)+12(30)-500=500\)</span> dollars. The calculation holds even if the sales counts are dependent, because the mean rule does not require independence.</p>
+</details>
+</div></div>
 </div>
 <p>For our portfolio, this just means that our expected returns for the portfolio are a weighted average of the expected returns of each investment:</p>
 <p><span class="math display">\[
@@ -460,12 +477,34 @@ E[R_p]=wE[R_1]+(1-w)E[R_2].
 </div>
 </div>
 <p>The signs of the weights matter. For a sum, positive covariance increases variance. For a difference, <span class="math inline">\(a=1\)</span> and <span class="math inline">\(b=-1\)</span>, so positive covariance reduces variance: when revenue and costs rise together, part of their movement cancels in profit. In either case we take the square root of the variance to obtain the standard deviation.</p>
+<div id="exercise-linear-combinations" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.3: </strong>Combining uncertain quantities</div><div class="fobx-body">
+<p>A firm’s revenue has standard deviation $200,000, and its variable costs have standard deviation $120,000. Their correlation is 0.6. Find the standard deviation of revenue minus variable costs. What would change if the correlation were zero?</p>
+<details class="solution-details" aria-label="Solution" id="details-3">
+<summary>Solution</summary>
+<p>In thousands of dollars, the variance is <span class="math inline">\(200^2+120^2-2(0.6)(200)(120)=25{,}600\)</span>, so the standard deviation is $160,000. With zero correlation the covariance term vanishes, giving a standard deviation of about $233,238.</p>
+</details>
+</div></div>
+</div>
+<div id="note-sample-linear-combinations" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Linear combinations of data columns
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The same algebra holds for sample summaries. If we create a data column <span class="math inline">\(z_i=ax_i+by_i+c\)</span>, then</p>
 <p><span class="math display">\[
 \bar z=a\bar x+b\bar y+c,\qquad
 s_z^2=a^2s_x^2+b^2s_y^2+2ab s_{xy}.
 \]</span></p>
-<p>These are the sample mean and variance of the combined column, with <span class="math inline">\(s_{xy}\)</span> the sample covariance from Chapter 13. We can therefore compute a portfolio’s historical summaries directly from the two assets’ sample summaries. Using those historical quantities to describe future returns requires a further assumption that the past is informative about the future.</p>
+<p>These are the sample mean and variance of the combined column, with <span class="math inline">\(s_{xy}\)</span> the sample covariance from Chapter 13. We can therefore compute a portfolio’s historical summaries directly from the two assets’ sample summaries.</p>
+</div>
+</div>
+<p>Using those historical quantities to describe future returns requires a further assumption that the past is informative about the future.</p>
 </section>
 <section id="sec-portfolio-risk" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="sec-portfolio-risk"><span class="header-section-number">14.3</span> Portfolio risk and diversification</h2>
@@ -543,9 +582,18 @@ Figure&nbsp;14.1: Standard deviation of the equal-weight portfolio as correlatio
 </div>
 </div>
 <p>At correlation <span class="math inline">\(-1\)</span>, the equally sized deviations cancel exactly, so this particular portfolio has no variability. Perfect negative correlation is not necessary for <strong>diversification</strong>, the reduction in variability from combining assets whose returns do not move perfectly together. Even with a positive correlation of 0.5, this portfolio has lower standard deviation than either stock alone. With unequal asset variances, the weights also affect how much reduction we obtain.</p>
+<div id="exercise-infer-asset-correlation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.4: </strong>Diversifying without reducing expected return</div><div class="fobx-body">
+<p>Two funds each have an expected annual return of 8% and an annual standard deviation of 20%. Their correlation is 0.5. An investor currently holds only one fund and is considering splitting the investment equally between the two. Calculate the expected return and standard deviation of the equal-weight portfolio. Does reducing risk require giving up expected return in this example?</p>
+<details class="solution-details" aria-label="Solution" id="details-4">
+<summary>Solution</summary>
+<p>Expected return stays at <span class="math inline">\(0.5(8\%)+0.5(8\%)=8\%\)</span>. The variance is <span class="math inline">\(0.5^2(0.20^2)+0.5^2(0.20^2)+2(0.5)(0.5)(0.5)(0.20)(0.20)=0.03\)</span>, so the standard deviation falls from 20% to about 17.3%. The investor reduces risk without giving up expected return because the funds have equal expected returns and do not move perfectly together.</p>
+</details>
+</div></div>
+</div>
 <section id="sec-three-asset-diversification" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="sec-three-asset-diversification"><span class="header-section-number">14.3.1</span> Choosing between two diversifiers</h3>
-<p>The <code>portfolios</code> data record weekly returns on three exchange-traded funds over the two years from October 2023 through September 2025 <span class="citation" data-cites="portfolios-2025">(<a href="appendix_data.html#ref-portfolios-2025" role="doc-biblioref"><em>Three-Asset Weekly Return and Price Series, October 2023–September 2025</em> 2025</a>)</span>. An exchange-traded fund (ETF) holds a basket of assets and trades like a single stock, so buying one share buys a slice of the whole basket. <code>SPY</code> holds the S&amp;P 500 and is a standard stand-in for the U.S. stock market — it’s the same market series we have used since the chapter on describing distributions. <code>EFA</code> holds large stocks from developed markets outside North America: Europe, Japan, Australia. <code>TLT</code> holds long-term U.S. Treasury bonds, government debt with twenty or more years to maturity. Each return is the percent change in the fund’s value from one Friday close to the next, expressed as a proportion, for 104 weeks.</p>
+<p>The <code>portfolios</code> data record weekly returns on three exchange-traded funds over the two years from October 2023 through September 2025. An exchange-traded fund (ETF) holds a basket of assets and trades like a single stock, so buying one share buys a slice of the whole basket. <code>SPY</code> holds the S&amp;P 500 and is a standard stand-in for the U.S. stock market — it’s the same market series we have used since the chapter on describing distributions. <code>EFA</code> holds large stocks from developed markets outside North America: Europe, Japan, Australia. <code>TLT</code> holds long-term U.S. Treasury bonds, government debt with twenty or more years to maturity. Each return is the percent change in the fund’s value from one Friday close to the next, expressed as a proportion, for 104 weeks.</p>
 <p>Suppose your entire portfolio is currently the U.S. market — all <code>SPY</code> — and you’ve decided to diversify by adding exactly one of the other two funds. Which one? <a href="#fig-asset-returns" class="quarto-xref">Figure&nbsp;<span>14.2</span></a> plots the three return series, and the summary table follows.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -561,10 +609,10 @@ Figure&nbsp;14.2: Weekly returns on the three funds over the two years ending Se
 </div>
 </div>
 </div>
-<div id="technical-annualization" class="TechnicalDetail">
-<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 14.1: </strong>Annualized summaries</summary><div>
+<div id="technical-annualization" class="Notation">
+<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 14.1: </strong>Annualized summaries</div><div class="fobx-body">
 <p>We multiply the weekly mean by 52 and the weekly standard deviation by <span class="math inline">\(\sqrt{52}\)</span>. The first is an annualized arithmetic mean, not the compounded return over a year. The standard-deviation scaling assumes uncorrelated weekly returns with a common variance.</p>
-</div></details>
+</div></div>
 </div>
 <div class="cell">
 <div id="tbl-asset-summary-three" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -694,6 +742,26 @@ Table&nbsp;14.3: Candidate portfolios compared at approximately the same annuali
 </div>
 </div>
 <p>At the same level of risk, the <code>TLT</code> portfolio delivers about 1.0 percentage points more sample mean return. And if you want <em>less</em> risk than 14.2%, only the <code>TLT</code> portfolio can get there — all the way down to 11.1% if you like.</p>
+<div id="exercise-compare-diversifiers" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.5: </strong>Comparing two additions</div><div class="fobx-body">
+<p>A portfolio will hold 60% in Fund A and 40% in either Fund B or Fund C. In a hypothetical model of annual returns, A has standard deviation 20%, while B and C each have standard deviation 15%. The correlation of A with B is 0.8; the correlation of A with C is 0.1. Which addition gives the smaller portfolio standard deviation? Calculate both standard deviations and explain why the candidates’ equal individual standard deviations do not make the two portfolios equally variable.</p>
+<details class="solution-details" aria-label="Solution" id="details-5">
+<summary>Solution</summary>
+<p>The portfolio variances are</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{Var}(0.6R_A+0.4R_B)
+&amp;=0.6^2(0.20^2)+0.4^2(0.15^2)+2(0.6)(0.4)(0.8)(0.20)(0.15)\\
+&amp;=0.02952,\\
+\operatorname{Var}(0.6R_A+0.4R_C)
+&amp;=0.6^2(0.20^2)+0.4^2(0.15^2)+2(0.6)(0.4)(0.1)(0.20)(0.15)\\
+&amp;=0.01944.
+\end{aligned}
+\]</span></p>
+<p>Taking square roots gives standard deviations of about 17.2% with B and 13.9% with C. Choose C to minimize portfolio standard deviation at these weights. Its lower correlation with A gives a smaller covariance term, even though B and C have the same individual standard deviation.</p>
+</details>
+</div></div>
+</div>
 </section>
 </section>
 <section id="sec-portfolio-data" class="level2" data-number="14.4">
@@ -780,6 +848,15 @@ Figure&nbsp;14.6: Annualized sample mean and standard deviation as the SPY weigh
 <p>The numerator is expected return above the risk-free benchmark. Dividing by standard deviation expresses that excess return per unit of variability.</p>
 </div></div>
 </div>
+<div id="exercise-sharpe-benchmark" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.6: </strong>Changing the benchmark</div><div class="fobx-body">
+<p>Suppose a portfolio has expected annual return 8%, annual standard deviation 12%, and an annual risk-free benchmark of 3%. Compute its Sharpe ratio. Explain which inputs would change if the benchmark rose to 4% while the return distribution stayed the same.</p>
+<details class="solution-details" aria-label="Solution" id="details-6">
+<summary>Solution</summary>
+<p>The Sharpe ratio is <span class="math inline">\((0.08-0.03)/0.12\approx0.417\)</span>. With the higher benchmark, only the excess-return numerator changes; the ratio becomes <span class="math inline">\((0.08-0.04)/0.12\approx0.333\)</span>.</p>
+</details>
+</div></div>
+</div>
 <p>For the historical comparison, we substitute each portfolio’s sample mean and standard deviation. We use the data’s average Treasury-bill rate as a constant benchmark, 4.7% annualized. The curve shows the resulting sample Sharpe ratio for every allocation.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -857,35 +934,35 @@ Table&nbsp;14.5: Two allocation objectives compared with holding either fund alo
 </figure>
 </div>
 </div>
-<p>We selected these weights using the same observations that supply the reported performance. The maximizing allocation therefore describes this sample; it does not establish which allocation will have the highest Sharpe ratio in future returns. Over this window, the minimum-variability mix and the maximum-Sharpe mix answer different questions and assign different weights to the same two funds.</p>
-</section>
-</section>
-<section id="practice" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="practice"><span class="header-section-number">14.5</span> Practice</h2>
-<div id="exercise-linear-combinations" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.1: </strong>Combining uncertain quantities</div><div class="fobx-body">
-<ol type="1">
-<li>A firm’s revenue has standard deviation $200,000, and its variable costs have standard deviation $120,000. Their correlation is 0.6. Find the standard deviation of revenue minus variable costs. What would change if the correlation were zero?</li>
-<li>Two assets each have a standard deviation of 20%. An equal-weight portfolio has standard deviation 10%. Find their correlation.</li>
-<li>In the SPY–VCIT example, why does the allocation that minimizes standard deviation differ from the one that maximizes the sample Sharpe ratio?</li>
-<li>Suppose a portfolio has expected annual return 8%, annual standard deviation 12%, and an annual risk-free benchmark of 3%. Compute its Sharpe ratio. Explain which inputs would change if the benchmark rose to 4% while the return distribution stayed the same.</li>
-</ol>
-<details id="details-1" class="solution-details" aria-label="Solution">
+<div id="warning-selected-portfolio-weights" class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Selecting weights from historical returns
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We selected these weights using the same observations that supply the reported performance. The maximizing allocation therefore describes this sample; it does not establish which allocation will have the highest Sharpe ratio in future returns.</p>
+</div>
+</div>
+<p>Over this window, the minimum-variability mix and the maximum-Sharpe mix answer different questions and assign different weights to the same two funds.</p>
+<div id="exercise-portfolio-objectives" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.7: </strong>Comparing allocation objectives</div><div class="fobx-body">
+<p>In the SPY–VCIT example, why does the allocation that minimizes standard deviation differ from the one that maximizes the sample Sharpe ratio?</p>
+<details class="solution-details" aria-label="Solution" id="details-7">
 <summary>Solution</summary>
-<ol type="1">
-<li>In thousands of dollars, the variance is <span class="math inline">\(200^2+120^2-2(0.6)(200)(120)=25{,}600\)</span>, so the standard deviation is $160,000. With zero correlation the covariance term vanishes, giving a standard deviation of about $233,238.</li>
-<li>The equation <span class="math inline">\(0.10^2=0.02+0.02\operatorname{Corr}\)</span> gives a correlation of <span class="math inline">\(-0.5\)</span>.</li>
-<li>Minimizing standard deviation uses the two variances and their covariance. The Sharpe ratio also uses the mean returns and the benchmark. In this sample its maximizing allocation gives more weight to SPY’s higher mean return and accepts a higher standard deviation.</li>
-<li>The Sharpe ratio is <span class="math inline">\((0.08-0.03)/0.12\approx0.417\)</span>. With the higher benchmark, only the excess-return numerator changes; the ratio becomes <span class="math inline">\((0.08-0.04)/0.12\approx0.333\)</span>.</li>
-</ol>
+<p>The minimum-variance portfolio only tries to control risk, irrespective of returns. Here it gives up a lot of return: its annualized sample mean is 11.1%, compared with 16.4% for the portfolio with the highest sample Sharpe ratio. The Sharpe ratio weighs return above the risk-free benchmark against risk, so it favors a larger investment in SPY.</p>
 </details>
 </div></div>
 </div>
 </section>
+</section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
 <ul>
-<li><a href="./appendix_data.html#sec-data-portfolios-2025">Three-Asset Portfolio Series</a> supplies SPY returns and the Treasury-bill benchmark.</li>
+<li><a href="./appendix_data.html#sec-data-portfolios-2025">Three-Asset Portfolio Series</a> supplies SPY, EFA, and TLT returns and the Treasury-bill benchmark <span class="citation" data-cites="portfolios-2025">(<a href="appendix_data.html#ref-portfolios-2025" role="doc-biblioref"><em>Three-Asset Weekly Return and Price Series, October 2023–September 2025</em> 2025</a>)</span>.</li>
 <li><a href="./appendix_data.html#sec-data-returns-2025">Weekly Asset Returns</a> supplies VCIT returns over the same dates.</li>
 </ul>
 

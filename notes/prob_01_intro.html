@@ -77,21 +77,21 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -427,7 +427,7 @@ Table&nbsp;6.1: Historical default rates for small-business and debt-consolidati
 <li>Explain 0.70 as a subjective probability about this meeting.</li>
 <li>Suppose we collect 100 different events that each received a forecast near 0.70. What would a well-calibrated set of forecasts imply about the number of events that occur?</li>
 </ol>
-<details aria-label="Solution" id="solution-forecast-interpretations" class="solution-details">
+<details id="solution-forecast-interpretations" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The probability summarizes the market’s current assessment that holding the target range is more likely than changing it. It applies to this one meeting; we do not imagine replaying the same meeting many times.</p>
 <p>Across many different events assigned probabilities near 0.70, a calibrated forecasting process should see about 70 of every 100 events occur. A particular set may produce more or fewer than 70 because its outcomes remain uncertain.</p>
@@ -605,16 +605,17 @@ Table&nbsp;6.3: A probability model for a future loan’s outcome, given its pur
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.2: </strong>A churn model, part A</div><div class="fobx-body">
 <p>A software company observed 90 cancellations among 1,200 annual subscriptions last year.</p>
 <ol type="1">
-<li>Compute the historical churn rate.</li>
-<li>The company uses that rate as a probability model for 200 otherwise similar renewals. About how many cancellations does the model predict?</li>
+<li>Compute the historical churn (cancellation) rate.</li>
+<li>What’s your best assessment of the probability a future customer churns?</li>
+<li>What are some reasons your assessment might be wrong?</li>
 </ol>
-<details aria-label="Solution" id="solution-churn-model-part-a" class="solution-details">
+<details id="solution-churn-model-part-a" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The historical churn rate is</p>
 <p><span class="math display">\[
 \frac{90}{1{,}200}=0.075,
 \]</span></p>
-<p>or 7.5%. Applying that rate to 200 similar renewals predicts about <span class="math inline">\(200(0.075)=15\)</span> cancellations.</p>
+<p>or 7.5%. Our best guess at the probability a future customer cancels is 0.075, which assumes that the historical data are representative of what we can expect to see in the future. This might not hold if, for example, a competitor runs a promotion to entice customers to switch, or if the historical data includes a period where the company’s service experienced frequent outages that are now fixed.</p>
 </details>
 </div></div>
 </div>
@@ -639,14 +640,14 @@ Figure&nbsp;6.1: A Plinko chip bounces between pegs before landing in one of the
 <p>Source: <a href="https://makeagif.com/gif/price-is-right-plinko-huge-win-6JmKw9">“Price is Right — Plinko HUGE Win!!!”</a>, MakeAGif.</p>
 <p><strong>Not all samples are random.</strong> Before we continue, it’s important to remember that not all samples are random. When you’re in class, you and your classmates comprise a sample of all adults currently in the United States. But you’re not a randomly selected sample, and as a cohort you differ from that overall population in important ways. If we tried to use you as “data” to learn about academic achievement in the overall population our estimate would be wildly inaccurate. We prefer random samples in the finite population setting because they are a strong hedge against this kind of bias — most random samples are <strong>representative</strong> of the population from which they are drawn.</p>
 <div id="exercise-representativeness-claim" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.3: </strong>Representativeness changes the claim</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.3: </strong>Representativeness</div><div class="fobx-body">
 <p>A retailer wants to estimate the share of all customers who use curbside pickup. Team A randomly selects 400 loyalty-program members. Team B randomly selects 400 customers from everyone who clicked a curbside-pickup email. Each team finds that 36% of its sample uses curbside pickup.</p>
 <ol type="1">
 <li>How many curbside-pickup users did each team observe?</li>
 <li>What is the narrowest population that each result can credibly describe without further assumptions?</li>
 <li>Why does neither result, by itself, represent all of the retailer’s customers?</li>
 </ol>
-<details aria-label="Solution" id="solution-representativeness-claim" class="solution-details">
+<details id="solution-representativeness-claim" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Each team observed <span class="math inline">\(400(0.36)=144\)</span> curbside-pickup users. Team A’s random sample can represent loyalty-program members, while Team B’s random sample can represent customers who clicked the email. Neither sampling frame includes all customers, and both groups may differ systematically from customers outside the frame.</p>
 </details>
@@ -681,7 +682,7 @@ To belabor the point, suppose that exactly 50% of adults rate conditions good or
 <div id="exercise-churn-model-part-b" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.4: </strong>A churn model, part B</div><div class="fobx-body">
 <p>Return to the <a href="#exercise-churn-model-part-a">earlier churn model</a>. The company raised annual subscription prices by 15% this year. Why does that change make last year’s churn rate a less credible model for this year’s renewals?</p>
-<details aria-label="Solution" id="solution-churn-model-part-b" class="solution-details">
+<details id="solution-churn-model-part-b" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The model treats last year’s subscriptions as representative of this year’s renewals. A 15% price increase changes an important condition that may affect the decision to renew, so customers facing the new price are no longer otherwise similar to those in the historical data. The old rate may therefore understate or overstate this year’s churn probability.</p>
 </details>

@@ -81,15 +81,15 @@ ul.task-list li input[type="checkbox"] {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
 .Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
@@ -447,10 +447,23 @@ Figure&nbsp;11.4: The probability tree implied by CME FedWatch’s traditional c
 <p><span class="math display">\[
 \Pr(A \mid B) = \frac{\Pr(A \text{ and } B)}{\Pr(B)}.
 \]</span></p>
+<div id="note-product-rule" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The product rule
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>For <span class="math inline">\(\Pr(B)&gt;0\)</span>, multiplying both sides by <span class="math inline">\(\Pr(B)\)</span> gives the <strong>product rule</strong>:</p>
 <p><span class="math display">\[
 \Pr(A \text{ and } B) = \Pr(B)\Pr(A \mid B).
 \]</span></p>
+<p>A joint probability is the probability of the condition times the probability of the other event given that condition.</p>
+</div>
+</div>
 <p>The first factor is the probability of reaching the July branch; the second is the probability of the September move given that July outcome. Their product is the probability of the full path. Therefore, the probability of two consecutive hikes is</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -461,6 +474,15 @@ Figure&nbsp;11.4: The probability tree implied by CME FedWatch’s traditional c
 \approx 0.1231.
 \end{aligned}
 \]</span></p>
+<div id="exercise-subscription-path" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 11.1: </strong>A subscription path</div><div class="fobx-body">
+<p>Suppose 30% of visitors to a website start a free trial. Among visitors who start a trial, 40% buy a subscription. What is the probability that a randomly selected visitor starts a trial and buys a subscription? Explain why 0.40 alone does not answer this question.</p>
+<details aria-label="Solution" id="solution-subscription-path" class="solution-details">
+<summary>Solution</summary>
+<p>Multiplying along the path gives <span class="math inline">\(0.30(0.40)=0.12\)</span>. Thus, 12% of all visitors start a trial and buy a subscription. The 0.40 conditions on having started a trial; it describes only the visitors who reach that branch.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="the-law-of-total-probability" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="the-law-of-total-probability"><span class="header-section-number">11.3</span> The law of total probability</h2>
@@ -492,11 +514,23 @@ Figure&nbsp;11.5: The two dark-red paths end at a September target range of 3.75
 </div>
 </div>
 </div>
+<div id="note-total-probability" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The law of total probability
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The <strong>law of total probability</strong> applies the same calculation to any event <span class="math inline">\(B\)</span>. Suppose <span class="math inline">\(A_1,\ldots,A_k\)</span> are mutually exclusive and exhaustive events: exactly one of them occurs. For events <span class="math inline">\(A_i\)</span> with positive probability,</p>
 <p><span class="math display">\[
 \Pr(B)=\sum_{i=1}^k \Pr(A_i)\Pr(B\mid A_i).
 \]</span></p>
 <p>Each term is the joint probability of <span class="math inline">\(A_i\)</span> and <span class="math inline">\(B\)</span>. Adding these terms accounts for every way <span class="math inline">\(B\)</span> can occur, just as summing a column of a joint probability table gives its marginal probability.</p>
+</div>
+</div>
 <p>Computing the other joint probabilities and summing the rows and columns gives a complete probability table like the one we started with for LendingClub:</p>
 <div class="cell">
 <div id="tbl-cme-joint" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -559,6 +593,19 @@ Table&nbsp;11.1: The joint distribution implied by CME FedWatch’s traditional 
 </div>
 <p>The table and the tree encode the same information about the joint distribution in different ways. When events unfold sequentially, the tree is often more convenient because each path records the order in which the events occur.</p>
 <p>The loan table’s conditional default distribution changes across purposes. In the FedWatch construction, the September <em>move</em> distribution stays essentially the same across July branches, even though the resulting September target range depends on July’s target.</p>
+<div id="exercise-takeout-total-probability" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 11.2: </strong>Orders ready on time</div><div class="fobx-body">
+<p>Suppose a restaurant receives 70% of its takeout orders through its app and 30% by phone. These are its only two ordering methods. It has 90% of app orders and 80% of phone orders ready at the promised time.</p>
+<ol type="1">
+<li>Find the probability of each path that ends with an order ready on time.</li>
+<li>Find the probability that a randomly selected order is ready on time. Explain why you can add the two path probabilities.</li>
+</ol>
+<details aria-label="Solution" id="solution-takeout-total-probability" class="solution-details">
+<summary>Solution</summary>
+<p>The app-and-ready path has probability <span class="math inline">\(0.70(0.90)=0.63\)</span>, and the phone-and-ready path has probability <span class="math inline">\(0.30(0.80)=0.24\)</span>. Every order uses exactly one of these methods, so the paths are mutually exclusive and account for every order ready on time. Adding gives <span class="math inline">\(0.63+0.24=0.87\)</span>: 87% of orders are ready at the promised time.</p>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-fraud-screening" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="sec-fraud-screening"><span class="header-section-number">11.4</span> Worked example: Fraud screening</h2>
@@ -647,15 +694,42 @@ Figure&nbsp;11.6: Fraud-screening probability tree. Multiplying the branch proba
 =\frac{\Pr(F)\Pr(A\mid F)}{\Pr(A)}.
 \]</span></p>
 <p>The numerator is the probability of a fraudulent transaction that produces a flag. Dividing by the probability of a flag restricts the comparison to the flagged transactions, as in the conditional tables in <a href="./prob_05_multivariate-distributions.html#defn-conditional-probability-joint">Chapter 10</a>.</p>
-<p>More generally, let <span class="math inline">\(A_1,\ldots,A_k\)</span> be mutually exclusive and exhaustive events with positive probabilities, and suppose <span class="math inline">\(\Pr(B)&gt;0\)</span>. Combining the product rule and the law of total probability gives</p>
+<div id="note-bayes-rule" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Bayes’ rule
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(A_1,\ldots,A_k\)</span> be mutually exclusive and exhaustive events with positive probabilities, and suppose <span class="math inline">\(\Pr(B)&gt;0\)</span>. Combining the product rule and the law of total probability gives</p>
 <p><span class="math display">\[
 \Pr(A_j\mid B)
 =\frac{\Pr(A_j)\Pr(B\mid A_j)}
        {\sum_{i=1}^k\Pr(A_i)\Pr(B\mid A_i)}.
 \]</span></p>
 <p>We multiply each starting probability <span class="math inline">\(\Pr(A_i)\)</span> by the conditional probability of the observed event <span class="math inline">\(B\)</span> within that group. These products are the joint probabilities of each group and <span class="math inline">\(B\)</span>. Dividing by their sum makes the conditional probabilities add to 1, just as we renormalized the selected entries of a joint table in Chapter 10.</p>
+</div>
+</div>
+<div id="exercise-email-base-rates" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 11.3: </strong>The same filter in two inboxes</div><div class="fobx-body">
+<p>Suppose an email filter flags 90% of spam messages and 10% of messages that are not spam. These rates are the same in two inboxes. In Inbox A, 10% of incoming messages are spam; in Inbox B, 50% are spam.</p>
+<ol type="1">
+<li>For each inbox, find the probability that a message is spam given that the filter flags it.</li>
+<li>Explain why these probabilities differ even though the filter has the same flagging rates in both inboxes.</li>
+</ol>
+<details aria-label="Solution" id="solution-email-base-rates" class="solution-details">
+<summary>Solution</summary>
+<p>For Inbox A, the spam-and-flagged path has probability <span class="math inline">\(0.10(0.90)=0.09\)</span>, and the nonspam-and-flagged path has probability <span class="math inline">\(0.90(0.10)=0.09\)</span>. The spam share among flagged messages is therefore <span class="math inline">\(0.09/(0.09+0.09)=0.50\)</span>.</p>
+<p>For Inbox B, the corresponding path probabilities are <span class="math inline">\(0.50(0.90)=0.45\)</span> and <span class="math inline">\(0.50(0.10)=0.05\)</span>. The spam share among flagged messages is <span class="math inline">\(0.45/(0.45+0.05)=0.90\)</span>.</p>
+<p>Spam is more common among incoming messages in Inbox B, so more of its flags come from spam. Holding the two conditional flagging rates fixed does not hold the composition of flagged messages fixed.</p>
+</details>
+</div></div>
+</div>
 <div id="exercise-supplier-risk-tree" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 11.1: </strong>Supplier risk as a probability tree</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 11.4: </strong>Supplier risk as a probability tree</div><div class="fobx-body">
 <p>A buyer orders 60% of its components from Supplier A and 40% from Supplier B. The probability that a component is defective is 0.02 given Supplier A and 0.05 given Supplier B.</p>
 <ol type="1">
 <li>Draw a probability tree whose first branches identify the supplier and whose second branches identify whether the component is defective or not defective. Label every branch.</li>
@@ -665,7 +739,7 @@ Figure&nbsp;11.6: Fraud-screening probability tree. Multiplying the branch proba
 <li>Given that a component is defective, find the probability that it came from Supplier B.</li>
 <li>Explain why the answer to part 5 exceeds the marginal probability of ordering from Supplier B.</li>
 </ol>
-<details id="solution-supplier-risk-tree" aria-label="Solution" class="solution-details">
+<details aria-label="Solution" id="solution-supplier-risk-tree" class="solution-details">
 <summary>Solution</summary>
 <p>The first branches have probabilities 0.60 for Supplier A and 0.40 for Supplier B. The second-stage branch probabilities are 0.02 Defective and 0.98 Not defective after Supplier A, and 0.05 Defective and 0.95 Not defective after Supplier B. The completed tree is</p>
 <div class="cell">

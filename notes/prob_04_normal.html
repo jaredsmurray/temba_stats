@@ -77,21 +77,21 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
-.TechnicalDetail {
+.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
+.TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -340,7 +340,10 @@ window.Quarto = {
   <li><a href="#sec-normal-pdf" id="toc-sec-normal-pdf" class="nav-link active" data-scroll-target="#sec-normal-pdf"><span class="header-section-number">9.1</span> The probability density function</a></li>
   <li><a href="#sec-normal-probabilities" id="toc-sec-normal-probabilities" class="nav-link" data-scroll-target="#sec-normal-probabilities"><span class="header-section-number">9.2</span> Computing probabilities</a></li>
   <li><a href="#sec-empirical-rule" id="toc-sec-empirical-rule" class="nav-link" data-scroll-target="#sec-empirical-rule"><span class="header-section-number">9.3</span> The 68/95/99.7 rule</a></li>
-  <li><a href="#sec-standard-normal" id="toc-sec-standard-normal" class="nav-link" data-scroll-target="#sec-standard-normal"><span class="header-section-number">9.4</span> Z-scores, again</a></li>
+  <li><a href="#sec-standard-normal" id="toc-sec-standard-normal" class="nav-link" data-scroll-target="#sec-standard-normal"><span class="header-section-number">9.4</span> Z-scores, again</a>
+  <ul class="collapse">
+  <li><a href="#finding-a-normal-percentile" id="toc-finding-a-normal-percentile" class="nav-link" data-scroll-target="#finding-a-normal-percentile"><span class="header-section-number">9.4.1</span> Finding a normal percentile</a></li>
+  </ul></li>
   <li><a href="#sec-qq-plots" id="toc-sec-qq-plots" class="nav-link" data-scroll-target="#sec-qq-plots"><span class="header-section-number">9.5</span> QQ plots: checking normality</a></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
@@ -374,7 +377,7 @@ window.Quarto = {
 <div id="defn-normal-distribution" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 9.1: </strong>Normal distribution</div><div class="fobx-body">
 <p>The <strong>normal distribution</strong> (also known as the Gaussian distribution) is the symmetric continuous distribution governed entirely by two parameters: a mean <span class="math inline">\(\mu\)</span> and a variance <span class="math inline">\(\sigma^2\)</span>. The mean locates the center of the density curve and the variance controls how wide it is.</p>
-<details aria-label="Details and formulas" id="formula-normal-density" class="formula-details">
+<details aria-label="Details and formulas" class="formula-details" id="formula-normal-density">
 <summary>Details and formulas</summary>
 <p>The density is</p>
 <p><span class="math display">\[
@@ -418,7 +421,7 @@ X \sim N(\mu, \sigma^2)
 X \sim N(500, 80^2),
 \]</span></p>
 <p>where <span class="math inline">\(X\)</span> is measured in units. State the mean, variance, and standard deviation, including units. Which two values would you supply to software that asks for the mean and standard deviation?</p>
-<details aria-label="Solution" id="solution-read-normal-model" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-read-normal-model">
 <summary>Solution</summary>
 <p>The mean is 500 units, the variance is <span class="math inline">\(80^2 = 6{,}400\)</span> units squared, and the standard deviation is 80 units. Software that asks for a mean and standard deviation should receive 500 and 80, not 500 and 6,400.</p>
 </details>
@@ -443,17 +446,17 @@ Figure&nbsp;9.2: Weekly S&amp;P 500 returns (density-scaled histogram) with the 
 </div>
 </div>
 </div>
-<p>To be clear: Weekly returns are not literally normal — a return can’t fall below <span class="math inline">\(-100\%\)</span>, and real markets tend to produce more extreme outcomes than a normal distribution would give. What we are claiming (for now!) is that the normal distribution is a <em>good enough approximation</em>: close enough to the true distribution, in the region we care about, that probability statements computed from it are useful. That’s the case for any model, and to the extent we can, we should check whether our modeling assumptions are supported or not by the data available to us. We’ll do that below.</p>
+<p>Weekly returns are not literally normal — a return can’t fall below <span class="math inline">\(-100\%\)</span>, and real markets tend to produce more extreme outcomes than a normal distribution would give. We are using the normal distribution as an approximation in the region where we want to compute probabilities. We’ll check that approximation against the data below.</p>
 <div id="exercise-normal-model-plausibility" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.2: </strong>Which normal model is most plausible?</div><div class="fobx-body">
 <p>A consultant proposes a normal model for each of the following variables:</p>
 <ol type="1">
-<li>package weight from a calibrated filling machine;</li>
-<li>annual insurance claim cost per customer, when many customers have no claim and a few have very large claims;</li>
-<li>the percentage of a firm’s customers who renew their contracts next year.</li>
+<li>A calibrated filling machine produces packages whose weights vary around a target.</li>
+<li>Annual insurance claim cost per customer is zero for many customers and very large for a few.</li>
+<li>A firm measures the percentage of its customers who renew their contracts next year.</li>
 </ol>
 <p>For each variable, identify a feature that supports or undermines a normal model. Which variable is most plausibly modeled as normal without a transformation?</p>
-<details aria-label="Solution" id="solution-normal-model-plausibility" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-normal-model-plausibility">
 <summary>Solution</summary>
 <p>Package weight is continuous and may fluctuate roughly symmetrically around a machine’s target, so it is the most plausible candidate. Annual claim cost has a pile of observations at zero and a long right tail, which conflicts with a normal model. A renewal percentage is bounded between 0% and 100%; a normal approximation could be reasonable if its center is far from both bounds and its spread is small, but the bounds can otherwise matter.</p>
 </details>
@@ -479,12 +482,12 @@ Figure&nbsp;9.3: Four probability statements as areas under the fitted normal mo
 </div>
 </div>
 </div>
-<p>A few more examples reinforce our basic probability rules, and how they are used to compute probabilities for normal random variables:</p>
+<p>The complement rule gives the probability of a non-losing week:</p>
 <ul>
 <li><strong>A non-losing week.</strong> <span class="math inline">\(\Pr(R \geq 0) = 0.59 = 1-\Pr(R &lt; 0)\)</span>.</li>
 <li><strong>A winning week.</strong> <span class="math inline">\(\Pr(R &gt; 0) = \Pr(R \geq 0)\)</span>, because for a continuous distribution, <span class="math inline">\(\Pr(R = 0) = 0\)</span> and <span class="math inline">\(\Pr(R \geq 0) = \Pr(R &gt; 0) + \Pr(R = 0)\)</span> since the two events are mutually exclusive.</li>
 </ul>
-<p>We can evaluate any normal probability we like using our basic probability rules and software that can evaluate the normal CDF to compute the areas like we did above. (The same is true for any continuous probability distribution.) Sketching the areas can be useful practice until you get the hang of this.</p>
+<p>Software evaluates the normal CDF, and our probability rules let us combine those areas. The same approach works with the CDF of any continuous distribution. If you are unsure which areas to add or subtract, a sketch can help you identify them.</p>
 <p>For example, the interval probability <span class="math inline">\(\Pr(-1.5\% &lt; R &lt; 1.5\%)\)</span> can be computed a few different ways: We can start by computing <span class="math inline">\(\Pr(R &lt; 1.5\%)\)</span> and then subtracting off <span class="math inline">\(\Pr(R &lt; -1.5\%)\)</span> to eliminate the tail area we didn’t want. Or we could recognize that <span class="math inline">\(\Pr(-1.5\% &lt; R &lt; 1.5\%) = 1 - [\Pr(R &lt; -1.5\%) + \Pr(R &gt; 1.5\%)]\)</span>, since <span class="math inline">\(R&lt;-1.5\%\)</span> and <span class="math inline">\(R&gt;1.5\%\)</span> are the two mutually exclusive ways to land outside the interval. <a href="#fig-interval-two-ways" class="quarto-xref">Figure&nbsp;<span>9.4</span></a> sketches both routes.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -507,16 +510,16 @@ Figure&nbsp;9.4: Two routes to the same interval probability. Top row: start wit
 <li>What is the probability that a delivery takes more than 60 minutes?</li>
 <li>What is the probability that a delivery takes between 35 and 50 minutes?</li>
 </ol>
-<details aria-label="Solution" id="solution-normal-service-probabilities" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-normal-service-probabilities">
 <summary>Solution</summary>
 <p>For the first probability, shade the area to the right of 60. Subtract the normal CDF at 60 from one:</p>
 <p><span class="math display">\[
-\Pr(T&gt;60)=1-F_T(60)\approx 0.0228.
+\Pr(T&gt;60)=1-\Pr(T\leq 60)\approx 0.0228.
 \]</span></p>
 <p>For the second, shade the area between 35 and 50 and subtract the two CDF values:</p>
 <p><span class="math display">\[
 \Pr(35&lt;T&lt;50)
-=F_T(50)-F_T(35)
+=\Pr(T&lt;50)-\Pr(T&lt;35)
 \approx 0.5946.
 \]</span></p>
 </details>
@@ -550,7 +553,7 @@ Figure&nbsp;9.5: The 68/95/99.7 rule on the weekly-returns model. Each horizonta
 </div>
 </div>
 </div>
-<p>Applied to the returns model: about two weeks in three land between -1.6% and 2.6%; about 19 weeks in 20 land between -3.8% and 4.7%; and a week outside -5.9% to 6.8% should be a once-in-several-years event. The rule works in both directions. Given the parameters you can sketch the whole distribution in your head, and given an extreme outcome you can immediately place it: a <span class="math inline">\(-4\%\)</span> week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there’s no dependence between consecutive weekly returns).</p>
+<p>Applied to the returns model: about two weeks in three land between -1.6% and 2.6%; about 19 weeks in 20 land between -3.8% and 4.7%; and a week outside -5.9% to 6.8% should be a once-in-several-years event. We can also use the rule to assess a particular return: a <span class="math inline">\(-4\%\)</span> week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there’s no dependence between consecutive weekly returns).</p>
 <div id="exercise-filling-empirical-rule" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.4: </strong>Applying the 68/95/99.7 rule</div><div class="fobx-body">
 <p>A filling machine produces bottles with a mean fill of 355 milliliters and a standard deviation of 3 milliliters. Assume fill amounts are normally distributed.</p>
@@ -559,7 +562,7 @@ Figure&nbsp;9.5: The 68/95/99.7 rule on the weekly-returns model. Each horizonta
 <li>A bottle contains 346 milliliters. How many standard deviations below the mean is it?</li>
 <li>Approximately what percentage of bottles are at least that far from the mean in either direction?</li>
 </ol>
-<details aria-label="Solution" id="solution-filling-empirical-rule" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-filling-empirical-rule">
 <summary>Solution</summary>
 <p>The three intervals are 352 to 358 milliliters, 349 to 361 milliliters, and 346 to 364 milliliters. For the 346-milliliter bottle,</p>
 <p><span class="math display">\[
@@ -572,18 +575,32 @@ z=\frac{346-355}{3}=-3.
 </section>
 <section id="sec-standard-normal" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="sec-standard-normal"><span class="header-section-number">9.4</span> Z-scores, again</h2>
-<p>Standardizing a normal random variable — <span class="math inline">\(Z = (X - \mu)/\sigma\)</span> — produces the <strong>standard normal distribution</strong> <span class="math inline">\(Z \sim N(0, 1)\)</span>. Since <span class="math inline">\(Z\)</span> now represents standard deviations from the mean, we know that <em>if a random variable is normally distributed</em>, we should see values more than 2 standard deviations from the mean about 5% of the time, and values more than 3 standard deviations from the mean about 0.3% of the time. Here z-scores tell us quite a bit about the associated probability of seeing an outcome at least as far from the mean as <span class="math inline">\(Z\)</span> — but only because the random variable has a normal distribution.</p>
+<p>Standardizing a normal random variable — <span class="math inline">\(Z = (X - \mu)/\sigma\)</span> — produces the <strong>standard normal distribution</strong> <span class="math inline">\(Z \sim N(0, 1)\)</span>. Since <span class="math inline">\(Z\)</span> now represents standard deviations from the mean, we know that <em>if a random variable is normally distributed</em>, we should see values more than 2 standard deviations from the mean about 5% of the time, and values more than 3 standard deviations from the mean about 0.3% of the time.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Common mistake: Z-scores carry probabilities only for normal distributions
+<span class="screen-reader-only">Warning</span>Common mistake: A z-score alone does not tell you a probability
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These probability statements attach to z-scores <em>only when the underlying random variable is normal</em>. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean — that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution’s shape. Under a normal distribution, an observation at least 2.5 standard deviations from the mean, <span class="math inline">\(|Z| \geq 2.5\)</span>, is a once-in-eighty event; under a heavy-tailed one it might be a monthly occurrence.</p>
+<p>For any distribution with a finite mean and standard deviation, a z-score tells us how many standard deviations an outcome is from the mean. How unusual that distance is depends on the distribution’s shape. The two distributions in <a href="#fig-z-score-tail-comparison" class="quarto-xref">Figure&nbsp;<span>9.6</span></a> both have mean 0 and standard deviation 1, so an outcome of 2.5 has the same z-score in either distribution. We shade the areas beyond <span class="math inline">\(-2.5\)</span> and <span class="math inline">\(2.5\)</span> to compare how often outcomes fall at least that far from the mean.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-z-score-tail-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-z-score-tail-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_04_normal_files/figure-html/fig-z-score-tail-comparison-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-z-score-tail-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.6: Both distributions have mean 0 and standard deviation 1. The shaded areas beyond −2.5 and 2.5 contain about 1.24% of outcomes for the normal distribution and 2.27% for the other distribution. The right panel enlarges the right tail; the left tails are mirror images.
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 <div id="exercise-skewed-z-score" class="Exercise">
@@ -593,7 +610,7 @@ z=\frac{346-355}{3}=-3.
 <li>Calculate the z-score and interpret it.</li>
 <li>Can you use a normal probability table or normal-distribution software to determine the probability of observing a value at least this large? Explain.</li>
 </ol>
-<details aria-label="Solution" id="solution-skewed-z-score" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-skewed-z-score">
 <summary>Solution</summary>
 <p>The z-score is</p>
 <p><span class="math display">\[
@@ -603,23 +620,65 @@ z=\frac{1{,}420-420}{500}=2.
 </details>
 </div></div>
 </div>
-<p>The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks — five or so out of our 104 — should land more than two standard deviations from the mean. In the data, 6 weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. Judging them by counting is crude; the next section builds a better diagnostic for checking normality (and more generally for comparing any two distributions).</p>
+<section id="finding-a-normal-percentile" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="finding-a-normal-percentile"><span class="header-section-number">9.4.1</span> Finding a normal percentile</h3>
+<p>A lower-tail probability calculation starts with a threshold and finds the area below it. A <strong>quantile</strong> calculation reverses this: we specify the area and find the threshold. The 90th percentile of delivery time, for example, is the time by which the model predicts 90% of deliveries will arrive.</p>
+<p>Software finds the standard-normal value with the requested area to its left. For an area of 0.90, it gives <span class="math inline">\(z\approx1.2816\)</span>, meaning <span class="math inline">\(\Pr(Z\leq1.2816)\approx0.90\)</span>. To convert back to the original units, rearrange <span class="math inline">\(z=(x-\mu)/\sigma\)</span> to get <span class="math inline">\(x=\mu+\sigma z\)</span>.</p>
+<p>For the earlier delivery model <span class="math inline">\(T\sim N(42,9^2)\)</span> minutes, the 90th percentile is</p>
+<p><span class="math display">\[
+42+9(1.2816)\approx53.53\text{ minutes}.
+\]</span></p>
+<p>About 90% of deliveries take at most 53.53 minutes under this model, and about 10% take longer. For an upper-tail requirement, subtract that tail probability from one before finding the quantile: a threshold exceeded by 10% of deliveries is the 90th percentile.</p>
+<div id="exercise-normal-fill-thresholds" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.6: </strong>Fill-volume thresholds</div><div class="fobx-body">
+<p>A filling machine’s output follows <span class="math inline">\(X\sim N(500,4^2)\)</span> milliliters. The table gives standard-normal quantiles computed by software.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Probability to the left</th>
+<th style="text-align: right;">Standard-normal quantile <span class="math inline">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.20</td>
+<td style="text-align: right;">−0.8416</td>
+</tr>
+<tr class="even">
+<td>0.95</td>
+<td style="text-align: right;">1.6449</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Find the 20th percentile of fill volume and interpret it.</li>
+<li>Find the volume exceeded by 5% of fills. State the probability to the left of this threshold before computing it.</li>
+</ol>
+<details aria-label="Solution" class="solution-details" id="solution-normal-fill-thresholds">
+<summary>Solution</summary>
+<p>The 20th percentile is <span class="math inline">\(500+4(-0.8416)\approx496.63\)</span> milliliters. Under the model, about 20% of fills contain at most this volume.</p>
+<p>A threshold with 0.05 above it has <span class="math inline">\(1-0.05=0.95\)</span> below it, so we use the 95th-percentile quantile. The volume is <span class="math inline">\(500+4(1.6449)\approx506.58\)</span> milliliters; about 5% of fills exceed it.</p>
+</details>
+</div></div>
+</div>
+<p>The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks — five or so out of our 104 — should land more than two standard deviations from the mean. In the data, 6 weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. The count checks how often returns exceed one threshold. The QQ plots in the next section compare observed and normal-model quantiles across the distribution; they can also compare quantiles from other distributions.</p>
+</section>
 </section>
 <section id="sec-qq-plots" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="sec-qq-plots"><span class="header-section-number">9.5</span> QQ plots: checking normality</h2>
 <p>In the last section we checked the returns model at a single quantile, counting the weeks that landed more than two standard deviations from the mean. A <strong>quantile-quantile (QQ) plot</strong> makes that kind of comparison at every quantile at once. If a variable has a normal distribution, after standardization we know the median should be close to zero, the 2.5th percentile should be about -2, the 97.5th percentile about +2, and so on. The QQ plot puts the theoretical normal quantile on the horizontal axis and the corresponding observed quantile on the vertical axis. If the data are truly close to normal, the points will trace out a straight line. Large departures from the line mean normality is questionable, and <em>where</em> the points bend away tells you <em>how</em> the data deviate. The examples below show the common patterns.</p>
-<p><a href="#fig-qq-animation" class="quarto-xref">Figure&nbsp;<span>9.6</span></a> builds the plot up one quantile at a time, using our z-scored weekly returns. Each frame fixes a single percentile and asks where it lands in two distributions: in the data (the blue line, dropped onto the density-scaled histogram at top) and in a standard normal (the purple line, on the standard normal density below). That pair of quantiles — one observed, one theoretical — becomes a single point on the plot at right. Sweeping from the 1st percentile to the 99th plots one point per comparison, and the points trace out the QQ curve.</p>
+<p><a href="#fig-qq-animation" class="quarto-xref">Figure&nbsp;<span>9.7</span></a> builds the plot up one quantile at a time, using our z-scored weekly returns. Each frame fixes a single percentile and asks where it lands in two distributions: in the data (the blue line, dropped onto the density-scaled histogram at top) and in a standard normal (the purple line, on the standard normal density below). That pair of quantiles — one observed, one theoretical — becomes a single point on the plot at right. Sweeping from the 1st percentile to the 99th plots one point per comparison, and the points trace out the QQ curve.</p>
 <div id="fig-qq-animation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-qq-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/qq_animation.gif" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.6: Building a QQ plot for the z-scored weekly returns. Each frame matches one percentile between the data (blue, top) and the standard normal (purple, bottom) and records the pair as a point on the right. The finished curve stays close to the 45-degree line, bending away only at the extreme quantiles.
+Figure&nbsp;9.7: Building a QQ plot for the z-scored weekly returns. Each frame matches one percentile between the data (blue, top) and the standard normal (purple, bottom) and records the pair as a point on the right. The finished curve stays close to the 45-degree line, bending away only at the extreme quantiles.
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-qq-panels" class="quarto-xref">Figure&nbsp;<span>9.7</span></a> runs four variables through the same comparison, each with its QQ plot beside a histogram of its z-scores.</p>
+<p><a href="#fig-qq-panels" class="quarto-xref">Figure&nbsp;<span>9.8</span></a> runs four variables through the same comparison, each with its QQ plot beside a histogram of its z-scores.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qq-panels" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -628,7 +687,7 @@ Figure&nbsp;9.6: Building a QQ plot for the z-scored weekly returns. Each frame 
 <img src="prob_04_normal_files/figure-html/fig-qq-panels-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.7: Left column: QQ plots of the z-scored variables against the standard normal, so the reference line is the same 45-degree line in every panel. Right column: histograms of the same z-scores with the standard normal density overlaid. Hourly wages are a random subsample of 5,000 workers; daily electricity demand is the mean hourly DFW load for each day from 2016–2020.
+Figure&nbsp;9.8: Left column: QQ plots of the z-scored variables against the standard normal, so the reference line is the same 45-degree line in every panel. Right column: histograms of the same z-scores with the standard normal density overlaid. Hourly wages are a random subsample of 5,000 workers; daily electricity demand is the mean hourly DFW load for each day from 2016–2020.
 </figcaption>
 </figure>
 </div>
@@ -643,27 +702,13 @@ Figure&nbsp;9.7: Left column: QQ plots of the z-scored variables against the sta
 <img src="prob_04_normal_files/figure-html/fig-qq-reference-1.png" class="img-fluid figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.8: QQ plots for six simulated datasets of the same size as the returns data (n = 104), each drawn exactly from a normal distribution. Even perfectly normal data wobbles around the line at the extreme quantiles; deviations of this size are consistent with sampling variation.
+Figure&nbsp;9.9: QQ plots for six simulated datasets of the same size as the returns data (n = 104), each drawn exactly from a normal distribution. Even perfectly normal data wobbles around the line at the extreme quantiles; deviations of this size are consistent with sampling variation.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Looking through the other examples, we see sustained deviations from normality. Hourly wages bow high above the line at the top: extreme earners are far larger than any normal distribution would produce — strong right skew. The flat run of identical points at the very top is a survey artifact, not a distributional shape: the largest reported earnings are capped at a common value. Taking logs — the transformation from Chapter 4 — pulls the wage points much closer to the line, but we still see some evidence of heavier tails than expected. Daily electricity demand flattens out at both ends of the line: its extremes are less extreme than a normal’s. The flat stretch of points cutting across the line in the middle of the panel is a different signal — many days pile up at similar loads, suggesting a mode or “shoulder” — and neither feature is consistent with a normal distribution.</p>
-<div id="exercise-qq-model-check" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 9.6: </strong>Comparing asset returns with QQ plots</div><div class="fobx-body">
-<p>Using the weekly AAPL and MSTR returns in the course data, create a histogram and a normal QQ plot for each variable using software of your choice.</p>
-<ol type="1">
-<li>Which asset’s weekly returns are better approximated by a normal distribution? Cite a feature of the plots that supports your conclusion.</li>
-<li>For the less-normal variable, would a normal model be more vulnerable when estimating the middle 50% of returns or the probability of an extreme weekly loss? Explain.</li>
-</ol>
-<details aria-label="Solution" id="solution-qq-model-check" class="solution-details">
-<summary>Solution</summary>
-<p>AAPL returns are better approximated by a normal distribution: their histogram is more nearly symmetric and most of their QQ points stay closer to a straight line. The endpoints still depart from the line, so the approximation is not perfect. MSTR returns show stronger right skew and a more pronounced departure in the upper tail.</p>
-<p>For MSTR, a normal model is more vulnerable when estimating an extreme-tail probability. Its middle quantiles lie closer to the reference line than its tails do, so an estimate of the middle 50% is less sensitive to the visible departure from normality than an estimate involving an extreme weekly loss.</p>
-</details>
-</div></div>
-</div>
 </section>
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
