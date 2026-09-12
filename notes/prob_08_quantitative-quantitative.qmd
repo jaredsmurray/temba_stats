@@ -128,6 +128,38 @@ Wages tend to increase with years of education. The spread of wages seems to inc
 
 
 
+:::: {.Exercise #exercise-route-scatter}
+## Delivery routes
+
+The plot shows synthetic data for 60 delivery routes. Each point pairs a
+route's distance with its delivery time. Describe how delivery time changes
+with distance. Is the spread of times for routes near 10 miles about the same
+as for routes near 40 miles?
+
+```{r}
+#| label: fig-exercise-route-scatter
+#| fig-cap: "Synthetic distances and delivery times for 60 routes."
+#| fig-width: 6
+#| fig-height: 4
+set.seed(1301)
+route_exercise <- tibble(
+  distance = runif(60, 5, 45),
+  time = 15 + distance + (distance / 3) * runif(60, -1, 1)
+)
+ggplot(route_exercise, aes(x = distance, y = time)) +
+  geom_point(color = "steelblue", alpha = 0.7) +
+  scale_x_continuous(breaks = c(10, 20, 30, 40)) +
+  labs(x = "Route distance (miles)", y = "Delivery time (minutes)")
+```
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+Delivery time tends to increase with distance. The vertical spread is wider
+near 40 miles than near 10 miles. Delivery times vary more around the
+upward trend at longer distances.
+:::
+::::
+
 ## Smooth curves {#sec-nonlinear}
 
 Electricity demand is high on both hot and cold days, when households and
@@ -160,7 +192,12 @@ ggplot(ercot_daily, aes(x = temp, y = load)) +
   labs(x = expression("Temperature ("*degree*"F)"), y = "Load (MW)")
 ```
 As expected the curve bends upward at both ends: demand is lower on mild days and higher
-at temperature extremes. You can think about the curve as representing the *average* load
+at temperature extremes.
+
+::: {.callout-tip #tip-smoother-conditional-average}
+## Reading a conditional average
+
+You can think about the curve as representing the *average* load
 across all days where the temperature takes a specific value. For example, the curve passes through
 about `r comma(round(load_at_50, -3))` MW at 50°F. That is, according to the smooth
 summary, if we observe load on many 50°F days, the average load would be about
@@ -168,6 +205,7 @@ summary, if we observe load on many 50°F days, the average load would be about
 near 50°F depicts how difficult it is to predict load for an individual 50°F day.
 These are *conditional* location and spread: given that it is 50°F outside,
 what is our best guess for load, and how wrong are we likely to be?
+:::
 
 ::: {.TechnicalDetail #technical-smoother-construction}
 ## Constructing a smooth curve
@@ -198,11 +236,33 @@ ggplot(austin, aes(x = living_area_sq_ft, y = latest_price)) +
   labs(x = "Living area (sq ft)", y = "Sale price")
 ```
 
+::: {.callout-warning #warning-smoother-bends}
+## Small bends in a smoother
+
 The curve bends gently, but small bends need not reflect a stable relationship
 in the population. We should be particularly cautious among the larger homes,
 where fewer observations determine the curve. A smoother can help us see a
 relationship without requiring it to be linear; it will generally not be
 perfectly straight even when the underlying relationship is linear.
+:::
+
+:::: {.Exercise #exercise-smoother-individual}
+## A prediction for one day
+
+A planner reads the smooth curve in @fig-ercot-load-temp at 50°F and says,
+"On a 50°F day, electricity demand will be
+`r comma(round(load_at_50, -3))` MW." How would you revise this statement?
+What part of the plot helps you judge how far an individual day's demand
+might be from that value?
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+The curve estimates *average* demand on days near 50°F at about
+`r comma(round(load_at_50, -3))` MW. Individual days can have higher or lower
+demand. The vertical spread of the points near 50°F shows the variation
+around that average.
+:::
+::::
 
 ## Linear Relationships and Correlation {#sec-cov-cor}
 
@@ -255,8 +315,7 @@ must vary for their correlation to be defined.
 
 The simulated scatterplots below show different strengths and directions of
 linear association. Each panel contains 500 observations from a probability
-model with the labelled **population correlation**. These labels describe
-the generating models; the sample correlations $r$ fluctuate around them.
+model with the labelled population correlation.
 
 ```{r}
 #| label: fig-corr-panels
@@ -271,7 +330,7 @@ corr_panels <- map_dfr(rs, function(r) {
   x <- rnorm(n)
   y <- r * x + sqrt(1 - r^2) * rnorm(n)
   tibble(x = x, y = y, panel = match(r, rs),
-         label = paste0("Population correlation\n", number(r, accuracy = 0.01)))
+         label = number(r, accuracy = 0.01))
 }) |>
   mutate(label = factor(label, levels = unique(label)))
 
@@ -289,6 +348,44 @@ $r=`r number(cor(austin$living_area_sq_ft, austin$latest_price), accuracy = 0.01
 The positive value agrees with the upward pattern in the scatterplot, while
 the departures from a perfect straight line leave the correlation below 1.
 
+
+:::: {.Exercise #exercise-depot-correlation}
+## Comparing two depots
+
+The two panels show synthetic data for 80 deliveries at each of two depots.
+Both panels use the same axis scales and show a similar upward trend in
+delivery time with distance. Which depot has the larger correlation between
+distance and time? Explain why the shared trend does not imply equal
+correlations.
+
+```{r}
+#| label: fig-exercise-depot-correlation
+#| fig-cap: "Synthetic delivery distances and times at two depots, shown on common scales."
+#| fig-width: 7
+#| fig-height: 4
+set.seed(1302)
+depot_distance <- runif(80, 5, 45)
+depot_deviation <- runif(80, -1, 1)
+depot_exercise <- tibble(
+  distance = rep(depot_distance, 2),
+  time = c(20 + 0.8 * depot_distance + 3 * depot_deviation,
+           20 + 0.8 * depot_distance + 18 * depot_deviation),
+  depot = rep(c("Depot A", "Depot B"), each = 80)
+)
+ggplot(depot_exercise, aes(x = distance, y = time)) +
+  geom_point(color = "steelblue", alpha = 0.65) +
+  facet_wrap(~depot, nrow = 1) +
+  labs(x = "Delivery distance (miles)", y = "Delivery time (minutes)")
+```
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+Both correlations are positive, but Depot A has the larger correlation
+because its points fall closer to a straight line. At Depot B, delivery
+times vary more at each distance. Correlation describes how closely the
+points follow the linear trend, as well as its direction.
+:::
+::::
 
 ## Correlation and non-linear relationships {#sec-corr-limits}
 
@@ -389,6 +486,26 @@ Anscombe panels show. We should check whether such an observation is a data
 error or a valid but unusual case. A valid observation can still make one
 summary an incomplete description of the rest of the data.
 
+```{r}
+#| label: market-extreme-correlation
+#| include: false
+lowest_market_week <- returns |> slice_min(market, n = 1, with_ties = FALSE)
+returns_without_lowest <- returns |>
+  filter(date != lowest_market_week$date)
+cor_all_weeks <- cor(returns$market, returns$TSLA)
+cor_without_lowest <- cor(returns_without_lowest$market, returns_without_lowest$TSLA)
+```
+
+An extreme observation need not have a large effect. In the Tesla–S&P 500
+data, the market's worst week ended on
+`r format(lowest_market_week$date, '%B %d, %Y')`: the S&P 500 returned
+`r percent(lowest_market_week$market, accuracy = 0.1)` and Tesla returned
+`r percent(lowest_market_week$TSLA, accuracy = 0.1)`. Removing that week
+changes the correlation from `r number(cor_all_weeks, accuracy = 0.00001)`
+to `r number(cor_without_lowest, accuracy = 0.00001)` --- almost no change.
+The positive association in this scatterplot does not depend on the
+market's worst week.
+
 ::: {.callout-warning}
 ## Limits of correlation
 
@@ -401,6 +518,53 @@ conditional distribution to stay unchanged, as in
 Inspect the scatterplot alongside the correlation, because the number alone
 cannot tell us whether either of these problems is present.
 :::
+
+:::: {.Exercise #exercise-correlation-interpretation}
+## One large campaign
+
+The plot shows synthetic advertising spending and sales for 41 campaigns.
+The orange point represents a national campaign; the other campaigns ran
+in individual cities. The company reports the correlation using all 41
+campaigns as evidence that spending closely predicts sales for its city
+campaigns.
+
+How do you expect the correlation to change if we leave out the national
+campaign? Does the company's conclusion describe the city campaigns well?
+Explain using the plot.
+
+```{r}
+#| label: fig-exercise-campaign-correlation
+#| fig-cap: "Synthetic spending and sales for 40 city campaigns and one national campaign."
+#| fig-width: 6
+#| fig-height: 4
+set.seed(1304)
+campaign_exercise <- tibble(
+  spending = runif(40, 1, 5),
+  sales = 35 + 2 * spending + rnorm(40, sd = 6),
+  campaign = "City"
+) |>
+  add_row(spending = 20, sales = 140, campaign = "National")
+city_campaigns <- filter(campaign_exercise, campaign == "City")
+campaign_cor <- cor(campaign_exercise$spending, campaign_exercise$sales)
+city_cor <- cor(city_campaigns$spending, city_campaigns$sales)
+ggplot(campaign_exercise, aes(spending, sales, color = campaign)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = c(City = "steelblue", National = "darkorange"),
+                     name = "Campaign") +
+  labs(x = "Advertising spending (thousands of dollars)",
+       y = "Sales (thousands of dollars)")
+```
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+The correlation falls from `r number(campaign_cor, accuracy = 0.01)` to
+`r number(city_cor, accuracy = 0.01)`. The national campaign has much
+higher spending and sales than all the city campaigns, making the overall
+association look strong. Among the city campaigns, sales vary considerably
+at similar spending levels. The correlation across all 41 campaigns
+overstates how closely spending and sales track each other among the city campaigns.
+:::
+::::
 
 ## Covariance {#sec-covariance}
 
@@ -547,6 +711,21 @@ $s_{z_xz_y}$ is the sample covariance of the two columns of z-scores.
 Standardizing both variables removes their original units.
 ::::
 
+:::: {.Exercise #exercise-covariance-units}
+## Changing price units
+
+Suppose we convert every Austin price from dollars to thousands of dollars.
+What happens to the standard deviation of price, the covariance between
+price and size, and the correlation between price and size?
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+The standard deviation of price and the covariance between price and size
+each become one-thousandth as large. The correlation between price and
+size stays the same.
+:::
+::::
+
 ## Covariance and correlation in probability models {#sec-rv-correlation}
 
 Covariance and correlation are also defined for pairs of quantitative *random*
@@ -590,6 +769,28 @@ $$
 The model's correlation and its two standard deviations together determine
 its covariance.
 :::
+
+:::: {.Exercise #exercise-model-covariance}
+## Comparing sales across stores
+
+A retailer models weekly sales at three stores, measured in thousands of
+dollars. The standard deviations of sales are 4 at Store A, 6 at Store B,
+and 12 at Store C. The correlation between sales at A and B is 0.8; between
+A and C it is 0.4.
+
+Calculate the covariance between sales at A and B and between sales at A
+and C. Which pair has the stronger linear association? Explain why the
+covariances alone do not answer that question.
+
+::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
+
+Both covariances are 19.2 in squared thousands of dollars:
+$0.8(4)(6)=19.2$ for A and B, and $0.4(4)(12)=19.2$ for A and C.
+Sales at A and B have the stronger linear association, with correlation
+0.8 rather than 0.4. The larger standard deviation at C produces the same
+covariance despite the weaker correlation.
+:::
+::::
 
 In the July 9, 2026 FedWatch model from Chapter 12, $X$ and $Y$ are the midpoints
 of the target ranges after the July and September meetings. The table below
@@ -666,33 +867,45 @@ $$
 Each expected deviation is zero, so the covariance is zero.
 :::
 
-## Practice
+:::: {.Exercise #exercise-zero-correlation-independence}
+## Temperature and measurement error
 
-:::: {.Exercise #exercise-correlation-interpretation}
-## Reading relationships
+The plot shows synthetic operating temperatures and measurement errors
+for a sensor. An error of zero means the sensor reads correctly; positive
+and negative errors mean it reads too high or too low.
 
-1. In Anscombe's quartet, which plots would make a correlation alone an
-   incomplete description? Explain what you would report alongside it.
-2. Suppose we convert every Austin price from dollars to thousands of dollars.
-   What happens to the price standard deviation, the covariance with size,
-   and the correlation with size?
-3. Two random variables have standard deviations 2 and 3 and correlation
-   $-0.5$. Find their covariance.
-4. A report finds a sample correlation near zero and concludes that two
-   measured variables are independent. What could a scatterplot reveal that
-   the report missed?
+```{r}
+#| label: fig-exercise-sensor-error
+#| fig-cap: "Synthetic operating temperatures and measurement errors for 600 sensor readings."
+#| fig-width: 6
+#| fig-height: 4
+set.seed(1307)
+sensor_exercise <- tibble(
+  temperature = runif(600, 20, 40),
+  error = (0.15 + 0.1 * (temperature - 20)) * rnorm(600)
+)
+sensor_cor <- cor(sensor_exercise$temperature, sensor_exercise$error)
+ggplot(sensor_exercise, aes(temperature, error)) +
+  geom_hline(yintercept = 0, color = "grey60", linetype = "dashed") +
+  geom_point(color = "steelblue", alpha = 0.4) +
+  labs(x = expression("Operating temperature ("*degree*"C)"),
+       y = "Measurement error (mm)")
+```
+
+The sample correlation is `r number(sensor_cor, accuracy = 0.01)`, and
+the errors average close to zero throughout the temperature range. An
+engineer concludes that measurement error is independent of temperature.
+Does the plot support that conclusion? If the sensor must measure within
+1 mm of the correct value, would you be equally comfortable using it
+near 20°C and near 40°C?
 
 ::: {.details .solution-details summary="Solution" display="show" non-interactive-summary="Solution"}
 
-1. The upper-right panel’s curve and the lower two panels’ unusual observations
-   require description alongside correlation. Even the upper-left
-   panel's correlation does not describe the variables' units or ranges.
-2. The price standard deviation and covariance with size each become
-   one-thousandth as large. Correlation stays the same.
-3. The covariance is $-0.5\times2\times3=-3$.
-4. The scatterplot could reveal a strong curved relationship despite the
-   near-zero correlation. Correlation summarizes linear association; a sample
-   correlation near zero does not establish independence in the population.
+The errors spread farther from zero at higher temperatures, even though
+their average stays near zero. The conditional distribution of error
+changes with temperature, so the plot contradicts independence. Errors
+near 20°C mostly fall within 1 mm of zero; many errors near 40°C exceed
+that tolerance. The sensor is more precise at the lower temperatures.
 :::
 ::::
 

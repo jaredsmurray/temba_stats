@@ -169,6 +169,41 @@ $$
 = `r number(mean(lending_subs$purpose == "small_business"), accuracy = 0.001)`.
 $$
 
+:::: {.Exercise #exercise-hybrid-work-margins}
+## Hybrid work: joint and marginal proportions
+
+Recall the [Bloom, Han, and Liang hybrid-work
+experiment](prob_02_probability-basics.qmd#exercise-workplace-random-variables)
+from Chapter 7. The researchers assigned Trip.com employees either to work in
+the office five days a week or to work from home two days a week [@wfh-bloom].
+The table records how many employees in each group stayed at or left the firm:
+
+| Assigned schedule | Stayed | Left | Total |
+|---|---:|---:|---:|
+| Control | 761 | 59 | 820 |
+| Hybrid WFH | 754 | 38 | 792 |
+| **Total** | **1,515** | **97** | **1,612** |
+
+1. Find the joint proportion of employees who were assigned to Hybrid WFH
+   and left the firm.
+2. Find the marginal distribution of assigned schedule.
+3. Find the marginal distribution of attrition status.
+
+::: {#solution-hybrid-work-margins .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The Hybrid WFH/Left cell contains 38 of the 1,612 employees, so its joint
+proportion is $38/1612=0.0236$.
+
+The row totals give the marginal distribution of assigned schedule:
+$820/1612=0.5087$ for Control and $792/1612=0.4913$ for Hybrid WFH.
+The column totals give the marginal distribution of attrition status:
+$1515/1612=0.9398$ stayed and $97/1612=0.0602$ left. Each distribution divides
+by all 1,612 employees and sums to one.
+
+:::
+::::
+
 The crosstab has everything we need to answer the opening question: which loan purposes have the greatest default risk? To compute the small-business default rate, the only relevant information is about small-business loans, so we ignore the other rows and divide by the small-business loan total rather than the grand total. From the counts in @tbl-purpose-default-counts, `r comma(sum(lending_subs$purpose == "small_business" & lending_subs$default == 1))` of the `r comma(sum(lending_subs$purpose == "small_business"))` small-business loans charged off:
 
 $$
@@ -209,11 +244,9 @@ lending_subs |>
 ```
 
 :::: {.Exercise #exercise-hybrid-work-attrition}
-## Hybrid work and attrition
+## Hybrid work: conditional distributions
 
-Bloom, Han, and Liang randomly assigned 1,612 employees to a control schedule
-or a hybrid schedule with two work-from-home days per week [@wfh-bloom]. During
-the study, the following employees stayed at or left the firm:
+Return to the [hybrid-work study](#exercise-hybrid-work-margins):
 
 | Assigned schedule | Stayed | Left | Total |
 |---|---:|---:|---:|
@@ -221,42 +254,17 @@ the study, the following employees stayed at or left the firm:
 | Hybrid WFH | 754 | 38 | 792 |
 | **Total** | **1,515** | **97** | **1,612** |
 
-1. Choose one employee at random from the study. Find the joint probability
-   that the employee was assigned to Hybrid WFH and left the firm.
-2. Find the marginal distribution of assigned schedule.
-3. Find the marginal distribution of attrition status.
-4. Find the conditional distribution of attrition status within each assigned
+Choose one employee at random from the study.
+
+1. Find the conditional distribution of attrition status within each assigned
    schedule. Check that each conditional distribution sums to one.
-5. Find $\Pr(\text{Hybrid WFH}\mid\text{Left})$.
-6. Explain why the answer to part 5 differs from
+2. Find $\Pr(\text{Hybrid WFH}\mid\text{Left})$.
+3. Explain why the answer to part 2 differs from
    $\Pr(\text{Left}\mid\text{Hybrid WFH})$. Name the denominator in each
    calculation.
 
 ::: {#solution-hybrid-work-attrition .details .solution-details summary="Solution"
 display="show" non-interactive-summary="Solution"}
-
-The Hybrid WFH/Left cell contains 38 of the 1,612 employees, so its joint
-probability is
-
-$$
-\frac{38}{1612}=0.0236.
-$$
-
-The row totals give the marginal distribution of assigned schedule:
-
-$$
-\Pr(\text{Control})=\frac{820}{1612}=0.5087,
-\qquad
-\Pr(\text{Hybrid WFH})=\frac{792}{1612}=0.4913.
-$$
-
-The column totals give the marginal distribution of attrition status:
-
-$$
-\Pr(\text{Stayed})=\frac{1515}{1612}=0.9398,
-\qquad
-\Pr(\text{Left})=\frac{97}{1612}=0.0602.
-$$
 
 Within the control group, the conditional distribution of attrition status is
 
@@ -358,6 +366,28 @@ two variables.
 
 So far we have read @tbl-purpose-default-joint as a record of what happened to `r comma(loan_n)` historical loans with these three purposes. If those loans are representative of future loans with the same purposes, the table gives estimated probabilities for a future loan drawn from this restricted population.
 
+:::: {.Exercise #exercise-observed-future-share}
+## From an observed share to a future probability
+
+Suppose a lender records 40 defaults among 200 completed loans with the same
+three purposes used in this chapter. An analyst computes $40/200=0.20$.
+
+1. What does 0.20 describe about these completed loans?
+2. Under what assumption could the analyst use 0.20 as an estimated default
+   probability for a future loan from this three-purpose population?
+
+::: {#solution-observed-future-share .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The value 0.20 is the observed proportion of the 200 loans that defaulted.
+It describes those completed loans. To use it as an estimated probability for
+a future loan, we assume that these historical loans represent the future
+three-purpose population, including its mix of purposes and default behavior.
+The observed proportion alone does not establish that assumption.
+
+:::
+::::
+
 ::: {.Definition #defn-joint-distribution}
 ## Joint probability distribution
 
@@ -368,7 +398,13 @@ as any probability distribution: every cell is non-negative, and all the cells
 together sum to one.
 :::
 
-Let $P$ code the purpose of a future loan from this restricted population: $P=1$ for debt consolidation, $P=2$ for home improvement, and $P=3$ for small business. The numbers are labels, not quantities; they let us represent a categorical outcome with a numerical random variable. Let $D$ be the loan's eventual default indicator. We will use the historical relative frequencies as a probability model for that loan: the probability assigned to each purpose--outcome pair is its count divided by `r comma(loan_n)`. For example,
+::: {.Notation #notation-loan-outcomes}
+## Loan purpose and default
+
+Let $P$ code the purpose of a future loan from this restricted population: $P=1$ for debt consolidation, $P=2$ for home improvement, and $P=3$ for small business. The numbers are labels, not quantities; they let us represent a categorical outcome with a numerical random variable. Let $D$ be the loan's eventual default indicator.
+:::
+
+We will use the historical relative frequencies as a probability model for that loan: the probability assigned to each purpose--outcome pair is its count divided by `r comma(loan_n)`. For example,
 
 $$
 \Pr(\text{small business and default})
@@ -629,7 +665,7 @@ $0.24/0.30=0.80$.
 ::::
 
 ::: {.callout-warning}
-## Common mistake: $\Pr(A \mid B)$ and $\Pr(B \mid A)$ are different numbers
+## Reversing the condition changes the denominator
 
 Conditional probabilities are asymmetric. The two share a numerator --- the
 joint probability of $A$ and $B$ --- but divide it by different *base rates*

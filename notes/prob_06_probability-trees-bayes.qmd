@@ -354,11 +354,18 @@ $$
 \Pr(A \mid B) = \frac{\Pr(A \text{ and } B)}{\Pr(B)}.
 $$
 
+::: {.callout-note #note-product-rule}
+## The product rule
+
 For $\Pr(B)>0$, multiplying both sides by $\Pr(B)$ gives the **product rule**:
 
 $$
 \Pr(A \text{ and } B) = \Pr(B)\Pr(A \mid B).
 $$
+
+A joint probability is the probability of the condition times the probability
+of the other event given that condition.
+:::
 
 The first factor is the probability of reaching the July branch; the second
 is the probability of the September move given that July outcome. Their
@@ -374,6 +381,24 @@ $$
  \approx `r p4(p_hike_hike)`.
 \end{aligned}
 $$
+
+:::: {.Exercise #exercise-subscription-path}
+## A subscription path
+
+Suppose 30% of visitors to a website start a free trial. Among visitors who
+start a trial, 40% buy a subscription. What is the probability that a randomly
+selected visitor starts a trial and buys a subscription? Explain why 0.40
+alone does not answer this question.
+
+::: {#solution-subscription-path .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+Multiplying along the path gives $0.30(0.40)=0.12$. Thus, 12% of all visitors
+start a trial and buy a subscription. The 0.40 conditions on having started a
+trial; it describes only the visitors who reach that branch.
+
+:::
+::::
 
 ## The law of total probability
 
@@ -447,6 +472,9 @@ ggplot() +
   theme_void()
 ```
 
+::: {.callout-note #note-total-probability}
+## The law of total probability
+
 The **law of total probability** applies the same calculation to any event
 $B$. Suppose $A_1,\ldots,A_k$ are mutually exclusive and exhaustive events:
 exactly one of them occurs. For events $A_i$ with positive probability,
@@ -458,6 +486,7 @@ $$
 Each term is the joint probability of $A_i$ and $B$. Adding these terms accounts
 for every way $B$ can occur, just as summing a column of a joint probability
 table gives its marginal probability.
+:::
 
 Computing the other joint probabilities and summing the rows and columns gives
 a complete probability table like the one we started with for LendingClub:
@@ -492,6 +521,29 @@ The loan table's conditional default distribution changes across purposes. In
 the FedWatch construction, the September *move* distribution stays essentially
 the same across July branches, even though the resulting September target
 range depends on July's target.
+
+:::: {.Exercise #exercise-takeout-total-probability}
+## Orders ready on time
+
+Suppose a restaurant receives 70% of its takeout orders through its app and
+30% by phone. These are its only two ordering methods. It has 90% of app
+orders and 80% of phone orders ready at the promised time.
+
+1. Find the probability of each path that ends with an order ready on time.
+2. Find the probability that a randomly selected order is ready on time.
+   Explain why you can add the two path probabilities.
+
+::: {#solution-takeout-total-probability .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The app-and-ready path has probability $0.70(0.90)=0.63$, and the
+phone-and-ready path has probability $0.30(0.80)=0.24$. Every order uses
+exactly one of these methods, so the paths are mutually exclusive and account
+for every order ready on time. Adding gives $0.63+0.24=0.87$: 87% of orders
+are ready at the promised time.
+
+:::
+::::
 
 ## Worked example: Fraud screening {#sec-fraud-screening}
 
@@ -629,7 +681,10 @@ flag. Dividing by the probability of a flag restricts the comparison to the
 flagged transactions, as in the conditional tables in
 [Chapter 10](prob_05_multivariate-distributions.qmd#defn-conditional-probability-joint).
 
-More generally, let $A_1,\ldots,A_k$ be mutually exclusive and exhaustive
+::: {.callout-note #note-bayes-rule}
+## Bayes' rule
+
+Let $A_1,\ldots,A_k$ be mutually exclusive and exhaustive
 events with positive probabilities, and suppose $\Pr(B)>0$. Combining the
 product rule and the law of total probability gives
 
@@ -644,6 +699,37 @@ of the observed event $B$ within that group. These products are the joint
 probabilities of each group and $B$. Dividing by their sum makes the
 conditional probabilities add to 1, just as we renormalized the selected
 entries of a joint table in Chapter 10.
+:::
+
+:::: {.Exercise #exercise-email-base-rates}
+## The same filter in two inboxes
+
+Suppose an email filter flags 90% of spam messages and 10% of messages that
+are not spam. These rates are the same in two inboxes. In Inbox A, 10% of
+incoming messages are spam; in Inbox B, 50% are spam.
+
+1. For each inbox, find the probability that a message is spam given that
+   the filter flags it.
+2. Explain why these probabilities differ even though the filter has the
+   same flagging rates in both inboxes.
+
+::: {#solution-email-base-rates .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+For Inbox A, the spam-and-flagged path has probability $0.10(0.90)=0.09$,
+and the nonspam-and-flagged path has probability $0.90(0.10)=0.09$. The spam
+share among flagged messages is therefore $0.09/(0.09+0.09)=0.50$.
+
+For Inbox B, the corresponding path probabilities are $0.50(0.90)=0.45$ and
+$0.50(0.10)=0.05$. The spam share among flagged messages is
+$0.45/(0.45+0.05)=0.90$.
+
+Spam is more common among incoming messages in Inbox B, so more of its flags
+come from spam. Holding the two conditional flagging rates fixed does not
+hold the composition of flagged messages fixed.
+
+:::
+::::
 
 :::: {.Exercise #exercise-supplier-risk-tree}
 ## Supplier risk as a probability tree

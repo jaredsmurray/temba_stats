@@ -94,12 +94,12 @@ In words: add the two chances, then subtract the chance of both happening at onc
 :::: {.Exercise #exercise-overlapping-events}
 ## Overlapping and mutually exclusive events
 
-For one e-commerce order, the probability of a return is 0.18, the
+1. For one e-commerce order, the probability of a return is 0.18, the
 probability of a customer-service contact is 0.24, and the probability of both
 is 0.09. Find the probability that the order is returned or produces a
 customer-service contact. Why would adding 0.18 and 0.24 give the wrong answer?
 
-A separate order must use exactly one of two shipping methods: standard or
+2. A separate order must use exactly one of two shipping methods: standard or
 express. Their probabilities are 0.68 and 0.32. Find the probability that the
 order uses standard or express shipping, and explain why no overlap correction
 is needed.
@@ -107,14 +107,15 @@ is needed.
 ::: {#solution-overlapping-events .details .solution-details summary="Solution"
 display="show" non-interactive-summary="Solution"}
 
-Returns and customer-service contacts can overlap, so the addition rule gives
+1. Returns and customer-service contacts can overlap, so the addition rule gives
 
 $$
 0.18+0.24-0.09=0.33.
 $$
 
 Adding only the first two probabilities would count the 0.09 overlap twice.
-Standard and express shipping are mutually exclusive and cover the two
+
+2. Standard and express shipping are mutually exclusive and cover the two
 possible methods, so their union has probability $0.68+0.32=1$.
 
 :::
@@ -148,11 +149,14 @@ In the language of observed data, continuous random variables are always quantit
 :::: {.Exercise #exercise-workplace-random-variables}
 ## Three workplace outcomes
 
-The Bloom hybrid-work study records whether an employee leaves the firm, the
-number of lines of code an engineer writes in a day, and the time an employee
-spends commuting. Define a random variable for each corresponding future
-outcome and classify it as discrete or continuous. Why does the count remain
-discrete even when it has many possible values?
+Bloom, Han, and Liang ran a six-month experiment with 1,612 employees at
+Trip.com, a travel-services company [@wfh-bloom]. They randomly assigned each
+employee either to work in the office five days a week or to work from home two
+days a week. The study records whether an employee leaves the firm, the number
+of lines of code an engineer writes in a day, and the time an employee spends
+commuting. Define a random variable for each corresponding future outcome and
+classify it as discrete or continuous. Why does the count remain discrete even
+when it has many possible values?
 
 ::: {#solution-workplace-random-variables .details .solution-details summary="Solution"
 display="show" non-interactive-summary="Solution"}
@@ -397,6 +401,39 @@ $$
 for every $x$, and the two inequalities carry the same probability. This is an abstract mathematical consequence of using an idealized continuous probability distribution; for practical purposes it just means we don't have to worry about $\leq$ versus $<$ (or $\geq$ versus $>$) when we do probability calculations with continuous random variables.
 :::
 
+:::: {.Exercise #exercise-rectangle-density}
+## A rectangular density
+
+Suppose a machine's processing time $T$, in minutes, has the following
+probability density. Its graph is a rectangle over the interval from 0 to
+0.5 minutes and is zero everywhere else.
+
+| Processing time $t$ (minutes) | Density height $f(t)$ (per minute) |
+|---|---:|
+| $0 \leq t \leq 0.5$ | 2 |
+| Outside this interval | 0 |
+
+1. Check that the total area is one, even though the density height exceeds one.
+2. Find $\Pr(0.1<T<0.3)$ using the area of a rectangle.
+3. Find $\Pr(T=0.2)$. Explain why the density height of 2 is not this probability.
+
+::: {#solution-rectangle-density .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The total area is width times height, $0.5(2)=1$. Over the interval from 0.1
+to 0.3 minutes, the area is $(0.3-0.1)(2)=0.4$, so the interval has probability
+0.4. A single point has zero width and hence zero area: $\Pr(T=0.2)=0$.
+The density height measures probability per unit of time; probability comes
+from the area over an interval.
+
+:::
+::::
+
+
+
+Plotting the accumulated area under the density against the threshold $x$ traces the CDF, the model analogue of the empirical CDF we drew for observed prices in the first chapter. 
+
+
 ::: {.Definition #defn-cumulative-distribution-function}
 ## Cumulative distribution function
 
@@ -410,85 +447,7 @@ that jumps at each possible outcome, and the height of the jump is that
 outcome's probability.
 :::
 
-:::: {.Exercise #exercise-support-escalation-cdf}
-## Accumulate the support-ticket distribution
-
-The left panel repeats the completed PMF. On the empty axes, draw the CDF by
-accumulating the bar heights from left to right.
-
-```{r}
-#| label: fig-support-cdf-prompt
-#| fig-cap: "Left: the completed PMF for the number of escalations. Right: axes on which to draw its cumulative distribution function."
-#| fig-width: 9
-#| fig-height: 3.8
-#| echo: false
-p_support_pmf <- ggplot(support_pmf,
-                        aes(x = escalations, y = probability)) +
-  geom_col(fill = "steelblue", width = 0.65) +
-  geom_text(aes(label = number(probability, accuracy = 0.01)),
-            vjust = -0.5) +
-  scale_x_continuous(breaks = 0:3) +
-  scale_y_continuous(limits = c(0, 0.60),
-                     expand = expansion(mult = c(0, 0.02))) +
-  labs(x = "Number of escalations, X", y = "Probability", title = "PMF")
-
-p_support_cdf_blank <- ggplot() +
-  scale_x_continuous(breaks = 0:3, limits = c(-0.5, 3.5)) +
-  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
-  labs(x = "Threshold, x", y = "Accumulated probability",
-       title = "CDF: Pr(X ≤ x)")
-
-p_support_pmf | p_support_cdf_blank
-```
-
-1. Circle the CDF height that gives the probability of at most one escalation.
-2. Mark the jump at two escalations. How does its height recover the probability
-   of exactly two escalations?
-
-::: {#solution-support-escalation-cdf .details .solution-details summary="Solution"
-display="show" non-interactive-summary="Solution"}
-
-```{r}
-#| label: fig-support-cdf-worked
-#| fig-cap: "The PMF and CDF of the number of escalations. Each CDF jump has the same height as the corresponding PMF bar."
-#| fig-width: 9
-#| fig-height: 3.8
-#| echo: false
-support_cdf <- bind_rows(
-  tibble(x = -0.5, cumulative_probability = 0),
-  transmute(support_pmf,
-            x = escalations,
-            cumulative_probability = cumsum(probability)),
-  tibble(x = 3.5, cumulative_probability = 1)
-)
-
-p_support_cdf <- ggplot(support_cdf,
-                        aes(x = x, y = cumulative_probability)) +
-  geom_step(direction = "hv", color = "steelblue", linewidth = 1) +
-  geom_point(data = filter(support_cdf, x %in% 0:3),
-             color = "steelblue", size = 2.5) +
-  annotate("segment", x = 2, xend = 2, y = 0.83, yend = 0.95,
-           color = "darkorange", linewidth = 1.5) +
-  annotate("label", x = 2.25, y = 0.89, label = "jump = 0.12",
-           size = 3.5, fill = "white") +
-  annotate("label", x = 1, y = 0.83, label = "at most 1 = 0.83",
-           hjust = -0.08, vjust = 1.2, size = 3.5, fill = "white") +
-  scale_x_continuous(breaks = 0:3, limits = c(-0.5, 3.5)) +
-  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
-  labs(x = "Threshold, x", y = "Accumulated probability",
-       title = "CDF: Pr(X ≤ x)")
-
-p_support_pmf | p_support_cdf
-```
-
-The CDF reaches 0.83 at one escalation, so the probability of at most one is
-0.83. At two escalations it rises from 0.83 to 0.95. That jump has height
-$0.95-0.83=0.12$, matching the PMF bar at two.
-
-:::
-::::
-
-Plotting the accumulated area under the density against the threshold $x$ traces the CDF, the model analogue of the empirical CDF we drew for observed prices in the first chapter. The relationship runs both ways: the density at $x$ is the rate at which cumulative probability accumulates as the threshold passes $x$ (if you've had calculus: the PDF is the derivative of the CDF). @fig-price-model-cdf shows the pair for a single threshold (\$500K) and probability.
+The relationship runs both ways: the density at $x$ is the rate at which cumulative probability accumulates as the threshold passes $x$ (if you've had calculus: the PDF is the derivative of the CDF). @fig-price-model-cdf shows the pair for a single threshold (\$500K) and probability.
 
 ```{r}
 #| label: fig-price-model-cdf
@@ -531,7 +490,7 @@ p_dens | p_cdf
 Varying the threshold traces out the CDF:
 
 ![Tracing out the CDF. As the threshold sweeps from left to right, the shaded area under the density (left) accumulates, and the CDF (right) records the running total, climbing from 0 toward 1.](images/cdf_accumulation.gif){#fig-cdf-animation}
-
+<!-- 
 :::: {.Exercise #exercise-continuous-delivery-cdf}
 ## Areas and a continuous CDF
 
@@ -591,7 +550,9 @@ A continuous distribution assigns probability zero to any one exact value.
 Adding or removing the endpoints 2 and 5 therefore does not change the area.
 
 :::
-::::
+:::: -->
+
+## Additional practice {.unnumbered}
 
 :::: {.Exercise #exercise-marketing-channel-union}
 ## Overlapping marketing channels
@@ -616,7 +577,6 @@ sees neither promotion.
 :::
 ::::
 
-Just as we boiled a column of data down to a mean and a standard deviation, we can boil a probability distribution down to a few numbers that locate its center and measure its spread. Those numbers are among the distribution's **parameters** --- features of a probability distribution, of which center and spread are the first two we'll study --- and they are where the next chapter begins.
 
 ## Data used in this section {.unnumbered}
 

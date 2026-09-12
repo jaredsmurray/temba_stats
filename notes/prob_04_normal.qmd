@@ -160,17 +160,17 @@ ggplot(returns, aes(x = market)) +
   labs(x = "Weekly return", y = "Density")
 ```
 
-To be clear: Weekly returns are not literally normal --- a return can't fall below $-100\%$, and real markets tend to produce more extreme outcomes than a normal distribution would give. What we are claiming (for now!) is that the normal distribution is a *good enough approximation*: close enough to the true distribution, in the region we care about, that probability statements computed from it are useful. That's the case for any model, and to the extent we can, we should check whether our modeling assumptions are supported or not by the data available to us. We'll do that below.
+Weekly returns are not literally normal --- a return can't fall below $-100\%$, and real markets tend to produce more extreme outcomes than a normal distribution would give. We are using the normal distribution as an approximation in the region where we want to compute probabilities. We'll check that approximation against the data below.
 
 :::: {.Exercise #exercise-normal-model-plausibility}
 ## Which normal model is most plausible?
 
 A consultant proposes a normal model for each of the following variables:
 
-1. package weight from a calibrated filling machine;
-2. annual insurance claim cost per customer, when many customers have no claim
-   and a few have very large claims;
-3. the percentage of a firm's customers who renew their contracts next year.
+1. A calibrated filling machine produces packages whose weights vary around a target.
+2. Annual insurance claim cost per customer is zero for many customers and very
+   large for a few.
+3. A firm measures the percentage of its customers who renew their contracts next year.
 
 For each variable, identify a feature that supports or undermines a normal
 model. Which variable is most plausibly modeled as normal without a
@@ -239,12 +239,12 @@ p4 <- shade_panel(0, Inf,
 ```
 
 
-A few more examples reinforce our basic probability rules, and how they are used to compute probabilities for normal random variables:
+The complement rule gives the probability of a non-losing week:
 
 - **A non-losing week.** $\Pr(R \geq 0) = `r number(1 - pnorm(0, mu_r, sd_r), accuracy = 0.01)` = 1-\Pr(R < 0)$.
 - **A winning week.** $\Pr(R > 0) = \Pr(R \geq 0)$, because for a continuous distribution, $\Pr(R = 0) = 0$ and $\Pr(R \geq 0) = \Pr(R > 0) + \Pr(R = 0)$ since the two events are mutually exclusive.
 
-We can evaluate any normal probability we like using our basic probability rules and software that can evaluate the normal CDF to compute the areas like we did above. (The same is true for any continuous probability distribution.) Sketching the areas can be useful practice until you get the hang of this.
+Software evaluates the normal CDF, and our probability rules let us combine those areas. The same approach works with the CDF of any continuous distribution. If you are unsure which areas to add or subtract, a sketch can help you identify them.
 
 For example, the interval probability $\Pr(-1.5\% < R < 1.5\%)$ can be computed a few different ways: We can start by computing $\Pr(R < 1.5\%)$ and then subtracting off $\Pr(R < -1.5\%)$ to eliminate the tail area we didn't want. Or we could recognize that $\Pr(-1.5\% < R < 1.5\%) = 1 - [\Pr(R < -1.5\%) + \Pr(R > 1.5\%)]$, since $R<-1.5\%$ and $R>1.5\%$ are the two mutually exclusive ways to land outside the interval. @fig-interval-two-ways sketches both routes.
 
@@ -310,7 +310,7 @@ For the first probability, shade the area to the right of 60. Subtract the
 normal CDF at 60 from one:
 
 $$
-\Pr(T>60)=1-F_T(60)\approx 0.0228.
+\Pr(T>60)=1-\Pr(T\leq 60)\approx 0.0228.
 $$
 
 For the second, shade the area between 35 and 50 and subtract the two CDF
@@ -318,7 +318,7 @@ values:
 
 $$
 \Pr(35<T<50)
-=F_T(50)-F_T(35)
+=\Pr(T<50)-\Pr(T<35)
 \approx 0.5946.
 $$
 
@@ -393,7 +393,7 @@ ggplot(norm_df, aes(x = x, y = y)) +
   labs(x = "Weekly return", y = "Density")
 ```
 
-Applied to the returns model: about two weeks in three land between `r percent(mu_r - sd_r, accuracy = 0.1)` and `r percent(mu_r + sd_r, accuracy = 0.1)`; about 19 weeks in 20 land between `r percent(mu_r - 2 * sd_r, accuracy = 0.1)` and `r percent(mu_r + 2 * sd_r, accuracy = 0.1)`; and a week outside `r percent(mu_r - 3 * sd_r, accuracy = 0.1)` to `r percent(mu_r + 3 * sd_r, accuracy = 0.1)` should be a once-in-several-years event. The rule works in both directions. Given the parameters you can sketch the whole distribution in your head, and given an extreme outcome you can immediately place it: a $-4\%$ week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there's no dependence between consecutive weekly returns).
+Applied to the returns model: about two weeks in three land between `r percent(mu_r - sd_r, accuracy = 0.1)` and `r percent(mu_r + sd_r, accuracy = 0.1)`; about 19 weeks in 20 land between `r percent(mu_r - 2 * sd_r, accuracy = 0.1)` and `r percent(mu_r + 2 * sd_r, accuracy = 0.1)`; and a week outside `r percent(mu_r - 3 * sd_r, accuracy = 0.1)` to `r percent(mu_r + 3 * sd_r, accuracy = 0.1)` should be a once-in-several-years event. We can also use the rule to assess a particular return: a $-4\%$ week sits about two standard deviations below the mean, the kind of week you should expect about once a year (if there's no dependence between consecutive weekly returns).
 
 :::: {.Exercise #exercise-filling-empirical-rule}
 ## Applying the 68/95/99.7 rule
@@ -428,13 +428,73 @@ are at least that far from the mean in either direction.
 
 ## Z-scores, again {#sec-standard-normal}
 
-Standardizing a normal random variable --- $Z = (X - \mu)/\sigma$ --- produces the **standard normal distribution** $Z \sim N(0, 1)$. Since $Z$ now represents standard deviations from the mean, we know that *if a random variable is normally distributed*, we should see values more than 2 standard deviations from the mean about 5\% of the time, and values more than 3 standard deviations from the mean about 0.3\% of the time. Here z-scores tell us quite a bit about the associated probability of seeing an outcome at least as far from the mean as $Z$ --- but only because the random variable has a normal distribution.
+Standardizing a normal random variable --- $Z = (X - \mu)/\sigma$ --- produces the **standard normal distribution** $Z \sim N(0, 1)$. Since $Z$ now represents standard deviations from the mean, we know that *if a random variable is normally distributed*, we should see values more than 2 standard deviations from the mean about 5\% of the time, and values more than 3 standard deviations from the mean about 0.3\% of the time.
 
 ::: {.callout-warning}
-## Common mistake: Z-scores carry probabilities only for normal distributions
+## Common mistake: A z-score alone does not tell you a probability
 
-These probability statements attach to z-scores *only when the underlying random variable is normal*. For any distribution, a z-score still measures how many standard deviations an outcome sits from its mean --- that much is pure arithmetic. But the translation from z-scores to probabilities depends entirely on the distribution's shape. Under a normal distribution, an observation at least 2.5 standard deviations from the mean, $|Z| \geq 2.5$, is a once-in-eighty event; under a heavy-tailed one it might be a monthly occurrence.
+For any distribution with a finite mean and standard deviation, a z-score tells
+us how many standard deviations an outcome is from the mean. How unusual that
+distance is depends on the distribution's shape. The two distributions in
+@fig-z-score-tail-comparison both have mean 0 and standard deviation 1, so an
+outcome of 2.5 has the same z-score in either distribution. We shade the areas
+beyond $-2.5$ and $2.5$ to compare how often outcomes fall at least that far
+from the mean.
 :::
+
+```{r}
+#| label: fig-z-score-tail-comparison
+#| fig-cap: "Both distributions have mean 0 and standard deviation 1. The shaded areas beyond −2.5 and 2.5 contain about 1.24% of outcomes for the normal distribution and 2.27% for the other distribution. The right panel enlarges the right tail; the left tails are mirror images."
+#| fig-width: 8
+#| fig-height: 4
+#| echo: false
+
+# T with 3 degrees of freedom has mean 0 and variance 3.
+# Dividing T by sqrt(3) gives mean 0 and variance 1. The density
+# transformation includes the Jacobian sqrt(3).
+z_tail_grid <- tibble(z = seq(-6, 6, by = 0.002)) |>
+  mutate(`Normal distribution` = dnorm(z),
+         `Another distribution` = sqrt(3) * dt(sqrt(3) * z, df = 3)) |>
+  pivot_longer(-z, names_to = "distribution", values_to = "density") |>
+  mutate(distribution = factor(distribution,
+    levels = c("Normal distribution", "Another distribution")))
+
+z_tail_prob <- c(normal = 2 * pnorm(-2.5),
+                 other = 2 * pt(-2.5 * sqrt(3), df = 3))
+stopifnot(abs(integrate(function(z) sqrt(3) * dt(sqrt(3) * z, 3),
+                       -Inf, Inf)$value - 1) < 1e-7,
+          abs(integrate(function(z) z^2 * sqrt(3) * dt(sqrt(3) * z, 3),
+                       -Inf, Inf)$value - 1) < 1e-7,
+          round(100 * z_tail_prob[1], 2) == 1.24,
+          round(100 * z_tail_prob[2], 2) == 2.27)
+
+z_tail_base <- ggplot(z_tail_grid,
+  aes(z, density, color = distribution, fill = distribution)) +
+  geom_area(data = filter(z_tail_grid, z <= -2.5),
+            position = "identity", alpha = 0.3, color = NA) +
+  geom_area(data = filter(z_tail_grid, z >= 2.5),
+            position = "identity", alpha = 0.3, color = NA) +
+  geom_line(linewidth = 0.85) +
+  geom_vline(xintercept = c(-2.5, 2.5), linetype = "dashed",
+             color = "grey45", linewidth = 0.4) +
+  scale_color_manual(values = c("steelblue", "darkorange")) +
+  scale_fill_manual(values = c("steelblue", "darkorange")) +
+  labs(x = "z-score", y = "Density", color = NULL, fill = NULL) +
+  theme_minimal(base_size = 11) + theme(legend.position = "bottom")
+
+z_tail_full <- z_tail_base +
+  scale_x_continuous(breaks = c(-5, -2.5, 0, 2.5, 5)) +
+  coord_cartesian(xlim = c(-5, 5), ylim = c(0, 0.66), expand = FALSE) +
+  labs(title = "Two distributions")
+z_tail_zoom <- z_tail_base +
+  scale_x_continuous(breaks = c(2.5, 3, 4, 5)) +
+  coord_cartesian(xlim = c(2.5, 5), ylim = c(0, 0.019), expand = FALSE) +
+  labs(title = "Right tail (enlarged)")
+
+(z_tail_full | z_tail_zoom) +
+  plot_layout(guides = "collect") +
+  plot_annotation(theme = theme(legend.position = "bottom"))
+```
 
 :::: {.Exercise #exercise-skewed-z-score}
 ## What a z-score does—and does not—tell us
@@ -463,7 +523,58 @@ than normal. The z-score alone does not determine a probability.
 :::
 ::::
 
-The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks --- five or so out of our `r nrow(returns)` --- should land more than two standard deviations from the mean. In the data, `r sum(abs((returns$market - mu_r) / sd_r) > 2)` weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. Judging them by counting is crude; the next section builds a better diagnostic for checking normality (and more generally for comparing any two distributions).
+### Finding a normal percentile
+
+A lower-tail probability calculation starts with a threshold and finds the area below
+it. A **quantile** calculation reverses this: we specify the area and find the
+threshold. The 90th percentile of delivery time, for example, is the time by
+which the model predicts 90% of deliveries will arrive.
+
+Software finds the standard-normal value with the requested area to its left.
+For an area of 0.90, it gives $z\approx1.2816$, meaning
+$\Pr(Z\leq1.2816)\approx0.90$. To convert back to the original units, rearrange
+$z=(x-\mu)/\sigma$ to get $x=\mu+\sigma z$.
+
+For the earlier delivery model $T\sim N(42,9^2)$ minutes, the 90th percentile is
+
+$$
+42+9(1.2816)\approx53.53\text{ minutes}.
+$$
+
+About 90% of deliveries take at most 53.53 minutes under this model, and about
+10% take longer. For an upper-tail requirement, subtract that tail probability
+from one before finding the quantile: a threshold exceeded by 10% of deliveries
+is the 90th percentile.
+
+:::: {.Exercise #exercise-normal-fill-thresholds}
+## Fill-volume thresholds
+
+A filling machine's output follows $X\sim N(500,4^2)$ milliliters. The table
+gives standard-normal quantiles computed by software.
+
+| Probability to the left | Standard-normal quantile $z$ |
+|---|---:|
+| 0.20 | −0.8416 |
+| 0.95 | 1.6449 |
+
+1. Find the 20th percentile of fill volume and interpret it.
+2. Find the volume exceeded by 5% of fills. State the probability to the
+   left of this threshold before computing it.
+
+::: {#solution-normal-fill-thresholds .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The 20th percentile is $500+4(-0.8416)\approx496.63$ milliliters. Under the
+model, about 20% of fills contain at most this volume.
+
+A threshold with 0.05 above it has $1-0.05=0.95$ below it, so we use the
+95th-percentile quantile. The volume is
+$500+4(1.6449)\approx506.58$ milliliters; about 5% of fills exceed it.
+
+:::
+::::
+
+The z-score restatement also gives us a quick model check. If weekly returns really follow our fitted normal, about 5% of weeks --- five or so out of our `r nrow(returns)` --- should land more than two standard deviations from the mean. In the data, `r sum(abs((returns$market - mu_r) / sd_r) > 2)` weeks do: right in line. A handful of weeks land quite far out in the tails, and the tails are exactly where financial data tend to deviate from a normal model. The count checks how often returns exceed one threshold. The QQ plots in the next section compare observed and normal-model quantiles across the distribution; they can also compare quantiles from other distributions.
 
 ## QQ plots: checking normality {#sec-qq-plots}
 
@@ -540,34 +651,6 @@ ref_panel <- function(title) {
 
 Looking through the other examples, we see sustained deviations from normality. Hourly wages bow high above the line at the top: extreme earners are far larger than any normal distribution would produce --- strong right skew. The flat run of identical points at the very top is a survey artifact, not a distributional shape: the largest reported earnings are capped at a common value. Taking logs --- the transformation from Chapter 4 --- pulls the wage points much closer to the line, but we still see some evidence of heavier tails than expected. Daily electricity demand flattens out at both ends of the line: its extremes are less extreme than a normal's. The flat stretch of points cutting across the line in the middle of the panel is a different signal --- many days pile up at similar loads, suggesting a mode or "shoulder" --- and neither feature is consistent with a normal distribution.
 
-:::: {.Exercise #exercise-qq-model-check}
-## Comparing asset returns with QQ plots
-
-Using the weekly AAPL and MSTR returns in the course data, create a histogram
-and a normal QQ plot for each variable using software of your choice.
-
-1. Which asset's weekly returns are better approximated by a normal
-   distribution? Cite a feature of the plots that supports your conclusion.
-2. For the less-normal variable, would a normal model be more vulnerable when
-   estimating the middle 50% of returns or the probability of an extreme weekly
-   loss? Explain.
-
-::: {#solution-qq-model-check .details .solution-details summary="Solution"
-display="show" non-interactive-summary="Solution"}
-
-AAPL returns are better approximated by a normal distribution: their histogram
-is more nearly symmetric and most of their QQ points stay closer to a straight
-line. The endpoints still depart from the line, so the approximation is not
-perfect. MSTR returns show stronger right skew and a more pronounced departure
-in the upper tail.
-
-For MSTR, a normal model is more vulnerable when estimating an extreme-tail
-probability. Its middle quantiles lie closer to the reference line than its
-tails do, so an estimate of the middle 50% is less sensitive to the visible
-departure from normality than an estimate involving an extreme weekly loss.
-
-:::
-::::
 
 ## Data used in this section {.unnumbered}
 

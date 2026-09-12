@@ -298,9 +298,9 @@ Read the small-business row: a new small-business loan defaults with probability
 A software company observed 90 cancellations among 1,200 annual subscriptions
 last year.
 
-1. Compute the historical churn rate.
-2. The company uses that rate as a probability model for 200 otherwise similar
-   renewals. About how many cancellations does the model predict?
+1. Compute the historical churn (cancellation) rate.
+2. What's your best assessment of the probability a future customer churns?
+3. What are some reasons your assessment might be wrong?
 
 ::: {#solution-churn-model-part-a .details .solution-details summary="Solution"
 display="show" non-interactive-summary="Solution"}
@@ -311,9 +311,7 @@ $$
 \frac{90}{1{,}200}=0.075,
 $$
 
-or 7.5%. Applying that rate to 200 similar renewals predicts about
-$200(0.075)=15$ cancellations.
-
+or 7.5%. Our best guess at the probability a future customer cancels is 0.075, which assumes that the historical data are representative of what we can expect to see in the future. This might not hold if, for example, a competitor runs a promotion to entice customers to switch, or if the historical data includes a period where the company's service experienced frequent outages that are now fixed.
 :::
 ::::
 
@@ -335,7 +333,7 @@ Source: ["Price is Right --- Plinko HUGE Win!!!"](https://makeagif.com/gif/price
 **Not all samples are random.** Before we continue, it's important to remember that not all samples are random. When you're in class, you and your classmates comprise a sample of all adults currently in the United States. But you're not a randomly selected sample, and as a cohort you differ from that overall population in important ways. If we tried to use you as "data" to learn about academic achievement in the overall population our estimate would be wildly inaccurate. We prefer random samples in the finite population setting because they are a strong hedge against this kind of bias --- most random samples are **representative** of the population from which they are drawn.
 
 :::: {.Exercise #exercise-representativeness-claim}
-## Representativeness changes the claim
+## Representativeness 
 
 A retailer wants to estimate the share of all customers who use curbside
 pickup. Team A randomly selects 400 loyalty-program members. Team B randomly

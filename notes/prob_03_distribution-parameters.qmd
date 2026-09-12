@@ -209,6 +209,42 @@ $$
 
 and taking the square root brings us back to dollars: $SD(X)$ = `r dollar(round(sd_pay16))`. The standard deviation combines the two possible deviations --- `r dollar(abs(payoff_16[1] - ev_pay16))` when the loan is repaid and `r dollar(abs(payoff_16[2] - ev_pay16))` when it defaults --- into one probability-weighted measure of spread. The interpretation is the one we built for data in @sec-measures-spread: a bigger standard deviation means a less predictable outcome.
 
+:::: {.Exercise #exercise-repair-time-moments}
+## Repair time
+
+A repair shop uses this probability distribution for the time $X$, in hours,
+needed for a repair:
+
+| Repair time $x$ (hours) | 1 | 2 | 4 |
+|---|---:|---:|---:|
+| $\Pr(X=x)$ | 0.50 | 0.30 | 0.20 |
+
+Compute the mean, variance, and standard deviation of $X$. State the units
+of each result.
+
+::: {#solution-repair-time-moments .details .solution-details summary="Solution"
+display="show" non-interactive-summary="Solution"}
+
+The mean weights each repair time by its probability:
+
+$$
+\mu=0.50(1)+0.30(2)+0.20(4)=1.9\text{ hours}.
+$$
+
+Weighting the squared deviations from 1.9 gives
+
+$$
+\text{Var}(X)=0.50(1-1.9)^2+0.30(2-1.9)^2+0.20(4-1.9)^2
+=1.29\text{ hours}^2.
+$$
+
+The standard deviation is $\sqrt{1.29}\approx1.14$ hours. The mean describes
+the long-run average repair time; the standard deviation measures the spread
+of repair times around it, in hours rather than squared hours.
+
+:::
+::::
+
 ::: {.Notation #notation-parameters-and-statistics}
 ## Random variables, parameters, and statistics
 
@@ -221,26 +257,6 @@ its variance, $\sigma$ for its standard deviation.
 
 When you see a Greek letter, it refers to something unknown we're trying to estimate. When you see a Latin letter, we have computed it (or could compute it) from data. Lowercase Latin letters ($\bar{x}$, $s$) are numbers we computed from our observed sample; uppercase Latin letters like $\bar{X}$ are random variables, because the samples they depend on are random.
 :::
-
-:::: {.Exercise #exercise-statistic-or-parameter}
-## Statistic or parameter?
-
-A company observed 500 warranty outcomes. Their sample mean was \$38 and their
-sample standard deviation was \$105. A probability model for future warranties
-has mean $\mu=\$36$ and standard deviation $\sigma=\$110$.
-
-Which two numbers are sample statistics, and which two are probability-model
-parameters?
-
-::: {#solution-statistic-or-parameter .details .solution-details summary="Solution"
-display="show" non-interactive-summary="Solution"}
-
-The observed sample mean of \$38 and sample standard deviation of \$105 are
-statistics. The model mean $\mu=\$36$ and model standard deviation
-$\sigma=\$110$ are parameters of the probability distribution.
-
-:::
-::::
 
 ### Variance/Standard deviation measure unpredictability (risk) {#sec-risk}
 
@@ -307,7 +323,7 @@ Project A earns either \$0 or \$40,000 with equal probability. Project B earns
 either \$15,000 or \$25,000 with equal probability.
 
 1. Compute the mean and standard deviation of each profit distribution.
-2. Why might a risk-averse manager prefer Project B even though the projects
+2. Why might a manager prefer Project B even though the projects
    have the same expected profit?
 
 ::: {#solution-equal-mean-different-risk .details .solution-details summary="Solution"
