@@ -1,8 +1,14 @@
 {
-  "baseline_commit": "d1f62180a938f65341912ad170782e057bc83abc",
-  "release": "20260912T052255-5zd7i82n",
-  "scope": "notes",
-  "selected": [],
+  "baseline_commit": "e68ed60dd82f924fd2b41894c70314950682c26a",
+  "release": "20260913T162538-nqnf376m",
+  "scope": null,
+  "selected": [
+    "files/IntroStatGPT_homework_02_2026-09-12.zip",
+    "files/homework-02-report-skeleton.docx",
+    "files/homework-02.pdf",
+    "introstatgpt.qmd",
+    "introstatgpt/homework-02-sample-chat.qmd"
+  ],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -42,5 +48,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "d3a3f2869cafff92945cdf166f4e1083e5b546a9"
+  "source_commit": "5fab9c20e5f53caf6cd924408df6c6444c4da259"
 }

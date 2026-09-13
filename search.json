@@ -616,46 +616,6 @@
     "title": "Homework 1: Example IntroStatGPT Chat"
   },
   {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html",
-    "objectID": "introstatgpt.html",
-    "section": "",
-    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#start-here",
-    "objectID": "introstatgpt.html#start-here",
-    "section": "Start here",
-    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT — how to make requests that produce checkable output, how to check it, and what to save.\n\nThe course setup uses Codex with your UT ChatGPT account. If you already have a Claude account with access to Claude Code, you may instead set up IntroStatGPT with Claude Code.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#homework-1",
-    "objectID": "introstatgpt.html#homework-1",
-    "section": "Homework 1",
-    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-28.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets. It works with Codex and Claude Code.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment. Solutions (Canvas login required).\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nOptional: Sample Homework 1 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 1 report skeleton — try building your own report first. This file contains known-good copies of the required tables and figures, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit the PDF you export from Word.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#intensive",
-    "objectID": "introstatgpt.html#intensive",
-    "section": "Intensive",
-    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
-    "title": "IntroStatGPT"
-  },
-  {
     "href": "data.html",
     "objectID": "data.html",
     "section": "",
@@ -1329,479 +1289,564 @@
     "title": "Slides"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#loan-purpose-and-default",
     "href": "slides/10_joint_conditional_distributions.html#loan-purpose-and-default",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#loan-purpose-and-default",
     "section": "Loan purpose and default",
-    "text": "Loan purpose and default\nThe LendingClub extract contains 58,456 completed loans with these three purposes.\n\n\n\n\n\nPurpose\nCharged Off\nFully Paid\nTotal\n\n\n\n\nDebt consolidation\n8,131\n41,278\n49,409\n\n\nHome improvement\n717\n5,139\n5,856\n\n\nSmall business\n822\n2,369\n3,191\n\n\nTotal\n9,670\n48,786\n58,456\n\n\n\n\n\nWhich purpose has the greatest default rate? Which denominator would you use?"
+    "text": "Loan purpose and default\nThe LendingClub extract contains 58,456 completed loans with these three purposes.\n\n\n\n\n\nPurpose\nCharged Off\nFully Paid\nTotal\n\n\n\n\nDebt consolidation\n8,131\n41,278\n49,409\n\n\nHome improvement\n717\n5,139\n5,856\n\n\nSmall business\n822\n2,369\n3,191\n\n\nTotal\n9,670\n48,786\n58,456\n\n\n\n\n\nWhich purpose has the greatest default rate? Which denominator would you use?",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#a-cross-tabulation-records-combinations",
     "href": "slides/10_joint_conditional_distributions.html#a-cross-tabulation-records-combinations",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#a-cross-tabulation-records-combinations",
     "section": "A cross-tabulation records combinations",
-    "text": "A cross-tabulation records combinations\nA cross-tabulation counts observations in every combination of two categories.\n\n\n\n\n\nPurpose\nRepaid\nDefault\nTotal\n\n\n\n\nDebt consolidation\n41,278\n8,131\n49,409\n\n\nHome improvement\n5,139\n717\n5,856\n\n\nSmall business\n2,369\n822\n3,191\n\n\nTotal\n48,786\n9,670\n58,456\n\n\n\n\n\nThe interior cells describe pairs of outcomes. The margins summarize each variable on its own."
+    "text": "A cross-tabulation records combinations\nA cross-tabulation counts observations in every combination of two categories.\n\n\n\n\n\nPurpose\nRepaid\nDefault\nTotal\n\n\n\n\nDebt consolidation\n41,278\n8,131\n49,409\n\n\nHome improvement\n5,139\n717\n5,856\n\n\nSmall business\n2,369\n822\n3,191\n\n\nTotal\n48,786\n9,670\n58,456\n\n\n\n\n\nThe interior cells describe pairs of outcomes. The margins summarize each variable on its own.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#joint-and-marginal-proportions",
     "href": "slides/10_joint_conditional_distributions.html#joint-and-marginal-proportions",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#joint-and-marginal-proportions",
     "section": "Joint and marginal proportions",
-    "text": "Joint and marginal proportions\nBoth use the full sample as their denominator.\n\n\n\n\n\nQuestion\nCalculation\nProportion\n\n\n\n\nSmall business and default\n822 / 58,456\n0.0141\n\n\nSmall business, either outcome\n3,191 / 58,456\n0.0546\n\n\n\n\n\nA joint proportion describes a combination. A marginal proportion describes one category, summing over the other variable."
+    "text": "Joint and marginal proportions\nBoth use the full sample as their denominator.\n\n\n\n\n\nQuestion\nCalculation\nProportion\n\n\n\n\nSmall business and default\n822 / 58,456\n0.0141\n\n\nSmall business, either outcome\n3,191 / 58,456\n0.0546\n\n\n\n\n\nA joint proportion describes a combination. A marginal proportion describes one category, summing over the other variable.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#the-full-table-as-proportions",
     "href": "slides/10_joint_conditional_distributions.html#the-full-table-as-proportions",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#the-full-table-as-proportions",
     "section": "The full table as proportions",
-    "text": "The full table as proportions\n\n\n\n\n\nPurpose\nRepaid\nDefault\nTotal\n\n\n\n\nDebt consolidation\n0.7061\n0.1391\n0.8452\n\n\nHome improvement\n0.0879\n0.0123\n0.1002\n\n\nSmall business\n0.0405\n0.0141\n0.0546\n\n\nTotal\n0.8346\n0.1654\n1.0000\n\n\n\n\n\nEvery entry uses all 58,456 loans as its denominator. The interior proportions sum to one; the margins summarize each variable."
+    "text": "The full table as proportions\n\n\n\n\n\nPurpose\nRepaid\nDefault\nTotal\n\n\n\n\nDebt consolidation\n0.7061\n0.1391\n0.8452\n\n\nHome improvement\n0.0879\n0.0123\n0.1002\n\n\nSmall business\n0.0405\n0.0141\n0.0546\n\n\nTotal\n0.8346\n0.1654\n1.0000\n\n\n\n\n\nEvery entry uses all 58,456 loans as its denominator. The interior proportions sum to one; the margins summarize each variable.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#conditional-proportions-select-a-group",
     "href": "slides/10_joint_conditional_distributions.html#conditional-proportions-select-a-group",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#conditional-proportions-select-a-group",
     "section": "Conditional proportions select a group",
-    "text": "Conditional proportions select a group\nAmong small-business loans, what proportion defaulted?\n\n\n\n\n\nOutcome\nCount\nConditional proportion\n\n\n\n\nRepaid\n2,369\n0.742\n\n\nDefault\n822\n0.258\n\n\nTotal\n3,191\n1.000\n\n\n\n\n\nThe conditional distribution divides each count by the selected group’s total. Its proportions sum to one."
+    "text": "Conditional proportions select a group\nAmong small-business loans, what proportion defaulted?\n\n\n\n\n\nOutcome\nCount\nConditional proportion\n\n\n\n\nRepaid\n2,369\n0.742\n\n\nDefault\n822\n0.258\n\n\nTotal\n3,191\n1.000\n\n\n\n\n\nThe conditional distribution divides each count by the selected group’s total. Its proportions sum to one.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#reversing-the-condition-changes-the-denominator",
     "href": "slides/10_joint_conditional_distributions.html#reversing-the-condition-changes-the-denominator",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#reversing-the-condition-changes-the-denominator",
     "section": "Reversing the condition changes the denominator",
-    "text": "Reversing the condition changes the denominator\n\n\n\n\n\nQuestion\nCalculation\nProportion\n\n\n\n\nDefault, given small business\n822 / 3,191\n0.258\n\n\nSmall business, given default\n822 / 9,670\n0.085\n\n\n\n\n\nName the population described by each row. Why can the same numerator answer two different questions?"
+    "text": "Reversing the condition changes the denominator\n\n\n\n\n\nQuestion\nCalculation\nProportion\n\n\n\n\nDefault, given small business\n822 / 3,191\n0.258\n\n\nSmall business, given default\n822 / 9,670\n0.085\n\n\n\n\n\nName the population described by each row. Why can the same numerator answer two different questions?",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#hybrid-work-and-attrition",
     "href": "slides/10_joint_conditional_distributions.html#hybrid-work-and-attrition",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#hybrid-work-and-attrition",
     "section": "Hybrid work and attrition",
-    "text": "Hybrid work and attrition\nBloom, Han, and Liang randomly assigned 1,612 employees to two work schedules.\n\n\n\nAssigned schedule\nStayed\nLeft\nTotal\n\n\n\n\nControl\n761\n59\n820\n\n\nHybrid\n754\n38\n792\n\n\nTotal\n1,515\n97\n1,612\n\n\n\nHow does attrition compare between the two schedules?"
+    "text": "Hybrid work and attrition\nBloom, Han, and Liang randomly assigned 1,612 employees to two work schedules.\n\n\n\nAssigned schedule\nStayed\nLeft\nTotal\n\n\n\n\nControl\n761\n59\n820\n\n\nHybrid\n754\n38\n792\n\n\nTotal\n1,515\n97\n1,612\n\n\n\nHow does attrition compare between the two schedules?",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#which-number-belongs-in-the-briefing",
     "href": "slides/10_joint_conditional_distributions.html#which-number-belongs-in-the-briefing",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#which-number-belongs-in-the-briefing",
     "section": "Which number belongs in the briefing?",
-    "text": "Which number belongs in the briefing?\nThree statements use the same 38 employees:\n\nAbout 2.4% of all employees were assigned hybrid work and left.\nAbout 4.8% of hybrid employees left.\nAbout 39.2% of employees who left were assigned hybrid work.\n\nAre any numerically wrong? Which answers the comparison question?\nIn pairs: prepare a two-sentence briefing. Include the other schedule and identify both denominators."
+    "text": "Which number belongs in the briefing?\nThree statements use the same 38 employees:\n\nAbout 2.4% of all employees were assigned hybrid work and left.\nAbout 4.8% of hybrid employees left.\nAbout 39.2% of employees who left were assigned hybrid work.\n\nAre any numerically wrong? Which answers the comparison question?\nIn pairs: prepare a two-sentence briefing. Include the other schedule and identify both denominators.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#attrition-within-each-schedule",
     "href": "slides/10_joint_conditional_distributions.html#attrition-within-each-schedule",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#attrition-within-each-schedule",
     "section": "Attrition within each schedule",
-    "text": "Attrition within each schedule\n\n\n\nAssigned schedule\nStayed\nLeft\nDenominator\n\n\n\n\nControl\n0.9280\n0.0720\n820\n\n\nHybrid\n0.9520\n0.0480\n792\n\n\n\nAll three earlier statements were numerically correct. Only the second described attrition within a schedule.\nAbout 4.8% of hybrid employees left, compared with 7.2% of control employees. Each row is a complete conditional distribution."
+    "text": "Attrition within each schedule\n\n\n\nAssigned schedule\nStayed\nLeft\nDenominator\n\n\n\n\nControl\n0.9280\n0.0720\n820\n\n\nHybrid\n0.9520\n0.0480\n792\n\n\n\nAll three earlier statements were numerically correct. Only the second described attrition within a schedule.\nAbout 4.8% of hybrid employees left, compared with 7.2% of control employees. Each row is a complete conditional distribution.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#from-observed-proportions-to-a-probability-model",
     "href": "slides/10_joint_conditional_distributions.html#from-observed-proportions-to-a-probability-model",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#from-observed-proportions-to-a-probability-model",
     "section": "From observed proportions to a probability model",
-    "text": "From observed proportions to a probability model\nWe can use historical proportions as estimated probabilities for a future loan if the historical loans represent that future population.\n\n\n\n\n\nPurpose\nRepaid (D = 0)\nDefault (D = 1)\n\n\n\n\nDebt consolidation (P = 1)\n0.706\n0.139\n\n\nHome improvement (P = 2)\n0.088\n0.012\n\n\nSmall business (P = 3)\n0.041\n0.014\n\n\n\n\n\nThe six interior probabilities are nonnegative and sum to one. The numbers now describe possible outcomes for a future loan."
+    "text": "From observed proportions to a probability model\nWe can use historical proportions as estimated probabilities for a future loan if the historical loans represent that future population.\n\n\n\n\n\nPurpose\nRepaid (D = 0)\nDefault (D = 1)\n\n\n\n\nDebt consolidation (P = 1)\n0.706\n0.139\n\n\nHome improvement (P = 2)\n0.088\n0.012\n\n\nSmall business (P = 3)\n0.041\n0.014\n\n\n\n\n\nThe six interior probabilities are nonnegative and sum to one. The numbers now describe possible outcomes for a future loan.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#conditioning-a-probability-table",
     "href": "slides/10_joint_conditional_distributions.html#conditioning-a-probability-table",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#conditioning-a-probability-table",
     "section": "Conditioning a probability table",
-    "text": "Conditioning a probability table\n\\[\n\\Pr(A\\mid B)=\\frac{\\Pr(A\\text{ and }B)}{\\Pr(B)},\\qquad \\Pr(B)&gt;0.\n\\]\nKeep the outcomes consistent with the condition, then divide by their total probability.\nFor the loan model, dividing the small-business/default joint probability by the small-business margin gives the same rate as dividing their counts."
+    "text": "Conditioning a probability table\n\\[\n\\Pr(A\\mid B)=\\frac{\\Pr(A\\text{ and }B)}{\\Pr(B)},\\qquad \\Pr(B)&gt;0.\n\\]\nKeep the outcomes consistent with the condition, then divide by their total probability.\nFor the loan model, dividing the small-business/default joint probability by the small-business margin gives the same rate as dividing their counts.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#complete-a-renewal-model",
     "href": "slides/10_joint_conditional_distributions.html#complete-a-renewal-model",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#complete-a-renewal-model",
     "section": "Complete a renewal model",
-    "text": "Complete a renewal model\n\n\n\nCurrent tier\nRenews\nDoes not renew\nTotal\n\n\n\n\nBasic\n0.42\n0.28\n0.70\n\n\nPremium\n0.24\n?\n0.30\n\n\nTotal\n?\n?\n1.00\n\n\n\nFind the missing cell and column margins. Then find the renewal probability given Premium.\nAn analyst calls 0.24 the Premium renewal rate. Is that the right interpretation?"
+    "text": "Complete a renewal model\n\n\n\nCurrent tier\nRenews\nDoes not renew\nTotal\n\n\n\n\nBasic\n0.42\n0.28\n0.70\n\n\nPremium\n0.24\n?\n0.30\n\n\nTotal\n?\n?\n1.00\n\n\n\nFind the missing cell and column margins. Then find the renewal probability given Premium.\nAn analyst calls 0.24 the Premium renewal rate. Is that the right interpretation?",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/10_joint_conditional_distributions.html#renewal-probabilities",
     "href": "slides/10_joint_conditional_distributions.html#renewal-probabilities",
-    "title": "Joint, Marginal, and Conditional Distributions",
+    "objectID": "slides/10_joint_conditional_distributions.html#renewal-probabilities",
     "section": "Renewal probabilities",
-    "text": "Renewal probabilities\n\n\n\nCurrent tier\nRenews\nDoes not renew\nTotal\n\n\n\n\nBasic\n0.42\n0.28\n0.70\n\n\nPremium\n0.24\n0.06\n0.30\n\n\nTotal\n0.66\n0.34\n1.00\n\n\n\nThe Premium renewal probability is \\(0.24/0.30=0.80\\).\nThe joint probability 0.24 describes being Premium and renewing. Its denominator is the entire customer population."
+    "text": "Renewal probabilities\n\n\n\nCurrent tier\nRenews\nDoes not renew\nTotal\n\n\n\n\nBasic\n0.42\n0.28\n0.70\n\n\nPremium\n0.24\n0.06\n0.30\n\n\nTotal\n0.66\n0.34\n1.00\n\n\n\nThe Premium renewal probability is \\(0.24/0.30=0.80\\).\nThe joint probability 0.24 describes being Premium and renewing. Its denominator is the entire customer population.",
+    "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "objectID": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
     "href": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
     "section": "Does loan purpose change the distribution?",
-    "text": "Does loan purpose change the distribution?\nThe LendingClub subset gives these historical default rates.\n\n\n\n\n\nPurpose\nLoans\nDefault rate\n\n\n\n\nSmall business\n3,191\n25.8%\n\n\nDebt consolidation\n49,409\n16.5%\n\n\nHome improvement\n5,856\n12.2%\n\n\n\n\n\nThe overall rate is 16.5%. Which purposes change our assessment of default?"
+    "text": "Does loan purpose change the distribution?\nThe LendingClub subset gives these historical default rates.\n\n\n\n\n\nPurpose\nLoans\nDefault rate\n\n\n\n\nSmall business\n3,191\n25.8%\n\n\nDebt consolidation\n49,409\n16.5%\n\n\nHome improvement\n5,856\n12.2%\n\n\n\n\n\nThe overall rate is 16.5%. Which purposes change our assessment of default?",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#independence-means-unchanged-distributions",
     "href": "slides/12_independence.html#independence-means-unchanged-distributions",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#independence-means-unchanged-distributions",
     "section": "Independence means unchanged distributions",
-    "text": "Independence means unchanged distributions\nTwo variables are independent when learning one does not change the distribution of the other.\n\\[\n\\Pr(X=x\\mid Y=y)=\\Pr(X=x).\n\\]\nFor discrete variables, this must hold for every \\(x\\) and every conditioning value \\(y\\) with positive probability. The same property holds in the reverse direction."
+    "text": "Independence means unchanged distributions\nTwo variables are independent when learning one does not change the distribution of the other.\n\\[\n\\Pr(X=x\\mid Y=y)=\\Pr(X=x).\n\\]\nFor discrete variables, this must hold for every \\(x\\) and every conditioning value \\(y\\) with positive probability. The same property holds in the reverse direction.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#independent-joint-probabilities-factor",
     "href": "slides/12_independence.html#independent-joint-probabilities-factor",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#independent-joint-probabilities-factor",
     "section": "Independent joint probabilities factor",
-    "text": "Independent joint probabilities factor\nFor discrete variables, independence is equivalent to\n\\[\n\\Pr(X=x,Y=y)=\\Pr(X=x)\\Pr(Y=y)\n\\]\nfor every pair of outcomes.\nEach interior cell must equal its row margin times its column margin. One failed equality establishes dependence."
+    "text": "Independent joint probabilities factor\nFor discrete variables, independence is equivalent to\n\\[\n\\Pr(X=x,Y=y)=\\Pr(X=x)\\Pr(Y=y)\n\\]\nfor every pair of outcomes.\nEach interior cell must equal its row margin times its column margin. One failed equality establishes dependence.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#two-promotional-offers",
     "href": "slides/12_independence.html#two-promotional-offers",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#two-promotional-offers",
     "section": "Two promotional offers",
-    "text": "Two promotional offers\nA system assigns free shipping independently of a discount.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n?\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nComplete the model. What should the probability of receiving both offers be?"
+    "text": "Two promotional offers\nA system assigns free shipping independently of a discount.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n?\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nComplete the model. What should the probability of receiving both offers be?",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#can-this-model-meet-the-specification",
     "href": "slides/12_independence.html#can-this-model-meet-the-specification",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#can-this-model-meet-the-specification",
     "section": "Can this model meet the specification?",
-    "text": "Can this model meet the specification?\nAn engineer proposes probability 0.20 for receiving both offers, keeping the same margins.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nGive two verdicts: can this be a valid model, and can it satisfy independence? Complete the remaining cells to justify your answer."
+    "text": "Can this model meet the specification?\nAn engineer proposes probability 0.20 for receiving both offers, keeping the same margins.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nGive two verdicts: can this be a valid model, and can it satisfy independence? Complete the remaining cells to justify your answer.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#the-independent-model",
     "href": "slides/12_independence.html#the-independent-model",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#the-independent-model",
     "section": "The independent model",
-    "text": "The independent model\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.10\n0.15\n0.25\n\n\nNo free shipping\n0.30\n0.45\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nThe conditional discount probabilities are \\(0.10/0.25=0.40\\) and \\(0.30/0.75=0.40\\).\nLearning the shipping offer leaves the discount distribution unchanged."
+    "text": "The independent model\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.10\n0.15\n0.25\n\n\nNo free shipping\n0.30\n0.45\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nThe conditional discount probabilities are \\(0.10/0.25=0.40\\) and \\(0.30/0.75=0.40\\).\nLearning the shipping offer leaves the discount distribution unchanged.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#a-valid-model-can-be-dependent",
     "href": "slides/12_independence.html#a-valid-model-can-be-dependent",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#a-valid-model-can-be-dependent",
     "section": "A valid model can be dependent",
-    "text": "A valid model can be dependent\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n0.05\n0.25\n\n\nNo free shipping\n0.20\n0.55\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nAll cells are nonnegative and sum to one, with the required margins.\nBut \\(0.20\\ne0.25(0.40)\\). The conditional discount probabilities are 0.80 with free shipping and about 0.267 without it."
+    "text": "A valid model can be dependent\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n0.05\n0.25\n\n\nNo free shipping\n0.20\n0.55\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nAll cells are nonnegative and sum to one, with the required margins.\nBut \\(0.20\\ne0.25(0.40)\\). The conditional discount probabilities are 0.80 with free shipping and about 0.267 without it.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#one-cell-can-disprove-independence",
     "href": "slides/12_independence.html#one-cell-can-disprove-independence",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#one-cell-can-disprove-independence",
     "section": "One cell can disprove independence",
-    "text": "One cell can disprove independence\n\n\n\n\nPurchase\nNo purchase\nTotal\n\n\n\n\nStore visit\n0.18\n0.22\n0.40\n\n\nNo store visit\n0.12\n0.48\n0.60\n\n\nTotal\n0.30\n0.70\n1.00\n\n\n\nPurchases can also occur online. Find one numerical comparison that establishes dependence."
+    "text": "One cell can disprove independence\n\n\n\n\nPurchase\nNo purchase\nTotal\n\n\n\n\nStore visit\n0.18\n0.22\n0.40\n\n\nNo store visit\n0.12\n0.48\n0.60\n\n\nTotal\n0.30\n0.70\n1.00\n\n\n\nPurchases can also occur online. Find one numerical comparison that establishes dependence.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#the-product-check-fails",
     "href": "slides/12_independence.html#the-product-check-fails",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#the-product-check-fails",
     "section": "The product check fails",
-    "text": "The product check fails\nIndependence would require\n\\[\n\\Pr(\\text{visit and purchase})=0.40(0.30)=0.12.\n\\]\nThe model assigns 0.18 to that cell, so store visits and purchases are dependent.\nWe do not need to check the remaining cells once one equality fails."
+    "text": "The product check fails\nIndependence would require\n\\[\n\\Pr(\\text{visit and purchase})=0.40(0.30)=0.12.\n\\]\nThe model assigns 0.18 to that cell, so store visits and purchases are dependent.\nWe do not need to check the remaining cells once one equality fails.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#economic-ratings-by-employment-status",
     "href": "slides/12_independence.html#economic-ratings-by-employment-status",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#economic-ratings-by-employment-status",
     "section": "Economic ratings by employment status",
-    "text": "Economic ratings by employment status\nThe 2025 SHED survey records national economic ratings. Percentages are unweighted.\n\nHow much does the distribution change across employment groups?"
+    "text": "Economic ratings by employment status\nThe 2025 SHED survey records national economic ratings. Percentages are unweighted.\n\nHow much does the distribution change across employment groups?",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#similar-observed-distributions",
     "href": "slides/12_independence.html#similar-observed-distributions",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#similar-observed-distributions",
     "section": "Similar observed distributions",
-    "text": "Similar observed distributions\nEach row reports percentages within an employment group; \\(n\\) is its sample size.\n\n\n\n\n\nEmployment status\nn\nExcellent\nGood\nOnly fair\nPoor\n\n\n\n\nNot working\n4,961\n2.0%\n25.9%\n43.8%\n28.3%\n\n\nWorking full-time\n6,128\n2.0%\n23.7%\n44.8%\n29.5%\n\n\nWorking part-time\n1,845\n1.5%\n23.4%\n44.6%\n30.6%\n\n\nOverall\n12,934\n1.9%\n24.5%\n44.4%\n29.2%\n\n\n\n\n\nThe largest difference from an overall category share is 1.4 percentage points. Does similarity establish exact population independence?"
+    "text": "Similar observed distributions\nEach row reports percentages within an employment group; \\(n\\) is its sample size.\n\n\n\n\n\nEmployment status\nn\nExcellent\nGood\nOnly fair\nPoor\n\n\n\n\nNot working\n4,961\n2.0%\n25.9%\n43.8%\n28.3%\n\n\nWorking full-time\n6,128\n2.0%\n23.7%\n44.8%\n29.5%\n\n\nWorking part-time\n1,845\n1.5%\n23.4%\n44.6%\n30.6%\n\n\nOverall\n12,934\n1.9%\n24.5%\n44.4%\n29.2%\n\n\n\n\n\nThe largest difference from an overall category share is 1.4 percentage points. Does similarity establish exact population independence?",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/12_independence.html#sample-similarity-and-model-independence",
     "href": "slides/12_independence.html#sample-similarity-and-model-independence",
-    "title": "Independence",
+    "objectID": "slides/12_independence.html#sample-similarity-and-model-independence",
     "section": "Sample similarity and model independence",
-    "text": "Sample similarity and model independence\nSample proportions generally differ even when a population model has independence. Rounding can also conceal differences.\nThe SHED table suggests that employment status tells us relatively little about these ratings in this extract. It does not establish exact independence in the population.\nFor quantitative variables, independence likewise requires the entire conditional distribution to stay unchanged: its location, spread, and shape."
+    "text": "Sample similarity and model independence\nSample proportions generally differ even when a population model has independence. Rounding can also conceal differences.\nThe SHED table suggests that employment status tells us relatively little about these ratings in this extract. It does not establish exact independence in the population.\nFor quantitative variables, independence likewise requires the entire conditional distribution to stay unchanged: its location, spread, and shape.",
+    "title": "Independence"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#price-and-living-area",
     "href": "slides/13_quantitative-quantitative.html#price-and-living-area",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#price-and-living-area",
     "section": "Price and living area",
-    "text": "Price and living area\n\n\n\n\n\n\n\n\n\n\n\n\nEach point is one Austin home sale.\nDescribe the trend and the spread of prices among similarly sized homes."
+    "text": "Price and living area\n\n\n\n\n\n\n\n\n\n\n\n\nEach point is one Austin home sale.\nDescribe the trend and the spread of prices among similarly sized homes.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#a-smooth-curve-summarizes-nearby-outcomes",
     "href": "slides/13_quantitative-quantitative.html#a-smooth-curve-summarizes-nearby-outcomes",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#a-smooth-curve-summarizes-nearby-outcomes",
     "section": "A smooth curve summarizes nearby outcomes",
-    "text": "A smooth curve summarizes nearby outcomes\n\n\n\n\n\n\n\n\n\n\n\n\nDFW daily electricity demand and temperature, 2016–2020.\nAt 50°F, the curve is about 12,000 MW. What does the surrounding scatter tell us?"
+    "text": "A smooth curve summarizes nearby outcomes\n\n\n\n\n\n\n\n\n\n\n\n\nDFW daily electricity demand and temperature, 2016–2020.\nAt 50°F, the curve is about 12,000 MW. What does the surrounding scatter tell us?",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#conditional-location-and-spread",
     "href": "slides/13_quantitative-quantitative.html#conditional-location-and-spread",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#conditional-location-and-spread",
     "section": "Conditional location and spread",
-    "text": "Conditional location and spread\n\n\n\n\n\n\n\n\n\n\n\n\nThe smoother describes average demand among days with nearby temperatures.\nThe scatter around it describes variation among individual days at those temperatures.\nKnowing the temperature narrows our assessment of demand, but does not determine the load on a particular day."
+    "text": "Conditional location and spread\n\n\n\n\n\n\n\n\n\n\n\n\nThe smoother describes average demand among days with nearby temperatures.\nThe scatter around it describes variation among individual days at those temperatures.\nKnowing the temperature narrows our assessment of demand, but does not determine the load on a particular day.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#a-smoother-also-helps-with-housing-prices",
     "href": "slides/13_quantitative-quantitative.html#a-smoother-also-helps-with-housing-prices",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#a-smoother-also-helps-with-housing-prices",
     "section": "A smoother also helps with housing prices",
-    "text": "A smoother also helps with housing prices\n\n\n\n\n\n\n\n\n\n\n\n\nFewer large homes determine the curve at the right. Small bends there need not describe a stable population pattern."
+    "text": "A smoother also helps with housing prices\n\n\n\n\n\n\n\n\n\n\n\n\nFewer large homes determine the curve at the right. Small bends there need not describe a stable population pattern.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#a-roughly-linear-relationship",
     "href": "slides/13_quantitative-quantitative.html#a-roughly-linear-relationship",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#a-roughly-linear-relationship",
     "section": "A roughly linear relationship",
-    "text": "A roughly linear relationship\n\n\n\n\n\n\n\n\n\n\n\n\nEach point pairs one week’s Tesla and S&P 500 returns.\nThe broad trend is upward and roughly straight, with considerable variation around it."
+    "text": "A roughly linear relationship\n\n\n\n\n\n\n\n\n\n\n\n\nEach point pairs one week’s Tesla and S&P 500 returns.\nThe broad trend is upward and roughly straight, with considerable variation around it.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#correlation-summarizes-linear-association",
     "href": "slides/13_quantitative-quantitative.html#correlation-summarizes-linear-association",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#correlation-summarizes-linear-association",
     "section": "Correlation summarizes linear association",
-    "text": "Correlation summarizes linear association\nThe sample correlation, \\(r\\), ranges from \\(-1\\) to \\(1\\) and describes the direction and strength of linear association.\n\nPositive values describe upward association; negative values describe downward association.\nValues nearer \\(1\\) or \\(-1\\) describe stronger linear association.\nAt \\(1\\) or \\(-1\\), all points lie on a straight line.\n\nCorrelation has no units. Both variables must vary for it to be defined."
+    "text": "Correlation summarizes linear association\nThe sample correlation, \\(r\\), ranges from \\(-1\\) to \\(1\\) and describes the direction and strength of linear association.\n\nPositive values describe upward association; negative values describe downward association.\nValues nearer \\(1\\) or \\(-1\\) describe stronger linear association.\nAt \\(1\\) or \\(-1\\), all points lie on a straight line.\n\nCorrelation has no units. Both variables must vary for it to be defined.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#different-population-correlations",
     "href": "slides/13_quantitative-quantitative.html#different-population-correlations",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#different-population-correlations",
     "section": "Different population correlations",
-    "text": "Different population correlations\n\n\n\n\n\n\n\n\n\n\n\n\nEach scatterplot contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them."
+    "text": "Different population correlations\n\n\n\n\n\n\n\n\n\n\n\n\nEach scatterplot contains 500 observations. The labels describe the generating models; sample correlations fluctuate around them.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#anscombes-quartet",
     "href": "slides/13_quantitative-quantitative.html#anscombes-quartet",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#anscombes-quartet",
     "section": "Anscombe’s quartet",
-    "text": "Anscombe’s quartet"
+    "text": "Anscombe’s quartet",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#limitations-of-correlation",
     "href": "slides/13_quantitative-quantitative.html#limitations-of-correlation",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#limitations-of-correlation",
     "section": "Limitations of correlation",
-    "text": "Limitations of correlation\n\nCorrelation can describe nonlinear relationships poorly.\nExtreme observations can substantially change the correlation.\n\nInspect the scatterplot alongside the correlation."
+    "text": "Limitations of correlation\n\nCorrelation can describe nonlinear relationships poorly.\nExtreme observations can substantially change the correlation.\n\nInspect the scatterplot alongside the correlation.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#similar-correlations-can-describe-different-patterns",
     "href": "slides/13_quantitative-quantitative.html#similar-correlations-can-describe-different-patterns",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#similar-correlations-can-describe-different-patterns",
     "section": "Similar correlations can describe different patterns",
-    "text": "Similar correlations can describe different patterns\n\nCompare the scatter around each trend with the overall variation in its outcome. Which relationship does the correlation describe less well?"
+    "text": "Similar correlations can describe different patterns\n\nCompare the scatter around each trend with the overall variation in its outcome. Which relationship does the correlation describe less well?",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#zero-correlation-does-not-establish-independence",
     "href": "slides/13_quantitative-quantitative.html#zero-correlation-does-not-establish-independence",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#zero-correlation-does-not-establish-independence",
     "section": "Zero correlation does not establish independence",
-    "text": "Zero correlation does not establish independence\n\n\n\n\n\n\n\n\n\n\n\n\nWe simulated \\(y=x^2+\\text{noise}\\) at 500 evenly spaced values of \\(x\\).\nThe noise has mean zero and SD 0.25. The conditional mean of \\(y\\) changes with \\(x\\), despite a sample correlation of 0.01.\nIndependence requires the entire conditional distribution to stay unchanged."
+    "text": "Zero correlation does not establish independence\n\n\n\n\n\n\n\n\n\n\n\n\nWe simulated \\(y=x^2+\\text{noise}\\) at 500 evenly spaced values of \\(x\\).\nThe noise has mean zero and SD 0.25. The conditional mean of \\(y\\) changes with \\(x\\), despite a sample correlation of 0.01.\nIndependence requires the entire conditional distribution to stay unchanged.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#covariance-retains-the-measurement-scales",
     "href": "slides/13_quantitative-quantitative.html#covariance-retains-the-measurement-scales",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#covariance-retains-the-measurement-scales",
     "section": "Covariance retains the measurement scales",
-    "text": "Covariance retains the measurement scales\nThe sample covariance combines correlation and standard deviations:\n\\[\ns_{xy}=r\\,s_xs_y.\n\\]\n\\(s_{xy}\\) is the sample covariance, \\(r\\) the sample correlation, and \\(s_x\\) and \\(s_y\\) the sample standard deviations.\nCovariance has the same sign as correlation. Its units are the product of the variables’ units.\nIf prices change from dollars to thousands of dollars, what happens to covariance? What happens to correlation?"
+    "text": "Covariance retains the measurement scales\nThe sample covariance combines correlation and standard deviations:\n\\[\ns_{xy}=r\\,s_xs_y.\n\\]\n\\(s_{xy}\\) is the sample covariance, \\(r\\) the sample correlation, and \\(s_x\\) and \\(s_y\\) the sample standard deviations.\nCovariance has the same sign as correlation. Its units are the product of the variables’ units.\nIf prices change from dollars to thousands of dollars, what happens to covariance? What happens to correlation?",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#changing-units-does-not-weaken-the-relationship",
     "href": "slides/13_quantitative-quantitative.html#changing-units-does-not-weaken-the-relationship",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#changing-units-does-not-weaken-the-relationship",
     "section": "Changing units does not weaken the relationship",
-    "text": "Changing units does not weaken the relationship\n\n\n\nQuantity\nDollars → thousands of dollars\n\n\n\n\nPrice standard deviation\nDivides by 1,000.\n\n\nCovariance of size and price\nDivides by 1,000.\n\n\nCorrelation of size and price\nStays the same.\n\n\n\nCovariance is not restricted to the interval from \\(-1\\) to \\(1\\). Its numerical scale changes with the variables’ scales."
+    "text": "Changing units does not weaken the relationship\n\n\n\nQuantity\nDollars → thousands of dollars\n\n\n\n\nPrice standard deviation\nDivides by 1,000.\n\n\nCovariance of size and price\nDivides by 1,000.\n\n\nCorrelation of size and price\nStays the same.\n\n\n\nCovariance is not restricted to the interval from \\(-1\\) to \\(1\\). Its numerical scale changes with the variables’ scales.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#covariance-in-a-probability-model",
     "href": "slides/13_quantitative-quantitative.html#covariance-in-a-probability-model",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#covariance-in-a-probability-model",
     "section": "Covariance in a probability model",
-    "text": "Covariance in a probability model\nFor random variables with finite variances,\n\\[\n\\operatorname{Cov}(X,Y)=E[(X-\\mu_X)(Y-\\mu_Y)].\n\\]\nHere \\(\\mu_X\\) and \\(\\mu_Y\\) are the model means. Covariance is the probability-weighted average of the products of deviations.\nFor positive standard deviations,\n\\[\n\\operatorname{Cov}(X,Y)=\\operatorname{Corr}(X,Y)\\operatorname{SD}(X)\\operatorname{SD}(Y).\n\\]"
+    "text": "Covariance in a probability model\nFor random variables with finite variances,\n\\[\n\\operatorname{Cov}(X,Y)=E[(X-\\mu_X)(Y-\\mu_Y)].\n\\]\nHere \\(\\mu_X\\) and \\(\\mu_Y\\) are the model means. Covariance is the probability-weighted average of the products of deviations.\nFor positive standard deviations,\n\\[\n\\operatorname{Cov}(X,Y)=\\operatorname{Corr}(X,Y)\\operatorname{SD}(X)\\operatorname{SD}(Y).\n\\]",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#a-joint-model-for-two-meeting-outcomes",
     "href": "slides/13_quantitative-quantitative.html#a-joint-model-for-two-meeting-outcomes",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#a-joint-model-for-two-meeting-outcomes",
     "section": "A joint model for two meeting outcomes",
-    "text": "A joint model for two meeting outcomes\nCME FedWatch, July 9, 2026: a model for July and September target ranges. A midpoint of 3.625 represents 3.50–3.75%.\n\n\n\n\n\nJuly midpoint\nSeptember midpoint\nProbability\n\n\n\n\n3.625\n3.625\n0.3765\n\n\n3.625\n3.875\n0.3776\n\n\n3.875\n3.875\n0.1228\n\n\n3.875\n4.125\n0.1231\n\n\n\n\n\nThe model has correlation 0.65 and covariance 0.0116 squared percentage points."
+    "text": "A joint model for two meeting outcomes\nCME FedWatch, July 9, 2026: a model for July and September target ranges. A midpoint of 3.625 represents 3.50–3.75%.\n\n\n\n\n\nJuly midpoint\nSeptember midpoint\nProbability\n\n\n\n\n3.625\n3.625\n0.3765\n\n\n3.625\n3.875\n0.3776\n\n\n3.875\n3.875\n0.1228\n\n\n3.875\n4.125\n0.1231\n\n\n\n\n\nThe model has correlation 0.65 and covariance 0.0116 squared percentage points.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#obtain-covariance-from-correlation-and-spread",
     "href": "slides/13_quantitative-quantitative.html#obtain-covariance-from-correlation-and-spread",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#obtain-covariance-from-correlation-and-spread",
     "section": "Obtain covariance from correlation and spread",
-    "text": "Obtain covariance from correlation and spread\nTwo random variables have standard deviations 2 and 3 and correlation \\(-0.5\\).\nCalculate their covariance. What does its sign tell you?\nWould correlation alone determine covariance if the standard deviations were unknown?"
+    "text": "Obtain covariance from correlation and spread\nTwo random variables have standard deviations 2 and 3 and correlation \\(-0.5\\).\nCalculate their covariance. What does its sign tell you?\nWould correlation alone determine covariance if the standard deviations were unknown?",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/13_quantitative-quantitative.html#covariance-connects-to-combinations",
     "href": "slides/13_quantitative-quantitative.html#covariance-connects-to-combinations",
-    "title": "Visualizing and Summarizing Two Quantitative Variables",
+    "objectID": "slides/13_quantitative-quantitative.html#covariance-connects-to-combinations",
     "section": "Covariance connects to combinations",
-    "text": "Covariance connects to combinations\n\\[\n\\operatorname{Cov}(X,Y)=(-0.5)(2)(3)=-3.\n\\]\nThe variables have negative linear association; their scales determine the magnitude of covariance.\nIndependent variables with finite, positive variances have zero covariance and correlation. The converse fails.\nCovariance enters the variance of a combination even when the component variables have a nonlinear relationship."
+    "text": "Covariance connects to combinations\n\\[\n\\operatorname{Cov}(X,Y)=(-0.5)(2)(3)=-3.\n\\]\nThe variables have negative linear association; their scales determine the magnitude of covariance.\nIndependent variables with finite, positive variances have zero covariance and correlation. The converse fails.\nCovariance enters the variance of a combination even when the component variables have a nonlinear relationship.",
+    "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
     "href": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
     "section": "Choose a fund to add to SPY",
-    "text": "Choose a fund to add to SPY\nThe three-fund data contain 104 weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.\n\n\n\n\n\nFund\nHolds\nMean\nSD\n\n\n\n\nSPY\nU.S. stocks (S&P 500)\n24.4%\n15.3%\n\n\nEFA\nDeveloped-market stocks\n19.7%\n15.1%\n\n\nTLT\nLong-term U.S. Treasuries\n6.2%\n15.1%\n\n\n\n\n\nYou currently hold only SPY. Would you add EFA or TLT? What information would help you decide?\n\nMeans are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow."
+    "text": "Choose a fund to add to SPY\nThe three-fund data contain 104 weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.\n\n\n\n\n\nFund\nHolds\nMean\nSD\n\n\n\n\nSPY\nU.S. stocks (S&P 500)\n24.4%\n15.3%\n\n\nEFA\nDeveloped-market stocks\n19.7%\n15.1%\n\n\nTLT\nLong-term U.S. Treasuries\n6.2%\n15.1%\n\n\n\n\n\nYou currently hold only SPY. Would you add EFA or TLT? What information would help you decide?\n\nMeans are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
     "href": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
     "section": "A portfolio combines two returns",
-    "text": "A portfolio combines two returns\nSuppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.\n\n\n\nFund\nWeight\nWeekly return\nContribution\n\n\n\n\nSPY\n0.60\n0.02\n0.012\n\n\nEFA\n0.40\n0.01\n0.004\n\n\nPortfolio\n1.00\n\n0.016\n\n\n\nThe portfolio earns 1.6%. Its return is the weighted average of the two fund returns."
+    "text": "A portfolio combines two returns\nSuppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.\n\n\n\nFund\nWeight\nWeekly return\nContribution\n\n\n\n\nSPY\n0.60\n0.02\n0.012\n\n\nEFA\n0.40\n0.01\n0.004\n\n\nPortfolio\n1.00\n\n0.016\n\n\n\nThe portfolio earns 1.6%. Its return is the weighted average of the two fund returns.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#linear-combinations",
     "href": "slides/14_combining_random_variables.html#linear-combinations",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#linear-combinations",
     "section": "Linear combinations",
-    "text": "Linear combinations\nA linear combination has the form\n\\[\nZ=aX+bY+c.\n\\]\n\\(X\\) and \\(Y\\) are random variables; \\(a\\), \\(b\\), and \\(c\\) are fixed numbers. The weights \\(a\\) and \\(b\\) scale the two variables, and \\(c\\) shifts their combination."
+    "text": "Linear combinations\nA linear combination has the form\n\\[\nZ=aX+bY+c.\n\\]\n\\(X\\) and \\(Y\\) are random variables; \\(a\\), \\(b\\), and \\(c\\) are fixed numbers. The weights \\(a\\) and \\(b\\) scale the two variables, and \\(c\\) shifts their combination.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
     "href": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
     "section": "The portfolio as a linear combination",
-    "text": "The portfolio as a linear combination\nLet \\(R_{\\mathrm{SPY}}\\) and \\(R_{\\mathrm{EFA}}\\) denote the two fund returns, and let \\(w\\) be the fraction invested in SPY.\n\\[\n\\begin{aligned}\nR_p &= wR_{\\mathrm{SPY}}+(1-w)R_{\\mathrm{EFA}}\\\\\n    &= 0.60R_{\\mathrm{SPY}}+0.40R_{\\mathrm{EFA}}\\\\\n    &= 0.60(0.02)+0.40(0.01)\\\\\n    &= 0.016.\n\\end{aligned}\n\\]\nHere \\(a=w\\), \\(b=1-w\\), and \\(c=0\\). The last two lines use the illustrative week’s returns."
+    "text": "The portfolio as a linear combination\nLet \\(R_{\\mathrm{SPY}}\\) and \\(R_{\\mathrm{EFA}}\\) denote the two fund returns, and let \\(w\\) be the fraction invested in SPY.\n\\[\n\\begin{aligned}\nR_p &= wR_{\\mathrm{SPY}}+(1-w)R_{\\mathrm{EFA}}\\\\\n    &= 0.60R_{\\mathrm{SPY}}+0.40R_{\\mathrm{EFA}}\\\\\n    &= 0.60(0.02)+0.40(0.01)\\\\\n    &= 0.016.\n\\end{aligned}\n\\]\nHere \\(a=w\\), \\(b=1-w\\), and \\(c=0\\). The last two lines use the illustrative week’s returns.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
     "href": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
     "section": "Profit as a linear combination",
-    "text": "Profit as a linear combination\nLet \\(R\\) be revenue, \\(V\\) variable costs, and \\(F\\) fixed costs. Revenue and variable costs are random; \\(F\\) is a fixed amount.\n\\[\n\\begin{aligned}\n\\text{Profit} &= \\text{Revenue}-\\text{Variable costs}-\\text{Fixed costs}\\\\\nP &= R-V-F\\\\\n  &= 1\\,R+(-1)\\,V-F.\n\\end{aligned}\n\\]\nHere \\(a=1\\), \\(b=-1\\), and \\(c=-F\\). For example, in thousands of dollars,\n\\[\nP=1{,}000-600-100=300.\n\\]"
+    "text": "Profit as a linear combination\nLet \\(R\\) be revenue, \\(V\\) variable costs, and \\(F\\) fixed costs. Revenue and variable costs are random; \\(F\\) is a fixed amount.\n\\[\n\\begin{aligned}\n\\text{Profit} &= \\text{Revenue}-\\text{Variable costs}-\\text{Fixed costs}\\\\\nP &= R-V-F\\\\\n  &= 1\\,R+(-1)\\,V-F.\n\\end{aligned}\n\\]\nHere \\(a=1\\), \\(b=-1\\), and \\(c=-F\\). For example, in thousands of dollars,\n\\[\nP=1{,}000-600-100=300.\n\\]",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
     "href": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
     "section": "Means combine with the same weights",
-    "text": "Means combine with the same weights\nFor finite expected values,\n\\[\nE[aX+bY+c]=aE[X]+bE[Y]+c.\n\\]\nThe rule holds whether or not the variables are independent. Expected profit is therefore\n\\[\nE[P]=E[R]-E[V]-F.\n\\]\nApply the same weights to the expected values, then add the fixed amount."
+    "text": "Means combine with the same weights\nFor finite expected values,\n\\[\nE[aX+bY+c]=aE[X]+bE[Y]+c.\n\\]\nThe rule holds whether or not the variables are independent. Expected profit is therefore\n\\[\nE[P]=E[R]-E[V]-F.\n\\]\nApply the same weights to the expected values, then add the fixed amount.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
     "href": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
     "section": "What happens to expected portfolio returns?",
-    "text": "What happens to expected portfolio returns?\nUse the annualized sample means as estimates of expected returns:\n\n\n\nSPY\nEFA\nTLT\n\n\n\n\n24.4%\n19.7%\n6.2%\n\n\n\n\\[\n\\begin{aligned}\nE[R_p]&=wE[R_{\\mathrm{SPY}}]+(1-w)E[R_{\\mathrm{other}}].\n\\end{aligned}\n\\]\nWhat happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair."
+    "text": "What happens to expected portfolio returns?\nUse the annualized sample means as estimates of expected returns:\n\n\n\nSPY\nEFA\nTLT\n\n\n\n\n24.4%\n19.7%\n6.2%\n\n\n\n\\[\n\\begin{aligned}\nE[R_p]&=wE[R_{\\mathrm{SPY}}]+(1-w)E[R_{\\mathrm{other}}].\n\\end{aligned}\n\\]\nWhat happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
     "href": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
     "section": "Why accept a lower expected return?",
-    "text": "Why accept a lower expected return?\n\n\n\n\n\nPortfolio\nEstimated expected return\n\n\n\n\nAll SPY\n24.4%\n\n\n60% SPY + 40% EFA\n22.5%\n\n\n60% SPY + 40% TLT\n17.1%\n\n\n\n\n\nAdding either fund reduces estimated expected return. Why might we choose to do that?\nWhat would we need to know about the variability of the combined return?"
+    "text": "Why accept a lower expected return?\n\n\n\n\n\nPortfolio\nEstimated expected return\n\n\n\n\nAll SPY\n24.4%\n\n\n60% SPY + 40% EFA\n22.5%\n\n\n60% SPY + 40% TLT\n17.1%\n\n\n\n\n\nAdding either fund reduces estimated expected return. Why might we choose to do that?\nWhat would we need to know about the variability of the combined return?",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
     "href": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
     "section": "How do the funds move with SPY?",
-    "text": "How do the funds move with SPY?\n\nRevise your choice if needed. Refer to the relationship visible in each plot."
+    "text": "How do the funds move with SPY?\n\nRevise your choice if needed. Refer to the relationship visible in each plot.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#variance-includes-covariance",
     "href": "slides/14_combining_random_variables.html#variance-includes-covariance",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#variance-includes-covariance",
     "section": "Variance includes covariance",
-    "text": "Variance includes covariance\nFor finite variances,\n\\[\n\\operatorname{Var}(aX+bY+c)\n=a^2\\operatorname{Var}(X)+b^2\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y).\n\\]\nEach variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.\nZero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation."
+    "text": "Variance includes covariance\nFor finite variances,\n\\[\n\\operatorname{Var}(aX+bY+c)\n=a^2\\operatorname{Var}(X)+b^2\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y).\n\\]\nEach variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.\nZero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#portfolio-variance",
     "href": "slides/14_combining_random_variables.html#portfolio-variance",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#portfolio-variance",
     "section": "Portfolio variance",
-    "text": "Portfolio variance\n\\[\n\\begin{aligned}\n\\operatorname{Var}(R_p)={}&w^2\\operatorname{Var}(R_1)\\\\\n&+(1-w)^2\\operatorname{Var}(R_2)\\\\\n&+2w(1-w)\\operatorname{Cov}(R_1,R_2).\n\\end{aligned}\n\\]\nFor nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses."
+    "text": "Portfolio variance\n\\[\n\\begin{aligned}\n\\operatorname{Var}(R_p)={}&w^2\\operatorname{Var}(R_1)\\\\\n&+(1-w)^2\\operatorname{Var}(R_2)\\\\\n&+2w(1-w)\\operatorname{Cov}(R_1,R_2).\n\\end{aligned}\n\\]\nFor nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
     "href": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
     "section": "Portfolio SD as correlation varies",
-    "text": "Portfolio SD as correlation varies\n\n\n\n\n\n\n\n\n\n\n\n\nTwo stocks each have annual SD 20%. An equal-weight portfolio has\n\\[\n\\operatorname{SD}(R_p)=\\sqrt{0.02+0.02\\rho},\n\\]\nwhere \\(\\rho\\) is the correlation between their returns.\nCorrelation below 1 reduces portfolio SD. Negative correlation is not required."
+    "text": "Portfolio SD as correlation varies\n\n\n\n\n\n\n\n\n\n\n\n\nTwo stocks each have annual SD 20%. An equal-weight portfolio has\n\\[\n\\operatorname{SD}(R_p)=\\sqrt{0.02+0.02\\rho},\n\\]\nwhere \\(\\rho\\) is the correlation between their returns.\nCorrelation below 1 reduces portfolio SD. Negative correlation is not required.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#tlt-can-attain-lower-portfolio-risk",
     "href": "slides/14_combining_random_variables.html#tlt-can-attain-lower-portfolio-risk",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#tlt-can-attain-lower-portfolio-risk",
     "section": "TLT can attain lower portfolio risk",
-    "text": "TLT can attain lower portfolio risk\n\nThe minimum annualized sample SD is 14.2% with EFA and 11.1% with TLT."
+    "text": "TLT can attain lower portfolio risk\n\nThe minimum annualized sample SD is 14.2% with EFA and 11.1% with TLT.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#which-portfolio-offers-more-return-at-the-same-risk",
     "href": "slides/14_combining_random_variables.html#which-portfolio-offers-more-return-at-the-same-risk",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#which-portfolio-offers-more-return-at-the-same-risk",
     "section": "Which portfolio offers more return at the same risk?",
-    "text": "Which portfolio offers more return at the same risk?\nTake the minimum risk attainable with SPY + EFA: annualized SD 14.2%.\nAt that same risk, which portfolio offers the higher expected return: SPY + EFA or SPY + TLT?\nUse the historical sample means as estimates of expected returns for this comparison."
+    "text": "Which portfolio offers more return at the same risk?\nTake the minimum risk attainable with SPY + EFA: annualized SD 14.2%.\nAt that same risk, which portfolio offers the higher expected return: SPY + EFA or SPY + TLT?\nUse the historical sample means as estimates of expected returns for this comparison.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#compare-returns-at-the-same-risk",
     "href": "slides/14_combining_random_variables.html#compare-returns-at-the-same-risk",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#compare-returns-at-the-same-risk",
     "section": "Compare returns at the same risk",
-    "text": "Compare returns at the same risk\n\n\n\n\n\nPortfolio\nSPY weight\nSample mean\nSD\n\n\n\n\nSPY + EFA\n47.9%\n21.9%\n14.2%\n\n\nSPY + TLT\n92.2%\n22.9%\n14.2%\n\n\n\n\n\nAt the same risk, SPY + TLT has an annualized sample mean 1.0 percentage points higher."
+    "text": "Compare returns at the same risk\n\n\n\n\n\nPortfolio\nSPY weight\nSample mean\nSD\n\n\n\n\nSPY + EFA\n47.9%\n21.9%\n14.2%\n\n\nSPY + TLT\n92.2%\n22.9%\n14.2%\n\n\n\n\n\nAt the same risk, SPY + TLT has an annualized sample mean 1.0 percentage points higher.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
     "href": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
     "section": "The matched portfolios on both curves",
-    "text": "The matched portfolios on both curves\n\nThe marked weights are 47.9% SPY with EFA and 92.2% SPY with TLT. Both have the same SD; the TLT mix has the higher sample mean."
+    "text": "The matched portfolios on both curves\n\nThe marked weights are 47.9% SPY with EFA and 92.2% SPY with TLT. Both have the same SD; the TLT mix has the higher sample mean.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
     "href": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
     "section": "A second bond fund: VCIT",
-    "text": "A second bond fund: VCIT\nVCIT holds intermediate-term investment-grade corporate bonds.\n\nThe funds differ in their individual variability as well as in how they move together."
+    "text": "A second bond fund: VCIT\nVCIT holds intermediate-term investment-grade corporate bonds.\n\nThe funds differ in their individual variability as well as in how they move together.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#historical-return-and-variability",
     "href": "slides/14_combining_random_variables.html#historical-return-and-variability",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#historical-return-and-variability",
     "section": "Historical return and variability",
-    "text": "Historical return and variability\n\n\n\n\n\nFund\nMean\nSD\n\n\n\n\nSPY\n24.4%\n15.3%\n\n\nVCIT\n10.0%\n6.2%\n\n\n\n\n\nThe mean and standard deviation are annualized sample summaries. For each allocation, we apply the same weights every week, before trading costs."
+    "text": "Historical return and variability\n\n\n\n\n\nFund\nMean\nSD\n\n\n\n\nSPY\n24.4%\n15.3%\n\n\nVCIT\n10.0%\n6.2%\n\n\n\n\n\nThe mean and standard deviation are annualized sample summaries. For each allocation, we apply the same weights every week, before trading costs.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
     "href": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
     "section": "Minimum variability uses the variance rule",
-    "text": "Minimum variability uses the variance rule\n\nThe lowest sample SD occurs at 7.5% SPY. Choosing this weight does not use either fund’s mean return."
+    "text": "Minimum variability uses the variance rule\n\nThe lowest sample SD occurs at 7.5% SPY. Choosing this weight does not use either fund’s mean return.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#return-above-a-benchmark",
     "href": "slides/14_combining_random_variables.html#return-above-a-benchmark",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#return-above-a-benchmark",
     "section": "Return above a benchmark",
-    "text": "Return above a benchmark\nA portfolio has expected annual return 8%, annual SD 12%, and an annual risk-free benchmark of 3%.\nHow much expected return does it offer above the benchmark, per unit of standard deviation?\nIf the benchmark rises to 4%, which input to that comparison changes?"
+    "text": "Return above a benchmark\nA portfolio has expected annual return 8%, annual SD 12%, and an annual risk-free benchmark of 3%.\nHow much expected return does it offer above the benchmark, per unit of standard deviation?\nIf the benchmark rises to 4%, which input to that comparison changes?",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#the-sharpe-ratio",
     "href": "slides/14_combining_random_variables.html#the-sharpe-ratio",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#the-sharpe-ratio",
     "section": "The Sharpe ratio",
-    "text": "The Sharpe ratio\nFor a positive SD and a constant risk-free return over the same period,\n\\[\n\\text{Sharpe ratio}=\\frac{E[R_p]-r_f}{\\operatorname{SD}(R_p)}.\n\\]\nThe numerator is expected return above the benchmark. The ratio expresses that excess return per unit of variability.\nFor the example, \\((0.08-0.03)/0.12\\approx0.417\\). With a 4% benchmark it becomes about 0.333."
+    "text": "The Sharpe ratio\nFor a positive SD and a constant risk-free return over the same period,\n\\[\n\\text{Sharpe ratio}=\\frac{E[R_p]-r_f}{\\operatorname{SD}(R_p)}.\n\\]\nThe numerator is expected return above the benchmark. The ratio expresses that excess return per unit of variability.\nFor the example, \\((0.08-0.03)/0.12\\approx0.417\\). With a 4% benchmark it becomes about 0.333.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
     "href": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
     "section": "Sample Sharpe ratios across allocations",
-    "text": "Sample Sharpe ratios across allocations\nWe use sample means and SDs, with the sample-average Treasury-bill rate of 4.7% annualized as a constant benchmark.\n\nThe maximizing allocation holds 44.7% SPY in this sample."
+    "text": "Sample Sharpe ratios across allocations\nWe use sample means and SDs, with the sample-average Treasury-bill rate of 4.7% annualized as a constant benchmark.\n\nThe maximizing allocation holds 44.7% SPY in this sample.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
     "href": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
     "section": "Two analysts recommend different weights",
-    "text": "Two analysts recommend different weights\nOne analyst recommends 7.5% SPY; another recommends 44.7% SPY.\nWhat objective would you ask each analyst to state?\nWould a higher risk-free benchmark change the allocation with minimum SD? Could it change the allocation with maximum Sharpe ratio?"
+    "text": "Two analysts recommend different weights\nOne analyst recommends 7.5% SPY; another recommends 44.7% SPY.\nWhat objective would you ask each analyst to state?\nWould a higher risk-free benchmark change the allocation with minimum SD? Could it change the allocation with maximum Sharpe ratio?",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#two-allocation-objectives",
     "href": "slides/14_combining_random_variables.html#two-allocation-objectives",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#two-allocation-objectives",
     "section": "Two allocation objectives",
-    "text": "Two allocation objectives\n\n\n\n\n\nAllocation\nSPY weight\nMean\nSD\nSharpe\n\n\n\n\nAll VCIT\n0.0%\n10.0%\n6.2%\n0.85\n\n\nMinimum SD\n7.5%\n11.1%\n6.1%\n1.04\n\n\nMaximum sample Sharpe\n44.7%\n16.4%\n8.3%\n1.41\n\n\nAll SPY\n100.0%\n24.4%\n15.3%\n1.29\n\n\n\n\n\nMinimum SD uses variances and covariance. Maximum sample Sharpe also uses mean returns and the benchmark.\nThese weights optimize the same sample used to report performance; they do not establish the best future allocation."
+    "text": "Two allocation objectives\n\n\n\n\n\nAllocation\nSPY weight\nMean\nSD\nSharpe\n\n\n\n\nAll VCIT\n0.0%\n10.0%\n6.2%\n0.85\n\n\nMinimum SD\n7.5%\n11.1%\n6.1%\n1.04\n\n\nMaximum sample Sharpe\n44.7%\n16.4%\n8.3%\n1.41\n\n\nAll SPY\n100.0%\n24.4%\n15.3%\n1.29\n\n\n\n\n\nMinimum SD uses variances and covariance. Maximum sample Sharpe also uses mean returns and the benchmark.\nThese weights optimize the same sample used to report performance; they do not establish the best future allocation.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#profit-is-a-difference",
     "href": "slides/14_combining_random_variables.html#profit-is-a-difference",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#profit-is-a-difference",
     "section": "Profit is a difference",
-    "text": "Profit is a difference\nRevenue has SD 200 and variable costs have SD 120, in thousands of dollars. Their correlation is 0.6.\nWhich expression gives the variance of revenue minus variable costs?\n\\[\n\\begin{aligned}\nA:&\\quad 200^2+120^2+2(0.6)(200)(120)\\\\\nB:&\\quad 200^2+120^2-2(0.6)(200)(120).\n\\end{aligned}\n\\]\nExplain the effect of positive correlation here, then calculate the profit SD."
+    "text": "Profit is a difference\nRevenue has SD 200 and variable costs have SD 120, in thousands of dollars. Their correlation is 0.6.\nWhich expression gives the variance of revenue minus variable costs?\n\\[\n\\begin{aligned}\nA:&\\quad 200^2+120^2+2(0.6)(200)(120)\\\\\nB:&\\quad 200^2+120^2-2(0.6)(200)(120).\n\\end{aligned}\n\\]\nExplain the effect of positive correlation here, then calculate the profit SD.",
+    "title": "Combining Random Variables"
   },
   {
-    "objectID": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
     "href": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
-    "title": "Combining Random Variables",
+    "objectID": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
     "section": "Joint movement can offset in a difference",
-    "text": "Joint movement can offset in a difference\nWhen revenue and costs rise together, part of their movement cancels in profit. The weights are 1 and \\(-1\\), so B applies.\n\\[\n\\operatorname{Var}(X-Y)=25{,}600,\\qquad\n\\operatorname{SD}(X-Y)=160.\n\\]\nThe profit SD is $160,000. Subtracting a fixed cost changes mean profit but leaves this SD unchanged."
+    "text": "Joint movement can offset in a difference\nWhen revenue and costs rise together, part of their movement cancels in profit. The weights are 1 and \\(-1\\), so B applies.\n\\[\n\\operatorname{Var}(X-Y)=25{,}600,\\qquad\n\\operatorname{SD}(X-Y)=160.\n\\]\nThe profit SD is $160,000. Subtracting a fixed cost changes mean profit but leaves this SD unchanged.",
+    "title": "Combining Random Variables"
+  },
+  {
+    "objectID": "introstatgpt.html",
+    "href": "introstatgpt.html",
+    "title": "IntroStatGPT",
+    "section": "",
+    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#start-here",
+    "href": "introstatgpt.html#start-here",
+    "title": "IntroStatGPT",
+    "section": "Start here",
+    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT — how to make requests that produce checkable output, how to check it, and what to save.\n\nThe course setup uses Codex with your UT ChatGPT account. If you already have a Claude account with access to Claude Code, you may instead set up IntroStatGPT with Claude Code.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-1",
+    "href": "introstatgpt.html#homework-1",
+    "title": "IntroStatGPT",
+    "section": "Homework 1",
+    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-28.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets. It works with Codex and Claude Code.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment. Solutions (Canvas login required).\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nOptional: Sample Homework 1 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 1 report skeleton — try building your own report first. This file contains known-good copies of the required tables and figures, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit the PDF you export from Word.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-2",
+    "href": "introstatgpt.html#homework-2",
+    "title": "IntroStatGPT",
+    "section": "Homework 2",
+    "text": "Homework 2\nDownload IntroStatGPT_homework_02_2026-09-12.zip (444 KB). This folder contains the Homework 2 workspace, assignment, dataset, and supplied figures. It works with Codex and Claude Code.\nTo start, unzip the file, open the ChatGPT desktop app, and choose File → Open Folder. Select the unzipped TEMBA-2026-homework-02-codex folder. Do not upload or drag the ZIP file into a chat; open the unzipped folder so the workspace instructions and tools load correctly.\nUse the workspace with these files:\n\nHomework 2: Probability and Relationships — the assignment.\nOptional: Sample Homework 2 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 2 report skeleton — try building your own report first. This file contains known-good copies of the required tables, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit one or more PDF files. Clearly label every answer with its problem and part number. Legible scans or photographs of handwritten pages are acceptable once converted to PDF.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#intensive",
+    "href": "introstatgpt.html#intensive",
+    "title": "IntroStatGPT",
+    "section": "Intensive",
+    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/homework-02-sample-chat.html",
+    "href": "introstatgpt/homework-02-sample-chat.html",
+    "title": "Homework 2: Example IntroStatGPT Chat",
+    "section": "",
+    "text": "This example shows one complete way to generate the required Homework 2 output. It is a model, not a script you must follow word for word. The chat creates the required tables but does not answer or interpret the homework questions."
+  },
+  {
+    "objectID": "introstatgpt/homework-02-sample-chat.html#normal-model-calculations",
+    "href": "introstatgpt/homework-02-sample-chat.html#normal-model-calculations",
+    "title": "Homework 2: Example IntroStatGPT Chat",
+    "section": "Normal-model calculations",
+    "text": "Normal-model calculations\n\n\nStudent\n\nFor Problem 2 part 3, use the supplied normal model with mean 480 units and standard deviation 75 units. Calculate Pr(D &gt; 600) and Pr(450 &lt; D &lt; 600). Put both probabilities in one clearly labeled table, show them to four decimal places, and save the table for my report. Do not write interpretations.\n\n\n\nIntroStatGPT\n\nCreated T1: Problem 2: Demand probabilities.\n\n\n\nEvent\nProbability\n\n\n\n\nPr(D &gt; 600)\n0.0548\n\n\nPr(450 &lt; D &lt; 600)\n0.6006\n\n\n\n\n\n\nStudent\n\nFor Problem 2 part 5, use the same normal model to find the fewest whole number of units to stock so that Pr(D &gt; stock) &lt;= 0.01. Show the normal cutoff to two decimal places and the whole-number target in a saved table. Do not write an interpretation.\n\n\n\nIntroStatGPT\n\nCreated T2: Problem 2: One-percent stock target.\n\n\n\nQuantity\nValue\n\n\n\n\nNormal cutoff (units)\n654.48\n\n\nFewest whole number to stock\n655"
+  },
+  {
+    "objectID": "introstatgpt/homework-02-sample-chat.html#workload-comparison",
+    "href": "introstatgpt/homework-02-sample-chat.html#workload-comparison",
+    "title": "Homework 2: Example IntroStatGPT Chat",
+    "section": "Workload comparison",
+    "text": "Workload comparison\n\n\nStudent\n\nFor Problem 5 Output A, use fulfillment_shifts. Put shifts with at most 900 orders in one group and shifts with more than 900 orders in another. Make one table with a column for each group and rows for the number of shifts, mean completion-time error, sample SD of completion-time error, number of shifts outside the target from -10 through 10 minutes, and percentage outside the target. Show means and SDs to three decimal places and percentages to one decimal place. Save the table for my report. Skip the optional plot and do not interpret the results.\n\n\n\nIntroStatGPT\n\nCreated T3: Problem 5 Output A: Completion errors by workload group.\n\n\n\nQuantity\nAt most 900 orders\nMore than 900 orders\n\n\n\n\nNumber of shifts\n75\n125\n\n\nMean completion-time error (minutes)\n0.327\n−0.700\n\n\nSample SD of completion-time error (minutes)\n5.812\n14.213\n\n\nNumber of shifts outside target\n7\n55\n\n\nPercentage of shifts outside target\n9.3%\n44.0%"
+  },
+  {
+    "objectID": "introstatgpt/homework-02-sample-chat.html#build-the-report-skeleton",
+    "href": "introstatgpt/homework-02-sample-chat.html#build-the-report-skeleton",
+    "title": "Homework 2: Example IntroStatGPT Chat",
+    "section": "Build the report skeleton",
+    "text": "Build the report skeleton\n\n\nStudent\n\nCreate a report called Homework 2 report skeleton. Keep all five problem headings in assignment order, including the problems with no saved output. Put T1 and T2 under Problem 2 and T3 under Problem 5. Show me the complete outline before you build it. Do not add source code, interpretations, or answers.\n\n\n\nIntroStatGPT\n\nHere is the proposed report outline.\nProblem 1. Evaluate an event-equipment contract\nProblem 2. Set an inventory target with a normal demand model: T1, T2\nProblem 3. Which routing tool resolves tickets faster?\nProblem 4. Evaluating a transaction-screening algorithm\nProblem 5. Are busy shifts equally predictable? T3\nDescribe any changes, or approve this outline to build the Word report.\n\n\n\nStudent\n\nI approve this outline. Build the Word report.\n\n\n\nIntroStatGPT\n\nBuilt version 1 of the Homework 2 report skeleton."
+  },
+  {
+    "objectID": "introstatgpt/homework-02-sample-chat.html#what-to-do-next",
+    "href": "introstatgpt/homework-02-sample-chat.html#what-to-do-next",
+    "title": "Homework 2: Example IntroStatGPT Chat",
+    "section": "What to do next",
+    "text": "What to do next\nOpen the Word skeleton, add your numbered answers under the corresponding problem headings, insert your three Problem 2 sketches, and export the completed document to PDF. The supplied skeleton is also available as a backup if IntroStatGPT does not finish your report or as a check on output you generated yourself."
   }
 ]
