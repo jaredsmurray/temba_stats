@@ -52,6 +52,34 @@ Use the workspace with these files:
 
 Submit the PDF you export from Word.
 
+## Homework 2
+
+Download [IntroStatGPT_homework_02_2026-09-12.zip](files/IntroStatGPT_homework_02_2026-09-12.zip)
+(444 KB). This folder contains the Homework 2 workspace, assignment, dataset,
+and supplied figures. It works with Codex and Claude Code.
+
+To start, unzip the file, open the ChatGPT desktop app, and choose **File → Open
+Folder**. Select the unzipped `TEMBA-2026-homework-02-codex` folder. Do not
+upload or drag the ZIP file into a chat; open the unzipped folder so the
+workspace instructions and tools load correctly.
+
+Use the workspace with these files:
+
+1. [Homework 2: Probability and Relationships](files/homework-02.pdf) — the
+   assignment.
+2. **Optional:** [Sample Homework 2 chat](introstatgpt/homework-02-sample-chat.qmd)
+   — try generating the required output yourself first. If you get stuck, use
+   this complete output-generation conversation to check your requests and
+   output. It does not answer the homework questions.
+3. **Optional:** [Homework 2 report skeleton](files/homework-02-report-skeleton.docx)
+   — try building your own report first. This file contains known-good copies
+   of the required tables, with no written answers. Use it to check
+   your output or as a backup if IntroStatGPT is unavailable.
+
+Submit one or more PDF files. Clearly label every answer with its problem and
+part number. Legible scans or photographs of handwritten pages are acceptable
+once converted to PDF.
+
 Your ability to complete any assignment, quiz, or exam never depends on an AI
 tool working: known-good tables and figures are provided alongside every
 assignment, and you can use them to check your own output or instead of it.

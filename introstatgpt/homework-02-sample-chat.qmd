@@ -1,0 +1,178 @@
+---
+title: "Homework 2: Example IntroStatGPT Chat"
+subtitle: "Generating the required output and building the report skeleton"
+format:
+  html:
+    toc: true
+    embed-resources: true
+    theme: cosmo
+    css: homework-02-sample-chat.css
+---
+
+This example shows one complete way to generate the required Homework 2
+output. It is a model, not a script you must follow word for word. The chat
+creates the required tables but does not answer or interpret the homework
+questions.
+
+::: {.conversation}
+
+::: {.turn .student}
+::: {.speaker}
+Student
+:::
+
+Set up IntroStatGPT for Homework 2. Verify that the workspace is ready, but do
+not begin an analysis yet.
+:::
+
+::: {.turn .codex}
+::: {.speaker}
+IntroStatGPT
+:::
+
+Setup is complete. The assignment data and required R packages are ready.
+:::
+
+## Normal-model calculations
+
+::: {.turn .student}
+::: {.speaker}
+Student
+:::
+
+For Problem 2 part 3, use the supplied normal model with mean 480 units and
+standard deviation 75 units. Calculate `Pr(D > 600)` and
+`Pr(450 < D < 600)`. Put both probabilities in one clearly labeled table,
+show them to four decimal places, and save the table for my report. Do not
+write interpretations.
+:::
+
+::: {.turn .codex}
+::: {.speaker}
+IntroStatGPT
+:::
+
+Created **T1: Problem 2: Demand probabilities**.
+
+| Event | Probability |
+| :--- | ---: |
+| Pr(D > 600) | 0.0548 |
+| Pr(450 < D < 600) | 0.6006 |
+:::
+
+::: {.turn .student}
+::: {.speaker}
+Student
+:::
+
+For Problem 2 part 5, use the same normal model to find the fewest whole
+number of units to stock so that `Pr(D > stock) <= 0.01`. Show the normal
+cutoff to two decimal places and the whole-number target in a saved table. Do
+not write an interpretation.
+:::
+
+::: {.turn .codex}
+::: {.speaker}
+IntroStatGPT
+:::
+
+Created **T2: Problem 2: One-percent stock target**.
+
+| Quantity | Value |
+| :--- | ---: |
+| Normal cutoff (units) | 654.48 |
+| Fewest whole number to stock | 655 |
+:::
+
+## Workload comparison
+
+::: {.turn .student}
+::: {.speaker}
+Student
+:::
+
+For Problem 5 Output A, use `fulfillment_shifts`. Put shifts with at most 900
+orders in one group and shifts with more than 900 orders in another. Make one
+table with a column for each group and rows for the number of shifts, mean
+completion-time error, sample SD of completion-time error, number of shifts
+outside the target from -10 through 10 minutes, and percentage outside the
+target. Show means and SDs to three decimal places and percentages to one
+decimal place. Save the table for my report. Skip the optional plot and do not
+interpret the results.
+:::
+
+::: {.turn .codex}
+::: {.speaker}
+IntroStatGPT
+:::
+
+Created **T3: Problem 5 Output A: Completion errors by workload group**.
+
+| Quantity | At most 900 orders | More than 900 orders |
+| :--- | ---: | ---: |
+| Number of shifts | 75 | 125 |
+| Mean completion-time error (minutes) | 0.327 | −0.700 |
+| Sample SD of completion-time error (minutes) | 5.812 | 14.213 |
+| Number of shifts outside target | 7 | 55 |
+| Percentage of shifts outside target | 9.3% | 44.0% |
+:::
+
+## Build the report skeleton
+
+::: {.turn .student}
+::: {.speaker}
+Student
+:::
+
+Create a report called **Homework 2 report skeleton**. Keep all five problem
+headings in assignment order, including the problems with no saved output.
+Put T1 and T2 under Problem 2 and T3 under Problem 5. Show me the complete
+outline before you build it. Do not add source code, interpretations, or
+answers.
+:::
+
+::: {.turn .codex}
+::: {.speaker}
+IntroStatGPT
+:::
+
+Here is the proposed report outline.
+
+**Problem 1. Evaluate an event-equipment contract**
+
+**Problem 2. Set an inventory target with a normal demand model:** T1, T2
+
+**Problem 3. Which routing tool resolves tickets faster?**
+
+**Problem 4. Evaluating a transaction-screening algorithm**
+
+**Problem 5. Are busy shifts equally predictable?** T3
+
+Describe any changes, or approve this outline to build the Word report.
+:::
+
+::: {.turn .student}
+::: {.speaker}
+Student
+:::
+
+I approve this outline. Build the Word report.
+:::
+
+::: {.turn .codex}
+::: {.speaker}
+IntroStatGPT
+:::
+
+Built version 1 of the [Homework 2 report skeleton](../files/homework-02-report-skeleton.docx).
+:::
+
+:::
+
+## What to do next
+
+Open the Word skeleton, add your numbered answers under the corresponding
+problem headings, insert your three Problem 2 sketches, and export the
+completed document to PDF. The supplied skeleton is also available as a
+backup if IntroStatGPT does not finish your report or as a check on output you
+generated yourself.
