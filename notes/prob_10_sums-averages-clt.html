@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Measuring Location and Spread – TEMBA Statistics — Course Notes</title>
+<title>15&nbsp; Sums, Averages, and the Central Limit Theorem – TEMBA Statistics — Course Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./singlevar_04_transformations.html" rel="next">
-<link href="./singlevar_02_describing-distributions.html" rel="prev">
+<link href="./inference_01_sampling-distributions.html" rel="next">
+<link href="./prob_09_combining-random-variables.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -76,24 +76,22 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <style>
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 .Definition {
   --color1: #F4EAF0;
@@ -143,7 +141,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_09_combining-random-variables.html">Combining Random Variables</a></li><li class="breadcrumb-item"><a href="./prob_10_sums-averages-clt.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,7 +198,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link active">
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
   </div>
 </li>
@@ -316,7 +314,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob_10_sums-averages-clt.html" class="sidebar-item-text sidebar-link">
+  <a href="./prob_10_sums-averages-clt.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></span></a>
   </div>
 </li>
@@ -366,18 +364,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-measures-center" id="toc-sec-measures-center" class="nav-link active" data-scroll-target="#sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</a></li>
-  <li><a href="#sec-measures-spread" id="toc-sec-measures-spread" class="nav-link" data-scroll-target="#sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</a></li>
-  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  <li><a href="#sec-sums-averages" id="toc-sec-sums-averages" class="nav-link active" data-scroll-target="#sec-sums-averages"><span class="header-section-number">15.1</span> Sums and averages</a></li>
+  <li><a href="#sec-clt" id="toc-sec-clt" class="nav-link" data-scroll-target="#sec-clt"><span class="header-section-number">15.2</span> The Central Limit Theorem</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">15.3</span> Practice</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_09_combining-random-variables.html">Combining Random Variables</a></li><li class="breadcrumb-item"><a href="./prob_10_sums-averages-clt.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></h1>
 </div>
 
 
@@ -394,193 +392,211 @@ window.Quarto = {
 </header>
 
 
-<p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
-<div id="notation-subscripts-summation" class="Notation">
-<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details open="" id="details-subscripts-summation" aria-label="Details">
-<summary>Details</summary>
-<p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
-<div class="cell">
-<div id="tbl-subscripts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: The first four sale prices, labeled.
-</figcaption>
-<div aria-describedby="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class=" table table-sm table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:center;"> \(i\) </th>
-   <th style="text-align:left;"> \(x_i\) (sale price) </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:left;"> $419,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:left;"> $429,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 3 </td>
-   <td style="text-align:left;"> $575,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:left;"> $210,000 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>The symbol <span class="math inline">\(\sum\)</span> (a capital sigma, for “sum”) means “add up.” Writing <span class="math inline">\(\sum_{i=1}^{4} x_i\)</span> says: add up <span class="math inline">\(x_i\)</span> for every <span class="math inline">\(i\)</span> from 1 to 4,</p>
-<p><span class="math display">\[
-\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4
-= \$419,000 + \$429,000 + \$575,000 + \$210,000
-= \$1,633,000.
-\]</span></p>
-<p>Putting <span class="math inline">\(n\)</span> in place of 4 adds up the whole column, and <span class="math inline">\(\frac{1}{n}\sum_{i=1}^{n} x_i\)</span> is that total divided by the number of observations — the sample mean.</p>
-</details>
+<p>All the rules from the last chapter about combining two random variables have analogues for settings where we combine multiple random variables: portfolios that hold many assets, forecasted total revenues added up from many branches. The math involved gets unwieldy, however — we end up with long formulas involving all the possible covariances between the random variables. (The rules work similarly to paired variables: positive covariances increase variability relative to independence and negative covariances decrease it.) In one very special case — when the random variables are <em>independent</em> — there are simple rules for computing their means, variances, and standard deviations. By repeatedly applying the rules in that chapter we can show that <em>means/expected values add</em> (this is always true, irrespective of dependence between the random variables) and that <em>variances add</em> (this is the special rule that requires independence).</p>
+<div id="example-thaler-projects" class="Example">
+<div class="Example fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-bookmark fobx-icon" aria-hidden="true"></i><strong>Example 15.1: </strong>Thaler’s investment decision</div><div class="fobx-body">
+<p>In <em>Misbehaving</em>, Richard Thaler recounts a meeting with a CEO and the 23 executives who ran the company’s divisions. He offered each executive a hypothetical project that would earn $2 million with probability 0.5 or lose $1 million with probability 0.5. Only three executives would take it, but the CEO wanted all 23 projects if their outcomes were independent. Why might an individual executive decline while the CEO wanted them all to accept? Was the CEO making a sensible business decision?</p>
 </div></div>
 </div>
-<section id="sec-measures-center" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</h2>
-<p>The two most common measures of center are the <strong>mean</strong> and the <strong>median</strong>.</p>
-<div id="defn-sample-mean" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
-<p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details id="formula-sample-mean" class="formula-details" aria-label="Details and formulas">
-<summary>Details and formulas</summary>
-<p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
-<p><span class="math display">\[
-\bar{x} = \frac1n\left ( x_1 + x_2 + x_3 + \dots + x_n \right ) = \frac{1}{n}\sum_{i=1}^{n} x_i.
-\]</span></p>
-<p>The summation adds the <span class="math inline">\(n\)</span> observed values, and dividing by <span class="math inline">\(n\)</span> turns that total into an average. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
-</details>
+<section id="sec-sums-averages" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="sec-sums-averages"><span class="header-section-number">15.1</span> Sums and averages</h2>
+<p>Suppose we repeat the same random process independently: each project faces the same payoff distribution, or each customer order faces the same distribution of processing times. We call the resulting random variables <strong>independent and identically distributed</strong>, abbreviated <strong>iid</strong>.</p>
+<div id="defn-iid" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 15.1: </strong>Independent and identically distributed random variables</div><div class="fobx-body">
+<p>Random variables <span class="math inline">\(X_1,\ldots,X_n\)</span> are <strong>independent and identically distributed (iid)</strong> when they are independent of one another and all have the same distribution.</p>
 </div></div>
 </div>
-<div id="defn-median" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.2: </strong>Sample median</div><div class="fobx-body">
-<p>The sample <strong>median</strong> is the middle value when the data are sorted from smallest to largest. It goes by three other names we have already seen: the 50th percentile, the 0.5 quantile, and the second quartile.</p>
-</div></div>
-</div>
-<div id="medians-when-values-tie" class="TechnicalDetail">
-<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 3.1: </strong>Medians when values tie</summary><div>
-<p>Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it. That doesn’t always uniquely define the median, and there are different conventions for a number that meets the general rule, but the one we use almost never matters.</p>
-</div></details>
-</div>
-<p>For our Austin 78752 prices, the mean is $370,804. For our prices, the median is $351,478. The mean is higher than the median because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.</p>
+<p>Having the same mean and variance alone does not make distributions identical; their probabilities and shapes must also agree. For the sums and averages below, suppose the common distribution has a finite mean <span class="math inline">\(\mu\)</span> and finite variance <span class="math inline">\(\sigma^2\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Mean or median?
+<span class="screen-reader-only">Note</span>Sums and averages of iid random variables
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Which measure of location is better? It depends, and like histograms and density plots they’re better together.</p>
-<p>The mean and the median sit close together in a symmetric distribution. In a right-skewed distribution the mean sits above the median, and in a left-skewed distribution it sits below. A substantial gap between the two is therefore evidence of skewness, outliers, or some other asymmetry, which is a good reason to report both.</p>
-<p>You will, however, often hear distributions of economic measures like wages reported via median with no reference to the mean. That’s just because the skew already is well-known.</p>
+<p>The sum <span class="math inline">\(S_n=X_1+X_2+\cdots+X_n\)</span> has</p>
+<p><span class="math display">\[
+E[S_n]=n\mu,\qquad
+\operatorname{Var}(S_n)=n\sigma^2,\qquad
+\operatorname{SD}(S_n)=\sqrt{n}\,\sigma.
+\]</span></p>
+<p>The average <span class="math inline">\(\bar X=S_n/n\)</span> has</p>
+<p><span class="math display">\[
+E[\bar X]=\mu,\qquad
+\operatorname{Var}(\bar X)=\frac{\sigma^2}{n},\qquad
+\operatorname{SD}(\bar X)=\frac{\sigma}{\sqrt n}.
+\]</span></p>
+<p>The sum’s mean grows in proportion to the number of terms, while its standard deviation grows with the square root of that number. The average keeps the original mean and has a smaller standard deviation.</p>
 </div>
 </div>
-<p>If you find yourself looking at a distribution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center — both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a “center” as we would usually think of it.</p>
+<p>Means add whether or not the variables are independent. Independence removes the covariance terms from the variance of the sum, leaving <span class="math inline">\(n\)</span> copies of <span class="math inline">\(\sigma^2\)</span>. Dividing the sum by <span class="math inline">\(n\)</span> divides its variance by <span class="math inline">\(n^2\)</span>, giving <span class="math inline">\(n\sigma^2/n^2=\sigma^2/n\)</span> for the average.</p>
+<p>Focus on the sum for a moment, which is the relevant metric for Thaler’s example: The total expected payout increases with more projects. So does the standard deviation — the relevant spread metric, since it’s also in million-dollar units — except it increases much more slowly, as the square root of <span class="math inline">\(n\)</span>. This difference is what makes the risk calculation so different between individual division heads and the CEO, as we’ll see below.</p>
+<p>Let <span class="math inline">\(X\)</span> be one of Thaler’s project payoffs in millions of dollars. Its mean and variance are</p>
+<p><span class="math display">\[
+E[X]=0.5(2)+0.5(-1)=0.5,
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(X)=0.5(2-0.5)^2+0.5(-1-0.5)^2=2.25.
+\]</span></p>
+<p>The expected profit is $500,000, and the standard deviation is $1.5 million. A positive expected payoff does not remove the downside: an executive taking one project still faces a probability of 0.5 of losing $1 million. An executive judged on their own division’s results might reasonably be unwilling to risk that loss.</p>
+<p>The CEO is considering the combined outcome of all 23 projects. Under the independence assumption, the total payoff <span class="math inline">\(S_{23} = X_1+X_2+\cdots+X_{23}\)</span> has</p>
+<p><span class="math display">\[
+E[S_{23}]=23(0.5)=11.5,\qquad
+\operatorname{Var}(S_{23})=23(2.25)=51.75,
+\]</span></p>
+<p>so its standard deviation is <span class="math inline">\(\sqrt{51.75}\approx7.19\)</span> million dollars. Expected total profit grows by a factor of 23, while its standard deviation grows by only <span class="math inline">\(\sqrt{23}\)</span>. The company takes on more total uncertainty, but less uncertainty relative to its expected profit.</p>
+<p>The average payoff per project still has mean $0.5 million. Its standard deviation is</p>
+<p><span class="math display">\[
+\operatorname{SD}(\bar X)=\frac{1.5}{\sqrt{23}}\approx0.31
+\]</span></p>
+<p>million dollars, compared with $1.5 million for a single project. This reduction helps explain the CEO’s willingness to accept the bundle. It does not establish that accepting every project is optimal for every firm; that decision also depends on the firm’s ability to absorb losses and the uses of its capital.</p>
+<p>What is the probability that the 23 projects lose money in total? Their mean and standard deviation alone do not determine that probability. We need the distribution of the total, which we approximate in the next section.</p>
+<div id="exercise-service-fees" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.1: </strong>Daily service fees</div><div class="fobx-body">
+<p>A repair company models the fees for 25 service visits as iid, with mean $160 and standard deviation $40 per visit. Find the mean and standard deviation of the day’s total fees and its average fee per visit.</p>
+<details class="solution-details" aria-label="Solution" id="details-1">
+<summary>Solution</summary>
+<p>The total has mean <span class="math inline">\(25(160)=4{,}000\)</span> dollars and standard deviation <span class="math inline">\(\sqrt{25}(40)=200\)</span> dollars. Across repeated days, total fees vary around $4,000 with a standard deviation of $200.</p>
+<p>The average has mean $160 and standard deviation <span class="math inline">\(40/\sqrt{25}=8\)</span> dollars. Across repeated days, the average fee per visit varies around $160 with a standard deviation of $8.</p>
+</details>
+</div></div>
+</div>
+<div id="exercise-common-weather" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.2: </strong>Sales on a rainy day</div><div class="fobx-body">
+<p>A company uses an iid model for daily sales at its 16 outdoor kiosks, each with mean $500 and standard deviation $100. All kiosks are in the same city, and rainy days tend to reduce sales at all of them. If the individual means and standard deviations remain correct, explain which of the model’s results for total sales would still hold: a mean of $8,000 or a standard deviation of $400.</p>
+<details class="solution-details" aria-label="Solution" id="details-2">
+<summary>Solution</summary>
+<p>The mean of $8,000 still holds because means add even under dependence. Shared weather makes kiosk sales tend to move together, so the total’s standard deviation would be larger than $400. We need information about the dependence to calculate how much larger.</p>
+</details>
+</div></div>
+</div>
 </section>
-<section id="sec-measures-spread" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</h2>
-<p>Once we have a measure of where the “middle” of a distribution is we naturally want some measure of how close observations tend to be to the middle — or how they are <em>spread</em> out around the center. The median price of a house in 78752 is $351,478, but are there houses selling for around $100,000? Or $490,000? Are there a few houses with similarly high or low prices, or many?</p>
-<p>Let’s look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.</p>
+<section id="sec-clt" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="sec-clt"><span class="header-section-number">15.2</span> The Central Limit Theorem</h2>
+<p><a href="#fig-thaler-dist" class="quarto-xref">Figure&nbsp;<span>15.1</span></a> shows the distributions of total payoff for 1, 5, and 23 independent projects. The orange curves are normal distributions with the same means and variances as the totals.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-zip-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-thaler-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-zip-comparison-1.png" class="img-fluid figure-img" width="864">
+<div aria-describedby="fig-thaler-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_10_sums-averages-clt_files/figure-html/fig-thaler-dist-1.png" class="img-fluid figure-img" width="864">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating sample means and overlapping density-scaled histograms (right).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thaler-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: Total payoff for 1, 5, and 23 independent projects, each paying +$2M or −$1M with equal probability. Blue bar areas give the probabilities of the possible payoffs. Orange curves are normal densities with matching means and variances. The panels use different axis scales.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Now imagine you need to guess the sale price for a new listing in each of those ZIP codes, using only the ZIP code to make your guess. Assuming our historical data is useful for making such a prediction, which price is going to be harder to accurately predict?</p>
-<p>You probably said 78741, because the values are more spread out than in 78749 whether our reference point is the mean or the median. Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749 because prices are less <strong>variable</strong>.</p>
-<div id="defn-variance" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
-<p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details id="formula-variance" class="formula-details" aria-label="Details and formulas">
-<summary>Details and formulas</summary>
-<p>The variance is given by</p>
+<p>An individual project’s payoff is far from normal: it has only two possible values. Add five independent projects and the total starts to take a bell shape. Add 23 and a normal curve describes the shape of the distribution fairly well. The individual projects still have the same two possible payoffs; it is their total that has become approximately normal. <a href="https://jaredsmurray.github.io/stats-webapps/thaler.html" target="_blank">This webapp</a> simulates portfolios and accumulates the results into a histogram to verify the calculation.</p>
+<p>The <strong>Central Limit Theorem (CLT)</strong> says that this happens quite generally when we add many independent draws from the same distribution. The individual variables do not need to be normally distributed.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The central limit theorem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For iid random variables with mean <span class="math inline">\(\mu\)</span> and finite, positive variance <span class="math inline">\(\sigma^2\)</span>, the sum and average have approximately normal distributions when <span class="math inline">\(n\)</span> is sufficiently large:</p>
 <p><span class="math display">\[
-s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
+S_n\ \approx\ N(n\mu,n\sigma^2),\qquad
+\bar X\ \approx\ N\left(\mu,\frac{\sigma^2}{n}\right).
 \]</span></p>
-<p>which you get by</p>
+<p>The second parameter in <span class="math inline">\(N(\text{mean},\text{variance})\)</span> is the variance. The means and variances come from the rules for sums and averages; the CLT adds the approximately normal shape.</p>
+</div>
+</div>
+<p>The average is the total divided by <span class="math inline">\(n\)</span>, so it has the same distributional shape on a different scale. For the 23 projects, the average payoff is approximately normal with mean 0.5 and standard deviation about 0.31 million dollars.</p>
+<p>We can now approximate the probability of a loss. The total payoff has mean 11.5 and variance 51.75, giving</p>
+<p><span class="math display">\[
+S_{23}\ \approx\ N(11.5,51.75).
+\]</span></p>
+<p>A total of zero lies about 1.60 standard deviations below the mean, so the probability we <em>lose</em> money is rather small — 0.055 under this approximation. In <a href="#fig-thaler-loss" class="quarto-xref">Figure&nbsp;<span>15.2</span></a>, the shaded normal area to the left of zero represents this approximate probability.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-thaler-loss" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thaler-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_10_sums-averages-clt_files/figure-html/fig-thaler-loss-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thaler-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.2: Total payoff for 23 independent projects. The orange area to the left of zero is the normal approximation to the probability of a loss. The blue bar outlines are drawn above the shading; each full bar area gives the probability of the payoff at its center. Darker outlines mark negative payoffs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="technical-thaler-exact" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 15.1: </strong>Computing the loss probability exactly</summary><div>
+<p>Since the projects are independent and the success probability is 0.5, each possible sequence of successes and failures is equally likely. We can compute the probability of a particular total payoff by counting the sequences that produce it and dividing by the total number of sequences.</p>
+<p>In <a href="https://jaredsmurray.github.io/stats-webapps/paths_to_a_payoff.html" target="_blank">Paths to a Payoff</a>, set <span class="math inline">\(n=4\)</span> and keep the payoff at +$2M / −$1M. Click “Next sequence” to follow one sequence of project outcomes, then click the +$2M total or its bar in the lower plot. Six of the 16 possible sequences reach this total: each has two successes and two failures, in a different order. Its probability is therefore <span class="math inline">\(6/16=0.375\)</span>.</p>
+<p>With 23 projects, there are <span class="math inline">\(2^{23}=\)</span> 8,388,608 equally likely sequences. We lose money if fewer than eight projects succeed: seven successes and 16 failures give <span class="math inline">\(7(2)-16=-2\)</span> million dollars, while eight successes and 15 failures give <span class="math inline">\(8(2)-15=1\)</span> million. Counting the sequences with zero through seven successes gives 390,656 losing sequences. Dividing by <span class="math inline">\(2^{23}\)</span> gives an exact loss probability of about 0.0466, compared with 0.055 from the normal approximation.</p>
+<p>There is a shortcut if you know one more probability distribution. The <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm"><strong>binomial distribution</strong></a> is a discrete distribution that does this counting for us. A random variable has a binomial distribution with <span class="math inline">\(n\)</span> trials and success probability <span class="math inline">\(p\)</span> when it counts the successes in <span class="math inline">\(n\)</span> independent trials, each with success probability <span class="math inline">\(p\)</span>. Equivalently, it is the sum of <span class="math inline">\(n\)</span> independent binary variables that equal 1 on success and 0 on failure.</p>
+<p>Here the number of successful projects has a binomial distribution with <span class="math inline">\(n=23\)</span> and <span class="math inline">\(p=0.5\)</span>. Its cumulative distribution function at seven gives the probability of seven or fewer successes, which is the exact loss probability computed above.</p>
+</div></details>
+</div>
+<div id="warning-thaler-independence" class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Independence matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Independence is a critical assumption here. If all divisions’ projects succeed or fail together, the total payoff is either $46 million or −$23 million, each with probability 0.5. Its loss probability remains 0.5, and averaging does not reduce the standard deviation of the payoff per project. If common factors make all the projects simultaneously more or less likely to succeed, we observe a similar effect, just less extreme.</p>
+</div>
+</div>
+<div id="note-clt-sample-size" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How large must n be?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The number of terms needed for a good normal approximation depends on the original distribution. Strong skew or rare extreme outcomes can require many more terms than a symmetric distribution like the project payoff. While you may read <span class="math inline">\(n=30\)</span> as a common convention or rule of thumb, there is no single cutoff that works for every distribution.</p>
+</div>
+</div>
+</section>
+<section id="practice" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="practice"><span class="header-section-number">15.3</span> Practice</h2>
+<p><span id="exr-sums-processing"></span></p>
+<div id="exercise-sums-processing" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.3: </strong>Order processing times</div><div class="fobx-body">
+<p>A fulfillment center models processing times for individual orders as iid, with mean 12 minutes and standard deviation 6 minutes. The distribution is right-skewed.</p>
 <ol type="1">
-<li>Computing each observation’s deviation from the mean: <span class="math inline">\((x_1 - \bar{x})\)</span>, <span class="math inline">\((x_2 - \bar{x})\)</span>, …, <span class="math inline">\((x_n - \bar{x})\)</span>. These are signed — values below the mean give negative deviations.</li>
-<li>Squaring them: <span class="math inline">\((x_1 - \bar{x})^2\)</span>, <span class="math inline">\((x_2 - \bar{x})^2\)</span>, …, <span class="math inline">\((x_n - \bar{x})^2\)</span>.</li>
+<li>Find the mean and standard deviation of the total processing time for 100 orders.</li>
+<li>Find the mean and standard deviation of the average processing time for those orders. How many orders would reduce the average’s standard deviation to 0.3 minutes?</li>
+<li>If a normal approximation is adequate for this model, approximate the probability that the total exceeds 1,320 minutes. Express the same event using the average processing time.</li>
+<li>Suppose a common equipment slowdown affects all 100 orders. Explain why the iid calculation may understate the variability of their total.</li>
 </ol>
-<p>and then averaging the squares — almost. We divide by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span>. The full justification is mathematical and not something you need for this course, but here is the idea. Because <span class="math inline">\(\bar{x}\)</span> is computed from the same data, the deviations <span class="math inline">\((x_i-\bar x)\)</span> always satisfy</p>
-<p><span class="math display">\[
-\sum_{i=1}^{n} (x_i - \bar{x}) = 0,
-\]</span></p>
-<p>so if I hand you any <span class="math inline">\(n-1\)</span> of them, you can recover the last one: add um the ones you have and flip the sign. Only <span class="math inline">\(n-1\)</span> of the deviations carry independent information about spread, so we divide by <span class="math inline">\(n-1\)</span>. The difference between dividing by <span class="math inline">\(n\)</span> or <span class="math inline">\(n-1\)</span> is negligible in all but the smallest datasets. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
-</details>
-<p>Since we get the variance by adding up <em>squared</em> deviations of <span class="math inline">\(x\)</span>, its units are “units of x squared”. This is usually not a helpful number for communicating results:</p>
-<p>For 78749 that comes to <span class="math inline">\(s^2 = 7.2\)</span> billion dollars-squared, and for 78741 about <span class="math inline">\(23.1\)</span> billion dollars-squared.</p>
-</div></div>
-</div>
-<div id="defn-standard-deviation" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
-<p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details id="formula-standard-deviation" class="formula-details" aria-label="Details and formulas">
-<summary>Details and formulas</summary>
-<p><span class="math display">\[
-s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
-\]</span></p>
-<p>The standard deviation is the square root of the average squared deviation from the mean. Again, dividing by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span> to form that average is a technical adjustment; in any case we care about, <span class="math inline">\(n\)</span> and <span class="math inline">\(n-1\)</span> are effectively the same. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
+<details class="solution-details" aria-label="Solution" id="details-3">
+<summary>Solution</summary>
+<p>The total has mean <span class="math inline">\(100(12)=1{,}200\)</span> minutes and standard deviation <span class="math inline">\(\sqrt{100}(6)=60\)</span> minutes. The average has mean 12 minutes and standard deviation <span class="math inline">\(6/\sqrt{100}=0.6\)</span> minutes. Reducing that standard deviation to 0.3 requires 400 orders.</p>
+<p>The threshold 1,320 is two standard deviations above the total’s mean, giving an approximate probability <span class="math inline">\(\Pr(Z&gt;2)\approx0.0228\)</span>. The same event is an average above 13.2 minutes, also two standard deviations above its mean.</p>
+<p>A shared slowdown can make processing times move together, producing positive covariance terms. Adding only the individual variances omits those terms and can understate total variability.</p>
 </details>
 </div></div>
 </div>
-<p>For 78749 the standard deviation is $85,141; for 78741 it is $151,824. These are typical deviations from the average price (whether above or below). That gap matches what we saw when we compared the spread: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.</p>
-<p>The variance is most useful as a measure of spread — unpredictability — when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.</p>
-<p>Let’s take a look at another example: <a href="#fig-ford-tesla-sd" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows two years of weekly returns for Ford and Tesla — the percentage change in each share price from one week to the next (we’ll see how to compute it in <a href="singlevar_04_transformations.html#sec-returns" class="quarto-xref"><span>Section 4.3</span></a>) — with a histogram of all the returns below.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-ford-tesla-sd" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-ford-tesla-sd-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top), and their distributions as histograms (bottom).
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Ford’s weekly returns have a standard deviation of 4.5%; Tesla’s is 8.2%, about 1.8 times larger, and the histograms show what that means: a typical Tesla week lands that much farther from its average, up or down. Guess next week’s return for each stock and you will miss by more with Tesla. That is what the standard deviation measures.</p>
-<p>Our final measure of spread is the interquartile range; we already saw it defined alongside box plots, but here it is again for completeness:</p>
-<div id="defn-iqr" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.5: </strong>Interquartile range</div><div class="fobx-body">
-<p>The <strong>interquartile range</strong> (IQR) is the distance between the 75th and 25th percentiles, <span class="math inline">\(\text{IQR} = Q3 - Q1\)</span> — the width of the middle half of the data. Like the median, it is insensitive to the values of the most extreme observations.</p>
+<div id="exercise-clt-rare-payouts" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.4: </strong>Rare warranty payouts</div><div class="fobx-body">
+<p>A warranty model assigns each policy a payout of $1,000 with probability 0.001 and zero otherwise, independently across policies. For 100 policies, the probability that every payout is zero is about 0.905. An analyst says, “With 100 policies, the central limit theorem makes both individual payouts and the average payout approximately normal.” Assess this claim using the stated model.</p>
+<details class="solution-details" aria-label="Solution" id="details-4">
+<summary>Solution</summary>
+<p>An individual payout still takes only the values zero and $1,000; adding policies does not change its distribution. The central limit theorem concerns the shape of sums and averages as the number of iid draws grows.</p>
+<p>Here even the average is zero with probability about 0.905, with occasional positive values. A normal distribution would not describe that shape well. Although the model satisfies the theorem’s assumptions, 100 policies are not enough for a good normal approximation in this rare-payout model.</p>
+</details>
 </div></div>
 </div>
-<p>The IQR works out to $91,000 in 78749 and $157,000 in 78741. Because the extremes never enter the calculation, the IQR can be a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.</p>
-</section>
-<section id="data-used-in-this-section" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
-<ul>
-<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a></li>
-</ul>
 
 
 </section>
@@ -988,13 +1004,13 @@ Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./singlevar_02_describing-distributions.html" class="pagination-link" aria-label="Describing Distributions of Quantitative Variables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span>
+      <a href="./prob_09_combining-random-variables.html" class="pagination-link" aria-label="Combining Random Variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Combining Random Variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./singlevar_04_transformations.html" class="pagination-link" aria-label="Transforming Quantitative Variables">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./inference_01_sampling-distributions.html" class="pagination-link" aria-label="Sampling Distributions and Confidence Intervals">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

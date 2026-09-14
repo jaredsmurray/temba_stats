@@ -81,6 +81,10 @@ ul.task-list li input[type="checkbox"] {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -89,9 +93,9 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -308,17 +312,40 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Combining Random Variables</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_10_sums-averages-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Statistical Inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -427,7 +454,7 @@ Table&nbsp;6.1: Historical default rates for small-business and debt-consolidati
 <li>Explain 0.70 as a subjective probability about this meeting.</li>
 <li>Suppose we collect 100 different events that each received a forecast near 0.70. What would a well-calibrated set of forecasts imply about the number of events that occur?</li>
 </ol>
-<details id="solution-forecast-interpretations" class="solution-details" aria-label="Solution">
+<details class="solution-details" id="solution-forecast-interpretations" aria-label="Solution">
 <summary>Solution</summary>
 <p>The probability summarizes the market’s current assessment that holding the target range is more likely than changing it. It applies to this one meeting; we do not imagine replaying the same meeting many times.</p>
 <p>Across many different events assigned probabilities near 0.70, a calibrated forecasting process should see about 70 of every 100 events occur. A particular set may produce more or fewer than 70 because its outcomes remain uncertain.</p>
@@ -609,7 +636,7 @@ Table&nbsp;6.3: A probability model for a future loan’s outcome, given its pur
 <li>What’s your best assessment of the probability a future customer churns?</li>
 <li>What are some reasons your assessment might be wrong?</li>
 </ol>
-<details id="solution-churn-model-part-a" class="solution-details" aria-label="Solution">
+<details class="solution-details" id="solution-churn-model-part-a" aria-label="Solution">
 <summary>Solution</summary>
 <p>The historical churn rate is</p>
 <p><span class="math display">\[
@@ -647,7 +674,7 @@ Figure&nbsp;6.1: A Plinko chip bounces between pegs before landing in one of the
 <li>What is the narrowest population that each result can credibly describe without further assumptions?</li>
 <li>Why does neither result, by itself, represent all of the retailer’s customers?</li>
 </ol>
-<details id="solution-representativeness-claim" class="solution-details" aria-label="Solution">
+<details class="solution-details" id="solution-representativeness-claim" aria-label="Solution">
 <summary>Solution</summary>
 <p>Each team observed <span class="math inline">\(400(0.36)=144\)</span> curbside-pickup users. Team A’s random sample can represent loyalty-program members, while Team B’s random sample can represent customers who clicked the email. Neither sampling frame includes all customers, and both groups may differ systematically from customers outside the frame.</p>
 </details>
@@ -682,7 +709,7 @@ To belabor the point, suppose that exactly 50% of adults rate conditions good or
 <div id="exercise-churn-model-part-b" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 6.4: </strong>A churn model, part B</div><div class="fobx-body">
 <p>Return to the <a href="#exercise-churn-model-part-a">earlier churn model</a>. The company raised annual subscription prices by 15% this year. Why does that change make last year’s churn rate a less credible model for this year’s renewals?</p>
-<details id="solution-churn-model-part-b" class="solution-details" aria-label="Solution">
+<details class="solution-details" id="solution-churn-model-part-b" aria-label="Solution">
 <summary>Solution</summary>
 <p>The model treats last year’s subscriptions as representative of this year’s renewals. A 15% price increase changes an important condition that may affect the decision to renew, so customers facing the new price are no longer otherwise similar to those in the historical data. The old rate may therefore understate or overstate this year’s churn probability.</p>
 </details>

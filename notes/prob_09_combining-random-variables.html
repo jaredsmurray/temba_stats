@@ -55,7 +55,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./appendix_data.html" rel="next">
+<link href="./prob_10_sums-averages-clt.html" rel="next">
 <link href="./prob_08_quantitative-quantitative.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -96,21 +96,25 @@ div.csl-indent {
   }
 }</script>
 <style>
-.TechnicalDetail {
+.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -327,17 +331,40 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Combining Random Variables</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_10_sums-averages-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Statistical Inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -414,7 +441,7 @@ Z=aX+bY+c,
 <div id="exercise-catering-profit" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.1: </strong>Writing daily profit</div><div class="fobx-body">
 <p>A caterer earns $8 per standard lunch box and $12 per premium lunch box after variable costs. Daily fixed costs are $500. Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be the uncertain numbers of standard and premium boxes sold that day. Write daily profit as a linear combination of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and identify <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>.</p>
-<details class="solution-details" aria-label="Solution" id="details-1">
+<details id="details-1" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Daily profit is <span class="math inline">\(P=8X+12Y-500\)</span> dollars, so <span class="math inline">\(a=8\)</span>, <span class="math inline">\(b=12\)</span>, and <span class="math inline">\(c=-500\)</span>. The first two terms give earnings after variable costs; subtracting $500 accounts for the fixed costs.</p>
 </details>
@@ -446,7 +473,7 @@ E[aX+bY+c]=aE[X]+bE[Y]+c.
 <div id="exercise-catering-mean" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.2: </strong>Expected daily profit</div><div class="fobx-body">
 <p>For a caterer with daily profit <span class="math inline">\(P=8X+12Y-500\)</span> dollars, <span class="math inline">\(X\)</span> is the number of standard lunch boxes sold and <span class="math inline">\(Y\)</span> is the number of premium boxes sold. Suppose <span class="math inline">\(E[X]=80\)</span> and <span class="math inline">\(E[Y]=30\)</span>. Find expected daily profit. Would dependence between the two sales counts change this calculation?</p>
-<details class="solution-details" aria-label="Solution" id="details-2">
+<details id="details-2" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Expected daily profit is <span class="math inline">\(8(80)+12(30)-500=500\)</span> dollars. The calculation holds even if the sales counts are dependent, because the mean rule does not require independence.</p>
 </details>
@@ -480,7 +507,7 @@ E[R_p]=wE[R_1]+(1-w)E[R_2].
 <div id="exercise-linear-combinations" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.3: </strong>Combining uncertain quantities</div><div class="fobx-body">
 <p>A firm’s revenue has standard deviation $200,000, and its variable costs have standard deviation $120,000. Their correlation is 0.6. Find the standard deviation of revenue minus variable costs. What would change if the correlation were zero?</p>
-<details class="solution-details" aria-label="Solution" id="details-3">
+<details id="details-3" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>In thousands of dollars, the variance is <span class="math inline">\(200^2+120^2-2(0.6)(200)(120)=25{,}600\)</span>, so the standard deviation is $160,000. With zero correlation the covariance term vanishes, giving a standard deviation of about $233,238.</p>
 </details>
@@ -585,7 +612,7 @@ Figure&nbsp;14.1: Standard deviation of the equal-weight portfolio as correlatio
 <div id="exercise-infer-asset-correlation" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.4: </strong>Diversifying without reducing expected return</div><div class="fobx-body">
 <p>Two funds each have an expected annual return of 8% and an annual standard deviation of 20%. Their correlation is 0.5. An investor currently holds only one fund and is considering splitting the investment equally between the two. Calculate the expected return and standard deviation of the equal-weight portfolio. Does reducing risk require giving up expected return in this example?</p>
-<details class="solution-details" aria-label="Solution" id="details-4">
+<details id="details-4" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Expected return stays at <span class="math inline">\(0.5(8\%)+0.5(8\%)=8\%\)</span>. The variance is <span class="math inline">\(0.5^2(0.20^2)+0.5^2(0.20^2)+2(0.5)(0.5)(0.5)(0.20)(0.20)=0.03\)</span>, so the standard deviation falls from 20% to about 17.3%. The investor reduces risk without giving up expected return because the funds have equal expected returns and do not move perfectly together.</p>
 </details>
@@ -745,7 +772,7 @@ Table&nbsp;14.3: Candidate portfolios compared at approximately the same annuali
 <div id="exercise-compare-diversifiers" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.5: </strong>Comparing two additions</div><div class="fobx-body">
 <p>A portfolio will hold 60% in Fund A and 40% in either Fund B or Fund C. In a hypothetical model of annual returns, A has standard deviation 20%, while B and C each have standard deviation 15%. The correlation of A with B is 0.8; the correlation of A with C is 0.1. Which addition gives the smaller portfolio standard deviation? Calculate both standard deviations and explain why the candidates’ equal individual standard deviations do not make the two portfolios equally variable.</p>
-<details class="solution-details" aria-label="Solution" id="details-5">
+<details id="details-5" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The portfolio variances are</p>
 <p><span class="math display">\[
@@ -851,7 +878,7 @@ Figure&nbsp;14.6: Annualized sample mean and standard deviation as the SPY weigh
 <div id="exercise-sharpe-benchmark" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.6: </strong>Changing the benchmark</div><div class="fobx-body">
 <p>Suppose a portfolio has expected annual return 8%, annual standard deviation 12%, and an annual risk-free benchmark of 3%. Compute its Sharpe ratio. Explain which inputs would change if the benchmark rose to 4% while the return distribution stayed the same.</p>
-<details class="solution-details" aria-label="Solution" id="details-6">
+<details id="details-6" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The Sharpe ratio is <span class="math inline">\((0.08-0.03)/0.12\approx0.417\)</span>. With the higher benchmark, only the excess-return numerator changes; the ratio becomes <span class="math inline">\((0.08-0.04)/0.12\approx0.333\)</span>.</p>
 </details>
@@ -951,7 +978,7 @@ Table&nbsp;14.5: Two allocation objectives compared with holding either fund alo
 <div id="exercise-portfolio-objectives" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 14.7: </strong>Comparing allocation objectives</div><div class="fobx-body">
 <p>In the SPY–VCIT example, why does the allocation that minimizes standard deviation differ from the one that maximizes the sample Sharpe ratio?</p>
-<details class="solution-details" aria-label="Solution" id="details-7">
+<details id="details-7" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The minimum-variance portfolio only tries to control risk, irrespective of returns. Here it gives up a lot of return: its annualized sample mean is 11.1%, compared with 16.4% for the portfolio with the highest sample Sharpe ratio. The Sharpe ratio weighs return above the risk-free benchmark against risk, so it favors a larger investment in SPY.</p>
 </details>
@@ -1385,8 +1412,8 @@ Sharpe, William F. 1966. <span>“Mutual Fund Performance.”</span> <em>The Jou
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendix_data.html" class="pagination-link" aria-label="Datasets">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prob_10_sums-averages-clt.html" class="pagination-link" aria-label="Sums, Averages, and the Central Limit Theorem">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

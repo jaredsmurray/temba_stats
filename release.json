@@ -1,14 +1,8 @@
 {
-  "baseline_commit": "e68ed60dd82f924fd2b41894c70314950682c26a",
-  "release": "20260913T162538-nqnf376m",
-  "scope": null,
-  "selected": [
-    "files/IntroStatGPT_homework_02_2026-09-12.zip",
-    "files/homework-02-report-skeleton.docx",
-    "files/homework-02.pdf",
-    "introstatgpt.qmd",
-    "introstatgpt/homework-02-sample-chat.qmd"
-  ],
+  "baseline_commit": "f2aa8dbd3f5d5529d2177978d0c780e50a1508a4",
+  "release": "20260914T220059-nb5j1q2r",
+  "scope": "notes",
+  "selected": [],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -43,10 +37,10 @@
     "notes/_extensions/custom-numbered-blocks/textcontainers/simpletextbox/simpletextbox.tex": "62fc1ca996f096539b04730a9f3f366597cff9e72955b5d2fd1ad918a65c0688",
     "notes/_extensions/details/_extension.yml": "7498f2ed42d442bfa17123f23a4a596849767d87b99e9cad45a2821ee377bc06",
     "notes/_extensions/details/details.lua": "55c9de6eb50d0844cec580583fb5764ec4ffd7cbc055e04d8d5b2e25372b3dac",
-    "notes/_quarto.yml": "7809368b2da0cfa8735784d7cb2ac786399af5f6fb1b1081d2fba125a681351a",
+    "notes/_quarto.yml": "d5fe7525e48705e3948bea5c2d03b1cd14b48dff9ce424ddb5afc97352d77c09",
     "slides/R/inline_format.R": "d324dd4f400757a8d497fb3c7df483be3ae8a86b9800e7c7d2759a16c52b164b",
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "5fab9c20e5f53caf6cd924408df6c6444c4da259"
+  "source_commit": "51f108fa9e44a03501f9dc33d9a033421f705005"
 }
