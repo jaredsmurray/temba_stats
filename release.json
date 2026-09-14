@@ -1,8 +1,12 @@
 {
-  "baseline_commit": "f2aa8dbd3f5d5529d2177978d0c780e50a1508a4",
-  "release": "20260914T220059-nb5j1q2r",
-  "scope": "notes",
-  "selected": [],
+  "baseline_commit": "7c4bbce8c6ffe194cd9d560910bdbe7b6039a09e",
+  "release": "20260914T221803-3zzmqgeq",
+  "scope": null,
+  "selected": [
+    "slides.qmd",
+    "slides/15_sums_averages_clt.qmd",
+    "slides/16_sampling_distributions_confidence_intervals.qmd"
+  ],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -42,5 +46,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "51f108fa9e44a03501f9dc33d9a033421f705005"
+  "source_commit": "e4e22b6cb7289b5cd969b7d84b8b24a702872f33"
 }

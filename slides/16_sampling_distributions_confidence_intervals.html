@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <title>TEMBA Statistics – Sampling Distributions and Confidence Intervals</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Sampling Distributions and Confidence Intervals</h1>
+  <p class="subtitle">TEMBA Statistics 2026</p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="saps-profitability-claim" class="slide level2">
+<h2>SAP’s profitability claim</h2>
+<p>SAP advertised that its customers were <strong>32% more profitable</strong> than their peers.</p>
+<p><a href="https://www.oracle.com/us/corporate/analystreports/industries/059823.pdf">Nucleus Research</a> examined 81 publicly traded customers listed on SAP’s website.</p>
+<p>Their measure was <strong>return on equity (ROE)</strong>: annual profit as a percentage of shareholder equity.</p>
+<aside class="notes">
+<p>The SAP advertisements ran in 2005; Nucleus published Research Note G12 in March 2006. The source is linked at first use. Each row of sap_roe represents one company, with its ROE and industry-average ROE in percent. The course notes’ “SAP dispute” section supplies the case context and further sources. Keep this setup and the next three slides to about ten minutes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-sample-points-in-the-other-direction" class="slide level2">
+<h2>The sample points in the other direction</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: right;">Average ROE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>81 SAP customers</td>
+<td style="text-align: right;">12.6%</td>
+</tr>
+<tr class="even">
+<td>Their industry benchmarks</td>
+<td style="text-align: right;">15.7%</td>
+</tr>
+</tbody>
+</table>
+<p>The sample gap is <strong>3.1 percentage points</strong>.</p>
+<p>Could sampling variation explain it?</p>
+<aside class="notes">
+<p>The relative gap is about 20%, which is the basis for Nucleus’s headline. Distinguish that relative percentage from the 3.1-percentage-point ROE gap. For this lesson, treat the average industry benchmark as fixed.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="company-roes-vary-widely" class="slide level2">
+<h2>Company ROEs vary widely</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-sap-roe-1.png" width="960" class="r-stretch"><p>The sample SD is 25.7 percentage points.</p>
+</section>
+<section id="is-81-too-small" class="slide level2">
+<h2>Is 81 too small?</h2>
+<p>SAP objected: 81 firms out of roughly 30,000 customers is only <strong>0.27%</strong>.</p>
+<p>What determines how much the sample average varies?</p>
+<aside class="notes">
+<p>Ask students what information they need before judging precision. Do not settle the case from the sampling fraction. Collect suggestions about company variability, sample size, and selection. Return to selection at the end.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-random-sampling-model" class="slide level2">
+<h2>A random-sampling model</h2>
+<p>Model the 81 company ROEs as <strong>iid draws</strong> from the customer population.</p>
+<p>Each customer is equally likely on each draw.</p>
+<p>Website selection may violate this model.</p>
+<aside class="notes">
+<p>This is a working model, not a claim that website selection was random. Sampling with replacement gives iid draws exactly. For simple random sampling without replacement, the SE correction is sqrt((N-n)/(N-1)), about 0.9987 for n=81 and N=30,000. Thus the iid SE is a close approximation here. Avoid the different claim that the chance of any repeated firm is negligible.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="parameter-estimator-and-estimate" class="slide level2">
+<h2>Parameter, estimator, and estimate</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>SAP example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Parameter</strong></td>
+<td><span class="math inline">\(\mu\)</span>: mean ROE of all SAP customers.</td>
+</tr>
+<tr class="even">
+<td><strong>Estimator</strong></td>
+<td><span class="math inline">\(\bar X\)</span>: the rule for averaging a random sample.</td>
+</tr>
+<tr class="odd">
+<td><strong>Estimate</strong></td>
+<td><span class="math inline">\(\bar x=12.6\%\)</span>: the result from these 81 firms.</td>
+</tr>
+</tbody>
+</table>
+<p>Which would change with a new sample?</p>
+<aside class="notes">
+<p>The parameter and the averaging rule stay fixed; the realized estimate usually changes. The estimator is a random variable before the sample is observed. The observed estimate is one realized value. An average here plays the same mathematical role as average project profit in Thaler, but mu is unknown.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-population-and-one-sample" class="slide level2">
+<h2>A population and one sample</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-population-sample-1.png" width="960" class="r-stretch"><p>This population is simulated. The app knows its mean.</p>
+<aside class="notes">
+<p>These figures use the explorer’s hypothetical population, not the 30,000 actual SAP customers. The population and sample panels use the same x-axis. Each histogram counts companies. The population mean stays fixed while the sample and its mean change on each draw.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="take-repeated-samples" class="slide level2">
+<h2>Take repeated samples</h2>
+<p><a href="https://jaredsmurray.github.io/stats-webapps/sap_sampling.html" target="_blank">Open the sampling explorer</a></p>
+<p>Set <span class="math inline">\(n=81\)</span>. Take three samples, one at a time.</p>
+<p>What does one observation represent in each panel?</p>
+<aside class="notes">
+<p>Budget 25 minutes for the app sequence through the repetitions comparison. Keep the normal curve and interval off initially. The upper and middle panels contain company ROEs; the lower panel accumulates one mean per sample. Compare the first three means, then generate 1,000 samples. Ask students to describe the center, spread, and shape before revealing the normal overlay.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-sampling-distribution-of-the-mean" class="slide level2">
+<h2>The sampling distribution of the mean</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-sampling-distribution-1.png" width="960" class="r-stretch"><p>It describes how the sample mean varies across random samples of the same size.</p>
+<aside class="notes">
+<p>The histogram approximates the sampling distribution with 5,000 independent samples of size 81. Each recorded value is an average, not one company. In the real SAP case we have only one sample and cannot observe this whole distribution. Its theory describes the estimates we could have obtained.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="compare-sample-sizes" class="slide level2">
+<h2>Compare sample sizes</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: right;">Companies per sample</th>
+<th style="text-align: right;">Samples to simulate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1,000</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">1,000</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">1,000</td>
+</tr>
+</tbody>
+</table>
+<p>Predict the center and spread before running the app.</p>
+<aside class="notes">
+<p>Assign one group per table or pair. Record the result before changing n because the app clears history. Compare 9 with 36 explicitly: four times as many observations should halve the SD of the average. If devices are unavailable, collect table predictions and run the three settings on the projector.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="larger-samples-give-less-variable-averages" class="slide level2">
+<h2>Larger samples give less variable averages</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-sample-sizes-1.png" width="960" class="r-stretch"><p>The population stays fixed; each panel uses 5,000 samples.</p>
+</section>
+<section id="more-repetitions-refine-the-histogram" class="slide level2">
+<h2>More repetitions refine the histogram</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-repetitions-1.png" width="960" class="r-stretch"><p>More repetitions improve our picture of the same sampling distribution.</p>
+</section>
+<section id="the-sample-means-center-and-spread" class="slide level2">
+<h2>The sample mean’s center and spread</h2>
+<p>For iid draws with mean <span class="math inline">\(\mu\)</span> and finite variance <span class="math inline">\(\sigma^2\)</span>,</p>
+<p><span class="math display">\[
+E[\bar X]=\mu,\qquad
+\operatorname{SD}(\bar X)=\frac{\sigma}{\sqrt n}.
+\]</span></p>
+<p>These are the same rules we used for average project profit.</p>
+</section>
+<section id="standard-error" class="slide level2">
+<h2>Standard error</h2>
+<p>The <strong>standard error</strong> is the SD of an estimator’s sampling distribution.</p>
+<p><span class="math display">\[
+SE(\bar X)=\frac{\sigma}{\sqrt n}.
+\]</span></p>
+<p>For the sample mean under iid sampling, it measures the typical size of estimation error.</p>
+</section>
+<section id="estimate-se-from-the-sample" class="slide level2">
+<h2>Estimate SE from the sample</h2>
+<p>The population SD <span class="math inline">\(\sigma\)</span> is unknown. Use the sample SD <span class="math inline">\(s\)</span>:</p>
+<p><span class="math display">\[
+\widehat{SE}(\bar X)=\frac{s}{\sqrt n}.
+\]</span></p>
+<p>This estimates how much sample means vary across repeated samples.</p>
+<aside class="notes">
+<p>The hat marks an estimated SE. In the app sigma is known because we created the population. In an actual analysis we substitute s; it changes across samples. The same units apply to the estimate, its error, and its SE.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="individual-times-and-averages" class="slide level2">
+<h2>Individual times and averages</h2>
+<p>Delivery times are iid, with population SD <strong>12 minutes</strong>.</p>
+<p>Compute the SE of the mean for samples of <strong>100</strong> and <strong>400</strong> orders.</p>
+<p>Which spread changes? Which stays at 12 minutes?</p>
+</section>
+<section id="larger-samples-improve-precision" class="slide level2">
+<h2>Larger samples improve precision</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Sample size</th>
+<th style="text-align: right;">SE of the mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;"><span class="math inline">\(12/\sqrt{100}=1.2\)</span> minutes</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">400</td>
+<td style="text-align: right;"><span class="math inline">\(12/\sqrt{400}=0.6\)</span> minutes</td>
+</tr>
+</tbody>
+</table>
+<p>Individual delivery times still have SD 12 minutes.</p>
+</section>
+<section id="a-normal-approximation-for-the-mean" class="slide level2">
+<h2>A normal approximation for the mean</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-sampling-normal-1.png" width="960" class="r-stretch"><p><span class="math display">\[
+\bar X\approx N\!\left(\mu,\frac{\sigma^2}{n}\right).
+\]</span></p>
+<aside class="notes">
+<p>The curve uses the simulated population’s known mean and variance. The CLT supplies the approximate shape; the center and variance follow exactly from the iid model. The second normal parameter is variance. Whether n is large enough depends on the population’s shape and extreme outcomes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="estimation-error" class="slide level2">
+<h2>Estimation error</h2>
+<p>Subtract the fixed population mean:</p>
+<p><span class="math display">\[
+\bar X-\mu\approx N\!\left(0,\frac{\sigma^2}{n}\right).
+\]</span></p>
+<p>The errors are centered at zero and have SD <span class="math inline">\(\sigma/\sqrt n\)</span>.</p>
+<p>We cannot calculate our actual error because <span class="math inline">\(\mu\)</span> is unknown.</p>
+</section>
+<section id="about-95-fall-within-two-ses" class="slide level2">
+<h2>About 95% fall within two SEs</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-two-se-1.png" width="960" class="r-stretch"><p>This uses the normal approximation for estimation error.</p>
+<aside class="notes">
+<p>The exact standard-normal area between -2 and 2 is about 0.9545. We use the course’s approximate two-SE rule throughout; do not call it exact 95% coverage.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="turn-the-distance-into-an-interval" class="slide level2">
+<h2>Turn the distance into an interval</h2>
+<p><span class="math display">\[
+|\bar X-\mu|\leq 2\,SE
+\]</span></p>
+<p>is the same event as</p>
+<p><span class="math display">\[
+\bar X-2\,SE\leq\mu\leq\bar X+2\,SE.
+\]</span></p>
+<p>Centering the interval on <span class="math inline">\(\bar X\)</span> captures <span class="math inline">\(\mu\)</span> in about 95% of samples.</p>
+</section>
+<section id="a-confidence-interval-for-the-mean" class="slide level2">
+<h2>A confidence interval for the mean</h2>
+<p>A <strong>confidence interval</strong> gives plausible values for the population mean.</p>
+<p>With an adequate normal approximation and an estimated SE, use</p>
+<p><span class="math display">\[
+\bar x\ \pm\ 2\frac{s}{\sqrt n}.
+\]</span></p>
+<p>This is an approximate <strong>95% confidence interval</strong> under the sampling model.</p>
+</section>
+<section id="calculate-a-delivery-time-interval" class="slide level2">
+<h2>Calculate a delivery-time interval</h2>
+<p>An iid sample of 100 orders has:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Sample summary</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td style="text-align: right;">42 minutes</td>
+</tr>
+<tr class="even">
+<td>SD</td>
+<td style="text-align: right;">12 minutes</td>
+</tr>
+</tbody>
+</table>
+<p>Assume the normal approximation is adequate.</p>
+<p>Find the estimated SE and an approximate 95% interval for the population mean.</p>
+</section>
+<section id="plausible-mean-delivery-times" class="slide level2">
+<h2>Plausible mean delivery times</h2>
+<p><span class="math display">\[
+\widehat{SE}=\frac{12}{\sqrt{100}}=1.2\text{ minutes},
+\]</span></p>
+<p><span class="math display">\[
+42\pm 2(1.2)=[39.6,\ 44.4]\text{ minutes}.
+\]</span></p>
+<p>A true mean above <strong>45 minutes</strong> would trigger a costly process review.</p>
+<p>Does this audit support triggering that review?</p>
+<aside class="notes">
+<p>The upper endpoint, 44.4 minutes, is below 45. Under the sampling assumptions, the audit does not support triggering a review on the grounds that the mean exceeds 45. Have pairs state this in one sentence. The interval gives plausible values for the population mean; it does not contain 95% of individual times. Individual spread remains much larger.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="plan-the-next-audit" class="slide level2">
+<h2>Plan the next audit</h2>
+<p>Use <strong>12 minutes</strong> as the planning value for the population SD.</p>
+<p>How many deliveries would give a two-SE margin of error of <strong>1 minute</strong>?</p>
+<p><span class="math display">\[
+2\frac{12}{\sqrt n}=1
+\]</span></p>
+<div class="fragment">
+<p>Solving gives <span class="math inline">\(\sqrt n=24\)</span>, so the audit needs <strong>576 deliveries</strong>.</p>
+</div>
+<aside class="notes">
+<p>Allow two minutes before revealing the answer. Planning uses the previous sample SD as a stand-in for the unknown population SD. At least 576 deliveries targets a margin no larger than 1 minute if that planning value remains adequate.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="watch-intervals-cover-or-miss" class="slide level2">
+<h2>Watch intervals cover or miss</h2>
+<p><a href="https://jaredsmurray.github.io/stats-webapps/sap_sampling.html" target="_blank">Open the sampling explorer</a></p>
+<p>Set <span class="math inline">\(n=81\)</span> and show the approximate 95% confidence interval.</p>
+<p>Out of 1,000 intervals, roughly how many should contain <span class="math inline">\(\mu\)</span>?</p>
+<aside class="notes">
+<p>Budget ten minutes for coverage. Clear history, draw a few samples individually, then a batch of 1,000. Ask what moves and what stays fixed. About 950 intervals should cover; a particular run need not hit that count exactly. The app builds intervals with the known population sigma. Do not compare its width numerically with the actual SAP interval, which uses s from a different set of values.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="coverage-across-samples" class="slide level2">
+<h2>Coverage across samples</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-coverage-1.png" width="960" class="r-stretch"><p>The app uses its known population SD. Only the interval centers move.</p>
+</section>
+<section id="the-95-describes-the-procedure" class="slide level2">
+<h2>The 95% describes the procedure</h2>
+<p>About 95% of intervals from this procedure contain <span class="math inline">\(\mu\)</span> under the model.</p>
+<p>The population mean stays fixed; the samples and intervals change.</p>
+<p>Our one interval either contains <span class="math inline">\(\mu\)</span> or misses it.</p>
+<aside class="notes">
+<p>Ask students whether the procedure assigns a 0.95 probability to mu being in the particular interval already calculated. It does not: the frequentist coverage statement concerns repetition of the sampling procedure. In real analyses the sample SD also changes, so interval widths can vary.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="calculate-the-sap-interval" class="slide level2">
+<h2>Calculate the SAP interval</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Sample summary</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number of firms</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr class="even">
+<td>Mean ROE</td>
+<td style="text-align: right;">12.6%</td>
+</tr>
+<tr class="odd">
+<td>SD of ROE</td>
+<td style="text-align: right;">25.66 percentage points</td>
+</tr>
+</tbody>
+</table>
+<p>Estimate the SE and construct an approximate 95% interval for mean customer ROE.</p>
+<aside class="notes">
+<p>Use the final 15 minutes for this calculation, comparison, and discussion. Students use rounded inputs; their results should agree to the displayed precision. The rendered results use the unrounded data. Keep the working iid model explicit. These are the actual 81 firms, not the simulated population.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="saps-interval" class="slide level2">
+<h2>SAP’s interval</h2>
+<p><span class="math display">\[
+\widehat{SE}=\frac{25.66}{\sqrt{81}}
+\approx 2.85\text{ percentage points}.
+\]</span></p>
+<p><span class="math display">\[
+\bar x\pm2\widehat{SE}\approx
+[6.9\%,\ 18.3\%].
+\]</span></p>
+<p>These are plausible population means under the random-sampling model.</p>
+</section>
+<section id="compare-the-claims-with-the-interval" class="slide level2">
+<h2>Compare the claims with the interval</h2>
+
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-sap-interval-1.png" width="960" class="r-stretch"><p>Treating the industry benchmark as fixed, which claims fit this interval?</p>
+<p>A mean near 7% would be much worse than Nucleus claimed, and it also fits.</p>
+<aside class="notes">
+<p>The industry benchmark 15.7% lies inside the interval. Both lower and higher population means are plausible; the data do not establish that SAP customers are less profitable. The lower end near 7% permits substantial underperformance, so including parity does not establish that the firms perform well either. Applying a 32% advantage to that benchmark gives about 20.7%, outside the interval. These readings all depend on the working model and the fixed-benchmark simplification; do not make an unconditional claim about the advertisement or about SAP causing profit changes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-were-the-firms-selected" class="slide level2">
+<h2>How were the firms selected?</h2>
+<p>Nucleus used publicly traded firms listed on SAP’s website.</p>
+<p>They may differ from SAP’s other customers.</p>
+<p>The interval measures sampling variation under the model. It does not correct selection bias.</p>
+</section>
+<section id="report-what-the-data-support" class="slide level2">
+<h2>Report what the data support</h2>
+<p>Speak for <strong>Nucleus</strong>, <strong>SAP</strong>, or an <strong>independent analyst</strong>.</p>
+<p>Use the interval and identify one limitation.</p>
+<p>Then write a one-sentence conclusion about mean customer ROE.</p>
+<aside class="notes">
+<p>Have tables discuss for two minutes, then hear one response per role. Distinguish the sample-size objection from representativeness. The fraction 81/30,000 alone does not establish that a sample is useless. The comparison does not identify SAP’s causal effect on profitability. A defensible conclusion reports 6.9% to 18.3% under random sampling, with the selection limitation attached.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="exit-ticket" class="slide level2">
+<h2>Exit ticket</h2>
+<p>What does standard error measure?</p>
+<p>How must sample size change to halve the SE of a mean?</p>
+<p>What is one defensible conclusion from the SAP interval?</p>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

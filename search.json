@@ -1275,20 +1275,6 @@
     "title": "Parameters of Probability Distributions"
   },
   {
-    "href": "slides.html",
-    "objectID": "slides.html",
-    "section": "",
-    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view).",
-    "title": "Slides"
-  },
-  {
-    "href": "slides.html#chapters-1014",
-    "objectID": "slides.html#chapters-1014",
-    "section": "Chapters 10–14",
-    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard.",
-    "title": "Slides"
-  },
-  {
     "href": "slides/10_joint_conditional_distributions.html#loan-purpose-and-default",
     "objectID": "slides/10_joint_conditional_distributions.html#loan-purpose-and-default",
     "section": "Loan purpose and default",
@@ -1765,88 +1751,445 @@
     "title": "Combining Random Variables"
   },
   {
-    "objectID": "introstatgpt.html",
+    "crumbs": [
+      "IntroStatGPT"
+    ],
     "href": "introstatgpt.html",
-    "title": "IntroStatGPT",
+    "objectID": "introstatgpt.html",
     "section": "",
     "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "title": "IntroStatGPT"
   },
   {
-    "objectID": "introstatgpt.html#start-here",
+    "crumbs": [
+      "IntroStatGPT"
+    ],
     "href": "introstatgpt.html#start-here",
-    "title": "IntroStatGPT",
+    "objectID": "introstatgpt.html#start-here",
     "section": "Start here",
     "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT — how to make requests that produce checkable output, how to check it, and what to save.\n\nThe course setup uses Codex with your UT ChatGPT account. If you already have a Claude account with access to Claude Code, you may instead set up IntroStatGPT with Claude Code.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "title": "IntroStatGPT"
   },
   {
-    "objectID": "introstatgpt.html#homework-1",
+    "crumbs": [
+      "IntroStatGPT"
+    ],
     "href": "introstatgpt.html#homework-1",
-    "title": "IntroStatGPT",
+    "objectID": "introstatgpt.html#homework-1",
     "section": "Homework 1",
     "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-28.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets. It works with Codex and Claude Code.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment. Solutions (Canvas login required).\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nOptional: Sample Homework 1 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 1 report skeleton — try building your own report first. This file contains known-good copies of the required tables and figures, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit the PDF you export from Word.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "title": "IntroStatGPT"
   },
   {
-    "objectID": "introstatgpt.html#homework-2",
+    "crumbs": [
+      "IntroStatGPT"
+    ],
     "href": "introstatgpt.html#homework-2",
-    "title": "IntroStatGPT",
+    "objectID": "introstatgpt.html#homework-2",
     "section": "Homework 2",
     "text": "Homework 2\nDownload IntroStatGPT_homework_02_2026-09-12.zip (444 KB). This folder contains the Homework 2 workspace, assignment, dataset, and supplied figures. It works with Codex and Claude Code.\nTo start, unzip the file, open the ChatGPT desktop app, and choose File → Open Folder. Select the unzipped TEMBA-2026-homework-02-codex folder. Do not upload or drag the ZIP file into a chat; open the unzipped folder so the workspace instructions and tools load correctly.\nUse the workspace with these files:\n\nHomework 2: Probability and Relationships — the assignment.\nOptional: Sample Homework 2 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 2 report skeleton — try building your own report first. This file contains known-good copies of the required tables, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit one or more PDF files. Clearly label every answer with its problem and part number. Legible scans or photographs of handwritten pages are acceptable once converted to PDF.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "title": "IntroStatGPT"
   },
   {
-    "objectID": "introstatgpt.html#intensive",
+    "crumbs": [
+      "IntroStatGPT"
+    ],
     "href": "introstatgpt.html#intensive",
-    "title": "IntroStatGPT",
+    "objectID": "introstatgpt.html#intensive",
     "section": "Intensive",
     "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
-    "crumbs": [
-      "IntroStatGPT"
-    ]
+    "title": "IntroStatGPT"
   },
   {
-    "objectID": "introstatgpt/homework-02-sample-chat.html",
     "href": "introstatgpt/homework-02-sample-chat.html",
-    "title": "Homework 2: Example IntroStatGPT Chat",
+    "objectID": "introstatgpt/homework-02-sample-chat.html",
     "section": "",
-    "text": "This example shows one complete way to generate the required Homework 2 output. It is a model, not a script you must follow word for word. The chat creates the required tables but does not answer or interpret the homework questions."
+    "text": "This example shows one complete way to generate the required Homework 2 output. It is a model, not a script you must follow word for word. The chat creates the required tables but does not answer or interpret the homework questions.",
+    "title": "Homework 2: Example IntroStatGPT Chat"
   },
   {
-    "objectID": "introstatgpt/homework-02-sample-chat.html#normal-model-calculations",
     "href": "introstatgpt/homework-02-sample-chat.html#normal-model-calculations",
-    "title": "Homework 2: Example IntroStatGPT Chat",
+    "objectID": "introstatgpt/homework-02-sample-chat.html#normal-model-calculations",
     "section": "Normal-model calculations",
-    "text": "Normal-model calculations\n\n\nStudent\n\nFor Problem 2 part 3, use the supplied normal model with mean 480 units and standard deviation 75 units. Calculate Pr(D &gt; 600) and Pr(450 &lt; D &lt; 600). Put both probabilities in one clearly labeled table, show them to four decimal places, and save the table for my report. Do not write interpretations.\n\n\n\nIntroStatGPT\n\nCreated T1: Problem 2: Demand probabilities.\n\n\n\nEvent\nProbability\n\n\n\n\nPr(D &gt; 600)\n0.0548\n\n\nPr(450 &lt; D &lt; 600)\n0.6006\n\n\n\n\n\n\nStudent\n\nFor Problem 2 part 5, use the same normal model to find the fewest whole number of units to stock so that Pr(D &gt; stock) &lt;= 0.01. Show the normal cutoff to two decimal places and the whole-number target in a saved table. Do not write an interpretation.\n\n\n\nIntroStatGPT\n\nCreated T2: Problem 2: One-percent stock target.\n\n\n\nQuantity\nValue\n\n\n\n\nNormal cutoff (units)\n654.48\n\n\nFewest whole number to stock\n655"
+    "text": "Normal-model calculations\n\n\nStudent\n\nFor Problem 2 part 3, use the supplied normal model with mean 480 units and standard deviation 75 units. Calculate Pr(D &gt; 600) and Pr(450 &lt; D &lt; 600). Put both probabilities in one clearly labeled table, show them to four decimal places, and save the table for my report. Do not write interpretations.\n\n\n\nIntroStatGPT\n\nCreated T1: Problem 2: Demand probabilities.\n\n\n\nEvent\nProbability\n\n\n\n\nPr(D &gt; 600)\n0.0548\n\n\nPr(450 &lt; D &lt; 600)\n0.6006\n\n\n\n\n\n\nStudent\n\nFor Problem 2 part 5, use the same normal model to find the fewest whole number of units to stock so that Pr(D &gt; stock) &lt;= 0.01. Show the normal cutoff to two decimal places and the whole-number target in a saved table. Do not write an interpretation.\n\n\n\nIntroStatGPT\n\nCreated T2: Problem 2: One-percent stock target.\n\n\n\nQuantity\nValue\n\n\n\n\nNormal cutoff (units)\n654.48\n\n\nFewest whole number to stock\n655",
+    "title": "Homework 2: Example IntroStatGPT Chat"
   },
   {
-    "objectID": "introstatgpt/homework-02-sample-chat.html#workload-comparison",
     "href": "introstatgpt/homework-02-sample-chat.html#workload-comparison",
-    "title": "Homework 2: Example IntroStatGPT Chat",
+    "objectID": "introstatgpt/homework-02-sample-chat.html#workload-comparison",
     "section": "Workload comparison",
-    "text": "Workload comparison\n\n\nStudent\n\nFor Problem 5 Output A, use fulfillment_shifts. Put shifts with at most 900 orders in one group and shifts with more than 900 orders in another. Make one table with a column for each group and rows for the number of shifts, mean completion-time error, sample SD of completion-time error, number of shifts outside the target from -10 through 10 minutes, and percentage outside the target. Show means and SDs to three decimal places and percentages to one decimal place. Save the table for my report. Skip the optional plot and do not interpret the results.\n\n\n\nIntroStatGPT\n\nCreated T3: Problem 5 Output A: Completion errors by workload group.\n\n\n\nQuantity\nAt most 900 orders\nMore than 900 orders\n\n\n\n\nNumber of shifts\n75\n125\n\n\nMean completion-time error (minutes)\n0.327\n−0.700\n\n\nSample SD of completion-time error (minutes)\n5.812\n14.213\n\n\nNumber of shifts outside target\n7\n55\n\n\nPercentage of shifts outside target\n9.3%\n44.0%"
+    "text": "Workload comparison\n\n\nStudent\n\nFor Problem 5 Output A, use fulfillment_shifts. Put shifts with at most 900 orders in one group and shifts with more than 900 orders in another. Make one table with a column for each group and rows for the number of shifts, mean completion-time error, sample SD of completion-time error, number of shifts outside the target from -10 through 10 minutes, and percentage outside the target. Show means and SDs to three decimal places and percentages to one decimal place. Save the table for my report. Skip the optional plot and do not interpret the results.\n\n\n\nIntroStatGPT\n\nCreated T3: Problem 5 Output A: Completion errors by workload group.\n\n\n\nQuantity\nAt most 900 orders\nMore than 900 orders\n\n\n\n\nNumber of shifts\n75\n125\n\n\nMean completion-time error (minutes)\n0.327\n−0.700\n\n\nSample SD of completion-time error (minutes)\n5.812\n14.213\n\n\nNumber of shifts outside target\n7\n55\n\n\nPercentage of shifts outside target\n9.3%\n44.0%",
+    "title": "Homework 2: Example IntroStatGPT Chat"
   },
   {
-    "objectID": "introstatgpt/homework-02-sample-chat.html#build-the-report-skeleton",
     "href": "introstatgpt/homework-02-sample-chat.html#build-the-report-skeleton",
-    "title": "Homework 2: Example IntroStatGPT Chat",
+    "objectID": "introstatgpt/homework-02-sample-chat.html#build-the-report-skeleton",
     "section": "Build the report skeleton",
-    "text": "Build the report skeleton\n\n\nStudent\n\nCreate a report called Homework 2 report skeleton. Keep all five problem headings in assignment order, including the problems with no saved output. Put T1 and T2 under Problem 2 and T3 under Problem 5. Show me the complete outline before you build it. Do not add source code, interpretations, or answers.\n\n\n\nIntroStatGPT\n\nHere is the proposed report outline.\nProblem 1. Evaluate an event-equipment contract\nProblem 2. Set an inventory target with a normal demand model: T1, T2\nProblem 3. Which routing tool resolves tickets faster?\nProblem 4. Evaluating a transaction-screening algorithm\nProblem 5. Are busy shifts equally predictable? T3\nDescribe any changes, or approve this outline to build the Word report.\n\n\n\nStudent\n\nI approve this outline. Build the Word report.\n\n\n\nIntroStatGPT\n\nBuilt version 1 of the Homework 2 report skeleton."
+    "text": "Build the report skeleton\n\n\nStudent\n\nCreate a report called Homework 2 report skeleton. Keep all five problem headings in assignment order, including the problems with no saved output. Put T1 and T2 under Problem 2 and T3 under Problem 5. Show me the complete outline before you build it. Do not add source code, interpretations, or answers.\n\n\n\nIntroStatGPT\n\nHere is the proposed report outline.\nProblem 1. Evaluate an event-equipment contract\nProblem 2. Set an inventory target with a normal demand model: T1, T2\nProblem 3. Which routing tool resolves tickets faster?\nProblem 4. Evaluating a transaction-screening algorithm\nProblem 5. Are busy shifts equally predictable? T3\nDescribe any changes, or approve this outline to build the Word report.\n\n\n\nStudent\n\nI approve this outline. Build the Word report.\n\n\n\nIntroStatGPT\n\nBuilt version 1 of the Homework 2 report skeleton.",
+    "title": "Homework 2: Example IntroStatGPT Chat"
   },
   {
-    "objectID": "introstatgpt/homework-02-sample-chat.html#what-to-do-next",
     "href": "introstatgpt/homework-02-sample-chat.html#what-to-do-next",
-    "title": "Homework 2: Example IntroStatGPT Chat",
+    "objectID": "introstatgpt/homework-02-sample-chat.html#what-to-do-next",
     "section": "What to do next",
-    "text": "What to do next\nOpen the Word skeleton, add your numbered answers under the corresponding problem headings, insert your three Problem 2 sketches, and export the completed document to PDF. The supplied skeleton is also available as a backup if IntroStatGPT does not finish your report or as a check on output you generated yourself."
+    "text": "What to do next\nOpen the Word skeleton, add your numbered answers under the corresponding problem headings, insert your three Problem 2 sketches, and export the completed document to PDF. The supplied skeleton is also available as a backup if IntroStatGPT does not finish your report or as a check on output you generated yourself.",
+    "title": "Homework 2: Example IntroStatGPT Chat"
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Slides",
+    "section": "",
+    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view)."
+  },
+  {
+    "objectID": "slides.html#chapters-1014",
+    "href": "slides.html#chapters-1014",
+    "title": "Slides",
+    "section": "Chapters 10–14",
+    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables"
+  },
+  {
+    "objectID": "slides.html#chapters-1516",
+    "href": "slides.html#chapters-1516",
+    "title": "Slides",
+    "section": "Chapters 15–16",
+    "text": "Chapters 15–16\n\n15. Sums, Averages, and the Central Limit Theorem\n16. Sampling Distributions and Confidence Intervals\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#would-you-accept-this-project",
+    "href": "slides/15_sums_averages_clt.html#would-you-accept-this-project",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Would you accept this project?",
+    "text": "Would you accept this project?\nRichard Thaler’s example in Misbehaving:\n\n\n\nProfit\nProbability\n\n\n\n\n$2 million\n0.5\n\n\n−$1 million\n0.5\n\n\n\nWould you accept it? Explain your choice to a partner.\n\nUse the first five minutes for the individual and CEO polls. The account appears in the course notes, Chapter 15, Example 15.1 and “Sums and averages.” Thaler describes a CEO and 23 division executives. Only three executives accepted one project; the CEO wanted all 23 if their outcomes were independent. Collect students’ choices before giving either response."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#would-you-accept-23-projects",
+    "href": "slides/15_sums_averages_clt.html#would-you-accept-23-projects",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Would you accept 23 projects?",
+    "text": "Would you accept 23 projects?\nEach project has the same two possible payoffs.\nTheir outcomes are independent.\nWhat changes when the firm takes all 23?\n\nAsk for predictions about expected total profit, total variability, and the chance of losing money. Accept different decisions when students explain their ability to absorb a loss or the alternative uses of capital. Positive expected profit alone does not settle the decision."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#one-projects-mean-and-sd",
+    "href": "slides/15_sums_averages_clt.html#one-projects-mean-and-sd",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "One project’s mean and SD",
+    "text": "One project’s mean and SD\nLet \\(X\\) be profit in millions of dollars.\n\n\n\n\\(x\\)\nProbability\n\\(x\\Pr(X=x)\\)\n\n\n\n\n2\n0.5\n1.0\n\n\n−1\n0.5\n−0.5\n\n\nTotal\n1.0\n0.5\n\n\n\nExpected profit is $500,000; the SD is $1.5 million.\n\nUse the expected-value table as a quick review. The variance calculation is: The mean is 0.5 million dollars.\n\n\n\n\\(x\\)\n\\((x-0.5)^2\\)\n\\((x-0.5)^2\\Pr(X=x)\\)\n\n\n\n\n2\n2.25\n1.125\n\n\n−1\n2.25\n1.125\n\n\nTotal\n\n2.25\n\n\n\n\\[\n\\operatorname{SD}(X)=\\sqrt{2.25}=1.5\\text{ million dollars}.\n\\]"
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#independent-and-identically-distributed",
+    "href": "slides/15_sums_averages_clt.html#independent-and-identically-distributed",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Independent and identically distributed",
+    "text": "Independent and identically distributed\nThe project payoffs are iid: independent and identically distributed.\nEach project has the same payoff distribution.\nKnowing one project’s outcome does not change the others’ distributions."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#total-profit",
+    "href": "slides/15_sums_averages_clt.html#total-profit",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Total profit",
+    "text": "Total profit\nFor iid payoffs with finite mean \\(\\mu\\) and variance \\(\\sigma^2\\),\n\\[\n\\begin{aligned}\nS_n&=X_1+X_2+\\cdots+X_n,\\\\\nE[S_n]&=n\\mu,\\\\\n\\operatorname{Var}(S_n)&=n\\sigma^2,\\\\\n\\operatorname{SD}(S_n)&=\\sqrt n\\,\\sigma.\n\\end{aligned}\n\\]\nIndependence removes the covariance terms."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#calculate-the-total-for-23-projects",
+    "href": "slides/15_sums_averages_clt.html#calculate-the-total-for-23-projects",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Calculate the total for 23 projects",
+    "text": "Calculate the total for 23 projects\n\n\n\nQuantity\nCalculation\nResult\n\n\n\n\nMean\n\\(23(0.5)\\)\n11.5 million dollars\n\n\nVariance\n\\(23(2.25)\\)\n51.75 (million dollars)\\(^2\\)\n\n\nSD\n\\(\\sqrt{51.75}\\)\n7.19 million dollars\n\n\n\nExpected profit grows by a factor of 23, while its SD grows by only \\(\\sqrt{23}\\).\nWhat are the mean and SD of average profit per project?\n\nHave pairs calculate the mean and SD before revealing the average rules. Their proposal should divide the total’s mean and SD by 23, not divide both the variance and SD by 23. Total expected profit grows by n; total SD grows by the square root of n."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#average-profit-per-project",
+    "href": "slides/15_sums_averages_clt.html#average-profit-per-project",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Average profit per project",
+    "text": "Average profit per project\nFor the same iid payoffs,\n\\[\n\\begin{aligned}\n\\bar X&=\\frac{S_n}{n},\\qquad E[\\bar X]=\\mu,\\\\[0.4em]\n\\operatorname{Var}(\\bar X)&=\\frac{n\\sigma^2}{n^2}=\\frac{\\sigma^2}{n},\\\\[0.4em]\n\\operatorname{SD}(\\bar X)&=\\frac{\\sigma}{\\sqrt n}.\n\\end{aligned}\n\\]\nThe average keeps the same mean and has a smaller SD."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#total-and-average-profit",
+    "href": "slides/15_sums_averages_clt.html#total-and-average-profit",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Total and average profit",
+    "text": "Total and average profit\nAll means and SDs below are in millions of dollars.\n\n\n\nQuantity\nOne project\n23 independentprojects\n\n\n\n\nMean of total\n0.5\n11.5\n\n\nSD of total\n1.5\n7.19\n\n\nMean of average\n0.5\n0.5\n\n\nSD of average\n1.5\n0.313\n\n\n\nHow often will total profit be negative?\nThe mean and SD alone do not determine that probability.\n\nThe total adds more uncertain payoffs. The average also divides by the number of projects. The individual payoff distribution remains unchanged. Quadrupling the number of iid projects halves the SD of the average. These moment results do not require normality."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#simulate-the-projects",
+    "href": "slides/15_sums_averages_clt.html#simulate-the-projects",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Simulate the projects",
+    "text": "Simulate the projects\nOpen Thaler’s investment app\nCompare 1, 5, and 23 projects, with 1,000 simulated portfolios each.\nPredict the shape and chance of a loss before each run.\n\nBudget ten minutes for the app and the remaining slides. Start with the normal overlay off. Keep the display on total profit and enable “Highlight losing portfolios.” Record results before changing project count; this clears history. More simulated portfolios give a better picture of the same model. More projects change that model’s total-profit distribution. Try 50 projects, the app’s maximum, only if time permits. The following plots provide a fallback."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#distributions-of-total-profit",
+    "href": "slides/15_sums_averages_clt.html#distributions-of-total-profit",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Distributions of total profit",
+    "text": "Distributions of total profit\n\nEach bar’s area is the probability of one possible total. The axes differ by panel.\n\nThese are exact model distributions, not one run of the simulation. Each possible total is three million dollars from the next, so the bars have width 3 and height probability divided by 3. The space between possible totals does not represent additional possible outcomes. Ask about the distribution’s shape before advancing to the normal curves."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#normal-curves-and-the-project-totals",
+    "href": "slides/15_sums_averages_clt.html#normal-curves-and-the-project-totals",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Normal curves and the project totals",
+    "text": "Normal curves and the project totals\n\nThe totals become more bell-shaped as the number of projects grows.\n\nEach normal curve uses the total’s exact mean and variance. One project’s two-outcome distribution is not well described by its matching normal curve."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#the-central-limit-theorem",
+    "href": "slides/15_sums_averages_clt.html#the-central-limit-theorem",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "The central limit theorem",
+    "text": "The central limit theorem\nFor sufficiently many iid draws with finite, positive variance,\n\\[\nS_n\\approx N(n\\mu,n\\sigma^2),\\qquad\n\\bar X\\approx N\\!\\left(\\mu,\\frac{\\sigma^2}{n}\\right).\n\\]\nThe second parameter is the variance.\nThe normal shape is approximate; the means and variances are exact.\n\nFormally, the standardized sum converges to a standard normal distribution. How many draws suffice depends on the population and on the tail probability of interest. Rare extreme outcomes can require much larger n. The theorem does not make individual project payoffs normal."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#a-loss-remains-possible",
+    "href": "slides/15_sums_averages_clt.html#a-loss-remains-possible",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "A loss remains possible",
+    "text": "A loss remains possible\n\nThe normal approximation gives a loss probability of about 0.055, compared with 0.5 for one project.\n\nThe orange area to the left of zero is the approximate loss probability. The blue bar outlines show the possible totals’ exact probabilities as areas. The total is 3K - 23 when K projects succeed. A loss requires at most seven successes, giving pbinom(7, 23, 0.5), approximately 0.0466. The exact calculation is in the chapter’s optional technical detail; keep the lesson on the normal approximation. It uses mean 11.5 and SD 7.19; zero is about 1.60 SDs below the mean. The approximation is useful but not exact."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#what-if-all-projects-move-together",
+    "href": "slides/15_sums_averages_clt.html#what-if-all-projects-move-together",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "What if all projects move together?",
+    "text": "What if all projects move together?\n\n\n\nOutcome\nTotal profit\nProbability\n\n\n\n\nAll succeed.\n$46 million\n0.5\n\n\nAll fail.\n−$23 million\n0.5\n\n\n\nAverage profit is again either $2 million or −$1 million.\nWould your decision change?\n\nReturn to the original polls. With perfect shared outcomes, averaging does not reduce variability: the average’s SD stays at 1.5 million dollars. Independence was necessary for our n-sigma-squared variance calculation. The app simulates independent projects; this table describes a different dependence assumption. After the break, connect an average project payoff to an average from a sample."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#saps-profitability-claim",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#saps-profitability-claim",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "SAP’s profitability claim",
+    "text": "SAP’s profitability claim\nSAP advertised that its customers were 32% more profitable than their peers.\nNucleus Research examined 81 publicly traded customers listed on SAP’s website.\nTheir measure was return on equity (ROE): annual profit as a percentage of shareholder equity.\n\nThe SAP advertisements ran in 2005; Nucleus published Research Note G12 in March 2006. The source is linked at first use. Each row of sap_roe represents one company, with its ROE and industry-average ROE in percent. The course notes’ “SAP dispute” section supplies the case context and further sources. Keep this setup and the next three slides to about ten minutes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-points-in-the-other-direction",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-points-in-the-other-direction",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The sample points in the other direction",
+    "text": "The sample points in the other direction\n\n\n\nGroup\nAverage ROE\n\n\n\n\n81 SAP customers\n12.6%\n\n\nTheir industry benchmarks\n15.7%\n\n\n\nThe sample gap is 3.1 percentage points.\nCould sampling variation explain it?\n\nThe relative gap is about 20%, which is the basis for Nucleus’s headline. Distinguish that relative percentage from the 3.1-percentage-point ROE gap. For this lesson, treat the average industry benchmark as fixed."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#company-roes-vary-widely",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#company-roes-vary-widely",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Company ROEs vary widely",
+    "text": "Company ROEs vary widely\n\nThe sample SD is 25.7 percentage points."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#is-81-too-small",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#is-81-too-small",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Is 81 too small?",
+    "text": "Is 81 too small?\nSAP objected: 81 firms out of roughly 30,000 customers is only 0.27%.\nWhat determines how much the sample average varies?\n\nAsk students what information they need before judging precision. Do not settle the case from the sampling fraction. Collect suggestions about company variability, sample size, and selection. Return to selection at the end."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-random-sampling-model",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-random-sampling-model",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A random-sampling model",
+    "text": "A random-sampling model\nModel the 81 company ROEs as iid draws from the customer population.\nEach customer is equally likely on each draw.\nWebsite selection may violate this model.\n\nThis is a working model, not a claim that website selection was random. Sampling with replacement gives iid draws exactly. For simple random sampling without replacement, the SE correction is sqrt((N-n)/(N-1)), about 0.9987 for n=81 and N=30,000. Thus the iid SE is a close approximation here. Avoid the different claim that the chance of any repeated firm is negligible."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#parameter-estimator-and-estimate",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#parameter-estimator-and-estimate",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Parameter, estimator, and estimate",
+    "text": "Parameter, estimator, and estimate\n\n\n\nQuantity\nSAP example\n\n\n\n\nParameter\n\\(\\mu\\): mean ROE of all SAP customers.\n\n\nEstimator\n\\(\\bar X\\): the rule for averaging a random sample.\n\n\nEstimate\n\\(\\bar x=12.6\\%\\): the result from these 81 firms.\n\n\n\nWhich would change with a new sample?\n\nThe parameter and the averaging rule stay fixed; the realized estimate usually changes. The estimator is a random variable before the sample is observed. The observed estimate is one realized value. An average here plays the same mathematical role as average project profit in Thaler, but mu is unknown."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-population-and-one-sample",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-population-and-one-sample",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A population and one sample",
+    "text": "A population and one sample\n\nThis population is simulated. The app knows its mean.\n\nThese figures use the explorer’s hypothetical population, not the 30,000 actual SAP customers. The population and sample panels use the same x-axis. Each histogram counts companies. The population mean stays fixed while the sample and its mean change on each draw."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#take-repeated-samples",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#take-repeated-samples",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Take repeated samples",
+    "text": "Take repeated samples\nOpen the sampling explorer\nSet \\(n=81\\). Take three samples, one at a time.\nWhat does one observation represent in each panel?\n\nBudget 25 minutes for the app sequence through the repetitions comparison. Keep the normal curve and interval off initially. The upper and middle panels contain company ROEs; the lower panel accumulates one mean per sample. Compare the first three means, then generate 1,000 samples. Ask students to describe the center, spread, and shape before revealing the normal overlay."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sampling-distribution-of-the-mean",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sampling-distribution-of-the-mean",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The sampling distribution of the mean",
+    "text": "The sampling distribution of the mean\n\nIt describes how the sample mean varies across random samples of the same size.\n\nThe histogram approximates the sampling distribution with 5,000 independent samples of size 81. Each recorded value is an average, not one company. In the real SAP case we have only one sample and cannot observe this whole distribution. Its theory describes the estimates we could have obtained."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#compare-sample-sizes",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#compare-sample-sizes",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Compare sample sizes",
+    "text": "Compare sample sizes\n\n\n\nGroup\nCompanies per sample\nSamples to simulate\n\n\n\n\nA\n9\n1,000\n\n\nB\n36\n1,000\n\n\nC\n81\n1,000\n\n\n\nPredict the center and spread before running the app.\n\nAssign one group per table or pair. Record the result before changing n because the app clears history. Compare 9 with 36 explicitly: four times as many observations should halve the SD of the average. If devices are unavailable, collect table predictions and run the three settings on the projector."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-give-less-variable-averages",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-give-less-variable-averages",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Larger samples give less variable averages",
+    "text": "Larger samples give less variable averages\n\nThe population stays fixed; each panel uses 5,000 samples."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#more-repetitions-refine-the-histogram",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#more-repetitions-refine-the-histogram",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "More repetitions refine the histogram",
+    "text": "More repetitions refine the histogram\n\nMore repetitions improve our picture of the same sampling distribution."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-means-center-and-spread",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-means-center-and-spread",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The sample mean’s center and spread",
+    "text": "The sample mean’s center and spread\nFor iid draws with mean \\(\\mu\\) and finite variance \\(\\sigma^2\\),\n\\[\nE[\\bar X]=\\mu,\\qquad\n\\operatorname{SD}(\\bar X)=\\frac{\\sigma}{\\sqrt n}.\n\\]\nThese are the same rules we used for average project profit."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#standard-error",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#standard-error",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Standard error",
+    "text": "Standard error\nThe standard error is the SD of an estimator’s sampling distribution.\n\\[\nSE(\\bar X)=\\frac{\\sigma}{\\sqrt n}.\n\\]\nFor the sample mean under iid sampling, it measures the typical size of estimation error."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#estimate-se-from-the-sample",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#estimate-se-from-the-sample",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Estimate SE from the sample",
+    "text": "Estimate SE from the sample\nThe population SD \\(\\sigma\\) is unknown. Use the sample SD \\(s\\):\n\\[\n\\widehat{SE}(\\bar X)=\\frac{s}{\\sqrt n}.\n\\]\nThis estimates how much sample means vary across repeated samples.\n\nThe hat marks an estimated SE. In the app sigma is known because we created the population. In an actual analysis we substitute s; it changes across samples. The same units apply to the estimate, its error, and its SE."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#individual-times-and-averages",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#individual-times-and-averages",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Individual times and averages",
+    "text": "Individual times and averages\nDelivery times are iid, with population SD 12 minutes.\nCompute the SE of the mean for samples of 100 and 400 orders.\nWhich spread changes? Which stays at 12 minutes?"
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-improve-precision",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-improve-precision",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Larger samples improve precision",
+    "text": "Larger samples improve precision\n\n\n\nSample size\nSE of the mean\n\n\n\n\n100\n\\(12/\\sqrt{100}=1.2\\) minutes\n\n\n400\n\\(12/\\sqrt{400}=0.6\\) minutes\n\n\n\nIndividual delivery times still have SD 12 minutes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-normal-approximation-for-the-mean",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-normal-approximation-for-the-mean",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A normal approximation for the mean",
+    "text": "A normal approximation for the mean\n\n\\[\n\\bar X\\approx N\\!\\left(\\mu,\\frac{\\sigma^2}{n}\\right).\n\\]\n\nThe curve uses the simulated population’s known mean and variance. The CLT supplies the approximate shape; the center and variance follow exactly from the iid model. The second normal parameter is variance. Whether n is large enough depends on the population’s shape and extreme outcomes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#estimation-error",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#estimation-error",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Estimation error",
+    "text": "Estimation error\nSubtract the fixed population mean:\n\\[\n\\bar X-\\mu\\approx N\\!\\left(0,\\frac{\\sigma^2}{n}\\right).\n\\]\nThe errors are centered at zero and have SD \\(\\sigma/\\sqrt n\\).\nWe cannot calculate our actual error because \\(\\mu\\) is unknown."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#about-95-fall-within-two-ses",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#about-95-fall-within-two-ses",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "About 95% fall within two SEs",
+    "text": "About 95% fall within two SEs\n\nThis uses the normal approximation for estimation error.\n\nThe exact standard-normal area between -2 and 2 is about 0.9545. We use the course’s approximate two-SE rule throughout; do not call it exact 95% coverage."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#turn-the-distance-into-an-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#turn-the-distance-into-an-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Turn the distance into an interval",
+    "text": "Turn the distance into an interval\n\\[\n|\\bar X-\\mu|\\leq 2\\,SE\n\\]\nis the same event as\n\\[\n\\bar X-2\\,SE\\leq\\mu\\leq\\bar X+2\\,SE.\n\\]\nCentering the interval on \\(\\bar X\\) captures \\(\\mu\\) in about 95% of samples."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-confidence-interval-for-the-mean",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-confidence-interval-for-the-mean",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A confidence interval for the mean",
+    "text": "A confidence interval for the mean\nA confidence interval gives plausible values for the population mean.\nWith an adequate normal approximation and an estimated SE, use\n\\[\n\\bar x\\ \\pm\\ 2\\frac{s}{\\sqrt n}.\n\\]\nThis is an approximate 95% confidence interval under the sampling model."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#calculate-a-delivery-time-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#calculate-a-delivery-time-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Calculate a delivery-time interval",
+    "text": "Calculate a delivery-time interval\nAn iid sample of 100 orders has:\n\n\n\nSample summary\nValue\n\n\n\n\nMean\n42 minutes\n\n\nSD\n12 minutes\n\n\n\nAssume the normal approximation is adequate.\nFind the estimated SE and an approximate 95% interval for the population mean."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#plausible-mean-delivery-times",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#plausible-mean-delivery-times",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Plausible mean delivery times",
+    "text": "Plausible mean delivery times\n\\[\n\\widehat{SE}=\\frac{12}{\\sqrt{100}}=1.2\\text{ minutes},\n\\]\n\\[\n42\\pm 2(1.2)=[39.6,\\ 44.4]\\text{ minutes}.\n\\]\nA true mean above 45 minutes would trigger a costly process review.\nDoes this audit support triggering that review?\n\nThe upper endpoint, 44.4 minutes, is below 45. Under the sampling assumptions, the audit does not support triggering a review on the grounds that the mean exceeds 45. Have pairs state this in one sentence. The interval gives plausible values for the population mean; it does not contain 95% of individual times. Individual spread remains much larger."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#plan-the-next-audit",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#plan-the-next-audit",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Plan the next audit",
+    "text": "Plan the next audit\nUse 12 minutes as the planning value for the population SD.\nHow many deliveries would give a two-SE margin of error of 1 minute?\n\\[\n2\\frac{12}{\\sqrt n}=1\n\\]\n\nSolving gives \\(\\sqrt n=24\\), so the audit needs 576 deliveries.\n\n\nAllow two minutes before revealing the answer. Planning uses the previous sample SD as a stand-in for the unknown population SD. At least 576 deliveries targets a margin no larger than 1 minute if that planning value remains adequate."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#watch-intervals-cover-or-miss",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#watch-intervals-cover-or-miss",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Watch intervals cover or miss",
+    "text": "Watch intervals cover or miss\nOpen the sampling explorer\nSet \\(n=81\\) and show the approximate 95% confidence interval.\nOut of 1,000 intervals, roughly how many should contain \\(\\mu\\)?\n\nBudget ten minutes for coverage. Clear history, draw a few samples individually, then a batch of 1,000. Ask what moves and what stays fixed. About 950 intervals should cover; a particular run need not hit that count exactly. The app builds intervals with the known population sigma. Do not compare its width numerically with the actual SAP interval, which uses s from a different set of values."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#coverage-across-samples",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#coverage-across-samples",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Coverage across samples",
+    "text": "Coverage across samples\n\nThe app uses its known population SD. Only the interval centers move."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-95-describes-the-procedure",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-95-describes-the-procedure",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The 95% describes the procedure",
+    "text": "The 95% describes the procedure\nAbout 95% of intervals from this procedure contain \\(\\mu\\) under the model.\nThe population mean stays fixed; the samples and intervals change.\nOur one interval either contains \\(\\mu\\) or misses it.\n\nAsk students whether the procedure assigns a 0.95 probability to mu being in the particular interval already calculated. It does not: the frequentist coverage statement concerns repetition of the sampling procedure. In real analyses the sample SD also changes, so interval widths can vary."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#calculate-the-sap-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#calculate-the-sap-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Calculate the SAP interval",
+    "text": "Calculate the SAP interval\n\n\n\nSample summary\nValue\n\n\n\n\nNumber of firms\n81\n\n\nMean ROE\n12.6%\n\n\nSD of ROE\n25.66 percentage points\n\n\n\nEstimate the SE and construct an approximate 95% interval for mean customer ROE.\n\nUse the final 15 minutes for this calculation, comparison, and discussion. Students use rounded inputs; their results should agree to the displayed precision. The rendered results use the unrounded data. Keep the working iid model explicit. These are the actual 81 firms, not the simulated population."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#saps-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#saps-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "SAP’s interval",
+    "text": "SAP’s interval\n\\[\n\\widehat{SE}=\\frac{25.66}{\\sqrt{81}}\n\\approx 2.85\\text{ percentage points}.\n\\]\n\\[\n\\bar x\\pm2\\widehat{SE}\\approx\n[6.9\\%,\\ 18.3\\%].\n\\]\nThese are plausible population means under the random-sampling model."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#compare-the-claims-with-the-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#compare-the-claims-with-the-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Compare the claims with the interval",
+    "text": "Compare the claims with the interval\n\nTreating the industry benchmark as fixed, which claims fit this interval?\nA mean near 7% would be much worse than Nucleus claimed, and it also fits.\n\nThe industry benchmark 15.7% lies inside the interval. Both lower and higher population means are plausible; the data do not establish that SAP customers are less profitable. The lower end near 7% permits substantial underperformance, so including parity does not establish that the firms perform well either. Applying a 32% advantage to that benchmark gives about 20.7%, outside the interval. These readings all depend on the working model and the fixed-benchmark simplification; do not make an unconditional claim about the advertisement or about SAP causing profit changes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#how-were-the-firms-selected",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#how-were-the-firms-selected",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "How were the firms selected?",
+    "text": "How were the firms selected?\nNucleus used publicly traded firms listed on SAP’s website.\nThey may differ from SAP’s other customers.\nThe interval measures sampling variation under the model. It does not correct selection bias."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#report-what-the-data-support",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#report-what-the-data-support",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Report what the data support",
+    "text": "Report what the data support\nSpeak for Nucleus, SAP, or an independent analyst.\nUse the interval and identify one limitation.\nThen write a one-sentence conclusion about mean customer ROE.\n\nHave tables discuss for two minutes, then hear one response per role. Distinguish the sample-size objection from representativeness. The fraction 81/30,000 alone does not establish that a sample is useless. The comparison does not identify SAP’s causal effect on profitability. A defensible conclusion reports 6.9% to 18.3% under random sampling, with the selection limitation attached."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#exit-ticket",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#exit-ticket",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Exit ticket",
+    "text": "Exit ticket\nWhat does standard error measure?\nHow must sample size change to halve the SE of a mean?\nWhat is one defensible conclusion from the SAP interval?"
   }
 ]
