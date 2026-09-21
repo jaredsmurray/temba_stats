@@ -1,8 +1,13 @@
 {
-  "baseline_commit": "cbbf1411964faec0027d1c15f7a73eb57a1e3a98",
-  "release": "20260921T201328-tqu6oksu",
-  "scope": "notes",
-  "selected": [],
+  "baseline_commit": "4c72aab46b5298377ec46f446a89fef2f0428932",
+  "release": "20260921T222146-q4bgarir",
+  "scope": null,
+  "selected": [
+    "slides.qmd",
+    "slides/differences_between_groups.qmd",
+    "slides/sample_proportions.qmd",
+    "slides/triangle_test.qmd"
+  ],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -42,5 +47,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "f0ad101fafb421030a8a27af69693b965ee49ea9"
+  "source_commit": "afd46e84ee7f339dcf8d3807d8be52724ce46059"
 }
