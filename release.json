@@ -1,12 +1,8 @@
 {
-  "baseline_commit": "7c4bbce8c6ffe194cd9d560910bdbe7b6039a09e",
-  "release": "20260914T221803-3zzmqgeq",
-  "scope": null,
-  "selected": [
-    "slides.qmd",
-    "slides/15_sums_averages_clt.qmd",
-    "slides/16_sampling_distributions_confidence_intervals.qmd"
-  ],
+  "baseline_commit": "cbbf1411964faec0027d1c15f7a73eb57a1e3a98",
+  "release": "20260921T201328-tqu6oksu",
+  "scope": "notes",
+  "selected": [],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -41,10 +37,10 @@
     "notes/_extensions/custom-numbered-blocks/textcontainers/simpletextbox/simpletextbox.tex": "62fc1ca996f096539b04730a9f3f366597cff9e72955b5d2fd1ad918a65c0688",
     "notes/_extensions/details/_extension.yml": "7498f2ed42d442bfa17123f23a4a596849767d87b99e9cad45a2821ee377bc06",
     "notes/_extensions/details/details.lua": "55c9de6eb50d0844cec580583fb5764ec4ffd7cbc055e04d8d5b2e25372b3dac",
-    "notes/_quarto.yml": "d5fe7525e48705e3948bea5c2d03b1cd14b48dff9ce424ddb5afc97352d77c09",
+    "notes/_quarto.yml": "34007d2b4f57c4118fc319fc7e15fb27db0051b0cf1338da04e208c03fee1885",
     "slides/R/inline_format.R": "d324dd4f400757a8d497fb3c7df483be3ae8a86b9800e7c7d2759a16c52b164b",
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "e4e22b6cb7289b5cd969b7d84b8b24a702872f33"
+  "source_commit": "f0ad101fafb421030a8a27af69693b965ee49ea9"
 }

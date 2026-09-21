@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -81,21 +100,21 @@ ul.task-list li input[type="checkbox"] {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -254,7 +273,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability Models for Multiple Variables</span></a>
+ <span class="menu-text">Data analysis, visualizations, and probability models for multiple random variables</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,17 +297,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyzing and Combining Quantitative Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_08_quantitative-quantitative.html" class="sidebar-item-text sidebar-link">
@@ -299,13 +307,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Combining Random Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_09_combining-random-variables.html" class="sidebar-item-text sidebar-link">
@@ -322,30 +330,54 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_03_limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Limits of Statistical Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_04_proportions-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Proportions and Comparisons Between Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -367,6 +399,7 @@ window.Quarto = {
   <li><a href="#sec-sums-averages" id="toc-sec-sums-averages" class="nav-link active" data-scroll-target="#sec-sums-averages"><span class="header-section-number">15.1</span> Sums and averages</a></li>
   <li><a href="#sec-clt" id="toc-sec-clt" class="nav-link" data-scroll-target="#sec-clt"><span class="header-section-number">15.2</span> The Central Limit Theorem</a></li>
   <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">15.3</span> Practice</a></li>
+  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
     </div>
@@ -392,7 +425,7 @@ window.Quarto = {
 </header>
 
 
-<p>All the rules from the last chapter about combining two random variables have analogues for settings where we combine multiple random variables: portfolios that hold many assets, forecasted total revenues added up from many branches. The math involved gets unwieldy, however — we end up with long formulas involving all the possible covariances between the random variables. (The rules work similarly to paired variables: positive covariances increase variability relative to independence and negative covariances decrease it.) In one very special case — when the random variables are <em>independent</em> — there are simple rules for computing their means, variances, and standard deviations. By repeatedly applying the rules in that chapter we can show that <em>means/expected values add</em> (this is always true, irrespective of dependence between the random variables) and that <em>variances add</em> (this is the special rule that requires independence).</p>
+<p>All the rules from the last chapter about combining two random variables have analogues for settings where we combine multiple random variables: portfolios that hold many assets, forecasted total revenues added up from many branches. The math involved gets unwieldy, however — we end up with long formulas involving all the possible covariances between the random variables. (The rules work similarly to paired variables: positive covariances increase variability relative to independence and negative covariances decrease it.) In one very special case — when the random variables are <em>independent</em> — there are simple rules for computing their means, variances, and standard deviations. By repeatedly applying the rules in that chapter we can show that <em>means/expected values add</em> (this is always true, irrespective of dependence between the random variables) and that <em>variances add</em> (this holds when all pairwise covariances are zero, as independence guarantees).</p>
 <div id="example-thaler-projects" class="Example">
 <div class="Example fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-bookmark fobx-icon" aria-hidden="true"></i><strong>Example 15.1: </strong>Thaler’s investment decision</div><div class="fobx-body">
 <p>In <em>Misbehaving</em>, Richard Thaler recounts a meeting with a CEO and the 23 executives who ran the company’s divisions. He offered each executive a hypothetical project that would earn $2 million with probability 0.5 or lose $1 million with probability 0.5. Only three executives would take it, but the CEO wanted all 23 projects if their outcomes were independent. Why might an individual executive decline while the CEO wanted them all to accept? Was the CEO making a sensible business decision?</p>
@@ -457,7 +490,7 @@ E[S_{23}]=23(0.5)=11.5,\qquad
 <div id="exercise-service-fees" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.1: </strong>Daily service fees</div><div class="fobx-body">
 <p>A repair company models the fees for 25 service visits as iid, with mean $160 and standard deviation $40 per visit. Find the mean and standard deviation of the day’s total fees and its average fee per visit.</p>
-<details class="solution-details" aria-label="Solution" id="details-1">
+<details class="solution-details" id="details-1" aria-label="Solution">
 <summary>Solution</summary>
 <p>The total has mean <span class="math inline">\(25(160)=4{,}000\)</span> dollars and standard deviation <span class="math inline">\(\sqrt{25}(40)=200\)</span> dollars. Across repeated days, total fees vary around $4,000 with a standard deviation of $200.</p>
 <p>The average has mean $160 and standard deviation <span class="math inline">\(40/\sqrt{25}=8\)</span> dollars. Across repeated days, the average fee per visit varies around $160 with a standard deviation of $8.</p>
@@ -467,7 +500,7 @@ E[S_{23}]=23(0.5)=11.5,\qquad
 <div id="exercise-common-weather" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.2: </strong>Sales on a rainy day</div><div class="fobx-body">
 <p>A company uses an iid model for daily sales at its 16 outdoor kiosks, each with mean $500 and standard deviation $100. All kiosks are in the same city, and rainy days tend to reduce sales at all of them. If the individual means and standard deviations remain correct, explain which of the model’s results for total sales would still hold: a mean of $8,000 or a standard deviation of $400.</p>
-<details class="solution-details" aria-label="Solution" id="details-2">
+<details class="solution-details" id="details-2" aria-label="Solution">
 <summary>Solution</summary>
 <p>The mean of $8,000 still holds because means add even under dependence. Shared weather makes kiosk sales tend to move together, so the total’s standard deviation would be larger than $400. We need information about the dependence to calculate how much larger.</p>
 </details>
@@ -579,7 +612,7 @@ Figure&nbsp;15.2: Total payoff for 23 independent projects. The orange area to t
 <li>If a normal approximation is adequate for this model, approximate the probability that the total exceeds 1,320 minutes. Express the same event using the average processing time.</li>
 <li>Suppose a common equipment slowdown affects all 100 orders. Explain why the iid calculation may understate the variability of their total.</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="details-3">
+<details class="solution-details" id="details-3" aria-label="Solution">
 <summary>Solution</summary>
 <p>The total has mean <span class="math inline">\(100(12)=1{,}200\)</span> minutes and standard deviation <span class="math inline">\(\sqrt{100}(6)=60\)</span> minutes. The average has mean 12 minutes and standard deviation <span class="math inline">\(6/\sqrt{100}=0.6\)</span> minutes. Reducing that standard deviation to 0.3 requires 400 orders.</p>
 <p>The threshold 1,320 is two standard deviations above the total’s mean, giving an approximate probability <span class="math inline">\(\Pr(Z&gt;2)\approx0.0228\)</span>. The same event is an average above 13.2 minutes, also two standard deviations above its mean.</p>
@@ -590,15 +623,421 @@ Figure&nbsp;15.2: Total payoff for 23 independent projects. The orange area to t
 <div id="exercise-clt-rare-payouts" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.4: </strong>Rare warranty payouts</div><div class="fobx-body">
 <p>A warranty model assigns each policy a payout of $1,000 with probability 0.001 and zero otherwise, independently across policies. For 100 policies, the probability that every payout is zero is about 0.905. An analyst says, “With 100 policies, the central limit theorem makes both individual payouts and the average payout approximately normal.” Assess this claim using the stated model.</p>
-<details class="solution-details" aria-label="Solution" id="details-4">
+<details class="solution-details" id="details-4" aria-label="Solution">
 <summary>Solution</summary>
 <p>An individual payout still takes only the values zero and $1,000; adding policies does not change its distribution. The central limit theorem concerns the shape of sums and averages as the number of iid draws grows.</p>
 <p>Here even the average is zero with probability about 0.905, with occasional positive values. A normal distribution would not describe that shape well. Although the model satisfies the theorem’s assumptions, 100 policies are not enough for a good normal approximation in this rare-payout model.</p>
 </details>
 </div></div>
 </div>
+<div id="exercise-call-center-staffing" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.5: </strong>Staffing a call center</div><div class="fobx-body">
+<p>A support center handles 400 calls on a typical weekday. Handling time per call has mean 6 minutes and standard deviation 5 minutes. The distribution is strongly right-skewed: most calls are short and a few run past half an hour. Model the 400 handling times as iid.</p>
+<ol type="1">
+<li>Find the mean and standard deviation of the total handling time for the day.</li>
+<li>Individual handling times are far from normal. Does knowing that there are 400 iid calls guarantee a good normal approximation for the day’s total? What else would you want to know about handling times?</li>
+<li>For parts 3 and 4, assume a normal approximation is adequate. The center schedules enough agent-minutes to cover the total on about 97.5% of days. How many minutes is that? If each agent spends 300 minutes a day on calls, how many agents does that require?</li>
+<li>The operations lead reports that “average handle time is remarkably stable, 6.0 minutes plus or minus 0.25 from day to day,” and proposes scheduling exactly 2,400 agent-minutes. Where does the 0.25 come from, and why is it the wrong number for this decision? What fraction of days would 2,400 minutes cover?</li>
+<li>Suppose half the days bring 300 calls and half bring 500. Handling times still follow the same iid model, independently of the number of calls. Which assumption of part 1 changes? Explain why the daily total now varies more than your answer there.</li>
+</ol>
+<details class="solution-details" id="details-5" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>The total has mean <span class="math inline">\(400(6)=2{,}400\)</span> minutes and standard deviation <span class="math inline">\(\sqrt{400}(5)=100\)</span> minutes.</li>
+<li>No.&nbsp;The adequacy of the approximation depends on the distribution, especially its right tail, as the rare-payout exercise illustrates. A distribution or data showing how often very long calls occur would help assess the approximation; the mean, standard deviation, and sample size alone do not settle it.</li>
+<li>Under the normal approximation, about 97.5% of days have totals below the mean plus two standard deviations, <span class="math inline">\(2{,}400+2(100)=2{,}600\)</span> minutes. At 300 minutes per agent that is <span class="math inline">\(2{,}600/300\approx8.7\)</span>, so nine agents.</li>
+<li>The 0.25 is the standard deviation of the daily <em>average</em> handling time, <span class="math inline">\(5/\sqrt{400}\)</span>. Staffing is a question about the total, whose standard deviation is 100 minutes, four hundred times larger. Both numbers describe the same variability on different scales, and the lead has read the stability of the average as if it applied to the total. Scheduling 2,400 minutes covers the mean, so roughly half of all days would run over.</li>
+<li>The model fixes the number of terms at 400. When the number of calls is itself random, the total varies for two reasons: how long each call takes and how many calls arrive. Days with 500 calls have totals centered at 3,000 minutes and days with 300 calls at 1,800, so the day-to-day variability of the total is larger than 100 minutes. The iid calculation understates it.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-weekly-load" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.6: </strong>Do daily loads add like iid draws?</div><div class="fobx-body">
+<p>The <code>ercot_daily_2018</code> data record the average hourly electricity demand in the Dallas–Fort Worth zone for each of the 365 days of 2018, in megawatts. Daily load has a sample mean of 13,873 MW and a sample standard deviation of 2,932 MW. <a href="#fig-practice-load" class="quarto-xref">Figure&nbsp;<span>15.3</span></a> shows the series.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-practice-load" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-practice-load-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_10_sums-averages-clt_files/figure-html/fig-practice-load-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-practice-load-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.3: Average hourly electricity demand in the Dallas–Fort Worth zone, by day, 2018.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Suppose daily loads were iid draws from a distribution with this mean and standard deviation. Find the mean and standard deviation of a seven-day total.</li>
+<li>Splitting 2018 into 52 consecutive seven-day blocks, the block totals have a sample mean of 97,132 MW and a sample standard deviation of 18,687 MW. Compare both with your answers to part 1.</li>
+<li>Use <a href="#fig-practice-load" class="quarto-xref">Figure&nbsp;<span>15.3</span></a> and the variance rule for sums of dependent variables to explain the discrepancy you found. The sample correlation between one day’s load and the next day’s is 0.92.</li>
+<li>One of the two iid results survived and the other did not. Why?</li>
+<li>A fuel planner uses the iid standard deviation to set a buffer of two standard deviations around the expected weekly total. In 2018, 58% of the weekly totals fell outside that buffer. What did the planner get wrong, and what would a better planning model need to include?</li>
+</ol>
+<details class="solution-details" id="details-6" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>Under the iid model, the seven-day total has mean <span class="math inline">\(7(13,873)\approx97,109\)</span> MW and standard deviation <span class="math inline">\(\sqrt7(2,932)\approx7,757\)</span> MW.</li>
+<li>The mean matches almost exactly. The standard deviation of the observed weekly totals, 18,687 MW, is about 2.4 times the iid prediction.</li>
+<li>Consecutive days are strongly positively dependent. A hot day in July is followed by another hot day, and a mild day in April by another mild one, so the seven loads in a block tend to be all high or all low together. The variance of a sum of dependent variables adds every pairwise covariance to the sum of the variances, and with a day-to-day correlation of 0.92 those covariance terms are large and positive. The iid calculation drops them all.</li>
+<li>Means add whether or not the terms are dependent, so the iid prediction for the mean of a weekly total is correct for any dependence structure. Variances add when pairwise covariances are zero; independence is one condition that guarantees this. Weather-driven demand has positive covariances, which the iid calculation leaves out.</li>
+<li>The observed weekly standard deviation is about 2.4 times the one used to set the buffer, and 58% of the weekly totals fall outside it. A two-standard-deviation buffer has approximately 95% coverage only with an appropriate distributional approximation, such as a normal distribution. A usable model has to account for the dependence, most directly by modeling the season and the forecast weather rather than treating each day as a fresh draw from the annual distribution.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-law-of-averages" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.7: </strong>The law of averages</div><div class="fobx-body">
+<p>A subscription business budgets 1,000 new signups per week and uses a 52-week planning year, for an annual budget of 52,000. It models weekly signups as iid with mean 1,000 and standard deviation 100. After 13 weeks, signups total 12,750, which is 250 behind budget. There are 39 weeks left. The marketing lead tells the board, “The law of averages will bring us back on budget by year end.”</p>
+<ol type="1">
+<li>Given the first 13 weeks’ result, find the expected year-end total and the expected year-end shortfall.</li>
+<li>Find the standard deviation of total signups over the remaining 39 weeks. Assume a normal approximation is adequate for that total. Find the probability that the year ends at or above the 52,000 budget.</li>
+<li>If the remaining weeks average exactly 1,000 signups, compare the total shortfall after 13 weeks and after 52 weeks. Then compare the shortfall <em>per week</em> at those two times. Which shortfall gets smaller?</li>
+<li>Rewrite the marketing lead’s sentence for the board. Include the expected year-end total and explain whether the model predicts that future weeks will compensate for the first 13 weeks’ shortfall.</li>
+</ol>
+<details class="solution-details" id="details-7" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>The remaining weeks have expected total <span class="math inline">\(39(1{,}000)=39{,}000\)</span>, so the expected year-end total is <span class="math inline">\(12{,}750+39{,}000=51{,}750\)</span>. The expected shortfall remains 250. Independence means the low total so far does not change the distribution of future signups.</li>
+<li>The remaining total has standard deviation <span class="math inline">\(100\sqrt{39}\approx624.5\)</span> signups. Reaching budget requires at least <span class="math inline">\(52{,}000-12{,}750=39{,}250\)</span> more signups, or <span class="math inline">\(250/(100\sqrt{39})\approx0.40\)</span> standard deviations above the remaining total’s mean. Thus the probability is approximately <span class="math inline">\(\Pr(Z\ge 0.40)=0.344\)</span>.</li>
+<li>The total shortfall is 250 at both times. The shortfall per week falls from <span class="math inline">\(250/13\approx19.2\)</span> to <span class="math inline">\(250/52\approx4.8\)</span> signups. Spreading the same deficit over more weeks brings the average closer to 1,000 without recovering the missing signups.</li>
+<li>“Our model predicts a year-end total of 51,750, still 250 below budget. It predicts 1,000 signups in each remaining week, with no extra signups to compensate for the earlier shortfall.”</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-small-sections" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.8: </strong>Small sections at both ends of the rankings</div><div class="fobx-body">
+<p>The <code>hamermesh_evals</code> data record the average student evaluation score (<code>eval</code>, on a 1–5 scale) for 463 course sections at UT Austin, along with the number of students who submitted an evaluation (<code>students</code>). Each section’s score is the average of the ratings its respondents gave. <a href="#fig-practice-evals" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> plots the score against the number of respondents, and <a href="#tbl-practice-evals" class="quarto-xref">Table&nbsp;<span>15.1</span></a> summarizes the scores by respondent group.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-practice-evals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-practice-evals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_10_sums-averages-clt_files/figure-html/fig-practice-evals-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-practice-evals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.4: Average evaluation score against the number of students who responded, one point per course section. The horizontal axis uses a log scale.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-practice-evals" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-practice-evals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15.1: Spread of section scores by the number of students responding, and the share of sections with a score of at least 4.7 or at most 3.0.
+</figcaption>
+<div aria-describedby="tbl-practice-evals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 11%">
+<col style="width: 26%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Students responding</th>
+<th style="text-align: right;">Sections</th>
+<th style="text-align: right;">SD of section scores</th>
+<th style="text-align: right;">Share at or beyond 4.7 / 3.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5 to 15</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16 to 30</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">22%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">31 to 60</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">6%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">61 or more</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">10%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="1">
+<li>Suppose every instructor were equally good, so each student’s rating is a draw with the same mean and the same standard deviation <span class="math inline">\(\sigma\)</span>. Assume ratings within each section are independent, and each section’s score is the average of its <span class="math inline">\(n\)</span> ratings. What would the rules for averages predict about the spread of section scores across sections with 10 respondents versus sections with 100?</li>
+<li>Is that pattern visible in <a href="#fig-practice-evals" class="quarto-xref">Figure&nbsp;<span>15.4</span></a> and <a href="#tbl-practice-evals" class="quarto-xref">Table&nbsp;<span>15.1</span></a>? Describe what you see.</li>
+<li>A dean proposes an annual award for the section with the highest score. Under the model in part 1, which sections would you expect to be overrepresented among unusually high scores, and why?</li>
+<li>From 15 respondents to 60, the rule in part 1 predicts the spread should halve. The table shows a smaller reduction. Explain what is missing from the model in part 1.</li>
+</ol>
+<details class="solution-details" id="details-8" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>A section score would be an average of <span class="math inline">\(n\)</span> iid ratings, with standard deviation <span class="math inline">\(\sigma/\sqrt n\)</span> across sections. Sections with 10 respondents would have scores about <span class="math inline">\(\sqrt{10}\approx3.2\)</span> times as spread out as sections with 100, in both directions from the common mean.</li>
+<li>Yes, partly. The scatter narrows from left to right: most scores at or beyond 4.7 or 3.0 come from sections with 30 or fewer respondents, and the standard deviation of scores falls from about 0.59 in the smallest group to about 0.47 for sections with 31 to 60 respondents. The share of extreme scores drops from roughly 24% to 6%.</li>
+<li>Under the model in part 1, small sections have the most variable averages, so we expect them to be overrepresented among both unusually high and unusually low scores. The winner also depends on how many sections of each size there are and on the rating distributions. The award risks rewarding sampling variability as well as teaching quality.</li>
+<li>Instructors and courses genuinely differ, so section scores vary for two reasons: the instructor’s true rating varies across sections, and each score is a noisy average around that rating. Only the second source shrinks with <span class="math inline">\(n\)</span>. Once <span class="math inline">\(n\)</span> is large enough that the noise is small, the remaining spread reflects real differences between instructors and courses, and it stays roughly constant as <span class="math inline">\(n\)</span> grows.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-loan-book" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.9: </strong>A loan book of ten thousand</div><div class="fobx-body">
+<p>A lender holds 10,000 one-year loans. Its model says each loan defaults with probability 0.03, independently of the others, and a default costs the lender $20,000.</p>
+<ol type="1">
+<li>The number of defaults is a sum of 10,000 random variables that each equal 1 for a default and 0 otherwise. Find its mean and standard deviation.</li>
+<li>Find the mean and standard deviation of the year’s total default losses.</li>
+<li>The lender sets aside enough capital to cover losses in about 97.5% of years. Using a normal approximation, how much is that? Is the approximation reasonable here?</li>
+<li>Under this model, the probability of more than 400 defaults is essentially zero. Real lenders hold far more capital than part 3 suggests. Which assumption of the model is the problem, and what happens to the standard deviation of total losses when it fails?</li>
+<li>The lender could instead hold 100 loans, each with a fixed loss of $2 million if it defaults. Defaults remain independent, with probability 0.03 each. Compare the mean and standard deviation of total losses for the two loan books, and explain the difference.</li>
+</ol>
+<details class="solution-details" id="details-9" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>Each indicator has mean 0.03 and variance <span class="math inline">\(0.03(0.97)=0.0291\)</span>. The count has mean <span class="math inline">\(10{,}000(0.03)=300\)</span> defaults and standard deviation <span class="math inline">\(\sqrt{10{,}000(0.0291)}\approx17.1\)</span> defaults.</li>
+<li>Losses are $20,000 times the count: mean $6.0 million and standard deviation about $341,000.</li>
+<li>The mean plus two standard deviations is about $6.68 million. The normal approximation is reasonable: the count is a sum of 10,000 independent terms, and even though each term is far from normal, the central limit theorem applies with this many.</li>
+<li>Independence is the problem. In a recession, the same job losses and falling asset prices push many borrowers toward default at once, so the indicators are positively correlated. The variance of the count then includes millions of positive covariance terms the model omits, and the standard deviation of losses can be several times $341,000. The model’s near-zero probability of more than 400 defaults describes a world with no shared shocks that raise default probabilities together.</li>
+<li>Both books have expected losses of $6.0 million. With 100 loans the count of defaults has mean 3 and standard deviation <span class="math inline">\(\sqrt{100(0.0291)}\approx1.71\)</span>, so losses have standard deviation about $3.4 million, ten times the small-loan book’s. Spreading the same exposure across a hundred times as many borrowers cuts the standard deviation by a factor of <span class="math inline">\(\sqrt{100}=10\)</span>, provided the defaults are independent.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-returns-add-like-iid" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.10: </strong>Do daily returns add like iid draws?</div><div class="fobx-body">
+<p><a href="#exercise-weekly-load">The weekly-load exercise above</a> found that daily electricity loads do not add like iid draws. Stock returns are a different case. The <code>EuStockMarkets</code> data give 1,859 daily returns on Germany’s DAX index from 1991 through 1998, with sample mean 0.071% and sample standard deviation 1.03% per day. Adding the returns over a block of <span class="math inline">\(k\)</span> consecutive days gives approximately the <span class="math inline">\(k\)</span>-day return. <a href="#tbl-practice-dax-blocks" class="quarto-xref">Table&nbsp;<span>15.2</span></a> compares the sample mean and standard deviation of the block totals with the iid predictions.</p>
+<div class="cell">
+<div id="tbl-practice-dax-blocks" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-practice-dax-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15.2: Sums of DAX daily returns over consecutive blocks of k days, compared with the mean kμ and standard deviation √k σ predicted by the iid rules.
+</figcaption>
+<div aria-describedby="tbl-practice-dax-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 7%">
+<col style="width: 19%">
+<col style="width: 18%">
+<col style="width: 17%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Days per block</th>
+<th style="text-align: right;">Blocks</th>
+<th style="text-align: right;">Mean of block sums</th>
+<th style="text-align: right;">iid prediction kμ</th>
+<th style="text-align: right;">SD of block sums</th>
+<th style="text-align: right;">iid prediction √k σ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1859</td>
+<td style="text-align: right;">0.07%</td>
+<td style="text-align: right;">0.07%</td>
+<td style="text-align: right;">1.03%</td>
+<td style="text-align: right;">1.03%</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">371</td>
+<td style="text-align: right;">0.35%</td>
+<td style="text-align: right;">0.35%</td>
+<td style="text-align: right;">2.42%</td>
+<td style="text-align: right;">2.30%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">1.56%</td>
+<td style="text-align: right;">1.41%</td>
+<td style="text-align: right;">4.50%</td>
+<td style="text-align: right;">4.60%</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">4.42%</td>
+<td style="text-align: right;">4.23%</td>
+<td style="text-align: right;">7.72%</td>
+<td style="text-align: right;">7.96%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="1">
+<li>Compute the iid predictions for the 20-day block by hand from the daily mean and standard deviation, and check them against the table.</li>
+<li>Compare the observed and predicted standard deviations across the blocks. Do daily returns add like iid draws?</li>
+<li>The sample correlation between one day’s return and the next is -0.001. Compare this with the 0.92 for daily loads, and explain why returns and loads behave so differently. Think about what a trader would do if tomorrow’s return were predictable from today’s.</li>
+<li>The chapter’s note on annualization in <a href="./prob_09_combining-random-variables.html#technical-annualization">Chapter 14</a> multiplies a weekly standard deviation by <span class="math inline">\(\sqrt{52}\)</span>. Which findings provide limited support for that scaling rule, and what assumptions does annual scaling still require?</li>
+<li>Returns being uncorrelated from day to day does not make them identically distributed. Name one way daily returns in different periods might differ, and say whether it affects the mean rule, the variance rule, or the normal approximation.</li>
+</ol>
+<details class="solution-details" id="details-10" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>The 20-day prediction is a mean of <span class="math inline">\(20(0.071\%)\approx1.41\%\)</span> and a standard deviation of <span class="math inline">\(\sqrt{20}(1.03\%)\approx4.60\%\)</span>, matching the table.</li>
+<li>The observed standard deviations are close to the <span class="math inline">\(\sqrt{k}\)</span> predictions at each block length. This supports using the rule as a rough description of these data. It does not establish independence: uncorrelated returns also satisfy the variance-addition rule, and the longest-block estimate uses only 30 blocks.</li>
+<li>The day-to-day correlation is essentially zero, against 0.92 for loads. Loads are driven by weather, which persists. Returns are driven by news, and any predictable pattern in returns would be exploited: if a high return today reliably signaled a high return tomorrow, traders would buy today, which raises today’s price and removes tomorrow’s gain. Competition drives the correlation toward zero.</li>
+<li>The <span class="math inline">\(\sqrt{52}\)</span> scaling follows when the 52 weekly returns have a common variance and zero pairwise covariances. The DAX block standard deviations are close to the square-root predictions at 5, 20, and 60 days, giving limited empirical support for this type of scaling. That comparison does not establish the assumptions for 52 weeks or for the different assets used in Chapter 14.</li>
+<li>Volatility can change over time: returns during a crisis may have a larger standard deviation than returns in a calm year. Means still add. If covariances are zero, variances still add, but the sum is <span class="math inline">\(\sum_i\sigma_i^2\)</span>, which reduces to <span class="math inline">\(k\sigma^2\)</span> only when the variances are equal. Unequal variances alone do not determine the shape of the sum. For example, independent normal returns still have a normal sum even when their variances differ. Assessing the normal approximation requires information about the distributions and their dependence.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-conversion-rate" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.11: </strong>A conversion rate is an average</div><div class="fobx-body">
+<p>A landing page receives 2,000 visitors on a typical day. The company’s model says each visitor makes a purchase with probability 0.04, independently of the others. The daily <strong>conversion rate</strong> is the number of purchases divided by the number of visitors. <a href="#fig-practice-conversion" class="quarto-xref">Figure&nbsp;<span>15.5</span></a> compares the model’s exact purchase-count distribution with a normal approximation having the same mean and standard deviation.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-practice-conversion" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-practice-conversion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="prob_10_sums-averages-clt_files/figure-html/fig-practice-conversion-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-practice-conversion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.5: Exact probabilities for the daily purchase count (blue bars of width one) and a normal density with the same mean and standard deviation (orange curve). The dashed line marks 64 purchases, a conversion rate of 3.2%.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Let <span class="math inline">\(X_i\)</span> equal 1 if visitor <span class="math inline">\(i\)</span> purchases and 0 otherwise. Find the mean and variance of a single <span class="math inline">\(X_i\)</span>.</li>
+<li>Find the mean and standard deviation of the day’s number of purchases, and the mean and standard deviation of the day’s conversion rate. Compute the expected numbers of purchases and non-purchases. Use these counts and the figure to assess whether a normal approximation is reasonable despite the small purchase probability.</li>
+<li>On Monday the page converted 3.2% of 2,000 visitors, or 64 purchases. Calculate the z-score and use a normal approximation to estimate the probability of a conversion rate at or below 3.2%. Compare it with the model’s exact probability, 0.035.</li>
+<li>How many visitors would it take for the conversion rate’s standard deviation to fall to 0.1 percentage point? Explain why the count of purchases becomes more variable while the rate becomes less variable as the number of visitors grows.</li>
+<li><strong>Optional comparison.</strong> Two page designs each receive 2,000 visitors. Assume the samples are independent and both designs have purchase probability 0.04. Find the standard deviation of the difference in their conversion rates and the approximate range within two standard deviations of zero. Does this calculation establish that one day per design would reliably detect a smaller improvement?</li>
+</ol>
+<details class="solution-details" id="details-11" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li><span class="math inline">\(E[X_i]=0.04\)</span>, and <span class="math inline">\(\operatorname{Var}(X_i)=0.04(1-0.04)=0.0384\)</span>: the variance of a 0/1 variable is <span class="math inline">\(p(1-p)\)</span>.</li>
+<li>The count has mean 80 and standard deviation <span class="math inline">\(\sqrt{2{,}000(0.0384)}\approx8.76\)</span> purchases. The rate has mean 0.04 and standard deviation <span class="math inline">\(\sqrt{0.0384/2{,}000}\approx0.00438\)</span>, or 0.44 percentage points. The expected counts are 80 purchases and 1,920 non-purchases, so neither outcome is rare in a full day’s sample. The exact distribution in the figure is roughly symmetric and follows the normal curve closely.</li>
+<li>The z-score is <span class="math inline">\((64-80)/\sqrt{2{,}000(0.0384)}\approx-1.83\)</span>. The normal lower-tail probability is approximately 0.034, close to the exact probability 0.035. Such a low rate is unusual under the model, but one day’s result alone does not establish that the page has stopped working properly.</li>
+<li>Solving <span class="math inline">\(\sqrt{0.0384/n}=0.001\)</span> gives <span class="math inline">\(n=38{,}400\)</span> visitors. The count’s standard deviation grows with <span class="math inline">\(\sqrt n\)</span>; dividing by <span class="math inline">\(n\)</span> to get the rate makes its standard deviation shrink as <span class="math inline">\(1/\sqrt n\)</span>.</li>
+<li>The difference has standard deviation <span class="math inline">\(\sqrt{2(0.0384)/2{,}000}\approx0.00620\)</span>, or 0.62 percentage points. Its approximate two-standard-deviation range is <span class="math inline">\(\pm 1.24\)</span> percentage points. This describes differences when both purchase probabilities are 0.04. It does not give the probability of detecting an improvement when the designs have different purchase probabilities.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-casino-edge" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.12: </strong>Why the casino is a business</div><div class="fobx-body">
+<p>On an American roulette wheel, a $1 bet on red pays $1 if the ball lands on one of the 18 red pockets and loses the dollar otherwise; there are 18 black pockets and 2 green ones. Assume the wheel is fair and spins are independent, with one bet per spin. Take the casino’s point of view: its gain on one bet is <span class="math inline">\(+1\)</span> with probability <span class="math inline">\(20/38\)</span> and <span class="math inline">\(-1\)</span> with probability <span class="math inline">\(18/38\)</span>.</p>
+<ol type="1">
+<li>Find the mean and standard deviation of the casino’s gain on one $1 bet.</li>
+<li>Over a quiet evening with 100 such bets, find the mean and standard deviation of the casino’s total gain. Using a normal approximation, what is the probability the casino loses money on the evening?</li>
+<li>Over a month with 10,000 bets, repeat part 2.</li>
+<li>Over a year with one million bets, the casino’s expected gain is about $52,600. Find the standard deviation of its total gain, and explain why the ratio of the standard deviation to the mean shrinks as the number of bets grows.</li>
+<li>A high roller offers to place a single $1 million bet on red. From the casino’s side, compare the mean and standard deviation of this one bet with those of the million $1 bets in part 4, and explain why casinos set maximum bet limits.</li>
+</ol>
+<details class="solution-details" id="details-12" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>The mean is <span class="math inline">\((20-18)/38\approx0.0526\)</span> dollars, the house edge of about 5.3 cents per dollar. The variance is <span class="math inline">\(1-0.0526^2\approx0.9972\)</span>, so the standard deviation is about 0.9986, essentially $1.</li>
+<li>The total over 100 bets has mean $5.26 and standard deviation <span class="math inline">\(\sqrt{100}(0.9986)\approx9.99\)</span>. Losing money means a total below zero, about <span class="math inline">\(5.26/9.99\approx0.53\)</span> standard deviations below the mean, so the probability is about <span class="math inline">\(\Pr(Z&lt;-0.53)\approx0.30\)</span>. On a quiet evening the casino loses at the red bets nearly a third of the time.</li>
+<li>Over 10,000 bets the mean is $526 and the standard deviation about $99.9. Zero is now <span class="math inline">\(5.27\)</span> standard deviations below the mean, and the probability of a losing month is about <span class="math inline">\(7\times10^{-8}\)</span>.</li>
+<li>The standard deviation is <span class="math inline">\(\sqrt{10^6}(0.9986)\approx999\)</span> dollars. The mean grows in proportion to the number of bets while the standard deviation grows with its square root, so their ratio is <span class="math inline">\(0.9986/(0.0526\sqrt{n})\approx19/\sqrt{n}\)</span>. At a million bets the standard deviation is under 2% of the mean, and the year’s profit from this bet is nearly certain.</li>
+<li>The single $1 million bet has the same expected gain, about $52,600, but its standard deviation is about $999,000: the casino either wins or loses roughly a million dollars. A million small bets and one large bet have identical expected value and standard deviations a thousandfold apart. Bet limits keep the casino in the first situation, where the edge is realized reliably, rather than the second, where a single spin can erase a year’s profit.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<div id="exercise-same-hour-orders" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.13: </strong>A hundred orders from one hour</div><div class="fobx-body">
+<p>The <code>deliveries</code> data from the <code>modeldata</code> R package record the time from order to delivery, in minutes, for 10,012 orders at one restaurant. <a href="#tbl-practice-deliveries" class="quarto-xref">Table&nbsp;<span>15.3</span></a> compares all orders with those placed between 6:00 and 7:00 p.m.</p>
+<div class="cell">
+<div id="tbl-practice-deliveries" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-practice-deliveries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15.3: Delivery times across all hours and during the 6 p.m. hour.
+</figcaption>
+<div aria-describedby="tbl-practice-deliveries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Group</th>
+<th style="text-align: right;">Orders</th>
+<th style="text-align: right;">Mean time (min)</th>
+<th style="text-align: right;">SD (min)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All hours</td>
+<td style="text-align: right;">10012</td>
+<td style="text-align: right;">26.1</td>
+<td style="text-align: right;">6.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6:00–7:00 p.m.</td>
+<td style="text-align: right;">1408</td>
+<td style="text-align: right;">30.3</td>
+<td style="text-align: right;">6.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A manager wants to estimate the restaurant’s overall mean delivery time from 100 orders. For the calculations below, model the selected delivery times as independent draws from the indicated group, using the table’s means and standard deviations as the model parameters.</p>
+<ol type="1">
+<li>If the 100 orders are drawn from all hours, what are the mean and standard deviation of their average delivery time?</li>
+<li>The manager instead uses 100 orders from 6:00 to 7:00 p.m. What mean would their average estimate? Use the table to explain why it would give a misleading estimate of the overall mean even with 100 orders.</li>
+<li>Suppose the manager wants the mean for the 6 p.m. hour specifically. Which group should the orders come from, and what standard deviation does the independent-draw model predict for their average? Would selecting orders from one actual evening necessarily satisfy that model?</li>
+</ol>
+<details class="solution-details" id="details-13" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>The average has mean 26.1 minutes and standard deviation <span class="math inline">\(\sigma/\sqrt{100}\)</span>, about 0.69 minutes.</li>
+<li>It estimates the 6 p.m. mean, 30.3 minutes, rather than the overall mean of 26.1 minutes. A larger sample from this hour would estimate that hour’s mean more precisely, but would not make it representative of all hours.</li>
+<li>Draw from orders placed between 6:00 and 7:00 p.m. Under the stated model, the average of 100 has standard deviation <span class="math inline">\(6.0/\sqrt{100}\approx0.60\)</span> minutes. Independence is an assumption: orders from one evening may share unusually heavy traffic or a kitchen delay. Choosing the right hour identifies the population of interest but does not establish independence.</li>
+</ol>
+</details>
+</div></div>
+</div>
+</section>
+<section id="data-used-in-this-section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
+<ul>
+<li><a href="./appendix_data.html#sec-data-ercot-shaffer">ERCOT Hourly Load and Temperature Panel</a> supplies the 2018 daily loads.</li>
+<li><a href="./appendix_data.html#sec-data-evals-hamermesh">Course Evaluations and Instructor Appearance</a> supplies the section scores.</li>
+<li><code>EuStockMarkets</code>, distributed with R, supplies the daily DAX levels, 1991–1998.</li>
+<li><code>deliveries</code> from the <code>modeldata</code> package supplies the restaurant delivery times <span class="citation" data-cites="modeldata-package">(<a href="appendix_data.html#ref-modeldata-package" role="doc-biblioref">Kuhn 2024</a>)</span>.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-modeldata-package" class="csl-entry" role="listitem">
+Kuhn, Max. 2024. <em>Modeldata: Data Sets Useful for Modeling Examples</em>. <a href="https://CRAN.R-project.org/package=modeldata">https://CRAN.R-project.org/package=modeldata</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

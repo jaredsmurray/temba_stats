@@ -77,15 +77,15 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
 .TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
@@ -137,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Probability Models for Multiple Variables</a></li><li class="breadcrumb-item"><a href="./prob_06_probability-trees-bayes.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Data analysis, visualizations, and probability models for multiple random variables</a></li><li class="breadcrumb-item"><a href="./prob_06_probability-trees-bayes.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -250,7 +250,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability Models for Multiple Variables</span></a>
+ <span class="menu-text">Data analysis, visualizations, and probability models for multiple random variables</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -274,17 +274,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyzing and Combining Quantitative Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_08_quantitative-quantitative.html" class="sidebar-item-text sidebar-link">
@@ -295,13 +284,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Combining Random Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_09_combining-random-variables.html" class="sidebar-item-text sidebar-link">
@@ -318,30 +307,54 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_03_limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Limits of Statistical Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_04_proportions-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Proportions and Comparisons Between Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -372,7 +385,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Probability Models for Multiple Variables</a></li><li class="breadcrumb-item"><a href="./prob_06_probability-trees-bayes.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Data analysis, visualizations, and probability models for multiple random variables</a></li><li class="breadcrumb-item"><a href="./prob_06_probability-trees-bayes.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></h1>
 </div>
@@ -500,7 +513,7 @@ Figure&nbsp;11.4: The probability tree implied by CME FedWatch’s traditional c
 <div id="exercise-subscription-path" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 11.1: </strong>A subscription path</div><div class="fobx-body">
 <p>Suppose 30% of visitors to a website start a free trial. Among visitors who start a trial, 40% buy a subscription. What is the probability that a randomly selected visitor starts a trial and buys a subscription? Explain why 0.40 alone does not answer this question.</p>
-<details id="solution-subscription-path" class="solution-details" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-subscription-path">
 <summary>Solution</summary>
 <p>Multiplying along the path gives <span class="math inline">\(0.30(0.40)=0.12\)</span>. Thus, 12% of all visitors start a trial and buy a subscription. The 0.40 conditions on having started a trial; it describes only the visitors who reach that branch.</p>
 </details>
@@ -623,7 +636,7 @@ Table&nbsp;11.1: The joint distribution implied by CME FedWatch’s traditional 
 <li>Find the probability of each path that ends with an order ready on time.</li>
 <li>Find the probability that a randomly selected order is ready on time. Explain why you can add the two path probabilities.</li>
 </ol>
-<details id="solution-takeout-total-probability" class="solution-details" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-takeout-total-probability">
 <summary>Solution</summary>
 <p>The app-and-ready path has probability <span class="math inline">\(0.70(0.90)=0.63\)</span>, and the phone-and-ready path has probability <span class="math inline">\(0.30(0.80)=0.24\)</span>. Every order uses exactly one of these methods, so the paths are mutually exclusive and account for every order ready on time. Adding gives <span class="math inline">\(0.63+0.24=0.87\)</span>: 87% of orders are ready at the promised time.</p>
 </details>
@@ -743,7 +756,7 @@ Figure&nbsp;11.6: Fraud-screening probability tree. Multiplying the branch proba
 <li>For each inbox, find the probability that a message is spam given that the filter flags it.</li>
 <li>Explain why these probabilities differ even though the filter has the same flagging rates in both inboxes.</li>
 </ol>
-<details id="solution-email-base-rates" class="solution-details" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-email-base-rates">
 <summary>Solution</summary>
 <p>For Inbox A, the spam-and-flagged path has probability <span class="math inline">\(0.10(0.90)=0.09\)</span>, and the nonspam-and-flagged path has probability <span class="math inline">\(0.90(0.10)=0.09\)</span>. The spam share among flagged messages is therefore <span class="math inline">\(0.09/(0.09+0.09)=0.50\)</span>.</p>
 <p>For Inbox B, the corresponding path probabilities are <span class="math inline">\(0.50(0.90)=0.45\)</span> and <span class="math inline">\(0.50(0.10)=0.05\)</span>. The spam share among flagged messages is <span class="math inline">\(0.45/(0.45+0.05)=0.90\)</span>.</p>
@@ -762,7 +775,7 @@ Figure&nbsp;11.6: Fraud-screening probability tree. Multiplying the branch proba
 <li>Given that a component is defective, find the probability that it came from Supplier B.</li>
 <li>Explain why the answer to part 5 exceeds the marginal probability of ordering from Supplier B.</li>
 </ol>
-<details id="solution-supplier-risk-tree" class="solution-details" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-supplier-risk-tree">
 <summary>Solution</summary>
 <p>The first branches have probabilities 0.60 for Supplier A and 0.40 for Supplier B. The second-stage branch probabilities are 0.02 Defective and 0.98 Not defective after Supplier A, and 0.05 Defective and 0.95 Not defective after Supplier B. The completed tree is</p>
 <div class="cell">

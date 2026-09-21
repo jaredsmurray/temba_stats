@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Measuring Location and Spread – TEMBA Statistics — Course Notes</title>
+<title>17&nbsp; Hypothesis Tests and p-values – TEMBA Statistics — Course Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./singlevar_04_transformations.html" rel="next">
-<link href="./singlevar_02_describing-distributions.html" rel="prev">
+<link href="./inference_03_limits.html" rel="next">
+<link href="./inference_01_sampling-distributions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -76,20 +76,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <style>
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
-}
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 .Notation {
   --color1: #EEF1F3;
@@ -98,6 +88,14 @@ ul.task-list li input[type="checkbox"] {
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -143,7 +141,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inference_01_sampling-distributions.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="./inference_02_hypothesis-tests.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,7 +198,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link active">
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
   </div>
 </li>
@@ -328,7 +326,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></span></a>
   </div>
 </li>
@@ -379,18 +377,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-measures-center" id="toc-sec-measures-center" class="nav-link active" data-scroll-target="#sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</a></li>
-  <li><a href="#sec-measures-spread" id="toc-sec-measures-spread" class="nav-link" data-scroll-target="#sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</a></li>
-  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  <li><a href="#sec-ci-test" id="toc-sec-ci-test" class="nav-link active" data-scroll-target="#sec-ci-test"><span class="header-section-number">17.1</span> Connecting confidence intervals and hypothesis tests</a></li>
+  <li><a href="#sec-hypothesis-tests-practice" id="toc-sec-hypothesis-tests-practice" class="nav-link" data-scroll-target="#sec-hypothesis-tests-practice"><span class="header-section-number">17.2</span> Additional practice</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inference_01_sampling-distributions.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="./inference_02_hypothesis-tests.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></h1>
 </div>
 
 
@@ -407,193 +404,231 @@ window.Quarto = {
 </header>
 
 
-<p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
-<div id="notation-subscripts-summation" class="Notation">
-<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details aria-label="Details" id="details-subscripts-summation" open="">
-<summary>Details</summary>
-<p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
+<p>The <a href="./inference_01_sampling-distributions.html#sec-ci">confidence interval from the last chapter</a> gives a range of plausible values for <span class="math inline">\(\mu\)</span>, the population mean ROE of SAP customers. Under the random-sampling model, that interval runs from about 6.9% to 18.3%. We can also ask whether the data are consistent with a specific value, such as the industry benchmark of 15.7%.</p>
+<div id="defn-null-hypothesis" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 17.1: </strong>Hypothesis test and null hypothesis</div><div class="fobx-body">
+<p>A <strong>hypothesis test</strong> measures the evidence <em>against</em> one specific claim about a parameter, called the <strong>null hypothesis</strong>. The null hypothesis usually represents a default: no difference between two groups, no difference in outcomes between a treatment and a placebo, a mean equal to some benchmark.</p>
+</div></div>
+</div>
+<p>In the SAP example, we have at least two null hypotheses we could test:</p>
+<ul>
+<li><strong>Null hypothesis 1</strong>: SAP customers’ mean ROE <em>equals</em> the industry average of 15.7%. This lets us evaluate Nucleus’s claim that SAP customers are less profitable.</li>
+<li><strong>Null hypothesis 2</strong>: SAP customers’ mean ROE <em>equals</em> the 20.7% implied by SAP’s marketing claim.</li>
+</ul>
+<p>We’ll start with the industry benchmark.</p>
+<section id="step-1-posit-a-null-hypothesis-and-its-alternative" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1-posit-a-null-hypothesis-and-its-alternative">Step 1: Posit a null hypothesis and its alternative</h4>
+<p>We write the <strong>null hypothesis</strong> as <span class="math inline">\(H_0:\mu=15.7\%\)</span> and the <strong>alternative hypothesis</strong> as <span class="math inline">\(H_A:\mu\ne15.7\%\)</span>. Here <span class="math inline">\(\mu\)</span> is the population mean; the observed sample mean is our evidence about it. This <strong>two-sided test</strong> considers departures in either direction. Nucleus’s claim concerns lower profitability, but we are asking the broader question of whether SAP customers differ from the benchmark.</p>
+<p>Think of the null hypothesis as the defendant in a criminal trial in which you are a juror. You begin by presuming innocence, regardless of what you actually believe. In a hypothesis test, we likewise start by assuming the null hypothesis is true and ask whether the evidence is inconsistent with it.</p>
+<div id="exercise-state-fill-hypotheses" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.1: </strong>State the hypotheses</div><div class="fobx-body">
+<p>A bottling team wants to assess whether its population mean fill volume differs from the 500-milliliter label claim in either direction. Let <span class="math inline">\(\mu\)</span> denote that population mean. State the null and alternative hypotheses. Why should they refer to <span class="math inline">\(\mu\)</span> rather than the observed sample mean?</p>
+<details aria-label="Solution" id="solution-state-fill-hypotheses" class="solution-details">
+<summary>Solution</summary>
+<p>The null is <span class="math inline">\(H_0:\mu=500\)</span> milliliters and the alternative is <span class="math inline">\(H_A:\mu\ne500\)</span> milliliters. The claim concerns the population mean, which is unknown; the sample mean is the observed evidence used to assess it.</p>
+</details>
+</div></div>
+</div>
+</section>
+<section id="step-2-collect-and-evaluate-evidence" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2-collect-and-evaluate-evidence">Step 2: Collect and evaluate evidence</h4>
+<p>During the trial, the prosecutor presents evidence against the defendant — the null hypothesis. The defense provides alternative explanations for that evidence. Are the data consistent with the null hypothesis?</p>
+<p>The “prosecution” has already shown us that the estimated average ROE for SAP firms is 12.64%, or 3.1 percentage points less than the posited value of 15.7%. One explanation for the discrepancy is that SAP customers are truly less profitable on average.</p>
+<p>The “defense” provides an alternative explanation: A difference that large could be due to chance variation when we use a sample of 81 companies instead of the entire population of 30,000. The typical deviation of the sample mean from the true mean is measured by the <em>standard error</em>, which we computed in the last chapter as about 2.85 percentage points.</p>
+<p>Let <span class="math inline">\(\mu_0\)</span> denote the value specified by the null hypothesis: here, 15.7%. Our job as jurors is to compare the observed difference, <span class="math inline">\(\bar{x}-\mu_0\)</span>, with the estimated standard error. The <strong>test statistic</strong> makes that comparison; for a population mean, we use the <strong>t-statistic</strong>:</p>
+<p><span class="math display">\[
+T = \frac{\bar X - \mu_0}{SE(\bar X)},
+\qquad
+t = \frac{12.64 - 15.7}{2.85}
+= -1.07.
+\]</span></p>
+<p>The capital <span class="math inline">\(T\)</span> denotes the statistic across repeated samples; the lowercase <span class="math inline">\(t\)</span> is the value we computed from this sample. Like a z-score, it measures how many standard errors the sample mean is from the hypothesized value. Here the sample mean is about 1.07 standard errors below the industry benchmark. With the iid assumptions and adequate sample size from the last chapter, the Central Limit Theorem gives an approximately standard normal distribution <em>when the null hypothesis is true</em>:</p>
+<p><span class="math display">\[
+T = \frac{\bar X - 15.7}{SE(\bar X)}\approx N(0,1).
+\]</span></p>
+<p><em>If the null hypothesis is true</em>, the <span class="math inline">\(t\)</span>-statistic is close to zero in most samples. We should see <span class="math inline">\(t\)</span>-statistics bigger than 2 or less than -2 only about 5% of the time, and values bigger than 3 or less than -3 only about 0.3% of the time.</p>
+<div id="exercise-fill-standardized-discrepancy" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.2: </strong>Measure the discrepancy</div><div class="fobx-body">
+<p>An invented iid sample of 100 fill volumes has mean 497 milliliters and sample SD 10 milliliters. Test against a population mean of 500 milliliters. Assume the normal approximation for the sample mean is adequate.</p>
+<p>Compute the estimated SE and the observed <span class="math inline">\(t\)</span>-statistic. Interpret its sign and magnitude in standard-error units.</p>
+<details aria-label="Solution" id="solution-fill-standardized-discrepancy" class="solution-details">
+<summary>Solution</summary>
+<p>The estimated SE is <span class="math inline">\(10/\sqrt{100}=1\)</span> milliliter, so <span class="math inline">\(t=(497-500)/1=-3\)</span>. The sample mean is three standard errors below the hypothesized population mean.</p>
+</details>
+</div></div>
+</div>
+<p>A t-statistic of 2.4 is less compatible with the null hypothesis than a t-statistic of 1.1: values at least that far from zero occur less often when the null is true.</p>
+<div id="defn-p-value" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 17.2: </strong>The p-value</div><div class="fobx-body">
+<p>The <strong>p-value</strong> is the probability, computed assuming the null hypothesis is true, of getting a test statistic (here, the <span class="math inline">\(t\)</span>-statistic) at least as extreme as the one we observed. The smaller it is, the stronger the evidence against the null hypothesis. A small p-value means the data we got would be unusual if the null hypothesis held. For an alternative that runs in both directions, “at least as extreme” means at least as far from zero in either direction.</p>
+</div></div>
+</div>
+<p>In courtroom terms, the p-value asks: Assuming the defendant is innocent, how likely is it we’d see evidence <em>at least as damning</em> as what we observed? For the SAP test, we count both tails beyond <span class="math inline">\(\pm 1.07\)</span>, as shaded in <a href="#fig-sap-pvalue" class="quarto-xref">Figure&nbsp;<span>17.1</span></a>:</p>
 <div class="cell">
-<div id="tbl-subscripts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: The first four sale prices, labeled.
-</figcaption>
-<div aria-describedby="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class=" table table-sm table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:center;"> \(i\) </th>
-   <th style="text-align:left;"> \(x_i\) (sale price) </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:left;"> $419,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:left;"> $429,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 3 </td>
-   <td style="text-align:left;"> $575,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:left;"> $210,000 </td>
-  </tr>
-</tbody>
-</table>
-
+<div id="fig-sap-pvalue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sap-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="inference_02_hypothesis-tests_files/figure-html/fig-sap-pvalue-1.png" class="img-fluid figure-img" width="672">
 </div>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sap-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: The p-value for the test of parity with industry peers. Under the null hypothesis the t-statistic is approximately standard normal; the shaded tails below t = -1.07 and above t = 1.07 have total probability 0.28.
+</figcaption>
 </figure>
 </div>
 </div>
-<p>The symbol <span class="math inline">\(\sum\)</span> (a capital sigma, for “sum”) means “add up.” Writing <span class="math inline">\(\sum_{i=1}^{4} x_i\)</span> says: add up <span class="math inline">\(x_i\)</span> for every <span class="math inline">\(i\)</span> from 1 to 4,</p>
+</div>
 <p><span class="math display">\[
-\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4
-= \$419,000 + \$429,000 + \$575,000 + \$210,000
-= \$1,633,000.
+1 - \Pr(-1.07 &lt; T &lt; 1.07) \approx 0.28.
 \]</span></p>
-<p>Putting <span class="math inline">\(n\)</span> in place of 4 adds up the whole column, and <span class="math inline">\(\frac{1}{n}\sum_{i=1}^{n} x_i\)</span> is that total divided by the number of observations — the sample mean.</p>
+<p>If the population mean were the industry benchmark, about 28% of repeated samples would give a discrepancy at least this large in either direction. The p-value is not the probability that the benchmark is true.</p>
+<div id="exercise-two-tail-pvalue" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.3: </strong>Count both tails</div><div class="fobx-body">
+<p>A two-sided test produces <span class="math inline">\(t=-2.5\)</span>. Under the null hypothesis and the test’s normal approximation, the area below <span class="math inline">\(-2.5\)</span> is 0.0062 and the area above <span class="math inline">\(2.5\)</span> is 0.0062.</p>
+<p>Compute the p-value and describe the outcomes it counts. Does it give the probability that the null hypothesis is true?</p>
+<details aria-label="Solution" id="solution-two-tail-pvalue" class="solution-details">
+<summary>Solution</summary>
+<p>The p-value is <span class="math inline">\(0.0062+0.0062=0.0124\)</span>. Assuming the null is true, it counts test statistics at or below <span class="math inline">\(-2.5\)</span> or at or above <span class="math inline">\(2.5\)</span>, at least as far from zero as the observed statistic. It is a probability of these outcomes under the null, not a probability that the null itself is true.</p>
 </details>
 </div></div>
 </div>
-<section id="sec-measures-center" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</h2>
-<p>The two most common measures of center are the <strong>mean</strong> and the <strong>median</strong>.</p>
-<div id="defn-sample-mean" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
-<p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details aria-label="Details and formulas" class="formula-details" id="formula-sample-mean">
-<summary>Details and formulas</summary>
-<p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
-<p><span class="math display">\[
-\bar{x} = \frac1n\left ( x_1 + x_2 + x_3 + \dots + x_n \right ) = \frac{1}{n}\sum_{i=1}^{n} x_i.
-\]</span></p>
-<p>The summation adds the <span class="math inline">\(n\)</span> observed values, and dividing by <span class="math inline">\(n\)</span> turns that total into an average. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
+</section>
+<section id="step-3-reach-a-verdict" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3-reach-a-verdict">Step 3: Reach a verdict</h4>
+<p>In a criminal trial, we don’t find defendants “guilty” or “innocent” — they’re either “guilty” or “not guilty.” A defendant can be found not guilty because the jury concludes they didn’t commit the crime, or because the evidence presented was simply too weak to find the defendant guilty <em>beyond a reasonable doubt</em>.</p>
+<p>In a hypothesis test, we don’t conclude that the null hypothesis is true or false; we either <strong>reject</strong> it or <strong>fail to reject</strong> it. A sufficiently small p-value corresponds to a “guilty” verdict: we reject the null hypothesis and act as if it is false. Otherwise, we return a “not guilty” verdict and fail to reject it.</p>
+<div id="defn-significance-level" class="Definition">
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 17.3: </strong>Significance level</div><div class="fobx-body">
+<p>The <strong>significance level</strong> <span class="math inline">\(\alpha\)</span> is the p-value cutoff at which we reject the null hypothesis. At <span class="math inline">\(\alpha = 0.05\)</span> we reject when the p-value falls below 0.05 and fail to reject otherwise. Under the normal approximation used here, that means rejecting when <span class="math inline">\(|t|\)</span> is about 2 or more. A result that leads us to reject is <strong>statistically significant</strong> at the chosen level.</p>
+</div></div>
+</div>
+<p>A <strong>false positive</strong> occurs when we reject a null hypothesis that is true. Under the test’s assumptions, using <span class="math inline">\(\alpha=0.05\)</span> produces false positives in about 5% of repeated studies when the null is true. This is a long-run error rate, not the probability that a particular rejection is wrong.</p>
+<p>We choose <span class="math inline">\(\alpha\)</span> before examining the result. Its choice should, in principle, reflect the consequences of a false positive. A criminal trial and a civil trial have different standards of evidence because the consequences of getting the verdict wrong are more severe in a criminal trial. A smaller cutoff makes false positives less frequent, but also makes it harder to detect a real departure from the null. In practice, though, <span class="math inline">\(\alpha=0.05\)</span> is the most common choice.</p>
+<p>What does it mean to “fail to reject”? The observed difference is not large enough, relative to its standard error, to meet the chosen rejection threshold. This can happen in two different situations:</p>
+<ol type="1">
+<li>We get a big observed difference from the hypothesized value and a large standard error. We can’t rule out the null hypothesis because the sample size is too small relative to intrinsic variability in ROE. Essentially, we can’t find the defendant guilty because the evidence is limited and circumstantial.</li>
+<li>We get a small observed difference from the hypothesized value and a small standard error. We can’t rule out the null hypothesis because the observed difference is still small relative to the standard error.</li>
+</ol>
+<p>In the first case we return a “not guilty” verdict because we still have a lot of uncertainty about whether the defendant committed the crime. In the second case the same verdict comes with much less uncertainty: the data rule out large departures from the hypothesized value.</p>
+<p>For the industry benchmark, the p-value is about 0.28, which is larger than 0.05, so we fail to reject the null hypothesis. The sample does not provide strong evidence that SAP customers’ mean ROE differs from the industry average.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common mistake: Failing to reject does not establish the null hypothesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Failing to reject leaves the null hypothesis consistent with the data; it does not establish that the null hypothesis is true.</p>
+</div>
+</div>
+<div id="exercise-decide-two-tests" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.4: </strong>Reach a testing decision</div><div class="fobx-body">
+<p>Two invented studies test <span class="math inline">\(H_0:\mu=40\)</span> minutes against <span class="math inline">\(H_A:\mu\ne40\)</span> minutes for mean service time. Assume each study meets its sampling and normal-approximation assumptions. Their two-sided p-values are 0.012 and 0.28.</p>
+<p>At significance level <span class="math inline">\(\alpha=0.05\)</span>, state the decision for each study. Does the second study establish that the population mean equals 40 minutes?</p>
+<details aria-label="Solution" id="solution-decide-two-tests" class="solution-details">
+<summary>Solution</summary>
+<p>Reject the null in the first study because <span class="math inline">\(0.012&lt;0.05\)</span>. Fail to reject it in the second because <span class="math inline">\(0.28&gt;0.05\)</span>. The second study does not establish that the mean is exactly 40 minutes; its evidence is insufficient to rule out that value.</p>
 </details>
 </div></div>
 </div>
-<div id="defn-median" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.2: </strong>Sample median</div><div class="fobx-body">
-<p>The sample <strong>median</strong> is the middle value when the data are sorted from smallest to largest. It goes by three other names we have already seen: the 50th percentile, the 0.5 quantile, and the second quartile.</p>
-</div></div>
-</div>
-<div id="medians-when-values-tie" class="TechnicalDetail">
-<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 3.1: </strong>Medians when values tie</summary><div>
-<p>Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it. That doesn’t always uniquely define the median, and there are different conventions for a number that meets the general rule, but the one we use almost never matters.</p>
-</div></details>
-</div>
-<p>For our Austin 78752 prices, the mean is $370,804. For our prices, the median is $351,478. The mean is higher than the median because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.</p>
+</section>
+<section id="sec-ci-test" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="sec-ci-test"><span class="header-section-number">17.1</span> Connecting confidence intervals and hypothesis tests</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Mean or median?
+<span class="screen-reader-only">Note</span>Key idea: The confidence interval collects the hypotheses you would not reject
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Which measure of location is better? It depends, and like histograms and density plots they’re better together.</p>
-<p>The mean and the median sit close together in a symmetric distribution. In a right-skewed distribution the mean sits above the median, and in a left-skewed distribution it sits below. A substantial gap between the two is therefore evidence of skewness, outliers, or some other asymmetry, which is a good reason to report both.</p>
-<p>You will, however, often hear distributions of economic measures like wages reported via median with no reference to the mean. That’s just because the skew already is well-known.</p>
+<p>For the two-sided test used here, the approximate 95% confidence interval contains the values we would not reject using the same two-standard-error rule: any value of <span class="math inline">\(\mu\)</span> more than two standard errors from <span class="math inline">\(\bar{x}\)</span> falls outside the interval and gives <span class="math inline">\(|t| &gt; 2\)</span>, so the test rejects it. Every other value lands inside the interval, and the test fails to reject it (see <a href="#fig-ci-test-connection" class="quarto-xref">Figure&nbsp;<span>17.2</span></a>).</p>
 </div>
 </div>
-<p>If you find yourself looking at a distribution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center — both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a “center” as we would usually think of it.</p>
-</section>
-<section id="sec-measures-spread" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</h2>
-<p>Once we have a measure of where the “middle” of a distribution is we naturally want some measure of how close observations tend to be to the middle — or how they are <em>spread</em> out around the center. The median price of a house in 78752 is $351,478, but are there houses selling for around $100,000? Or $490,000? Are there a few houses with similarly high or low prices, or many?</p>
-<p>Let’s look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.</p>
+<p>The industry benchmark sat inside the interval, so we failed to reject it. By contrast, SAP’s marketing claim implies a mean ROE of 20.7%. That value is 2.8 standard errors above the sample mean, giving <span class="math inline">\(t = -2.8\)</span> and a p-value of about 0.005, so we reject it at the 5% level. <a href="#fig-ci-test-connection" class="quarto-xref">Figure&nbsp;<span>17.2</span></a> marks both values and their distances from the sample mean in standard errors:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-zip-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-ci-test-connection" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-zip-comparison-1.png" class="img-fluid figure-img" width="864">
+<div aria-describedby="fig-ci-test-connection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="inference_02_hypothesis-tests_files/figure-html/fig-ci-test-connection-1.png" class="img-fluid figure-img" width="768">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating sample means and overlapping density-scaled histograms (right).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ci-test-connection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.2: The 95% confidence interval for the mean ROE of SAP customers, with both null hypotheses marked. The industry benchmark falls inside the interval; SAP’s claimed value falls outside.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Now imagine you need to guess the sale price for a new listing in each of those ZIP codes, using only the ZIP code to make your guess. Assuming our historical data is useful for making such a prediction, which price is going to be harder to accurately predict?</p>
-<p>You probably said 78741, because the values are more spread out than in 78749 whether our reference point is the mean or the median. Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749 because prices are less <strong>variable</strong>.</p>
-<div id="defn-variance" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
-<p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details aria-label="Details and formulas" class="formula-details" id="formula-variance">
-<summary>Details and formulas</summary>
-<p>The variance is given by</p>
-<p><span class="math display">\[
-s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
-\]</span></p>
-<p>which you get by</p>
+<p>The confidence interval distinguishes the two situations that can lead us to fail to reject. Suppose instead that we had sampled 1,296 companies, 16 times as many as in the Nucleus study, and observed a mean ROE of 14.93%, with the same sample SD as before. The difference from the industry benchmark would be one-quarter as large. The standard error would then be one-quarter as large at 0.71 percentage points. We would get the same <span class="math inline">\(t\)</span>-statistic of -1.07 and the same p-value of 0.28, so the hypothesis test reaches the same verdict.</p>
+<p>The confidence interval tells us what changed. In this hypothetical study, the 95% confidence interval would run from 13.5% to 16.4%. That range allows a mean about 2.2 percentage points below the benchmark to 0.7 points above it, compared with 8.8 points below to 2.6 points above in the original study. The p-values are the same, but the larger study leaves much less uncertainty about the size of the difference.</p>
+<div id="exercise-ci-test-benchmarks" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.5: </strong>Check benchmarks against an interval</div><div class="fobx-body">
+<p>An invented iid study estimates a population mean processing time as 52 minutes, with estimated SE 2 minutes. Assume the normal approximation is adequate. Use the chapter’s approximate two-SE convention.</p>
+<p>Construct the approximate 95% confidence interval. Then assess the two-sided null hypotheses <span class="math inline">\(\mu=50\)</span> and <span class="math inline">\(\mu=45\)</span> minutes at the approximate 5% level. Confirm each decision by computing the distance from the sample mean in SE units. State what the interval leaves plausible about the population mean.</p>
+<details aria-label="Solution" id="solution-ci-test-benchmarks" class="solution-details">
+<summary>Solution</summary>
+<p>The interval is <span class="math inline">\(52\pm2(2)=[48,56]\)</span> minutes. The value 50 is inside, so we fail to reject it; <span class="math inline">\(t=(52-50)/2=1\)</span>. The value 45 is outside, so we reject it; <span class="math inline">\(t=(52-45)/2=3.5\)</span>. Population means from about 48 to 56 minutes remain plausible under the sampling assumptions, including 50. Failure to reject 50 does not single it out as the true mean.</p>
+</details>
+</div></div>
+</div>
+</section>
+<section id="sec-hypothesis-tests-practice" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="sec-hypothesis-tests-practice"><span class="header-section-number">17.2</span> Additional practice</h2>
+<div id="exercise-reading-pvalue-statements" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.6: </strong>Reading a p-value</div><div class="fobx-body">
+<p>The grocery delivery app from <a href="./inference_01_sampling-distributions.html#exercise-reading-interval-statements">Chapter 16</a> took a random sample of 400 orders from last month. In this invented example, the sample mean order value is $64.20 and the sample standard deviation is $38.00, so the estimated standard error is $1.90 and the two-SE interval is <span class="math inline">\([60.4,\ 68.0]\)</span> dollars.</p>
+<p>The app’s free-delivery promotion breaks even at a mean order value of $62. Let <span class="math inline">\(\mu\)</span> be the mean across all of last month’s orders. Use an iid sampling approximation and assume the normal approximation is adequate. An analyst tests <span class="math inline">\(H_0:\mu=62\)</span> against <span class="math inline">\(H_A:\mu\ne62\)</span> and gets <span class="math inline">\(t=(64.20-62)/1.90\approx1.16\)</span>, with a p-value of about 0.25. The analyst chose <span class="math inline">\(\alpha=0.05\)</span> before seeing the data.</p>
+<p>Decide whether each statement is correct. Where it is not, say what is wrong and give a correct version.</p>
 <ol type="1">
-<li>Computing each observation’s deviation from the mean: <span class="math inline">\((x_1 - \bar{x})\)</span>, <span class="math inline">\((x_2 - \bar{x})\)</span>, …, <span class="math inline">\((x_n - \bar{x})\)</span>. These are signed — values below the mean give negative deviations.</li>
-<li>Squaring them: <span class="math inline">\((x_1 - \bar{x})^2\)</span>, <span class="math inline">\((x_2 - \bar{x})^2\)</span>, …, <span class="math inline">\((x_n - \bar{x})^2\)</span>.</li>
+<li>“There is a 25% chance that the mean order value is $62.”</li>
+<li>“If the mean order value were $62, about a quarter of random samples of 400 orders would give a t-statistic at least 1.16 away from zero, in either direction.”</li>
+<li>“The p-value is above 0.05, so the mean order value is $62 and the promotion exactly breaks even.”</li>
+<li>“A test of <span class="math inline">\(H_0:\mu=70\)</span> would reject at the 5% level.”</li>
+<li>“There is a 75% chance that the promotion more than breaks even.”</li>
+<li>“After seeing the p-value, I changed the cutoff to <span class="math inline">\(\alpha=0.30\)</span>, so I can report a statistically significant improvement over break-even.”</li>
 </ol>
-<p>and then averaging the squares — almost. We divide by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span>. The full justification is mathematical and not something you need for this course, but here is the idea. Because <span class="math inline">\(\bar{x}\)</span> is computed from the same data, the deviations <span class="math inline">\((x_i-\bar x)\)</span> always satisfy</p>
-<p><span class="math display">\[
-\sum_{i=1}^{n} (x_i - \bar{x}) = 0,
-\]</span></p>
-<p>so if I hand you any <span class="math inline">\(n-1\)</span> of them, you can recover the last one: add um the ones you have and flip the sign. Only <span class="math inline">\(n-1\)</span> of the deviations carry independent information about spread, so we divide by <span class="math inline">\(n-1\)</span>. The difference between dividing by <span class="math inline">\(n\)</span> or <span class="math inline">\(n-1\)</span> is negligible in all but the smallest datasets. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
-</details>
-<p>Since we get the variance by adding up <em>squared</em> deviations of <span class="math inline">\(x\)</span>, its units are “units of x squared”. This is usually not a helpful number for communicating results:</p>
-<p>For 78749 that comes to <span class="math inline">\(s^2 = 7.2\)</span> billion dollars-squared, and for 78741 about <span class="math inline">\(23.1\)</span> billion dollars-squared.</p>
-</div></div>
-</div>
-<div id="defn-standard-deviation" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
-<p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details aria-label="Details and formulas" class="formula-details" id="formula-standard-deviation">
-<summary>Details and formulas</summary>
-<p><span class="math display">\[
-s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
-\]</span></p>
-<p>The standard deviation is the square root of the average squared deviation from the mean. Again, dividing by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span> to form that average is a technical adjustment; in any case we care about, <span class="math inline">\(n\)</span> and <span class="math inline">\(n-1\)</span> are effectively the same. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
+<p>Finally, suppose a sample of 1,600 orders had produced the same mean and SD. Recompute the t-statistic, the p-value, and the two-SE interval, and say what changed for the break-even decision. Under the normal approximation, the area above 2.32 is 0.0102.</p>
+<details aria-label="Solution" id="solution-reading-pvalue-statements" class="solution-details">
+<summary>Solution</summary>
+<ol type="1">
+<li>Incorrect. The mean order value is a fixed number, and the p-value is computed assuming it equals $62. The p-value is a probability about samples, given the null. It is not a probability about the null. A correct version is statement 2.</li>
+<li>Correct under the normal approximation. The p-value counts t-statistics at or below <span class="math inline">\(-1.16\)</span> or at or above <span class="math inline">\(1.16\)</span>, assuming the null is true.</li>
+<li>Incorrect. Failing to reject leaves $62 consistent with the data, along with every other value from $60.40 to $68.00. The test does not single out $62. A correct version: “The data are consistent with mean order values both below and above break-even.”</li>
+<li>Correct. $70 lies outside the two-SE interval, so <span class="math inline">\(|t|&gt;2\)</span>; here <span class="math inline">\(t=(64.20-70)/1.90\approx-3.05\)</span>. That is enough to reject at the 5% level without computing another tail area.</li>
+<li>Incorrect. One minus the p-value is not the probability that the alternative is true, and the two-sided alternative includes means below $62 as well as above. A correct version: “Under the null and the normal approximation, about 75% of samples would give a t-statistic between <span class="math inline">\(-1.16\)</span> and <span class="math inline">\(1.16\)</span>.”</li>
+<li>The calculation <span class="math inline">\(0.25&lt;0.30\)</span> is correct, but the analyst changed the decision rule to obtain a rejection. The result does not meet the 5% cutoff chosen in advance. A rule fixed in advance that rejects whenever <span class="math inline">\(p&lt;0.30\)</span> would produce false positives in about 30% of studies when the null is true, under the test’s assumptions. The final cutoff alone does not describe the error rate of a procedure that changes its rule after seeing the result. A correct version: “At the 5% level chosen in advance, the data do not establish a departure from break-even.”</li>
+</ol>
+<p>With 1,600 orders the standard error is <span class="math inline">\(38/\sqrt{1600}=0.95\)</span>, so <span class="math inline">\(t=2.20/0.95\approx2.32\)</span>, with a p-value of <span class="math inline">\(2(0.0102)=0.0204\)</span>, about 0.02. The interval is <span class="math inline">\([62.3,\ 66.1]\)</span> dollars. The same $2.20 gap is now more than two standard errors, and we reject break-even at the 5% level. The interval says more about the size of the difference: the mean is plausibly 30 cents to $4.10 above break-even.</p>
 </details>
 </div></div>
 </div>
-<p>For 78749 the standard deviation is $85,141; for 78741 it is $151,824. These are typical deviations from the average price (whether above or below). That gap matches what we saw when we compared the spread: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.</p>
-<p>The variance is most useful as a measure of spread — unpredictability — when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.</p>
-<p>Let’s take a look at another example: <a href="#fig-ford-tesla-sd" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows two years of weekly returns for Ford and Tesla — the percentage change in each share price from one week to the next (we’ll see how to compute it in <a href="singlevar_04_transformations.html#sec-returns" class="quarto-xref"><span>Section 4.3</span></a>) — with a histogram of all the returns below.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-ford-tesla-sd" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-ford-tesla-sd-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top), and their distributions as histograms (bottom).
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Ford’s weekly returns have a standard deviation of 4.5%; Tesla’s is 8.2%, about 1.8 times larger, and the histograms show what that means: a typical Tesla week lands that much farther from its average, up or down. Guess next week’s return for each stock and you will miss by more with Tesla. That is what the standard deviation measures.</p>
-<p>Our final measure of spread is the interquartile range; we already saw it defined alongside box plots, but here it is again for completeness:</p>
-<div id="defn-iqr" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.5: </strong>Interquartile range</div><div class="fobx-body">
-<p>The <strong>interquartile range</strong> (IQR) is the distance between the 75th and 25th percentiles, <span class="math inline">\(\text{IQR} = Q3 - Q1\)</span> — the width of the middle half of the data. Like the median, it is insensitive to the values of the most extreme observations.</p>
+<div id="exercise-audit-materiality" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.7: </strong>Materiality as a null hypothesis</div><div class="fobx-body">
+<p>In <a href="./inference_01_sampling-distributions.html#exercise-audit-total">Chapter 16’s invoice audit</a>, 200 invoices sampled at random from 8,000 had mean overbilling $12.40 and sample SD $60. These invented summaries give an estimated standard error of about $4.24. The two-SE interval is <span class="math inline">\([3.9,\ 20.9]\)</span> dollars per invoice, or about <span class="math inline">\([31{,}000,\ 167{,}000]\)</span> dollars in total overbilling. Overbilling is nonnegative; an invoice that was not overbilled contributes zero to the total.</p>
+<p>The company treats total overbilling above $50,000 as material. Let <span class="math inline">\(\mu\)</span> denote the population mean overbilling per invoice. Use the iid approximation for this small fraction of the invoices and assume the normal approximation for the sample mean is adequate. Use <span class="math inline">\(\alpha=0.05\)</span>, chosen before examining the data.</p>
+<ol type="1">
+<li>Convert the $50,000 threshold to a value <span class="math inline">\(\mu_0\)</span> for the mean. State <span class="math inline">\(H_0:\mu=\mu_0\)</span> and its two-sided alternative, compute the t-statistic and p-value, and state the decision. Under the normal approximation, the area above 1.45 is 0.0735.</li>
+<li>The company’s controller writes: “The test found no significant departure from the materiality threshold, so overbilling is not material.” Evaluate that sentence and give a more informative report.</li>
+<li>Which of the chapter’s two ways of failing to reject describes this result? Use the interval for the total to support your answer.</li>
+<li>Suppose a larger sample gave the same mean and SD. Using <span class="math inline">\(SE=s/\sqrt n\)</span> and the two-SE rule, find the smallest whole-number sample size that would reject in part 1. Continue to use the iid approximation. Would collecting that many invoices guarantee rejection before seeing their overbilling amounts?</li>
+</ol>
+<details aria-label="Solution" id="solution-audit-materiality" class="solution-details">
+<summary>Solution</summary>
+<ol type="1">
+<li>The threshold corresponds to <span class="math inline">\(\mu_0=50{,}000/8{,}000=6.25\)</span> dollars per invoice, so <span class="math inline">\(H_0:\mu=6.25\)</span> and <span class="math inline">\(H_A:\mu\ne6.25\)</span>. Then <span class="math inline">\(t=(12.40-6.25)/4.24\approx1.45\)</span>, and the p-value is <span class="math inline">\(2(0.0735)=0.147\)</span>, about 0.15. We fail to reject at the 5% level.</li>
+<li>The sentence uses failure to reject equality with the threshold as evidence that the total is below it. The null was a total of exactly $50,000, and the two-sided alternative includes totals on either side. The interval spans both material and nonmaterial totals. A more informative report: “The estimated total overbilling is $99,200, with a two-SE interval from about $31,000 to $167,000. That range includes totals both below and above $50,000, so this sample does not settle materiality.”</li>
+<li>This is a large observed difference with a large standard error. The estimate is $49,200 above the threshold, but the standard error of the total is about $33,900, so that distance is only 1.45 standard errors. The interval for the total is about $136,000 wide.</li>
+<li>The test rejects when the $6.15 gap exceeds two standard errors: <span class="math inline">\(2(60)/\sqrt n&lt;6.15\)</span> gives <span class="math inline">\(n&gt;(120/6.15)^2\approx380.73\)</span>. The smallest whole-number sample size is 381 invoices, about twice the current sample. This is conditional on getting the same mean and SD; a new sample can change both, so collecting 381 invoices does not guarantee rejection.</li>
+</ol>
+</details>
 </div></div>
 </div>
-<p>The IQR works out to $91,000 in 78749 and $157,000 in 78741. Because the extremes never enter the calculation, the IQR can be a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.</p>
-</section>
-<section id="data-used-in-this-section" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
-<ul>
-<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a></li>
-</ul>
 
 
 </section>
@@ -1001,13 +1036,13 @@ Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./singlevar_02_describing-distributions.html" class="pagination-link" aria-label="Describing Distributions of Quantitative Variables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span>
+      <a href="./inference_01_sampling-distributions.html" class="pagination-link" aria-label="Sampling Distributions and Confidence Intervals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./singlevar_04_transformations.html" class="pagination-link" aria-label="Transforming Quantitative Variables">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./inference_03_limits.html" class="pagination-link" aria-label="The Limits of Statistical Inference">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Limits of Statistical Inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -90,7 +90,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./inference_01_sampling-distributions.html" rel="prev">
+<link href="./case_triangle-test.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -134,9 +134,9 @@ div.csl-indent {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 .Notation {
   --color1: #EEF1F3;
@@ -146,9 +146,9 @@ div.csl-indent {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -278,7 +278,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability Models for Multiple Variables</span></a>
+ <span class="menu-text">Data analysis, visualizations, and probability models for multiple random variables</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -302,17 +302,6 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyzing and Combining Quantitative Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_08_quantitative-quantitative.html" class="sidebar-item-text sidebar-link">
@@ -323,13 +312,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Combining Random Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_09_combining-random-variables.html" class="sidebar-item-text sidebar-link">
@@ -346,30 +335,54 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_03_limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Limits of Statistical Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_04_proportions-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Proportions and Comparisons Between Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link active">
@@ -2618,6 +2631,20 @@ Classroom: Instructors’ Pulchritude and Putative Pedagogical
 Productivity.”</span> <em>Economics of Education Review</em> 24 (4):
 369–76. <a href="https://doi.org/10.1016/j.econedurev.2004.07.013">https://doi.org/10.1016/j.econedurev.2004.07.013</a>.
 </div>
+<div id="ref-aer-package" class="csl-entry" role="listitem">
+Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics
+with <span>R</span></em>. Springer-Verlag. <a href="https://doi.org/10.1007/978-0-387-77318-6">https://doi.org/10.1007/978-0-387-77318-6</a>.
+</div>
+<div id="ref-modeldata-package" class="csl-entry" role="listitem">
+Kuhn, Max. 2024. <em>Modeldata: Data Sets Useful for Modeling
+Examples</em>. <a href="https://CRAN.R-project.org/package=modeldata">https://CRAN.R-project.org/package=modeldata</a>.
+</div>
+<div id="ref-munnell-hmda-1996" class="csl-entry" role="listitem">
+Munnell, Alicia H., Geoffrey M. B. Tootell, Lynn E. Browne, and James
+McEneaney. 1996. <span>“Mortgage Lending in Boston: Interpreting
+<span>HMDA</span> Data.”</span> <em>American Economic Review</em> 86
+(1): 25–53.
+</div>
 <div id="ref-sap-nucleus" class="csl-entry" role="listitem">
 Nucleus Research. 2006. <em><span>SAP</span> Customers Are 20 Percent
 Less Profitable Than Their Peers</em>. Research Note G12, Nucleus
@@ -2638,6 +2665,11 @@ Shaffer, Blake. 2022. <span>“Changing Sensitivity to Cold Weather in
 <div id="ref-sharpe-1966" class="csl-entry" role="listitem">
 Sharpe, William F. 1966. <span>“Mutual Fund Performance.”</span> <em>The
 Journal of Business</em> 39 (1): 119–38.
+</div>
+<div id="ref-wooldridge-package" class="csl-entry" role="listitem">
+Shea, Justin M. 2024. <em>Wooldridge: 115 Data Sets from
+<span>“Introductory Econometrics: A Modern Approach, 7e”</span> by
+Jeffrey m. Wooldridge</em>. <a href="https://CRAN.R-project.org/package=wooldridge">https://CRAN.R-project.org/package=wooldridge</a>.
 </div>
 <div id="ref-portfolios-2025" class="csl-entry" role="listitem">
 <em>Three-Asset Weekly Return and Price Series, October 2023–September
@@ -3063,8 +3095,8 @@ Assembled from Yahoo Finance via the <code>tidyquant</code> R package
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./inference_01_sampling-distributions.html" class="pagination-link" aria-label="Sampling Distributions and Confidence Intervals">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span>
+      <a href="./case_triangle-test.html" class="pagination-link" aria-label="Case Study: Can Customers Taste the Difference?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

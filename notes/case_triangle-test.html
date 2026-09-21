@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Measuring Location and Spread – TEMBA Statistics — Course Notes</title>
+<title>20&nbsp; Case Study: Can Customers Taste the Difference? – TEMBA Statistics — Course Notes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./singlevar_04_transformations.html" rel="next">
-<link href="./singlevar_02_describing-distributions.html" rel="prev">
+<link href="./appendix_data.html" rel="next">
+<link href="./inference_04_proportions-comparisons.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -76,28 +76,26 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <style>
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
+}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -143,7 +141,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inference_01_sampling-distributions.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="./case_triangle-test.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,7 +198,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link active">
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
   </div>
 </li>
@@ -346,7 +344,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link">
+  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span></a>
   </div>
 </li>
@@ -379,18 +377,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-measures-center" id="toc-sec-measures-center" class="nav-link active" data-scroll-target="#sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</a></li>
-  <li><a href="#sec-measures-spread" id="toc-sec-measures-spread" class="nav-link" data-scroll-target="#sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</a></li>
-  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  <li><a href="#sec-triangle-test" id="toc-sec-triangle-test" class="nav-link active" data-scroll-target="#sec-triangle-test"><span class="header-section-number">20.1</span> Mexican Coke and the triangle test</a></li>
+  <li><a href="#sec-triangle-interval" id="toc-sec-triangle-interval" class="nav-link" data-scroll-target="#sec-triangle-interval"><span class="header-section-number">20.2</span> What the panel says about <span class="math inline">\(p\)</span></a></li>
+  <li><a href="#sec-triangle-hypothesis-test" id="toc-sec-triangle-hypothesis-test" class="nav-link" data-scroll-target="#sec-triangle-hypothesis-test"><span class="header-section-number">20.3</span> Testing the guessing hypothesis</a></li>
+  <li><a href="#sec-one-sided" id="toc-sec-one-sided" class="nav-link" data-scroll-target="#sec-one-sided"><span class="header-section-number">20.4</span> One-sided and two-sided p-values</a></li>
+  <li><a href="#sec-triangle-no-difference" id="toc-sec-triangle-no-difference" class="nav-link" data-scroll-target="#sec-triangle-no-difference"><span class="header-section-number">20.5</span> Showing that a change is acceptable</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singlevar_01_visualizing-distributions.html">Data analysis and visualization for one variable</a></li><li class="breadcrumb-item"><a href="./singlevar_03_location-and-spread.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inference_01_sampling-distributions.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="./case_triangle-test.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></h1>
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></h1>
 </div>
 
 
@@ -407,193 +407,119 @@ window.Quarto = {
 </header>
 
 
-<p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
-<div id="notation-subscripts-summation" class="Notation">
-<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details aria-label="Details" id="details-subscripts-summation" open="">
-<summary>Details</summary>
-<p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
+<p>The <a href="./inference_04_proportions-comparisons.html#sec-proportion">last chapter</a> gave us an interval and a test for a population proportion. This case study applies both to a product-development question: can customers perceive the difference between two versions of a product? It also introduces a <strong>one-sided</strong> alternative hypothesis.</p>
+<section id="sec-triangle-test" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="sec-triangle-test"><span class="header-section-number">20.1</span> Mexican Coke and the triangle test</h2>
+<p>Coca-Cola made in Mexico is sweetened with cane sugar, while Coca-Cola Original in the United States uses high-fructose corn syrup. Mexican Coke has die-hard American fans who pay a markup for what they believe is a better product. Food and beverage producers face a version of this choice all the time. Can we switch to a different ingredient or process without changing the product in a way customers perceive?</p>
+<p>A <strong>triangle test</strong> is a standard method for assessing whether people can discriminate between two products. Each panelist receives three blinded samples, two identical and one different, in a randomized order, and makes one independent response by identifying the odd one out. A panelist who perceives no difference still has to choose, and picks the odd sample with probability 1/3. The test measures discrimination, not which version a panelist prefers or what they would be willing to pay for it.</p>
+<p>Suppose 42 panelists take a triangle test of the two Cokes, and that in reality nobody can tell them apart. We would expect 14 correct picks on average, one third of 42. Seeing 12 would not be surprising, and 16 could easily happen by chance. Seeing 27 would be much harder to attribute to guessing. In our invented panel, 21 of the 42 pick correctly. Is 21 more than guessing can explain?</p>
+</section>
+<section id="sec-triangle-interval" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="sec-triangle-interval"><span class="header-section-number">20.2</span> What the panel says about <span class="math inline">\(p\)</span></h2>
+<p>We start with the interval. Let <span class="math inline">\(p\)</span> be the probability that a randomly chosen customer picks correctly under these tasting conditions, and model the 42 independent responses as iid 0/1 draws. Correct picks can come from recognizing the difference or from guessing, and customers may vary in how reliably they recognize it. Here <span class="math inline">\(\hat p=21/42=0.5\)</span>, and the <a href="./inference_04_proportions-comparisons.html#note-se-proportion">standard error of a sample proportion</a> gives</p>
+<p><span class="math display">\[
+SE(\hat p)\approx\sqrt{\frac{0.5(0.5)}{42}}\approx0.077,
+\qquad
+0.5\pm2(0.077)\approx[0.35,\ 0.65].
+\]</span></p>
+<p>The plausible values for <span class="math inline">\(p\)</span> run from about 0.35 to 0.65, and pure guessing, <span class="math inline">\(p=1/3\)</span>, falls just below the lower endpoint. Performance could be only slightly above guessing, or customers could answer correctly nearly two thirds of the time.</p>
+<div id="technical-triangle-guessers" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 20.1: </strong>A bound on the proportion of guessers</summary><div>
+<p>The proportion answering correctly can help us bound the proportion of customers who always guess in this tasting task. Let <span class="math inline">\(g\)</span> be that population proportion, and suppose everyone else always recognizes the difference and answers correctly. The <a href="./prob_06_probability-trees-bayes.html#note-total-probability">law of total probability</a> gives the overall probability of a correct answer: multiply each group’s share by its probability of answering correctly, then add.</p>
+<p><span class="math display">\[
+p=\frac13g+1(1-g),
+\qquad\text{so}\qquad
+g=\frac32(1-p).
+\]</span></p>
+<p>Substituting our estimate <span class="math inline">\(\hat p=0.5\)</span> gives <span class="math inline">\(g=0.75\)</span>. Imagine 100 customers: 25 always answer correctly, while 75 guess and contribute another 25 correct answers on average. Together, they produce 50 correct answers.</p>
+<p>Perfect performance among the non-guessers lets us explain the results with as few of them as possible. If they sometimes make mistakes, we would need more of them to explain the same overall accuracy. Thus, <span class="math inline">\(\frac32(1-p)\)</span> is an upper bound on <span class="math inline">\(g\)</span>, and 75% is our estimate of that bound. Equivalently, we estimate a lower bound of 25% on the share with some ability to distinguish the products. These customers need not all distinguish them equally reliably.</p>
+<p>Sampling uncertainty makes that conclusion much less precise. At the lower endpoint of our approximate 95% interval, <span class="math inline">\(p\approx0.346\)</span>, the upper bound on guessers is about 98%, leaving a lower bound of only about 2% with some ability to distinguish the products. The actual share of guessers could be smaller, because the other customers need not answer correctly every time. The interval supports some ability to distinguish the products, but leaves substantial uncertainty about how widespread that ability is.</p>
+</div></details>
+</div>
+<p>The three steps of <a href="./inference_02_hypothesis-tests.html">a hypothesis test</a> measure the evidence against guessing directly.</p>
+</section>
+<section id="sec-triangle-hypothesis-test" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="sec-triangle-hypothesis-test"><span class="header-section-number">20.3</span> Testing the guessing hypothesis</h2>
+<section id="step-1-posit-a-null-hypothesis-and-its-alternative" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-1-posit-a-null-hypothesis-and-its-alternative">Step 1: Posit a null hypothesis and its alternative</h4>
+<p>The null hypothesis is that the two products are perceptibly identical, so that every panelist is guessing: <span class="math inline">\(H_0:p=1/3\)</span>. The alternative is <span class="math inline">\(H_A:p&gt;1/3\)</span>. This is a <strong>one-sided</strong> alternative. In <a href="./inference_02_hypothesis-tests.html">the SAP test</a> a departure from the benchmark in either direction was of interest. Here the design of the experiment rules out one direction before we see any data. If some panelists can perceive the difference, <span class="math inline">\(p\)</span> is larger than 1/3. The true probability could be <em>below</em> 1/3 only if something went badly wrong in running the panel.</p>
+</section>
+<section id="step-2-collect-and-evaluate-evidence" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-2-collect-and-evaluate-evidence">Step 2: Collect and evaluate evidence</h4>
+<p>The raw discrepancy <span class="math inline">\(\hat p-1/3\)</span> ignores the size of the panel. If 2 of 4 panelists picked correctly we would also have <span class="math inline">\(\hat p=0.5\)</span> and a discrepancy of <span class="math inline">\(1/6\)</span>, with much weaker evidence against guessing. The <span class="math inline">\(t\)</span>-statistic accounts for the panel’s size through the standard error:</p>
+<p><span class="math display">\[
+T=\frac{\hat p-p_0}{SE(\hat p)},
+\qquad
+t=\frac{0.5-1/3}{0.077}\approx2.16.
+\]</span></p>
+<p>The sample proportion is about 2.2 standard errors above the value expected under guessing. For the four-person panel the standard error is <span class="math inline">\(\sqrt{0.5(0.5)/4}=0.25\)</span>, and the same sample proportion gives <span class="math inline">\(t=0.67\)</span>. This comparison illustrates why the standard error depends on panel size; four responses are too few for a trustworthy normal p-value.</p>
+<p>If the null hypothesis is true, <span class="math inline">\(T\)</span> is approximately standard normal. With a one-sided alternative, “at least as extreme” means at least as far <em>above</em> zero, because only large positive values of <span class="math inline">\(t\)</span> count as evidence for <span class="math inline">\(p&gt;1/3\)</span>. The p-value is the upper-tail area shaded in <a href="#fig-triangle-pvalue" class="quarto-xref">Figure&nbsp;<span>20.1</span></a>.</p>
 <div class="cell">
-<div id="tbl-subscripts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: The first four sale prices, labeled.
-</figcaption>
-<div aria-describedby="tbl-subscripts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class=" table table-sm table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:center;"> \(i\) </th>
-   <th style="text-align:left;"> \(x_i\) (sale price) </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> 1 </td>
-   <td style="text-align:left;"> $419,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 2 </td>
-   <td style="text-align:left;"> $429,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 3 </td>
-   <td style="text-align:left;"> $575,000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> 4 </td>
-   <td style="text-align:left;"> $210,000 </td>
-  </tr>
-</tbody>
-</table>
-
+<div id="fig-triangle-pvalue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-triangle-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="case_triangle-test_files/figure-html/fig-triangle-pvalue-1.png" class="img-fluid figure-img" width="672">
 </div>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-triangle-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.1: The one-sided p-value for the triangle test. Under the null hypothesis that every panelist is guessing, the t-statistic is approximately standard normal; the shaded area above t = 2.16 has probability 0.015.
+</figcaption>
 </figure>
 </div>
 </div>
-<p>The symbol <span class="math inline">\(\sum\)</span> (a capital sigma, for “sum”) means “add up.” Writing <span class="math inline">\(\sum_{i=1}^{4} x_i\)</span> says: add up <span class="math inline">\(x_i\)</span> for every <span class="math inline">\(i\)</span> from 1 to 4,</p>
-<p><span class="math display">\[
-\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4
-= \$419,000 + \$429,000 + \$575,000 + \$210,000
-= \$1,633,000.
-\]</span></p>
-<p>Putting <span class="math inline">\(n\)</span> in place of 4 adds up the whole column, and <span class="math inline">\(\frac{1}{n}\sum_{i=1}^{n} x_i\)</span> is that total divided by the number of observations — the sample mean.</p>
-</details>
-</div></div>
 </div>
-<section id="sec-measures-center" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-measures-center"><span class="header-section-number">3.1</span> Measures of center</h2>
-<p>The two most common measures of center are the <strong>mean</strong> and the <strong>median</strong>.</p>
-<div id="defn-sample-mean" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
-<p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details aria-label="Details and formulas" class="formula-details" id="formula-sample-mean">
-<summary>Details and formulas</summary>
-<p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
-<p><span class="math display">\[
-\bar{x} = \frac1n\left ( x_1 + x_2 + x_3 + \dots + x_n \right ) = \frac{1}{n}\sum_{i=1}^{n} x_i.
-\]</span></p>
-<p>The summation adds the <span class="math inline">\(n\)</span> observed values, and dividing by <span class="math inline">\(n\)</span> turns that total into an average. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
-</details>
-</div></div>
-</div>
-<div id="defn-median" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.2: </strong>Sample median</div><div class="fobx-body">
-<p>The sample <strong>median</strong> is the middle value when the data are sorted from smallest to largest. It goes by three other names we have already seen: the 50th percentile, the 0.5 quantile, and the second quartile.</p>
-</div></div>
-</div>
-<div id="medians-when-values-tie" class="TechnicalDetail">
-<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 3.1: </strong>Medians when values tie</summary><div>
-<p>Ties can mean that fewer than half of the observations fall strictly below or strictly above the median. The general rule is that at least half are at or below the median and at least half are at or above it. That doesn’t always uniquely define the median, and there are different conventions for a number that meets the general rule, but the one we use almost never matters.</p>
+<p>If everyone were guessing, only about 1.5% of 42-person panels would produce a <span class="math inline">\(t\)</span>-statistic of 2.16 or more.</p>
+</section>
+<section id="step-3-reach-a-verdict" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="step-3-reach-a-verdict">Step 3: Reach a verdict</h4>
+<p>The p-value of 0.015 is below <span class="math inline">\(\alpha=0.05\)</span>, so we reject the null hypothesis: the panel gives evidence that at least some people can tell the two products apart. The test says little about how detectable the difference is. The interval allows a probability of a correct pick barely above 1/3, and it allows one as high as 0.65.</p>
+<div id="technical-triangle-exact" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 20.2: </strong>An exact p-value from the binomial distribution</summary><div>
+<p>If every panelist guesses independently, the number of correct picks has a <a href="./prob_10_sums-averages-clt.html#sec-clt">binomial distribution</a> with 42 trials and success probability 1/3. The exact probability of 21 or more correct picks is 0.019, close to the normal approximation’s 0.015.</p>
 </div></details>
 </div>
-<p>For our Austin 78752 prices, the mean is $370,804. For our prices, the median is $351,478. The mean is higher than the median because a few high-priced homes drag the average up. The median is insensitive to how extreme the extremes are: it depends only on the middle of the sorted data.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+</section>
+</section>
+<section id="sec-one-sided" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="sec-one-sided"><span class="header-section-number">20.4</span> One-sided and two-sided p-values</h2>
+<p>Using the normal approximation, a two-sided test of the same null hypothesis would count both tails, doubling the p-value to about 0.031. The <a href="./inference_02_hypothesis-tests.html#sec-ci-test">connection between intervals and tests</a> is a statement about two-sided tests under the same two-SE rule, and it holds here: guessing falls outside the two-SE interval, and the two-sided test rejects it at about the 5% level. The displayed two-sided interval does not invert the one-sided 5% test.</p>
+<p>Ruling out <span class="math inline">\(p&lt;1/3\)</span> in advance is what lets the same <span class="math inline">\(t\)</span>-statistic count as stronger evidence. In the triangle test we can defend that: nothing about the products would make panelists systematically worse than guessing. Compare the <a href="./inference_04_proportions-comparisons.html#sec-diff-means">bootcamp comparison</a>, where we would be hard pressed to argue that the intensive program could not possibly be worse than the standard one. There the two-sided test is the right one, however confident the program’s designers are.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Mean or median?
+<span class="screen-reader-only">Warning</span>Common mistake: Choosing the tail after seeing the data
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Which measure of location is better? It depends, and like histograms and density plots they’re better together.</p>
-<p>The mean and the median sit close together in a symmetric distribution. In a right-skewed distribution the mean sits above the median, and in a left-skewed distribution it sits below. A substantial gap between the two is therefore evidence of skewness, outliers, or some other asymmetry, which is a good reason to report both.</p>
-<p>You will, however, often hear distributions of economic measures like wages reported via median with no reference to the mean. That’s just because the skew already is well-known.</p>
+<p>If the analyst could pick a one- or two-sided test after seeing the data, they might be tempted to make the choice more in line with their expected or preferred findings. For example, since a one-sided test produces smaller p-values, an analyst might be tempted to adopt it when they hoped or expected to produce strong evidence against the null. In general, one-sided alternatives should be used only when defensible from context — like in a triangle test, where a two-sided alternative would imply that somehow tasters do worse than random guessing — and we can always identify these before seeing any data.</p>
 </div>
 </div>
-<p>If you find yourself looking at a distribution with two strong modes of similar size, it might be the case that neither the median nor the mean are a good measure of center — both will be somewhere between the two peaks. That simply reflects the reality that a distribution with two clear modes (bumps or peaks) does not really have a “center” as we would usually think of it.</p>
 </section>
-<section id="sec-measures-spread" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-measures-spread"><span class="header-section-number">3.2</span> Measures of spread</h2>
-<p>Once we have a measure of where the “middle” of a distribution is we naturally want some measure of how close observations tend to be to the middle — or how they are <em>spread</em> out around the center. The median price of a house in 78752 is $351,478, but are there houses selling for around $100,000? Or $490,000? Are there a few houses with similarly high or low prices, or many?</p>
-<p>Let’s look at a couple new ZIP codes from the housing dataset. Below we plot the distribution of sale prices in ZIP codes 78741 and 78749 from the full Austin housing dataset.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-zip-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-zip-comparison-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zip-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating sample means and overlapping density-scaled histograms (right).
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Now imagine you need to guess the sale price for a new listing in each of those ZIP codes, using only the ZIP code to make your guess. Assuming our historical data is useful for making such a prediction, which price is going to be harder to accurately predict?</p>
-<p>You probably said 78741, because the values are more spread out than in 78749 whether our reference point is the mean or the median. Regardless of which measure of center we choose, there is more natural variability in 78741 than in 78749. Assuming this history is representative of future sales, our prediction error will tend to be smaller in 78749 because prices are less <strong>variable</strong>.</p>
-<div id="defn-variance" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
-<p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details aria-label="Details and formulas" class="formula-details" id="formula-variance">
-<summary>Details and formulas</summary>
-<p>The variance is given by</p>
-<p><span class="math display">\[
-s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
-\]</span></p>
-<p>which you get by</p>
+<section id="sec-triangle-no-difference" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="sec-triangle-no-difference"><span class="header-section-number">20.5</span> Showing that a change is acceptable</h2>
+<p>The Coke panel asked whether a difference is detectable. A producer switching to a cheaper input needs to decide whether any difference is small enough to accept. Failing to reject the guessing hypothesis does not establish that customers cannot perceive the change, for the same reason that <a href="./inference_02_hypothesis-tests.html">failing to reject never establishes a null hypothesis</a>. For a decision based on the triangle test, the producer can set a largest acceptable probability of a correct pick before running the panel, then assess whether the interval lies entirely below that threshold. This criterion concerns performance on the tasting task; it does not measure whether customers prefer the new recipe or would continue buying it.</p>
+<p>In the exercise below, we use the upper endpoint of our usual two-SE interval to assess acceptability.</p>
+<div id="exercise-triangle-reformulation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 20.1: </strong>Can customers detect the cheaper recipe?</div><div class="fobx-body">
+<p>A snack maker wants to replace an ingredient with a cheaper substitute and hopes customers cannot perceive the change. Its brand team will accept the new recipe only if the probability of a correct pick on this tasting task is below 0.45. In an invented triangle test, 24 of 60 panelists identify the odd sample.</p>
 <ol type="1">
-<li>Computing each observation’s deviation from the mean: <span class="math inline">\((x_1 - \bar{x})\)</span>, <span class="math inline">\((x_2 - \bar{x})\)</span>, …, <span class="math inline">\((x_n - \bar{x})\)</span>. These are signed — values below the mean give negative deviations.</li>
-<li>Squaring them: <span class="math inline">\((x_1 - \bar{x})^2\)</span>, <span class="math inline">\((x_2 - \bar{x})^2\)</span>, …, <span class="math inline">\((x_n - \bar{x})^2\)</span>.</li>
+<li>Test whether the result provides evidence beyond guessing: state <span class="math inline">\(H_0:p=1/3\)</span> and <span class="math inline">\(H_A:p&gt;1/3\)</span>.</li>
+<li>Compute the approximate 95% confidence interval for <span class="math inline">\(p\)</span>, the <span class="math inline">\(t\)</span>-statistic, and the one-sided p-value. The area above <span class="math inline">\(1.05\)</span> under the standard normal curve is about 0.15.</li>
+<li>State the verdict for the guessing test at <span class="math inline">\(\alpha=0.05\)</span>. Then assess the separate acceptance question: is the upper endpoint of the two-SE interval below 0.45? The product manager summarizes the result as “the test shows customers can’t tell the difference.” Is that what the test shows?</li>
 </ol>
-<p>and then averaging the squares — almost. We divide by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span>. The full justification is mathematical and not something you need for this course, but here is the idea. Because <span class="math inline">\(\bar{x}\)</span> is computed from the same data, the deviations <span class="math inline">\((x_i-\bar x)\)</span> always satisfy</p>
-<p><span class="math display">\[
-\sum_{i=1}^{n} (x_i - \bar{x}) = 0,
-\]</span></p>
-<p>so if I hand you any <span class="math inline">\(n-1\)</span> of them, you can recover the last one: add um the ones you have and flip the sign. Only <span class="math inline">\(n-1\)</span> of the deviations carry independent information about spread, so we divide by <span class="math inline">\(n-1\)</span>. The difference between dividing by <span class="math inline">\(n\)</span> or <span class="math inline">\(n-1\)</span> is negligible in all but the smallest datasets. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
-</details>
-<p>Since we get the variance by adding up <em>squared</em> deviations of <span class="math inline">\(x\)</span>, its units are “units of x squared”. This is usually not a helpful number for communicating results:</p>
-<p>For 78749 that comes to <span class="math inline">\(s^2 = 7.2\)</span> billion dollars-squared, and for 78741 about <span class="math inline">\(23.1\)</span> billion dollars-squared.</p>
-</div></div>
-</div>
-<div id="defn-standard-deviation" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
-<p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details aria-label="Details and formulas" class="formula-details" id="formula-standard-deviation">
-<summary>Details and formulas</summary>
-<p><span class="math display">\[
-s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}
-\]</span></p>
-<p>The standard deviation is the square root of the average squared deviation from the mean. Again, dividing by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span> to form that average is a technical adjustment; in any case we care about, <span class="math inline">\(n\)</span> and <span class="math inline">\(n-1\)</span> are effectively the same. Notation refresher: <a href="#notation-subscripts-summation">subscripts and summation</a>.</p>
+<details id="solution-triangle-reformulation" class="solution-details" aria-label="Solution">
+<summary>Solution</summary>
+<ol type="1">
+<li>For the guessing test, the null is <span class="math inline">\(H_0:p=1/3\)</span>, every panelist guessing, and the alternative is <span class="math inline">\(H_A:p&gt;1/3\)</span>.</li>
+<li>The sample proportion is <span class="math inline">\(\hat p=24/60=0.40\)</span>, with estimated standard error <span class="math inline">\(\sqrt{0.4(0.6)/60}\approx0.0632\)</span>. The interval is <span class="math inline">\(0.40\pm2(0.0632)\approx[0.27,\ 0.53]\)</span>. The two-SE formula does not impose the model restriction <span class="math inline">\(p\geq1/3\)</span>, so the interval extends below 1/3. Only the part at or above 1/3 contains possible population values under the triangle-test model. This restriction applies to <span class="math inline">\(p\)</span>, not to the observed <span class="math inline">\(\hat p\)</span>, which can fall below 1/3 by sampling variation. The <span class="math inline">\(t\)</span>-statistic is <span class="math inline">\((0.40-0.3333)/0.0632\approx1.05\)</span>, and the one-sided p-value is about 0.15.</li>
+<li>We fail to reject the guessing null, since <span class="math inline">\(0.15&gt;0.05\)</span>. That result does not establish that customers cannot tell the difference. The interval allows a probability of a correct pick as high as 0.53, above the brand team’s threshold of 0.45, so the panel does not show that the new recipe meets the brand team’s criterion. Using the two-SE interval, a 60-person panel can support acceptance with a sufficiently low result: 19 correct responses has an upper endpoint of 0.437, below 0.45. But even 20 correct responses, exactly the guessing rate, would have an interval reaching 0.455. The margin of error, about 13 percentage points, is too large relative to the gap between 1/3 and 0.45.</li>
+</ol>
 </details>
 </div></div>
 </div>
-<p>For 78749 the standard deviation is $85,141; for 78741 it is $151,824. These are typical deviations from the average price (whether above or below). That gap matches what we saw when we compared the spread: the standard deviation in 78741 is about 1.8 times the standard deviation in 78749.</p>
-<p>The variance is most useful as a measure of spread — unpredictability — when we are considering multiple variables at once, because it decomposes into pieces that can be attributed to different sources.</p>
-<p>Let’s take a look at another example: <a href="#fig-ford-tesla-sd" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows two years of weekly returns for Ford and Tesla — the percentage change in each share price from one week to the next (we’ll see how to compute it in <a href="singlevar_04_transformations.html#sec-returns" class="quarto-xref"><span>Section 4.3</span></a>) — with a histogram of all the returns below.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-ford-tesla-sd" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="singlevar_03_location-and-spread_files/figure-html/fig-ford-tesla-sd-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ford-tesla-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top), and their distributions as histograms (bottom).
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Ford’s weekly returns have a standard deviation of 4.5%; Tesla’s is 8.2%, about 1.8 times larger, and the histograms show what that means: a typical Tesla week lands that much farther from its average, up or down. Guess next week’s return for each stock and you will miss by more with Tesla. That is what the standard deviation measures.</p>
-<p>Our final measure of spread is the interquartile range; we already saw it defined alongside box plots, but here it is again for completeness:</p>
-<div id="defn-iqr" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.5: </strong>Interquartile range</div><div class="fobx-body">
-<p>The <strong>interquartile range</strong> (IQR) is the distance between the 75th and 25th percentiles, <span class="math inline">\(\text{IQR} = Q3 - Q1\)</span> — the width of the middle half of the data. Like the median, it is insensitive to the values of the most extreme observations.</p>
-</div></div>
-</div>
-<p>The IQR works out to $91,000 in 78749 and $157,000 in 78741. Because the extremes never enter the calculation, the IQR can be a more stable summary of spread than the standard deviation when a distribution is skewed or carries outliers.</p>
-</section>
-<section id="data-used-in-this-section" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
-<ul>
-<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a></li>
-</ul>
 
 
 </section>
@@ -1001,13 +927,13 @@ Figure&nbsp;3.2: Weekly returns for Ford and Tesla over the same two years (top)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./singlevar_02_describing-distributions.html" class="pagination-link" aria-label="Describing Distributions of Quantitative Variables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span>
+      <a href="./inference_04_proportions-comparisons.html" class="pagination-link" aria-label="Proportions and Comparisons Between Groups">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Proportions and Comparisons Between Groups</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./singlevar_04_transformations.html" class="pagination-link" aria-label="Transforming Quantitative Variables">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix_data.html" class="pagination-link" aria-label="Datasets">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

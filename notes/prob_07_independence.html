@@ -77,9 +77,13 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 .Example {
   --color1: #F4EFEA;
@@ -89,13 +93,9 @@ ul.task-list li input[type="checkbox"] {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 </style>
 
@@ -141,7 +141,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Probability Models for Multiple Variables</a></li><li class="breadcrumb-item"><a href="./prob_07_independence.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Data analysis, visualizations, and probability models for multiple random variables</a></li><li class="breadcrumb-item"><a href="./prob_07_independence.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -254,7 +254,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability Models for Multiple Variables</span></a>
+ <span class="menu-text">Data analysis, visualizations, and probability models for multiple random variables</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,17 +278,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyzing and Combining Quantitative Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_08_quantitative-quantitative.html" class="sidebar-item-text sidebar-link">
@@ -299,13 +288,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Combining Random Variables</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob_09_combining-random-variables.html" class="sidebar-item-text sidebar-link">
@@ -322,30 +311,54 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_03_limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Limits of Statistical Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_04_proportions-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Proportions and Comparisons Between Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -377,7 +390,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Probability Models for Multiple Variables</a></li><li class="breadcrumb-item"><a href="./prob_07_independence.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob_05_multivariate-distributions.html">Data analysis, visualizations, and probability models for multiple random variables</a></li><li class="breadcrumb-item"><a href="./prob_07_independence.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></h1>
 </div>
@@ -486,7 +499,7 @@ Table&nbsp;12.1: Historical default rates for the three-purpose LendingClub subs
 <li>Are delivery service and late arrival independent in this model? Give a numerical comparison that supports your answer.</li>
 <li>Find the conditional probability of an on-time arrival given express service, and compare it with the marginal probability of an on-time arrival.</li>
 </ol>
-<details id="details-1" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="details-1" class="solution-details">
 <summary>Solution</summary>
 <p>The variables are dependent because <span class="math inline">\(\Pr(\text{late}\mid\text{express})=0.02\)</span> differs from <span class="math inline">\(\Pr(\text{late})=0.08\)</span>. The standard-service comparison also fails: <span class="math inline">\(0.10\ne0.08\)</span>. An express delivery arrives on time with conditional probability <span class="math inline">\(1-0.02=0.98\)</span>, compared with the marginal probability <span class="math inline">\(1-0.08=0.92\)</span>. Learning the service changes both probabilities in the arrival-status distribution.</p>
 </details>
@@ -594,7 +607,7 @@ Table&nbsp;12.2: Joint market-implied probabilities for the July and September t
 </tbody>
 </table>
 <p>Find one cell that disproves independence. State what independence would require for that cell and compare it with the table.</p>
-<details id="details-2" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="details-2" class="solution-details">
 <summary>Solution</summary>
 <p>Independence would require <span class="math inline">\(\Pr(\text{visit and purchase})=0.40(0.30)=0.12\)</span>. The table assigns 0.18 to that combination, so store visits and purchases are dependent. We do not need to check the remaining cells once this equality fails.</p>
 </details>
@@ -691,7 +704,7 @@ Table&nbsp;12.3: An independent model for advertisement and device. Every joint 
 </tr>
 </tbody>
 </table>
-<details id="details-3" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="details-3" class="solution-details">
 <summary>Solution</summary>
 <p>Multiply each row margin by each column margin. The first row contains <span class="math inline">\(0.25(0.40)=0.10\)</span> and <span class="math inline">\(0.25(0.60)=0.15\)</span>; the second contains <span class="math inline">\(0.75(0.40)=0.30\)</span> and <span class="math inline">\(0.75(0.60)=0.45\)</span>. The four cells sum to one and recover the supplied margins.</p>
 <p>The conditional discount probabilities are <span class="math inline">\(0.10/0.25=0.40\)</span> with free shipping and <span class="math inline">\(0.30/0.75=0.40\)</span> without it. Both equal the marginal probability 0.40, as independence requires.</p>
@@ -784,7 +797,7 @@ Table&nbsp;12.4: Conditional percentages rating national economic conditions in 
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.4: </strong>Waiting times at two branches</div><div class="fobx-body">
 <p>In a synthetic model, a customer visits either of two branches with probability 0.5 each. At Branch A, the waiting time is 8 or 12 minutes, each with conditional probability 0.5. At Branch B, it is 2 or 18 minutes, each with conditional probability 0.5.</p>
 <p>Both branches have a mean waiting time of 10 minutes. Are branch and waiting time independent? Compare the conditional distributions, including their spreads, and give one probability that changes when we learn the branch.</p>
-<details id="details-4" class="solution-details" aria-label="Solution">
+<details aria-label="Solution" id="details-4" class="solution-details">
 <summary>Solution</summary>
 <p>The variables are dependent. Although both means are 10 minutes, Branch A’s waiting times are 2 minutes from that mean, while Branch B’s are 8 minutes from it. For example, the conditional probability of waiting 2 minutes is zero at Branch A and 0.5 at Branch B. Learning the branch changes the waiting-time distribution; equal means do not make the entire distributions identical.</p>
 </details>
