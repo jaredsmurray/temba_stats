@@ -350,6 +350,7 @@ E[R_p]&amp;=wE[R_{\mathrm{SPY}}]+(1-w)E[R_{\mathrm{other}}].
 </section>
 <section id="portfolio-variance" class="slide level2">
 <h2>Portfolio variance</h2>
+<p>Let <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span> be the two fund returns, with weight <span class="math inline">\(w\)</span> on the first.</p>
 <p><span class="math display">\[
 \begin{aligned}
 \operatorname{Var}(R_p)={}&amp;w^2\operatorname{Var}(R_1)\\
@@ -381,19 +382,19 @@ E[R_p]&amp;=wE[R_{\mathrm{SPY}}]+(1-w)E[R_{\mathrm{other}}].
 <p>Correlation below 1 reduces portfolio SD. Negative correlation is not required.</p>
 </div></div>
 </section>
-<section id="tlt-can-attain-lower-portfolio-risk" class="slide level2">
-<h2>TLT can attain lower portfolio risk</h2>
+<section id="minimum-sample-sd-by-fund-pair" class="slide level2">
+<h2>Minimum sample SD by fund pair</h2>
 
 <img data-src="14_combining_random_variables_files/figure-revealjs/viz-weight-curves-three-1.png" width="960" class="r-stretch"><p>The minimum annualized sample SD is 14.2% with EFA and 11.1% with TLT.</p>
 </section>
-<section id="which-portfolio-offers-more-return-at-the-same-risk" class="slide level2">
-<h2>Which portfolio offers more return at the same risk?</h2>
-<p>Take the <strong>minimum risk attainable with SPY + EFA</strong>: annualized SD 14.2%.</p>
-<p>At that same risk, which portfolio offers the higher expected return: SPY + EFA or SPY + TLT?</p>
+<section id="which-portfolio-has-the-higher-sample-mean-at-the-same-sample-sd" class="slide level2">
+<h2>Which portfolio has the higher sample mean at the same sample SD?</h2>
+<p>Take the <strong>minimum sample SD for SPY + EFA</strong>: annualized SD 14.2%.</p>
+<p>At that same sample SD, which portfolio has the higher sample mean: SPY + EFA or SPY + TLT?</p>
 <p>Use the historical sample means as estimates of expected returns for this comparison.</p>
 </section>
-<section id="compare-returns-at-the-same-risk" class="slide level2">
-<h2>Compare returns at the same risk</h2>
+<section id="compare-returns-at-the-same-sample-sd" class="slide level2">
+<h2>Compare returns at the same sample SD</h2>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top">
@@ -422,12 +423,12 @@ E[R_p]&amp;=wE[R_{\mathrm{SPY}}]+(1-w)E[R_{\mathrm{other}}].
 </table>
 </div>
 </div>
-<p>At the same risk, SPY + TLT has an annualized sample mean 1.0 percentage points higher.</p>
+<p>At the same sample SD, SPY + TLT has an annualized sample mean 1.0 percentage points higher.</p>
 </section>
 <section id="the-matched-portfolios-on-both-curves" class="slide level2">
 <h2>The matched portfolios on both curves</h2>
 
-<img data-src="14_combining_random_variables_files/figure-revealjs/viz-risk-matched-portfolios-1.png" width="960" class="r-stretch"><p>The marked weights are 47.9% SPY with EFA and 92.2% SPY with TLT. Both have the same SD; the TLT mix has the higher sample mean.</p>
+<img data-src="14_combining_random_variables_files/figure-revealjs/viz-risk-matched-portfolios-1.png" width="960" class="r-stretch"><p>The marked weights are 47.9% SPY with EFA and 92.2% SPY with TLT.</p>
 </section>
 <section id="a-second-bond-fund-vcit" class="slide level2">
 <h2>A second bond fund: VCIT</h2>
@@ -562,8 +563,8 @@ B:&amp;\quad 200^2+120^2-2(0.6)(200)(120).
 <h2>Joint movement can offset in a difference</h2>
 <p>When revenue and costs rise together, part of their movement cancels in profit. The weights are 1 and <span class="math inline">\(-1\)</span>, so <strong>B</strong> applies.</p>
 <p><span class="math display">\[
-\operatorname{Var}(X-Y)=25{,}600,\qquad
-\operatorname{SD}(X-Y)=160.
+\operatorname{Var}(R-V)=25{,}600,\qquad
+\operatorname{SD}(R-V)=160.
 \]</span></p>
 <p>The profit SD is <strong>$160,000</strong>. Subtracting a fixed cost changes mean profit but leaves this SD unchanged.</p>
 

@@ -280,7 +280,7 @@
 <section id="a-population-and-one-sample" class="slide level2">
 <h2>A population and one sample</h2>
 
-<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-population-sample-1.png" width="960" class="r-stretch"><p>This population is simulated. The app knows its mean.</p>
+<img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-population-sample-1.png" width="960" class="r-stretch"><p>This is a simulated population, so we know its mean.</p>
 <aside class="notes">
 <p>These figures use the explorer’s hypothetical population, not the 30,000 actual SAP customers. The population and sample panels use the same x-axis. Each histogram counts companies. The population mean stays fixed while the sample and its mean change on each draw.</p>
 <style type="text/css">
@@ -380,8 +380,8 @@
 
 <img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-sample-sizes-1.png" width="960" class="r-stretch"><p>The population stays fixed; each panel uses 5,000 samples.</p>
 </section>
-<section id="more-repetitions-refine-the-histogram" class="slide level2">
-<h2>More repetitions refine the histogram</h2>
+<section id="simulation-repetitions" class="slide level2">
+<h2>Simulation repetitions</h2>
 
 <img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-repetitions-1.png" width="960" class="r-stretch"><p>More repetitions improve our picture of the same sampling distribution.</p>
 </section>
@@ -480,8 +480,8 @@ SE(\bar X)=\frac{\sigma}{\sqrt n}.
 <p>The errors are centered at zero and have SD <span class="math inline">\(\sigma/\sqrt n\)</span>.</p>
 <p>We cannot calculate our actual error because <span class="math inline">\(\mu\)</span> is unknown.</p>
 </section>
-<section id="about-95-fall-within-two-ses" class="slide level2">
-<h2>About 95% fall within two SEs</h2>
+<section id="in-about-95-of-random-samples-the-sample-mean-is-within-two-ses-of-mu" class="slide level2">
+<h2>In about 95% of random samples, the sample mean is within two SEs of <span class="math inline">\(\mu\)</span></h2>
 
 <img data-src="16_sampling_distributions_confidence_intervals_files/figure-revealjs/viz-two-se-1.png" width="960" class="r-stretch"><p>This uses the normal approximation for estimation error.</p>
 <aside class="notes">
@@ -540,6 +540,7 @@ SE(\bar X)=\frac{\sigma}{\sqrt n}.
 </tbody>
 </table>
 <p>Assume the normal approximation is adequate.</p>
+<p>A true mean above <strong>45 minutes</strong> would trigger a costly process review.</p>
 <p>Find the estimated SE and an approximate 95% interval for the population mean.</p>
 </section>
 <section id="plausible-mean-delivery-times" class="slide level2">
@@ -550,7 +551,6 @@ SE(\bar X)=\frac{\sigma}{\sqrt n}.
 <p><span class="math display">\[
 42\pm 2(1.2)=[39.6,\ 44.4]\text{ minutes}.
 \]</span></p>
-<p>A true mean above <strong>45 minutes</strong> would trigger a costly process review.</p>
 <p>Does this audit support triggering that review?</p>
 <aside class="notes">
 <p>The upper endpoint, 44.4 minutes, is below 45. Under the sampling assumptions, the audit does not support triggering a review on the grounds that the mean exceeds 45. Have pairs state this in one sentence. The interval gives plausible values for the population mean; it does not contain 95% of individual times. Individual spread remains much larger.</p>
@@ -728,8 +728,8 @@ SE(\bar X)=\frac{\sigma}{\sqrt n}.
           display:block!important;
       }</style></aside>
 </section>
-<section id="exit-ticket" class="slide level2">
-<h2>Exit ticket</h2>
+<section id="review-questions" class="slide level2">
+<h2>Review questions</h2>
 <p>What does standard error measure?</p>
 <p>How must sample size change to halve the SE of a mean?</p>
 <p>What is one defensible conclusion from the SAP interval?</p>

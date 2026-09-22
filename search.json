@@ -1366,90 +1366,6 @@
     "title": "Joint, Marginal, and Conditional Distributions"
   },
   {
-    "href": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
-    "objectID": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
-    "section": "Does loan purpose change the distribution?",
-    "text": "Does loan purpose change the distribution?\nThe LendingClub subset gives these historical default rates.\n\n\n\n\n\nPurpose\nLoans\nDefault rate\n\n\n\n\nSmall business\n3,191\n25.8%\n\n\nDebt consolidation\n49,409\n16.5%\n\n\nHome improvement\n5,856\n12.2%\n\n\n\n\n\nThe overall rate is 16.5%. Which purposes change our assessment of default?",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#independence-means-unchanged-distributions",
-    "objectID": "slides/12_independence.html#independence-means-unchanged-distributions",
-    "section": "Independence means unchanged distributions",
-    "text": "Independence means unchanged distributions\nTwo variables are independent when learning one does not change the distribution of the other.\n\\[\n\\Pr(X=x\\mid Y=y)=\\Pr(X=x).\n\\]\nFor discrete variables, this must hold for every \\(x\\) and every conditioning value \\(y\\) with positive probability. The same property holds in the reverse direction.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#independent-joint-probabilities-factor",
-    "objectID": "slides/12_independence.html#independent-joint-probabilities-factor",
-    "section": "Independent joint probabilities factor",
-    "text": "Independent joint probabilities factor\nFor discrete variables, independence is equivalent to\n\\[\n\\Pr(X=x,Y=y)=\\Pr(X=x)\\Pr(Y=y)\n\\]\nfor every pair of outcomes.\nEach interior cell must equal its row margin times its column margin. One failed equality establishes dependence.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#two-promotional-offers",
-    "objectID": "slides/12_independence.html#two-promotional-offers",
-    "section": "Two promotional offers",
-    "text": "Two promotional offers\nA system assigns free shipping independently of a discount.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n?\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nComplete the model. What should the probability of receiving both offers be?",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#can-this-model-meet-the-specification",
-    "objectID": "slides/12_independence.html#can-this-model-meet-the-specification",
-    "section": "Can this model meet the specification?",
-    "text": "Can this model meet the specification?\nAn engineer proposes probability 0.20 for receiving both offers, keeping the same margins.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nGive two verdicts: can this be a valid model, and can it satisfy independence? Complete the remaining cells to justify your answer.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#the-independent-model",
-    "objectID": "slides/12_independence.html#the-independent-model",
-    "section": "The independent model",
-    "text": "The independent model\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.10\n0.15\n0.25\n\n\nNo free shipping\n0.30\n0.45\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nThe conditional discount probabilities are \\(0.10/0.25=0.40\\) and \\(0.30/0.75=0.40\\).\nLearning the shipping offer leaves the discount distribution unchanged.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#a-valid-model-can-be-dependent",
-    "objectID": "slides/12_independence.html#a-valid-model-can-be-dependent",
-    "section": "A valid model can be dependent",
-    "text": "A valid model can be dependent\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n0.05\n0.25\n\n\nNo free shipping\n0.20\n0.55\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nAll cells are nonnegative and sum to one, with the required margins.\nBut \\(0.20\\ne0.25(0.40)\\). The conditional discount probabilities are 0.80 with free shipping and about 0.267 without it.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#one-cell-can-disprove-independence",
-    "objectID": "slides/12_independence.html#one-cell-can-disprove-independence",
-    "section": "One cell can disprove independence",
-    "text": "One cell can disprove independence\n\n\n\n\nPurchase\nNo purchase\nTotal\n\n\n\n\nStore visit\n0.18\n0.22\n0.40\n\n\nNo store visit\n0.12\n0.48\n0.60\n\n\nTotal\n0.30\n0.70\n1.00\n\n\n\nPurchases can also occur online. Find one numerical comparison that establishes dependence.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#the-product-check-fails",
-    "objectID": "slides/12_independence.html#the-product-check-fails",
-    "section": "The product check fails",
-    "text": "The product check fails\nIndependence would require\n\\[\n\\Pr(\\text{visit and purchase})=0.40(0.30)=0.12.\n\\]\nThe model assigns 0.18 to that cell, so store visits and purchases are dependent.\nWe do not need to check the remaining cells once one equality fails.",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#economic-ratings-by-employment-status",
-    "objectID": "slides/12_independence.html#economic-ratings-by-employment-status",
-    "section": "Economic ratings by employment status",
-    "text": "Economic ratings by employment status\nThe 2025 SHED survey records national economic ratings. Percentages are unweighted.\n\nHow much does the distribution change across employment groups?",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#similar-observed-distributions",
-    "objectID": "slides/12_independence.html#similar-observed-distributions",
-    "section": "Similar observed distributions",
-    "text": "Similar observed distributions\nEach row reports percentages within an employment group; \\(n\\) is its sample size.\n\n\n\n\n\nEmployment status\nn\nExcellent\nGood\nOnly fair\nPoor\n\n\n\n\nNot working\n4,961\n2.0%\n25.9%\n43.8%\n28.3%\n\n\nWorking full-time\n6,128\n2.0%\n23.7%\n44.8%\n29.5%\n\n\nWorking part-time\n1,845\n1.5%\n23.4%\n44.6%\n30.6%\n\n\nOverall\n12,934\n1.9%\n24.5%\n44.4%\n29.2%\n\n\n\n\n\nThe largest difference from an overall category share is 1.4 percentage points. Does similarity establish exact population independence?",
-    "title": "Independence"
-  },
-  {
-    "href": "slides/12_independence.html#sample-similarity-and-model-independence",
-    "objectID": "slides/12_independence.html#sample-similarity-and-model-independence",
-    "section": "Sample similarity and model independence",
-    "text": "Sample similarity and model independence\nSample proportions generally differ even when a population model has independence. Rounding can also conceal differences.\nThe SHED table suggests that employment status tells us relatively little about these ratings in this extract. It does not establish exact independence in the population.\nFor quantitative variables, independence likewise requires the entire conditional distribution to stay unchanged: its location, spread, and shape.",
-    "title": "Independence"
-  },
-  {
     "href": "slides/13_quantitative-quantitative.html#price-and-living-area",
     "objectID": "slides/13_quantitative-quantitative.html#price-and-living-area",
     "section": "Price and living area",
@@ -1569,188 +1485,6 @@
     "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "href": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
-    "objectID": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
-    "section": "Choose a fund to add to SPY",
-    "text": "Choose a fund to add to SPY\nThe three-fund data contain 104 weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.\n\n\n\n\n\nFund\nHolds\nMean\nSD\n\n\n\n\nSPY\nU.S. stocks (S&P 500)\n24.4%\n15.3%\n\n\nEFA\nDeveloped-market stocks\n19.7%\n15.1%\n\n\nTLT\nLong-term U.S. Treasuries\n6.2%\n15.1%\n\n\n\n\n\nYou currently hold only SPY. Would you add EFA or TLT? What information would help you decide?\n\nMeans are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
-    "objectID": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
-    "section": "A portfolio combines two returns",
-    "text": "A portfolio combines two returns\nSuppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.\n\n\n\nFund\nWeight\nWeekly return\nContribution\n\n\n\n\nSPY\n0.60\n0.02\n0.012\n\n\nEFA\n0.40\n0.01\n0.004\n\n\nPortfolio\n1.00\n\n0.016\n\n\n\nThe portfolio earns 1.6%. Its return is the weighted average of the two fund returns.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#linear-combinations",
-    "objectID": "slides/14_combining_random_variables.html#linear-combinations",
-    "section": "Linear combinations",
-    "text": "Linear combinations\nA linear combination has the form\n\\[\nZ=aX+bY+c.\n\\]\n\\(X\\) and \\(Y\\) are random variables; \\(a\\), \\(b\\), and \\(c\\) are fixed numbers. The weights \\(a\\) and \\(b\\) scale the two variables, and \\(c\\) shifts their combination.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
-    "objectID": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
-    "section": "The portfolio as a linear combination",
-    "text": "The portfolio as a linear combination\nLet \\(R_{\\mathrm{SPY}}\\) and \\(R_{\\mathrm{EFA}}\\) denote the two fund returns, and let \\(w\\) be the fraction invested in SPY.\n\\[\n\\begin{aligned}\nR_p &= wR_{\\mathrm{SPY}}+(1-w)R_{\\mathrm{EFA}}\\\\\n    &= 0.60R_{\\mathrm{SPY}}+0.40R_{\\mathrm{EFA}}\\\\\n    &= 0.60(0.02)+0.40(0.01)\\\\\n    &= 0.016.\n\\end{aligned}\n\\]\nHere \\(a=w\\), \\(b=1-w\\), and \\(c=0\\). The last two lines use the illustrative week’s returns.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
-    "objectID": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
-    "section": "Profit as a linear combination",
-    "text": "Profit as a linear combination\nLet \\(R\\) be revenue, \\(V\\) variable costs, and \\(F\\) fixed costs. Revenue and variable costs are random; \\(F\\) is a fixed amount.\n\\[\n\\begin{aligned}\n\\text{Profit} &= \\text{Revenue}-\\text{Variable costs}-\\text{Fixed costs}\\\\\nP &= R-V-F\\\\\n  &= 1\\,R+(-1)\\,V-F.\n\\end{aligned}\n\\]\nHere \\(a=1\\), \\(b=-1\\), and \\(c=-F\\). For example, in thousands of dollars,\n\\[\nP=1{,}000-600-100=300.\n\\]",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
-    "objectID": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
-    "section": "Means combine with the same weights",
-    "text": "Means combine with the same weights\nFor finite expected values,\n\\[\nE[aX+bY+c]=aE[X]+bE[Y]+c.\n\\]\nThe rule holds whether or not the variables are independent. Expected profit is therefore\n\\[\nE[P]=E[R]-E[V]-F.\n\\]\nApply the same weights to the expected values, then add the fixed amount.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
-    "objectID": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
-    "section": "What happens to expected portfolio returns?",
-    "text": "What happens to expected portfolio returns?\nUse the annualized sample means as estimates of expected returns:\n\n\n\nSPY\nEFA\nTLT\n\n\n\n\n24.4%\n19.7%\n6.2%\n\n\n\n\\[\n\\begin{aligned}\nE[R_p]&=wE[R_{\\mathrm{SPY}}]+(1-w)E[R_{\\mathrm{other}}].\n\\end{aligned}\n\\]\nWhat happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
-    "objectID": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
-    "section": "Why accept a lower expected return?",
-    "text": "Why accept a lower expected return?\n\n\n\n\n\nPortfolio\nEstimated expected return\n\n\n\n\nAll SPY\n24.4%\n\n\n60% SPY + 40% EFA\n22.5%\n\n\n60% SPY + 40% TLT\n17.1%\n\n\n\n\n\nAdding either fund reduces estimated expected return. Why might we choose to do that?\nWhat would we need to know about the variability of the combined return?",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
-    "objectID": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
-    "section": "How do the funds move with SPY?",
-    "text": "How do the funds move with SPY?\n\nRevise your choice if needed. Refer to the relationship visible in each plot.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#variance-includes-covariance",
-    "objectID": "slides/14_combining_random_variables.html#variance-includes-covariance",
-    "section": "Variance includes covariance",
-    "text": "Variance includes covariance\nFor finite variances,\n\\[\n\\operatorname{Var}(aX+bY+c)\n=a^2\\operatorname{Var}(X)+b^2\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y).\n\\]\nEach variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.\nZero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#portfolio-variance",
-    "objectID": "slides/14_combining_random_variables.html#portfolio-variance",
-    "section": "Portfolio variance",
-    "text": "Portfolio variance\n\\[\n\\begin{aligned}\n\\operatorname{Var}(R_p)={}&w^2\\operatorname{Var}(R_1)\\\\\n&+(1-w)^2\\operatorname{Var}(R_2)\\\\\n&+2w(1-w)\\operatorname{Cov}(R_1,R_2).\n\\end{aligned}\n\\]\nFor nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
-    "objectID": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
-    "section": "Portfolio SD as correlation varies",
-    "text": "Portfolio SD as correlation varies\n\n\n\n\n\n\n\n\n\n\n\n\nTwo stocks each have annual SD 20%. An equal-weight portfolio has\n\\[\n\\operatorname{SD}(R_p)=\\sqrt{0.02+0.02\\rho},\n\\]\nwhere \\(\\rho\\) is the correlation between their returns.\nCorrelation below 1 reduces portfolio SD. Negative correlation is not required.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#tlt-can-attain-lower-portfolio-risk",
-    "objectID": "slides/14_combining_random_variables.html#tlt-can-attain-lower-portfolio-risk",
-    "section": "TLT can attain lower portfolio risk",
-    "text": "TLT can attain lower portfolio risk\n\nThe minimum annualized sample SD is 14.2% with EFA and 11.1% with TLT.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#which-portfolio-offers-more-return-at-the-same-risk",
-    "objectID": "slides/14_combining_random_variables.html#which-portfolio-offers-more-return-at-the-same-risk",
-    "section": "Which portfolio offers more return at the same risk?",
-    "text": "Which portfolio offers more return at the same risk?\nTake the minimum risk attainable with SPY + EFA: annualized SD 14.2%.\nAt that same risk, which portfolio offers the higher expected return: SPY + EFA or SPY + TLT?\nUse the historical sample means as estimates of expected returns for this comparison.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#compare-returns-at-the-same-risk",
-    "objectID": "slides/14_combining_random_variables.html#compare-returns-at-the-same-risk",
-    "section": "Compare returns at the same risk",
-    "text": "Compare returns at the same risk\n\n\n\n\n\nPortfolio\nSPY weight\nSample mean\nSD\n\n\n\n\nSPY + EFA\n47.9%\n21.9%\n14.2%\n\n\nSPY + TLT\n92.2%\n22.9%\n14.2%\n\n\n\n\n\nAt the same risk, SPY + TLT has an annualized sample mean 1.0 percentage points higher.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
-    "objectID": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
-    "section": "The matched portfolios on both curves",
-    "text": "The matched portfolios on both curves\n\nThe marked weights are 47.9% SPY with EFA and 92.2% SPY with TLT. Both have the same SD; the TLT mix has the higher sample mean.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
-    "objectID": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
-    "section": "A second bond fund: VCIT",
-    "text": "A second bond fund: VCIT\nVCIT holds intermediate-term investment-grade corporate bonds.\n\nThe funds differ in their individual variability as well as in how they move together.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#historical-return-and-variability",
-    "objectID": "slides/14_combining_random_variables.html#historical-return-and-variability",
-    "section": "Historical return and variability",
-    "text": "Historical return and variability\n\n\n\n\n\nFund\nMean\nSD\n\n\n\n\nSPY\n24.4%\n15.3%\n\n\nVCIT\n10.0%\n6.2%\n\n\n\n\n\nThe mean and standard deviation are annualized sample summaries. For each allocation, we apply the same weights every week, before trading costs.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
-    "objectID": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
-    "section": "Minimum variability uses the variance rule",
-    "text": "Minimum variability uses the variance rule\n\nThe lowest sample SD occurs at 7.5% SPY. Choosing this weight does not use either fund’s mean return.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#return-above-a-benchmark",
-    "objectID": "slides/14_combining_random_variables.html#return-above-a-benchmark",
-    "section": "Return above a benchmark",
-    "text": "Return above a benchmark\nA portfolio has expected annual return 8%, annual SD 12%, and an annual risk-free benchmark of 3%.\nHow much expected return does it offer above the benchmark, per unit of standard deviation?\nIf the benchmark rises to 4%, which input to that comparison changes?",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#the-sharpe-ratio",
-    "objectID": "slides/14_combining_random_variables.html#the-sharpe-ratio",
-    "section": "The Sharpe ratio",
-    "text": "The Sharpe ratio\nFor a positive SD and a constant risk-free return over the same period,\n\\[\n\\text{Sharpe ratio}=\\frac{E[R_p]-r_f}{\\operatorname{SD}(R_p)}.\n\\]\nThe numerator is expected return above the benchmark. The ratio expresses that excess return per unit of variability.\nFor the example, \\((0.08-0.03)/0.12\\approx0.417\\). With a 4% benchmark it becomes about 0.333.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
-    "objectID": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
-    "section": "Sample Sharpe ratios across allocations",
-    "text": "Sample Sharpe ratios across allocations\nWe use sample means and SDs, with the sample-average Treasury-bill rate of 4.7% annualized as a constant benchmark.\n\nThe maximizing allocation holds 44.7% SPY in this sample.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
-    "objectID": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
-    "section": "Two analysts recommend different weights",
-    "text": "Two analysts recommend different weights\nOne analyst recommends 7.5% SPY; another recommends 44.7% SPY.\nWhat objective would you ask each analyst to state?\nWould a higher risk-free benchmark change the allocation with minimum SD? Could it change the allocation with maximum Sharpe ratio?",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#two-allocation-objectives",
-    "objectID": "slides/14_combining_random_variables.html#two-allocation-objectives",
-    "section": "Two allocation objectives",
-    "text": "Two allocation objectives\n\n\n\n\n\nAllocation\nSPY weight\nMean\nSD\nSharpe\n\n\n\n\nAll VCIT\n0.0%\n10.0%\n6.2%\n0.85\n\n\nMinimum SD\n7.5%\n11.1%\n6.1%\n1.04\n\n\nMaximum sample Sharpe\n44.7%\n16.4%\n8.3%\n1.41\n\n\nAll SPY\n100.0%\n24.4%\n15.3%\n1.29\n\n\n\n\n\nMinimum SD uses variances and covariance. Maximum sample Sharpe also uses mean returns and the benchmark.\nThese weights optimize the same sample used to report performance; they do not establish the best future allocation.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#profit-is-a-difference",
-    "objectID": "slides/14_combining_random_variables.html#profit-is-a-difference",
-    "section": "Profit is a difference",
-    "text": "Profit is a difference\nRevenue has SD 200 and variable costs have SD 120, in thousands of dollars. Their correlation is 0.6.\nWhich expression gives the variance of revenue minus variable costs?\n\\[\n\\begin{aligned}\nA:&\\quad 200^2+120^2+2(0.6)(200)(120)\\\\\nB:&\\quad 200^2+120^2-2(0.6)(200)(120).\n\\end{aligned}\n\\]\nExplain the effect of positive correlation here, then calculate the profit SD.",
-    "title": "Combining Random Variables"
-  },
-  {
-    "href": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
-    "objectID": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
-    "section": "Joint movement can offset in a difference",
-    "text": "Joint movement can offset in a difference\nWhen revenue and costs rise together, part of their movement cancels in profit. The weights are 1 and \\(-1\\), so B applies.\n\\[\n\\operatorname{Var}(X-Y)=25{,}600,\\qquad\n\\operatorname{SD}(X-Y)=160.\n\\]\nThe profit SD is $160,000. Subtracting a fixed cost changes mean profit but leaves this SD unchanged.",
-    "title": "Combining Random Variables"
-  },
-  {
     "crumbs": [
       "IntroStatGPT"
     ],
@@ -1836,368 +1570,634 @@
     "title": "Homework 2: Example IntroStatGPT Chat"
   },
   {
-    "href": "slides/15_sums_averages_clt.html#would-you-accept-this-project",
-    "objectID": "slides/15_sums_averages_clt.html#would-you-accept-this-project",
-    "section": "Would you accept this project?",
-    "text": "Would you accept this project?\nRichard Thaler’s example in Misbehaving:\n\n\n\nProfit\nProbability\n\n\n\n\n$2 million\n0.5\n\n\n−$1 million\n0.5\n\n\n\nWould you accept it? Explain your choice to a partner.\n\nUse the first five minutes for the individual and CEO polls. The account appears in the course notes, Chapter 15, Example 15.1 and “Sums and averages.” Thaler describes a CEO and 23 division executives. Only three executives accepted one project; the CEO wanted all 23 if their outcomes were independent. Collect students’ choices before giving either response.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#would-you-accept-23-projects",
-    "objectID": "slides/15_sums_averages_clt.html#would-you-accept-23-projects",
-    "section": "Would you accept 23 projects?",
-    "text": "Would you accept 23 projects?\nEach project has the same two possible payoffs.\nTheir outcomes are independent.\nWhat changes when the firm takes all 23?\n\nAsk for predictions about expected total profit, total variability, and the chance of losing money. Accept different decisions when students explain their ability to absorb a loss or the alternative uses of capital. Positive expected profit alone does not settle the decision.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#one-projects-mean-and-sd",
-    "objectID": "slides/15_sums_averages_clt.html#one-projects-mean-and-sd",
-    "section": "One project’s mean and SD",
-    "text": "One project’s mean and SD\nLet \\(X\\) be profit in millions of dollars.\n\n\n\n\\(x\\)\nProbability\n\\(x\\Pr(X=x)\\)\n\n\n\n\n2\n0.5\n1.0\n\n\n−1\n0.5\n−0.5\n\n\nTotal\n1.0\n0.5\n\n\n\nExpected profit is $500,000; the SD is $1.5 million.\n\nUse the expected-value table as a quick review. The variance calculation is: The mean is 0.5 million dollars.\n\n\n\n\\(x\\)\n\\((x-0.5)^2\\)\n\\((x-0.5)^2\\Pr(X=x)\\)\n\n\n\n\n2\n2.25\n1.125\n\n\n−1\n2.25\n1.125\n\n\nTotal\n\n2.25\n\n\n\n\\[\n\\operatorname{SD}(X)=\\sqrt{2.25}=1.5\\text{ million dollars}.\n\\]",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#independent-and-identically-distributed",
-    "objectID": "slides/15_sums_averages_clt.html#independent-and-identically-distributed",
-    "section": "Independent and identically distributed",
-    "text": "Independent and identically distributed\nThe project payoffs are iid: independent and identically distributed.\nEach project has the same payoff distribution.\nKnowing one project’s outcome does not change the others’ distributions.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#total-profit",
-    "objectID": "slides/15_sums_averages_clt.html#total-profit",
-    "section": "Total profit",
-    "text": "Total profit\nFor iid payoffs with finite mean \\(\\mu\\) and variance \\(\\sigma^2\\),\n\\[\n\\begin{aligned}\nS_n&=X_1+X_2+\\cdots+X_n,\\\\\nE[S_n]&=n\\mu,\\\\\n\\operatorname{Var}(S_n)&=n\\sigma^2,\\\\\n\\operatorname{SD}(S_n)&=\\sqrt n\\,\\sigma.\n\\end{aligned}\n\\]\nIndependence removes the covariance terms.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#calculate-the-total-for-23-projects",
-    "objectID": "slides/15_sums_averages_clt.html#calculate-the-total-for-23-projects",
-    "section": "Calculate the total for 23 projects",
-    "text": "Calculate the total for 23 projects\n\n\n\nQuantity\nCalculation\nResult\n\n\n\n\nMean\n\\(23(0.5)\\)\n11.5 million dollars\n\n\nVariance\n\\(23(2.25)\\)\n51.75 (million dollars)\\(^2\\)\n\n\nSD\n\\(\\sqrt{51.75}\\)\n7.19 million dollars\n\n\n\nExpected profit grows by a factor of 23, while its SD grows by only \\(\\sqrt{23}\\).\nWhat are the mean and SD of average profit per project?\n\nHave pairs calculate the mean and SD before revealing the average rules. Their proposal should divide the total’s mean and SD by 23, not divide both the variance and SD by 23. Total expected profit grows by n; total SD grows by the square root of n.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#average-profit-per-project",
-    "objectID": "slides/15_sums_averages_clt.html#average-profit-per-project",
-    "section": "Average profit per project",
-    "text": "Average profit per project\nFor the same iid payoffs,\n\\[\n\\begin{aligned}\n\\bar X&=\\frac{S_n}{n},\\qquad E[\\bar X]=\\mu,\\\\[0.4em]\n\\operatorname{Var}(\\bar X)&=\\frac{n\\sigma^2}{n^2}=\\frac{\\sigma^2}{n},\\\\[0.4em]\n\\operatorname{SD}(\\bar X)&=\\frac{\\sigma}{\\sqrt n}.\n\\end{aligned}\n\\]\nThe average keeps the same mean and has a smaller SD.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#total-and-average-profit",
-    "objectID": "slides/15_sums_averages_clt.html#total-and-average-profit",
-    "section": "Total and average profit",
-    "text": "Total and average profit\nAll means and SDs below are in millions of dollars.\n\n\n\nQuantity\nOne project\n23 independentprojects\n\n\n\n\nMean of total\n0.5\n11.5\n\n\nSD of total\n1.5\n7.19\n\n\nMean of average\n0.5\n0.5\n\n\nSD of average\n1.5\n0.313\n\n\n\nHow often will total profit be negative?\nThe mean and SD alone do not determine that probability.\n\nThe total adds more uncertain payoffs. The average also divides by the number of projects. The individual payoff distribution remains unchanged. Quadrupling the number of iid projects halves the SD of the average. These moment results do not require normality.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#simulate-the-projects",
-    "objectID": "slides/15_sums_averages_clt.html#simulate-the-projects",
-    "section": "Simulate the projects",
-    "text": "Simulate the projects\nOpen Thaler’s investment app\nCompare 1, 5, and 23 projects, with 1,000 simulated portfolios each.\nPredict the shape and chance of a loss before each run.\n\nBudget ten minutes for the app and the remaining slides. Start with the normal overlay off. Keep the display on total profit and enable “Highlight losing portfolios.” Record results before changing project count; this clears history. More simulated portfolios give a better picture of the same model. More projects change that model’s total-profit distribution. Try 50 projects, the app’s maximum, only if time permits. The following plots provide a fallback.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#distributions-of-total-profit",
-    "objectID": "slides/15_sums_averages_clt.html#distributions-of-total-profit",
-    "section": "Distributions of total profit",
-    "text": "Distributions of total profit\n\nEach bar’s area is the probability of one possible total. The axes differ by panel.\n\nThese are exact model distributions, not one run of the simulation. Each possible total is three million dollars from the next, so the bars have width 3 and height probability divided by 3. The space between possible totals does not represent additional possible outcomes. Ask about the distribution’s shape before advancing to the normal curves.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#normal-curves-and-the-project-totals",
-    "objectID": "slides/15_sums_averages_clt.html#normal-curves-and-the-project-totals",
-    "section": "Normal curves and the project totals",
-    "text": "Normal curves and the project totals\n\nThe totals become more bell-shaped as the number of projects grows.\n\nEach normal curve uses the total’s exact mean and variance. One project’s two-outcome distribution is not well described by its matching normal curve.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#the-central-limit-theorem",
-    "objectID": "slides/15_sums_averages_clt.html#the-central-limit-theorem",
-    "section": "The central limit theorem",
-    "text": "The central limit theorem\nFor sufficiently many iid draws with finite, positive variance,\n\\[\nS_n\\approx N(n\\mu,n\\sigma^2),\\qquad\n\\bar X\\approx N\\!\\left(\\mu,\\frac{\\sigma^2}{n}\\right).\n\\]\nThe second parameter is the variance.\nThe normal shape is approximate; the means and variances are exact.\n\nFormally, the standardized sum converges to a standard normal distribution. How many draws suffice depends on the population and on the tail probability of interest. Rare extreme outcomes can require much larger n. The theorem does not make individual project payoffs normal.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#a-loss-remains-possible",
-    "objectID": "slides/15_sums_averages_clt.html#a-loss-remains-possible",
-    "section": "A loss remains possible",
-    "text": "A loss remains possible\n\nThe normal approximation gives a loss probability of about 0.055, compared with 0.5 for one project.\n\nThe orange area to the left of zero is the approximate loss probability. The blue bar outlines show the possible totals’ exact probabilities as areas. The total is 3K - 23 when K projects succeed. A loss requires at most seven successes, giving pbinom(7, 23, 0.5), approximately 0.0466. The exact calculation is in the chapter’s optional technical detail; keep the lesson on the normal approximation. It uses mean 11.5 and SD 7.19; zero is about 1.60 SDs below the mean. The approximation is useful but not exact.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/15_sums_averages_clt.html#what-if-all-projects-move-together",
-    "objectID": "slides/15_sums_averages_clt.html#what-if-all-projects-move-together",
-    "section": "What if all projects move together?",
-    "text": "What if all projects move together?\n\n\n\nOutcome\nTotal profit\nProbability\n\n\n\n\nAll succeed.\n$46 million\n0.5\n\n\nAll fail.\n−$23 million\n0.5\n\n\n\nAverage profit is again either $2 million or −$1 million.\nWould your decision change?\n\nReturn to the original polls. With perfect shared outcomes, averaging does not reduce variability: the average’s SD stays at 1.5 million dollars. Independence was necessary for our n-sigma-squared variance calculation. The app simulates independent projects; this table describes a different dependence assumption. After the break, connect an average project payoff to an average from a sample.",
-    "title": "Sums, Averages, and the Central Limit Theorem"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#saps-profitability-claim",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#saps-profitability-claim",
-    "section": "SAP’s profitability claim",
-    "text": "SAP’s profitability claim\nSAP advertised that its customers were 32% more profitable than their peers.\nNucleus Research examined 81 publicly traded customers listed on SAP’s website.\nTheir measure was return on equity (ROE): annual profit as a percentage of shareholder equity.\n\nThe SAP advertisements ran in 2005; Nucleus published Research Note G12 in March 2006. The source is linked at first use. Each row of sap_roe represents one company, with its ROE and industry-average ROE in percent. The course notes’ “SAP dispute” section supplies the case context and further sources. Keep this setup and the next three slides to about ten minutes.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-points-in-the-other-direction",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-points-in-the-other-direction",
-    "section": "The sample points in the other direction",
-    "text": "The sample points in the other direction\n\n\n\nGroup\nAverage ROE\n\n\n\n\n81 SAP customers\n12.6%\n\n\nTheir industry benchmarks\n15.7%\n\n\n\nThe sample gap is 3.1 percentage points.\nCould sampling variation explain it?\n\nThe relative gap is about 20%, which is the basis for Nucleus’s headline. Distinguish that relative percentage from the 3.1-percentage-point ROE gap. For this lesson, treat the average industry benchmark as fixed.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#company-roes-vary-widely",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#company-roes-vary-widely",
-    "section": "Company ROEs vary widely",
-    "text": "Company ROEs vary widely\n\nThe sample SD is 25.7 percentage points.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#is-81-too-small",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#is-81-too-small",
-    "section": "Is 81 too small?",
-    "text": "Is 81 too small?\nSAP objected: 81 firms out of roughly 30,000 customers is only 0.27%.\nWhat determines how much the sample average varies?\n\nAsk students what information they need before judging precision. Do not settle the case from the sampling fraction. Collect suggestions about company variability, sample size, and selection. Return to selection at the end.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-random-sampling-model",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-random-sampling-model",
-    "section": "A random-sampling model",
-    "text": "A random-sampling model\nModel the 81 company ROEs as iid draws from the customer population.\nEach customer is equally likely on each draw.\nWebsite selection may violate this model.\n\nThis is a working model, not a claim that website selection was random. Sampling with replacement gives iid draws exactly. For simple random sampling without replacement, the SE correction is sqrt((N-n)/(N-1)), about 0.9987 for n=81 and N=30,000. Thus the iid SE is a close approximation here. Avoid the different claim that the chance of any repeated firm is negligible.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#parameter-estimator-and-estimate",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#parameter-estimator-and-estimate",
-    "section": "Parameter, estimator, and estimate",
-    "text": "Parameter, estimator, and estimate\n\n\n\nQuantity\nSAP example\n\n\n\n\nParameter\n\\(\\mu\\): mean ROE of all SAP customers.\n\n\nEstimator\n\\(\\bar X\\): the rule for averaging a random sample.\n\n\nEstimate\n\\(\\bar x=12.6\\%\\): the result from these 81 firms.\n\n\n\nWhich would change with a new sample?\n\nThe parameter and the averaging rule stay fixed; the realized estimate usually changes. The estimator is a random variable before the sample is observed. The observed estimate is one realized value. An average here plays the same mathematical role as average project profit in Thaler, but mu is unknown.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-population-and-one-sample",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-population-and-one-sample",
-    "section": "A population and one sample",
-    "text": "A population and one sample\n\nThis population is simulated. The app knows its mean.\n\nThese figures use the explorer’s hypothetical population, not the 30,000 actual SAP customers. The population and sample panels use the same x-axis. Each histogram counts companies. The population mean stays fixed while the sample and its mean change on each draw.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#take-repeated-samples",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#take-repeated-samples",
-    "section": "Take repeated samples",
-    "text": "Take repeated samples\nOpen the sampling explorer\nSet \\(n=81\\). Take three samples, one at a time.\nWhat does one observation represent in each panel?\n\nBudget 25 minutes for the app sequence through the repetitions comparison. Keep the normal curve and interval off initially. The upper and middle panels contain company ROEs; the lower panel accumulates one mean per sample. Compare the first three means, then generate 1,000 samples. Ask students to describe the center, spread, and shape before revealing the normal overlay.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sampling-distribution-of-the-mean",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sampling-distribution-of-the-mean",
-    "section": "The sampling distribution of the mean",
-    "text": "The sampling distribution of the mean\n\nIt describes how the sample mean varies across random samples of the same size.\n\nThe histogram approximates the sampling distribution with 5,000 independent samples of size 81. Each recorded value is an average, not one company. In the real SAP case we have only one sample and cannot observe this whole distribution. Its theory describes the estimates we could have obtained.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#compare-sample-sizes",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#compare-sample-sizes",
-    "section": "Compare sample sizes",
-    "text": "Compare sample sizes\n\n\n\nGroup\nCompanies per sample\nSamples to simulate\n\n\n\n\nA\n9\n1,000\n\n\nB\n36\n1,000\n\n\nC\n81\n1,000\n\n\n\nPredict the center and spread before running the app.\n\nAssign one group per table or pair. Record the result before changing n because the app clears history. Compare 9 with 36 explicitly: four times as many observations should halve the SD of the average. If devices are unavailable, collect table predictions and run the three settings on the projector.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-give-less-variable-averages",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-give-less-variable-averages",
-    "section": "Larger samples give less variable averages",
-    "text": "Larger samples give less variable averages\n\nThe population stays fixed; each panel uses 5,000 samples.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#more-repetitions-refine-the-histogram",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#more-repetitions-refine-the-histogram",
-    "section": "More repetitions refine the histogram",
-    "text": "More repetitions refine the histogram\n\nMore repetitions improve our picture of the same sampling distribution.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-means-center-and-spread",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-means-center-and-spread",
-    "section": "The sample mean’s center and spread",
-    "text": "The sample mean’s center and spread\nFor iid draws with mean \\(\\mu\\) and finite variance \\(\\sigma^2\\),\n\\[\nE[\\bar X]=\\mu,\\qquad\n\\operatorname{SD}(\\bar X)=\\frac{\\sigma}{\\sqrt n}.\n\\]\nThese are the same rules we used for average project profit.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#standard-error",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#standard-error",
-    "section": "Standard error",
-    "text": "Standard error\nThe standard error is the SD of an estimator’s sampling distribution.\n\\[\nSE(\\bar X)=\\frac{\\sigma}{\\sqrt n}.\n\\]\nFor the sample mean under iid sampling, it measures the typical size of estimation error.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#estimate-se-from-the-sample",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#estimate-se-from-the-sample",
-    "section": "Estimate SE from the sample",
-    "text": "Estimate SE from the sample\nThe population SD \\(\\sigma\\) is unknown. Use the sample SD \\(s\\):\n\\[\n\\widehat{SE}(\\bar X)=\\frac{s}{\\sqrt n}.\n\\]\nThis estimates how much sample means vary across repeated samples.\n\nThe hat marks an estimated SE. In the app sigma is known because we created the population. In an actual analysis we substitute s; it changes across samples. The same units apply to the estimate, its error, and its SE.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#individual-times-and-averages",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#individual-times-and-averages",
-    "section": "Individual times and averages",
-    "text": "Individual times and averages\nDelivery times are iid, with population SD 12 minutes.\nCompute the SE of the mean for samples of 100 and 400 orders.\nWhich spread changes? Which stays at 12 minutes?",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-improve-precision",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-improve-precision",
-    "section": "Larger samples improve precision",
-    "text": "Larger samples improve precision\n\n\n\nSample size\nSE of the mean\n\n\n\n\n100\n\\(12/\\sqrt{100}=1.2\\) minutes\n\n\n400\n\\(12/\\sqrt{400}=0.6\\) minutes\n\n\n\nIndividual delivery times still have SD 12 minutes.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-normal-approximation-for-the-mean",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-normal-approximation-for-the-mean",
-    "section": "A normal approximation for the mean",
-    "text": "A normal approximation for the mean\n\n\\[\n\\bar X\\approx N\\!\\left(\\mu,\\frac{\\sigma^2}{n}\\right).\n\\]\n\nThe curve uses the simulated population’s known mean and variance. The CLT supplies the approximate shape; the center and variance follow exactly from the iid model. The second normal parameter is variance. Whether n is large enough depends on the population’s shape and extreme outcomes.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#estimation-error",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#estimation-error",
-    "section": "Estimation error",
-    "text": "Estimation error\nSubtract the fixed population mean:\n\\[\n\\bar X-\\mu\\approx N\\!\\left(0,\\frac{\\sigma^2}{n}\\right).\n\\]\nThe errors are centered at zero and have SD \\(\\sigma/\\sqrt n\\).\nWe cannot calculate our actual error because \\(\\mu\\) is unknown.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#about-95-fall-within-two-ses",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#about-95-fall-within-two-ses",
-    "section": "About 95% fall within two SEs",
-    "text": "About 95% fall within two SEs\n\nThis uses the normal approximation for estimation error.\n\nThe exact standard-normal area between -2 and 2 is about 0.9545. We use the course’s approximate two-SE rule throughout; do not call it exact 95% coverage.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#turn-the-distance-into-an-interval",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#turn-the-distance-into-an-interval",
-    "section": "Turn the distance into an interval",
-    "text": "Turn the distance into an interval\n\\[\n|\\bar X-\\mu|\\leq 2\\,SE\n\\]\nis the same event as\n\\[\n\\bar X-2\\,SE\\leq\\mu\\leq\\bar X+2\\,SE.\n\\]\nCentering the interval on \\(\\bar X\\) captures \\(\\mu\\) in about 95% of samples.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-confidence-interval-for-the-mean",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-confidence-interval-for-the-mean",
-    "section": "A confidence interval for the mean",
-    "text": "A confidence interval for the mean\nA confidence interval gives plausible values for the population mean.\nWith an adequate normal approximation and an estimated SE, use\n\\[\n\\bar x\\ \\pm\\ 2\\frac{s}{\\sqrt n}.\n\\]\nThis is an approximate 95% confidence interval under the sampling model.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#calculate-a-delivery-time-interval",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#calculate-a-delivery-time-interval",
-    "section": "Calculate a delivery-time interval",
-    "text": "Calculate a delivery-time interval\nAn iid sample of 100 orders has:\n\n\n\nSample summary\nValue\n\n\n\n\nMean\n42 minutes\n\n\nSD\n12 minutes\n\n\n\nAssume the normal approximation is adequate.\nFind the estimated SE and an approximate 95% interval for the population mean.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#plausible-mean-delivery-times",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#plausible-mean-delivery-times",
-    "section": "Plausible mean delivery times",
-    "text": "Plausible mean delivery times\n\\[\n\\widehat{SE}=\\frac{12}{\\sqrt{100}}=1.2\\text{ minutes},\n\\]\n\\[\n42\\pm 2(1.2)=[39.6,\\ 44.4]\\text{ minutes}.\n\\]\nA true mean above 45 minutes would trigger a costly process review.\nDoes this audit support triggering that review?\n\nThe upper endpoint, 44.4 minutes, is below 45. Under the sampling assumptions, the audit does not support triggering a review on the grounds that the mean exceeds 45. Have pairs state this in one sentence. The interval gives plausible values for the population mean; it does not contain 95% of individual times. Individual spread remains much larger.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#plan-the-next-audit",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#plan-the-next-audit",
-    "section": "Plan the next audit",
-    "text": "Plan the next audit\nUse 12 minutes as the planning value for the population SD.\nHow many deliveries would give a two-SE margin of error of 1 minute?\n\\[\n2\\frac{12}{\\sqrt n}=1\n\\]\n\nSolving gives \\(\\sqrt n=24\\), so the audit needs 576 deliveries.\n\n\nAllow two minutes before revealing the answer. Planning uses the previous sample SD as a stand-in for the unknown population SD. At least 576 deliveries targets a margin no larger than 1 minute if that planning value remains adequate.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#watch-intervals-cover-or-miss",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#watch-intervals-cover-or-miss",
-    "section": "Watch intervals cover or miss",
-    "text": "Watch intervals cover or miss\nOpen the sampling explorer\nSet \\(n=81\\) and show the approximate 95% confidence interval.\nOut of 1,000 intervals, roughly how many should contain \\(\\mu\\)?\n\nBudget ten minutes for coverage. Clear history, draw a few samples individually, then a batch of 1,000. Ask what moves and what stays fixed. About 950 intervals should cover; a particular run need not hit that count exactly. The app builds intervals with the known population sigma. Do not compare its width numerically with the actual SAP interval, which uses s from a different set of values.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#coverage-across-samples",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#coverage-across-samples",
-    "section": "Coverage across samples",
-    "text": "Coverage across samples\n\nThe app uses its known population SD. Only the interval centers move.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-95-describes-the-procedure",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-95-describes-the-procedure",
-    "section": "The 95% describes the procedure",
-    "text": "The 95% describes the procedure\nAbout 95% of intervals from this procedure contain \\(\\mu\\) under the model.\nThe population mean stays fixed; the samples and intervals change.\nOur one interval either contains \\(\\mu\\) or misses it.\n\nAsk students whether the procedure assigns a 0.95 probability to mu being in the particular interval already calculated. It does not: the frequentist coverage statement concerns repetition of the sampling procedure. In real analyses the sample SD also changes, so interval widths can vary.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#calculate-the-sap-interval",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#calculate-the-sap-interval",
-    "section": "Calculate the SAP interval",
-    "text": "Calculate the SAP interval\n\n\n\nSample summary\nValue\n\n\n\n\nNumber of firms\n81\n\n\nMean ROE\n12.6%\n\n\nSD of ROE\n25.66 percentage points\n\n\n\nEstimate the SE and construct an approximate 95% interval for mean customer ROE.\n\nUse the final 15 minutes for this calculation, comparison, and discussion. Students use rounded inputs; their results should agree to the displayed precision. The rendered results use the unrounded data. Keep the working iid model explicit. These are the actual 81 firms, not the simulated population.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#saps-interval",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#saps-interval",
-    "section": "SAP’s interval",
-    "text": "SAP’s interval\n\\[\n\\widehat{SE}=\\frac{25.66}{\\sqrt{81}}\n\\approx 2.85\\text{ percentage points}.\n\\]\n\\[\n\\bar x\\pm2\\widehat{SE}\\approx\n[6.9\\%,\\ 18.3\\%].\n\\]\nThese are plausible population means under the random-sampling model.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#compare-the-claims-with-the-interval",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#compare-the-claims-with-the-interval",
-    "section": "Compare the claims with the interval",
-    "text": "Compare the claims with the interval\n\nTreating the industry benchmark as fixed, which claims fit this interval?\nA mean near 7% would be much worse than Nucleus claimed, and it also fits.\n\nThe industry benchmark 15.7% lies inside the interval. Both lower and higher population means are plausible; the data do not establish that SAP customers are less profitable. The lower end near 7% permits substantial underperformance, so including parity does not establish that the firms perform well either. Applying a 32% advantage to that benchmark gives about 20.7%, outside the interval. These readings all depend on the working model and the fixed-benchmark simplification; do not make an unconditional claim about the advertisement or about SAP causing profit changes.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#how-were-the-firms-selected",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#how-were-the-firms-selected",
-    "section": "How were the firms selected?",
-    "text": "How were the firms selected?\nNucleus used publicly traded firms listed on SAP’s website.\nThey may differ from SAP’s other customers.\nThe interval measures sampling variation under the model. It does not correct selection bias.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#report-what-the-data-support",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#report-what-the-data-support",
-    "section": "Report what the data support",
-    "text": "Report what the data support\nSpeak for Nucleus, SAP, or an independent analyst.\nUse the interval and identify one limitation.\nThen write a one-sentence conclusion about mean customer ROE.\n\nHave tables discuss for two minutes, then hear one response per role. Distinguish the sample-size objection from representativeness. The fraction 81/30,000 alone does not establish that a sample is useless. The comparison does not identify SAP’s causal effect on profitability. A defensible conclusion reports 6.9% to 18.3% under random sampling, with the selection limitation attached.",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "href": "slides/16_sampling_distributions_confidence_intervals.html#exit-ticket",
-    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#exit-ticket",
-    "section": "Exit ticket",
-    "text": "Exit ticket\nWhat does standard error measure?\nHow must sample size change to halve the SE of a mean?\nWhat is one defensible conclusion from the SAP interval?",
-    "title": "Sampling Distributions and Confidence Intervals"
-  },
-  {
-    "objectID": "slides.html",
     "href": "slides.html",
-    "title": "Slides",
+    "objectID": "slides.html",
     "section": "",
-    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view)."
+    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view).",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#chapters-1014",
     "href": "slides.html#chapters-1014",
-    "title": "Slides",
+    "objectID": "slides.html#chapters-1014",
     "section": "Chapters 10–14",
-    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables"
+    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#chapters-1516",
     "href": "slides.html#chapters-1516",
-    "title": "Slides",
+    "objectID": "slides.html#chapters-1516",
     "section": "Chapters 15–16",
-    "text": "Chapters 15–16\n\n15. Sums, Averages, and the Central Limit Theorem\n16. Sampling Distributions and Confidence Intervals\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard."
+    "text": "Chapters 15–16\n\n15. Sums, Averages, and the Central Limit Theorem\n16. Sampling Distributions and Confidence Intervals\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard.",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#week-of-september-21",
     "href": "slides.html#week-of-september-21",
-    "title": "Slides",
+    "objectID": "slides.html#week-of-september-21",
     "section": "Week of September 21",
-    "text": "Week of September 21\n\nSample Proportions\nTriangle Tests and Hypothesis Tests\nComparisons Between Groups"
+    "text": "Week of September 21\n\nSample Proportions\nTriangle Tests and Hypothesis Tests\nComparisons Between Groups",
+    "title": "Slides"
+  },
+  {
+    "objectID": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
+    "href": "slides/12_independence.html#does-loan-purpose-change-the-distribution",
+    "title": "Independence",
+    "section": "Does loan purpose change the distribution?",
+    "text": "Does loan purpose change the distribution?\nThe LendingClub subset gives these historical default rates.\n\n\n\n\n\nPurpose\nLoans\nDefault rate\n\n\n\n\nSmall business\n3,191\n25.8%\n\n\nDebt consolidation\n49,409\n16.5%\n\n\nHome improvement\n5,856\n12.2%\n\n\n\n\n\nThe overall rate is 16.5%. Which purposes change our assessment of default?"
+  },
+  {
+    "objectID": "slides/12_independence.html#independence-means-unchanged-distributions",
+    "href": "slides/12_independence.html#independence-means-unchanged-distributions",
+    "title": "Independence",
+    "section": "Independence means unchanged distributions",
+    "text": "Independence means unchanged distributions\nTwo variables are independent when learning one does not change the distribution of the other.\n\\[\n\\Pr(X=x\\mid Y=y)=\\Pr(X=x).\n\\]\nFor discrete variables, this must hold for every \\(x\\) and every conditioning value \\(y\\) with positive probability. The same property holds in the reverse direction."
+  },
+  {
+    "objectID": "slides/12_independence.html#independent-joint-probabilities-factor",
+    "href": "slides/12_independence.html#independent-joint-probabilities-factor",
+    "title": "Independence",
+    "section": "Independent joint probabilities factor",
+    "text": "Independent joint probabilities factor\nFor discrete variables, independence is equivalent to\n\\[\n\\Pr(X=x,Y=y)=\\Pr(X=x)\\Pr(Y=y)\n\\]\nfor every pair of outcomes.\nEach interior cell must equal its row margin times its column margin. One failed equality establishes dependence."
+  },
+  {
+    "objectID": "slides/12_independence.html#two-promotional-offers",
+    "href": "slides/12_independence.html#two-promotional-offers",
+    "title": "Independence",
+    "section": "Two promotional offers",
+    "text": "Two promotional offers\nA system assigns free shipping independently of a discount.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n?\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nComplete the model. What should the probability of receiving both offers be?"
+  },
+  {
+    "objectID": "slides/12_independence.html#can-this-model-meet-the-specification",
+    "href": "slides/12_independence.html#can-this-model-meet-the-specification",
+    "title": "Independence",
+    "section": "Can this model meet the specification?",
+    "text": "Can this model meet the specification?\nAn engineer proposes probability 0.20 for receiving both offers, keeping the same margins.\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n?\n0.25\n\n\nNo free shipping\n?\n?\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nGive two verdicts: can this be a valid model, and can it satisfy independence? Complete the remaining cells to justify your answer."
+  },
+  {
+    "objectID": "slides/12_independence.html#the-independent-model",
+    "href": "slides/12_independence.html#the-independent-model",
+    "title": "Independence",
+    "section": "The independent model",
+    "text": "The independent model\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.10\n0.15\n0.25\n\n\nNo free shipping\n0.30\n0.45\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nThe conditional discount probabilities are \\(0.10/0.25=0.40\\) and \\(0.30/0.75=0.40\\).\nLearning the shipping offer leaves the discount distribution unchanged."
+  },
+  {
+    "objectID": "slides/12_independence.html#a-valid-model-can-be-dependent",
+    "href": "slides/12_independence.html#a-valid-model-can-be-dependent",
+    "title": "Independence",
+    "section": "A valid model can be dependent",
+    "text": "A valid model can be dependent\n\n\n\nShipping offer\nDiscount\nNo discount\nTotal\n\n\n\n\nFree shipping\n0.20\n0.05\n0.25\n\n\nNo free shipping\n0.20\n0.55\n0.75\n\n\nTotal\n0.40\n0.60\n1.00\n\n\n\nAll cells are nonnegative and sum to one, with the required margins.\nBut \\(0.20\\ne0.25(0.40)\\). The conditional discount probabilities are 0.80 with free shipping and about 0.267 without it."
+  },
+  {
+    "objectID": "slides/12_independence.html#one-cell-can-disprove-independence",
+    "href": "slides/12_independence.html#one-cell-can-disprove-independence",
+    "title": "Independence",
+    "section": "One cell can disprove independence",
+    "text": "One cell can disprove independence\n\n\n\n\nPurchase\nNo purchase\nTotal\n\n\n\n\nStore visit\n0.18\n0.22\n0.40\n\n\nNo store visit\n0.12\n0.48\n0.60\n\n\nTotal\n0.30\n0.70\n1.00\n\n\n\nPurchases can also occur online. Find one numerical comparison that establishes dependence."
+  },
+  {
+    "objectID": "slides/12_independence.html#the-product-check-fails",
+    "href": "slides/12_independence.html#the-product-check-fails",
+    "title": "Independence",
+    "section": "The product check fails",
+    "text": "The product check fails\nIndependence would require\n\\[\n\\Pr(\\text{visit and purchase})=0.40(0.30)=0.12.\n\\]\nThe model assigns 0.18 to that cell, so store visits and purchases are dependent.\nWe do not need to check the remaining cells once one equality fails."
+  },
+  {
+    "objectID": "slides/12_independence.html#economic-ratings-by-employment-status",
+    "href": "slides/12_independence.html#economic-ratings-by-employment-status",
+    "title": "Independence",
+    "section": "Economic ratings by employment status",
+    "text": "Economic ratings by employment status\nThe 2025 SHED survey records national economic ratings. Percentages are unweighted.\n\nHow much does the distribution change across employment groups?"
+  },
+  {
+    "objectID": "slides/12_independence.html#similar-observed-distributions",
+    "href": "slides/12_independence.html#similar-observed-distributions",
+    "title": "Independence",
+    "section": "Similar observed distributions",
+    "text": "Similar observed distributions\nEach row reports percentages within an employment group; \\(n\\) is its sample size.\n\n\n\n\n\nEmployment status\nn\nExcellent\nGood\nOnly fair\nPoor\n\n\n\n\nNot working\n4,961\n2.0%\n25.9%\n43.8%\n28.3%\n\n\nWorking full-time\n6,128\n2.0%\n23.7%\n44.8%\n29.5%\n\n\nWorking part-time\n1,845\n1.5%\n23.4%\n44.6%\n30.6%\n\n\nOverall\n12,934\n1.9%\n24.5%\n44.4%\n29.2%\n\n\n\n\n\nThe largest difference from an overall category share is 1.4 percentage points. Does similarity establish exact population independence?"
+  },
+  {
+    "objectID": "slides/12_independence.html#sample-similarity-and-model-independence",
+    "href": "slides/12_independence.html#sample-similarity-and-model-independence",
+    "title": "Independence",
+    "section": "Sample similarity and model independence",
+    "text": "Sample similarity and model independence\nSample proportions generally differ even when a population model has independence. Rounding can also conceal differences.\nThe SHED table suggests that employment status tells us relatively little about these ratings in this extract. It does not establish exact independence in the population.\nFor quantitative variables, independence likewise requires the entire conditional distribution to stay unchanged: its location, spread, and shape."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
+    "href": "slides/14_combining_random_variables.html#choose-a-fund-to-add-to-spy",
+    "title": "Combining Random Variables",
+    "section": "Choose a fund to add to SPY",
+    "text": "Choose a fund to add to SPY\nThe three-fund data contain 104 weekly returns. Each ETF holds a basket of assets. The means and SDs below are annualized sample summaries.\n\n\n\n\n\nFund\nHolds\nMean\nSD\n\n\n\n\nSPY\nU.S. stocks (S&P 500)\n24.4%\n15.3%\n\n\nEFA\nDeveloped-market stocks\n19.7%\n15.1%\n\n\nTLT\nLong-term U.S. Treasuries\n6.2%\n15.1%\n\n\n\n\n\nYou currently hold only SPY. Would you add EFA or TLT? What information would help you decide?\n\nMeans are weekly sample means times 52; SDs are weekly sample SDs times the square root of 52. The mean is arithmetic rather than compounded. SD scaling assumes uncorrelated weekly returns with a common variance. Historical means will serve as estimates of expected returns in the comparisons that follow."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
+    "href": "slides/14_combining_random_variables.html#a-portfolio-combines-two-returns",
+    "title": "Combining Random Variables",
+    "section": "A portfolio combines two returns",
+    "text": "A portfolio combines two returns\nSuppose SPY returns 2% and EFA returns 1% in a week. You invest 60% in SPY and 40% in EFA.\n\n\n\nFund\nWeight\nWeekly return\nContribution\n\n\n\n\nSPY\n0.60\n0.02\n0.012\n\n\nEFA\n0.40\n0.01\n0.004\n\n\nPortfolio\n1.00\n\n0.016\n\n\n\nThe portfolio earns 1.6%. Its return is the weighted average of the two fund returns."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#linear-combinations",
+    "href": "slides/14_combining_random_variables.html#linear-combinations",
+    "title": "Combining Random Variables",
+    "section": "Linear combinations",
+    "text": "Linear combinations\nA linear combination has the form\n\\[\nZ=aX+bY+c.\n\\]\n\\(X\\) and \\(Y\\) are random variables; \\(a\\), \\(b\\), and \\(c\\) are fixed numbers. The weights \\(a\\) and \\(b\\) scale the two variables, and \\(c\\) shifts their combination."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
+    "href": "slides/14_combining_random_variables.html#the-portfolio-as-a-linear-combination",
+    "title": "Combining Random Variables",
+    "section": "The portfolio as a linear combination",
+    "text": "The portfolio as a linear combination\nLet \\(R_{\\mathrm{SPY}}\\) and \\(R_{\\mathrm{EFA}}\\) denote the two fund returns, and let \\(w\\) be the fraction invested in SPY.\n\\[\n\\begin{aligned}\nR_p &= wR_{\\mathrm{SPY}}+(1-w)R_{\\mathrm{EFA}}\\\\\n    &= 0.60R_{\\mathrm{SPY}}+0.40R_{\\mathrm{EFA}}\\\\\n    &= 0.60(0.02)+0.40(0.01)\\\\\n    &= 0.016.\n\\end{aligned}\n\\]\nHere \\(a=w\\), \\(b=1-w\\), and \\(c=0\\). The last two lines use the illustrative week’s returns."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
+    "href": "slides/14_combining_random_variables.html#profit-as-a-linear-combination",
+    "title": "Combining Random Variables",
+    "section": "Profit as a linear combination",
+    "text": "Profit as a linear combination\nLet \\(R\\) be revenue, \\(V\\) variable costs, and \\(F\\) fixed costs. Revenue and variable costs are random; \\(F\\) is a fixed amount.\n\\[\n\\begin{aligned}\n\\text{Profit} &= \\text{Revenue}-\\text{Variable costs}-\\text{Fixed costs}\\\\\nP &= R-V-F\\\\\n  &= 1\\,R+(-1)\\,V-F.\n\\end{aligned}\n\\]\nHere \\(a=1\\), \\(b=-1\\), and \\(c=-F\\). For example, in thousands of dollars,\n\\[\nP=1{,}000-600-100=300.\n\\]"
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
+    "href": "slides/14_combining_random_variables.html#means-combine-with-the-same-weights",
+    "title": "Combining Random Variables",
+    "section": "Means combine with the same weights",
+    "text": "Means combine with the same weights\nFor finite expected values,\n\\[\nE[aX+bY+c]=aE[X]+bE[Y]+c.\n\\]\nThe rule holds whether or not the variables are independent. Expected profit is therefore\n\\[\nE[P]=E[R]-E[V]-F.\n\\]\nApply the same weights to the expected values, then add the fixed amount."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
+    "href": "slides/14_combining_random_variables.html#what-happens-to-expected-portfolio-returns",
+    "title": "Combining Random Variables",
+    "section": "What happens to expected portfolio returns?",
+    "text": "What happens to expected portfolio returns?\nUse the annualized sample means as estimates of expected returns:\n\n\n\nSPY\nEFA\nTLT\n\n\n\n\n24.4%\n19.7%\n6.2%\n\n\n\n\\[\n\\begin{aligned}\nE[R_p]&=wE[R_{\\mathrm{SPY}}]+(1-w)E[R_{\\mathrm{other}}].\n\\end{aligned}\n\\]\nWhat happens to expected return if you move some of your investment from SPY into EFA or TLT? Calculate it for a 60/40 allocation to each pair."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
+    "href": "slides/14_combining_random_variables.html#why-accept-a-lower-expected-return",
+    "title": "Combining Random Variables",
+    "section": "Why accept a lower expected return?",
+    "text": "Why accept a lower expected return?\n\n\n\n\n\nPortfolio\nEstimated expected return\n\n\n\n\nAll SPY\n24.4%\n\n\n60% SPY + 40% EFA\n22.5%\n\n\n60% SPY + 40% TLT\n17.1%\n\n\n\n\n\nAdding either fund reduces estimated expected return. Why might we choose to do that?\nWhat would we need to know about the variability of the combined return?"
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
+    "href": "slides/14_combining_random_variables.html#how-do-the-funds-move-with-spy",
+    "title": "Combining Random Variables",
+    "section": "How do the funds move with SPY?",
+    "text": "How do the funds move with SPY?\n\nRevise your choice if needed. Refer to the relationship visible in each plot."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#variance-includes-covariance",
+    "href": "slides/14_combining_random_variables.html#variance-includes-covariance",
+    "title": "Combining Random Variables",
+    "section": "Variance includes covariance",
+    "text": "Variance includes covariance\nFor finite variances,\n\\[\n\\operatorname{Var}(aX+bY+c)\n=a^2\\operatorname{Var}(X)+b^2\\operatorname{Var}(Y)+2ab\\operatorname{Cov}(X,Y).\n\\]\nEach variance receives a squared weight. The covariance term accounts for joint movement; the constant does not change spread.\nZero covariance removes the cross term. Independence is sufficient, but is not required. Take the square root to obtain standard deviation."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#portfolio-variance",
+    "href": "slides/14_combining_random_variables.html#portfolio-variance",
+    "title": "Combining Random Variables",
+    "section": "Portfolio variance",
+    "text": "Portfolio variance\nLet \\(R_1\\) and \\(R_2\\) be the two fund returns, with weight \\(w\\) on the first.\n\\[\n\\begin{aligned}\n\\operatorname{Var}(R_p)={}&w^2\\operatorname{Var}(R_1)\\\\\n&+(1-w)^2\\operatorname{Var}(R_2)\\\\\n&+2w(1-w)\\operatorname{Cov}(R_1,R_2).\n\\end{aligned}\n\\]\nFor nonnegative weights, higher covariance increases portfolio variability. Standard deviation measures variation in returns, including both gains and losses."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
+    "href": "slides/14_combining_random_variables.html#portfolio-sd-as-correlation-varies",
+    "title": "Combining Random Variables",
+    "section": "Portfolio SD as correlation varies",
+    "text": "Portfolio SD as correlation varies\n\n\n\n\n\n\n\n\n\n\n\n\nTwo stocks each have annual SD 20%. An equal-weight portfolio has\n\\[\n\\operatorname{SD}(R_p)=\\sqrt{0.02+0.02\\rho},\n\\]\nwhere \\(\\rho\\) is the correlation between their returns.\nCorrelation below 1 reduces portfolio SD. Negative correlation is not required."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#minimum-sample-sd-by-fund-pair",
+    "href": "slides/14_combining_random_variables.html#minimum-sample-sd-by-fund-pair",
+    "title": "Combining Random Variables",
+    "section": "Minimum sample SD by fund pair",
+    "text": "Minimum sample SD by fund pair\n\nThe minimum annualized sample SD is 14.2% with EFA and 11.1% with TLT."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#which-portfolio-has-the-higher-sample-mean-at-the-same-sample-sd",
+    "href": "slides/14_combining_random_variables.html#which-portfolio-has-the-higher-sample-mean-at-the-same-sample-sd",
+    "title": "Combining Random Variables",
+    "section": "Which portfolio has the higher sample mean at the same sample SD?",
+    "text": "Which portfolio has the higher sample mean at the same sample SD?\nTake the minimum sample SD for SPY + EFA: annualized SD 14.2%.\nAt that same sample SD, which portfolio has the higher sample mean: SPY + EFA or SPY + TLT?\nUse the historical sample means as estimates of expected returns for this comparison."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#compare-returns-at-the-same-sample-sd",
+    "href": "slides/14_combining_random_variables.html#compare-returns-at-the-same-sample-sd",
+    "title": "Combining Random Variables",
+    "section": "Compare returns at the same sample SD",
+    "text": "Compare returns at the same sample SD\n\n\n\n\n\nPortfolio\nSPY weight\nSample mean\nSD\n\n\n\n\nSPY + EFA\n47.9%\n21.9%\n14.2%\n\n\nSPY + TLT\n92.2%\n22.9%\n14.2%\n\n\n\n\n\nAt the same sample SD, SPY + TLT has an annualized sample mean 1.0 percentage points higher."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
+    "href": "slides/14_combining_random_variables.html#the-matched-portfolios-on-both-curves",
+    "title": "Combining Random Variables",
+    "section": "The matched portfolios on both curves",
+    "text": "The matched portfolios on both curves\n\nThe marked weights are 47.9% SPY with EFA and 92.2% SPY with TLT."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
+    "href": "slides/14_combining_random_variables.html#a-second-bond-fund-vcit",
+    "title": "Combining Random Variables",
+    "section": "A second bond fund: VCIT",
+    "text": "A second bond fund: VCIT\nVCIT holds intermediate-term investment-grade corporate bonds.\n\nThe funds differ in their individual variability as well as in how they move together."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#historical-return-and-variability",
+    "href": "slides/14_combining_random_variables.html#historical-return-and-variability",
+    "title": "Combining Random Variables",
+    "section": "Historical return and variability",
+    "text": "Historical return and variability\n\n\n\n\n\nFund\nMean\nSD\n\n\n\n\nSPY\n24.4%\n15.3%\n\n\nVCIT\n10.0%\n6.2%\n\n\n\n\n\nThe mean and standard deviation are annualized sample summaries. For each allocation, we apply the same weights every week, before trading costs."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
+    "href": "slides/14_combining_random_variables.html#minimum-variability-uses-the-variance-rule",
+    "title": "Combining Random Variables",
+    "section": "Minimum variability uses the variance rule",
+    "text": "Minimum variability uses the variance rule\n\nThe lowest sample SD occurs at 7.5% SPY. Choosing this weight does not use either fund’s mean return."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#return-above-a-benchmark",
+    "href": "slides/14_combining_random_variables.html#return-above-a-benchmark",
+    "title": "Combining Random Variables",
+    "section": "Return above a benchmark",
+    "text": "Return above a benchmark\nA portfolio has expected annual return 8%, annual SD 12%, and an annual risk-free benchmark of 3%.\nHow much expected return does it offer above the benchmark, per unit of standard deviation?\nIf the benchmark rises to 4%, which input to that comparison changes?"
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#the-sharpe-ratio",
+    "href": "slides/14_combining_random_variables.html#the-sharpe-ratio",
+    "title": "Combining Random Variables",
+    "section": "The Sharpe ratio",
+    "text": "The Sharpe ratio\nFor a positive SD and a constant risk-free return over the same period,\n\\[\n\\text{Sharpe ratio}=\\frac{E[R_p]-r_f}{\\operatorname{SD}(R_p)}.\n\\]\nThe numerator is expected return above the benchmark. The ratio expresses that excess return per unit of variability.\nFor the example, \\((0.08-0.03)/0.12\\approx0.417\\). With a 4% benchmark it becomes about 0.333."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
+    "href": "slides/14_combining_random_variables.html#sample-sharpe-ratios-across-allocations",
+    "title": "Combining Random Variables",
+    "section": "Sample Sharpe ratios across allocations",
+    "text": "Sample Sharpe ratios across allocations\nWe use sample means and SDs, with the sample-average Treasury-bill rate of 4.7% annualized as a constant benchmark.\n\nThe maximizing allocation holds 44.7% SPY in this sample."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
+    "href": "slides/14_combining_random_variables.html#two-analysts-recommend-different-weights",
+    "title": "Combining Random Variables",
+    "section": "Two analysts recommend different weights",
+    "text": "Two analysts recommend different weights\nOne analyst recommends 7.5% SPY; another recommends 44.7% SPY.\nWhat objective would you ask each analyst to state?\nWould a higher risk-free benchmark change the allocation with minimum SD? Could it change the allocation with maximum Sharpe ratio?"
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#two-allocation-objectives",
+    "href": "slides/14_combining_random_variables.html#two-allocation-objectives",
+    "title": "Combining Random Variables",
+    "section": "Two allocation objectives",
+    "text": "Two allocation objectives\n\n\n\n\n\nAllocation\nSPY weight\nMean\nSD\nSharpe\n\n\n\n\nAll VCIT\n0.0%\n10.0%\n6.2%\n0.85\n\n\nMinimum SD\n7.5%\n11.1%\n6.1%\n1.04\n\n\nMaximum sample Sharpe\n44.7%\n16.4%\n8.3%\n1.41\n\n\nAll SPY\n100.0%\n24.4%\n15.3%\n1.29\n\n\n\n\n\nMinimum SD uses variances and covariance. Maximum sample Sharpe also uses mean returns and the benchmark.\nThese weights optimize the same sample used to report performance; they do not establish the best future allocation."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#profit-is-a-difference",
+    "href": "slides/14_combining_random_variables.html#profit-is-a-difference",
+    "title": "Combining Random Variables",
+    "section": "Profit is a difference",
+    "text": "Profit is a difference\nRevenue has SD 200 and variable costs have SD 120, in thousands of dollars. Their correlation is 0.6.\nWhich expression gives the variance of revenue minus variable costs?\n\\[\n\\begin{aligned}\nA:&\\quad 200^2+120^2+2(0.6)(200)(120)\\\\\nB:&\\quad 200^2+120^2-2(0.6)(200)(120).\n\\end{aligned}\n\\]\nExplain the effect of positive correlation here, then calculate the profit SD."
+  },
+  {
+    "objectID": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
+    "href": "slides/14_combining_random_variables.html#joint-movement-can-offset-in-a-difference",
+    "title": "Combining Random Variables",
+    "section": "Joint movement can offset in a difference",
+    "text": "Joint movement can offset in a difference\nWhen revenue and costs rise together, part of their movement cancels in profit. The weights are 1 and \\(-1\\), so B applies.\n\\[\n\\operatorname{Var}(R-V)=25{,}600,\\qquad\n\\operatorname{SD}(R-V)=160.\n\\]\nThe profit SD is $160,000. Subtracting a fixed cost changes mean profit but leaves this SD unchanged."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#would-you-accept-this-project",
+    "href": "slides/15_sums_averages_clt.html#would-you-accept-this-project",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Would you accept this project?",
+    "text": "Would you accept this project?\nRichard Thaler’s example in Misbehaving:\n\n\n\nProfit\nProbability\n\n\n\n\n$2 million\n0.5\n\n\n−$1 million\n0.5\n\n\n\nWould you accept it? Explain your choice to a partner.\n\nUse the first five minutes for the individual and CEO polls. The account appears in the course notes, Chapter 15, Example 15.1 and “Sums and averages.” Thaler describes a CEO and 23 division executives. Only three executives accepted one project; the CEO wanted all 23 if their outcomes were independent. Collect students’ choices before giving either response."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#would-you-accept-23-projects",
+    "href": "slides/15_sums_averages_clt.html#would-you-accept-23-projects",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Would you accept 23 projects?",
+    "text": "Would you accept 23 projects?\nNow suppose you are the CEO of a company with 23 divisions, each considering this project.\nTheir outcomes are independent.\nWhat changes when the firm takes all 23?\n\nAsk for predictions about expected total profit, total variability, and the chance of losing money. Accept different decisions when students explain their ability to absorb a loss or the alternative uses of capital. Positive expected profit alone does not settle the decision."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#one-projects-mean-and-sd",
+    "href": "slides/15_sums_averages_clt.html#one-projects-mean-and-sd",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "One project’s mean and SD",
+    "text": "One project’s mean and SD\nLet \\(X\\) be profit in millions of dollars.\n\n\n\n\\(x\\)\nProbability\n\\(x\\Pr(X=x)\\)\n\n\n\n\n2\n0.5\n1.0\n\n\n−1\n0.5\n−0.5\n\n\nTotal\n1.0\n0.5\n\n\n\nExpected profit is $500,000; the SD is $1.5 million.\n\nUse the expected-value table as a quick review. The variance calculation is: The mean is 0.5 million dollars.\n\n\n\n\\(x\\)\n\\((x-0.5)^2\\)\n\\((x-0.5)^2\\Pr(X=x)\\)\n\n\n\n\n2\n2.25\n1.125\n\n\n−1\n2.25\n1.125\n\n\nTotal\n\n2.25\n\n\n\n\\[\n\\operatorname{SD}(X)=\\sqrt{2.25}=1.5\\text{ million dollars}.\n\\]"
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#independent-and-identically-distributed",
+    "href": "slides/15_sums_averages_clt.html#independent-and-identically-distributed",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Independent and identically distributed",
+    "text": "Independent and identically distributed\nThe project payoffs are iid: independent and identically distributed.\nEach project has the same payoff distribution.\nKnowing one project’s outcome does not change the others’ distributions."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#total-profit",
+    "href": "slides/15_sums_averages_clt.html#total-profit",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Total profit",
+    "text": "Total profit\nFor iid payoffs with finite mean \\(\\mu\\) and variance \\(\\sigma^2\\),\n\\[\n\\begin{aligned}\nS_n&=X_1+X_2+\\cdots+X_n,\\\\\nE[S_n]&=n\\mu,\\\\\n\\operatorname{Var}(S_n)&=n\\sigma^2,\\\\\n\\operatorname{SD}(S_n)&=\\sqrt n\\,\\sigma.\n\\end{aligned}\n\\]\nIndependence removes the covariance terms."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#calculate-the-total-for-23-projects",
+    "href": "slides/15_sums_averages_clt.html#calculate-the-total-for-23-projects",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Calculate the total for 23 projects",
+    "text": "Calculate the total for 23 projects\n\n\n\nQuantity\nCalculation\nResult\n\n\n\n\nMean\n\\(23(0.5)\\)\n11.5 million dollars\n\n\nVariance\n\\(23(2.25)\\)\n51.75 (million dollars)\\(^2\\)\n\n\nSD\n\\(\\sqrt{51.75}\\)\n7.19 million dollars\n\n\n\nExpected profit grows by a factor of 23, while its SD grows by only \\(\\sqrt{23}\\).\nWhat are the mean and SD of average profit per project?\n\nHave pairs calculate the mean and SD before revealing the average rules. Their proposal should divide the total’s mean and SD by 23, not divide both the variance and SD by 23. Total expected profit grows by n; total SD grows by the square root of n."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#average-profit-per-project",
+    "href": "slides/15_sums_averages_clt.html#average-profit-per-project",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Average profit per project",
+    "text": "Average profit per project\nFor the same iid payoffs,\n\\[\n\\begin{aligned}\n\\bar X&=\\frac{S_n}{n},\\qquad E[\\bar X]=\\mu,\\\\[0.4em]\n\\operatorname{Var}(\\bar X)&=\\frac{n\\sigma^2}{n^2}=\\frac{\\sigma^2}{n},\\\\[0.4em]\n\\operatorname{SD}(\\bar X)&=\\frac{\\sigma}{\\sqrt n}.\n\\end{aligned}\n\\]\nThe average keeps the same mean and has a smaller SD."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#total-and-average-profit",
+    "href": "slides/15_sums_averages_clt.html#total-and-average-profit",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Total and average profit",
+    "text": "Total and average profit\nAll means and SDs below are in millions of dollars.\n\n\n\nQuantity\nOne project\n23 independentprojects\n\n\n\n\nMean of total\n0.5\n11.5\n\n\nSD of total\n1.5\n7.19\n\n\nMean of average\n0.5\n0.5\n\n\nSD of average\n1.5\n0.313\n\n\n\nHow often will total profit be negative?\nThe mean and SD alone do not determine that probability.\n\nThe total adds more uncertain payoffs. The average also divides by the number of projects. The individual payoff distribution remains unchanged. Quadrupling the number of iid projects halves the SD of the average. These moment results do not require normality."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#simulate-the-projects",
+    "href": "slides/15_sums_averages_clt.html#simulate-the-projects",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Simulate the projects",
+    "text": "Simulate the projects\nOpen Thaler’s investment app\nCompare 1, 5, and 23 projects, with 1,000 simulated portfolios each.\nPredict the shape and chance of a loss before each run.\n\nBudget ten minutes for the app and the remaining slides. Start with the normal overlay off. Keep the display on total profit and enable “Highlight losing portfolios.” Record results before changing project count; this clears history. More simulated portfolios give a better picture of the same model. More projects change that model’s total-profit distribution. Try 50 projects, the app’s maximum, only if time permits. The following plots provide a fallback."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#distributions-of-total-profit",
+    "href": "slides/15_sums_averages_clt.html#distributions-of-total-profit",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Distributions of total profit",
+    "text": "Distributions of total profit\n\nEach bar’s area is the probability of one possible total. The axes differ by panel.\n\nThese are exact model distributions, not one run of the simulation. Each possible total is three million dollars from the next, so the bars have width 3 and height probability divided by 3. The space between possible totals does not represent additional possible outcomes. Ask about the distribution’s shape before advancing to the normal curves."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#normal-curves-and-the-project-totals",
+    "href": "slides/15_sums_averages_clt.html#normal-curves-and-the-project-totals",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "Normal curves and the project totals",
+    "text": "Normal curves and the project totals\n\nThe totals become more bell-shaped as the number of projects grows.\n\nEach normal curve uses the total’s exact mean and variance. One project’s two-outcome distribution is not well described by its matching normal curve."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#the-central-limit-theorem",
+    "href": "slides/15_sums_averages_clt.html#the-central-limit-theorem",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "The central limit theorem",
+    "text": "The central limit theorem\nFor sufficiently many iid draws with finite, positive variance,\n\\[\nS_n\\approx N(n\\mu,n\\sigma^2),\\qquad\n\\bar X\\approx N\\!\\left(\\mu,\\frac{\\sigma^2}{n}\\right).\n\\]\nThe second parameter is the variance.\nThe normal shape is approximate; the means and variances are exact.\n\nFormally, the standardized sum converges to a standard normal distribution. How many draws suffice depends on the population and on the tail probability of interest. Rare extreme outcomes can require much larger n. The theorem does not make individual project payoffs normal."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#a-loss-remains-possible",
+    "href": "slides/15_sums_averages_clt.html#a-loss-remains-possible",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "A loss remains possible",
+    "text": "A loss remains possible\n\nThe normal approximation gives a loss probability of about 0.055, compared with 0.5 for one project.\n\nThe orange area to the left of zero is the approximate loss probability. The blue bar outlines show the possible totals’ exact probabilities as areas. The total is 3K - 23 when K projects succeed. A loss requires at most seven successes, giving pbinom(7, 23, 0.5), approximately 0.0466. The exact calculation is in the chapter’s optional technical detail; keep the lesson on the normal approximation. It uses mean 11.5 and SD 7.19; zero is about 1.60 SDs below the mean. The approximation is useful but not exact."
+  },
+  {
+    "objectID": "slides/15_sums_averages_clt.html#what-if-all-projects-move-together",
+    "href": "slides/15_sums_averages_clt.html#what-if-all-projects-move-together",
+    "title": "Sums, Averages, and the Central Limit Theorem",
+    "section": "What if all projects move together?",
+    "text": "What if all projects move together?\n\n\n\nOutcome\nTotal profit\nProbability\n\n\n\n\nAll succeed.\n$46 million\n0.5\n\n\nAll fail.\n−$23 million\n0.5\n\n\n\nAverage profit is again either $2 million or −$1 million.\nWould your decision change?\n\nReturn to the original polls. With perfect shared outcomes, averaging does not reduce variability: the average’s SD stays at 1.5 million dollars. Independence was necessary for our n-sigma-squared variance calculation. The app simulates independent projects; this table describes a different dependence assumption. After the break, connect an average project payoff to an average from a sample."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#saps-profitability-claim",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#saps-profitability-claim",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "SAP’s profitability claim",
+    "text": "SAP’s profitability claim\nSAP advertised that its customers were 32% more profitable than their peers.\nNucleus Research examined 81 publicly traded customers listed on SAP’s website.\nTheir measure was return on equity (ROE): annual profit as a percentage of shareholder equity.\n\nThe SAP advertisements ran in 2005; Nucleus published Research Note G12 in March 2006. The source is linked at first use. Each row of sap_roe represents one company, with its ROE and industry-average ROE in percent. The course notes’ “SAP dispute” section supplies the case context and further sources. Keep this setup and the next three slides to about ten minutes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-points-in-the-other-direction",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-points-in-the-other-direction",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The sample points in the other direction",
+    "text": "The sample points in the other direction\n\n\n\nGroup\nAverage ROE\n\n\n\n\n81 SAP customers\n12.6%\n\n\nTheir industry benchmarks\n15.7%\n\n\n\nThe sample gap is 3.1 percentage points.\nCould sampling variation explain it?\n\nThe relative gap is about 20%, which is the basis for Nucleus’s headline. Distinguish that relative percentage from the 3.1-percentage-point ROE gap. For this lesson, treat the average industry benchmark as fixed."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#company-roes-vary-widely",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#company-roes-vary-widely",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Company ROEs vary widely",
+    "text": "Company ROEs vary widely\n\nThe sample SD is 25.7 percentage points."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#is-81-too-small",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#is-81-too-small",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Is 81 too small?",
+    "text": "Is 81 too small?\nSAP objected: 81 firms out of roughly 30,000 customers is only 0.27%.\nWhat determines how much the sample average varies?\n\nAsk students what information they need before judging precision. Do not settle the case from the sampling fraction. Collect suggestions about company variability, sample size, and selection. Return to selection at the end."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-random-sampling-model",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-random-sampling-model",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A random-sampling model",
+    "text": "A random-sampling model\nModel the 81 company ROEs as iid draws from the customer population.\nEach customer is equally likely on each draw.\nWebsite selection may violate this model.\n\nThis is a working model, not a claim that website selection was random. Sampling with replacement gives iid draws exactly. For simple random sampling without replacement, the SE correction is sqrt((N-n)/(N-1)), about 0.9987 for n=81 and N=30,000. Thus the iid SE is a close approximation here. Avoid the different claim that the chance of any repeated firm is negligible."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#parameter-estimator-and-estimate",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#parameter-estimator-and-estimate",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Parameter, estimator, and estimate",
+    "text": "Parameter, estimator, and estimate\n\n\n\nQuantity\nSAP example\n\n\n\n\nParameter\n\\(\\mu\\): mean ROE of all SAP customers.\n\n\nEstimator\n\\(\\bar X\\): the rule for averaging a random sample.\n\n\nEstimate\n\\(\\bar x=12.6\\%\\): the result from these 81 firms.\n\n\n\nWhich would change with a new sample?\n\nThe parameter and the averaging rule stay fixed; the realized estimate usually changes. The estimator is a random variable before the sample is observed. The observed estimate is one realized value. An average here plays the same mathematical role as average project profit in Thaler, but mu is unknown."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-population-and-one-sample",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-population-and-one-sample",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A population and one sample",
+    "text": "A population and one sample\n\nThis is a simulated population, so we know its mean.\n\nThese figures use the explorer’s hypothetical population, not the 30,000 actual SAP customers. The population and sample panels use the same x-axis. Each histogram counts companies. The population mean stays fixed while the sample and its mean change on each draw."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#take-repeated-samples",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#take-repeated-samples",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Take repeated samples",
+    "text": "Take repeated samples\nOpen the sampling explorer\nSet \\(n=81\\). Take three samples, one at a time.\nWhat does one observation represent in each panel?\n\nBudget 25 minutes for the app sequence through the repetitions comparison. Keep the normal curve and interval off initially. The upper and middle panels contain company ROEs; the lower panel accumulates one mean per sample. Compare the first three means, then generate 1,000 samples. Ask students to describe the center, spread, and shape before revealing the normal overlay."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sampling-distribution-of-the-mean",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sampling-distribution-of-the-mean",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The sampling distribution of the mean",
+    "text": "The sampling distribution of the mean\n\nIt describes how the sample mean varies across random samples of the same size.\n\nThe histogram approximates the sampling distribution with 5,000 independent samples of size 81. Each recorded value is an average, not one company. In the real SAP case we have only one sample and cannot observe this whole distribution. Its theory describes the estimates we could have obtained."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#compare-sample-sizes",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#compare-sample-sizes",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Compare sample sizes",
+    "text": "Compare sample sizes\n\n\n\nGroup\nCompanies per sample\nSamples to simulate\n\n\n\n\nA\n9\n1,000\n\n\nB\n36\n1,000\n\n\nC\n81\n1,000\n\n\n\nPredict the center and spread before running the app.\n\nAssign one group per table or pair. Record the result before changing n because the app clears history. Compare 9 with 36 explicitly: four times as many observations should halve the SD of the average. If devices are unavailable, collect table predictions and run the three settings on the projector."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-give-less-variable-averages",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-give-less-variable-averages",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Larger samples give less variable averages",
+    "text": "Larger samples give less variable averages\n\nThe population stays fixed; each panel uses 5,000 samples."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#simulation-repetitions",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#simulation-repetitions",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Simulation repetitions",
+    "text": "Simulation repetitions\n\nMore repetitions improve our picture of the same sampling distribution."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-means-center-and-spread",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-sample-means-center-and-spread",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The sample mean’s center and spread",
+    "text": "The sample mean’s center and spread\nFor iid draws with mean \\(\\mu\\) and finite variance \\(\\sigma^2\\),\n\\[\nE[\\bar X]=\\mu,\\qquad\n\\operatorname{SD}(\\bar X)=\\frac{\\sigma}{\\sqrt n}.\n\\]\nThese are the same rules we used for average project profit."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#standard-error",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#standard-error",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Standard error",
+    "text": "Standard error\nThe standard error is the SD of an estimator’s sampling distribution.\n\\[\nSE(\\bar X)=\\frac{\\sigma}{\\sqrt n}.\n\\]\nFor the sample mean under iid sampling, it measures the typical size of estimation error."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#estimate-se-from-the-sample",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#estimate-se-from-the-sample",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Estimate SE from the sample",
+    "text": "Estimate SE from the sample\nThe population SD \\(\\sigma\\) is unknown. Use the sample SD \\(s\\):\n\\[\n\\widehat{SE}(\\bar X)=\\frac{s}{\\sqrt n}.\n\\]\nThis estimates how much sample means vary across repeated samples.\n\nThe hat marks an estimated SE. In the app sigma is known because we created the population. In an actual analysis we substitute s; it changes across samples. The same units apply to the estimate, its error, and its SE."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#individual-times-and-averages",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#individual-times-and-averages",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Individual times and averages",
+    "text": "Individual times and averages\nDelivery times are iid, with population SD 12 minutes.\nCompute the SE of the mean for samples of 100 and 400 orders.\nWhich spread changes? Which stays at 12 minutes?"
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-improve-precision",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#larger-samples-improve-precision",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Larger samples improve precision",
+    "text": "Larger samples improve precision\n\n\n\nSample size\nSE of the mean\n\n\n\n\n100\n\\(12/\\sqrt{100}=1.2\\) minutes\n\n\n400\n\\(12/\\sqrt{400}=0.6\\) minutes\n\n\n\nIndividual delivery times still have SD 12 minutes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-normal-approximation-for-the-mean",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-normal-approximation-for-the-mean",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A normal approximation for the mean",
+    "text": "A normal approximation for the mean\n\n\\[\n\\bar X\\approx N\\!\\left(\\mu,\\frac{\\sigma^2}{n}\\right).\n\\]\n\nThe curve uses the simulated population’s known mean and variance. The CLT supplies the approximate shape; the center and variance follow exactly from the iid model. The second normal parameter is variance. Whether n is large enough depends on the population’s shape and extreme outcomes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#estimation-error",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#estimation-error",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Estimation error",
+    "text": "Estimation error\nSubtract the fixed population mean:\n\\[\n\\bar X-\\mu\\approx N\\!\\left(0,\\frac{\\sigma^2}{n}\\right).\n\\]\nThe errors are centered at zero and have SD \\(\\sigma/\\sqrt n\\).\nWe cannot calculate our actual error because \\(\\mu\\) is unknown."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#in-about-95-of-random-samples-the-sample-mean-is-within-two-ses-of-mu",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#in-about-95-of-random-samples-the-sample-mean-is-within-two-ses-of-mu",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "In about 95% of random samples, the sample mean is within two SEs of \\(\\mu\\)",
+    "text": "In about 95% of random samples, the sample mean is within two SEs of \\(\\mu\\)\n\nThis uses the normal approximation for estimation error.\n\nThe exact standard-normal area between -2 and 2 is about 0.9545. We use the course’s approximate two-SE rule throughout; do not call it exact 95% coverage."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#turn-the-distance-into-an-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#turn-the-distance-into-an-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Turn the distance into an interval",
+    "text": "Turn the distance into an interval\n\\[\n|\\bar X-\\mu|\\leq 2\\,SE\n\\]\nis the same event as\n\\[\n\\bar X-2\\,SE\\leq\\mu\\leq\\bar X+2\\,SE.\n\\]\nCentering the interval on \\(\\bar X\\) captures \\(\\mu\\) in about 95% of samples."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#a-confidence-interval-for-the-mean",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#a-confidence-interval-for-the-mean",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "A confidence interval for the mean",
+    "text": "A confidence interval for the mean\nA confidence interval gives plausible values for the population mean.\nWith an adequate normal approximation and an estimated SE, use\n\\[\n\\bar x\\ \\pm\\ 2\\frac{s}{\\sqrt n}.\n\\]\nThis is an approximate 95% confidence interval under the sampling model."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#calculate-a-delivery-time-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#calculate-a-delivery-time-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Calculate a delivery-time interval",
+    "text": "Calculate a delivery-time interval\nAn iid sample of 100 orders has:\n\n\n\nSample summary\nValue\n\n\n\n\nMean\n42 minutes\n\n\nSD\n12 minutes\n\n\n\nAssume the normal approximation is adequate.\nA true mean above 45 minutes would trigger a costly process review.\nFind the estimated SE and an approximate 95% interval for the population mean."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#plausible-mean-delivery-times",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#plausible-mean-delivery-times",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Plausible mean delivery times",
+    "text": "Plausible mean delivery times\n\\[\n\\widehat{SE}=\\frac{12}{\\sqrt{100}}=1.2\\text{ minutes},\n\\]\n\\[\n42\\pm 2(1.2)=[39.6,\\ 44.4]\\text{ minutes}.\n\\]\nDoes this audit support triggering that review?\n\nThe upper endpoint, 44.4 minutes, is below 45. Under the sampling assumptions, the audit does not support triggering a review on the grounds that the mean exceeds 45. Have pairs state this in one sentence. The interval gives plausible values for the population mean; it does not contain 95% of individual times. Individual spread remains much larger."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#plan-the-next-audit",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#plan-the-next-audit",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Plan the next audit",
+    "text": "Plan the next audit\nUse 12 minutes as the planning value for the population SD.\nHow many deliveries would give a two-SE margin of error of 1 minute?\n\\[\n2\\frac{12}{\\sqrt n}=1\n\\]\n\nSolving gives \\(\\sqrt n=24\\), so the audit needs 576 deliveries.\n\n\nAllow two minutes before revealing the answer. Planning uses the previous sample SD as a stand-in for the unknown population SD. At least 576 deliveries targets a margin no larger than 1 minute if that planning value remains adequate."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#watch-intervals-cover-or-miss",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#watch-intervals-cover-or-miss",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Watch intervals cover or miss",
+    "text": "Watch intervals cover or miss\nOpen the sampling explorer\nSet \\(n=81\\) and show the approximate 95% confidence interval.\nOut of 1,000 intervals, roughly how many should contain \\(\\mu\\)?\n\nBudget ten minutes for coverage. Clear history, draw a few samples individually, then a batch of 1,000. Ask what moves and what stays fixed. About 950 intervals should cover; a particular run need not hit that count exactly. The app builds intervals with the known population sigma. Do not compare its width numerically with the actual SAP interval, which uses s from a different set of values."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#coverage-across-samples",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#coverage-across-samples",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Coverage across samples",
+    "text": "Coverage across samples\n\nThe app uses its known population SD. Only the interval centers move."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#the-95-describes-the-procedure",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#the-95-describes-the-procedure",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "The 95% describes the procedure",
+    "text": "The 95% describes the procedure\nAbout 95% of intervals from this procedure contain \\(\\mu\\) under the model.\nThe population mean stays fixed; the samples and intervals change.\nOur one interval either contains \\(\\mu\\) or misses it.\n\nAsk students whether the procedure assigns a 0.95 probability to mu being in the particular interval already calculated. It does not: the frequentist coverage statement concerns repetition of the sampling procedure. In real analyses the sample SD also changes, so interval widths can vary."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#calculate-the-sap-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#calculate-the-sap-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Calculate the SAP interval",
+    "text": "Calculate the SAP interval\n\n\n\nSample summary\nValue\n\n\n\n\nNumber of firms\n81\n\n\nMean ROE\n12.6%\n\n\nSD of ROE\n25.66 percentage points\n\n\n\nEstimate the SE and construct an approximate 95% interval for mean customer ROE.\n\nUse the final 15 minutes for this calculation, comparison, and discussion. Students use rounded inputs; their results should agree to the displayed precision. The rendered results use the unrounded data. Keep the working iid model explicit. These are the actual 81 firms, not the simulated population."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#saps-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#saps-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "SAP’s interval",
+    "text": "SAP’s interval\n\\[\n\\widehat{SE}=\\frac{25.66}{\\sqrt{81}}\n\\approx 2.85\\text{ percentage points}.\n\\]\n\\[\n\\bar x\\pm2\\widehat{SE}\\approx\n[6.9\\%,\\ 18.3\\%].\n\\]\nThese are plausible population means under the random-sampling model."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#compare-the-claims-with-the-interval",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#compare-the-claims-with-the-interval",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Compare the claims with the interval",
+    "text": "Compare the claims with the interval\n\nTreating the industry benchmark as fixed, which claims fit this interval?\nA mean near 7% would be much worse than Nucleus claimed, and it also fits.\n\nThe industry benchmark 15.7% lies inside the interval. Both lower and higher population means are plausible; the data do not establish that SAP customers are less profitable. The lower end near 7% permits substantial underperformance, so including parity does not establish that the firms perform well either. Applying a 32% advantage to that benchmark gives about 20.7%, outside the interval. These readings all depend on the working model and the fixed-benchmark simplification; do not make an unconditional claim about the advertisement or about SAP causing profit changes."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#how-were-the-firms-selected",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#how-were-the-firms-selected",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "How were the firms selected?",
+    "text": "How were the firms selected?\nNucleus used publicly traded firms listed on SAP’s website.\nThey may differ from SAP’s other customers.\nThe interval measures sampling variation under the model. It does not correct selection bias."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#report-what-the-data-support",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#report-what-the-data-support",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Report what the data support",
+    "text": "Report what the data support\nSpeak for Nucleus, SAP, or an independent analyst.\nUse the interval and identify one limitation.\nThen write a one-sentence conclusion about mean customer ROE.\n\nHave tables discuss for two minutes, then hear one response per role. Distinguish the sample-size objection from representativeness. The fraction 81/30,000 alone does not establish that a sample is useless. The comparison does not identify SAP’s causal effect on profitability. A defensible conclusion reports 6.9% to 18.3% under random sampling, with the selection limitation attached."
+  },
+  {
+    "objectID": "slides/16_sampling_distributions_confidence_intervals.html#review-questions",
+    "href": "slides/16_sampling_distributions_confidence_intervals.html#review-questions",
+    "title": "Sampling Distributions and Confidence Intervals",
+    "section": "Review questions",
+    "text": "Review questions\nWhat does standard error measure?\nHow must sample size change to halve the SE of a mean?\nWhat is one defensible conclusion from the SAP interval?"
   },
   {
     "objectID": "slides/differences_between_groups.html#two-coding-bootcamps",
@@ -2211,7 +2211,7 @@
     "href": "slides/differences_between_groups.html#standard-error-of-the-difference",
     "title": "Comparisons Between Groups",
     "section": "Standard error of the difference",
-    "text": "Standard error of the difference\nFor independent samples,\n\nSE(\\bar X_A-\\bar X_B)\\approx\n\\sqrt{\\frac{s_A^2}{n_A}+\\frac{s_B^2}{n_B}}.\n\n\n\\widehat{SE}=\\sqrt{\\frac{20^2}{70}+\\frac{25^2}{50}}\n\\approx 4.27\\text{ points}.\n\nErrors in either sample mean contribute to the error in their difference, so the variances add.\n\nSource: note-se-diff-means. This is the variance rule for a difference of independent random variables from Chapter 14. It estimates typical error in the difference across repeated pairs of samples. The approximate interval also requires an adequate normal approximation for the difference."
+    "text": "Standard error of the difference\nLet A denote the intensive program and B the standard program. For independent samples,\n\nSE(\\bar X_A-\\bar X_B)\\approx\n\\sqrt{\\frac{s_A^2}{n_A}+\\frac{s_B^2}{n_B}}.\n\n\n\\widehat{SE}=\\sqrt{\\frac{20^2}{70}+\\frac{25^2}{50}}\n\\approx 4.27\\text{ points}.\n\nErrors in either sample mean contribute to the error in their difference, so the variances add.\n\nSource: note-se-diff-means. This is the variance rule for a difference of independent random variables from Chapter 14. It estimates typical error in the difference across repeated pairs of samples. The approximate interval also requires an adequate normal approximation for the difference."
   },
   {
     "objectID": "slides/differences_between_groups.html#the-difference-in-mean-scores",
@@ -2253,14 +2253,14 @@
     "href": "slides/differences_between_groups.html#paired-observations",
     "title": "Comparisons Between Groups",
     "section": "Paired observations",
-    "text": "Paired observations\nSuppose the same employees take a test before and after training.\nCompute one difference per employee:\n\nd_i=\\text{score after}_i-\\text{score before}_i.\n\nThen use the one-sample tools on those differences:\n\n\\widehat{SE}(\\bar d)=\\frac{s_d}{\\sqrt n},\\qquad\n\\bar d\\pm2\\frac{s_d}{\\sqrt n}.\n\n\nSource: the paired-data paragraph following note-se-diff-means. Here n is the number of employees, and s_d is the SD of their within-person changes. The independent-groups formula would ignore the pairing. As with any before/after comparison, attributing the change to training requires more than a confidence interval."
+    "text": "Paired observations\nEach employee takes the test before and after training:\n\nd_i=\\text{score after}_i-\\text{score before}_i.\n\nFor n employees, let s_d be the SD of their score changes. Apply the one-sample SE and interval to those changes:\n\n\\widehat{SE}(\\bar d)=\\frac{s_d}{\\sqrt n},\\qquad\n\\bar d\\pm2\\frac{s_d}{\\sqrt n}.\n\nThis interval assumes independent employees and an adequate normal approximation for the mean change.\n\nSource: the paired-data paragraph following note-se-diff-means. Here n is the number of employees, and s_d is the SD of their within-person changes. The independent-groups formula would ignore the pairing. As with any before/after comparison, attributing the change to training requires more than a confidence interval."
   },
   {
     "objectID": "slides/differences_between_groups.html#two-suppliers",
     "href": "slides/differences_between_groups.html#two-suppliers",
     "title": "Comparisons Between Groups",
     "section": "Two suppliers",
-    "text": "Two suppliers\nAn invented evaluation inspects 15,000 parts from each supplier.\n\n\n\nSupplier\nDefective\nInspected\nDefect rate\n\n\n\n\nA\n180\n15,000\n1.2%\n\n\nB\n120\n15,000\n0.8%\n\n\n\n\n\\hat p_A-\\hat p_B=0.012-0.008=0.004.\n\nSupplier A’s observed defect rate is 0.4 percentage points higher.\n\nSource: sec-diff-props. State the subtraction order. These are percentage points, not a relative percent change. Treat each supplier’s inspected parts as iid draws, independently of the other supplier’s sample."
+    "text": "Two suppliers\nAn invented evaluation independently samples and inspects 15,000 parts from each supplier.\n\n\n\nSupplier\nDefective\nInspected\nDefect rate\n\n\n\n\nA\n180\n15,000\n1.2%\n\n\nB\n120\n15,000\n0.8%\n\n\n\n\n\\hat p_A-\\hat p_B=0.012-0.008=0.004.\n\nSupplier A’s observed defect rate is 0.4 percentage points higher.\n\nSource: sec-diff-props. State the subtraction order. These are percentage points, not a relative percent change. Treat each supplier’s inspected parts as iid draws, independently of the other supplier’s sample."
   },
   {
     "objectID": "slides/differences_between_groups.html#standard-error-for-two-proportions",
@@ -2309,21 +2309,21 @@
     "href": "slides/differences_between_groups.html#an-ab-test",
     "title": "Comparisons Between Groups",
     "section": "An A/B test",
-    "text": "An A/B test\nAn e-commerce site randomly assigns visitors to two page designs.\n\n\n\nVariant\nConversions\nVisitors\n\n\n\n\nA\n156\n820\n\n\nB\n171\n830\n\n\n\nUsing these invented counts, construct an approximate 95% interval for the conversion-rate difference, B minus A.\nWould you switch to B?\n\nSource: exercise-ab-test-conversions. Allow three or four minutes. If time is short, supply the SE of 0.0196 so students can focus on the interval and decision. The random assignment supports a causal comparison of page designs."
+    "text": "An A/B test\nAn e-commerce site randomly assigns visitors to two page designs. Count a purchase as a conversion.\n\n\n\nVariant\nConversions\nVisitors\n\n\n\n\nA\n156\n820\n\n\nB\n171\n830\n\n\n\nUsing these invented counts, construct an approximate 95% interval for the conversion-rate difference, B minus A.\nWhat does the interval tell us about B? What else would you need to decide whether to switch?\n\nSource: exercise-ab-test-conversions. Allow three or four minutes. If time is short, supply the SE of 0.0196 so students can focus on the interval and decision. The random assignment supports a causal comparison of page designs."
   },
   {
     "objectID": "slides/differences_between_groups.html#the-conversion-rate-difference",
     "href": "slides/differences_between_groups.html#the-conversion-rate-difference",
     "title": "Comparisons Between Groups",
     "section": "The conversion-rate difference",
-    "text": "The conversion-rate difference\n\n\\hat p_B-\\hat p_A=\\frac{171}{830}-\\frac{156}{820}\n\\approx 0.0158.\n\n\n0.0158\\pm2(0.0196)\n\\approx[-0.023,\\ 0.055].\n\nThe interval runs from 2.3 points worse to 5.5 points better for B.\nAgainst zero, t\\approx 0.8 and the two-sided p-value is about 0.42. The data leave both directions plausible.\n\nSource: exercise-ab-test-conversions. Fail to reject equal conversion rates. That does not establish equal performance. The interval allows consequential changes in either direction. A switch also depends on the value of added conversions and the costs of changing the design."
+    "text": "The conversion-rate difference\n\n\\hat p_B-\\hat p_A=\\frac{171}{830}-\\frac{156}{820}\n\\approx 0.0158.\n\n\n0.0158\\pm2(0.0196)\n\\approx[-0.023,\\ 0.055].\n\nThe approximate 95% interval for B’s conversion rate minus A’s runs from -2.3 to 5.5 percentage points.\nAgainst zero, t\\approx 0.8 and the two-sided p-value is about 0.42. The data leave both directions plausible.\n\nSource: exercise-ab-test-conversions. Fail to reject equal conversion rates. That does not establish equal performance. The interval allows consequential changes in either direction. A switch also depends on the value of added conversions and the costs of changing the design."
   },
   {
     "objectID": "slides/differences_between_groups.html#standard-errors",
     "href": "slides/differences_between_groups.html#standard-errors",
     "title": "Comparisons Between Groups",
     "section": "Standard errors",
-    "text": "Standard errors\n\n\n\n\n\n\n\n\nParameter\nEstimate\nEstimated SE\n\n\n\n\nMean\n\\bar x\ns/\\sqrt n\n\n\nProportion\n\\hat p\n\\sqrt{\\hat p(1-\\hat p)/n}\n\n\nDifference in means\n\\bar x_A-\\bar x_B\n\\sqrt{s_A^2/n_A+s_B^2/n_B}\n\n\nDifference in proportions\n\\hat p_A-\\hat p_B\n\\sqrt{\\hat p_A(1-\\hat p_A)/n_A+\\hat p_B(1-\\hat p_B)/n_B}\n\n\n\n\n\\text{Approximate 95\\% CI}:\\quad\\text{estimate}\\pm2SE\n\n\nt=\\frac{\\text{estimate}-\\text{hypothesized value}}{SE}.\n\n\nSource: tbl-se-summary. The difference formulas require independent samples. For pairs, use the first row on the within-pair differences. These intervals and normal p-values require adequate normal approximations."
+    "text": "Standard errors\n\n\n\n\n\n\n\n\nParameter\nEstimate\nEstimated SE\n\n\n\n\nMean\n\\bar x\ns/\\sqrt n\n\n\nProportion\n\\hat p\n\\sqrt{\\hat p(1-\\hat p)/n}\n\n\nDifference in means\n\\bar x_A-\\bar x_B\n\\sqrt{s_A^2/n_A+s_B^2/n_B}\n\n\nDifference in proportions\n\\hat p_A-\\hat p_B\n\\sqrt{\\hat p_A(1-\\hat p_A)/n_A+\\hat p_B(1-\\hat p_B)/n_B}\n\n\n\nThese formulas assume iid observations within each group and independent groups. For paired observations, use the mean row on the within-pair differences.\nWith an adequate normal approximation,\n\n\\text{Approximate 95\\% CI}:\\quad\\text{estimate}\\pm2SE\n\n\nt=\\frac{\\text{estimate}-\\text{hypothesized value}}{SE}.\n\n\nSource: tbl-se-summary. The difference formulas require independent samples. For pairs, use the first row on the within-pair differences. These intervals and normal p-values require adequate normal approximations."
   },
   {
     "objectID": "slides/sample_proportions.html#human-or-ai",
@@ -2337,14 +2337,14 @@
     "href": "slides/sample_proportions.html#a-sample-proportion",
     "title": "Sample Proportions",
     "section": "A sample proportion",
-    "text": "A sample proportion\nRecord each response as 1 for correct and 0 for incorrect.\nThe sample proportion is the mean of those zeros and ones:\n\n\\hat p=\\frac{\\text{number correct}}{\\text{number of customers}}\n=\\frac{531}{1{,}100}\\approx 0.483.\n\nIt estimates p, the proportion of customers who would answer correctly.\n\nThe sample proportion is observed. The population proportion is the unknown parameter. This is the same estimate/parameter distinction as x-bar and mu in the SAP example. Source: defn-sample-proportion."
+    "text": "A sample proportion\nRecord each response as 1 for correct and 0 for incorrect.\nThe sample proportion is the mean of those zeros and ones:\n\n\\hat p=\\frac{\\text{number correct}}{\\text{number of customers}}\n=\\frac{531}{1{,}100}\\approx 0.483.\n\nIt estimates p, the proportion of this company’s customers who would identify the AI-written ad in this pair.\n\nThe sample proportion is observed. The population proportion is the unknown parameter. This is the same estimate/parameter distinction as x-bar and mu in the SAP example. Source: defn-sample-proportion."
   },
   {
     "objectID": "slides/sample_proportions.html#standard-error",
     "href": "slides/sample_proportions.html#standard-error",
     "title": "Sample Proportions",
     "section": "Standard error",
-    "text": "Standard error\nFor iid responses,\n\nSE(\\hat p)=\\sqrt{\\frac{p(1-p)}{n}}\n\\approx\\sqrt{\\frac{\\hat p(1-\\hat p)}{n}}.\n\n\n\\widehat{SE}=\\sqrt{\\frac{0.4827(1-0.4827)}{1{,}100}}\n\\approx 0.0151.\n\nThe estimate typically varies by about 1.5 percentage points across samples.\n\nSource: note-se-proportion. This is the standard error of an average with population variance p(1-p). No separate sample SD is needed. A normal approximation needs enough of both outcomes; this sample has 531 correct and 569 incorrect responses. Leave the variance derivation in the notes."
+    "text": "Standard error\nTreat the responses as independent draws from this company’s customers.\n\nSE(\\hat p)=\\sqrt{\\frac{p(1-p)}{n}}\n\\approx\\sqrt{\\frac{\\hat p(1-\\hat p)}{n}}.\n\n\n\\widehat{SE}=\\sqrt{\\frac{0.4827(1-0.4827)}{1{,}100}}\n\\approx 0.0151.\n\nThe estimate typically varies by about 1.5 percentage points across samples.\n\nSource: note-se-proportion. This is the standard error of an average with population variance p(1-p). No separate sample SD is needed. A normal approximation needs enough of both outcomes; this sample has 531 correct and 569 incorrect responses. Leave the variance derivation in the notes."
   },
   {
     "objectID": "slides/sample_proportions.html#a-confidence-interval",
@@ -2386,7 +2386,7 @@
     "href": "slides/triangle_test.html#null-and-alternative-hypotheses",
     "title": "Triangle Tests and Hypothesis Tests",
     "section": "Null and alternative hypotheses",
-    "text": "Null and alternative hypotheses\nLet p be the probability of a correct pick under these tasting conditions.\n\nH_0:p=1/3,\\qquad H_A:p&gt;1/3.\n\nThe null hypothesis says everyone is guessing. The alternative says accuracy exceeds guessing.\nWe will use a significance level of \\alpha=0.05.\n\nStep 1 in the notes: posit the null and its alternative. The one-sided alternative is chosen from the discrimination question, not from the observed direction. A sample proportion below one third can occur under this null. Alpha is the rejection cutoff, defined when we reach the verdict."
+    "text": "Null and alternative hypotheses\nLet p be the probability of a correct pick under these tasting conditions.\n\nH_0:p=1/3,\\qquad H_A:p&gt;1/3.\n\nUnder the null hypothesis, the chance of a correct pick is 1/3, the rate from random guessing. The alternative says accuracy is higher.\nWe will use a significance level of \\alpha=0.05.\n\nStep 1 in the notes: posit the null and its alternative. The one-sided alternative is chosen from the discrimination question, not from the observed direction. A sample proportion below one third can occur under this null. Alpha is the rejection cutoff, defined when we reach the verdict."
   },
   {
     "objectID": "slides/triangle_test.html#the-test-statistic",
@@ -2428,7 +2428,7 @@
     "href": "slides/triangle_test.html#the-testing-decision",
     "title": "Triangle Tests and Hypothesis Tests",
     "section": "The testing decision",
-    "text": "The testing decision\nAt \\alpha=0.05, reject H_0 when the p-value is below 0.05. Otherwise, fail to reject it.\n\n  Enter the class counts to compare the p-value with 0.05.\n\nFailing to reject does not establish that nobody can tell the difference.\n\nStep 3 in the notes: reach a verdict. The deck reports the normal and exact calculations distinctly. If they disagree near the cutoff, the exact binomial calculation avoids the normal approximation for this model. Under the guessing model, that exact test’s long-run false-positive rate is at most 0.05. That is not the probability that today’s rejection is wrong."
+    "text": "The testing decision\nAt \\alpha=0.05, reject H_0 when the p-value is below 0.05. Otherwise, fail to reject it.\nUnder the guessing model, the exact test rejects a true null in at most 5% of repeated experiments.\n\n  Enter the class counts to compare the p-value with 0.05.\n\nFailing to reject does not establish that nobody can tell the difference.\n\nStep 3 in the notes: reach a verdict. The deck reports the normal and exact calculations distinctly. If they disagree near the cutoff, the exact binomial calculation avoids the normal approximation for this model. Under the guessing model, that exact test’s long-run false-positive rate is at most 0.05. That is not the probability that today’s rejection is wrong."
   },
   {
     "objectID": "slides/triangle_test.html#interpreting-the-result",

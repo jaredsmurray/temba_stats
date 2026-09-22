@@ -1,9 +1,12 @@
 {
-  "baseline_commit": "4c72aab46b5298377ec46f446a89fef2f0428932",
-  "release": "20260921T222146-q4bgarir",
+  "baseline_commit": "0f830ab25d8659a2e68ca4dc8942cfc7d06270b6",
+  "release": "20260922T220637-q0rii9jl",
   "scope": null,
   "selected": [
-    "slides.qmd",
+    "slides/12_independence.qmd",
+    "slides/14_combining_random_variables.qmd",
+    "slides/15_sums_averages_clt.qmd",
+    "slides/16_sampling_distributions_confidence_intervals.qmd",
     "slides/differences_between_groups.qmd",
     "slides/sample_proportions.qmd",
     "slides/triangle_test.qmd"
@@ -47,5 +50,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "afd46e84ee7f339dcf8d3807d8be52724ce46059"
+  "source_commit": "fab3cde403b64a3572be303ba3d640cef248406e"
 }

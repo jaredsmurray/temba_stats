@@ -1041,7 +1041,7 @@ margin-right: 0; }
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-visibility="hidden" class="quarto-title-block center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Comparisons Between Groups</h1>
   <p class="subtitle">TEMBA Statistics 2026</p>
 
@@ -1093,7 +1093,7 @@ display:block!important;
 </section>
 <section id="standard-error-of-the-difference" class="slide level2">
 <h2>Standard error of the difference</h2>
-<p>For independent samples,</p>
+<p>Let A denote the intensive program and B the standard program. For independent samples,</p>
 <p><span class="math display">
 SE(\bar X_A-\bar X_B)\approx
 \sqrt{\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B}}.
@@ -1254,16 +1254,16 @@ display:block!important;
 </section>
 <section id="paired-observations" class="slide level2">
 <h2>Paired observations</h2>
-<p>Suppose the <strong>same employees</strong> take a test before and after training.</p>
-<p>Compute one difference per employee:</p>
+<p>Each employee takes the test before and after training:</p>
 <p><span class="math display">
 d_i=\text{score after}_i-\text{score before}_i.
 </span></p>
-<p>Then use the one-sample tools on those differences:</p>
+<p>For <span class="math inline">n</span> employees, let <span class="math inline">s_d</span> be the SD of their score changes. Apply the one-sample SE and interval to those changes:</p>
 <p><span class="math display">
 \widehat{SE}(\bar d)=\frac{s_d}{\sqrt n},\qquad
 \bar d\pm2\frac{s_d}{\sqrt n}.
 </span></p>
+<p>This interval assumes independent employees and an adequate normal approximation for the mean change.</p>
 <aside class="notes">
 <p>Source: the paired-data paragraph following note-se-diff-means. Here n is the number of employees, and s_d is the SD of their within-person changes. The independent-groups formula would ignore the pairing. As with any before/after comparison, attributing the change to training requires more than a confidence interval.</p>
 <style type="text/css">
@@ -1280,7 +1280,7 @@ display:block!important;
 </section>
 <section id="two-suppliers" class="slide level2">
 <h2>Two suppliers</h2>
-<p>An invented evaluation inspects 15,000 parts from each supplier.</p>
+<p>An invented evaluation independently samples and inspects 15,000 parts from each supplier.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1508,7 +1508,7 @@ display:block!important;
 </section>
 <section id="an-ab-test" class="slide level2">
 <h2>An A/B test</h2>
-<p>An e-commerce site randomly assigns visitors to two page designs.</p>
+<p>An e-commerce site randomly assigns visitors to two page designs. Count a purchase as a conversion.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1531,7 +1531,7 @@ display:block!important;
 </tbody>
 </table>
 <p>Using these invented counts, construct an approximate 95% interval for the conversion-rate difference, <strong>B minus A</strong>.</p>
-<p>Would you switch to B?</p>
+<p>What does the interval tell us about B? What else would you need to decide whether to switch?</p>
 <aside class="notes">
 <p>Source: exercise-ab-test-conversions. Allow three or four minutes. If time is short, supply the SE of 0.0196 so students can focus on the interval and decision. The random assignment supports a causal comparison of page designs.</p>
 <style type="text/css">
@@ -1556,7 +1556,7 @@ display:block!important;
 0.0158\pm2(0.0196)
 \approx[-0.023,\ 0.055].
 </span></p>
-<p>The interval runs from <strong>2.3 points worse to 5.5 points better</strong> for B.</p>
+<p>The approximate 95% interval for B’s conversion rate minus A’s runs from <span class="math inline">-2.3</span> to <span class="math inline">5.5</span> percentage points.</p>
 <p>Against zero, <span class="math inline">t\approx 0.8</span> and the two-sided p-value is about 0.42. The data leave both directions plausible.</p>
 <aside class="notes">
 <p>Source: exercise-ab-test-conversions. Fail to reject equal conversion rates. That does not establish equal performance. The interval allows consequential changes in either direction. A switch also depends on the value of added conversions and the costs of changing the design.</p>
@@ -1610,6 +1610,8 @@ display:block!important;
 </tr>
 </tbody>
 </table>
+<p>These formulas assume iid observations within each group and independent groups. For paired observations, use the mean row on the within-pair differences.</p>
+<p>With an adequate normal approximation,</p>
 <p><span class="math display">
 \text{Approximate 95\% CI}:\quad\text{estimate}\pm2SE
 </span></p>
