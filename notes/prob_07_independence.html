@@ -77,9 +77,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 .Notation {
   --color1: #EEF1F3;
@@ -93,9 +93,9 @@ ul.task-list li input[type="checkbox"] {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -499,7 +499,7 @@ Table&nbsp;12.1: Historical default rates for the three-purpose LendingClub subs
 <li>Are delivery service and late arrival independent in this model? Give a numerical comparison that supports your answer.</li>
 <li>Find the conditional probability of an on-time arrival given express service, and compare it with the marginal probability of an on-time arrival.</li>
 </ol>
-<details aria-label="Solution" id="details-1" class="solution-details">
+<details class="solution-details" id="details-1" aria-label="Solution">
 <summary>Solution</summary>
 <p>The variables are dependent because <span class="math inline">\(\Pr(\text{late}\mid\text{express})=0.02\)</span> differs from <span class="math inline">\(\Pr(\text{late})=0.08\)</span>. The standard-service comparison also fails: <span class="math inline">\(0.10\ne0.08\)</span>. An express delivery arrives on time with conditional probability <span class="math inline">\(1-0.02=0.98\)</span>, compared with the marginal probability <span class="math inline">\(1-0.08=0.92\)</span>. Learning the service changes both probabilities in the arrival-status distribution.</p>
 </details>
@@ -607,7 +607,7 @@ Table&nbsp;12.2: Joint market-implied probabilities for the July and September t
 </tbody>
 </table>
 <p>Find one cell that disproves independence. State what independence would require for that cell and compare it with the table.</p>
-<details aria-label="Solution" id="details-2" class="solution-details">
+<details class="solution-details" id="details-2" aria-label="Solution">
 <summary>Solution</summary>
 <p>Independence would require <span class="math inline">\(\Pr(\text{visit and purchase})=0.40(0.30)=0.12\)</span>. The table assigns 0.18 to that combination, so store visits and purchases are dependent. We do not need to check the remaining cells once this equality fails.</p>
 </details>
@@ -704,7 +704,7 @@ Table&nbsp;12.3: An independent model for advertisement and device. Every joint 
 </tr>
 </tbody>
 </table>
-<details aria-label="Solution" id="details-3" class="solution-details">
+<details class="solution-details" id="details-3" aria-label="Solution">
 <summary>Solution</summary>
 <p>Multiply each row margin by each column margin. The first row contains <span class="math inline">\(0.25(0.40)=0.10\)</span> and <span class="math inline">\(0.25(0.60)=0.15\)</span>; the second contains <span class="math inline">\(0.75(0.40)=0.30\)</span> and <span class="math inline">\(0.75(0.60)=0.45\)</span>. The four cells sum to one and recover the supplied margins.</p>
 <p>The conditional discount probabilities are <span class="math inline">\(0.10/0.25=0.40\)</span> with free shipping and <span class="math inline">\(0.30/0.75=0.40\)</span> without it. Both equal the marginal probability 0.40, as independence requires.</p>
@@ -797,7 +797,7 @@ Table&nbsp;12.4: Conditional percentages rating national economic conditions in 
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 12.4: </strong>Waiting times at two branches</div><div class="fobx-body">
 <p>In a synthetic model, a customer visits either of two branches with probability 0.5 each. At Branch A, the waiting time is 8 or 12 minutes, each with conditional probability 0.5. At Branch B, it is 2 or 18 minutes, each with conditional probability 0.5.</p>
 <p>Both branches have a mean waiting time of 10 minutes. Are branch and waiting time independent? Compare the conditional distributions, including their spreads, and give one probability that changes when we learn the branch.</p>
-<details aria-label="Solution" id="details-4" class="solution-details">
+<details class="solution-details" id="details-4" aria-label="Solution">
 <summary>Solution</summary>
 <p>The variables are dependent. Although both means are 10 minutes, Branch A’s waiting times are 2 minutes from that mean, while Branch B’s are 8 minutes from it. For example, the conditional probability of waiting 2 minutes is zero at Branch A and 0.5 at Branch B. Learning the branch changes the waiting-time distribution; equal means do not make the entire distributions identical.</p>
 </details>

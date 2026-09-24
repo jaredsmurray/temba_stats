@@ -77,14 +77,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .Example {
   --color1: #F4EFEA;
   --color2: #80644D;
@@ -96,6 +88,14 @@ ul.task-list li input[type="checkbox"] {
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
 }
 </style>
 
@@ -413,6 +413,24 @@ window.Quarto = {
 <p>Coca-Cola made in Mexico is sweetened with cane sugar, while Coca-Cola Original in the United States uses high-fructose corn syrup. Mexican Coke has die-hard American fans who pay a markup for what they believe is a better product. Food and beverage producers face a version of this choice all the time. Can we switch to a different ingredient or process without changing the product in a way customers perceive?</p>
 <p>A <strong>triangle test</strong> is a standard method for assessing whether people can discriminate between two products. Each panelist receives three blinded samples, two identical and one different, in a randomized order, and makes one independent response by identifying the odd one out. A panelist who perceives no difference still has to choose, and picks the odd sample with probability 1/3. The test measures discrimination, not which version a panelist prefers or what they would be willing to pay for it.</p>
 <p>Suppose 42 panelists take a triangle test of the two Cokes, and that in reality nobody can tell them apart. We would expect 14 correct picks on average, one third of 42. Seeing 12 would not be surprising, and 16 could easily happen by chance. Seeing 27 would be much harder to attribute to guessing. In our invented panel, 21 of the 42 pick correctly. Is 21 more than guessing can explain?</p>
+<div id="exercise-triangle-baseline" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 20.1: </strong>What does a triangle test measure?</div><div class="fobx-body">
+<p>Ninety panelists each take a triangle test comparing two products.</p>
+<ol type="1">
+<li>If every panelist guesses, what is the probability of a correct pick, and how many correct picks would you expect?</li>
+<li>Suppose 36 panelists pick correctly. Does that show that 40% of customers can tell the products apart?</li>
+<li>Does it show that customers prefer the odd product?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-triangle-baseline">
+<summary>Solution</summary>
+<ol type="1">
+<li>A guessing panelist picks the odd sample with probability 1/3, so we would expect <span class="math inline">\(90/3=30\)</span> correct picks.</li>
+<li>No.&nbsp;The panel was right on <span class="math inline">\(36/90=40\%\)</span> of picks, but that count includes lucky guesses: panelists who perceive no difference still pick correctly a third of the time. Here 36 is only 6 above the 30 correct picks expected from guessing; if everyone guessed, about 11% of 90-person panels would get 36 or more right. The panel does not show that anyone can tell the products apart.</li>
+<li>No.&nbsp;The test measures whether panelists can detect a difference, not which product they like.</li>
+</ol>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-triangle-interval" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="sec-triangle-interval"><span class="header-section-number">20.2</span> What the panel says about <span class="math inline">\(p\)</span></h2>
@@ -497,20 +515,40 @@ Figure&nbsp;20.1: The one-sided p-value for the triangle test. Under the null hy
 <p>If the analyst could pick a one- or two-sided test after seeing the data, they might be tempted to make the choice more in line with their expected or preferred findings. For example, since a one-sided test produces smaller p-values, an analyst might be tempted to adopt it when they hoped or expected to produce strong evidence against the null. In general, one-sided alternatives should be used only when defensible from context — like in a triangle test, where a two-sided alternative would imply that somehow tasters do worse than random guessing — and we can always identify these before seeing any data.</p>
 </div>
 </div>
+<div id="exercise-triangle-one-sided" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 20.2: </strong>Interpret one-sided evidence</div><div class="fobx-body">
+<p>In an invented triangle test, 27 of 60 independent panelists pick the odd sample. Before testing, the analyst chose <span class="math inline">\(H_0:p=1/3\)</span> against <span class="math inline">\(H_A:p&gt;1/3\)</span>, where <span class="math inline">\(p\)</span> is the probability of a correct pick under these tasting conditions. If every panelist guessed, the exact binomial probability of 27 or more correct picks would be about 0.040.</p>
+<ol type="1">
+<li>What is the p-value, and what is the decision at <span class="math inline">\(\alpha=0.05\)</span>?</li>
+<li>Why doesn’t the p-value include the probability of unusually low counts?</li>
+<li>State a conclusion in context. What does the result leave unanswered about preference, and about whether a recipe change is acceptable?</li>
+<li>The panel consisted of classmates. What further limitation applies?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-triangle-one-sided">
+<summary>Solution</summary>
+<ol type="1">
+<li>The one-sided p-value is about 0.040, below 0.05, so we reject the guessing hypothesis.</li>
+<li>The alternative, chosen before testing, is <span class="math inline">\(p&gt;1/3\)</span>, and only high counts are evidence for it. Nothing about the products would make panelists systematically worse than guessing.</li>
+<li>The panel gives evidence that at least some people can distinguish the products under these tasting conditions. It says nothing about which product people prefer. Whether a recipe change is acceptable is a separate question about how detectable the difference is, which a rejection of guessing does not settle.</li>
+<li>Classmates are a convenience sample. A claim about all customers would need a sampling design that supports it.</li>
+</ol>
+</details>
+</div></div>
+</div>
 </section>
 <section id="sec-triangle-no-difference" class="level2" data-number="20.5">
 <h2 data-number="20.5" class="anchored" data-anchor-id="sec-triangle-no-difference"><span class="header-section-number">20.5</span> Showing that a change is acceptable</h2>
 <p>The Coke panel asked whether a difference is detectable. A producer switching to a cheaper input needs to decide whether any difference is small enough to accept. Failing to reject the guessing hypothesis does not establish that customers cannot perceive the change, for the same reason that <a href="./inference_02_hypothesis-tests.html">failing to reject never establishes a null hypothesis</a>. For a decision based on the triangle test, the producer can set a largest acceptable probability of a correct pick before running the panel, then assess whether the interval lies entirely below that threshold. This criterion concerns performance on the tasting task; it does not measure whether customers prefer the new recipe or would continue buying it.</p>
 <p>In the exercise below, we use the upper endpoint of our usual two-SE interval to assess acceptability.</p>
 <div id="exercise-triangle-reformulation" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 20.1: </strong>Can customers detect the cheaper recipe?</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 20.3: </strong>Can customers detect the cheaper recipe?</div><div class="fobx-body">
 <p>A snack maker wants to replace an ingredient with a cheaper substitute and hopes customers cannot perceive the change. Its brand team will accept the new recipe only if the probability of a correct pick on this tasting task is below 0.45. In an invented triangle test, 24 of 60 panelists identify the odd sample.</p>
 <ol type="1">
 <li>Test whether the result provides evidence beyond guessing: state <span class="math inline">\(H_0:p=1/3\)</span> and <span class="math inline">\(H_A:p&gt;1/3\)</span>.</li>
 <li>Compute the approximate 95% confidence interval for <span class="math inline">\(p\)</span>, the <span class="math inline">\(t\)</span>-statistic, and the one-sided p-value. The area above <span class="math inline">\(1.05\)</span> under the standard normal curve is about 0.15.</li>
 <li>State the verdict for the guessing test at <span class="math inline">\(\alpha=0.05\)</span>. Then assess the separate acceptance question: is the upper endpoint of the two-SE interval below 0.45? The product manager summarizes the result as “the test shows customers can’t tell the difference.” Is that what the test shows?</li>
 </ol>
-<details id="solution-triangle-reformulation" class="solution-details" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-triangle-reformulation">
 <summary>Solution</summary>
 <ol type="1">
 <li>For the guessing test, the null is <span class="math inline">\(H_0:p=1/3\)</span>, every panelist guessing, and the alternative is <span class="math inline">\(H_A:p&gt;1/3\)</span>.</li>

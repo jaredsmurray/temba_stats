@@ -96,6 +96,10 @@ div.csl-indent {
   }
 }</script>
 <style>
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
@@ -109,10 +113,6 @@ div.csl-indent {
   --color2: #7C3F58;
 }
 .TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
@@ -403,8 +403,7 @@ window.Quarto = {
   <li><a href="#sec-ci" id="toc-sec-ci" class="nav-link" data-scroll-target="#sec-ci"><span class="header-section-number">16.2.2</span> Accounting for sampling error when presenting results</a></li>
   </ul></li>
   <li><a href="#sec-sampling-practice" id="toc-sec-sampling-practice" class="nav-link" data-scroll-target="#sec-sampling-practice"><span class="header-section-number">16.3</span> Practice</a></li>
-  <li><a href="#sec-bootstrap" id="toc-sec-bootstrap" class="nav-link" data-scroll-target="#sec-bootstrap"><span class="header-section-number">16.4</span> The bootstrap</a></li>
-  <li><a href="#sec-sampling-practice-more" id="toc-sec-sampling-practice-more" class="nav-link" data-scroll-target="#sec-sampling-practice-more"><span class="header-section-number">16.5</span> Additional practice</a></li>
+  <li><a href="#sec-sampling-practice-more" id="toc-sec-sampling-practice-more" class="nav-link" data-scroll-target="#sec-sampling-practice-more"><span class="header-section-number">16.4</span> Additional practice</a></li>
   <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
@@ -774,7 +773,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.1: </strong>What is being estimated?</div><div class="fobx-body">
 <p>A retailer wants the mean delivery time <span class="math inline">\(\mu\)</span> for all orders in its current service area. In an invented study, it takes a random sample of 100 orders and computes an average delivery time of 42 minutes.</p>
 <p>Identify the parameter, the estimator, and the estimate. If the retailer drew a new random sample, which of these would change and which would stay fixed?</p>
-<details aria-label="Solution" id="solution-identify-delivery-estimate" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-identify-delivery-estimate">
 <summary>Solution</summary>
 <p>The parameter is the population mean delivery time <span class="math inline">\(\mu\)</span>. The estimator is the sample mean <span class="math inline">\(\bar{X}\)</span>, the rule for averaging the sampled times. The estimate is <span class="math inline">\(\bar{x}=42\)</span> minutes. A new sample would generally give a different estimate; the population parameter and the averaging rule would stay fixed.</p>
 </details>
@@ -784,7 +783,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.2: </strong>Individual times and averages</div><div class="fobx-body">
 <p>Suppose delivery times are iid draws from a population with standard deviation <span class="math inline">\(\sigma=12\)</span> minutes. Compare random samples of 100 and 400 orders.</p>
 <p>Compute the standard error of the sample mean for each size. Explain which spread changes and which stays at 12 minutes when the sample size increases.</p>
-<details aria-label="Solution" id="solution-delivery-sd-se" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-delivery-sd-se">
 <summary>Solution</summary>
 <p>The standard errors are <span class="math inline">\(12/\sqrt{100}=1.2\)</span> minutes and <span class="math inline">\(12/\sqrt{400}=0.6\)</span> minutes. Quadrupling the sample size halves the spread of sample means across repeated samples. Individual delivery times still have population SD 12 minutes; collecting more orders makes their average more precise without making individual deliveries less variable.</p>
 </details>
@@ -795,424 +794,278 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <p>An iid sample of 100 delivery times has sample mean 42 minutes and sample standard deviation 12 minutes. Assume the sampling distribution of the sample mean is approximately normal.</p>
 <ol type="1">
 <li>Compute the estimated standard error and an approximate 95% confidence interval for the population mean using the two-SE rule.</li>
-<li>A true average delivery time above 45 minutes would trigger a costly process review; is that warranted based on this audit?</li>
-<li>Using the sample standard deviation of 12 minutes as a stand-in for the population standard deviation, if the company wanted the margin of error <span class="math inline">\(2SE(\bar X)\)</span> for the next audit to be 1 minute, how many deliveries should they include? (Hint: set <span class="math inline">\(2SE(\bar X) = 1\)</span>, plug in <span class="math inline">\(s\)</span> for <span class="math inline">\(\sigma\)</span>, and solve for <span class="math inline">\(n\)</span>.)</li>
+<li>Write one sentence interpreting the interval for the company’s operations manager.</li>
+<li>A population mean delivery time above 45 minutes would trigger a costly process review. Does this audit support triggering the review?</li>
 </ol>
-<details aria-label="Solution" id="solution-delivery-confidence-interval" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-delivery-confidence-interval">
 <summary>Solution</summary>
 <ol type="1">
-<li>The estimated SE is <span class="math inline">\(12/\sqrt{100}=1.2\)</span> minutes. The interval is <span class="math inline">\(42\pm2(1.2)=[39.6,44.4]\)</span> minutes. It gives plausible values for the population mean delivery time under the sampling assumptions.</li>
-<li>The interval’s upper endpoint, 44.4 minutes, is below 45 minutes. Under the sampling assumptions, this audit does not support triggering a process review on the grounds that the population mean exceeds 45 minutes.</li>
-<li>Using 12 minutes as the planning value for the population standard deviation, we solve <span class="math inline">\(2(12)/\sqrt n=1\)</span>, giving <span class="math inline">\(\sqrt n=24\)</span> and <span class="math inline">\(n=576\)</span>. The next audit should include at least 576 deliveries to target a margin of error no larger than 1 minute.</li>
+<li>The estimated SE is <span class="math inline">\(12/\sqrt{100}=1.2\)</span> minutes. The interval is <span class="math inline">\(42\pm2(1.2)=[39.6,\ 44.4]\)</span> minutes.</li>
+<li>Under the sampling assumptions, mean delivery times from about 39.6 to 44.4 minutes are consistent with this audit. The interval concerns the mean. Individual deliveries vary much more, with a sample standard deviation of 12 minutes.</li>
+<li>No.&nbsp;The upper endpoint, 44.4 minutes, is below 45 minutes, so the audit does not support a review on the grounds that the population mean exceeds 45 minutes.</li>
 </ol>
 </details>
 </div></div>
 </div>
-</section>
-<section id="sec-bootstrap" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="sec-bootstrap"><span class="header-section-number">16.4</span> The bootstrap</h2>
-<p>For the sample mean, <span class="math inline">\(s/\sqrt n\)</span> estimates the standard error directly. For other statistics, we may not have a convenient formula, and a normal approximation may not describe the sampling distribution well.</p>
-<p>The <strong>bootstrap</strong> estimates sampling variability by repeatedly sampling from the observed data. In the app above we sampled from a known population. Here we use the sample as an approximation to the population distribution, preserving the sample size and computing the statistic again on each resample.</p>
-<div id="defn-bootstrap" class="Definition">
-<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 16.5: </strong>The bootstrap</div><div class="fobx-body">
-<p>To bootstrap a statistic computed from a sample of size <span class="math inline">\(n\)</span>: draw <span class="math inline">\(n\)</span> observations from the sample <strong>with replacement</strong>, compute the statistic on this <em>bootstrap sample</em>, and repeat many times (say <span class="math inline">\(B = 10{,}000\)</span>).</p>
-<p>The distribution of these <span class="math inline">\(B\)</span> statistics approximates how the statistic varies across samples, and their standard deviation is the <strong>bootstrap standard error</strong>. This use of the bootstrap relies on an iid sample that represents the population well enough for the statistic we want to estimate.</p>
+<div id="exercise-interval-backwards" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.4: </strong>Read an interval backwards</div><div class="fobx-body">
+<p>An analyst reports a two-SE confidence interval of $46 to $54 for mean order value, based on a random sample of 100 orders. The interval is centered at the sample mean and uses the standard error <span class="math inline">\(s/\sqrt n\)</span>.</p>
+<ol type="1">
+<li>Recover the sample mean, the margin of error, the estimated standard error, and the sample standard deviation.</li>
+<li>A manager calls the $8 width of the interval “the standard error.” What is wrong with that description?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-interval-backwards">
+<summary>Solution</summary>
+<ol type="1">
+<li>The sample mean is the midpoint, <span class="math inline">\((46+54)/2=50\)</span> dollars. The margin of error is half the width, $4. The margin is two standard errors, so the estimated standard error is $2. Since <span class="math inline">\(s/\sqrt{100}=2\)</span>, the sample standard deviation is $20.</li>
+<li>The width spans two margins, or four standard errors. The standard error is $2, a quarter of the width; it measures how much the sample mean varies across random samples of 100 orders.</li>
+</ol>
+</details>
 </div></div>
 </div>
-<section id="why-sample-n81-firms" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="why-sample-n81-firms">Why sample n=81 firms?</h4>
-<p>We want to estimate variability across samples of 81 firms, so each bootstrap resample must also contain 81 firms. Smaller resamples would overstate the variability of the sample mean; larger ones would understate it. The number of resamples, <span class="math inline">\(B\)</span>, controls how precisely the simulation estimates that variability. It does not increase the original sample size.</p>
-</section>
-<section id="why-sample-with-replacement" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="why-sample-with-replacement">Why sample with replacement?</h4>
-<p>Each bootstrap iteration draws 81 firms from a sample of exactly 81 firms. Without replacement there is only one possible draw: every resampled dataset would be the original sample, just shuffled, and the mean wouldn’t vary across bootstrap resamples at all. Sampling with replacement is what lets the resamples differ.</p>
-</section>
-<section id="when-is-the-formula-useful" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="when-is-the-formula-useful">When is the formula useful?</h4>
-<p>For a sample mean, the formula is quick to compute and shows how precision depends on sample size: quadrupling <span class="math inline">\(n\)</span> halves the standard error. The bootstrap requires more computation but can estimate standard errors when a formula is inconvenient or unavailable. It can also show skew or other departures from a normal shape. Using the bootstrap to estimate an SE does not, by itself, justify a two-SE confidence interval; that interval still needs an approximately normal sampling distribution centered at the parameter.</p>
-<p><a href="#fig-sap-bootstrap" class="quarto-xref">Figure&nbsp;<span>16.9</span></a> shows the result of bootstrapping the SAP mean, with a normal curve centered at the observed sample mean and using our estimated SE for comparison.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-sap-bootstrap" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sap-bootstrap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="inference_01_sampling-distributions_files/figure-html/fig-sap-bootstrap-1.png" class="img-fluid figure-img" width="672">
+<div id="exercise-ticket-interval" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.5: </strong>An interval from three numbers</div><div class="fobx-body">
+<p>A random sample of 64 support tickets has mean resolution time 18 hours and sample standard deviation 8 hours. Treat the times as iid and assume the normal approximation for the sample mean is adequate.</p>
+<ol type="1">
+<li>Estimate the standard error, then compute the margin of error and an approximate 95% confidence interval for the population mean resolution time.</li>
+<li>Write one sentence interpreting the interval in context.</li>
+<li>Is a population mean of 21 hours plausible at this confidence level? Does the interval say where 95% of individual tickets’ resolution times fall?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-ticket-interval">
+<summary>Solution</summary>
+<ol type="1">
+<li>The estimated standard error is <span class="math inline">\(8/\sqrt{64}=1\)</span> hour, so the margin of error is 2 hours and the interval is <span class="math inline">\(18\pm2=[16,\ 20]\)</span> hours.</li>
+<li>Under the sampling assumptions, population mean resolution times from 16 to 20 hours are consistent with this sample.</li>
+<li>A mean of 21 hours is not plausible, because it lies above the upper endpoint. The interval does not describe individual tickets. It concerns the mean, and individual resolution times vary much more, with a sample standard deviation of 8 hours.</li>
+</ol>
+</details>
+</div></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sap-bootstrap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16.9: 10,000 bootstrap means from resamples of 81 SAP customers. The dashed line marks the observed sample mean. The orange normal curve has that same center and has standard deviation 2.85 percentage points; the bootstrap standard error is 2.84 points.
-</figcaption>
-</figure>
+<div id="exercise-repair-interpretation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.6: </strong>Choose and repair an interpretation</div><div class="fobx-body">
+<p>From a random sample of support tickets, an analyst computes an approximate 95% confidence interval of <span class="math inline">\([16,\ 20]\)</span> hours for the population mean resolution time. Decide whether each statement is correct. Rewrite each incorrect statement so that it is correct.</p>
+<ol type="1">
+<li>“About 95% of tickets take between 16 and 20 hours to resolve.”</li>
+<li>“Population mean resolution times from about 16 to 20 hours are plausible under the sampling model.”</li>
+<li>“About 95% of intervals constructed this way from repeated random samples would contain the population mean.”</li>
+<li>“Now that we have calculated it, there is a 0.95 probability that the population mean lies between 16 and 20 hours.”</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-repair-interpretation">
+<summary>Solution</summary>
+<ol type="1">
+<li>Incorrect. It confuses uncertainty about the mean with variation among tickets. A correct version is statement 2.</li>
+<li>Correct.</li>
+<li>Correct. This describes the procedure across repeated samples.</li>
+<li>Incorrect. The population mean is a fixed number, and this interval either contains it or does not. The 0.95 describes the procedure, as in statement 3, not this particular interval. A correct version: “Intervals built this way contain the population mean in about 95% of random samples, and 16 to 20 hours is the set of plausible means from this one.”</li>
+</ol>
+</details>
+</div></div>
 </div>
+<div id="exercise-count-coverage" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.7: </strong>Count coverage</div><div class="fobx-body">
+<p>In a teaching simulation, the population mean is known to be 50. Five independent random samples give the approximate 95% confidence intervals <span class="math inline">\([46,\ 52]\)</span>, <span class="math inline">\([49,\ 55]\)</span>, <span class="math inline">\([51,\ 57]\)</span>, <span class="math inline">\([44,\ 50]\)</span>, and <span class="math inline">\([48,\ 54]\)</span>.</p>
+<ol type="1">
+<li>Which intervals contain the population mean?</li>
+<li>Does the observed coverage show that the method’s confidence level is wrong?</li>
+<li>Across 1,000 repetitions, about how many intervals would you expect to contain the mean? Must the count equal that number exactly?</li>
+<li>What stays fixed as the sampling repeats, and what changes?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-count-coverage">
+<summary>Solution</summary>
+<ol type="1">
+<li>Four intervals contain 50: the first, second, fourth, and fifth. The fourth has 50 as its upper endpoint. The third, <span class="math inline">\([51,\ 57]\)</span>, misses.</li>
+<li>No.&nbsp;A 95% procedure misses about one time in 20, and among five intervals at least one miss happens about 23% of the time, <span class="math inline">\(1-0.95^5\approx0.23\)</span>. Five intervals are far too few to judge the method’s long-run coverage.</li>
+<li>About 950. The count varies from one set of 1,000 repetitions to the next.</li>
+<li>The population and its mean stay fixed. The sample, the sample mean, and the interval change from one repetition to the next. The simulation can check coverage only because we know the population mean; with one real sample, we cannot tell whether our interval contains it.</li>
+</ol>
+</details>
+</div></div>
 </div>
+<div id="exercise-plan-salary-survey" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.8: </strong>Plan for a narrower interval</div><div class="fobx-body">
+<p>A research firm plans a survey of starting salaries among recent MBA graduates nationwide. It will sample at random from a list far larger than any sample it could afford, and it uses $15,000 as a planning value for the population standard deviation. To plan, substitute the planning value for <span class="math inline">\(\sigma\)</span> in the two-SE margin <span class="math inline">\(2\sigma/\sqrt n\)</span> and solve for the sample size.</p>
+<ol type="1">
+<li>What margin of error does a sample of 100 graduates target?</li>
+<li>What sample size targets a margin of $2,000?</li>
+<li>Does a larger sample make individual salaries less variable? Does it guarantee that the next sample mean will be closer to the population mean than the first one was?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-plan-salary-survey">
+<summary>Solution</summary>
+<ol type="1">
+<li>The margin is <span class="math inline">\(2(15{,}000)/\sqrt{100}=3{,}000\)</span> dollars.</li>
+<li>Solving <span class="math inline">\(2(15{,}000)/\sqrt n=2{,}000\)</span> gives <span class="math inline">\(\sqrt n=15\)</span>, so <span class="math inline">\(n=225\)</span>. Cutting the margin by a third takes 2.25 times as many graduates, because the margin shrinks with <span class="math inline">\(\sqrt n\)</span>.</li>
+<li>No to both. Individual salaries keep a standard deviation of about $15,000 whatever the sample size. A larger sample makes sample means less variable across repeated samples, but any one sample mean can still land farther from the population mean than an earlier one did. The planned sample size is also only as good as the $15,000 planning value.</li>
+</ol>
+</details>
+</div></div>
 </div>
-<p>The bootstrap distribution is centered near the observed sample mean because we resample from the 81 observed firms. The actual sampling distribution is centered at the unknown population mean; the bootstrap approximates its spread using the sample.</p>
-<p>Using the bootstrap SE in the two-SE interval gives approximately [7.0%, 18.3%], compared with [6.9%, 18.3%] from the formula. The lower endpoint rounds differently, but the conclusions about the SAP dispute are unchanged.</p>
-<div id="technical-bootstrap-mean" class="TechnicalDetail">
-<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 16.2: </strong>Why the two standard errors are so close</summary><div>
-<p>Treat the observed sample as fixed. Each bootstrap observation is an independent draw from the distribution that gives each of the <span class="math inline">\(n\)</span> observed data points probability <span class="math inline">\(1/n\)</span>. That distribution has mean <span class="math inline">\(\bar x\)</span> and a standard deviation of approximately <span class="math inline">\(s\)</span> (technically <span class="math inline">\(\sqrt{\frac{n-1}{n}}s\)</span>, about <span class="math inline">\(0.99s\)</span> for these 81 firms).</p>
-<p>Let <span class="math inline">\(\bar X^*\)</span> be the mean of a bootstrap resample of size <span class="math inline">\(n\)</span>. The <a href="./prob_10_sums-averages-clt.html#sec-clt">CLT</a> applies here too:</p>
-<p><span class="math display">\[
+<div id="exercise-tablet-audit" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.9: </strong>Write the audit conclusion</div><div class="fobx-body">
+<p>A drug manufacturer randomly samples 144 tablets from one week’s production on a single line. Mean active-ingredient content is 249 mg and the sample standard deviation is 12 mg. Use an iid approximation and assume the normal approximation for the sample mean is adequate. The label requires a population mean of at least 250 mg; a mean below 246 mg would trigger a line shutdown.</p>
+<ol type="1">
+<li>Define the population and parameter, then compute the estimated standard error and an approximate 95% confidence interval.</li>
+<li>Assess the 250 mg label requirement and the 246 mg shutdown threshold separately.</li>
+<li>Write a two-sentence report giving the estimate, the interval, and what remains uncertain.</li>
+<li>The quality team considers repeating the study using only tablets from the first hour of Monday’s run. Explain what would need to be checked before reading the new interval as an estimate for the whole week’s production.</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-tablet-audit">
+<summary>Solution</summary>
+<ol type="1">
+<li>The population is every tablet the line produced that week, and the parameter is their mean active-ingredient content. The estimated standard error is <span class="math inline">\(12/\sqrt{144}=1\)</span> mg, and the interval is <span class="math inline">\(249\pm2(1)=[247,\ 251]\)</span> mg.</li>
+<li>The sample does not establish that the line meets the label, because the interval includes means on both sides of 250 mg. Means below the 246 mg shutdown threshold lie outside the interval, so the data do not support a shutdown under the sampling assumptions.</li>
+<li>“We estimate mean content at 249 mg, with an approximate 95% interval from 247 to 251 mg. The sample leaves the 250 mg label requirement unresolved, while mean content below the 246 mg shutdown threshold is inconsistent with these data.”</li>
+<li>Tablets from the first hour of one run may reflect start-up conditions, such as calibration or a fresh lot of raw material, that differ from the rest of the week. The team would need evidence that those tablets resemble the week’s production. A narrow interval from an unrepresentative hour estimates that hour’s mean precisely, not the week’s.</li>
+</ol>
+</details>
+</div></div>
+</div>
+<!-- BOOTSTRAP SECTION COMMENTED OUT (2026-09-24): the 2026 TEMBA cohort skipped the bootstrap.
+To restore: delete this comment wrapper, turn the one code block marked .r back
+into an R chunk, and change the four inline expressions marked with a capital R
+back to lowercase r.
+
+## The bootstrap {#sec-bootstrap}
+
+For the sample mean, $s/\sqrt n$ estimates the standard error directly. For other statistics, we may not have a convenient formula, and a normal approximation may not describe the sampling distribution well.
+
+The **bootstrap** estimates sampling variability by repeatedly sampling from the observed data. In the app above we sampled from a known population. Here we use the sample as an approximation to the population distribution, preserving the sample size and computing the statistic again on each resample.
+
+::: {.Definition #defn-bootstrap}
+## The bootstrap
+
+To bootstrap a statistic computed from a sample of size $n$: draw $n$
+observations from the sample **with replacement**, compute the statistic on this
+*bootstrap sample*, and repeat many times (say $B = 10{,}000$).
+
+The distribution of these $B$ statistics approximates how the statistic varies across samples, and their standard deviation is the **bootstrap standard error**. This use of the bootstrap relies on an iid sample that represents the population well enough for the statistic we want to estimate.
+:::
+
+#### Why sample n=81 firms? {.unnumbered}
+
+We want to estimate variability across samples of 81 firms, so each bootstrap resample must also contain 81 firms. Smaller resamples would overstate the variability of the sample mean; larger ones would understate it. The number of resamples, $B$, controls how precisely the simulation estimates that variability. It does not increase the original sample size.
+
+#### Why sample with replacement? {.unnumbered}
+
+Each bootstrap iteration draws 81 firms from a sample of exactly 81 firms. Without replacement there is only one possible draw: every resampled dataset would be the original sample, just shuffled, and the mean wouldn't vary across bootstrap resamples at all. Sampling with replacement is what lets the resamples differ.
+
+#### When is the formula useful? {.unnumbered}
+
+For a sample mean, the formula is quick to compute and shows how precision depends on sample size: quadrupling $n$ halves the standard error. The bootstrap requires more computation but can estimate standard errors when a formula is inconvenient or unavailable. It can also show skew or other departures from a normal shape. Using the bootstrap to estimate an SE does not, by itself, justify a two-SE confidence interval; that interval still needs an approximately normal sampling distribution centered at the parameter.
+
+@fig-sap-bootstrap shows the result of bootstrapping the SAP mean, with a normal curve centered at the observed sample mean and using our estimated SE for comparison.
+
+```{.r}
+#| label: fig-sap-bootstrap
+#| fig-cap: !expr 'paste0("10,000 bootstrap means from resamples of 81 SAP customers. The dashed line marks the observed sample mean. The orange normal curve has that same center and has standard deviation ", number(sap_se, accuracy = 0.01), " percentage points; the bootstrap standard error is ", number(boot_se, accuracy = 0.01), " points.")'
+#| fig-width: 7
+#| fig-height: 3.6
+set.seed(81)
+boot_means <- replicate(10000, mean(sample(sap$roe, replace = TRUE)))
+boot_se <- sd(boot_means)
+boot_limit_se <- sqrt(mean((sap$roe - sap_mean)^2) / sap_n)
+
+boot_curve <- tibble(
+  x = seq(min(boot_means), max(boot_means), length.out = 300),
+  y = dnorm(x, sap_mean, sap_se)
+)
+
+ggplot() +
+  geom_histogram(aes(x = boot_means, y = after_stat(density)),
+                 bins = 45, fill = "steelblue", color = "white", alpha = 0.85) +
+  geom_line(data = boot_curve, aes(x, y), color = "darkorange", linewidth = 1) +
+  geom_vline(xintercept = sap_mean, linetype = "dashed", color = "grey30") +
+  scale_x_continuous(labels = function(x) paste0(x, "%")) +
+  labs(x = "Bootstrap sample mean ROE", y = "Density")
+```
+
+The bootstrap distribution is centered near the observed sample mean because we resample from the 81 observed firms. The actual sampling distribution is centered at the unknown population mean; the bootstrap approximates its spread using the sample.
+
+Using the bootstrap SE in the two-SE interval gives approximately [`R number(sap_mean - 2 * boot_se, accuracy = 0.1)`%, `R number(sap_mean + 2 * boot_se, accuracy = 0.1)`%], compared with [`R number(sap_lo, accuracy = 0.1)`%, `R number(sap_hi, accuracy = 0.1)`%] from the formula. The lower endpoint rounds differently, but the conclusions about the SAP dispute are unchanged.
+
+::: {.TechnicalDetail #technical-bootstrap-mean}
+## Why the two standard errors are so close
+
+Treat the observed sample as fixed. Each bootstrap observation is an independent draw from the distribution that gives each of the $n$ observed data points probability $1/n$. That distribution has mean $\bar x$ and a standard deviation of approximately $s$ (technically $\sqrt{\frac{n-1}{n}}s$, about $0.99s$ for these 81 firms).
+
+Let $\bar X^*$ be the mean of a bootstrap resample of size $n$. The [CLT](prob_10_sums-averages-clt.qmd#sec-clt) applies here too:
+
+$$
 \bar X^* \;\approx\; N\!\left(\bar x,\;s^2/n\right).
-\]</span></p>
-<p>The center is the original sample mean, and the standard deviation is approximately <span class="math inline">\(s/\sqrt n\)</span>. As we increase the number of resamples <span class="math inline">\(B\)</span>, the standard deviation of the simulated means approaches the bootstrap distribution’s standard deviation, approximately <span class="math inline">\(s/\sqrt n\)</span>. Increasing <span class="math inline">\(B\)</span> makes the simulation more precise; the adequacy of the normal approximation still depends on <span class="math inline">\(n\)</span> and the shape of the observed-data distribution.</p>
-<p>For the sample mean, the bootstrap therefore gives nearly the same two-SE interval as the formula:</p>
-<p><span class="math display">\[
+$$
+
+The center is the original sample mean, and the standard deviation is approximately $s/\sqrt n$. As we increase the number of resamples $B$, the standard deviation of the simulated means approaches the bootstrap distribution's standard deviation, approximately $s/\sqrt n$. Increasing $B$ makes the simulation more precise; the adequacy of the normal approximation still depends on $n$ and the shape of the observed-data distribution.
+
+For the sample mean, the bootstrap therefore gives nearly the same two-SE interval as the formula:
+
+$$
 \bar x \pm 2\times\text{(bootstrap SE)}
 \;\approx\; \bar x \pm 2\frac{s}{\sqrt n}.
-\]</span></p>
-<p>The benefit to using the bootstrap? We could get nearly the same answer as using the CLT without doing any math at all to work out the standard error. For a sample mean the math is not a big impediment, but it can be for other statistics, and sometimes the math requires modeling assumptions we would rather not make.</p>
-</div></details>
-</div>
-<div id="exercise-bootstrap-design-check" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.4: </strong>Check a bootstrap design</div><div class="fobx-body">
-<p>An analyst has an iid sample of 100 delivery times and wants a bootstrap standard error for its sample mean. Assume the sample adequately represents the population. The analyst proposes three procedures, each repeated 10,000 times:</p>
-<ol type="1">
-<li>Draw 100 observations without replacement and compute their mean.</li>
-<li>Draw 400 observations with replacement and compute their mean.</li>
-<li>Draw 100 observations with replacement and compute their mean.</li>
-</ol>
-<p>Which procedure matches the original sample size and allows the resamples to vary? Explain the problem with each other procedure. In the matching procedure, what quantity should the analyst compute from the 10,000 means to estimate SE?</p>
-<details aria-label="Solution" id="solution-bootstrap-design-check" class="solution-details">
-<summary>Solution</summary>
-<p>Procedure 3 matches the original sample size and uses replacement so that observations can repeat or be omitted. Procedure 1 only shuffles the same 100 observations, so every resample mean is identical. Procedure 2 mimics a sample of 400 rather than 100, understating the variability of the mean for the original sample size. The sample standard deviation of the 10,000 means is the bootstrap SE; it is not the standard deviation of the delivery times within one resample.</p>
-</details>
-</div></div>
-</div>
+$$
+
+The benefit to using the bootstrap? We could get nearly the same answer as using the CLT without doing any math at all to work out the standard error. For a sample mean the math is not a big impediment, but it can be for other statistics, and sometimes the math requires modeling assumptions we would rather not make.
+
+:::
+
+END OF COMMENTED-OUT BOOTSTRAP SECTION -->
 </section>
-</section>
-<section id="sec-sampling-practice-more" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="sec-sampling-practice-more"><span class="header-section-number">16.5</span> Additional practice</h2>
-<div id="exercise-sap-paired" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.5: </strong>Each company against its own industry</div><div class="fobx-body">
-<p>The chapter compared the SAP customers’ mean ROE with the 15.7% average of their industry benchmarks. The <code>sap_roe</code> data also allow a comparison company by company: for each of the 81 firms, subtract its industry’s ROE from its own. <a href="#fig-practice-sap-diff" class="quarto-xref">Figure&nbsp;<span>16.10</span></a> shows these differences. Their sample mean is -3.06 percentage points and their sample standard deviation is 23.3 points.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-practice-sap-diff" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-practice-sap-diff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="inference_01_sampling-distributions_files/figure-html/fig-practice-sap-diff-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-practice-sap-diff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16.10: Each SAP customer’s ROE minus its industry’s average ROE, in percentage points. The dashed line marks zero, where a company matches its peers.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<ol type="1">
-<li>State the parameter this analysis estimates, and explain how it differs from the <span class="math inline">\(\mu\)</span> in <a href="#sec-sampling-ci" class="quarto-xref"><span>Section 16.2</span></a>.</li>
-<li>Compute the estimated standard error and an approximate 95% confidence interval for that parameter.</li>
-<li>Is a true average gap of zero, meaning SAP customers match their peers on average, a plausible value? Is Nucleus’s headline gap of about <span class="math inline">\(-3\)</span> points? SAP’s advertised 32% advantage over peers would put the average gap near <span class="math inline">\(+5.0\)</span> points; is that plausible?</li>
-<li>The standard error here, 2.6 points, is smaller than the standard error of the mean ROE alone, 2.8 points, even though each difference combines two uncertain quantities. Use the variance rule for a difference from <a href="./prob_09_combining-random-variables.html#sec-lincom-rules">Chapter 14</a> and the sample correlation between a company’s ROE and its industry’s, 0.42, to explain why.</li>
-<li>Which comparison better answers “are SAP customers less profitable than their peers”: the chapter’s, which compares the mean ROE with the fixed number 15.7%, or this one? Explain what each treats as fixed and what each treats as random.</li>
-</ol>
-<details aria-label="Solution" id="details-1" class="solution-details">
-<summary>Solution</summary>
-<ol type="1">
-<li>The parameter is the average, over all of SAP’s customers, of each company’s ROE minus its own industry’s ROE. Call it <span class="math inline">\(\delta\)</span>. The chapter’s <span class="math inline">\(\mu\)</span> is the average ROE of SAP customers on its own; <span class="math inline">\(\delta\)</span> measures the average gap between each customer and its peers, so it already accounts for the mix of industries the customers come from.</li>
-<li>The estimated standard error is <span class="math inline">\(23.3/\sqrt{81}\approx2.59\)</span> points. The interval is <span class="math inline">\(-3.1\pm2(2.59)
-\approx[-8.2,\ 2.1]\)</span> percentage points.</li>
-<li>Zero lies inside the interval, so parity with peers is plausible. So is the <span class="math inline">\(-3\)</span>-point gap Nucleus reported, along with gaps as large as <span class="math inline">\(-8\)</span> points. A gap of <span class="math inline">\(+5.0\)</span> points lies above the upper endpoint and is not a plausible value at this confidence level. The data do not support SAP’s claim, and they do not establish Nucleus’s headline either.</li>
-<li>A difference has variance <span class="math inline">\(\operatorname{Var}(X)+\operatorname{Var}(Y)-2\operatorname{Cov}(X,Y)\)</span>. Companies in profitable industries tend to have high ROE themselves, and the sample correlation of 0.42 makes the covariance term positive. Subtracting the industry benchmark removes the part of each company’s ROE that is explained by its industry, leaving a difference whose standard deviation, 23.3 points, is below the 25.7 points of ROE alone. The standard error shrinks with it.</li>
-<li>The paired comparison is the better answer to the question as posed. The chapter’s version treats 15.7% as a known constant, but it is the average of the 81 sampled companies’ industry benchmarks, and a different sample of 81 customers would have a different industry mix and a different benchmark average. Pairing each company with its own industry makes the benchmark part of the observation, so the sampling variability of the industry mix is included in the standard error rather than ignored.</li>
-</ol>
-</details>
-</div></div>
-</div>
+<section id="sec-sampling-practice-more" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="sec-sampling-practice-more"><span class="header-section-number">16.4</span> Additional practice</h2>
 <div id="exercise-reading-interval-statements" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.6: </strong>Reading a confidence interval</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.10: </strong>Reading a confidence interval</div><div class="fobx-body">
 <p>A grocery delivery app takes a random sample of 400 orders from last month. The <strong>order value</strong> is the amount spent on an order. The sample mean order value is $64.20 and the sample standard deviation is $38.00, so the estimated standard error is <span class="math inline">\(38/\sqrt{400}=1.90\)</span> and the two-SE interval for the mean order value <span class="math inline">\(\mu\)</span> is <span class="math inline">\([60.4,\ 68.0]\)</span> dollars.</p>
-<p>Decide whether each statement is a correct reading of the interval. Where it is not, say what is wrong and what a correct version would say.</p>
+<p>First, write one sentence interpreting the interval for the app’s managers. Then decide whether each statement below is a correct reading of the interval. Where it is not, say what is wrong and give a correct version.</p>
 <ol type="1">
 <li>“About 95% of orders have order values between $60.40 and $68.00.”</li>
 <li>“There is a 95% probability that the mean order value across all of last month’s orders is between $60.40 and $68.00.”</li>
-<li>“If we sampled another 400 orders, there is a 95% chance their sample mean would fall between $60.40 and $68.00.”</li>
 <li>“A mean order value of $70 is not a plausible value at this level of confidence.”</li>
 <li>“Sampling 1,600 orders instead of 400 would roughly halve the margin of error.”</li>
-<li>“The mean order value last month was $64.20.”</li>
 </ol>
 <p>Finally, a free-delivery promotion breaks even if the mean order value is at least $62. What does the interval say about whether the promotion breaks even?</p>
-<details aria-label="Solution" id="details-2" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-reading-interval-statements">
 <summary>Solution</summary>
+<p>One correct interpretation: under the random-sampling model, mean order values across all of last month’s orders from about $60.40 to $68.00 are consistent with this sample.</p>
 <ol type="1">
-<li>Incorrect. The interval describes plausible values for the <em>mean</em> order value. The sample standard deviation of individual order values is $38, but the interval concerns uncertainty in the mean, not the spread of orders. A correct version: “the mean order value is plausibly anywhere from $60.40 to $68.00.”</li>
-<li>This is the common mistake described in <a href="#sec-ci" class="quarto-xref"><span>Section 16.2.2</span></a>. The mean is a fixed number, and this particular interval either contains it or does not. The 95% describes the procedure: across repeated random samples of 400 orders, about 95% of intervals built this way contain the true mean.</li>
-<li>Incorrect. The interval estimates the population mean; it is not an interval designed to contain the next sample mean with probability 0.95. A new sample mean varies around the unknown population mean, and the probability that it falls inside this particular interval is not given by the confidence level.</li>
-<li>Correct. $70 lies above the interval’s upper endpoint, so the observed mean would be unusually far below the true mean if it were $70.</li>
+<li>Incorrect. The interval describes plausible values for the <em>mean</em> order value. The sample standard deviation of individual order values is $38, but the interval concerns uncertainty in the mean, not the spread of orders.</li>
+<li>Incorrect. This is the common mistake described in <a href="#sec-ci" class="quarto-xref"><span>Section 16.2.2</span></a>. The mean is a fixed number, and this particular interval either contains it or does not. The 95% describes the procedure: across repeated random samples of 400 orders, about 95% of intervals built this way contain the mean.</li>
+<li>Correct. $70 lies above the interval’s upper endpoint. If the mean were $70, the observed mean of $64.20 would be about three standard errors below it.</li>
 <li>Correct, approximately. The standard error is <span class="math inline">\(s/\sqrt n\)</span>, so quadrupling <span class="math inline">\(n\)</span> halves it, provided the new sample’s standard deviation is close to $38.</li>
-<li>Incorrect as stated. $64.20 is the sample mean, the estimate; the mean of all of last month’s orders is unknown. The interval is the honest report: the best estimate is $64.20, and values within about $3.80 of it cannot be ruled out.</li>
 </ol>
-<p>The break-even value of $62 lies inside the interval. The best estimate is above it, but a true mean below $62 is consistent with the data, so the sample cannot rule out a promotion that loses money. A decision needs either a larger sample or a judgment about how costly the downside is.</p>
+<p>The break-even value of $62 lies inside the interval. The best estimate is above it, but a mean below $62 is consistent with the data, so the sample cannot rule out a promotion that loses money. A decision needs either a larger sample or a judgment about how costly the downside is.</p>
 </details>
 </div></div>
 </div>
 <div id="exercise-sample-vs-population-size" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.7: </strong>Sample size, population size, and what the standard error leaves out</div><div class="fobx-body">
-<p>A national bank with two million checking customers surveys 800 of them, chosen at random, on a ten-point satisfaction scale. A regional credit union with 20,000 members runs the same survey on 800 randomly chosen members. Both samples have a standard deviation of 2.0 points; the bank’s mean is 7.4 and the credit union’s is 7.9.</p>
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.11: </strong>Sample size, population size, and what the standard error leaves out</div><div class="fobx-body">
+<p>A national bank with two million checking customers surveys 800 of them, chosen at random, on a ten-point satisfaction scale. A regional credit union with 20,000 members runs the same survey on 800 randomly chosen members. Both samples have a standard deviation of 2.0 points.</p>
 <ol type="1">
 <li>Compute the estimated standard error of each sample mean.</li>
 <li>A bank executive argues that the credit union’s estimate must be far more precise, because 800 is 4% of its members but only 0.04% of the bank’s. Evaluate the argument.</li>
-<li>The bank considers an alternative: email the survey to all two million customers. Suppose 60,000 respond, with a sample standard deviation of 2.0 points. Compute the standard error that formula would give for the mean of those 60,000 responses, and explain what that number does not capture. Which estimate would you trust more, the 800 random customers or the 60,000 volunteers?</li>
-<li>Return to SAP’s objection that 81 companies out of 30,000 is too few to say anything. Which fact determines the precision of the Nucleus estimate: the fraction of customers sampled, or the sample size together with the spread of ROE? Then describe a different objection SAP could have raised about the 81 companies, which came from the customer list on SAP’s own website.</li>
+<li>Suppose the bank had instead emailed the survey to every customer and used the first 800 replies. Would <span class="math inline">\(2.0/\sqrt{800}\)</span> still describe the likely error in its estimate? Answer in one or two sentences.</li>
 </ol>
-<details aria-label="Solution" id="details-3" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-sample-vs-population-size">
 <summary>Solution</summary>
 <ol type="1">
 <li>Both standard errors are <span class="math inline">\(2.0/\sqrt{800}\approx0.071\)</span> points. The formula uses the sample size and the spread of responses, and those are the same in both surveys.</li>
-<li>The argument confuses the fraction sampled with the sample size. The sampling model treats the 800 responses as iid draws from the population’s distribution, and the precision of their average depends on how many draws there are and how variable each one is, not on how many customers went unsampled. Sampling without replacement from a smaller population does make the draws slightly dependent in a way that helps the credit union, but at 4% of the population the effect is a reduction of about 2% in the standard error, far from the executive’s “far more precise.”</li>
-<li>The formula gives <span class="math inline">\(2.0/\sqrt{60{,}000}\approx0.008\)</span> points. That number describes sampling variability under the assumption that the 60,000 are a random sample of the two million, and they are not: they are the 3% who chose to answer. If dissatisfied customers respond more often, the mean of the volunteers is biased downward, and no sample size shrinks that bias. The standard error reports only the error that random sampling introduces. The 800 random customers give an estimate whose error the model can describe; the 60,000 volunteers give an estimate whose main error the model ignores.</li>
-<li>The precision of the Nucleus estimate depends on <span class="math inline">\(n=81\)</span> and the spread of ROE, which gave a standard error of about 2.9 points, and not on the fraction 81/30,000. The better objection concerns how the 81 were chosen. Companies listed as customers on SAP’s website are the ones SAP chose to showcase, which need not resemble a random draw from all 30,000. If that list is unrepresentative, the estimate is biased in a direction the standard error cannot reveal, in either direction.</li>
-</ol>
-</details>
-</div></div>
-</div>
-<div id="exercise-bootstrap-headline" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.8: </strong>Bootstrapping the headline</div><div class="fobx-body">
-<p>Nucleus’s headline, “SAP customers are 20 percent less profitable than their peers,” is a ratio: the sample mean ROE divided by the average industry benchmark, minus one, or <span class="math inline">\(12.6/15.7-1\approx-19.5\%\)</span>. <a href="#fig-practice-boot-ratio" class="quarto-xref">Figure&nbsp;<span>16.11</span></a> shows 10,000 bootstrap values of this percentage difference, each computed from a resample of the 81 companies.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-practice-boot-ratio" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-practice-boot-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="inference_01_sampling-distributions_files/figure-html/fig-practice-boot-ratio-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-practice-boot-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16.11: 10,000 bootstrap values of the percentage difference between the mean ROE of SAP customers and the average of their industry benchmarks. The dashed line marks the observed value of -19.5%; the bootstrap standard error is 16.5 percentage points.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<ol type="1">
-<li>Why does <span class="math inline">\(s/\sqrt n\)</span> not give the standard error of this statistic?</li>
-<li>Describe the bootstrap procedure that produced the figure. Explain why each resample draws whole rows of the data, keeping each company’s ROE together with its industry benchmark, rather than resampling the two columns separately.</li>
-<li>The bootstrap standard error is 16.5 percentage points. Form the two-SE interval for the true percentage difference and say which of these are plausible values: parity with peers, Nucleus’s 20% deficit, and SAP’s advertised 32% advantage.</li>
-<li>The 2.5th and 97.5th percentiles of the bootstrap values are -52.7% and 12.2%. Compare them with the two-SE interval and comment on whether the normal approximation is adequate here.</li>
-<li>Compare this conclusion with the one from <a href="#exercise-sap-paired">the paired comparison above</a>, which measured the gap in percentage points rather than as a ratio.</li>
-</ol>
-<details aria-label="Solution" id="details-4" class="solution-details">
-<summary>Solution</summary>
-<ol type="1">
-<li>The statistic is a ratio of two sample means, each of which varies from sample to sample, and the two vary together because a company’s ROE is correlated with its industry’s. The formula <span class="math inline">\(s/\sqrt n\)</span> describes the sampling variability of a single sample mean and says nothing about how a ratio of two correlated means varies.</li>
-<li>Draw 81 companies from the 81 observed ones with replacement, compute the mean ROE and mean benchmark of the resample, form the percentage difference, and repeat 10,000 times. The standard deviation of the 10,000 values is the bootstrap standard error. Resampling rows preserves the pairing of each company with its industry benchmark. The correlation can vary from resample to resample. Resampling the columns separately would break that dependence and describe a different, incorrect sampling process.</li>
-<li>The interval is <span class="math inline">\(-19.5\pm2(16.5)
-\approx[-52.6\%,\ 13.6\%]\)</span>. Parity, at 0%, is inside it, and so is a 20% deficit; the data are also consistent with deficits far larger than Nucleus claimed. A 32% advantage lies well above the upper endpoint and is not plausible.</li>
-<li>The percentile interval is close to the two-SE interval, and the bootstrap histogram is roughly bell-shaped with a mild skew, so the normal approximation is adequate for these purposes. The bootstrap has done two jobs here: it supplied a standard error that no simple formula gives, and it showed that the sampling distribution is close enough to normal for the two-SE interval to be reasonable.</li>
-<li>Both analyses lead to the same reading of the dispute. Zero gap is plausible, Nucleus’s reported gap is plausible, and SAP’s advertised advantage is not. The substantive conclusion does not depend on which scale we use.</li>
-</ol>
-</details>
-</div></div>
-</div>
-<div id="exercise-bootstrap-weight" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.9: </strong>How well do we know the minimum-variance weight?</div><div class="fobx-body">
-<p>In <a href="./prob_09_combining-random-variables.html#exercise-minimum-variance-weight">Chapter 14</a>, the minimum-variance mix of the DAX and FTSE indices put a weight of 0.173 on the DAX, computed from 1,859 daily returns over 1991 through 1998. That weight is an estimate: a different eight years would have given a different number. <a href="#fig-practice-boot-alpha" class="quarto-xref">Figure&nbsp;<span>16.12</span></a> shows 5,000 bootstrap values of the weight, each computed from a resample of the 1,859 days. For these calculations, use an iid model for the daily pairs of returns; part 2 examines its limitations.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-practice-boot-alpha" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-practice-boot-alpha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="inference_01_sampling-distributions_files/figure-html/fig-practice-boot-alpha-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-practice-boot-alpha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16.12: 5,000 bootstrap values of the minimum-variance weight on the DAX. The dashed line marks the estimate from the original sample, 0.173; the bootstrap standard error is 0.043.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<ol type="1">
-<li>Why is the two-SE interval from <a href="#sec-ci" class="quarto-xref"><span>Section 16.2.2</span></a> not directly available for this statistic? What does the bootstrap supply?</li>
-<li>Each bootstrap resample draws days with replacement, keeping each day’s DAX and FTSE returns together. Explain why the pairing must be kept, and what assumption about the days the resampling relies on. Use <a href="./prob_10_sums-averages-clt.html#exercise-returns-add-like-iid">the daily-returns exercise in Chapter 15</a> to explain why near-zero correlation between consecutive returns does not establish that assumption.</li>
-<li>The bootstrap standard error is 0.043. Form the two-SE interval for the true minimum-variance weight. Is a weight of zero, meaning the FTSE alone, a plausible value? Is an even split?</li>
-<li>The 2.5th and 97.5th bootstrap percentiles are 0.088 and 0.258. Compare them with the two-SE interval and with the shape of <a href="#fig-practice-boot-alpha" class="quarto-xref">Figure&nbsp;<span>16.12</span></a>.</li>
-<li>Write two sentences advising a FTSE investor who asked for the variance-minimizing DAX allocation, conveying both the estimate and its uncertainty.</li>
-</ol>
-<details aria-label="Solution" id="details-5" class="solution-details">
-<summary>Solution</summary>
-<ol type="1">
-<li>The weight is a ratio built from two sample variances and a sample covariance, and there is no simple formula like <span class="math inline">\(s/\sqrt n\)</span> for its standard error. The bootstrap supplies an estimate of that standard error and a picture of the sampling distribution’s shape, by recomputing the weight on repeated resamples of the observed days.</li>
-<li>The weight depends on the covariance between the two indices, which lives in the pairing of each day’s two returns; resampling the columns separately would destroy it. Resampling days assumes the days are independent draws from a common distribution. Near-zero correlation in raw returns does not establish independence: large absolute returns can cluster even when signed returns are uncorrelated. The weight depends on variances and covariance, so that dependence can affect its uncertainty. The interval here is conditional on an iid approximation whose adequacy the earlier exercise does not establish.</li>
-<li>The interval is <span class="math inline">\(0.173\pm2(0.043)
-\approx[0.09,\ 0.26]\)</span>. Under the iid model, zero lies below the interval, so holding the FTSE alone is not a plausible variance-minimizing choice at this confidence level. An even split lies far above it and is not plausible either.</li>
-<li>The percentiles nearly coincide with the two-SE endpoints, and the bootstrap histogram is roughly symmetric and bell-shaped. This supports the two-SE approximation within the iid resampling model; it does not check that model’s adequacy for dependent returns.</li>
-<li>“Under an iid model for daily returns, the estimated DAX weight is 17%, with a two-SE interval from 9% to 26%. Dependence across days or changes in the return distribution could make that interval unreliable for an allocation decision.”</li>
-</ol>
-</details>
-</div></div>
-</div>
-<div id="exercise-hmda-denials" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.10: </strong>Mortgage denial rates</div><div class="fobx-body">
-<p>The <code>HMDA</code> data in the <code>AER</code> package come from a Federal Reserve Bank of Boston study of 2,380 mortgage applications in the Boston area in 1990. Each application was either denied or approved, and the data record whether the applicant was Black. <a href="#tbl-practice-hmda" class="quarto-xref">Table&nbsp;<span>16.2</span></a> gives the counts. Treat the applications as a random sample of mortgage applications in the area that year.</p>
-<div class="cell">
-<div id="tbl-practice-hmda" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-practice-hmda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;16.2: Mortgage applications and denials in the Boston HMDA data, 1990.
-</figcaption>
-<div aria-describedby="tbl-practice-hmda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Group</th>
-<th style="text-align: right;">Applications</th>
-<th style="text-align: right;">Denied</th>
-<th style="text-align: right;">Denial rate</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Black applicants</td>
-<td style="text-align: right;">339</td>
-<td style="text-align: right;">96</td>
-<td style="text-align: right;">28.3%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Other applicants</td>
-<td style="text-align: right;">2041</td>
-<td style="text-align: right;">189</td>
-<td style="text-align: right;">9.3%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<ol type="1">
-<li>A denial rate is the average of a variable that equals 1 for a denied application and 0 otherwise. Using the variance of a 0/1 variable from <a href="./prob_10_sums-averages-clt.html#exercise-conversion-rate">the conversion-rate exercise in Chapter 15</a>, write the standard error of a sample proportion <span class="math inline">\(\hat p\)</span> based on <span class="math inline">\(n\)</span> applications.</li>
-<li>Compute the estimated standard error and a two-SE interval for the denial rate among all applications in the area, and then separately for Black applicants and for other applicants.</li>
-<li>The interval for Black applicants is about four times as wide as the interval for other applicants. Give the two reasons.</li>
-<li>The difference between the two sample denial rates is 19.1 percentage points. Treating the two groups as independent samples, the standard error of the difference is <span class="math inline">\(\sqrt{SE_1^2+SE_2^2}\)</span>. Explain where that formula comes from, compute it, and form a two-SE interval for the difference in denial rates.</li>
-<li>State carefully what the interval in part 4 does and does not establish. What questions would the Boston Fed’s researchers have needed to answer before interpreting the gap?</li>
-</ol>
-<details aria-label="Solution" id="details-6" class="solution-details">
-<summary>Solution</summary>
-<ol type="1">
-<li>A 0/1 variable with mean <span class="math inline">\(p\)</span> has variance <span class="math inline">\(p(1-p)\)</span>, so the average of <span class="math inline">\(n\)</span> of them has standard deviation <span class="math inline">\(\sqrt{p(1-p)/n}\)</span>. Plugging in the sample proportion gives the estimated standard error <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}\)</span>.</li>
-<li>Overall, <span class="math inline">\(\hat p=0.120\)</span> with standard error <span class="math inline">\(\sqrt{0.120(0.880)/2,380}\approx0.0067\)</span>, for an interval of about <span class="math inline">\([10.6\%,\ 13.3\%]\)</span>. For Black applicants, <span class="math inline">\(\hat p=0.283\)</span> with standard error 0.024 and interval <span class="math inline">\([23.4\%,\ 33.2\%]\)</span>. For other applicants, <span class="math inline">\(\hat p=0.093\)</span> with standard error 0.006 and interval <span class="math inline">\([8.0\%,\ 10.5\%]\)</span>.</li>
-<li>The sample of Black applicants is about one sixth the size, which by itself multiplies the standard error by about <span class="math inline">\(\sqrt6\approx2.4\)</span>. Their denial rate is also closer to one half, where <span class="math inline">\(p(1-p)\)</span> is largest, which adds the rest of the difference.</li>
-<li>The difference of two independent estimators has variance equal to the sum of their variances, by the variance rule for a difference with zero covariance; taking the square root gives the formula. Here the standard error is <span class="math inline">\(\sqrt{0.024^2+0.006^2}\approx0.025\)</span>, and the interval is about <span class="math inline">\([14.0,\ 24.1]\)</span> percentage points.</li>
-<li>Under the sampling model, the interval excludes a zero gap by a wide margin, so random sampling variation alone is an implausible explanation for the observed difference. It does not say why the gap exists. Applicants differ in income, debt ratios, credit history, and the properties they sought, and the raw rates make no adjustment for any of that. The Boston Fed study’s central question was whether the gap survives after accounting for those characteristics, which requires the tools of the regression chapters. The interval here answers only the question of whether the raw gap could be sampling noise.</li>
-</ol>
-</details>
-</div></div>
-</div>
-<div id="exercise-two-stores-two-intervals" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.11: </strong>Two stores, two intervals</div><div class="fobx-body">
-<p>A retailer audits average transaction size at two stores. At Store A, a random sample of 64 transactions has mean $52 and standard deviation $16. At Store B, a random sample of 100 transactions has mean $58 and standard deviation $20.</p>
-<ol type="1">
-<li>Compute the two-SE interval for each store’s mean transaction size.</li>
-<li>The two intervals overlap. The regional manager concludes that “the stores could easily have the same average, so there is no evidence of a difference.” Before computing anything more, say whether overlapping intervals justify that conclusion.</li>
-<li>The estimated difference in means is $6. Treating the samples as independent, compute the standard error of the difference and a two-SE interval for the true difference in mean transaction size.</li>
-<li>Reconcile parts 1 and 3. Why can two intervals overlap while the interval for their difference excludes zero?</li>
-<li>What does the interval in part 3 say about the size of the difference, as opposed to its existence? How would you report the result?</li>
-</ol>
-<details aria-label="Solution" id="details-7" class="solution-details">
-<summary>Solution</summary>
-<ol type="1">
-<li>Store A’s standard error is <span class="math inline">\(16/\sqrt{64}=2\)</span>, giving <span class="math inline">\([48,\ 56]\)</span>. Store B’s is <span class="math inline">\(20/\sqrt{100}=2\)</span>, giving <span class="math inline">\([54,\ 62]\)</span>.</li>
-<li>No.&nbsp;Each interval describes plausible values for one mean on its own. Whether the two means could be equal is a question about their difference, which has its own sampling distribution and its own interval. Overlap is a rough visual check that is too conservative: it can fail to flag differences the data actually establish.</li>
-<li>The difference of two independent estimators has variance equal to the sum of their variances, so the standard error is <span class="math inline">\(\sqrt{2^2+2^2}\approx2.83\)</span>. The interval is <span class="math inline">\(6\pm2(2.83)\)</span>, about <span class="math inline">\([0.3,\ 11.7]\)</span> dollars.</li>
-<li>Two intervals fail to overlap only when the gap between the means exceeds the sum of the two margins, <span class="math inline">\(2(2)+2(2)=8\)</span> here. The interval for the difference excludes zero when the gap exceeds two standard errors of the difference, <span class="math inline">\(2\sqrt{2^2+2^2}\approx5.7\)</span>. The second threshold is smaller because standard errors add in quadrature, not directly. A gap of $6 clears the correct threshold and not the overlap test.</li>
-<li>The interval says the true difference is plausibly anywhere from about 30 cents to nearly $12. The direction is reasonably well established, but the size is not: the data are consistent with a difference too small to act on and with one large enough to matter. A fair report gives the estimate of $6 and the interval together, rather than either “the stores differ” or “no evidence of a difference.”</li>
+<li>The argument confuses the fraction sampled with the sample size. The sampling model treats the 800 responses as iid draws from the population’s distribution, and the precision of their average depends on how many draws there are and how variable each one is, not on how many customers went unsampled. Sampling without replacement from a smaller population does help the credit union slightly, but at 4% of the population the standard error falls by only about 2%, far from “far more precise.”</li>
+<li>No.&nbsp;The standard error describes the error from random sampling. The first 800 replies come from customers who chose to answer quickly, and their mean can differ from all customers’ mean in a direction and by an amount that the standard error does not reflect.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-audit-total" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.12: </strong>Estimating a total from a sample of invoices</div><div class="fobx-body">
-<p>An auditor reviews a company’s 8,000 supplier invoices for the year. Checking every one is too costly, so the auditor draws 200 at random without replacement and records the overbilling on each, in dollars, with zero for a correct invoice. The sampled overbilling has mean $12.40 and standard deviation $60. Only 60 of the 200 invoices contained any error. For parts 1–3, use the iid approximation: 200 invoices are only 2.5% of the population.</p>
+<p>An auditor reviews a company’s 8,000 supplier invoices for the year. Checking every one is too costly, so the auditor draws 200 at random and records the overbilling on each, in dollars, with zero for a correct invoice. The sampled overbilling has mean $12.40 and standard deviation $60. Only 60 of the 200 invoices contained any error, so individual amounts are strongly right-skewed. Use the iid approximation, since 200 invoices are only 2.5% of the population, and assume the normal approximation for the sample mean is adequate.</p>
 <ol type="1">
 <li>Compute the estimated standard error and a two-SE interval for the mean overbilling per invoice across all 8,000.</li>
 <li>The quantity that matters is the total overbilling, which is 8,000 times the mean. Give an estimate of the total and a two-SE interval for it. Which rule from the probability chapters lets you scale the interval this way?</li>
 <li>The company treats total overbilling above $50,000 as material. What does the interval say about whether the total is material?</li>
-<li>The auditor wants the margin of error for the total to be $20,000. First use $60 as the planning standard deviation and <span class="math inline">\(s/\sqrt n\)</span> to find a sample size. This would sample a substantial fraction of the invoices. For sampling without replacement from <span class="math inline">\(N=8{,}000\)</span>, the estimated SE of the mean is <span class="math inline">\(\dfrac{s}{\sqrt n}\sqrt{1-\dfrac nN}\)</span>. Use this correction to find the smallest whole-number sample size with a two-SE margin of at most $20,000 for the total.</li>
-<li>Seventy percent of the sampled invoices had zero error, so the overbilling distribution is a spike at zero with a right tail. Does that shape threaten the interval in part 1? Say what would make you more or less comfortable with it.</li>
 </ol>
-<details aria-label="Solution" id="details-8" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-audit-total">
 <summary>Solution</summary>
 <ol type="1">
 <li>The standard error is <span class="math inline">\(60/\sqrt{200}\approx4.24\)</span> dollars, and the interval is <span class="math inline">\(12.40\pm2(4.24)\)</span>, about <span class="math inline">\([3.9,\ 20.9]\)</span> dollars per invoice.</li>
 <li>The estimated total is <span class="math inline">\(8{,}000(12.40)=99{,}200\)</span> dollars. Multiplying an estimator by a constant multiplies its standard error by the same constant, so the total’s standard error is <span class="math inline">\(8{,}000(4.24)\approx33{,}900\)</span> and the interval is about <span class="math inline">\([31{,}000,\ 167{,}000]\)</span> dollars. This is the scaling rule for the standard deviation of <span class="math inline">\(aX\)</span>.</li>
-<li>The interval spans the threshold. A total below $50,000 is plausible, and so is one three times the threshold. The sample does not settle materiality; the best estimate is well above the line, but the uncertainty is too large to conclude either way.</li>
-<li>A margin of $20,000 on the total is $2.50 on the mean. The iid calculation <span class="math inline">\(2(60)/\sqrt n=2.5\)</span> gives <span class="math inline">\(n=2{,}304\)</span>, more than a quarter of the population. With the correction, squaring <span class="math inline">\(2(60)\sqrt{1/n-1/8{,}000}\le2.5\)</span> gives <span class="math inline">\(n\ge 2{,}304/(1+2{,}304/8{,}000)\approx1{,}788.82\)</span>. Round up to 1,789 invoices. Sampling without replacement reduces uncertainty because each additional invoice leaves fewer unchecked.</li>
-<li>If a few invoices have very large errors, the sample mean and standard deviation both depend heavily on whether those invoices were drawn. A sample that misses them can underestimate both the mean and its uncertainty. Inspecting the largest sampled errors or bootstrapping the mean can reveal sensitivity to the observed tail, but neither can reveal extreme errors absent from the sample. Information about such errors in the full invoice population would help assess the interval.</li>
-</ol>
-</details>
-</div></div>
-</div>
-<div id="exercise-ceo-salaries" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.13: </strong>CEO pay and the uncertainty in a standard deviation</div><div class="fobx-body">
-<p>The <code>ceosal1</code> data in the <code>wooldridge</code> package are a random sample of 209 chief executives’ 1990 salaries, in thousands of dollars, drawn from a <em>Businessweek</em> survey. The sample mean is $1,281 thousand, the median is $1,039 thousand, the standard deviation is $1,372 thousand, and the largest salary is $14,822 thousand. We bootstrapped the mean, the median, and the standard deviation, 10,000 resamples each.</p>
-<div class="cell">
-<div id="tbl-practice-ceo-boot" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-practice-ceo-boot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;16.3: Bootstrap standard errors and 2.5th and 97.5th percentiles for three summaries of the CEO salary sample, in thousands of dollars.
-</figcaption>
-<div aria-describedby="tbl-practice-ceo-boot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 11%">
-<col style="width: 17%">
-<col style="width: 22%">
-<col style="width: 23%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Summary</th>
-<th style="text-align: right;">Estimate</th>
-<th style="text-align: right;">Bootstrap SE</th>
-<th style="text-align: right;">2.5th percentile</th>
-<th style="text-align: right;">97.5th percentile</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Mean</td>
-<td style="text-align: right;">1,281</td>
-<td style="text-align: right;">94</td>
-<td style="text-align: right;">1,120</td>
-<td style="text-align: right;">1,486</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Median</td>
-<td style="text-align: right;">1,039</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: right;">937</td>
-<td style="text-align: right;">1,115</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Standard deviation</td>
-<td style="text-align: right;">1,372</td>
-<td style="text-align: right;">369</td>
-<td style="text-align: right;">608</td>
-<td style="text-align: right;">2,020</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<ol type="1">
-<li>Compute the formula standard error <span class="math inline">\(s/\sqrt n\)</span> for the mean salary and the two-SE interval. Compare the standard error with the bootstrap standard error in <a href="#tbl-practice-ceo-boot" class="quarto-xref">Table&nbsp;<span>16.3</span></a>.</li>
-<li>The median’s bootstrap standard error is about half the mean’s. Explain why the median is estimated more precisely than the mean in this sample.</li>
-<li>The bootstrap interval for the standard deviation runs from about $608 thousand to $2,020 thousand. Explain why the standard deviation is so uncertain, and what that means for any calculation in the earlier chapters that treated a sample standard deviation as if it were the population value.</li>
-<li>A compensation committee asks what a typical CEO in this population earned. Which summary would you give them, with what interval, and what would you say about the population the sample represents?</li>
-</ol>
-<details aria-label="Solution" id="details-9" class="solution-details">
-<summary>Solution</summary>
-<ol type="1">
-<li>The formula gives <span class="math inline">\(1,372/\sqrt{209}\approx95\)</span> thousand dollars, and the interval <span class="math inline">\([1,091,\ 1,471]\)</span>. The bootstrap standard error of 94 is nearly identical, as the technical note on the bootstrap for the mean in <a href="#sec-bootstrap" class="quarto-xref"><span>Section 16.4</span></a> predicts.</li>
-<li>The mean moves whenever the largest salaries are included or excluded from a resample; the median depends only on the middle of the ordered sample and barely notices the tail. In a heavily skewed sample the median is both a more stable and a more representative summary of a typical value.</li>
-<li>The standard deviation is dominated by the squared distance of the largest salary from the mean. Whether that one CEO appears zero, one, or several times in a resample changes <span class="math inline">\(s\)</span> by hundreds of thousands of dollars, so <span class="math inline">\(s\)</span> is estimated with a relative uncertainty of roughly 30%. Every calculation that plugged <span class="math inline">\(s\)</span> in for <span class="math inline">\(\sigma\)</span>, including the standard errors in this chapter, inherits that uncertainty; the effect is small when the data are well behaved and large when a few extreme values drive <span class="math inline">\(s\)</span>.</li>
-<li>The median, about $1,039 thousand with a bootstrap interval of roughly $937 to $1,115 thousand, describes a typical CEO better than the mean, which a handful of very large salaries pull upward. The interval concerns the population represented by the magazine’s survey of 1990 salaries. Generalizing to all CEOs, or to a different year, would require evidence that the survey represents that population.</li>
+<li>The interval spans the threshold. A total below $50,000 is plausible, and so is one more than three times the threshold. The best estimate is well above the line, but the sample does not settle materiality.</li>
 </ol>
 </details>
 </div></div>
@@ -1222,9 +1075,6 @@ Table&nbsp;16.3: Bootstrap standard errors and 2.5th and 97.5th percentiles for 
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
 <ul>
 <li><a href="./appendix_data.html#sec-data-sap-nucleus">SAP Customer ROE</a> supplies the 81 companies’ ROE and industry benchmarks.</li>
-<li><code>EuStockMarkets</code>, distributed with R, supplies the daily DAX and FTSE levels, 1991–1998.</li>
-<li><code>HMDA</code> from the <code>AER</code> package supplies the Boston mortgage applications <span class="citation" data-cites="munnell-hmda-1996 aer-package">(<a href="appendix_data.html#ref-munnell-hmda-1996" role="doc-biblioref">Munnell et al. 1996</a>; <a href="appendix_data.html#ref-aer-package" role="doc-biblioref">Kleiber and Zeileis 2008</a>)</span>.</li>
-<li><code>ceosal1</code> from the <code>wooldridge</code> package supplies the CEO salaries <span class="citation" data-cites="wooldridge-package">(<a href="appendix_data.html#ref-wooldridge-package" role="doc-biblioref">Shea 2024</a>)</span>.</li>
 </ul>
 
 
@@ -1235,17 +1085,8 @@ Carr, Nicholas. 2005. <em>Lies, Damned Lies and <span>IT</span> Statistics</em>.
 <div id="ref-carr-sap-ads" class="csl-entry" role="listitem">
 Carr, Nicholas. 2006. <em><span>SAP</span>’s Truth-Stretching Ads</em>. Rough Type (blog), January 18. <a href="https://www.roughtype.com/?p=225">https://www.roughtype.com/?p=225</a>.
 </div>
-<div id="ref-aer-package" class="csl-entry" role="listitem">
-Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with <span>R</span></em>. Springer-Verlag. <a href="https://doi.org/10.1007/978-0-387-77318-6">https://doi.org/10.1007/978-0-387-77318-6</a>.
-</div>
-<div id="ref-munnell-hmda-1996" class="csl-entry" role="listitem">
-Munnell, Alicia H., Geoffrey M. B. Tootell, Lynn E. Browne, and James McEneaney. 1996. <span>“Mortgage Lending in Boston: Interpreting <span>HMDA</span> Data.”</span> <em>American Economic Review</em> 86 (1): 25–53.
-</div>
 <div id="ref-sap-nucleus" class="csl-entry" role="listitem">
 Nucleus Research. 2006. <em><span>SAP</span> Customers Are 20 Percent Less Profitable Than Their Peers</em>. Research Note G12, Nucleus Research Inc., Wellesley, MA. <a href="https://www.oracle.com/us/corporate/analystreports/industries/059823.pdf">https://www.oracle.com/us/corporate/analystreports/industries/059823.pdf</a>.
-</div>
-<div id="ref-wooldridge-package" class="csl-entry" role="listitem">
-Shea, Justin M. 2024. <em>Wooldridge: 115 Data Sets from <span>“Introductory Econometrics: A Modern Approach, 7e”</span> by Jeffrey m. Wooldridge</em>. <a href="https://CRAN.R-project.org/package=wooldridge">https://CRAN.R-project.org/package=wooldridge</a>.
 </div>
 </div>
 </section>

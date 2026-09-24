@@ -77,10 +77,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
@@ -89,13 +85,17 @@ ul.task-list li input[type="checkbox"] {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -467,7 +467,7 @@ Figure&nbsp;13.3: Synthetic distances and delivery times for 60 routes.
 </div>
 </div>
 </div>
-<details class="solution-details" aria-label="Solution" id="details-1">
+<details id="details-1" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Delivery time tends to increase with distance. The vertical spread is wider near 40 miles than near 10 miles. Delivery times vary more around the upward trend at longer distances.</p>
 </details>
@@ -551,7 +551,7 @@ Figure&nbsp;13.6: A smooth curve for the Austin homes. Prices increase with size
 <div id="exercise-smoother-individual" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.2: </strong>A prediction for one day</div><div class="fobx-body">
 <p>A planner reads the smooth curve in <a href="#fig-ercot-load-temp" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> at 50°F and says, “On a 50°F day, electricity demand will be 12,000 MW.” How would you revise this statement? What part of the plot helps you judge how far an individual day’s demand might be from that value?</p>
-<details class="solution-details" aria-label="Solution" id="details-2">
+<details id="details-2" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The curve estimates <em>average</em> demand on days near 50°F at about 12,000 MW. Individual days can have higher or lower demand. The vertical spread of the points near 50°F shows the variation around that average.</p>
 </details>
@@ -622,7 +622,7 @@ Figure&nbsp;13.9: Synthetic delivery distances and times at two depots, shown on
 </div>
 </div>
 </div>
-<details class="solution-details" aria-label="Solution" id="details-3">
+<details id="details-3" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Both correlations are positive, but Depot A has the larger correlation because its points fall closer to a straight line. At Depot B, delivery times vary more at each distance. Correlation describes how closely the points follow the linear trend, as well as its direction.</p>
 </details>
@@ -701,7 +701,7 @@ Figure&nbsp;13.12: Synthetic spending and sales for 40 city campaigns and one na
 </div>
 </div>
 </div>
-<details class="solution-details" aria-label="Solution" id="details-4">
+<details id="details-4" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The correlation falls from 0.91 to 0.35. The national campaign has much higher spending and sales than all the city campaigns, making the overall association look strong. Among the city campaigns, sales vary considerably at similar spending levels. The correlation across all 41 campaigns overstates how closely spending and sales track each other among the city campaigns.</p>
 </details>
@@ -771,7 +771,7 @@ z_{y,i}=\frac{y_i-\bar{y}}{s_y}.
 <div id="exercise-covariance-units" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.5: </strong>Changing price units</div><div class="fobx-body">
 <p>Suppose we convert every Austin price from dollars to thousands of dollars. What happens to the standard deviation of price, the covariance between price and size, and the correlation between price and size?</p>
-<details class="solution-details" aria-label="Solution" id="details-5">
+<details id="details-5" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The standard deviation of price and the covariance between price and size each become one-thousandth as large. The correlation between price and size stays the same.</p>
 </details>
@@ -809,7 +809,7 @@ z_{y,i}=\frac{y_i-\bar{y}}{s_y}.
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 13.6: </strong>Comparing sales across stores</div><div class="fobx-body">
 <p>A retailer models weekly sales at three stores, measured in thousands of dollars. The standard deviations of sales are 4 at Store A, 6 at Store B, and 12 at Store C. The correlation between sales at A and B is 0.8; between A and C it is 0.4.</p>
 <p>Calculate the covariance between sales at A and B and between sales at A and C. Which pair has the stronger linear association? Explain why the covariances alone do not answer that question.</p>
-<details class="solution-details" aria-label="Solution" id="details-6">
+<details id="details-6" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>Both covariances are 19.2 in squared thousands of dollars: <span class="math inline">\(0.8(4)(6)=19.2\)</span> for A and B, and <span class="math inline">\(0.4(4)(12)=19.2\)</span> for A and C. Sales at A and B have the stronger linear association, with correlation 0.8 rather than 0.4. The larger standard deviation at C produces the same covariance despite the weaker correlation.</p>
 </details>
@@ -943,7 +943,7 @@ Figure&nbsp;13.15: Synthetic operating temperatures and measurement errors for 6
 </div>
 </div>
 <p>The sample correlation is 0.07, and the errors average close to zero throughout the temperature range. An engineer concludes that measurement error is independent of temperature. Does the plot support that conclusion? If the sensor must measure within 1 mm of the correct value, would you be equally comfortable using it near 20°C and near 40°C?</p>
-<details class="solution-details" aria-label="Solution" id="details-7">
+<details id="details-7" class="solution-details" aria-label="Solution">
 <summary>Solution</summary>
 <p>The errors spread farther from zero at higher temperatures, even though their average stays near zero. The conditional distribution of error changes with temperature, so the plot contradicts independence. Errors near 20°C mostly fall within 1 mm of zero; many errors near 40°C exceed that tolerance. The sensor is more precise at the lower temperatures.</p>
 </details>

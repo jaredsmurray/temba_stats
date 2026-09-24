@@ -96,13 +96,13 @@ div.csl-indent {
   }
 }</script>
 <style>
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 .Definition {
   --color1: #F4EAF0;
@@ -112,9 +112,9 @@ div.csl-indent {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -484,7 +484,7 @@ window.Quarto = {
 <li><p>For one e-commerce order, the probability of a return is 0.18, the probability of a customer-service contact is 0.24, and the probability of both is 0.09. Find the probability that the order is returned or produces a customer-service contact. Why would adding 0.18 and 0.24 give the wrong answer?</p></li>
 <li><p>A separate order must use exactly one of two shipping methods: standard or express. Their probabilities are 0.68 and 0.32. Find the probability that the order uses standard or express shipping, and explain why no overlap correction is needed.</p></li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-overlapping-events">
+<details class="solution-details" id="solution-overlapping-events" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>Returns and customer-service contacts can overlap, so the addition rule gives</li>
@@ -516,7 +516,7 @@ window.Quarto = {
 <div id="exercise-workplace-random-variables" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.2: </strong>Three workplace outcomes</div><div class="fobx-body">
 <p>Bloom, Han, and Liang ran a six-month experiment with 1,612 employees at Trip.com, a travel-services company <span class="citation" data-cites="wfh-bloom">(<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">Bloom et al. 2024</a>)</span>. They randomly assigned each employee either to work in the office five days a week or to work from home two days a week. The study records whether an employee leaves the firm, the number of lines of code an engineer writes in a day, and the time an employee spends commuting. Define a random variable for each corresponding future outcome and classify it as discrete or continuous. Why does the count remain discrete even when it has many possible values?</p>
-<details class="solution-details" aria-label="Solution" id="solution-workplace-random-variables">
+<details class="solution-details" id="solution-workplace-random-variables" aria-label="Solution">
 <summary>Solution</summary>
 <p>Let <span class="math inline">\(L=1\)</span> if an employee leaves and <span class="math inline">\(L=0\)</span> otherwise. This binary random variable is discrete. Let <span class="math inline">\(C\)</span> be the number of lines of code written in one day. It is also discrete because its possible values form a list of counts: <span class="math inline">\(0,1,2,\ldots\)</span>. Let <span class="math inline">\(T\)</span> be commute time. We model it as continuous because it can take any value in a range rather than only distinct counts.</p>
 </details>
@@ -600,7 +600,7 @@ Figure&nbsp;7.1: Three probabilities in the support-ticket PMF. Draw the fourth 
 <li>Which bar represents no escalation? Which bars together represent at least one escalation?</li>
 <li>What two visual checks confirm that the completed picture is a valid PMF?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-support-escalation-pmf">
+<details class="solution-details" id="solution-support-escalation-pmf" aria-label="Solution">
 <summary>Solution</summary>
 <div class="cell">
 <div class="cell-output-display">
@@ -793,7 +793,7 @@ Figure&nbsp;7.4: A probability density function for the sale price of a future h
 <li>Find <span class="math inline">\(\Pr(0.1&lt;T&lt;0.3)\)</span> using the area of a rectangle.</li>
 <li>Find <span class="math inline">\(\Pr(T=0.2)\)</span>. Explain why the density height of 2 is not this probability.</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-rectangle-density">
+<details class="solution-details" id="solution-rectangle-density" aria-label="Solution">
 <summary>Solution</summary>
 <p>The total area is width times height, <span class="math inline">\(0.5(2)=1\)</span>. Over the interval from 0.1 to 0.3 minutes, the area is <span class="math inline">\((0.3-0.1)(2)=0.4\)</span>, so the interval has probability 0.4. A single point has zero width and hence zero area: <span class="math inline">\(\Pr(T=0.2)=0\)</span>. The density height measures probability per unit of time; probability comes from the area over an interval.</p>
 </details>
@@ -873,7 +873,7 @@ Adding or removing the endpoints 2 and 5 therefore does not change the area.
 <div id="exercise-marketing-channel-union" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 7.5: </strong>Overlapping marketing channels</div><div class="fobx-body">
 <p>For one customer, a retailer’s model assigns probability 0.42 to opening an email promotion, 0.28 to viewing the matching social-media promotion, and 0.15 to doing both. Find the probability that the customer sees at least one of the promotions. Then find the probability that the customer sees neither.</p>
-<details class="solution-details" aria-label="Solution" id="solution-marketing-channel-union">
+<details class="solution-details" id="solution-marketing-channel-union" aria-label="Solution">
 <summary>Solution</summary>
 <p>The probability of at least one exposure is</p>
 <p><span class="math display">\[

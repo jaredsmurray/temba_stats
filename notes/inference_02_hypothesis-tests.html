@@ -77,25 +77,25 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.TechnicalDetail {
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
+}
+.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
 }
 </style>
 
@@ -423,7 +423,7 @@ window.Quarto = {
 <div id="exercise-state-fill-hypotheses" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.1: </strong>State the hypotheses</div><div class="fobx-body">
 <p>A bottling team wants to assess whether its population mean fill volume differs from the 500-milliliter label claim in either direction. Let <span class="math inline">\(\mu\)</span> denote that population mean. State the null and alternative hypotheses. Why should they refer to <span class="math inline">\(\mu\)</span> rather than the observed sample mean?</p>
-<details aria-label="Solution" id="solution-state-fill-hypotheses" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-state-fill-hypotheses">
 <summary>Solution</summary>
 <p>The null is <span class="math inline">\(H_0:\mu=500\)</span> milliliters and the alternative is <span class="math inline">\(H_A:\mu\ne500\)</span> milliliters. The claim concerns the population mean, which is unknown; the sample mean is the observed evidence used to assess it.</p>
 </details>
@@ -451,7 +451,7 @@ T = \frac{\bar X - 15.7}{SE(\bar X)}\approx N(0,1).
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.2: </strong>Measure the discrepancy</div><div class="fobx-body">
 <p>An invented iid sample of 100 fill volumes has mean 497 milliliters and sample SD 10 milliliters. Test against a population mean of 500 milliliters. Assume the normal approximation for the sample mean is adequate.</p>
 <p>Compute the estimated SE and the observed <span class="math inline">\(t\)</span>-statistic. Interpret its sign and magnitude in standard-error units.</p>
-<details aria-label="Solution" id="solution-fill-standardized-discrepancy" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-fill-standardized-discrepancy">
 <summary>Solution</summary>
 <p>The estimated SE is <span class="math inline">\(10/\sqrt{100}=1\)</span> milliliter, so <span class="math inline">\(t=(497-500)/1=-3\)</span>. The sample mean is three standard errors below the hypothesized population mean.</p>
 </details>
@@ -486,7 +486,7 @@ Figure&nbsp;17.1: The p-value for the test of parity with industry peers. Under 
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.3: </strong>Count both tails</div><div class="fobx-body">
 <p>A two-sided test produces <span class="math inline">\(t=-2.5\)</span>. Under the null hypothesis and the test’s normal approximation, the area below <span class="math inline">\(-2.5\)</span> is 0.0062 and the area above <span class="math inline">\(2.5\)</span> is 0.0062.</p>
 <p>Compute the p-value and describe the outcomes it counts. Does it give the probability that the null hypothesis is true?</p>
-<details aria-label="Solution" id="solution-two-tail-pvalue" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-two-tail-pvalue">
 <summary>Solution</summary>
 <p>The p-value is <span class="math inline">\(0.0062+0.0062=0.0124\)</span>. Assuming the null is true, it counts test statistics at or below <span class="math inline">\(-2.5\)</span> or at or above <span class="math inline">\(2.5\)</span>, at least as far from zero as the observed statistic. It is a probability of these outcomes under the null, not a probability that the null itself is true.</p>
 </details>
@@ -528,7 +528,7 @@ Figure&nbsp;17.1: The p-value for the test of parity with industry peers. Under 
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.4: </strong>Reach a testing decision</div><div class="fobx-body">
 <p>Two invented studies test <span class="math inline">\(H_0:\mu=40\)</span> minutes against <span class="math inline">\(H_A:\mu\ne40\)</span> minutes for mean service time. Assume each study meets its sampling and normal-approximation assumptions. Their two-sided p-values are 0.012 and 0.28.</p>
 <p>At significance level <span class="math inline">\(\alpha=0.05\)</span>, state the decision for each study. Does the second study establish that the population mean equals 40 minutes?</p>
-<details aria-label="Solution" id="solution-decide-two-tests" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-decide-two-tests">
 <summary>Solution</summary>
 <p>Reject the null in the first study because <span class="math inline">\(0.012&lt;0.05\)</span>. Fail to reject it in the second because <span class="math inline">\(0.28&gt;0.05\)</span>. The second study does not establish that the mean is exactly 40 minutes; its evidence is insufficient to rule out that value.</p>
 </details>
@@ -571,7 +571,7 @@ Figure&nbsp;17.2: The 95% confidence interval for the mean ROE of SAP customers,
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.5: </strong>Check benchmarks against an interval</div><div class="fobx-body">
 <p>An invented iid study estimates a population mean processing time as 52 minutes, with estimated SE 2 minutes. Assume the normal approximation is adequate. Use the chapter’s approximate two-SE convention.</p>
 <p>Construct the approximate 95% confidence interval. Then assess the two-sided null hypotheses <span class="math inline">\(\mu=50\)</span> and <span class="math inline">\(\mu=45\)</span> minutes at the approximate 5% level. Confirm each decision by computing the distance from the sample mean in SE units. State what the interval leaves plausible about the population mean.</p>
-<details aria-label="Solution" id="solution-ci-test-benchmarks" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-ci-test-benchmarks">
 <summary>Solution</summary>
 <p>The interval is <span class="math inline">\(52\pm2(2)=[48,56]\)</span> minutes. The value 50 is inside, so we fail to reject it; <span class="math inline">\(t=(52-50)/2=1\)</span>. The value 45 is outside, so we reject it; <span class="math inline">\(t=(52-45)/2=3.5\)</span>. Population means from about 48 to 56 minutes remain plausible under the sampling assumptions, including 50. Failure to reject 50 does not single it out as the true mean.</p>
 </details>
@@ -580,8 +580,26 @@ Figure&nbsp;17.2: The 95% confidence interval for the mean ROE of SAP customers,
 </section>
 <section id="sec-hypothesis-tests-practice" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="sec-hypothesis-tests-practice"><span class="header-section-number">17.2</span> Additional practice</h2>
+<div id="exercise-complete-fill-test" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.6: </strong>Complete one test</div><div class="fobx-body">
+<p>A random sample of 100 bottles has mean fill volume 503 mL and sample standard deviation 10 mL. Model the fills as iid and assume the normal approximation for the sample mean is adequate. Before sampling, the quality team chose a two-sided test of a population mean of 500 mL at <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<ol type="1">
+<li>State the hypotheses.</li>
+<li>Compute the two-SE confidence interval and the t-statistic. Use the <a href="./prob_04_normal.html#sec-empirical-rule">68/95/99.7 rule</a> to approximate the p-value.</li>
+<li>State a conclusion in context. Does rejecting the null hypothesis establish that every bottle contains more than 500 mL?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-complete-fill-test">
+<summary>Solution</summary>
+<ol type="1">
+<li>With <span class="math inline">\(\mu\)</span> the population mean fill volume, <span class="math inline">\(H_0:\mu=500\)</span> and <span class="math inline">\(H_A:\mu\ne500\)</span>.</li>
+<li>The estimated standard error is <span class="math inline">\(10/\sqrt{100}=1\)</span> mL, so the interval is <span class="math inline">\(503\pm2=[501,\ 505]\)</span> mL. The t-statistic is <span class="math inline">\((503-500)/1=3\)</span>. About 99.7% of a standard normal distribution lies within three standard deviations of zero, so the two-sided p-value is about 0.003.</li>
+<li>The p-value is below 0.05, so we reject the null hypothesis. Under the sampling assumptions, the data support a population mean fill above 500 mL, with plausible values from 501 to 505 mL. The conclusion concerns the mean. Individual fills have a sample standard deviation of 10 mL, so individual bottles can fall below 500 mL even when the mean is near 503 mL.</li>
+</ol>
+</details>
+</div></div>
+</div>
 <div id="exercise-reading-pvalue-statements" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.6: </strong>Reading a p-value</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.7: </strong>Reading a p-value</div><div class="fobx-body">
 <p>The grocery delivery app from <a href="./inference_01_sampling-distributions.html#exercise-reading-interval-statements">Chapter 16</a> took a random sample of 400 orders from last month. In this invented example, the sample mean order value is $64.20 and the sample standard deviation is $38.00, so the estimated standard error is $1.90 and the two-SE interval is <span class="math inline">\([60.4,\ 68.0]\)</span> dollars.</p>
 <p>The app’s free-delivery promotion breaks even at a mean order value of $62. Let <span class="math inline">\(\mu\)</span> be the mean across all of last month’s orders. Use an iid sampling approximation and assume the normal approximation is adequate. An analyst tests <span class="math inline">\(H_0:\mu=62\)</span> against <span class="math inline">\(H_A:\mu\ne62\)</span> and gets <span class="math inline">\(t=(64.20-62)/1.90\approx1.16\)</span>, with a p-value of about 0.25. The analyst chose <span class="math inline">\(\alpha=0.05\)</span> before seeing the data.</p>
 <p>Decide whether each statement is correct. Where it is not, say what is wrong and give a correct version.</p>
@@ -589,42 +607,36 @@ Figure&nbsp;17.2: The 95% confidence interval for the mean ROE of SAP customers,
 <li>“There is a 25% chance that the mean order value is $62.”</li>
 <li>“If the mean order value were $62, about a quarter of random samples of 400 orders would give a t-statistic at least 1.16 away from zero, in either direction.”</li>
 <li>“The p-value is above 0.05, so the mean order value is $62 and the promotion exactly breaks even.”</li>
-<li>“A test of <span class="math inline">\(H_0:\mu=70\)</span> would reject at the 5% level.”</li>
-<li>“There is a 75% chance that the promotion more than breaks even.”</li>
-<li>“After seeing the p-value, I changed the cutoff to <span class="math inline">\(\alpha=0.30\)</span>, so I can report a statistically significant improvement over break-even.”</li>
 </ol>
 <p>Finally, suppose a sample of 1,600 orders had produced the same mean and SD. Recompute the t-statistic, the p-value, and the two-SE interval, and say what changed for the break-even decision. Under the normal approximation, the area above 2.32 is 0.0102.</p>
-<details aria-label="Solution" id="solution-reading-pvalue-statements" class="solution-details">
+<p><strong>Optional.</strong> A second analyst sees the p-value of 0.25, changes the cutoff to <span class="math inline">\(\alpha=0.30\)</span>, and reports “a statistically significant improvement over break-even.” What is wrong with that report?</p>
+<details class="solution-details" aria-label="Solution" id="solution-reading-pvalue-statements">
 <summary>Solution</summary>
 <ol type="1">
 <li>Incorrect. The mean order value is a fixed number, and the p-value is computed assuming it equals $62. The p-value is a probability about samples, given the null. It is not a probability about the null. A correct version is statement 2.</li>
 <li>Correct under the normal approximation. The p-value counts t-statistics at or below <span class="math inline">\(-1.16\)</span> or at or above <span class="math inline">\(1.16\)</span>, assuming the null is true.</li>
 <li>Incorrect. Failing to reject leaves $62 consistent with the data, along with every other value from $60.40 to $68.00. The test does not single out $62. A correct version: “The data are consistent with mean order values both below and above break-even.”</li>
-<li>Correct. $70 lies outside the two-SE interval, so <span class="math inline">\(|t|&gt;2\)</span>; here <span class="math inline">\(t=(64.20-70)/1.90\approx-3.05\)</span>. That is enough to reject at the 5% level without computing another tail area.</li>
-<li>Incorrect. One minus the p-value is not the probability that the alternative is true, and the two-sided alternative includes means below $62 as well as above. A correct version: “Under the null and the normal approximation, about 75% of samples would give a t-statistic between <span class="math inline">\(-1.16\)</span> and <span class="math inline">\(1.16\)</span>.”</li>
-<li>The calculation <span class="math inline">\(0.25&lt;0.30\)</span> is correct, but the analyst changed the decision rule to obtain a rejection. The result does not meet the 5% cutoff chosen in advance. A rule fixed in advance that rejects whenever <span class="math inline">\(p&lt;0.30\)</span> would produce false positives in about 30% of studies when the null is true, under the test’s assumptions. The final cutoff alone does not describe the error rate of a procedure that changes its rule after seeing the result. A correct version: “At the 5% level chosen in advance, the data do not establish a departure from break-even.”</li>
 </ol>
-<p>With 1,600 orders the standard error is <span class="math inline">\(38/\sqrt{1600}=0.95\)</span>, so <span class="math inline">\(t=2.20/0.95\approx2.32\)</span>, with a p-value of <span class="math inline">\(2(0.0102)=0.0204\)</span>, about 0.02. The interval is <span class="math inline">\([62.3,\ 66.1]\)</span> dollars. The same $2.20 gap is now more than two standard errors, and we reject break-even at the 5% level. The interval says more about the size of the difference: the mean is plausibly 30 cents to $4.10 above break-even.</p>
+<p>With 1,600 orders the standard error is <span class="math inline">\(38/\sqrt{1{,}600}=0.95\)</span>, so <span class="math inline">\(t=2.20/0.95\approx2.32\)</span>, with a p-value of <span class="math inline">\(2(0.0102)=0.0204\)</span>, about 0.02. The interval is <span class="math inline">\([62.3,\ 66.1]\)</span> dollars. The same $2.20 gap is now more than two standard errors, and we reject break-even at the 5% level. The interval also gives the size of the difference: the mean is plausibly 30 cents to $4.10 above break-even.</p>
+<p><strong>Optional.</strong> The arithmetic <span class="math inline">\(0.25&lt;0.30\)</span> is correct, but the analyst chose the cutoff after seeing the result, so the procedure no longer has the error rate the cutoff describes. A rule fixed in advance that rejects whenever <span class="math inline">\(p&lt;0.30\)</span> would produce false positives in about 30% of studies when the null is true. At the 5% level chosen in advance, the data do not establish a departure from break-even.</p>
 </details>
 </div></div>
 </div>
 <div id="exercise-audit-materiality" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.7: </strong>Materiality as a null hypothesis</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 17.8: </strong>Materiality as a null hypothesis</div><div class="fobx-body">
 <p>In <a href="./inference_01_sampling-distributions.html#exercise-audit-total">Chapter 16’s invoice audit</a>, 200 invoices sampled at random from 8,000 had mean overbilling $12.40 and sample SD $60. These invented summaries give an estimated standard error of about $4.24. The two-SE interval is <span class="math inline">\([3.9,\ 20.9]\)</span> dollars per invoice, or about <span class="math inline">\([31{,}000,\ 167{,}000]\)</span> dollars in total overbilling. Overbilling is nonnegative; an invoice that was not overbilled contributes zero to the total.</p>
 <p>The company treats total overbilling above $50,000 as material. Let <span class="math inline">\(\mu\)</span> denote the population mean overbilling per invoice. Use the iid approximation for this small fraction of the invoices and assume the normal approximation for the sample mean is adequate. Use <span class="math inline">\(\alpha=0.05\)</span>, chosen before examining the data.</p>
 <ol type="1">
 <li>Convert the $50,000 threshold to a value <span class="math inline">\(\mu_0\)</span> for the mean. State <span class="math inline">\(H_0:\mu=\mu_0\)</span> and its two-sided alternative, compute the t-statistic and p-value, and state the decision. Under the normal approximation, the area above 1.45 is 0.0735.</li>
 <li>The company’s controller writes: “The test found no significant departure from the materiality threshold, so overbilling is not material.” Evaluate that sentence and give a more informative report.</li>
 <li>Which of the chapter’s two ways of failing to reject describes this result? Use the interval for the total to support your answer.</li>
-<li>Suppose a larger sample gave the same mean and SD. Using <span class="math inline">\(SE=s/\sqrt n\)</span> and the two-SE rule, find the smallest whole-number sample size that would reject in part 1. Continue to use the iid approximation. Would collecting that many invoices guarantee rejection before seeing their overbilling amounts?</li>
 </ol>
-<details aria-label="Solution" id="solution-audit-materiality" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-audit-materiality">
 <summary>Solution</summary>
 <ol type="1">
 <li>The threshold corresponds to <span class="math inline">\(\mu_0=50{,}000/8{,}000=6.25\)</span> dollars per invoice, so <span class="math inline">\(H_0:\mu=6.25\)</span> and <span class="math inline">\(H_A:\mu\ne6.25\)</span>. Then <span class="math inline">\(t=(12.40-6.25)/4.24\approx1.45\)</span>, and the p-value is <span class="math inline">\(2(0.0735)=0.147\)</span>, about 0.15. We fail to reject at the 5% level.</li>
 <li>The sentence uses failure to reject equality with the threshold as evidence that the total is below it. The null was a total of exactly $50,000, and the two-sided alternative includes totals on either side. The interval spans both material and nonmaterial totals. A more informative report: “The estimated total overbilling is $99,200, with a two-SE interval from about $31,000 to $167,000. That range includes totals both below and above $50,000, so this sample does not settle materiality.”</li>
 <li>This is a large observed difference with a large standard error. The estimate is $49,200 above the threshold, but the standard error of the total is about $33,900, so that distance is only 1.45 standard errors. The interval for the total is about $136,000 wide.</li>
-<li>The test rejects when the $6.15 gap exceeds two standard errors: <span class="math inline">\(2(60)/\sqrt n&lt;6.15\)</span> gives <span class="math inline">\(n&gt;(120/6.15)^2\approx380.73\)</span>. The smallest whole-number sample size is 381 invoices, about twice the current sample. This is conditional on getting the same mean and SD; a new sample can change both, so collecting 381 invoices does not guarantee rejection.</li>
 </ol>
 </details>
 </div></div>

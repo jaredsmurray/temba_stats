@@ -77,25 +77,25 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
-.TechnicalDetail {
+.Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
+.TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -476,7 +476,7 @@ Table&nbsp;8.1: Computing the expected payoff of a $10,000 small-business loan a
 <li>Compute the expected warranty cost per appliance.</li>
 <li>Explain why no individual appliance has the expected warranty cost, even though the expected value is useful for budgeting across many appliances.</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-warranty-expected-cost">
+<details class="solution-details" id="solution-warranty-expected-cost" aria-label="Solution">
 <summary>Solution</summary>
 <p>The expected cost is</p>
 <p><span class="math display">\[
@@ -622,7 +622,7 @@ Table&nbsp;8.2: Market-implied distributions for the FOMC target range (CME FedW
 </tbody>
 </table>
 <p>Compute the mean, variance, and standard deviation of <span class="math inline">\(X\)</span>. State the units of each result.</p>
-<details aria-label="Solution" class="solution-details" id="solution-repair-time-moments">
+<details class="solution-details" id="solution-repair-time-moments" aria-label="Solution">
 <summary>Solution</summary>
 <p>The mean weights each repair time by its probability:</p>
 <p><span class="math display">\[
@@ -740,7 +740,7 @@ Figure&nbsp;8.1: The two loans’ profit distributions on a common scale, with e
 <li>Compute the mean and standard deviation of each profit distribution.</li>
 <li>Why might a manager prefer Project B even though the projects have the same expected profit?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-equal-mean-different-risk">
+<details class="solution-details" id="solution-equal-mean-different-risk" aria-label="Solution">
 <summary>Solution</summary>
 <p>Both projects have expected profit</p>
 <p><span class="math display">\[
@@ -810,7 +810,7 @@ Figure&nbsp;8.4: Reading quantiles off the CDF of the Austin price model. Horizo
 <li>Find the median, first quartile, third quartile, and IQR.</li>
 <li>If managers want enough staff for at least 75% of hours, which call-volume threshold should they use?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-call-volume-quantiles">
+<details class="solution-details" id="solution-call-volume-quantiles" aria-label="Solution">
 <summary>Solution</summary>
 <p>The cumulative probabilities at 20, 30, 40, 50, and 60 calls are 0.10, 0.35, 0.75, 0.95, and 1. The first quartile is 30 calls, the median is 40 calls, and the third quartile is 40 calls. The IQR is therefore <span class="math inline">\(40-30=10\)</span> calls.</p>
 <p>The smallest threshold whose cumulative probability reaches at least 0.75 is 40 calls, so that staffing level covers at least 75% of modeled hours.</p>
@@ -851,7 +851,7 @@ SD(Y) = |a|\,\sigma, \qquad Var(Y) = a^2\,\sigma^2.
 <li>What is the smallest whole-dollar contract price that gives the seller nonnegative expected profit?</li>
 <li>What is the expected profit at that price?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-warranty-contract-price">
+<details class="solution-details" id="solution-warranty-contract-price" aria-label="Solution">
 <summary>Solution</summary>
 <p>Adding the fixed administrative cost shifts the expected cost:</p>
 <p><span class="math display">\[
@@ -868,7 +868,7 @@ E[C]=E[W]+18=36+18=\$54.
 <li>Find the mean, variance, and standard deviation of <span class="math inline">\(Y\)</span>.</li>
 <li>Which part of the transformation changes the spread, and by what factor?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-revenue-currency-transformation">
+<details class="solution-details" id="solution-revenue-currency-transformation" aria-label="Solution">
 <summary>Solution</summary>
 <p>The transformed mean is</p>
 <p><span class="math display">\[

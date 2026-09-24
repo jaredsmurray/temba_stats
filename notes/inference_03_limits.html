@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -77,28 +96,57 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
 }
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles/callouts.css">
 </head>
@@ -350,6 +398,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#which-customers-does-the-sample-describe" id="toc-which-customers-does-the-sample-describe" class="nav-link active" data-scroll-target="#which-customers-does-the-sample-describe"><span class="header-section-number">18.1</span> Which customers does the sample describe?</a></li>
   <li><a href="#what-uncertainty-does-an-interval-measure" id="toc-what-uncertainty-does-an-interval-measure" class="nav-link" data-scroll-target="#what-uncertainty-does-an-interval-measure"><span class="header-section-number">18.2</span> What uncertainty does an interval measure?</a></li>
+  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
   </ul>
 </nav>
     </div>
@@ -385,9 +434,65 @@ ul.task-list li input[type="checkbox"] {
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 18.1: </strong>More responses from the same source</div><div class="fobx-body">
 <p>Suppose a retailer surveys customers who volunteer through a loyalty-program email. It increases the number of responses from 200 to 20,000 and reports a much narrower confidence interval for mean satisfaction among all customers.</p>
 <p>Explain why the larger sample does not establish that the interval describes all customers. What would you need to investigate about how respondents compare with the customers the retailer wants to describe?</p>
-<details aria-label="Solution" id="solution-more-volunteer-responses" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-more-volunteer-responses">
 <summary>Solution</summary>
 <p>More responses can reduce sampling variability without removing differences between volunteers and other customers. Investigate whether loyalty members and people who choose to respond have different satisfaction levels from nonmembers and nonrespondents. The narrower interval does not account for those possible differences.</p>
+</details>
+</div></div>
+</div>
+<div id="exercise-same-hour-orders" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 18.2: </strong>A hundred orders from one hour</div><div class="fobx-body">
+<p>The <code>deliveries</code> data from the <code>modeldata</code> R package record the time from order to delivery, in minutes, for 10,012 orders at one restaurant. <a href="#tbl-practice-deliveries" class="quarto-xref">Table&nbsp;<span>18.1</span></a> compares all orders with those placed between 6:00 and 7:00 p.m.</p>
+<div class="cell">
+<div id="tbl-practice-deliveries" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-practice-deliveries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.1: Delivery times across all hours and during the 6 p.m. hour.
+</figcaption>
+<div aria-describedby="tbl-practice-deliveries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Group</th>
+<th style="text-align: right;">Orders</th>
+<th style="text-align: right;">Mean time (min)</th>
+<th style="text-align: right;">SD (min)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All hours</td>
+<td style="text-align: right;">10,012</td>
+<td style="text-align: right;">26.1</td>
+<td style="text-align: right;">6.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6:00–7:00 p.m.</td>
+<td style="text-align: right;">1,408</td>
+<td style="text-align: right;">30.3</td>
+<td style="text-align: right;">6.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A manager wants to estimate the restaurant’s overall mean delivery time from 100 orders. For the calculations below, model the selected delivery times as independent draws from the indicated group, using the table’s means and standard deviations as the model parameters.</p>
+<ol type="1">
+<li>If the 100 orders are drawn from all hours, what are the mean and standard deviation of their average delivery time?</li>
+<li>The manager instead uses 100 orders from 6:00 to 7:00 p.m. What mean would their average estimate? Use the table to explain why it would give a misleading estimate of the overall mean even with 100 orders.</li>
+<li>Suppose the manager wants the mean for the 6 p.m. hour specifically. Which group should the orders come from, and what standard deviation does the independent-draw model predict for their average? Would selecting orders from one actual evening necessarily satisfy that model?</li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="solution-same-hour-orders">
+<summary>Solution</summary>
+<ol type="1">
+<li>The average has mean 26.1 minutes and standard deviation <span class="math inline">\(\sigma/\sqrt{100}\)</span>, about 0.69 minutes.</li>
+<li>It estimates the 6 p.m. mean, 30.3 minutes, rather than the overall mean of 26.1 minutes. A larger sample from this hour would estimate that hour’s mean more precisely, but would not make it representative of all hours.</li>
+<li>Draw from orders placed between 6:00 and 7:00 p.m. Under the stated model, the average of 100 has standard deviation <span class="math inline">\(6.0/\sqrt{100}\approx0.60\)</span> minutes. Independence is an assumption: orders from one evening may share unusually heavy traffic or a kitchen delay. Choosing the right hour identifies the population of interest but does not establish independence.</li>
+</ol>
 </details>
 </div></div>
 </div>
@@ -397,17 +502,29 @@ ul.task-list li input[type="checkbox"] {
 <p>The intervals in these chapters quantify sampling variability under an assumed model for how the data arose. They do not account for biased sampling, missing observations, or errors in how a variable was measured. More observations can reduce the standard error while leaving those problems unchanged.</p>
 <p>For SAP, the interval shows that 81 randomly sampled firms could leave considerable uncertainty about mean profitability. Choosing customers from the website may introduce a systematic difference that this interval does not measure. But if we accept the argument that SAP showcases firms with relatively high ROE, we still have qualitative evidence against its advertised 32% advantage: the likely selection bias would make the sample look more profitable than SAP’s customers as a whole.</p>
 <div id="exercise-what-wait-interval-covers" class="Exercise">
-<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 18.2: </strong>What does the interval cover?</div><div class="fobx-body">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 18.3: </strong>What does the interval cover?</div><div class="fobx-body">
 <p>Suppose a service center randomly samples completed calls and reports an approximate 95% confidence interval of 4–6 minutes for mean recorded waiting time. Its records omit callers who hang up before receiving service, and the timer starts only after a caller finishes an automated menu.</p>
 <p>Assume the interval appropriately accounts for random sampling of the recorded completed calls. What uncertainty does it quantify? Explain why it does not establish that the mean total wait for all callers lies between 4 and 6 minutes.</p>
-<details aria-label="Solution" id="solution-what-wait-interval-covers" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="solution-what-wait-interval-covers">
 <summary>Solution</summary>
 <p>The interval quantifies sampling uncertainty about the mean recorded wait among completed calls. It omits both the callers who abandon the queue and the time spent in the automated menu. Random sampling of the available records does not make those records describe every caller’s full wait.</p>
 </details>
 </div></div>
 </div>
+</section>
+<section id="data-used-in-this-section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
+<ul>
+<li><a href="./appendix_data.html#sec-data-sap-nucleus">SAP Customer ROE</a> supplies the 81 companies’ ROE and industry benchmarks.</li>
+<li><code>deliveries</code> from the <code>modeldata</code> package supplies the restaurant delivery times <span class="citation" data-cites="modeldata-package">(<a href="appendix_data.html#ref-modeldata-package" role="doc-biblioref">Kuhn 2024</a>)</span>.</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-modeldata-package" class="csl-entry" role="listitem">
+Kuhn, Max. 2024. <em>Modeldata: Data Sets Useful for Modeling Examples</em>. <a href="https://CRAN.R-project.org/package=modeldata">https://CRAN.R-project.org/package=modeldata</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
