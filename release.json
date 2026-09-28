@@ -1,11 +1,12 @@
 {
-  "baseline_commit": "365321b5e08a87d73d8fcf71e84d6fc24c113553",
-  "release": "20260924T195414-s5vhofm6",
+  "baseline_commit": "9e976af71d5ae4ab88d4de29957558e68bc4c413",
+  "release": "20260928T214424-7axrlzew",
   "scope": "notes",
   "selected": [],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
+    "notes/R/reproduction_table_helpers.R": "3d865643f8c624628af07c9cd83fc2f1d26003934f491663737d6823a6116bc3",
     "notes/_extensions/CALLOUT_PATCHES.md": "942e3128cff15841786452cc6a10ff2de3ad168de4036f6facd01ed5472651f9",
     "notes/_extensions/custom-numbered-blocks/_extension.yml": "68b049300e7fab1e0c976efc402fcd61385f8248d23c703e3c25559c01f39343",
     "notes/_extensions/custom-numbered-blocks/_schema.yml": "8f49299fc2ba2faf4c3ccf1d69abe2318bb5a7a66674f23732e3e29bf278d20f",
@@ -37,10 +38,10 @@
     "notes/_extensions/custom-numbered-blocks/textcontainers/simpletextbox/simpletextbox.tex": "62fc1ca996f096539b04730a9f3f366597cff9e72955b5d2fd1ad918a65c0688",
     "notes/_extensions/details/_extension.yml": "7498f2ed42d442bfa17123f23a4a596849767d87b99e9cad45a2821ee377bc06",
     "notes/_extensions/details/details.lua": "55c9de6eb50d0844cec580583fb5764ec4ffd7cbc055e04d8d5b2e25372b3dac",
-    "notes/_quarto.yml": "34007d2b4f57c4118fc319fc7e15fb27db0051b0cf1338da04e208c03fee1885",
+    "notes/_quarto.yml": "f6ce99bad74a3448938d1133508dd5fa0485aa68c59be1df7ab94d3ca0a92557",
     "slides/R/inline_format.R": "d324dd4f400757a8d497fb3c7df483be3ae8a86b9800e7c7d2759a16c52b164b",
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "3f45f2f27f6d299ba8b2eeb1297bb99454c8f15f"
+  "source_commit": "027a5514eb17dbaa3300a9de045f1871836dfccf"
 }

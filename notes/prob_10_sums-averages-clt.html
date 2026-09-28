@@ -81,6 +81,10 @@ ul.task-list li input[type="checkbox"] {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
+}
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -88,10 +92,6 @@ ul.task-list li input[type="checkbox"] {
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
-}
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
 }
 .Exercise {
   --color1: #E7F4F5;
@@ -353,12 +353,35 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Regression</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slr_simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_market-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study: The Market Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -470,7 +493,7 @@ E[S_{23}]=23(0.5)=11.5,\qquad
 <div id="exercise-service-fees" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.1: </strong>Daily service fees</div><div class="fobx-body">
 <p>A repair company models the fees for 25 service visits as iid, with mean $160 and standard deviation $40 per visit. Find the mean and standard deviation of the day’s total fees and its average fee per visit.</p>
-<details class="solution-details" aria-label="Solution" id="details-1">
+<details id="details-1" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The total has mean <span class="math inline">\(25(160)=4{,}000\)</span> dollars and standard deviation <span class="math inline">\(\sqrt{25}(40)=200\)</span> dollars. Across repeated days, total fees vary around $4,000 with a standard deviation of $200.</p>
 <p>The average has mean $160 and standard deviation <span class="math inline">\(40/\sqrt{25}=8\)</span> dollars. Across repeated days, the average fee per visit varies around $160 with a standard deviation of $8.</p>
@@ -480,7 +503,7 @@ E[S_{23}]=23(0.5)=11.5,\qquad
 <div id="exercise-common-weather" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.2: </strong>Sales on a rainy day</div><div class="fobx-body">
 <p>A company uses an iid model for daily sales at its 16 outdoor kiosks, each with mean $500 and standard deviation $100. All kiosks are in the same city, and rainy days tend to reduce sales at all of them. If the individual means and standard deviations remain correct, explain which of the model’s results for total sales would still hold: a mean of $8,000 or a standard deviation of $400.</p>
-<details class="solution-details" aria-label="Solution" id="details-2">
+<details id="details-2" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The mean of $8,000 still holds because means add even under dependence. Shared weather makes kiosk sales tend to move together, so the total’s standard deviation would be larger than $400. We need information about the dependence to calculate how much larger.</p>
 </details>
@@ -592,7 +615,7 @@ Figure&nbsp;15.2: Total payoff for 23 independent projects. The orange area to t
 <li>Approximate the probability that the total exceeds 1,320 minutes. Express the same event using the average processing time.</li>
 <li>How many orders would reduce the average’s standard deviation to 0.3 minutes?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-sums-processing">
+<details id="solution-sums-processing" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li><p>The total has mean <span class="math inline">\(100(12)=1{,}200\)</span> minutes and standard deviation <span class="math inline">\(\sqrt{100}(6)=60\)</span> minutes.</p></li>
@@ -608,7 +631,7 @@ Figure&nbsp;15.2: Total payoff for 23 independent projects. The orange area to t
 <div id="exercise-clt-rare-payouts" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 15.4: </strong>Rare warranty payouts</div><div class="fobx-body">
 <p>A warranty model assigns each policy a payout of $1,000 with probability 0.001 and zero otherwise, independently across policies. For 100 policies, the probability that every payout is zero is about 0.905. An analyst says, “With 100 policies, the central limit theorem makes both individual payouts and the average payout approximately normal.” Assess this claim using the stated model.</p>
-<details class="solution-details" aria-label="Solution" id="details-3">
+<details id="details-3" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>An individual payout still takes only the values zero and $1,000; adding policies does not change its distribution. The central limit theorem concerns the shape of sums and averages as the number of iid draws grows.</p>
 <p>Here even the average is zero with probability about 0.905, with occasional positive values. A normal distribution would not describe that shape well. Although the model satisfies the theorem’s assumptions, 100 policies are not enough for a good normal approximation in this rare-payout model.</p>
@@ -623,7 +646,7 @@ Figure&nbsp;15.2: Total payoff for 23 independent projects. The orange area to t
 <li>The center schedules enough agent-minutes to cover the total on about 97.5% of days. How many minutes is that? If each agent spends 300 minutes a day on calls, how many agents does that require?</li>
 <li>The operations lead reports that “average handle time is remarkably stable, 6.0 minutes plus or minus 0.25 from day to day,” and proposes scheduling exactly 2,400 agent-minutes. Where does the 0.25 come from, and why is it the wrong number for this decision? About what fraction of days would 2,400 minutes cover?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-call-center-staffing">
+<details id="solution-call-center-staffing" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The total has mean <span class="math inline">\(400(6)=2{,}400\)</span> minutes and standard deviation <span class="math inline">\(\sqrt{400}(5)=100\)</span> minutes.</li>

@@ -83,10 +83,6 @@ ul.task-list li input[type="checkbox"] {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
@@ -98,6 +94,10 @@ ul.task-list li input[type="checkbox"] {
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -355,12 +355,35 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Regression</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slr_simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_market-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study: The Market Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
@@ -410,7 +433,7 @@ window.Quarto = {
 <p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
 <div id="notation-subscripts-summation" class="Notation">
 <div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details open="" id="details-subscripts-summation" aria-label="Details">
+<details id="details-subscripts-summation" open="" aria-label="Details">
 <summary>Details</summary>
 <p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
 <div class="cell">

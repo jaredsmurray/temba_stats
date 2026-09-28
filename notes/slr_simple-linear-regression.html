@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>21&nbsp; Simple Linear Regression – TEMBA Statistics — Course Notes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./case_market-model.html" rel="next">
+<link href="./case_triangle-test.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/foldbox/foldbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+<style>
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles/callouts.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./slr_simple-linear-regression.html">Regression</a></li><li class="breadcrumb-item"><a href="./slr_simple-linear-regression.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEMBA Statistics — Course Notes</a> 
+        <div class="sidebar-tools-main">
+    <a href="./../index.html" title="Course site" class="quarto-navigation-tool px-1" aria-label="Course site"><i class="bi bi-house-door"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data analysis and visualization for one variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_01_visualizing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualizing a Single Quantitative Variable</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_02_describing-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Distributions of Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_03_location-and-spread.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Measuring Location and Spread</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_04_transformations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transforming Quantitative Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singlevar_05_categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Categorical Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Probability for one variable</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction to Probability and Sampling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_02_probability-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Probability Basics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_03_distribution-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of Location and Spread (and Other Parameters of Probability Distributions)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_04_normal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Normal Distribution</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data analysis, visualizations, and probability models for multiple random variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_05_multivariate-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Joint, Marginal, and Conditional Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_06_probability-trees-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability Trees, Total Probability, and Bayes’ Rule</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_07_independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_08_quantitative-quantitative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing and Summarizing Two Quantitative Variables</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Combining Random Variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_09_combining-random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Combining Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob_10_sums-averages-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sums, Averages, and the Central Limit Theorem</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Statistical Inference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_01_sampling-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Sampling Distributions and Confidence Intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_02_hypothesis-tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Hypothesis Tests and p-values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_03_limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Limits of Statistical Inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inference_04_proportions-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Proportions and Comparisons Between Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_triangle-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Regression</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slr_simple-linear-regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case_market-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study: The Market Model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-slr-least-squares" id="toc-sec-slr-least-squares" class="nav-link active" data-scroll-target="#sec-slr-least-squares"><span class="header-section-number">21.1</span> Finding the line of best fit</a>
+  <ul class="collapse">
+  <li><a href="#sec-slr-ols" id="toc-sec-slr-ols" class="nav-link" data-scroll-target="#sec-slr-ols"><span class="header-section-number">21.1.1</span> How we choose the line: Least squares</a></li>
+  </ul></li>
+  <li><a href="#sec-slr-model" id="toc-sec-slr-model" class="nav-link" data-scroll-target="#sec-slr-model"><span class="header-section-number">21.2</span> The linear regression model</a>
+  <ul class="collapse">
+  <li><a href="#sec-slr-table" id="toc-sec-slr-table" class="nav-link" data-scroll-target="#sec-slr-table"><span class="header-section-number">21.2.1</span> The regression table</a></li>
+  </ul></li>
+  <li><a href="#sec-slr-uses" id="toc-sec-slr-uses" class="nav-link" data-scroll-target="#sec-slr-uses"><span class="header-section-number">21.3</span> Applications of linear regression</a>
+  <ul class="collapse">
+  <li><a href="#sec-slr-trends" id="toc-sec-slr-trends" class="nav-link" data-scroll-target="#sec-slr-trends"><span class="header-section-number">21.3.1</span> Use 1: Summarizing trends</a></li>
+  <li><a href="#sec-slr-prediction" id="toc-sec-slr-prediction" class="nav-link" data-scroll-target="#sec-slr-prediction"><span class="header-section-number">21.3.2</span> Use 2: Making predictions, accounting for likely errors</a></li>
+  <li><a href="#sec-slr-strength" id="toc-sec-slr-strength" class="nav-link" data-scroll-target="#sec-slr-strength"><span class="header-section-number">21.3.3</span> Use 3: Measuring the strength of the linear relationship</a></li>
+  <li><a href="#sec-slr-adjusted" id="toc-sec-slr-adjusted" class="nav-link" data-scroll-target="#sec-slr-adjusted"><span class="header-section-number">21.3.4</span> Use 4: Making adjusted comparisons</a></li>
+  </ul></li>
+  <li><a href="#data-used-in-this-section" id="toc-data-used-in-this-section" class="nav-link" data-scroll-target="#data-used-in-this-section">Data used in this section</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./slr_simple-linear-regression.html">Regression</a></li><li class="breadcrumb-item"><a href="./slr_simple-linear-regression.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>If we know the size of a house coming on the market, what is our best prediction for its ultimate sale price? If we compare the average sale prices for houses of different sizes, how do those averages change with size? How much predictive information does the size of the house carry? (That is, how much more accurate do our predictions tend to be if we know the size than if we know nothing about the house at all?)</p>
+<p>These are all questions that can be answered using simple linear regression. In a simple linear regression model we predict one variable (price) from another (size) by finding the slope and intercept of the line that best fits the data. Provided the relationship is close to linear, this produces the backbone of a probability model that lets us make predictions, describe the uncertainty in our predictions for individual houses (through the probability distribution of our prediction errors), and quantify how much our errors decrease on average when we use size to predict prices.</p>
+<p>Our running example uses data on home sales in Austin, Texas. Our dataset contains 438 homes from a single ZIP code in southeast Austin (78744), drawn from the same <a href="./appendix_data.html#sec-data-housing-kaggle">Austin housing data</a> we have seen in earlier chapters. These are different homes from the three ZIP codes we plotted in <a href="./prob_08_quantitative-quantitative.html#sec-scatterplots">Chapter 13</a>, but size and price are about as closely related: the correlation is 0.73 here, compared to 0.77 there. We’ll focus initially on the relationship between living area (in square feet) and sale price. Below is a scatterplot of the data, with an initial linear fit overlaid:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-scatter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-scatter-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.1: Sale price versus living area for the Austin homes, with a fitted line. Homes of the same size sell for a wide range of prices.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>When we plot price against area, we see a clear positive relationship: larger homes tend to sell for more money. Further, the relationship looks close to <em>linear</em> — that straight line goes right through the “bulk” of the data, and it would describe the relationship between size and price reasonably well (even though the points are spread out around the line).</p>
+<p>We’ll talk about where the estimated line came from shortly; for now, let’s take a look at the estimated <em>slope</em> and <em>intercept</em>:</p>
+<p><span class="math display">\[\widehat{y} = 100{,}771 + 100.01 \times \text{area}\]</span></p>
+<div id="not-hats" class="Notation">
+<div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 21.1: </strong>Hats mean estimates</div><div class="fobx-body">
+<p>We use “hats” (the <span class="math inline">\(\widehat{~}\)</span> symbol) to denote estimated or predicted values — so <span class="math inline">\(\hat y\)</span> is the predicted price for a house of a given area, and <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> estimate the true intercept and slope, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, of the regression model we define in <a href="#sec-slr-model" class="quarto-xref"><span>Section 21.2</span></a>. The Greek letters follow our convention from <a href="./prob_03_distribution-parameters.html">Chapter 8</a> for unknown parameters, and the hat marks an estimate computed from data, just like <span class="math inline">\(\hat p\)</span> for a <a href="./inference_04_proportions-comparisons.html#sec-proportion">sample proportion</a>.</p>
+<p>Generically, when we use <span class="math inline">\(x\)</span> to predict <span class="math inline">\(y\)</span> we can write the prediction equation as</p>
+<p><span class="math display">\[
+\hat y = \hat\beta_0 + \hat\beta_1x
+\]</span></p>
+<p>In these notes we will occasionally substitute plain-text labels for <span class="math inline">\(x\)</span> (as we did above), <span class="math inline">\(y\)</span>, or both.</p>
+</div></div>
+</div>
+<p>The equation for the line is determined by two parameter estimates, an intercept and a slope:</p>
+<ul>
+<li><span class="math inline">\(\hat \beta_0 = 100{,}771\)</span> is the estimated <strong>intercept</strong>, the predicted price when area equals zero</li>
+<li><span class="math inline">\(\hat \beta_1 = 100.01\)</span> is the estimated <strong>slope</strong>, the predicted change in price for each additional square foot of living area</li>
+</ul>
+<section id="sec-slr-least-squares" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="sec-slr-least-squares"><span class="header-section-number">21.1</span> Finding the line of best fit</h2>
+<p>How did we come up with the linear equation above? By finding the line that <strong>minimizes the average squared prediction errors</strong> over the observed dataset. These prediction errors (and the predictions from which they are computed) have special names when they are computed for the observed (<span class="math inline">\(y_i, x_i\)</span>) pairs (house <span class="math inline">\(i\)</span>’s sale price <span class="math inline">\(y_i\)</span> and living area <span class="math inline">\(x_i\)</span>): the predictions are known as <em>fitted values</em>, and the prediction errors are known as <em>residuals</em>. Let’s see a few examples:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-residuals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-residuals-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.2: Two homes and their residuals. Each vertical segment runs from the fitted value on the line to the observed sale price.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="def-fitted-residual" class="Definition theorem definition">
+<p><span class="theorem-title"><strong>Definition 21.1 (Fitted values and residuals)</strong></span> &nbsp;</p>
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 21.1</strong></div><div class="fobx-body">
+<p>The fitted values are given by <span class="math display">\[
+\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 \times \text{area}_i
+\]</span> and the residuals are the corresponding prediction errors — the difference between the actual and fitted values <span class="math display">\[e_i = y_i - \widehat{y}_i = \text{observed price} - \text{predicted price}\]</span></p>
+<p>where <span class="math inline">\(y_i\)</span> is the actual sale price for house <span class="math inline">\(i\)</span> and <span class="math inline">\(\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 \times \text{area}_i\)</span> is the predicted price. The predicted value <span class="math inline">\(\widehat{y}_i\)</span> is also called the <strong>fitted value</strong>. A positive residual means the house sold for more than predicted; a negative residual means it sold for less than predicted. These residuals contain useful information about aspects of the home that aren’t captured by living area alone.</p>
+</div></div>
+</div>
+<section id="sec-slr-ols" class="level3" data-number="21.1.1">
+<h3 data-number="21.1.1" class="anchored" data-anchor-id="sec-slr-ols"><span class="header-section-number">21.1.1</span> How we choose the line: Least squares</h3>
+<p>Among all possible lines we could draw, which one is “best”? We choose the line that makes <em>the average squared residual</em> as small as possible. We call this <strong>ordinary least squares (OLS)</strong> regression. Just as variance measures the average squared distance from observations to their mean, the average squared residual measures the average squared distance from observations to the regression line. This is the same as the <em>variance of the residuals</em>, since by construction the average <em>residual</em> is always zero.</p>
+<p>As such we can motivate OLS in two ways:</p>
+<ol type="1">
+<li>It finds the line that minimizes the average squared residual — the average squared prediction errors, computed over the data we have.</li>
+<li>It finds the line that minimizes “left over” uncertainty about <span class="math inline">\(y\)</span> when we use a line in <span class="math inline">\(x\)</span> to predict it, as measured by the variance of the residuals</li>
+</ol>
+<div id="tech-slr-ols-formula" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 21.1: </strong>The least-squares criterion</summary><div>
+<p>Writing <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> for any intercept and slope we might try, we find the values that minimize the average squared prediction error (residual): <span class="math display">\[ \frac{1}{n} \sum_{i=1}^{n} e_i^2 = \frac{1}{n}\sum_{i=1}^{n} (y_i - (b_0 + b_1x_i))^2\]</span> We denote the values of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> at the minimum by <span class="math inline">\(\hat \beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span>.</p>
+</div></details>
+</div>
+<div id="note-slr-ols-properties" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Properties of the least-squares line
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The least-squares line always has three properties:</p>
+<ol type="1">
+<li>The residuals average to zero. Across the homes in our data, the line’s overpredictions and underpredictions cancel out, so it doesn’t tend to guess too high or too low.</li>
+<li>The line passes through the point <span class="math inline">\((\bar x, \bar y)\)</span>, so the predicted value at the average <span class="math inline">\(x\)</span> is the average <span class="math inline">\(y\)</span>. The average home in our data has 1,687 sq ft of living area, and the line predicts about $269,500 for it, which is the average sale price.</li>
+<li>The slope equals the correlation times the ratio of the standard deviations: <span class="math display">\[\hat\beta_1 = r\,\frac{s_y}{s_x}.\]</span> Here <span class="math inline">\(r\)</span> is the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> from <a href="./prob_08_quantitative-quantitative.html#sec-cov-cor">Chapter 13</a>, and <span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span> are their standard deviations. A home one standard deviation larger than average has a predicted price <span class="math inline">\(r\)</span> standard deviations above average. For the Austin homes, <span class="math inline">\(r\,s_y/s_x = 0.730 \times 72{,}263 / 527 \approx 100\)</span> dollars per square foot, the slope of the fitted line.</li>
+</ol>
+</div>
+</div>
+<div id="ex-slr-residuals" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.1: </strong>Understanding residuals</div><div class="fobx-body">
+<p>Consider a regression model predicting home prices from living area with equation: <span class="math display">\[\widehat{\text{price}} = 50000 + 150 \times \text{area}\]</span></p>
+<ol type="1">
+<li><p>What is the predicted price for a 2,000 sq ft home?</p></li>
+<li><p>If this home actually sold for $380,000, what is the residual?</p></li>
+<li><p>Does this home sell for more or less than we expected based on its size? How do you know?</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-1">
+<summary>Solution</summary>
+<p><strong>1. Predicted price:</strong> <span class="math display">\[\widehat{\text{price}} = 50000 + 150 \times 2000 = \$350{,}000\]</span></p>
+<p><strong>2. Residual calculation:</strong> <span class="math display">\[e = y - \hat{y} = 380{,}000 - 350{,}000 = \$30{,}000\]</span></p>
+<p><strong>3. Interpretation:</strong> The residual is positive, meaning this home sold for <strong>more</strong> than predicted—$30,000 above what the model expected given its size.</p>
+</details>
+</div></div>
+</div>
+<div id="ex-slr-sales-residuals" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.2: </strong>Residuals in sales forecasting</div><div class="fobx-body">
+<p>A retail company fits a regression model to predict monthly sales (in thousands) based on advertising spend (in thousands): <span class="math display">\[\widehat{\text{sales}} = 125 + 3.2 \times \text{advertising}\]</span></p>
+<ol type="1">
+<li><p>In March, the company spent $40,000 on advertising and achieved sales of $265,000. Calculate the fitted value and residual for March.</p></li>
+<li><p>In April, the company spent $50,000 on advertising and achieved sales of $275,000. Calculate the fitted value and residual for April.</p></li>
+<li><p>In which month did the company perform better relative to expectations? Explain your reasoning.</p></li>
+<li><p>The company’s CFO is concerned about the negative residual in April. Does a negative residual necessarily indicate poor performance? Why or why not?</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-2">
+<summary>Solution</summary>
+<p><strong>1. March fitted value and residual:</strong> <span class="math display">\[\widehat{\text{sales}} = 125 + 3.2 \times 40 = 253 \text{ (thousands)}\]</span> <span class="math display">\[e = 265 - 253 = +12 \text{ thousand dollars}\]</span></p>
+<p><strong>2. April fitted value and residual:</strong> <span class="math display">\[\widehat{\text{sales}} = 125 + 3.2 \times 50 = 285 \text{ (thousands)}\]</span> <span class="math display">\[e = 275 - 285 = -10 \text{ thousand dollars}\]</span></p>
+<p><strong>3. Better performance:</strong> March was better relative to expectations. Despite lower absolute sales, March exceeded its prediction by $12,000 while April fell short by $10,000. March generated more sales than expected given its advertising level.</p>
+<p><strong>4. Interpreting negative residuals:</strong> No, a negative residual doesn’t necessarily indicate poor performance. April still achieved $275,000 in sales, which is strong in absolute terms. The negative residual simply means sales were slightly below what the model predicted given the $50,000 advertising spend. This could reflect random variation, seasonal effects not captured by the model, or other factors beyond advertising. Because the residuals average to zero, negative residuals are a normal part of any fitted model: some months land below the line and some above it, due to natural variation and factors not included in our current model.</p>
+</details>
+</div></div>
+</div>
+</section>
+</section>
+<section id="sec-slr-model" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="sec-slr-model"><span class="header-section-number">21.2</span> The linear regression model</h2>
+<p>The fitted line describes the data we have. But we often want to make broader inferences—to understand the underlying relationship between price and area in the population of all homes, not just our sample. For this we need a more complete probability model.</p>
+<div id="def-slr-model" class="Definition theorem definition">
+<p><span class="theorem-title"><strong>Definition 21.2 (The simple linear regression model)</strong></span> &nbsp;</p>
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 21.2</strong></div><div class="fobx-body">
+<p>The <strong>simple linear regression model</strong> assumes:</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> is the observed response (price) for observation <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(x_i\)</span> is the explanatory variable (area) for observation <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\beta_0\)</span> is the true population intercept</li>
+<li><span class="math inline">\(\beta_1\)</span> is the true population slope</li>
+<li><span class="math inline">\(\epsilon_i\)</span> is a random error term</li>
+</ul>
+<p>We assume the error terms <span class="math inline">\(\epsilon_i\)</span> are:</p>
+<ol type="1">
+<li>Normally distributed with mean zero and constant variance <span class="math inline">\(\sigma^2\)</span>: <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2)\)</span></li>
+<li>Independent across observations</li>
+</ol>
+</div></div>
+</div>
+<p>Taken together, these modeling assumptions say that the sale prices of <em>all</em> houses of a given size follow a normal distribution centered at the corresponding point on the true regression line, with the same standard deviation <span class="math inline">\(\sigma\)</span> at every size; the figure below illustrates this graphically:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-model-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.3: Top: true regression line and normal distributions of house prices for three different sizes. Bottom: the same three conditional distributions, drawn as density curves with price on the horizontal axis.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The gray dot is a single house with size = 2800 square feet; the vertical green bar annotated <span class="math inline">\(\epsilon_i\)</span> is the difference between the actual sale price and the predicted sale price ($381K). These deviations from the line follow a <span class="math inline">\(N(0, \sigma^2)\)</span> distribution according to our modeling assumptions.</p>
+<p>Of course we need to estimate these quantities from a given sample; we won’t ever know the true regression line. We get to see our <em>estimated</em> regression line, with slope and intercept as in the previous section. We can think of the residual for an observation as an estimate of its true prediction error (since it’s the difference between the observed and predicted value using the <em>estimated</em> line, instead of the true line). The figure below illustrates this graphically for a subset of our actual sample:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-estimated-model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-estimated-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-estimated-model-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-estimated-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.4: Top: estimated regression line (dashed) fit to a sample of 45 homes, versus the true line (solid). Bottom: true conditional distribution (solid) versus estimated (dashed) for 2,800 sq ft houses.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In the top panel, the same 2,800 sq ft house from the last plot is shown along with its <em>residual</em> <span class="math inline">\(e_i\)</span> — we can think of this residual as an estimate of the true error <span class="math inline">\(\epsilon_i\)</span> shown in the previous plot. Since we know that <span class="math inline">\(\sigma\)</span> is the standard deviation of the true error terms <span class="math inline">\(\epsilon_i\)</span> it would make sense to estimate <span class="math inline">\(\sigma\)</span> by the sample standard deviation of the residuals <span class="math inline">\(e_i\)</span>, which we call <span class="math inline">\(s_e\)</span>. That’s how we get the spread of the estimated normal distribution in the bottom panel, which is just a little larger than the truth.</p>
+<p>Note that the big difference in means for the true and estimated normal distributions in the bottom panel is because we are making predictions at the edge of our observed data, where the difference between the two lines is large. (This choice was deliberate, so it would be easier to see the differences in the plots.) For 1,200–2,200 sq ft houses, the means would be much closer. The difference in spread (standard deviation) would stay the same, however.</p>
+<section id="sec-slr-table" class="level3" data-number="21.2.1">
+<h3 data-number="21.2.1" class="anchored" data-anchor-id="sec-slr-table"><span class="header-section-number">21.2.1</span> The regression table</h3>
+<p>Statistical software reports the fitted line, along with several related quantities, in a <strong>regression table</strong>. <a href="#tbl-slr-price-area" class="quarto-xref">Table&nbsp;<span>21.1</span></a> gives the table for our housing data.</p>
+<div class="cell">
+<div id="tbl-slr-price-area" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-slr-price-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;21.1: Regression of sale price on living area for the Austin homes.
+</figcaption>
+<div aria-describedby="tbl-slr-price-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-02a75df0{}.cl-02a35818{font-family:'Arial';font-size:9.5pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02a35822{font-family:'Arial';font-size:9.5pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02a4eba6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02a4ebb0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02a4fff6{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50000{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50001{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50002{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5000a{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50014{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50015{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50032{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50033{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50034{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5003c{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5003d{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5003e{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50046{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50047{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50048{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50050{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50051{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5005a{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5005b{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50064{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50065{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5006e{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5006f{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50070{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50078{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50079{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50082{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50083{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50084{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5008c{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a5008d{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50096{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a50097{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500a0{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500a1{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500a2{width:1.664in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500aa{width:0.946in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500ab{width:0.879in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500ac{width:1.679in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500b4{width:0.615in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02a500b5{width:0.747in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-02a75df0"><thead><tr style="overflow-wrap:break-word;"><th class="cl-02a4fff6"><p class="cl-02a4eba6"><span class="cl-02a35818">Term</span></p></th><th class="cl-02a50000"><p class="cl-02a4ebb0"><span class="cl-02a35818">Estimate</span></p></th><th class="cl-02a50001"><p class="cl-02a4ebb0"><span class="cl-02a35818">Std. error</span></p></th><th class="cl-02a50002"><p class="cl-02a4ebb0"><span class="cl-02a35818">95% CI</span></p></th><th class="cl-02a5000a"><p class="cl-02a4ebb0"><span class="cl-02a35818">t</span></p></th><th class="cl-02a50014"><p class="cl-02a4ebb0"><span class="cl-02a35818">p-value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02a50015"><p class="cl-02a4eba6"><span class="cl-02a35822">Intercept</span></p></td><td class="cl-02a50032"><p class="cl-02a4ebb0"><span class="cl-02a35822">100,770.58</span></p></td><td class="cl-02a50033"><p class="cl-02a4ebb0"><span class="cl-02a35822">7,923.45</span></p></td><td class="cl-02a50034"><p class="cl-02a4ebb0"><span class="cl-02a35822">[85,197.68, 116,343.48]</span></p></td><td class="cl-02a5003c"><p class="cl-02a4ebb0"><span class="cl-02a35822">12.72</span></p></td><td class="cl-02a5003d"><p class="cl-02a4ebb0"><span class="cl-02a35822">&lt;0.001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02a5003e"><p class="cl-02a4eba6"><span class="cl-02a35822">Living area (sq ft)</span></p></td><td class="cl-02a50046"><p class="cl-02a4ebb0"><span class="cl-02a35822">100.01</span></p></td><td class="cl-02a50047"><p class="cl-02a4ebb0"><span class="cl-02a35822">4.48</span></p></td><td class="cl-02a50048"><p class="cl-02a4ebb0"><span class="cl-02a35822">[91.20, 108.83]</span></p></td><td class="cl-02a50050"><p class="cl-02a4ebb0"><span class="cl-02a35822">22.30</span></p></td><td class="cl-02a50051"><p class="cl-02a4ebb0"><span class="cl-02a35822">&lt;0.001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02a5005a"><p class="cl-02a4eba6"><span class="cl-02a35822">Residual standard error</span></p></td><td class="cl-02a5005b"><p class="cl-02a4ebb0"><span class="cl-02a35822">49,443.28</span></p></td><td class="cl-02a50064"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a50065"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a5006e"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a5006f"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02a50070"><p class="cl-02a4eba6"><span class="cl-02a35822">R²</span></p></td><td class="cl-02a50078"><p class="cl-02a4ebb0"><span class="cl-02a35822">0.533</span></p></td><td class="cl-02a50079"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a50082"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a50083"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a50084"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02a5008c"><p class="cl-02a4eba6"><span class="cl-02a35822">Adjusted R²</span></p></td><td class="cl-02a5008d"><p class="cl-02a4ebb0"><span class="cl-02a35822">0.532</span></p></td><td class="cl-02a50096"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a50097"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a500a0"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a500a1"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02a500a2"><p class="cl-02a4eba6"><span class="cl-02a35822">n</span></p></td><td class="cl-02a500aa"><p class="cl-02a4ebb0"><span class="cl-02a35822">438</span></p></td><td class="cl-02a500ab"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a500ac"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a500b4"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td><td class="cl-02a500b5"><p class="cl-02a4ebb0"><span class="cl-02a35822"></span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>We’re familiar with some of these numbers from the discussion above:</p>
+<ol type="1">
+<li>Estimates of the intercept and slope along with standard errors (the Estimate and Std. error columns). Just like a <a href="./inference_01_sampling-distributions.html#sec-sampling-ci">sample mean</a>, <a href="./inference_04_proportions-comparisons.html">sample proportion, and difference between sample means/proportions</a> have their own standard errors, so too do our estimated slope and intercept — and we interpret them the same way.</li>
+<li>95% confidence intervals (the set of plausible values) for the intercept and slope (the 95% CI column). Software makes some small adjustments for accuracy that are tedious by hand, so these intervals differ slightly from the estimate plus or minus two standard errors.</li>
+<li>The residual standard error <span class="math inline">\(s_e\)</span> — which is (approximately) the sample standard deviation of the residuals — is our estimate of <span class="math inline">\(\sigma\)</span> (the standard deviation of prediction errors under the model).</li>
+<li><a href="./inference_02_hypothesis-tests.html">t-statistics and p-values</a> for testing the null hypotheses that <span class="math inline">\(\beta_0=0\)</span> and <span class="math inline">\(\beta_1=0\)</span>.</li>
+<li><span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span> will be introduced in <a href="#sec-slr-r2" class="quarto-xref"><span>Section 21.3.3.3</span></a>.</li>
+</ol>
+</section>
+</section>
+<section id="sec-slr-uses" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="sec-slr-uses"><span class="header-section-number">21.3</span> Applications of linear regression</h2>
+<p>Linear regression is a versatile tool for making predictions and understanding relationships and trends. In this section we collect the most common uses of linear regression; any particular business application will likely involve more than one of these.</p>
+<section id="sec-slr-trends" class="level3" data-number="21.3.1">
+<h3 data-number="21.3.1" class="anchored" data-anchor-id="sec-slr-trends"><span class="header-section-number">21.3.1</span> Use 1: Summarizing trends</h3>
+<p>One of the most common uses of linear regression is to summarize the relationship between two variables using the slope and intercept. These parameters tell us about the nature of the <em>linear</em> association between the two variables.</p>
+<section id="sec-slr-slope" class="level4" data-number="21.3.1.1">
+<h4 data-number="21.3.1.1" class="anchored" data-anchor-id="sec-slr-slope"><span class="header-section-number">21.3.1.1</span> Interpreting the slope</h4>
+<p>The slope <span class="math inline">\(\hat\beta_1 = 100.01\)</span> tells us that for each additional square foot of living area, we expect house prices to increase by about $100.01 on average. Another way to say this is that if we compared two houses which differ in size by one square foot, the larger house would have a predicted sale price that is $100.01 higher.</p>
+<p>We can visualize this directly on the scatterplot:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-slope" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-slope-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.5: The slope as rise over run: over a 1,000-square-foot run, the predicted price rises by about $100,000.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The slope is the “rise over run”—the change in predicted price divided by the change in area. Comparing a 1,500 sq ft home to a 2,500 sq ft home (an increase of 1,000 sq ft), we predict the price will increase by $100,010.</p>
+<div id="tip-slr-slope" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip&nbsp;21.1: Interpreting the slope
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here are three correct, equivalent ways to interpret the slope in the Austin house prices example:</p>
+<ul>
+<li>For each additional square foot, the predicted (or expected) price increases by about $100.01
+<ul>
+<li>This describes how the value on the line changes as we move along the x-axis</li>
+</ul></li>
+<li>If we compared two houses which differ in size by one square foot, the larger house would have a predicted (or expected) sale price that is $100.01 higher.
+<ul>
+<li>This is the same statement, just in more intuitive language: We’re comparing predictions (points on the line) for two houses with areas that differ by one square foot</li>
+</ul></li>
+<li>If we compared many houses which differ in size by one square foot, on average the larger houses would sell for $100.01 more.
+<ul>
+<li>Remember from the previous section that our model says that the true or population distribution of <em>all</em> sale prices of <strong>all</strong> houses of a given size can be described by a normal distribution with a mean given by the corresponding point on the line. So we can think of the predicted value for any given size as the average sale price among <em>all</em> houses of that size. So the increase in the value on the line when we move up one square foot on the x-axis tells us the difference in average sale prices for houses of (say) 2,001 versus 2,000 square feet.</li>
+</ul></li>
+</ul>
+<p>In each case we could replace the one square foot difference by a 1,000 square foot difference (for example) by substituting <span class="math inline">\(1000\times 100.01\)</span> for <span class="math inline">\(100.01\)</span>, as in the figure above.</p>
+</div>
+</div>
+</section>
+<section id="sec-slr-intercept" class="level4" data-number="21.3.1.2">
+<h4 data-number="21.3.1.2" class="anchored" data-anchor-id="sec-slr-intercept"><span class="header-section-number">21.3.1.2</span> Interpreting the intercept</h4>
+<p>The intercept <span class="math inline">\(\hat\beta_0 = 100{,}771\)</span> is the predicted price when area equals zero. Let’s visualize this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-intercept" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-intercept-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.6: The intercept is the height of the fitted line at zero square feet. The dashed stretch of the line has no homes under it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In this example, the intercept has no practical interpretation. We can’t have a house with zero square feet, so predicting a price of $100,771 for such a house is meaningless. You might object to this — an empty lot might correspond to a “house with zero square feet”. But even if we grant this, the smallest house we observe is about 850 sq ft, and we should take care trying to extrapolate all the way down to zero.</p>
+<p>This is a common situation: in this case, the intercept is simply a mathematical anchor point for the line that gives us the best predictions for the houses we actually observe. However, the intercept can be meaningful when zero is a plausible value for the explanatory variable. Hamermesh and Parker collected student evaluations for 463 UT Austin course sections from 2000–2002 <span class="citation" data-cites="hamermesh-parker-2005">(<a href="appendix_data.html#ref-hamermesh-parker-2005" role="doc-biblioref">Hamermesh and Parker 2005</a>)</span>. Along with each section’s average evaluation (on a 1–5 scale), the <a href="./appendix_data.html#sec-data-evals-hamermesh">data</a> include a beauty rating for the instructor: the average of six students’ ratings of the instructor’s photo, shifted so that 0 is the average rating. <a href="#fig-slr-evals" class="quarto-xref">Figure&nbsp;<span>21.7</span></a> plots evaluations against beauty.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-evals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-evals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-evals-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-evals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.7: Average course evaluation versus the instructor’s beauty rating, with the least-squares line. The blue point marks the intercept, the predicted evaluation at a beauty rating of 0. The line rises, but evaluations vary widely at every beauty rating.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The fitted line is <span class="math inline">\(\widehat{\text{eval}} = 4.00 + 0.13 \times \text{beauty}\)</span>. Here a beauty rating of zero is the average rating, right in the middle of the data, so the intercept of 4.00 is the predicted evaluation for an instructor of average beauty. Because the least-squares line passes through <span class="math inline">\((\bar x, \bar y)\)</span> and beauty has mean zero, the intercept equals the average evaluation. The slope of 0.13 tells us that instructors whose beauty ratings differ by one point have predicted evaluations that differ by about 0.13 points.</p>
+</section>
+<section id="sec-slr-centering" class="level4" data-number="21.3.1.3">
+<h4 data-number="21.3.1.3" class="anchored" data-anchor-id="sec-slr-centering"><span class="header-section-number">21.3.1.3</span> Centering and/or scaling the variables</h4>
+<p>The interpretation of both the intercept and slope can be made more meaningful by centering and/or scaling the <span class="math inline">\(X\)</span> variable. For example, if we centered the area variable by subtracting the mean area from each observation, then the intercept would represent the predicted price for a house of average size. Alternatively, if we “relocated” the area variable by subtracting (for example) 1,500 from each observed area, then the intercept would represent the predicted price for a 1,500 sq ft house. In either case, the slope would still represent the change in predicted price for a one square foot increase in area, but the intercept would now have a more meaningful interpretation.</p>
+<p>We could also scale the original area variable to get a slope in different units. For example, if we divided area by 100, then the slope would represent the change in predicted price for each 100 square foot increase in area. In this case, the slope would be $10,001 per 100 sq ft, and the intercept would represent the predicted price for a house with zero hundred square feet (i.e., zero square feet).</p>
+<p>Finally, we can also scale the outcome variable (price) to get a slope in more convenient units. For example, if we divided price by 1,000, then the slope would represent the change in predicted price (in thousands of dollars) for each one square foot increase in area. In this case, the slope would be <span class="math inline">\(0.1\)</span> thousand dollars per square foot, and the intercept would represent the predicted price (in thousands of dollars) for a house with zero square feet.</p>
+</section>
+<section id="sec-slr-inference" class="level4" data-number="21.3.1.4">
+<h4 data-number="21.3.1.4" class="anchored" data-anchor-id="sec-slr-inference"><span class="header-section-number">21.3.1.4</span> Statistical inference: Confidence intervals and hypothesis tests</h4>
+<p>Our estimates <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> are based on a sample of 438 homes. If we had a different sample due to random variation, we’d get somewhat different estimates. To quantify this uncertainty, we can construct confidence intervals and conduct hypothesis tests, just like we did for means, proportions, and differences. The validity of these intervals and tests depends on how well the probability model in <a href="#sec-slr-model" class="quarto-xref"><span>Section 21.2</span></a> fits the data; model checking will be covered in later chapters.</p>
+<p>A 95% confidence interval for the slope is (91.2, 108.83). This is the set of plausible values for the true slope; the ones consistent with the data we observed. In other words, across repeated samples, 95% of such intervals would contain the true slope.</p>
+<p>Note that <span class="math inline">\(\beta_1=0\)</span> — a true slope of zero — has a very special meaning in the context of our model: it means that there is no linear relationship between the two variables. As expected, zero is not a plausible value for the slope (it’s outside the 95% confidence interval). We can also test whether the slope is significantly different from zero. The null hypothesis is <span class="math inline">\(H_0: \beta_1 = 0\)</span> (no linear relationship between area and price), and the alternative is <span class="math inline">\(H_A: \beta_1 \neq 0\)</span>. The test statistic is:</p>
+<p><span class="math display">\[t = \frac{\hat\beta_1 - 0}{\text{SE}(\hat\beta_1)} = \frac{100.01}{4.484} = 22.3\]</span></p>
+<p>Here <span class="math inline">\(\text{SE}(\hat\beta_1)\)</span> is the standard error of the slope from <a href="#tbl-slr-price-area" class="quarto-xref">Table&nbsp;<span>21.1</span></a>. You’ll also see it written <span class="math inline">\(s_{\hat\beta_1}\)</span>.</p>
+<p>The corresponding p-value is extremely small (p &lt; 0.001), providing strong evidence against the null hypothesis. We conclude that there is a statistically significant linear relationship between living area and sale price.</p>
+<p>Similarly, we could test <span class="math inline">\(H_0: \beta_0 = 0\)</span>, though as we’ve discussed, this hypothesis is rarely of practical interest when zero is outside the range of observed x values. In our housing example, the intercept’s p-value is &lt;0.001, but this tells us little of practical value given that zero square feet is not a meaningful scenario.</p>
+<div id="tip-slr-coefficients" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip&nbsp;21.2: Interpreting the regression intercept/slope
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The <strong>slope</strong> <span class="math inline">\(\hat\beta_1\)</span> describes the change in the mean of Y associated with a one-unit increase in X</li>
+<li>The <strong>intercept</strong> <span class="math inline">\(\hat\beta_0\)</span> is the predicted value of Y when X = 0 (meaningful only if 0 is in the range of observed X values)</li>
+<li><strong>Confidence intervals</strong> quantify uncertainty in our estimates due to sampling variability</li>
+<li><strong>P-values</strong> test whether coefficients are significantly different from zero (or other hypothesized values)</li>
+</ul>
+</div>
+</div>
+<div id="ex-slr-slope-interpretation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.3: </strong>Interpreting the slope</div><div class="fobx-body">
+<p>A real estate analyst fits three different regression models:</p>
+<p><strong>Model A</strong> (Seattle): <span class="math inline">\(\widehat{\text{price}} = 125000 + 280 \times \text{area}\)</span></p>
+<p><strong>Model B</strong> (Denver): <span class="math inline">\(\widehat{\text{price}} = 85000 + 195 \times \text{area}\)</span></p>
+<p><strong>Model C</strong> (Rural Kansas): <span class="math inline">\(\widehat{\text{price}} = 45000 + 65 \times \text{area}\)</span></p>
+<ol type="1">
+<li><p>Interpret the slope coefficient for Model B in context.</p></li>
+<li><p>In which market do larger homes sell for the most per extra square foot of living area, on average?</p></li>
+<li><p>Two Seattle homes differ in size by 200 sq ft. How much higher is the larger home’s predicted price?</p></li>
+<li><p>Why might the slope differ across these three markets?</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-3">
+<summary>Solution</summary>
+<p><strong>1. Slope interpretation for Denver:</strong></p>
+<p>For each additional square foot of living area, the predicted price increases by $195. Equivalently, if we compared two Denver homes that differ in size by one square foot, the larger home would have a predicted sale price that’s $195 higher.</p>
+<p><strong>2. Largest price difference per square foot:</strong></p>
+<p>Seattle has the steepest slope at $280 per square foot. Comparing two Seattle homes that differ in size by one square foot, the larger home’s predicted price is $280 higher, compared to $195 in Denver and $65 in rural Kansas.</p>
+<p><strong>3. Price difference in Seattle:</strong></p>
+<p>For homes that differ by 200 square feet, the predicted price difference is: <span class="math display">\[200 \times 280 = \$56{,}000\]</span></p>
+<p>If we compared two Seattle homes that differ in size by 200 square feet, the larger home would have a predicted sale price that’s $56,000 higher.</p>
+<p><strong>4. Why slopes differ:</strong></p>
+<p>At least two reasons: One would be ordinary variability in estimates as measured by standard errors. We should really look at sets of plausible values here.</p>
+<p>The other is that the nature of the relationship might be different in each city; the slope captures (in part) how much buyers in each market value larger houses.</p>
+</details>
+</div></div>
+</div>
+<div id="ex-slr-slope-inference" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.4: </strong>Statistical inference for the slope</div><div class="fobx-body">
+<p>A company analyzes the relationship between employee experience (in years) and annual sales performance (in thousands of dollars). They fit a regression model using data from 80 randomly selected sales representatives:</p>
+<p><span class="math display">\[\widehat{\text{sales}} = 42 + 3.8 \times \text{experience}\]</span></p>
+<p>The standard error of the slope is <span class="math inline">\(\text{SE}(\hat{\beta}_1) = 0.9\)</span>.</p>
+<ol type="1">
+<li><p>Interpret the estimated slope in context.</p></li>
+<li><p>Construct a 95% confidence interval for the true slope <span class="math inline">\(\beta_1\)</span>.</p></li>
+<li><p>The HR department claims that each year of experience is worth at least $5,000 in additional sales. Is this claim supported by the data?</p></li>
+<li><p>Calculate a test statistic for testing <span class="math inline">\(H_0: \beta_1 = 0\)</span> versus <span class="math inline">\(H_A: \beta_1 \neq 0\)</span>. What would you conclude?</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-4">
+<summary>Solution</summary>
+<p><strong>1. Slope interpretation:</strong></p>
+<p>For each additional year of experience, predicted annual sales increase by $3,800. Equivalently, if we compared two sales representatives who differ in experience by one year, the more experienced representative would have predicted sales that are $3,800 higher.</p>
+<p><strong>2. 95% confidence interval:</strong> <span class="math display">\[\hat{\beta}_1 \pm 2 \times \text{SE}(\hat{\beta}_1) = 3.8 \pm 2(0.9) = 3.8 \pm 1.8 = [2.0, 5.6]\]</span></p>
+<p>The plausible values for the true slope range from $2,000 to $5,600 in additional sales per year of experience.</p>
+<p><strong>3. HR department’s claim:</strong></p>
+<p>The claim that each year is worth at least $5,000 is not strongly supported. A value of $5,000 falls within our 95% confidence interval [2.0, 5.6], so it’s plausible — but so is every value down to $2,000. The data can’t confirm or rule out the claim, and our best estimate is $3,800.</p>
+<p>The above answer would suffice for a homework or exam problem, but there’s another issue too: The claim also flirts with a causal interpretation — that having an additional year of experience would cause sales to increase — but even though we are confident there is a positive relationship, we still can’t answer the causal question. For example, it could be the case that experience is unrelated to sales performance and the positive association we observe is because underperforming junior salespeople are let go (this would be an example of <a href="https://en.wikipedia.org/wiki/Survivorship_bias">survivorship bias</a> — one way that we can wind up with an unrepresentative sample!).</p>
+<p><strong>4. Test statistic:</strong> <span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{3.8}{0.9} = 4.22\]</span></p>
+<p>This t-statistic is much larger than 2 in absolute value, corresponding to a very small p-value (p &lt; 0.001). We have extremely strong evidence against the null hypothesis of no relationship. We conclude that experience and sales performance are positively related—more experienced employees tend to have higher sales.</p>
+</details>
+</div></div>
+</div>
+<div id="ex-slr-intercept-meaning" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.5: </strong>When the intercept is meaningful</div><div class="fobx-body">
+<p>Three analysts fit regression models in different business contexts:</p>
+<p><strong>Model 1</strong> (Utility costs): <span class="math inline">\(\widehat{\text{bill}} = 28 + 0.12 \times \text{kWh used}\)</span>, with a standard error for the intercept of <span class="math inline">\(\text{SE}(\hat{\beta}_0) = 4.5\)</span></p>
+<p><strong>Model 2</strong> (Coffee sales): <span class="math inline">\(\widehat{\text{revenue}} = 1200 + 15 \times \text{temperature (°F)}\)</span>, <span class="math inline">\(\text{SE}(\hat{\beta}_0) = 180\)</span></p>
+<p><strong>Model 3</strong> (Website traffic): <span class="math inline">\(\widehat{\text{visitors}} = 2400 + 850 \times \text{ad spend (\$1000s)}\)</span>, <span class="math inline">\(\text{SE}(\hat{\beta}_0) = 420\)</span></p>
+<ol type="1">
+<li><p>For Model 1, interpret the slope and intercept. Construct a 95% confidence interval for the intercept. Is the intercept meaningful in this context?</p></li>
+<li><p>For Model 2, the intercept is 1200. Interpret this estimate, and comment on when it would and would not be meaningful.</p></li>
+<li><p>For Model 3, test whether the intercept is significantly different from zero (<span class="math inline">\(H_0: \beta_0 = 0\)</span> vs <span class="math inline">\(H_A: \beta_0 \neq 0\)</span>). What does the intercept represent in this business context?</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-5">
+<summary>Solution</summary>
+<p><strong>1. Model 1 interpretation:</strong></p>
+<p><strong>Slope:</strong> For each additional kilowatt-hour (kWh) used, the predicted electricity bill increases by $0.12. If we compared two households that differ in electricity usage by one kWh, the household using more electricity would have a predicted bill that’s $0.12 higher.</p>
+<p><strong>Intercept:</strong> The predicted bill for a household that uses zero kWh is $28.</p>
+<p>95% confidence interval for the intercept: <span class="math display">\[28 \pm 2(4.5) = 28 \pm 9 = [19, 37]\]</span></p>
+<p>This intercept is not meaningful for a typical set of customers. Almost every household draws some power from the grid, so zero kWh lies outside the data and the $28 is an extrapolation. It would become meaningful only if the data included customers with solar panels who produce enough power to avoid tapping the grid; then the $28 could represent a fixed cost charged by the power company, with plausible values from $19 to $37.</p>
+<p><strong>2. Model 2 interpretation problem:</strong></p>
+<p>The model predicts $1,200 in revenue on a 0°F day. The 95% confidence interval for the intercept is <span class="math display">\[1200 \pm 2(180) = 1200 \pm 360 = [840, 1560]\]</span></p>
+<p>Whether this interval means anything depends on the temperatures in the data. For a coffee shop in the far reaches of Alaska, where days this cold are part of the data, plausible values for revenue on a 0°F day run from $840 to $1,560. For a coffee shop in Austin, TX, 0°F is far below any temperature in the data, so the intercept is an extrapolation and neither the estimate nor the interval tells us anything about revenue.</p>
+<p><strong>3. Model 3 hypothesis test:</strong></p>
+<p>Test statistic: <span class="math display">\[t = \frac{\hat{\beta}_0 - 0}{\text{SE}(\hat{\beta}_0)} = \frac{2400}{420} = 5.71\]</span></p>
+<p>With |t| = 5.71 &gt;&gt; 2, we have very strong evidence that the intercept differs from zero (p &lt; 0.001).</p>
+<p>The intercept of 2,400 represents predicted website traffic when ad spend is zero—the “organic” traffic the website receives without paid advertising. If the data include weeks with no ad spend, the hypothesis test tells us that the website has at least some organic traffic.</p>
+</details>
+</div></div>
+</div>
+</section>
+</section>
+<section id="sec-slr-prediction" class="level3" data-number="21.3.2">
+<h3 data-number="21.3.2" class="anchored" data-anchor-id="sec-slr-prediction"><span class="header-section-number">21.3.2</span> Use 2: Making predictions, accounting for likely errors</h3>
+<p>A second common use of linear regression is to predict the value of Y for a new observation with a given value of X. The regression line gives us a natural way to make such predictions.</p>
+<p>Suppose we want to predict the sale price of a home with 2,000 square feet of living area. We simply plug this value into our regression equation:</p>
+<p><span class="math display">\[\widehat{\text{price}} = 100{,}771 + 100.01 \times 2{,}000 = \$300{,}791\]</span></p>
+<p>We can visualize this prediction process on the scatterplot:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-prediction" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-prediction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-prediction-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-prediction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.8: Predicting the sale price of a 2,000-square-foot home from the fitted line.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To make a prediction, we start at the x-value of interest on the horizontal axis, move vertically up to the regression line, then move horizontally to read off the predicted y-value. For a 2,000 sq ft home, our model predicts a sale price of approximately $300,791.</p>
+<p>Of course, this is just a point prediction—our best single guess. In reality, homes of the same size sell for different prices due to other factors not captured by living area alone (location, condition, age, amenities, etc.). The actual sale price will likely differ from our prediction.</p>
+<p>We can quantify the typical size of prediction errors using the <strong>residual standard error</strong>, which measures the standard deviation of the residuals:</p>
+<div id="def-rse" class="Definition theorem definition">
+<p><span class="theorem-title"><strong>Definition 21.3 (The residual standard error)</strong></span> &nbsp;</p>
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 21.3</strong></div><div class="fobx-body">
+<p>The residual standard error <span class="math inline">\(s_e\)</span> is our estimate of <span class="math inline">\(\sigma\)</span>, the standard deviation of the errors <span class="math inline">\(\epsilon_i\)</span> in the regression model. Recall that the model assumes:</p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_i + \epsilon_i, \quad \epsilon_i \sim N(0, \sigma^2)\]</span></p>
+<p>The parameter <span class="math inline">\(\sigma\)</span> tells us how much variation there is in Y that is still unpredictable after we account for the (linear) effect of <span class="math inline">\(x\)</span>. We estimate it using:</p>
+<p><span class="math display">\[s_e = \sqrt{\frac{1}{n-2}\sum_{i=1}^n e_i^2}\]</span></p>
+<p>We divide by <span class="math inline">\(n-2\)</span> rather than <span class="math inline">\(n\)</span> because we’ve used the data to estimate two parameters (<span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span>), which slightly reduces the effective sample size for estimating variability. This is analogous to using <span class="math inline">\(n-1\)</span> when computing the sample standard deviation. This isn’t a number you will compute by hand, so you don’t need to worry about it.</p>
+</div></div>
+</div>
+<div id="note-slr-typical-errors" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Three kinds of typical error
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We have several different notions of “typical error” up to this point, so let’s pause and remind ourselves what they are:</p>
+<ol type="1">
+<li>A standard deviation is the typical departure of a variable from its mean.</li>
+<li>A <a href="./inference_01_sampling-distributions.html#sec-sampling-ci">standard error</a> is the typical size of an <em>estimation</em> error: how far a statistic like <span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(\hat\beta_1\)</span> tends to be from the true value (parameter) it estimates. It’s a special kind of standard deviation: the standard deviation we get from computing the statistic across repeated random samples</li>
+<li>A <strong>residual standard error</strong> is the typical size of a <em>prediction</em> error: how far outcomes land from the model’s predictions. A standard error shrinks toward zero as <span class="math inline">\(n\)</span> grows, because estimates improve with more data. The residual standard error does not, because more data doesn’t make <em>individual</em> sale prices any less variable.</li>
+</ol>
+</div>
+</div>
+<p>For our data, <span class="math display">\[s_e = \$49{,}443\]</span> The residual standard error of $49,443 tells us that predictions are typically off by about this amount. A rough 95% <strong>prediction interval</strong> for a new home with 2,000 sq ft is:</p>
+<p><span class="math display">\[\widehat{\text{price}} \pm 2 s_e = 300{,}791 \pm 2 \times 49{,}443 = (\$201{,}905\text{, } \$399{,}677)\]</span></p>
+<p>This interval captures the natural variation in prices around the regression line. We expect most homes — specifically, 95% of homes — with 2,000 sq ft to have sale prices in this range.</p>
+<div id="tech-slr-prediction-intervals" class="TechnicalDetail">
+<details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 21.2: </strong>More precise prediction intervals</summary><div>
+<p>The interval <span class="math inline">\(\widehat{y} \pm 2s_e\)</span> is a useful approximation, but it doesn’t account for uncertainty in estimating the regression line itself (we estimated <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> from a sample, after all). A more precise prediction interval accounts for both sources of uncertainty:</p>
+<ol type="1">
+<li>Uncertainty in the regression line (the standard errors of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span>)</li>
+<li>Natural variation in Y around the regression line (measured by <span class="math inline">\(s_e\)</span>)</li>
+</ol>
+<p>Using this more careful calculation, a 95% prediction interval for our 2,000 sq ft home is ($203,473, $398,126). This is almost identical to our rough interval (in fact slightly narrower, because of small adjustments for accuracy that software makes). Generally speaking, unless the variability of the residuals is small (or the sample size is small) uncertainty due to estimating the coefficients is swamped by the variability in the residuals (errors). Statistical software typically computes these more precise intervals automatically.</p>
+</div></details>
+</div>
+<div id="warn-slr-extrapolation" class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Extrapolation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be cautious when making predictions for x-values outside the range of your data. The linear relationship we observed might not hold beyond the observed range. For example, predicting prices for a 10,000 sq ft mansion using a model fit to 850–3,300 sq ft homes would be unreliable—the price-per-square-foot relationship might be quite different for luxury properties.</p>
+</div>
+</div>
+<div id="ex-slr-prediction-basics" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.6: </strong>Making predictions</div><div class="fobx-body">
+<p>A coffee shop chain models daily revenue (in dollars) based on customer traffic:</p>
+<p><span class="math display">\[\widehat{\text{revenue}} = 120 + 8.50 \times \text{customers}\]</span></p>
+<p>The model has residual standard error <span class="math inline">\(s_e = \$185\)</span>.</p>
+<ol type="1">
+<li><p>Predict revenue for a day with 150 customers.</p></li>
+<li><p>Construct an approximate 95% prediction interval for revenue on a day with 150 customers.</p></li>
+<li><p>The manager observes that across 50 days where the shop saw 200 customers, the lowest observed revenue was $1,500. Does this suggest a problem with the model? Explain.</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-6">
+<summary>Solution</summary>
+<p><strong>1. Point prediction:</strong> <span class="math display">\[\widehat{\text{revenue}} = 120 + 8.50 \times 150 = \$1{,}395\]</span></p>
+<p><strong>2. Approximate 95% prediction interval:</strong> <span class="math display">\[\widehat{\text{revenue}} \pm 2s_e = 1{,}395 \pm 2(185) = 1{,}395 \pm 370 = [\$1{,}025, \$1{,}765]\]</span></p>
+<p>We expect 95% of days with 150 customers to have revenue between $1,025 and $1,765.</p>
+<p><strong>3. Range of outcomes:</strong> <span class="math display">\[\widehat{\text{revenue}} = 120 + 8.50 \times 200 = \$1{,}820\]</span></p>
+<p>so our model says on days with 200 customers revenue should follow a <span class="math inline">\(N(1820, 185^2)\)</span> distribution. The most extreme observed outcome is the $1,500 day, which has a z-score of <span class="math inline">\((1500-1820)/185 = -1.73\)</span> (about 1.7 residual standard errors below the predicted value). If the model fits well, the probability of a day with a z-score of -1.73 or lower is about 0.042, or one in 25. Across 50 days we’d expect about two days that low, so a lowest day of $1,500 isn’t surprising at all.</p>
+</details>
+</div></div>
+</div>
+<div id="ex-slr-prediction-intervals" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.7: </strong>Understanding prediction uncertainty</div><div class="fobx-body">
+<p>An e-commerce company models weekly shipping costs (in thousands of dollars) based on order volume (in thousands):</p>
+<p><span class="math display">\[\widehat{\text{shipping}} = 2.5 + 0.85 \times \text{orders}\]</span></p>
+<p>The model has residual standard error <span class="math inline">\(s_e = 1.2\)</span> thousand dollars.</p>
+<ol type="1">
+<li><p>Next week, the company expects 40,000 orders. What are the predicted shipping costs?</p></li>
+<li><p>Construct an approximate 95% prediction interval for next week’s shipping costs.</p></li>
+<li><p>The CFO wants to budget for shipping. Should she budget for the point prediction or the upper end of the prediction interval? Explain your reasoning.</p></li>
+<li><p>If actual shipping costs next week turn out to be $38,500, would this be surprising? Explain using the prediction interval.</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-7">
+<summary>Solution</summary>
+<p><strong>1. Point prediction:</strong> <span class="math display">\[\widehat{\text{shipping}} = 2.5 + 0.85 \times 40 = 36.5 \text{ thousand} = \$36{,}500\]</span></p>
+<p><strong>2. Approximate 95% prediction interval:</strong> <span class="math display">\[36.5 \pm 2(1.2) = 36.5 \pm 2.4 = [34.1, 38.9] \text{ thousand}\]</span></p>
+<p>Or <strong>$34,100 to $38,900</strong>.</p>
+<p><strong>3. Budgeting decision:</strong></p>
+<p>The CFO should budget closer to the upper end of the prediction interval ($38,900 or slightly higher) rather than the point prediction. Here’s why:</p>
+<ul>
+<li>Budgeting at the point prediction ($36,500) means there’s about a 50% chance actual costs will exceed the budget</li>
+<li>Budgeting at the upper end provides a buffer for the natural variation in shipping costs—about 97.5% of weeks should come in under this amount</li>
+<li>If running short and scrambling for emergency funds costs more than holding a small surplus, it’s better to budget high</li>
+</ul>
+<p>We could do a more formal decision analysis here by considering the cost to over-budgeting (e.g.&nbsp;the opportunity cost of sticking that money in a mattress) but the logic is the same.</p>
+<p><strong>4. Would $38,500 be surprising?</strong></p>
+<p>No, $38,500 would not be surprising. This value falls within our 95% prediction interval [$34,100, $38,900]. While it’s at the high end (about $2,000 above the predicted value), it’s well within the range of typical week-to-week variation captured by our model. Its z-score is <span class="math inline">\((38.5 - 36.5)/1.2 \approx 1.7\)</span>, so we’d expect to see costs this high (or higher) in about 5% of weeks.</p>
+</details>
+</div></div>
+</div>
+</section>
+<section id="sec-slr-strength" class="level3" data-number="21.3.3">
+<h3 data-number="21.3.3" class="anchored" data-anchor-id="sec-slr-strength"><span class="header-section-number">21.3.3</span> Use 3: Measuring the strength of the linear relationship</h3>
+<p>Beyond summarizing trends and making predictions, we often want to know: How <em>strong</em> is the linear relationship between X and Y? Does knowing X substantially improve our predictions in a linear model, or does it help only a little? To answer this, we’ll compare prediction errors from two models: one that ignores X entirely, and one that uses X via linear regression.</p>
+<section id="predictions-without-x-using-the-mean" class="level4" data-number="21.3.3.1">
+<h4 data-number="21.3.3.1" class="anchored" data-anchor-id="predictions-without-x-using-the-mean"><span class="header-section-number">21.3.3.1</span> Predictions without X: Using the mean</h4>
+<p>If we didn’t know a home’s living area, what would be our best prediction for its price? The mean price <span class="math inline">\(\bar{y}\)</span> minimizes the average squared prediction error among all constant predictions. Let’s visualize this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-null-errors" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-null-errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-null-errors-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-null-errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.9: Prediction errors when we ignore living area. Left: the null model predicts the mean price <span class="math inline">\(\bar y\)</span> for every home. Right: the distribution of those prediction errors, with standard deviation <span class="math inline">\(s_y\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We’ll call predicting <span class="math inline">\(\bar{y}\)</span> for every home the <strong>null model</strong>. It’s a simple regression model where we force the slope to be zero, so it aligns with the null hypothesis that <span class="math inline">\(\beta_1 = 0\)</span> — no linear relationship. In the null model our prediction errors have standard deviation equal to <span class="math inline">\(s_y\)</span>, the sample standard deviation of the prices themselves, since they are just the original values with <span class="math inline">\(\bar y = \$269{,}455\)</span> subtracted off. This is the baseline level of uncertainty about prices when we ignore living area.</p>
+</section>
+<section id="predictions-with-x-using-the-regression-line" class="level4" data-number="21.3.3.2">
+<h4 data-number="21.3.3.2" class="anchored" data-anchor-id="predictions-with-x-using-the-regression-line"><span class="header-section-number">21.3.3.2</span> Predictions with X: Using the regression line</h4>
+<p>Now let’s use the estimated regression line to make predictions:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-error-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-error-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-error-comparison-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-error-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.10: Prediction errors from the null model (top) and the regression model (bottom). The colored homes are the same in every panel.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>When X is useful for predicting Y, the residuals from the regression model are smaller than the residuals from the null model (that just predicts the mean of <span class="math inline">\(y\)</span> for every size), at least on average. The histogram of residuals is narrower, indicating more precise predictions. The bigger the reduction in error variability, the stronger the linear relationship is between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The spread of the residuals in the simple linear regression model is measured by <span class="math inline">\(s_e\)</span>, the <a href="#def-rse">residual standard error</a>.</p>
+</section>
+<section id="sec-slr-r2" class="level4" data-number="21.3.3.3">
+<h4 data-number="21.3.3.3" class="anchored" data-anchor-id="sec-slr-r2"><span class="header-section-number">21.3.3.3</span> Quantifying the improvement in predictive power: <span class="math inline">\(R^2\)</span></h4>
+<div id="def-r-squared" class="Definition theorem definition">
+<p><span class="theorem-title"><strong>Definition 21.4 (<span class="math inline">\(R^2\)</span>)</strong></span> &nbsp;</p>
+<div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 21.4</strong></div><div class="fobx-body">
+<p>We can summarize the improvement using <strong><span class="math inline">\(R^2\)</span></strong> (R-squared), which measures the proportion of variation in Y explained by the linear relationship with X:</p>
+<p><span class="math display">\[R^2 = 1 - \frac{\text{variance of residuals}}{\text{variance of } y} = 0.533\]</span></p>
+</div></div>
+</div>
+<p>In our example, <span class="math inline">\(R^2 = 0.533\)</span>, meaning that 53.3% of the variation in house prices is explained by the linear relationship with living area. Put another way, using area to predict price reduces our prediction variance by 53.3% compared to just predicting the mean price for everyone.</p>
+<p>An <span class="math inline">\(R^2\)</span> of 0.53 is an improvement over predicting the average price for every home — about half the variability in prices is predictable using size — but it is a relative measure: it doesn’t tell us how big our errors tend to be. The residual standard error does. Predicting the average price for every home, our predictions are typically off by $72,263 (<span class="math inline">\(s_y\)</span>). Using living area, they’re typically off by $49,443 (<span class="math inline">\(s_e\)</span>). Even so, a rough 95% <a href="#sec-slr-prediction">prediction interval</a> from the line is still about ±$99,000: for a 2,000 sq ft home, from $202,000 to $400,000. That range is too wide to set a listing price or decide what to offer on a house. For those decisions we need more information than size alone.</p>
+<p>Regression tables report two versions of <span class="math inline">\(R^2\)</span>, as in <a href="#tbl-slr-price-area" class="quarto-xref">Table&nbsp;<span>21.1</span></a>. If we plug the residual standard error <span class="math inline">\(s_e\)</span>, with its <span class="math inline">\(n-2\)</span> divisor, into the formula above, we get <strong>adjusted <span class="math inline">\(R^2\)</span></strong> (0.532 here). Computing both variances with the same divisor gives <span class="math inline">\(R^2\)</span> (0.533). The difference is bookkeeping, and it only matters when the sample is small relative to the number of estimated coefficients.</p>
+<p><span class="math inline">\(R^2\)</span> ranges from 0 to 1:</p>
+<ul>
+<li><span class="math inline">\(R^2\)</span> = 0 means X provides no linear information about Y (the regression line is no better than predicting <span class="math inline">\(\bar{y}\)</span> for everyone)</li>
+<li><span class="math inline">\(R^2\)</span> = 1 means perfect linear fit (all points lie exactly on the line). It doesn’t matter if the relationship is positive or negative.</li>
+</ul>
+</section>
+<section id="other-interpretations-of-r2" class="level4" data-number="21.3.3.4">
+<h4 data-number="21.3.3.4" class="anchored" data-anchor-id="other-interpretations-of-r2"><span class="header-section-number">21.3.3.4</span> Other interpretations of <span class="math inline">\(R^2\)</span></h4>
+<p><span class="math inline">\(R^2\)</span> has two other useful interpretations:</p>
+<ol type="1">
+<li><p><strong><span class="math inline">\(R^2\)</span> equals the squared correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span></strong>: <span class="math inline">\(R^2 = \text{cor}(x,y)^2 = 0.533\)</span>. This is a pure measure of linear association that doesn’t depend on which variable we call X or Y, or on the direction (sign) of the relationship.</p></li>
+<li><p><strong><span class="math inline">\(R^2\)</span> equals the squared correlation between fitted and observed values</strong>: <span class="math inline">\(R^2 = \text{cor}(\hat{y}, y)^2\)</span>. This measures how closely the predicted values track the actual values—when predictions closely match reality, <span class="math inline">\(R^2\)</span> is high.</p></li>
+</ol>
+<p>Because <span class="math inline">\(R^2\)</span> is a squared correlation, it inherits the <a href="./prob_08_quantitative-quantitative.html#sec-corr-limits">limits of correlation</a>. A single extreme observation can manufacture or hide a strong linear relationship, as in <a href="./prob_08_quantitative-quantitative.html#sec-anscombe">Anscombe’s quartet</a>. And a low <span class="math inline">\(R^2\)</span> can hide a strong <a href="./prob_08_quantitative-quantitative.html#sec-corr-linear-only">nonlinear relationship</a>, like the one between electricity load and temperature.</p>
+<div id="tip-slr-r2" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip&nbsp;21.3: Interpreting <span class="math inline">\(R^2\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\(R^2\)</span> measures the <strong>proportion of variance explained</strong> by the linear relationship; “explained” here really means “predicted”. Predicting a home’s size from its price gives exactly the same <span class="math inline">\(R^2\)</span>, but nobody would say that price explains size.</li>
+<li><span class="math inline">\(R^2\)</span> = 0.65 means knowing X reduces prediction variance (uncertainty) by 65% relative to the prediction variance if we didn’t use X. But even if <span class="math inline">\(R^2\)</span> is high, if there is a lot of variability in Y we might still have a lot of prediction uncertainty left after incorporating X (like in the house prices example, where the RSE — the typical prediction error — is $49,443, while nearly all sales are between $100K and $450K).</li>
+<li><span class="math inline">\(R^2\)</span> alone doesn’t tell you if the relationship is practically important—a practically important relationship can have modest <span class="math inline">\(R^2\)</span>.</li>
+<li>High <span class="math inline">\(R^2\)</span> means the predictions of the linear model closely track the observed values of Y, and that X and Y are highly correlated — but not necessarily that the relationship is truly linear.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="sec-slr-low-r2" class="level4" data-number="21.3.3.5">
+<h4 data-number="21.3.3.5" class="anchored" data-anchor-id="sec-slr-low-r2"><span class="header-section-number">21.3.3.5</span> Weak but real relationships</h4>
+<p>A low <span class="math inline">\(R^2\)</span> does not mean that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are unrelated. Return to the course evaluations in <a href="#fig-slr-evals" class="quarto-xref">Figure&nbsp;<span>21.7</span></a>.</p>
+<p>The regression of evaluation on beauty has <span class="math inline">\(R^2 =\)</span> 0.036, so the line predicts only 3.6% of the variation in evaluations. Knowing an instructor’s beauty rating barely changes how far off our predictions typically are: 0.555 evaluation points without it (<span class="math inline">\(s_y\)</span>) and 0.545 with it (<span class="math inline">\(s_e\)</span>). But the 95% confidence interval for the slope is (0.07, 0.20) evaluation points per unit of beauty, and it excludes zero; the t-statistic is 4.1. The data give <em>strong evidence</em> of a <em>weak</em> linear relationship. The weak relationship is expected: factors like how clearly the instructor explains the material or how fairly they grade are almost surely more important for course evaluations, and unrelated to the instructor’s appearance. In this model the impact of all of those factors end up in the residuals, increasing their spread.</p>
+<div id="warn-slr-low-r2" class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A low <span class="math inline">\(R^2\)</span> does not rule out a linear relationship
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Whether there is a linear relationship is a question about the slope: is zero a plausible value for <span class="math inline">\(\beta_1\)</span>, given the data? Answer it with a confidence interval or test for the slope, not with <span class="math inline">\(R^2\)</span>. <span class="math inline">\(R^2\)</span> measures how much of the variation in <span class="math inline">\(y\)</span> the line predicts, and a real linear relationship can predict very little of it.</p>
+</div>
+</div>
+<div id="ex-slr-rsquared-comparison" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.8: </strong>Comparing model fit</div><div class="fobx-body">
+<p>A business consultant analyzes three different relationships:</p>
+<p><strong>Model 1</strong> (Sales vs Advertising): <span class="math inline">\(R^2 = 0.82\)</span>, <span class="math inline">\(s_e = \$45{,}000\)</span></p>
+<p><strong>Model 2</strong> (Revenue vs Store Size): <span class="math inline">\(R^2 = 0.45\)</span>, <span class="math inline">\(s_e = \$95{,}000\)</span></p>
+<p><strong>Model 3</strong> (Customer Satisfaction vs Wait Time): <span class="math inline">\(R^2 = 0.91\)</span>, <span class="math inline">\(s_e = 8\)</span> points</p>
+<p>where <span class="math inline">\(s_e\)</span> is the residual standard error—the typical size of prediction errors.</p>
+<ol type="1">
+<li><p>What does <span class="math inline">\(R^2 = 0.82\)</span> tell us about the relationship between sales and advertising in Model 1?</p></li>
+<li><p>Assuming all three relationships are truly linear, which has the <em>strongest</em> linear relationship? How do you know?</p></li>
+<li><p>The CEO is disappointed with Model 2’s <span class="math inline">\(R^2 = 0.45\)</span> and wants to discard it. Give one reason why this might be the wrong decision.</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-8">
+<summary>Solution</summary>
+<p><strong>1. Interpretation of Model 1:</strong></p>
+<p><span class="math inline">\(R^2 = 0.82\)</span> means that 82% of the variation in sales is explained (can be predicted) using the linear relationship with advertising. If the relationship is in the expected direction, the correlation is about <span class="math inline">\(\sqrt{0.82}\approx 0.91\)</span>.</p>
+<p><strong>2. Strongest relationship:</strong></p>
+<p>Model 3 (Customer Satisfaction vs Wait Time) has the strongest linear relationship with <span class="math inline">\(R^2 = 0.91\)</span>.</p>
+<p><strong>3. Why not to discard Model 2:</strong></p>
+<p>Even with <span class="math inline">\(R^2 = 0.45\)</span>, Model 2 could still be useful for prediction. The residual standard error of $95,000 tells us the typical size of prediction errors. If that level of precision is useful for business decisions—for example, if knowing revenue within roughly ±$190,000 (about <span class="math inline">\(\pm 2s_e\)</span>) helps with budgeting or planning—then the model has value. The moderate <span class="math inline">\(R^2\)</span> simply tells us that store size isn’t the only important factor, which is itself useful information for management.</p>
+</details>
+</div></div>
+</div>
+<div id="ex-slr-rsquared-interpretation" class="Exercise">
+<div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 21.9: </strong>Understanding <span class="math inline">\(R^2\)</span> in context</div><div class="fobx-body">
+<p>A logistics company fits a regression model predicting weekly delivery costs (in thousands of dollars) from the number of shipments:</p>
+<p><span class="math display">\[\widehat{\text{cost}} = 8.5 + 0.045 \times \text{shipments}\]</span></p>
+<p>The model has <span class="math inline">\(R^2 = 0.77\)</span> and <span class="math inline">\(s_e = \$3{,}200\)</span>, where <span class="math inline">\(s_e\)</span> is the residual standard error and <span class="math inline">\(s_y = \$6{,}700\)</span> is the standard deviation of weekly costs (what the typical prediction error would be if we just predicted the mean cost every week).</p>
+<ol type="1">
+<li><p>What does <span class="math inline">\(R^2 = 0.77\)</span> tell us about the relationship between shipments and delivery costs?</p></li>
+<li><p>The operations manager says “Our model is 77% accurate.” Is this a correct interpretation of <span class="math inline">\(R^2\)</span>? If not, provide a better interpretation.</p></li>
+<li><p>The company’s CFO says “An <span class="math inline">\(R^2\)</span> of 0.77 seems low—I don’t want forecasts of costs that are off by more than $7,000 very often.” Using the residual standard error, do you think the current model is useful enough, or should they pursue a higher <span class="math inline">\(R^2\)</span> as suggested?</p></li>
+<li><p>How much smaller is the typical prediction error when we use shipments than when we predict the average cost every week?</p></li>
+</ol>
+<details class="solution-details" aria-label="Solution" id="details-9">
+<summary>Solution</summary>
+<p><strong>1. Interpretation of <span class="math inline">\(R^2 = 0.77\)</span>:</strong></p>
+<p>The model explains 77% of the variation in weekly delivery costs across different shipment volumes. Using the number of shipments to predict costs reduces our prediction variance by 77% compared to just predicting the mean cost for every week.</p>
+<p><strong>2. Better interpretation of “accuracy”:</strong></p>
+<p>The “77% accurate” phrasing is misleading. <span class="math inline">\(R^2\)</span> doesn’t mean predictions are 77% of the true value or correct 77% of the time. Better interpretations:</p>
+<ul>
+<li>“The model explains 77% of the variation in costs”</li>
+<li>“Using shipment volume to predict costs reduces prediction variance by 77%”</li>
+<li>“Shipment volume predicts 77% of the week-to-week variation in costs”</li>
+</ul>
+<p>The residual standard error (<span class="math inline">\(s_e = \$3{,}200\)</span>) provides a more direct measure of prediction accuracy—predictions are typically off by about $3,200 in either direction.</p>
+<p><strong>3. Is the current model useful enough?</strong></p>
+<p>The current model appears quite useful for the CFO’s purposes — 7,000 is over two residual standard errors, so we should only make mistakes that large less than 5% of the time. The CFO is making the same mistake as in part 2 — if we care about the size of <em>absolute</em> prediction errors, we should look at the residual standard error, not <span class="math inline">\(R^2\)</span>.</p>
+<p><strong>4. Typical prediction error:</strong></p>
+<p>Predicting the average cost every week, our predictions would typically be off by $6,700 (<span class="math inline">\(s_y\)</span>). Using shipments, they’re typically off by $3,200 (<span class="math inline">\(s_e\)</span>), so the typical error is $3,500 smaller.</p>
+</details>
+</div></div>
+</div>
+</section>
+</section>
+<section id="sec-slr-adjusted" class="level3" data-number="21.3.4">
+<h3 data-number="21.3.4" class="anchored" data-anchor-id="sec-slr-adjusted"><span class="header-section-number">21.3.4</span> Use 4: Making adjusted comparisons</h3>
+<p>A fourth application of regression is to make “apples-to-apples” comparisons between observations with different values of the <span class="math inline">\(X\)</span> variable. Residuals tell us how much higher or lower an outcome is than we’d expect given the explanatory variable.</p>
+<p>Here’s a question a builder or a buyer might ask: do two-story homes sell for more than one-story homes? In our data, the 154 two-story homes sold for $300,700 on average, compared to $252,500 for the 284 one-story homes — about $48,200 more.</p>
+<p>That comparison isn’t apples-to-apples. The two-story homes are much bigger: their average living area is 2,090 sq ft, compared to 1,468 sq ft for one-story homes. We already know that bigger homes sell for more, so some or all of the raw difference could just be size. The left panel of <a href="#fig-slr-stories" class="quarto-xref">Figure&nbsp;<span>21.11</span></a> marks each home’s number of stories on our scatterplot; the right panel shows each home’s residual from the fitted line.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-slr-stories" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slr-stories-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="slr_simple-linear-regression_files/figure-html/fig-slr-stories-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slr-stories-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.11: Left: sale price versus living area, with the least-squares line; colors mark one- and two-story homes. Right: each home’s residual from that line, with the average residual for each group marked by a black bar. At a given size, two-story homes tend to sit below the line.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Residuals put the two groups on an equal footing. A home’s residual is how much more or less it sold for than the line predicts for a home of its size. Averaging the residuals within each group, one-story homes sold for about $4,900 more than predicted, and two-story homes for about $9,100 less. So comparing homes of the same size, two-story homes sold for about $14,000 <em>less</em> on average. The raw gap gives the same answer once we take out size: two-story homes average 622 more square feet, which adds 622 × $100 = $62,200 to their predicted price, and $48,200 − $62,200 = −$14,000. The raw premium was size, and then some.</p>
+<p>This is a comparison of homes of the same size, not a claim about what would happen if you added a second story to a house. It tells us what buyers in this ZIP code paid, on average, for two-story homes compared to one-story homes with the same living area.</p>
+<p>Size isn’t the only way the two groups differ. The two-story homes are also newer (a median age of 9.5 years versus 24), and they have more bathrooms (3.0 versus 2.1 on average) and bedrooms (3.6 versus 3.1). A line in size alone can’t hold those fixed, so the residuals still mix them into the comparison. In the next chapter, <strong>multiple regression</strong> will let us compare homes that match on several characteristics at once.</p>
+<p>This analysis reveals an important principle: residuals highlight observations that are unusual conditional on the explanatory variables in the model.</p>
+<div id="tip-slr-adjusted" class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip&nbsp;21.4: Residuals as adjusted comparisons
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A <strong>positive residual</strong> means the outcome is higher than expected given X</li>
+<li>A <strong>negative residual</strong> means the outcome is lower than expected given X</li>
+<li>Comparing residuals lets us make “X-adjusted” comparisons</li>
+<li>Averaging residuals within groups compares the groups at the same value of X</li>
+<li>Large residuals suggest important factors not captured by X alone</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="data-used-in-this-section" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
+<ul>
+<li><a href="./appendix_data.html#sec-data-housing-kaggle">Austin House Listings</a> supplies the sale prices, living areas, and locations of the 438 homes.</li>
+<li><a href="./appendix_data.html#sec-data-evals-hamermesh">Course Evaluations and Instructor Appearance</a> supplies the course evaluations and beauty ratings.</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-hamermesh-parker-2005" class="csl-entry" role="listitem">
+Hamermesh, Daniel S., and Amy Parker. 2005. <span>“Beauty in the Classroom: Instructors’ Pulchritude and Putative Pedagogical Productivity.”</span> <em>Economics of Education Review</em> 24 (4): 369–76. <a href="https://doi.org/10.1016/j.econedurev.2004.07.013">https://doi.org/10.1016/j.econedurev.2004.07.013</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./case_triangle-test.html" class="pagination-link" aria-label="Case Study: Can Customers Taste the Difference?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Case Study: Can Customers Taste the Difference?</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./case_market-model.html" class="pagination-link" aria-label="Case Study: The Market Model">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Case Study: The Market Model</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
