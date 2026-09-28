@@ -1,8 +1,11 @@
 {
-  "baseline_commit": "0175e70a54c03fe3215908959c202ba0b322b3f2",
-  "release": "20260928T215612-rfs7la7p",
-  "scope": "notes",
-  "selected": [],
+  "baseline_commit": "74d9cbdbc600e0e5892f3134209adad4ce4fcb09",
+  "release": "20260928T230333-m_kd9tvr",
+  "scope": null,
+  "selected": [
+    "slides.qmd",
+    "slides/simple_linear_regression.qmd"
+  ],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",
     "data_pin": "3bb314773e764adf04c8329605276dd11036e85c8d541cc19cb1abf37c20cd89",
@@ -43,5 +46,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "92c03ec8698a8b5413e7a06d2a620e885ce997ec"
+  "source_commit": "0ed3dcfc12882591aaf1cb87232c740705bef1cf"
 }
