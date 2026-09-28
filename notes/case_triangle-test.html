@@ -77,25 +77,25 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Notation {
+.TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -444,7 +444,7 @@ window.Quarto = {
 <li>Suppose 36 panelists pick correctly. Does that show that 40% of customers can tell the products apart?</li>
 <li>Does it show that customers prefer the odd product?</li>
 </ol>
-<details class="solution-details" id="solution-triangle-baseline" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-triangle-baseline">
 <summary>Solution</summary>
 <ol type="1">
 <li>A guessing panelist picks the odd sample with probability 1/3, so we would expect <span class="math inline">\(90/3=30\)</span> correct picks.</li>
@@ -547,7 +547,7 @@ Figure&nbsp;20.1: The one-sided p-value for the triangle test. Under the null hy
 <li>State a conclusion in context. What does the result leave unanswered about preference, and about whether a recipe change is acceptable?</li>
 <li>The panel consisted of classmates. What further limitation applies?</li>
 </ol>
-<details class="solution-details" id="solution-triangle-one-sided" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-triangle-one-sided">
 <summary>Solution</summary>
 <ol type="1">
 <li>The one-sided p-value is about 0.040, below 0.05, so we reject the guessing hypothesis.</li>
@@ -571,7 +571,7 @@ Figure&nbsp;20.1: The one-sided p-value for the triangle test. Under the null hy
 <li>Compute the approximate 95% confidence interval for <span class="math inline">\(p\)</span>, the <span class="math inline">\(t\)</span>-statistic, and the one-sided p-value. The area above <span class="math inline">\(1.05\)</span> under the standard normal curve is about 0.15.</li>
 <li>State the verdict for the guessing test at <span class="math inline">\(\alpha=0.05\)</span>. Then assess the separate acceptance question: is the upper endpoint of the two-SE interval below 0.45? The product manager summarizes the result as “the test shows customers can’t tell the difference.” Is that what the test shows?</li>
 </ol>
-<details class="solution-details" id="solution-triangle-reformulation" aria-label="Solution">
+<details class="solution-details" aria-label="Solution" id="solution-triangle-reformulation">
 <summary>Solution</summary>
 <ol type="1">
 <li>For the guessing test, the null is <span class="math inline">\(H_0:p=1/3\)</span>, every panelist guessing, and the alternative is <span class="math inline">\(H_A:p&gt;1/3\)</span>.</li>

@@ -96,6 +96,14 @@ div.csl-indent {
   }
 }</script>
 <style>
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
 .Example {
   --color1: #F4EFEA;
   --color2: #80644D;
@@ -103,14 +111,6 @@ div.csl-indent {
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
-}
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 .Notation {
   --color1: #EEF1F3;
@@ -457,26 +457,27 @@ window.Quarto = {
 </header>
 
 
-<p>Earlier chapters built two tools for a population mean. The <a href="./inference_01_sampling-distributions.html#sec-ci">confidence interval</a> reports the estimate plus or minus two standard errors as a range of plausible values. A hypothesis test uses the <a href="./inference_02_hypothesis-tests.html">t-statistic</a> and its <a href="./inference_02_hypothesis-tests.html#defn-p-value">p-value</a> to assess the strength of evidence against a hypothesized value. The t-statistic counts the standard errors between the estimate and that value; the p-value is the probability of a test statistic at least as extreme as the one observed, assuming the hypothesized value is true. Smaller p-values indicate stronger evidence against it. Neither argument used anything specific to a mean beyond two facts: the estimator’s sampling distribution is approximately normal and centered at the parameter, and we can estimate its standard error.</p>
-<p>Many business questions concern other parameters: the share of customers who will renew, the change in average handling time under a new process, the gap in defect rates between two suppliers. This chapter supplies the standard errors for a sample proportion, a difference in two means, and a difference in two proportions. With the right standard error, the interval and the test work as they did for a mean.</p>
+<p>In Chapter 7 we met the <a href="./prob_02_probability-basics.html#exercise-workplace-random-variables">hybrid-work experiment</a> that Bloom, Han, and Liang ran at Trip.com <span class="citation" data-cites="wfh-bloom">(<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">Bloom et al. 2024</a>)</span>. They randomly assigned 1,612 employees either to work in the office five days a week or to work from home two days a week, and then recorded who left the company during the study. In the office group 59 of the 820 employees left, or 7.2%. In the hybrid group it was 38 of 792, or 4.8%. That’s a gap of 2.4 percentage points, so attrition was about a third lower for the employees who could work from home. But we know that the two groups would have had different attrition rates even if hybrid work made no difference at all, just because different employees ended up in each group. Random assignment makes each group a random sample of the 1,612 employees in the study, so we will treat the two groups as independent random samples, just as we treated the <a href="./inference_01_sampling-distributions.html#sec-sap-dispute">SAP customers</a> as iid draws. How much of the 2.4 points could be due to chance?</p>
+<p>We can’t answer that question yet. So far we have two tools, and both of them are for a population mean. The first is the <a href="./inference_01_sampling-distributions.html#sec-ci">confidence interval</a>: the estimate plus or minus two standard errors gives us a range of plausible values for the parameter. The second is the hypothesis test, where we use a <a href="./inference_02_hypothesis-tests.html">t-statistic</a> and its <a href="./inference_02_hypothesis-tests.html#defn-p-value">p-value</a> to measure how strong the evidence is against one particular hypothesized value. The t-statistic just counts how many standard errors there are between our estimate and the hypothesized value, and the p-value is the probability of seeing a test statistic at least as extreme as the one we observed if the hypothesized value were true (so smaller p-values mean stronger evidence against it). If you look back at how we got these tools, we only ever used two facts about the sample mean: its sampling distribution is approximately normal and centered at the true mean in the population or probability model, and we have an estimate of its standard error.</p>
+<p>That means we can use the same tools for the hybrid-work experiment as soon as we have the right standard errors. An attrition rate is a proportion, so we start with the standard error of a sample proportion. The question is about the gap between two groups, so we also need a standard error for a difference. We work that out for a difference between two means first, and then for a difference between two proportions like the one above.</p>
 <section id="sec-proportion" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="sec-proportion"><span class="header-section-number">19.1</span> A sample proportion</h2>
-<p>As we saw with <a href="./singlevar_05_categorical.html#sec-proportion-mean">loan defaults</a>, a sample proportion is the mean of a dummy, or indicator, variable that equals 1 when an outcome occurs and 0 otherwise.</p>
-<p>Suppose a marketing team shows 1,100 customers two advertisements for the same product, one written by a person and the other by AI. Each customer sees the ads in random order, without labels identifying their authors, and independently chooses the one they think AI wrote. In this invented study, 531 customers choose correctly. Let <span class="math inline">\(X_i=1\)</span> if customer <span class="math inline">\(i\)</span> correctly identifies the AI-written ad and <span class="math inline">\(X_i=0\)</span> otherwise. Adding up the <span class="math inline">\(X_i\)</span> counts the correct answers, so the fraction of the sample who identified the AI-written ad correctly is the sample mean of the <span class="math inline">\(X_i\)</span>:</p>
+<p>We have already worked with proportions as averages. When we looked at <a href="./singlevar_05_categorical.html#sec-proportion-mean">loan defaults</a> we coded each loan with a dummy (or indicator) variable that is 1 if the loan defaulted and 0 if it didn’t, and the proportion of defaults was just the mean of that variable. The same is true for any sample proportion: it’s the sample mean of a variable that equals 1 when the outcome occurs and 0 otherwise.</p>
+<p>Here’s an example. A marketing team shows 1,100 customers two advertisements for the same product. One was written by a person and the other was written by AI. Each customer sees the two ads in a random order, with nothing to indicate who wrote them, and picks the one they think the AI wrote. The customers make their choices independently, and 531 of them get it right. Let <span class="math inline">\(X_i=1\)</span> if customer <span class="math inline">\(i\)</span> correctly picks out the AI-written ad and <span class="math inline">\(X_i=0\)</span> if not. If we add up all the <span class="math inline">\(X_i\)</span> we get the number of correct answers, so the fraction of customers in our sample who got it right is just the sample mean of the <span class="math inline">\(X_i\)</span>:</p>
 <p><span class="math display">\[
 \hat p = \frac{1}{n}\sum_{i=1}^n X_i = \frac{531}{1{,}100} \approx 0.483.
 \]</span></p>
 <div id="defn-sample-proportion" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 19.1: </strong>Population and sample proportion</div><div class="fobx-body">
-<p>The <strong>population proportion</strong> <span class="math inline">\(p\)</span> is the fraction of the population with the outcome of interest. Equivalently, it is the probability that a unit drawn at random from the population has the outcome. It is a parameter: fixed and unknown.</p>
-<p>The <strong>sample proportion</strong> <span class="math inline">\(\hat p\)</span> is the fraction of a random sample with the outcome. It is the sample mean of the 0/1 variable that records the outcome, and it estimates <span class="math inline">\(p\)</span>. We write <span class="math inline">\(\hat p\)</span> for both the estimator and the estimate it produces from a particular sample.</p>
+<p>The <strong>population proportion</strong> <span class="math inline">\(p\)</span> is the fraction of the population with the outcome we are interested in. We can also think of <span class="math inline">\(p\)</span> as the probability that a single unit drawn at random from the population has the outcome. Like <span class="math inline">\(\mu\)</span>, it’s a parameter — a fixed number that we don’t know.</p>
+<p>The <strong>sample proportion</strong> <span class="math inline">\(\hat p\)</span> is the fraction of a random sample with the outcome, which is the sample mean of the 0/1 variable recording the outcome. It’s our estimator for <span class="math inline">\(p\)</span>. We will write <span class="math inline">\(\hat p\)</span> for the estimator and also for the estimate that we get from a particular sample.</p>
 </div></div>
 </div>
-<p>Treat the participants as a random sample of the company’s customers, with responses modeled as iid draws just as in the <a href="./inference_01_sampling-distributions.html#sec-sap-dispute">SAP example</a>. Here <span class="math inline">\(p\)</span> is the proportion of customers who would correctly identify the AI-written ad in this comparison. Each <span class="math inline">\(X_i\)</span> is a 0/1 random variable with mean <span class="math inline">\(p\)</span> and variance <span class="math inline">\(p(1-p)\)</span>, which we derive in the <a href="#technical-se-proportion">technical detail below</a>. The <a href="./prob_10_sums-averages-clt.html#sec-sums-averages">rules for averages of iid random variables</a> give the center and spread of the sampling distribution, and the <a href="./prob_10_sums-averages-clt.html#sec-clt">Central Limit Theorem</a> gives its shape:</p>
+<p>We’ll treat the 1,100 participants as a random sample of the company’s customers and model their responses as iid draws, just like we did in the <a href="./inference_01_sampling-distributions.html#sec-sap-dispute">SAP example</a>. Then <span class="math inline">\(p\)</span> is the proportion of all the company’s customers who would correctly pick out the AI-written ad if we showed them this pair of ads. Each <span class="math inline">\(X_i\)</span> is a 0/1 random variable with mean <span class="math inline">\(p\)</span> and variance <span class="math inline">\(p(1-p)\)</span> (we derive these in the <a href="#technical-se-proportion">technical detail below</a>). Since <span class="math inline">\(\hat p\)</span> is <a href="./prob_10_sums-averages-clt.html#sec-sums-averages">an average of iid random variables</a> we already know the mean and standard deviation of its sampling distribution, and the <a href="./prob_10_sums-averages-clt.html#sec-clt">Central Limit Theorem</a> tells us the shape:</p>
 <p><span class="math display">\[
 \hat p \;\approx\; N\!\left(p,\; \frac{p(1-p)}{n}\right).
 \]</span></p>
-<p>In words: across random samples the sample proportion is right on average, and its typical distance from <span class="math inline">\(p\)</span> shrinks like <span class="math inline">\(1/\sqrt n\)</span>. This is the sampling distribution of <span class="math inline">\(\bar X\)</span> with <span class="math inline">\(\sigma^2\)</span> replaced by <span class="math inline">\(p(1-p)\)</span>.</p>
+<p>In words: over many random samples the sample proportion is equal to <span class="math inline">\(p\)</span> on average, and the typical distance between <span class="math inline">\(\hat p\)</span> and <span class="math inline">\(p\)</span> shrinks like <span class="math inline">\(1/\sqrt n\)</span> as the sample size grows. This is exactly the sampling distribution of <span class="math inline">\(\bar X\)</span> that we had before, except that <span class="math inline">\(\sigma^2\)</span> is now <span class="math inline">\(p(1-p)\)</span>.</p>
 <div id="note-se-proportion" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -491,24 +492,24 @@ window.Quarto = {
 <p><span class="math display">\[
 SE(\hat p) = \sqrt{\frac{p(1-p)}{n}} \approx \sqrt{\frac{\hat p(1-\hat p)}{n}}.
 \]</span></p>
-<p>The standard deviation of a 0/1 variable is determined by <span class="math inline">\(p\)</span>, so there is no separate <span class="math inline">\(s\)</span> to compute; we plug <span class="math inline">\(\hat p\)</span> in for the unknown <span class="math inline">\(p\)</span>. The result is the typical size of the error <span class="math inline">\(\hat p-p\)</span> across random samples.</p>
-<p>The normal approximation needs enough of <em>both</em> outcomes in the sample. As in <a href="./prob_10_sums-averages-clt.html#sec-clt">Chapter 15</a>, there is no single cutoff. A proportion near 0 or 1 needs a larger sample than a proportion near one half, because the distribution of a rare 0/1 outcome is strongly skewed.</p>
+<p>With 0/1 data the standard deviation is completely determined by <span class="math inline">\(p\)</span>, so we don’t need to compute <span class="math inline">\(s\)</span> separately. We don’t know <span class="math inline">\(p\)</span>, of course, so we plug in <span class="math inline">\(\hat p\)</span>. As usual the standard error tells us the typical size of the estimation error <span class="math inline">\(\hat p-p\)</span> across random samples.</p>
+<p>For the normal approximation to work well we need to see enough of <em>both</em> outcomes in our sample. As we discussed in <a href="./prob_10_sums-averages-clt.html#sec-clt">Chapter 15</a> there isn’t one cutoff that works for every problem. If <span class="math inline">\(p\)</span> is close to 0 or 1 we will need a larger sample than if <span class="math inline">\(p\)</span> is close to one half, because the distribution of a 0/1 variable is very skewed when one of the outcomes is rare.</p>
 </div>
 </div>
 <div id="technical-se-proportion" class="TechnicalDetail">
 <details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 19.1: </strong>Where <span class="math inline">\(p(1-p)\)</span> comes from, and why <span class="math inline">\(s/\sqrt n\)</span> gives the same answer</summary><div>
-<p>A 0/1 random variable <span class="math inline">\(X\)</span> with <span class="math inline">\(\Pr(X=1)=p\)</span> has mean <span class="math inline">\(E[X]=0(1-p)+1(p)=p\)</span>. Its variance is the probability-weighted average of squared deviations from <span class="math inline">\(p\)</span>:</p>
+<p>If <span class="math inline">\(X\)</span> is a 0/1 random variable with <span class="math inline">\(\Pr(X=1)=p\)</span>, then its mean is <span class="math inline">\(E[X]=0(1-p)+1(p)=p\)</span>. The variance is the average squared deviation from the mean, weighting each deviation by its probability:</p>
 <p><span class="math display">\[
 \operatorname{Var}(X)=(0-p)^2(1-p)+(1-p)^2p = p(1-p)\left[p+(1-p)\right]=p(1-p).
 \]</span></p>
-<p>We could ignore all of this and compute the usual standard error <span class="math inline">\(s/\sqrt n\)</span> from the column of zeros and ones. For 0/1 data the sample variance works out to <span class="math inline">\(s^2=\frac{n}{n-1}\hat p(1-\hat p)\)</span>, so the two standard errors differ only in dividing by <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>. In the advertising study, <span class="math inline">\(s/\sqrt n = 0.015073\)</span> and <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}=0.015067\)</span>; the two agree to four decimal places.</p>
+<p>In fact we could have skipped all of this and computed the usual standard error <span class="math inline">\(s/\sqrt n\)</span> directly from the column of zeros and ones. With 0/1 data the sample variance turns out to be <span class="math inline">\(s^2=\frac{n}{n-1}\hat p(1-\hat p)\)</span>, so the only difference between the two standard errors is whether we divide by <span class="math inline">\(n-1\)</span> or <span class="math inline">\(n\)</span>. In the advertising study <span class="math inline">\(s/\sqrt n = 0.015073\)</span> and <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}=0.015067\)</span>, which are the same to four decimal places.</p>
 </div></details>
 </div>
 <p>For the advertising study,</p>
 <p><span class="math display">\[
 SE(\hat p) \approx \sqrt{\frac{0.483(1-0.483)}{1{,}100}} \approx 0.015,
 \]</span></p>
-<p>or about 1.5 percentage points. The <a href="./inference_01_sampling-distributions.html#defn-confidence-interval">two-SE recipe for a confidence interval</a> applies directly:</p>
+<p>or about 1.5 percentage points. We can use the same <a href="./inference_01_sampling-distributions.html#defn-confidence-interval">two-SE recipe</a> to get a confidence interval:</p>
 <p><span class="math display">\[
 0.483 \pm 2(0.015) \approx [0.453,\ 0.513].
 \]</span></p>
@@ -522,54 +523,54 @@ SE(\hat p) \approx \sqrt{\frac{0.483(1-0.483)}{1{,}100}} \approx 0.015,
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The plausible values for the share of customers who would correctly identify the AI-written ad run from about 45.3% to about 51.3%. A share of 50% is one of them, and so is 46%. Guessing between the two ads would produce a correct answer half the time, so the data are consistent with chance performance. Under the sampling assumptions, we estimate the share of correct answers to within about 3 percentage points.</p>
+<p>The plausible values for the share of customers who would correctly identify the AI-written ad range from about 45.3% to about 51.3%. That range includes 50%, and it also includes 46%. If customers were just guessing between the two ads they would be right half the time, so what we saw is consistent with customers having no ability to tell the ads apart. If our sampling assumptions hold, we have estimated the share of correct answers to within about 3 percentage points.</p>
 </div>
 </div>
 <div id="exercise-email-open-rate" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.1: </strong>An email open rate</div><div class="fobx-body">
-<p>A marketing team sends a pilot version of a promotional email to a random sample of 850 customers, and 287 of them open it. These counts are invented.</p>
+<p>A marketing team sends a pilot version of a promotional email to a random sample of 850 customers, and 287 of them open it.</p>
 <ol type="1">
-<li>Estimate the open rate among all customers with an approximate 95% confidence interval.</li>
-<li>The team considers 35% a good open rate for a campaign of this kind. What does the interval say about how this campaign compares?</li>
+<li>Estimate the open rate among all customers, and give an approximate 95% confidence interval.</li>
+<li>For a campaign like this one the team considers 35% to be a good open rate. What does your interval tell you about how this campaign compares?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-email-open-rate">
 <summary>Solution</summary>
 <ol type="1">
-<li>The sample proportion is <span class="math inline">\(\hat p=287/850\approx0.338\)</span>, with estimated standard error <span class="math inline">\(\sqrt{0.338(0.662)/850}\approx0.016\)</span>. The interval is <span class="math inline">\(0.338\pm2(0.016)\approx[0.305,\ 0.370]\)</span>, or about 30.5% to 37.0%.</li>
-<li>The estimate of 33.8% is below 35%, but 35% lies inside the interval. Open rates from 30.5% to 37.0% are plausible, so the pilot does not establish that the campaign falls short of the benchmark or that it meets it. If meeting 35% were critical, the team should have chosen the pilot’s size with the margin of error in mind, as in <a href="#sec-margin-of-error" class="quarto-xref"><span>Section 19.1.2</span></a>.</li>
+<li>The sample proportion is <span class="math inline">\(\hat p=287/850\approx0.338\)</span> and its estimated standard error is <span class="math inline">\(\sqrt{0.338(0.662)/850}\approx0.016\)</span>. The interval is <span class="math inline">\(0.338\pm2(0.016)\approx[0.305,\ 0.370]\)</span>, or about 30.5% to 37.0%.</li>
+<li>Our estimate of 33.8% is less than 35%, but 35% is inside the interval. Any open rate between 30.5% and 37.0% is plausible, so from this pilot we can’t say that the campaign falls short of the benchmark, and we can’t say that it meets the benchmark either. If it was important to know whether the campaign would reach 35%, the team should have thought about the margin of error when they decided how many customers to include in the pilot (see <a href="#sec-margin-of-error" class="quarto-xref"><span>Section 19.1.2</span></a>).</li>
 </ol>
 </details>
 </div></div>
 </div>
 <section id="sec-test-proportion" class="level3" data-number="19.1.1">
 <h3 data-number="19.1.1" class="anchored" data-anchor-id="sec-test-proportion"><span class="header-section-number">19.1.1</span> Testing a hypothesized proportion</h3>
-<p>The interval contains 50%, the accuracy expected under blind guessing. The <a href="./inference_02_hypothesis-tests.html">hypothesis test from Chapter 17</a> measures the evidence against that one value. Before collecting the data, the team chose to test for a departure from 50% in either direction. With <span class="math inline">\(p_0\)</span> denoting the hypothesized proportion, the hypotheses are <span class="math inline">\(H_0:p=0.5\)</span> and <span class="math inline">\(H_A:p\ne0.5\)</span>, and the <span class="math inline">\(t\)</span>-statistic has the same form as before:</p>
+<p>Our interval contains 50%, which is the accuracy we would expect if the customers were guessing blindly. We can use the <a href="./inference_02_hypothesis-tests.html">hypothesis test from Chapter 17</a> to measure how much evidence we have against that one particular value. The team decided before they collected any data that they would test for a difference from 50% in either direction. If we write <span class="math inline">\(p_0\)</span> for the hypothesized proportion, the hypotheses are <span class="math inline">\(H_0:p=0.5\)</span> and <span class="math inline">\(H_A:p\ne0.5\)</span>, and the <span class="math inline">\(t\)</span>-statistic looks just like it did before:</p>
 <p><span class="math display">\[
 T=\frac{\hat p-p_0}{SE(\hat p)},
 \qquad
 t=\frac{0.4827-0.5}{0.0151}\approx-1.15.
 \]</span></p>
-<p>The sample proportion is about 1.15 standard errors below one half. If the null hypothesis is true, <span class="math inline">\(T\)</span> is approximately standard normal, and the two-sided p-value is about 0.25. If customers identified the AI-written ad correctly half the time, about a quarter of studies this size would produce a sample proportion at least this far from 50% in either direction. At <span class="math inline">\(\alpha=0.05\)</span> we fail to reject the null hypothesis, which agrees with <a href="./inference_02_hypothesis-tests.html#sec-ci-test">50% falling inside the two-SE interval</a>. Failing to reject does not establish that customers can do no better than guessing: values from about 45.3% to 51.3% all remain plausible.</p>
+<p>So the sample proportion is about 1.15 standard errors below one half. When the null hypothesis is true <span class="math inline">\(T\)</span> has approximately a standard normal distribution, which gives us a two-sided p-value of about 0.25. That is, if customers really did identify the AI-written ad correctly half the time, in about a quarter of studies of this size we would see a sample proportion at least this far from 50% (in one direction or the other). With <span class="math inline">\(\alpha=0.05\)</span> we fail to reject the null hypothesis, which is what we should expect since <a href="./inference_02_hypothesis-tests.html#sec-ci-test">50% is inside the two-SE interval</a>. That doesn’t mean we have shown that customers are just guessing! All of the values from about 45.3% to 51.3% are still plausible.</p>
 <div id="technical-null-se" class="TechnicalDetail">
 <details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 19.2: </strong>A standard error computed under the null</summary><div>
-<p>Many textbooks and software routines compute the standard error for a test of <span class="math inline">\(H_0:p=p_0\)</span> from the hypothesized value, as <span class="math inline">\(\sqrt{p_0(1-p_0)/n}\)</span>, since the test assumes <span class="math inline">\(p=p_0\)</span> anyway. Here that gives <span class="math inline">\(\sqrt{0.5(0.5)/1{,}100}\approx0.01508\)</span> against the plug-in value of 0.01507, and <span class="math inline">\(t=-1.15\)</span> either way. The two versions agree closely unless the sample is small or <span class="math inline">\(\hat p\)</span> is far from <span class="math inline">\(p_0\)</span>. We use the plug-in standard error throughout because the same number then serves the interval and the test. Under the same two-SE rule, the interval excludes a hypothesized value exactly when the corresponding statistic exceeds 2 in absolute value, or at about the 5% level under a normal approximation.</p>
+<p>You will see many textbooks and software packages that compute the standard error for a test of <span class="math inline">\(H_0:p=p_0\)</span> using the hypothesized value, as <span class="math inline">\(\sqrt{p_0(1-p_0)/n}\)</span>. The reasoning is that the test already assumes <span class="math inline">\(p=p_0\)</span>, so we may as well use it. In our example this gives <span class="math inline">\(\sqrt{0.5(0.5)/1{,}100}\approx0.01508\)</span>, compared to 0.01507 when we plug in <span class="math inline">\(\hat p\)</span>, and <span class="math inline">\(t=-1.15\)</span> in both cases. The two versions will be very close unless the sample is small or <span class="math inline">\(\hat p\)</span> is far away from <span class="math inline">\(p_0\)</span>. We always use the plug-in standard error so that we have one standard error for both the interval and the test. With the two-SE rule, the interval excludes a hypothesized value exactly when the <span class="math inline">\(t\)</span>-statistic for that value is larger than 2 in absolute value, which corresponds to testing at about the 5% level under the normal approximation.</p>
 </div></details>
 </div>
 </section>
 <section id="sec-margin-of-error" class="level3" data-number="19.1.2">
 <h3 data-number="19.1.2" class="anchored" data-anchor-id="sec-margin-of-error"><span class="header-section-number">19.1.2</span> Margin of error and sample size</h3>
-<p>The “margin of error” for a sample proportion is usually two standard errors, often computed in the worst case. The standard error depends on <span class="math inline">\(p\)</span> through <span class="math inline">\(p(1-p)\)</span>, which is largest at <span class="math inline">\(p=0.5\)</span>, where it equals <span class="math inline">\(0.25\)</span>. At <span class="math inline">\(p=0.5\)</span>,</p>
+<p>When you see a “margin of error” reported for a sample proportion it is usually two standard errors, and it’s often computed in the worst case. The standard error depends on <span class="math inline">\(p\)</span> through <span class="math inline">\(p(1-p)\)</span>, and <span class="math inline">\(p(1-p)\)</span> is largest when <span class="math inline">\(p=0.5\)</span>, where it equals <span class="math inline">\(0.25\)</span>. At <span class="math inline">\(p=0.5\)</span>,</p>
 <p><span class="math display">\[
 SE(\hat p)=\sqrt{\frac{0.5(1-0.5)}{n}}=\frac{0.5}{\sqrt n},
 \qquad\text{so}\qquad
 2\,SE(\hat p)=\frac{1}{\sqrt n}.
 \]</span></p>
-<p>In words: whatever the true proportion, a random sample of <span class="math inline">\(n\)</span> customers has a two-SE margin no larger than <span class="math inline">\(1/\sqrt n\)</span>. For the advertising study’s 1,100 customers, <span class="math inline">\(1/\sqrt{1{,}100}\approx0.030\)</span>, or 3 percentage points.</p>
-<p>We can compute the worst-case margin before collecting any data, which makes it useful for planning. To get a margin of error <span class="math inline">\(m\)</span>, solve <span class="math inline">\(m=1/\sqrt n\)</span> for <span class="math inline">\(n\)</span>:</p>
+<p>In words: no matter what the true proportion is, the two-SE margin of error from a random sample of <span class="math inline">\(n\)</span> customers can’t be bigger than <span class="math inline">\(1/\sqrt n\)</span>. The advertising study had 1,100 customers, so its margin of error is at most <span class="math inline">\(1/\sqrt{1{,}100}\approx0.030\)</span>, or 3 percentage points.</p>
+<p>We don’t need any data to compute the worst-case margin, so we can use it to plan a study. If we want a margin of error of <span class="math inline">\(m\)</span> we solve <span class="math inline">\(m=1/\sqrt n\)</span> for <span class="math inline">\(n\)</span>:</p>
 <p><span class="math display">\[
 n = \frac{1}{m^2}.
 \]</span></p>
-<p>A guaranteed margin of at most 3 points requires rounding upward to <span class="math inline">\(n=1,112\)</span> customers. <a href="#fig-margin-n" class="quarto-xref">Figure&nbsp;<span>19.1</span></a> plots the worst-case margin against the sample size and marks the samples needed for margins of 3, 2, and 1 points.</p>
+<p>To guarantee a margin of at most 3 points we round up, to <span class="math inline">\(n=1,112\)</span> customers. <a href="#fig-margin-n" class="quarto-xref">Figure&nbsp;<span>19.1</span></a> shows how the worst-case margin changes with the sample size, along with the sample sizes we would need for margins of 3, 2, and 1 points.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-margin-n" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -578,13 +579,13 @@ n = \frac{1}{m^2}.
 <img src="inference_04_proportions-comparisons_files/figure-html/fig-margin-n-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-margin-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.1: The worst-case margin of error for a sample proportion, 1/sqrt(n), as a function of the sample size. The marked points are the sample sizes that give margins of 3, 2, and 1 percentage points.
+Figure&nbsp;19.1: The worst-case margin of error for a sample proportion, 1/sqrt(n), plotted against the sample size. The marked points show the sample sizes that give margins of 3, 2, and 1 percentage points.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Moving from a 3-point margin to a 2-point margin takes about 1,400 additional customers. Moving from 2 points to 1 takes another 7,500. Because the margin shrinks like <span class="math inline">\(1/\sqrt n\)</span>, halving it always requires four times the sample.</p>
+<p>Going from a 3-point margin to a 2-point margin takes about 1,400 more customers, and going from 2 points to 1 point takes another 7,500. The margin shrinks like <span class="math inline">\(1/\sqrt n\)</span>, so to cut it in half we always need four times as many customers.</p>
 <div id="note-margin-of-error" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -595,25 +596,25 @@ Figure&nbsp;19.1: The worst-case margin of error for a sample proportion, 1/sqrt
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For a random sample of size <span class="math inline">\(n\)</span>, the two-SE margin of error for a proportion is at most <span class="math inline">\(1/\sqrt n\)</span>, so a sample of</p>
+<p>For a random sample of size <span class="math inline">\(n\)</span> the two-SE margin of error for a proportion is at most <span class="math inline">\(1/\sqrt n\)</span>, so a sample of</p>
 <p><span class="math display">\[
 n \approx \frac{1}{m^2}
 \]</span></p>
-<p>guarantees a margin no larger than <span class="math inline">\(m\)</span> under the sampling assumptions. The guarantee is conservative when <span class="math inline">\(p\)</span> is far from one half. At <span class="math inline">\(p=0.1\)</span> the margin is <span class="math inline">\(2\sqrt{0.1(0.9)/n}=0.6/\sqrt n\)</span>, which is 60% of the worst case. If earlier data put <span class="math inline">\(p\)</span> in a narrow range, plan with <span class="math inline">\(2\sqrt{p(1-p)/n}\)</span> at the end of that range closest to one half.</p>
+<p>guarantees a margin no larger than <span class="math inline">\(m\)</span>, if our sampling assumptions hold. When <span class="math inline">\(p\)</span> is far from one half this is a conservative guarantee. For example at <span class="math inline">\(p=0.1\)</span> the margin is <span class="math inline">\(2\sqrt{0.1(0.9)/n}=0.6/\sqrt n\)</span>, which is only 60% of the worst case. If we know from earlier data that <span class="math inline">\(p\)</span> is in some narrow range, we can plan using <span class="math inline">\(2\sqrt{p(1-p)/n}\)</span> instead, taking <span class="math inline">\(p\)</span> to be the end of the range that is closest to one half.</p>
 </div>
 </div>
 <div id="exercise-remote-work-survey" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.2: </strong>A remote-work survey</div><div class="fobx-body">
-<p>A technology company with 5,000 employees is considering a permanent remote-work policy. In an invented survey, HR asks a random sample of 200 employees whether they would support the policy, and 142 say yes. Management will adopt the policy only if more than 60% of all employees support it. Treat the responses as iid and assume the normal approximation is adequate.</p>
+<p>A technology company with 5,000 employees is considering a permanent remote-work policy. HR asks a random sample of 200 employees whether they would support the policy and 142 of them say yes. Management will only adopt the policy if more than 60% of all employees support it. Treat the responses as iid and assume that the normal approximation is adequate.</p>
 <ol type="1">
 <li>Compute an approximate 95% confidence interval for the proportion of all employees who support the policy.</li>
-<li>Should management proceed? Confirm your answer by computing the <span class="math inline">\(t\)</span>-statistic for the null hypothesis <span class="math inline">\(p=0.60\)</span>.</li>
+<li>Should management go ahead with the policy? Check your answer by computing the <span class="math inline">\(t\)</span>-statistic for the null hypothesis <span class="math inline">\(p=0.60\)</span>.</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-remote-work-survey">
 <summary>Solution</summary>
 <ol type="1">
-<li>The sample proportion is <span class="math inline">\(\hat p=142/200=0.71\)</span>, with estimated standard error <span class="math inline">\(\sqrt{0.71(0.29)/200}\approx0.032\)</span>. The interval is <span class="math inline">\(0.71\pm2(0.032)\approx[0.646,\ 0.774]\)</span>.</li>
-<li>Every plausible value is above 60%; the lowest is about 64.6%. The <span class="math inline">\(t\)</span>-statistic is <span class="math inline">\((0.71-0.60)/0.032\approx3.4\)</span>, so the sample proportion sits 3.4 standard errors above the threshold, and we reject <span class="math inline">\(p=0.60\)</span> at the 5% level. Under the sampling assumptions, the survey supports proceeding.</li>
+<li>The sample proportion is <span class="math inline">\(\hat p=142/200=0.71\)</span> and the estimated standard error is <span class="math inline">\(\sqrt{0.71(0.29)/200}\approx0.032\)</span>, so the interval is <span class="math inline">\(0.71\pm2(0.032)\approx[0.646,\ 0.774]\)</span>.</li>
+<li>All of the plausible values are above 60% (the smallest is about 64.6%). The <span class="math inline">\(t\)</span>-statistic is <span class="math inline">\((0.71-0.60)/0.032\approx3.4\)</span>. The sample proportion is 3.4 standard errors above the threshold, so we reject <span class="math inline">\(p=0.60\)</span> at the 5% level. If the sampling assumptions hold, the survey supports going ahead.</li>
 </ol>
 </details>
 </div></div>
@@ -622,13 +623,13 @@ n \approx \frac{1}{m^2}
 </section>
 <section id="sec-diff-means" class="level2" data-number="19.2">
 <h2 data-number="19.2" class="anchored" data-anchor-id="sec-diff-means"><span class="header-section-number">19.2</span> A difference in means</h2>
-<p>We are often interested in the difference between two groups’ means more than in either mean alone. Suppose a company pilots an AI chatbot for customer support, and the average satisfaction score for the chatbot’s conversations comes in below the average for human agents. Before concluding that the chatbot underperforms, the company should ask how much of the gap sampling variation could explain.</p>
-<p>Call the groups <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, with population means <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_B\)</span>. The parameter is the difference <span class="math inline">\(\mu_A-\mu_B\)</span>. We observe independent random samples of sizes <span class="math inline">\(n_A\)</span> and <span class="math inline">\(n_B\)</span>, and estimate the parameter with the difference in sample means, <span class="math inline">\(\bar X_A-\bar X_B\)</span>.</p>
-<p>Each sample mean is right on average, so their difference is too: <span class="math inline">\(E[\bar X_A-\bar X_B]=\mu_A-\mu_B\)</span>. For the spread, we use the <a href="./prob_09_combining-random-variables.html#sec-lincom-rules">variance rule for a difference</a>. Because the samples are independent the covariance term is zero, and the variances add:</p>
+<p>So far we have estimated one mean at a time, but many practical questions are comparisons. Suppose a company pilots an AI chatbot for customer support and finds that the chatbot’s conversations get lower satisfaction scores, on average, than conversations with human agents. Is the chatbot actually worse? Maybe, but we know that two sample means will differ from each other even when the population means are the same, so before we conclude anything we should ask how big a gap sampling variation alone could plausibly produce.</p>
+<p>We’ll call the two groups <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> and write <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_B\)</span> for their population means. The parameter we want to learn about is the difference <span class="math inline">\(\mu_A-\mu_B\)</span>. Our data are two independent random samples with sample sizes <span class="math inline">\(n_A\)</span> and <span class="math inline">\(n_B\)</span>, and the natural estimator is the difference in the sample means, <span class="math inline">\(\bar X_A-\bar X_B\)</span>.</p>
+<p>We already know that on average each sample mean is equal to its own population mean, and the mean of a difference is the difference of the means, so <span class="math inline">\(E[\bar X_A-\bar X_B]=\mu_A-\mu_B\)</span>. To get the standard error we need the variance of <span class="math inline">\(\bar X_A-\bar X_B\)</span>, which we can find using the <a href="./prob_09_combining-random-variables.html#sec-lincom-rules">rule for the variance of a difference</a> from the chapter on combining random variables. The samples are independent, so the covariance is zero and we are left with the sum of the two variances:</p>
 <p><span class="math display">\[
 \operatorname{Var}(\bar X_A-\bar X_B)=\operatorname{Var}(\bar X_A)+\operatorname{Var}(\bar X_B)=\frac{\sigma_A^2}{n_A}+\frac{\sigma_B^2}{n_B}.
 \]</span></p>
-<p>The variances add even though we subtract the means, because an error in either sample mean moves the difference. A difference of two independent, approximately normal estimators is itself approximately normal, so the two-SE interval and the <span class="math inline">\(t\)</span>-statistic apply once we have the standard error.</p>
+<p>It may seem strange that we add the variances when we are subtracting the means. The reason is that the estimation error in <span class="math inline">\(\bar X_A\)</span> and the estimation error in <span class="math inline">\(\bar X_B\)</span> both end up in the difference, and since the samples are independent there’s no reason to expect those errors to cancel. We also know that a difference of two independent (approximately) normal random variables is again approximately normal. That means everything we did for a single mean (the two-SE interval, the <span class="math inline">\(t\)</span>-statistic) works here too, as soon as we have a standard error.</p>
 <div id="note-se-diff-means" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -644,16 +645,16 @@ n \approx \frac{1}{m^2}
 SE(\bar X_A-\bar X_B)=\sqrt{\frac{\sigma_A^2}{n_A}+\frac{\sigma_B^2}{n_B}}
 \approx\sqrt{\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B}},
 \]</span></p>
-<p>where <span class="math inline">\(s_A\)</span> and <span class="math inline">\(s_B\)</span> are the two sample standard deviations. Equivalently, it is <span class="math inline">\(\sqrt{SE(\bar X_A)^2+SE(\bar X_B)^2}\)</span>: square each group’s standard error, add, and take the square root. The result is the typical size of the error in the estimated difference across repeated pairs of samples. It is larger than either group’s standard error and smaller than their sum.</p>
+<p>where <span class="math inline">\(s_A\)</span> and <span class="math inline">\(s_B\)</span> are the sample standard deviations in the two groups. This is the same as <span class="math inline">\(\sqrt{SE(\bar X_A)^2+SE(\bar X_B)^2}\)</span>, so if you already have a standard error for each group you can square them, add them up, and take the square root. Just as before, the standard error tells us how far off our estimate of the difference is likely to be, over repeated pairs of samples. It will always be bigger than the larger of the two groups’ standard errors, but smaller than what we would get by adding them together.</p>
 </div>
 </div>
-<p>The formula requires independent samples, meaning that the units drawn for one group tell us nothing about the units drawn for the other. It does not apply to paired data, where each observation in one group is matched to an observation in the other, such as the same stores before and after a price change. For pairs, compute the difference within each pair and apply the one-sample tools to those differences, as in <a href="#exercise-paired-assay">the paired assay exercise</a> below.</p>
-<p>Consider a tech company comparing two coding bootcamps for training new hires. In this invented study, the company independently draws random samples of employees who completed each program, intensive and standard, and gives everyone the same standardized coding exercise. Each employee appears in only one sample, and choosing employees from one program does not affect which employees are chosen from the other, so we model the samples as independent. <a href="#tbl-bootcamp" class="quarto-xref">Table&nbsp;<span>19.1</span></a> summarizes the scores.</p>
+<p>This formula is only for independent samples: knowing which units we sampled from group <span class="math inline">\(A\)</span> should tell us nothing about the units we sampled from group <span class="math inline">\(B\)</span>. Paired data are different. If we measure the same stores before and after a price change, for example, each “before” observation is matched to an “after” observation from the same store and the two samples are dependent. With paired data we compute the difference within each pair, and then treat those differences as a single sample (see <a href="#exercise-paired-assay">the paired assay exercise</a> below).</p>
+<p>Let’s look at an example. A tech company trains new hires using one of two coding bootcamps, an intensive program and a standard program, and wants to compare them. The company takes a random sample of employees who completed each program and gives all of them the same standardized coding exercise. No employee is in both samples, and the employees we happen to draw from one program have no effect on who gets drawn from the other, so it’s reasonable to model the two samples as independent. <a href="#tbl-bootcamp" class="quarto-xref">Table&nbsp;<span>19.1</span></a> has the summary statistics.</p>
 <div class="cell">
 <div id="tbl-bootcamp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bootcamp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;19.1: Scores on a standardized coding exercise for employees who completed each bootcamp (invented data).
+Table&nbsp;19.1: Scores on a standardized coding exercise for employees who completed each bootcamp.
 </figcaption>
 <div aria-describedby="tbl-bootcamp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -689,7 +690,7 @@ Table&nbsp;19.1: Scores on a standardized coding exercise for employees who comp
 </figure>
 </div>
 </div>
-<p>The intensive group scored 9 points higher on average. Our best guess for the difference in mean scores between <em>all</em> employees who might take the intensive program and <em>all</em> who might take the standard one is 9 points, but a gap of that size could reflect the particular 120 employees in the study. The standard error of the difference is</p>
+<p>The average score was 9 points higher in the intensive group, so 9 points is our estimate of the difference in mean scores between <em>all</em> the employees who might take the intensive program and <em>all</em> those who might take the standard program. Of course there are only 120 employees in this study, and with a different 120 we would have seen a different gap. The standard error of the difference is</p>
 <p><span class="math display">\[
 SE(\bar X_A-\bar X_B)\approx\sqrt{\frac{20^2}{70}+\frac{25^2}{50}}\approx4.27\text{ points},
 \]</span></p>
@@ -707,14 +708,14 @@ SE(\bar X_A-\bar X_B)\approx\sqrt{\frac{20^2}{70}+\frac{25^2}{50}}\approx4.27\te
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every plausible value for the difference is positive, so under the sampling assumptions the data support a higher mean score for the intensive program. The size of the advantage is much less certain: anything from about half a point to about 18 points is plausible. If the intensive program costs more in money and employee time, those endpoints could lead to different decisions.</p>
+<p>All of the plausible values for the difference are positive. If our sampling assumptions hold, then, we have evidence that the mean score is higher for the intensive program. We know much less about how much higher — the plausible values run from about half a point to about 18 points. That matters if the intensive program costs more money or takes more of the employees’ time, since a half point improvement is probably not worth paying for and an 18 point improvement might well be.</p>
 </div>
 </div>
-<p>The test of “no difference” reaches the same conclusion about direction. The hypotheses are <span class="math inline">\(H_0:\mu_A-\mu_B=0\)</span> and <span class="math inline">\(H_A:\mu_A-\mu_B\ne0\)</span>, and the <span class="math inline">\(t\)</span>-statistic is</p>
+<p>We can also test the null hypothesis that there is no difference between the programs, <span class="math inline">\(H_0:\mu_A-\mu_B=0\)</span>, against the alternative <span class="math inline">\(H_A:\mu_A-\mu_B\ne0\)</span>. The <span class="math inline">\(t\)</span>-statistic is</p>
 <p><span class="math display">\[
 t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 \]</span></p>
-<p>with a two-sided p-value of about 0.035. If the two programs had identical mean scores, about 3.5% of studies like this one would produce a difference at least this many standard errors from zero. At <span class="math inline">\(\alpha=0.05\)</span> we reject the null hypothesis, which agrees with the interval excluding zero.</p>
+<p>and the two-sided p-value is about 0.035. In other words, if the mean scores were really the same for both programs, only about 3.5% of studies like this one would give a difference that is 2.11 or more standard errors away from zero. With <span class="math inline">\(\alpha=0.05\)</span> we reject the null hypothesis, as we should have expected since zero isn’t in the 95% confidence interval.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -725,11 +726,11 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The two-SE intervals for the separate means are <span class="math inline">\([124.2,\ 133.8]\)</span> for the intensive program and <span class="math inline">\([112.9,\ 127.1]\)</span> for the standard program. They overlap, yet the interval for the difference excludes zero.</p>
-<p>Two intervals fail to overlap only when the gap between the means exceeds the <em>sum</em> of the two margins, <span class="math inline">\(2(2.39)+2(3.54)\approx11.9\)</span> points. The interval for the difference excludes zero when the gap exceeds <span class="math inline">\(2\sqrt{2.39^2+3.54^2}\approx8.5\)</span> points, which is a lower bar because the square root of a sum of squares is smaller than the sum. The 9-point gap clears the second threshold and not the first. A question about a difference needs the interval for the difference.</p>
+<p>If we compute a two-SE interval for each program’s mean separately we get <span class="math inline">\([124.2,\ 133.8]\)</span> for the intensive program and <span class="math inline">\([112.9,\ 127.1]\)</span> for the standard program. These two intervals overlap, even though the interval for the difference doesn’t include zero!</p>
+<p>What’s going on? For the two intervals to be completely separated the gap between the sample means has to be bigger than the two margins of error added together, which here is <span class="math inline">\(2(2.39)+2(3.54)\approx11.9\)</span> points. For the interval for the difference to exclude zero the gap only has to be bigger than <span class="math inline">\(2\sqrt{2.39^2+3.54^2}\approx8.5\)</span> points. The second threshold is always the smaller one (the square root of a sum of squares is smaller than the sum), and our 9-point gap is in between. So checking for overlap can miss real differences, and when the question is about a difference we should compute the interval for the difference.</p>
 </div>
 </div>
-<p>To attribute the difference in scores to the program, we need the standard-program group to represent how the intensive-program employees <em>would have performed had they taken the standard program</em>, and vice versa. If both groups had taken the same program, we would expect similar scores apart from chance variation.</p>
+<p>Can we say that the intensive program caused the higher scores? Only if the employees in the standard program tell us how the employees in the intensive program <em>would have scored if they had taken the standard program</em> instead (and vice versa). Put another way, if we had given both groups the same program we should expect to see similar average scores, up to sampling variation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -740,76 +741,76 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If stronger or more motivated employees chose the intensive program, we would expect bias in its favor: the difference between the groups would include any effect of the program along with the effects of greater skill and motivation. If managers instead steered weaker employees toward the intensive program, we would expect bias against it for the same reason. Those employees might score lower even if the program helped them, because they started with weaker skills. As with the SAP customers, the confidence interval accounts for sampling variability, but does not remove <a href="./inference_03_limits.html">selection bias</a>.</p>
+<p>Suppose that the stronger or more motivated employees were the ones who chose the intensive program. Then the comparison is biased in favor of the intensive program, since the difference in scores reflects the differences in skill and motivation as well as whatever effect the program has. It could easily go the other way — if managers sent their weaker employees to the intensive program, those employees might score lower even if the program helped them quite a bit, and the comparison would be biased against the intensive program. Just as we saw with the SAP customers, a confidence interval only accounts for sampling variability. It does nothing about <a href="./inference_03_limits.html">selection bias</a>.</p>
 </div>
 </div>
-<p>Random assignment makes these comparisons credible because employees’ abilities, motivation, and other characteristics do not determine which program they receive. The groups can still differ by chance, but assignment does not systematically put stronger employees into one program. This lets us assess whether the observed score difference is evidence of a program effect.</p>
+<p>Random assignment avoids this problem. If we assign employees to programs at random, their ability, motivation, and everything else about them has no influence on which program they get. The two groups will still differ somewhat by chance, but those differences are no longer systematic, and chance differences are what our standard errors measure. Then we can take a difference in scores as evidence about the effect of the program.</p>
 <div id="exercise-two-teams" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.3: </strong>A first comparison of means</div><div class="fobx-body">
-<p>In an invented study, a company takes independent random samples of 100 tickets from each of two service teams. Team A’s tickets have mean resolution time 18 hours and standard deviation 10 hours; Team B’s have mean 15 hours and standard deviation 10 hours. Assume the normal approximation is adequate for each sample mean.</p>
+<p>A company takes independent random samples of 100 tickets from each of its two service teams. Team A’s tickets had a mean resolution time of 18 hours with a standard deviation of 10 hours, and Team B’s tickets had a mean of 15 hours, also with a standard deviation of 10 hours. Assume that the normal approximation is adequate for each sample mean.</p>
 <ol type="1">
-<li>Estimate <span class="math inline">\(\mu_A-\mu_B\)</span> and its standard error, then compute the two-SE interval.</li>
-<li>What does the sign of the interval say? Is a population difference of four hours plausible?</li>
-<li>What happens to the estimate, the standard error, and the interval if you report B minus A instead?</li>
+<li>Estimate <span class="math inline">\(\mu_A-\mu_B\)</span> and find the standard error of your estimate. Then compute the two-SE interval.</li>
+<li>What does the sign of the interval tell you? Is it plausible that the difference in the population is four hours?</li>
+<li>Suppose you reported B minus A instead. What happens to the estimate, the standard error, and the interval?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-two-teams">
 <summary>Solution</summary>
 <ol type="1">
-<li>The estimate is <span class="math inline">\(18-15=3\)</span> hours. Each sample mean has standard error <span class="math inline">\(10/\sqrt{100}=1\)</span> hour, so the difference has standard error <span class="math inline">\(\sqrt{1^2+1^2}\approx1.41\)</span> hours. The interval is <span class="math inline">\(3\pm2(1.41)\approx[0.17,\ 5.83]\)</span> hours.</li>
-<li>The whole interval lies above zero, so under the sampling model Team A’s tickets take longer on average. The size of the gap is uncertain: differences from about 0.2 to 5.8 hours are plausible, including four hours.</li>
-<li>The estimate becomes <span class="math inline">\(-3\)</span> hours and the interval becomes <span class="math inline">\([-5.83,\ -0.17]\)</span> hours. The standard error stays 1.41 hours, because it measures the spread of the estimate, which does not depend on the order of subtraction.</li>
+<li>Our estimate is <span class="math inline">\(18-15=3\)</span> hours. The standard error of each sample mean is <span class="math inline">\(10/\sqrt{100}=1\)</span> hour, so the standard error of the difference is <span class="math inline">\(\sqrt{1^2+1^2}\approx1.41\)</span> hours, and the interval is <span class="math inline">\(3\pm2(1.41)\approx[0.17,\ 5.83]\)</span> hours.</li>
+<li>The entire interval is above zero, so (under our sampling model) Team A’s tickets take longer on average. We are less sure about how much longer. Any difference from about 0.2 hours to about 5.8 hours is plausible, and that includes four hours.</li>
+<li>The estimate would be <span class="math inline">\(-3\)</span> hours and the interval would be <span class="math inline">\([-5.83,\ -0.17]\)</span> hours. The standard error is still 1.41 hours. It measures how variable the estimate is, and that doesn’t depend on which mean we subtract from which.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-cloud-on-premise" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.4: </strong>Cloud and on-premise response times</div><div class="fobx-body">
-<p>A company compares application response times between cloud and on-premise deployments of its software. In an invented benchmark, 28 cloud instances average 92.4 milliseconds with a standard deviation of 15.6, and 35 on-premise instances average 89.7 milliseconds with a standard deviation of 18.2. Treat the two sets of instances as independent random samples, and assume the normal approximation is adequate for each sample mean.</p>
+<p>A company wants to compare application response times for cloud and on-premise deployments of its software. It runs a benchmark where 28 cloud instances average 92.4 milliseconds with a standard deviation of 15.6, and 35 on-premise instances average 89.7 milliseconds with a standard deviation of 18.2. Treat the two sets of instances as independent random samples, and assume that the normal approximation is adequate for each sample mean.</p>
 <ol type="1">
-<li>Compute an approximate 95% confidence interval for the difference in mean response time, cloud minus on-premise.</li>
-<li>Can the company conclude that the deployments differ in mean response time? Can it conclude that they perform the same?</li>
+<li>Compute an approximate 95% confidence interval for the difference in mean response time (cloud minus on-premise).</li>
+<li>Can the company conclude that the mean response times are different for the two deployments? Can it conclude that they are the same?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-cloud-on-premise">
 <summary>Solution</summary>
 <ol type="1">
-<li>The standard errors are <span class="math inline">\(15.6/\sqrt{28}\approx2.95\)</span> and <span class="math inline">\(18.2/\sqrt{35}\approx3.08\)</span> milliseconds. The difference is <span class="math inline">\(92.4-89.7=2.7\)</span> milliseconds, with standard error <span class="math inline">\(\sqrt{2.95^2+3.08^2}\approx4.26\)</span>. The interval is <span class="math inline">\(2.7\pm2(4.26)\approx[-5.8,\ 11.2]\)</span> milliseconds.</li>
-<li>Zero is a plausible value, and <span class="math inline">\(t=2.7/4.26\approx0.63\)</span>, so we fail to reject the null hypothesis of equal means. That does not establish equal performance. The data are consistent with the cloud deployment being 11 milliseconds slower on average and with it being nearly 6 milliseconds faster. Whether a gap of that size matters depends on the application; if it does, the company needs more instances in the benchmark.</li>
+<li>The standard errors are <span class="math inline">\(15.6/\sqrt{28}\approx2.95\)</span> milliseconds for cloud and <span class="math inline">\(18.2/\sqrt{35}\approx3.08\)</span> milliseconds for on-premise. The difference in means is <span class="math inline">\(92.4-89.7=2.7\)</span> milliseconds and its standard error is <span class="math inline">\(\sqrt{2.95^2+3.08^2}\approx4.26\)</span>, so the interval is <span class="math inline">\(2.7\pm2(4.26)\approx[-5.8,\ 11.2]\)</span> milliseconds.</li>
+<li>Zero is a plausible value for the difference and <span class="math inline">\(t=2.7/4.26\approx0.63\)</span>, so we fail to reject the null hypothesis that the means are equal. But that isn’t the same thing as showing that the two deployments perform equally well! The cloud deployment could be 11 milliseconds slower on average, or it could be almost 6 milliseconds faster, and the data are consistent with both. Whether differences like these are important will depend on the application. If they are, the company needs to benchmark more instances.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-support-training" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.5: </strong>Did the training shorten response times?</div><div class="fobx-body">
-<p>A company introduces a training program meant to reduce response times to support tickets. Its customer research suggests that customers do not notice an improvement smaller than 30 minutes. In an invented evaluation, a random sample of 42 tickets from before the training averaged 245 minutes with a standard deviation of 65, and a random sample of 38 tickets from after the training averaged 210 minutes with a standard deviation of 58.</p>
+<p>A company introduces a training program to try to reduce response times to support tickets. From its customer research the company believes that customers won’t notice an improvement of less than 30 minutes. To evaluate the program the company takes a random sample of 42 tickets from before the training, which averaged 245 minutes with a standard deviation of 65, and a random sample of 38 tickets from after the training, which averaged 210 minutes with a standard deviation of 58.</p>
 <ol type="1">
-<li>Compute an approximate 95% confidence interval for the reduction in mean response time, before minus after. Is a reduction of zero plausible?</li>
-<li>Should the company expect customers to notice the improvement? Compute the <span class="math inline">\(t\)</span>-statistic for the null hypothesis that the reduction is 30 minutes.</li>
-<li>The two samples come from different months. What would you want to know before attributing the reduction to the training?</li>
+<li>Compute an approximate 95% confidence interval for the reduction in mean response time (before minus after). Is it plausible that the reduction is zero?</li>
+<li>Should the company expect its customers to notice the improvement? Compute the <span class="math inline">\(t\)</span>-statistic for the null hypothesis that the reduction is 30 minutes.</li>
+<li>The two samples were taken in different months. What else would you want to know before you decide that the training is responsible for the reduction?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-support-training">
 <summary>Solution</summary>
 <ol type="1">
-<li>The standard errors are <span class="math inline">\(65/\sqrt{42}\approx10.03\)</span> and <span class="math inline">\(58/\sqrt{38}\approx9.41\)</span> minutes, so the standard error of the difference is <span class="math inline">\(\sqrt{10.03^2+9.41^2}\approx13.75\)</span> minutes. The interval is <span class="math inline">\(35\pm2(13.75)=[7.5,\ 62.5]\)</span> minutes. Zero lies outside it, and <span class="math inline">\(t=35/13.75\approx2.5\)</span>: under the sampling assumptions, mean response time fell.</li>
-<li>The estimate of 35 minutes is above the 30-minute threshold, but the threshold is well inside the interval, with <span class="math inline">\(t=(35-30)/13.75\approx0.36\)</span>. Reductions from 7.5 minutes, below the 30-minute threshold, to 62.5 minutes, well above it, are all plausible. The data establish an improvement without establishing a noticeable one.</li>
-<li>A before-and-after comparison attributes every change between the two periods to the training. Ticket volume, the mix of easy and hard tickets, staffing, and seasonality could each have shifted response times. Staggering the training across randomly chosen teams, and comparing trained with untrained teams over the same weeks, would separate the training from the calendar.</li>
+<li>The standard errors of the two sample means are <span class="math inline">\(65/\sqrt{42}\approx10.03\)</span> and <span class="math inline">\(58/\sqrt{38}\approx9.41\)</span> minutes, so the standard error of the difference is <span class="math inline">\(\sqrt{10.03^2+9.41^2}\approx13.75\)</span> minutes and the interval is <span class="math inline">\(35\pm2(13.75)=[7.5,\ 62.5]\)</span> minutes. Zero is outside the interval and <span class="math inline">\(t=35/13.75\approx2.5\)</span>. If our sampling assumptions hold, the mean response time went down.</li>
+<li>Our estimate of 35 minutes is larger than the 30-minute threshold, but the threshold is well inside the interval and <span class="math inline">\(t=(35-30)/13.75\approx0.36\)</span>. The plausible reductions go from 7.5 minutes (which customers wouldn’t notice) all the way to 62.5 minutes (which they would). So we have good evidence that response times improved, but we can’t say whether they improved enough for customers to notice.</li>
+<li>When we compare before and after, anything that changed between the two periods gets attributed to the training. Ticket volume, the mix of easy and hard tickets, staffing, and the time of year could all have affected response times. A better design would stagger the training across randomly chosen teams, so that we could compare trained and untrained teams during the same weeks. Then a change that comes from the calendar would show up in both groups.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-paired-assay" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.6: </strong>Same tablets, two measurements</div><div class="fobx-body">
-<p>A drug manufacturer is evaluating a faster handheld assay. A quality lab randomly samples 36 tablets from a large production run and measures each tablet with both the handheld device and the standard lab assay. Define each tablet’s difference as the handheld reading minus the lab reading. In an invented dataset the differences have mean 1.5 mg and sample standard deviation 3 mg. Model the tablet differences as iid and assume the normal approximation for their mean is adequate.</p>
+<p>A drug manufacturer is evaluating a handheld assay that is faster than its standard lab assay. A quality lab takes a random sample of 36 tablets from a large production run and measures every tablet twice, once with the handheld device and once with the lab assay. For each tablet we compute the difference between the handheld reading and the lab reading (handheld minus lab). The differences have a mean of 1.5 mg and a sample standard deviation of 3 mg. Model the differences as iid, and assume that the normal approximation is adequate for their mean.</p>
 <ol type="1">
 <li>Compute a two-SE interval for the population mean difference.</li>
-<li>Explain why <span class="math inline">\(n=36\)</span>, not 72. Why would combining the separate standard deviations of the handheld and lab readings discard relevant information?</li>
-<li>The company will accept the device if its average difference from the lab assay is less than 3 mg in either direction. What does the interval say about that standard? Does it tell you how far a single handheld reading can fall from the lab value?</li>
+<li>Explain why the sample size is <span class="math inline">\(n=36\)</span> and not 72. If we computed separate standard deviations for the handheld and lab readings and combined them, what information would we be throwing away?</li>
+<li>The company will accept the device if its readings differ from the lab assay by less than 3 mg on average, in either direction. What does the interval tell you about that standard? Does it tell you how far off a single handheld reading could be from the lab value?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-paired-assay">
 <summary>Solution</summary>
 <ol type="1">
-<li>The estimated standard error is <span class="math inline">\(3/\sqrt{36}=0.5\)</span> mg, so the interval is <span class="math inline">\(1.5\pm2(0.5)=[0.5,\ 2.5]\)</span> mg. Under the model, the handheld device reads higher than the lab assay on average.</li>
-<li>There are 36 differences, one per independent tablet. Both readings on a tablet share that tablet’s actual content, so they are positively correlated, and tablet-to-tablet variation in content cancels in the difference. The standard deviation of the differences already reflects that covariance. The formula for independent samples would ignore it and overstate the standard error.</li>
-<li>Every plausible mean difference lies between 0.5 and 2.5 mg, inside the 3 mg standard, so the data support accepting the device on average. The interval concerns the mean difference only. Individual differences have a sample standard deviation of 3 mg, so single readings can miss the lab value by more than 3 mg.</li>
+<li>The estimated standard error is <span class="math inline">\(3/\sqrt{36}=0.5\)</span> mg, so the interval is <span class="math inline">\(1.5\pm2(0.5)=[0.5,\ 2.5]\)</span> mg. Under our model the handheld device gives higher readings than the lab assay, on average.</li>
+<li>We have 36 differences, one for each tablet, and the tablets are independent. The two readings on the same tablet are not: both of them depend on how much of the drug is really in that tablet, so they are positively correlated. When we take the difference the tablet-to-tablet variation in content cancels out. The standard deviation of the differences already accounts for that covariance. If we used the formula for independent samples we would be ignoring it, and our standard error would be too large.</li>
+<li>All of the plausible values for the mean difference are between 0.5 and 2.5 mg, which is inside the 3 mg standard, so the data support accepting the device as far as the average is concerned. But the interval is only about the mean difference. The differences for individual tablets have a standard deviation of 3 mg, so a single handheld reading can easily miss the lab value by more than 3 mg.</li>
 </ol>
 </details>
 </div></div>
@@ -817,7 +818,7 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 </section>
 <section id="sec-diff-props" class="level2" data-number="19.3">
 <h2 data-number="19.3" class="anchored" data-anchor-id="sec-diff-props"><span class="header-section-number">19.3</span> A difference in proportions</h2>
-<p>Proportions are means of 0/1 variables, so the argument for a difference in means carries over with <span class="math inline">\(SE(\hat p)\)</span> in place of <span class="math inline">\(s/\sqrt n\)</span>. The parameter is <span class="math inline">\(p_A-p_B\)</span>, the estimator is <span class="math inline">\(\hat p_A-\hat p_B\)</span>, and independence again makes the variances add.</p>
+<p>We just saw that a proportion is the mean of a 0/1 variable, so everything we did for a difference in means works for a difference in proportions. The only change is that we use <span class="math inline">\(SE(\hat p)\)</span> where we had <span class="math inline">\(s/\sqrt n\)</span>. The parameter is <span class="math inline">\(p_A-p_B\)</span> and we estimate it with <span class="math inline">\(\hat p_A-\hat p_B\)</span>. The samples are independent, so just like before the variances add.</p>
 <div id="note-se-diff-props" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -833,10 +834,10 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 SE(\hat p_A-\hat p_B)\approx\sqrt{\frac{\hat p_A(1-\hat p_A)}{n_A}+\frac{\hat p_B(1-\hat p_B)}{n_B}}
 =\sqrt{SE(\hat p_A)^2+SE(\hat p_B)^2}.
 \]</span></p>
-<p>The normal approximation needs enough of both outcomes in <em>each</em> group. The estimated difference and its standard error are in <strong>percentage points</strong> when the proportions are written as percentages.</p>
+<p>For the normal approximation to work well we need enough of both outcomes in <em>each</em> of the two groups. If we write the proportions as percentages, then the estimated difference and its standard error are in <strong>percentage points</strong>.</p>
 </div>
 </div>
-<p>A manufacturer must choose between two suppliers of a critical component. Defective parts cause production delays, so the company runs a six-month evaluation, inspecting 15,000 parts from each supplier. In this invented study, 180 of the parts from Supplier A, the current and cheaper supplier, are defective, against 120 from Supplier B. The corresponding rates are 1.2% and 0.8%. The difference in defect rates is 0.4 percentage points, with</p>
+<p>Here is an example. A manufacturer has to choose between two suppliers for a critical component. When a part is defective it delays production, so the company spends six months evaluating the suppliers and inspects 15,000 parts from each one. Supplier A is the company’s current supplier, and the cheaper of the two. Of the parts from Supplier A, 180 are defective, compared to 120 of the parts from Supplier B, so the defect rates are 1.2% and 0.8%. The difference in defect rates is 0.4 percentage points, with</p>
 <p><span class="math display">\[
 SE(\hat p_A-\hat p_B)\approx\sqrt{\frac{0.012(0.988)}{15{,}000}+\frac{0.008(0.992)}{15{,}000}}\approx0.00115,
 \]</span></p>
@@ -844,16 +845,16 @@ SE(\hat p_A-\hat p_B)\approx\sqrt{\frac{0.012(0.988)}{15{,}000}+\frac{0.008(0.99
 <p><span class="math display">\[
 0.4\pm2(0.11)\approx[0.17,\ 0.63]\text{ percentage points},
 \]</span></p>
-<p>and the <span class="math inline">\(t\)</span>-statistic against a difference of zero is 3.5. Under the sampling assumptions, Supplier A’s parts are worse.</p>
-<p>The normal approximation treats the inspected parts from each supplier as independent draws from that supplier’s production. It does not make either supplier’s future production a random sample of every setting in which the company might use these components.</p>
+<p>and the <span class="math inline">\(t\)</span>-statistic for testing a difference of zero is 3.5. If our sampling assumptions hold, Supplier A’s parts really are worse.</p>
+<p>What are those assumptions? For the normal approximation we are treating the parts we inspected from each supplier as independent draws from that supplier’s production. That’s not the same as assuming that what each supplier produces in the future will look like a random sample of all the settings where the company might use these components, and nothing in our calculation justifies that.</p>
 <section id="sec-supplier" class="level3" data-number="19.3.1">
 <h3 data-number="19.3.1" class="anchored" data-anchor-id="sec-supplier"><span class="header-section-number">19.3.1</span> When a detectable difference is too small to matter</h3>
-<p>Whether that should change the company’s supplier depends on costs. Supplier A charges $12 per part and Supplier B charges $15, and the company uses 50,000 parts a year, so switching to B costs an additional $150,000 a year. Each defective part costs about $450 in downtime and replacement. At the estimated difference of 0.4 points, staying with A means <span class="math inline">\(50{,}000(0.004)=200\)</span> additional defective parts a year, costing $90,000. That is $60,000 less than B’s price premium.</p>
-<p>The estimate alone doesn’t settle it, because the true difference could be larger than 0.4 points. Switching pays only if the extra defects cost more than the premium, which requires a difference in defect rates above the break-even value</p>
+<p>Should the company switch suppliers? That depends on the costs. Supplier A charges $12 per part and Supplier B charges $15. The company uses 50,000 parts every year, so switching to B would cost an extra $150,000 per year. On the other hand each defective part costs the company about $450 in downtime and replacement. If the difference in defect rates is 0.4 points (our estimate), staying with A means <span class="math inline">\(50{,}000(0.004)=200\)</span> more defective parts per year at a cost of $90,000. That’s $60,000 less than the extra money the company would pay to Supplier B.</p>
+<p>We can’t stop there, because the true difference in defect rates could be larger than 0.4 points. It only makes sense to switch if the additional defects cost more than the price premium, and for that to happen the difference in defect rates has to be bigger than the break-even value</p>
 <p><span class="math display">\[
 \frac{\$150{,}000}{\$450\times50{,}000}\approx0.0067,
 \]</span></p>
-<p>or 0.67 percentage points. <a href="#fig-supplier-decision" class="quarto-xref">Figure&nbsp;<span>19.2</span></a> places the interval beside the two differences that matter for the decision: zero and the break-even value.</p>
+<p>or 0.67 percentage points. In <a href="#fig-supplier-decision" class="quarto-xref">Figure&nbsp;<span>19.2</span></a> we show the interval along with the two differences that matter for this decision, zero and the break-even value.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-supplier-decision" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -862,13 +863,13 @@ SE(\hat p_A-\hat p_B)\approx\sqrt{\frac{0.012(0.988)}{15{,}000}+\frac{0.008(0.99
 <img src="inference_04_proportions-comparisons_files/figure-html/fig-supplier-decision-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-supplier-decision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19.2: The 95% confidence interval for the difference in defect rates, Supplier A minus Supplier B, with zero and the break-even difference marked. Both fall outside the interval.
+Figure&nbsp;19.2: The 95% confidence interval for the difference in defect rates (Supplier A minus Supplier B). Zero and the break-even difference are marked, and both are outside the interval.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>We reject a difference of zero, and we also reject the break-even difference, with <span class="math inline">\(t=-2.3\)</span>. Even at the interval’s upper endpoint the additional defects would cost $141,700 a year, less than the $150,000 premium. The company saves money by staying with the supplier whose parts are measurably worse.</p>
+<p>We reject a difference of zero. We also reject the break-even difference (<span class="math inline">\(t=-2.3\)</span>). Even if the difference were as large as the upper endpoint of the interval, the additional defects would cost the company $141,700 per year, which is still less than the $150,000 premium. So the company saves money by staying with Supplier A, even though we are quite sure that Supplier A’s parts are worse.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -879,49 +880,49 @@ Figure&nbsp;19.2: The 95% confidence interval for the difference in defect rates
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Statistical significance measures evidence against a hypothesized value, usually zero difference. It does not tell us whether the difference is large enough to matter. With a sufficiently large sample, even a very small difference can be statistically significant.</p>
-<p>A training program that raises scores by a fraction of a point might not justify three days away from work. A checkout redesign that adds one purchase per 10,000 visits could pay for itself at a site with millions of visitors. Practical importance depends on the costs, benefits, and scale of the decision. Compare the confidence interval with the differences that would change what you do.</p>
+<p>Statistical significance is about the evidence against one hypothesized value, which is usually a difference of zero. It doesn’t tell us whether the difference is big enough to matter. If the sample is large enough, a very small difference can be statistically significant.</p>
+<p>For example, a training program that raises scores by a fraction of a point might not be worth three days away from work. On the other hand, a checkout redesign that adds one purchase per 10,000 visits could pay for itself if the site has millions of visitors. Whether a difference is important in practice depends on the costs and benefits of the decision, and on its scale. To find out, compare the confidence interval to the differences that would change what you do.</p>
 </div>
 </div>
 <div id="technical-pooled-se" class="TechnicalDetail">
 <details class="TechnicalDetail fobx-simplebox fobx-default"><summary><strong>Technical detail 19.3: </strong>A pooled standard error for testing equal proportions</summary><div>
-<p>Under the null hypothesis <span class="math inline">\(p_A=p_B\)</span>, the two groups share one proportion, and many textbooks and software routines estimate it by pooling the groups: <span class="math inline">\(\bar p=(\text{total with the outcome})/(n_A+n_B)\)</span>. The standard error computed under the null is then</p>
+<p>When the null hypothesis <span class="math inline">\(p_A=p_B\)</span> is true the two groups have the same proportion. Many textbooks and software packages estimate that common proportion by pooling the two groups, <span class="math inline">\(\bar p=(\text{total with the outcome})/(n_A+n_B)\)</span>, and use it to compute a standard error under the null. That standard error is</p>
 <p><span class="math display">\[
 \sqrt{\bar p(1-\bar p)\left(\frac{1}{n_A}+\frac{1}{n_B}\right)}.
 \]</span></p>
-<p>For the supplier evaluation, <span class="math inline">\(\bar p=0.0100\)</span> and the pooled standard error is 0.001149, against 0.001149 unpooled. The corresponding <span class="math inline">\(t\)</span>-statistics are 3.48 and 3.48; both round to 3.48. The pooled version applies only to the test of zero difference. The interval, and a test of any nonzero value such as a break-even difference, use the unpooled standard error in <a href="#note-se-diff-props">the rule above</a>.</p>
+<p>In the supplier evaluation <span class="math inline">\(\bar p=0.0100\)</span> and the pooled standard error is 0.001149, while the unpooled standard error is 0.001149. The <span class="math inline">\(t\)</span>-statistics are 3.48 and 3.48, so to this many digits we can’t tell them apart. The pooled standard error is only for testing a difference of zero. For the confidence interval, or for testing any other value (like our break-even difference), we use the unpooled standard error from <a href="#note-se-diff-props">the rule above</a>.</p>
 </div></details>
 </div>
 <div id="exercise-ab-test-conversions" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.7: </strong>An A/B test</div><div class="fobx-body">
-<p>An e-commerce site randomly assigns visitors to one of two page designs. In this invented test, Variant A converts 156 of 820 visitors and Variant B converts 171 of 830.</p>
+<p>An e-commerce site randomly assigns each visitor to one of two page designs. In this test Variant A converted 156 of its 820 visitors and Variant B converted 171 of its 830.</p>
 <ol type="1">
-<li>Compute an approximate 95% confidence interval for the difference in conversion rates, B minus A.</li>
-<li>Should the company switch to Variant B based on these results?</li>
+<li>Compute an approximate 95% confidence interval for the difference in conversion rates (B minus A).</li>
+<li>Based on these results, should the company switch to Variant B?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-ab-test-conversions">
 <summary>Solution</summary>
 <ol type="1">
-<li>The sample proportions are <span class="math inline">\(156/820\approx0.190\)</span> and <span class="math inline">\(171/830\approx0.206\)</span>, with standard errors 0.0137 and 0.0140. The difference is 1.6 percentage points, with standard error <span class="math inline">\(\sqrt{0.0137^2+0.0140^2}\approx0.0196\)</span>. The interval is <span class="math inline">\(0.016\pm2(0.0196)\approx[-0.023,\ 0.055]\)</span>, or <span class="math inline">\(-2.3\)</span> to <span class="math inline">\(5.5\)</span> percentage points.</li>
-<li>The interval includes zero, and <span class="math inline">\(t=0.016/0.0196\approx0.8\)</span>, so the test does not detect a difference. The plausible values run from Variant A converting 2.3 points better to Variant B converting 5.5 points better, and at conversion rates near 20% either would be a large effect. The test does not settle the decision. The company would need the value of an added conversion and the costs of switching before choosing between the designs.</li>
+<li>The sample proportions are <span class="math inline">\(156/820\approx0.190\)</span> for A and <span class="math inline">\(171/830\approx0.206\)</span> for B, and their standard errors are 0.0137 and 0.0140. The difference is 1.6 percentage points and its standard error is <span class="math inline">\(\sqrt{0.0137^2+0.0140^2}\approx0.0196\)</span>. That gives us the interval <span class="math inline">\(0.016\pm2(0.0196)\approx[-0.023,\ 0.055]\)</span>, or <span class="math inline">\(-2.3\)</span> to <span class="math inline">\(5.5\)</span> percentage points.</li>
+<li>Zero is in the interval and <span class="math inline">\(t=0.016/0.0196\approx0.8\)</span>, so we don’t detect a difference between the two designs. The range of plausible values is wide, though. Variant A could convert 2.3 points better, or Variant B could convert 5.5 points better, and when conversion rates are around 20% either one would be a large effect. So this test doesn’t tell the company what to do. To choose between the designs the company needs to know what an additional conversion is worth, and what it would cost to switch.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-checkout-payment-method" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.8: </strong>Checkout completion by payment method</div><div class="fobx-body">
-<p>An e-commerce company compares checkout completion across payment methods. In an invented month of data, 900 checkout attempts used a credit card and 847 of them were completed; 480 attempts used a digital wallet and 445 were completed. Customers chose their own payment method. Treat the attempts as independent and assume the normal approximation is adequate for each completion rate.</p>
+<p>An e-commerce company wants to compare checkout completion for different payment methods. In one month of data there were 900 checkout attempts using a credit card, and 847 of them were completed. There were 480 attempts using a digital wallet, and 445 of those were completed. Customers chose their own payment method. Treat the attempts as independent, and assume that the normal approximation is adequate for each completion rate.</p>
 <ol type="1">
-<li>Compute an approximate 95% confidence interval for the difference in completion rates, digital wallet minus credit card.</li>
-<li>A manager proposes promoting digital wallets, or discouraging them, based on these rates. What does the interval say?</li>
-<li>Suppose the interval had excluded zero. Would a difference in completion rates show that steering customers toward the better-performing method would raise completion?</li>
+<li>Compute an approximate 95% confidence interval for the difference in completion rates (digital wallet minus credit card).</li>
+<li>A manager wants to use these rates to decide whether to promote digital wallets, or to discourage them. What does the interval tell the manager?</li>
+<li>Suppose that the interval had excluded zero. Would that show that the company could raise its completion rate by steering customers toward the payment method with the higher rate?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-checkout-payment-method">
 <summary>Solution</summary>
 <ol type="1">
-<li>The completion rates are <span class="math inline">\(847/900\approx0.941\)</span> and <span class="math inline">\(445/480\approx0.927\)</span>, with standard errors 0.0078 and 0.0119. The difference is <span class="math inline">\(-1.4\)</span> percentage points, with standard error <span class="math inline">\(\sqrt{0.0078^2+0.0119^2}\approx0.0142\)</span>. The interval is <span class="math inline">\(-0.014\pm2(0.0142)\approx[-0.042,\ 0.014]\)</span>, or <span class="math inline">\(-4.2\)</span> to <span class="math inline">\(1.4\)</span> percentage points.</li>
-<li>Zero is a plausible value, so the data do not establish a difference in either direction, so the comparison gives no basis for promoting or discouraging either method. Both complete more than 92% of attempts.</li>
-<li>No.&nbsp;Customers who choose digital wallets may differ from credit-card customers in device, order size, or urgency, and those differences could produce a gap in completion rates that has nothing to do with the payment method. The interval accounts for sampling variability in the two rates, not for who selects into each group. Randomly varying which method the checkout page features would address the manager’s question.</li>
+<li>The completion rates are <span class="math inline">\(847/900\approx0.941\)</span> for credit cards and <span class="math inline">\(445/480\approx0.927\)</span> for digital wallets, and their standard errors are 0.0078 and 0.0119. The difference is <span class="math inline">\(-1.4\)</span> percentage points, and its standard error is <span class="math inline">\(\sqrt{0.0078^2+0.0119^2}\approx0.0142\)</span>. The interval is <span class="math inline">\(-0.014\pm2(0.0142)\approx[-0.042,\ 0.014]\)</span>, or <span class="math inline">\(-4.2\)</span> to <span class="math inline">\(1.4\)</span> percentage points.</li>
+<li>Zero is a plausible value for the difference, so we can’t say that either method has the higher completion rate, and this comparison doesn’t give the manager a reason to promote or discourage either one. With both methods more than 92% of attempts are completed.</li>
+<li>No.&nbsp;The customers who choose to pay with a digital wallet could be different from the customers who pay by credit card. They might use different devices, place larger or smaller orders, or be in more of a hurry. Any of those could lead to a difference in completion rates that has nothing to do with the payment method itself. The confidence interval accounts for sampling variability in the two rates, but it can’t account for which customers end up in each group. To answer the manager’s question the company could randomly vary which payment method is featured on the checkout page.</li>
 </ol>
 </details>
 </div></div>
@@ -930,11 +931,11 @@ Figure&nbsp;19.2: The 95% confidence interval for the difference in defect rates
 </section>
 <section id="sec-more-sampling-summary" class="level2" data-number="19.4">
 <h2 data-number="19.4" class="anchored" data-anchor-id="sec-more-sampling-summary"><span class="header-section-number">19.4</span> Summary</h2>
-<p><a href="#tbl-se-summary" class="quarto-xref">Table&nbsp;<span>19.2</span></a> collects the four standard errors we have used so far. In each row the approximate 95% confidence interval is the estimate plus or minus two standard errors, and the <span class="math inline">\(t\)</span>-statistic for a hypothesized value is the estimate minus that value, divided by the standard error.</p>
+<p><a href="#tbl-se-summary" class="quarto-xref">Table&nbsp;<span>19.2</span></a> has the four standard errors that we have used so far. In every row we get the approximate 95% confidence interval by taking the estimate plus or minus two standard errors. To get the <span class="math inline">\(t\)</span>-statistic for a hypothesized value we subtract that value from the estimate, and divide by the standard error.</p>
 <div id="tbl-se-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-se-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;19.2: Estimates and standard errors for the four parameters covered so far.
+Table&nbsp;19.2: Estimates and standard errors for the four parameters we have covered so far.
 </figcaption>
 <div aria-describedby="tbl-se-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -977,107 +978,107 @@ Table&nbsp;19.2: Estimates and standard errors for the four parameters covered s
 </figure>
 </div>
 <ol type="1">
-<li>The interval and the test are the same for every row of the table. The easiest place to make a mistake is in choosing the standard error.</li>
-<li>The standard errors for differences assume independent samples. For paired data, take the difference within each pair first and use the one-sample formula on those differences.</li>
-<li>A test addresses one hypothesized value, and the interval shows every value the data leave plausible. A decision with a threshold or a break-even needs the interval, because a difference can be detectably different from zero and still too small to act on, or undetected and still possibly large.</li>
-<li>These intervals measure sampling variability only. Whether two groups are otherwise comparable depends on how they were formed: random assignment supports reading a difference as the effect of the treatment, and self-selected groups do not.</li>
+<li>We build the interval and the test the same way in every row of the table. If you make a mistake it will probably be in choosing the standard error, so that’s the step to check.</li>
+<li>Both of the standard errors for differences assume that we have independent samples. If the data are paired, compute the difference within each pair first, and then use the one-sample formula on the differences.</li>
+<li>A test tells us about one hypothesized value, while the interval shows us all of the values that are plausible given the data. If the decision depends on a threshold or a break-even value we need the interval. We have seen that a difference can be statistically significant and still be too small to act on, and we have seen that when we fail to detect a difference it could still be large.</li>
+<li>All of these intervals only measure sampling variability. They don’t tell us whether the two groups are comparable in other ways, which depends on how the groups were formed. With random assignment we can interpret a difference between the groups as the effect of the treatment. When people choose their own groups we can’t.</li>
 </ol>
 </section>
 <section id="sec-more-sampling-practice" class="level2" data-number="19.5">
 <h2 data-number="19.5" class="anchored" data-anchor-id="sec-more-sampling-practice"><span class="header-section-number">19.5</span> Additional practice</h2>
 <div id="exercise-choose-se" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.9: </strong>Choose the parameter and standard error</div><div class="fobx-body">
-<p>For each setting, name the population parameter, identify the unit of observation, and give the estimated standard error. State the independence assumption the standard error needs.</p>
+<p>For each of the settings below, name the population parameter, say what the unit of observation is, and give the estimated standard error. What independence assumption does the standard error need?</p>
 <ol type="1">
-<li>Estimate mean resolution time from 100 randomly selected tickets.</li>
-<li>Estimate the renewal proportion from 400 randomly selected customers.</li>
-<li>Compare mean resolution time between two independent samples of tickets handled by different teams.</li>
-<li>Compare purchase proportions among visitors randomly assigned to two webpage designs.</li>
-<li>Estimate the mean difference between a handheld assay and the standard lab assay when a lab measures the same 36 tablets with both; the standard deviation of the 36 differences is available.</li>
+<li>We estimate mean resolution time from 100 randomly selected tickets.</li>
+<li>We estimate the proportion of customers who renew from 400 randomly selected customers.</li>
+<li>We compare mean resolution time using two independent samples of tickets, handled by two different teams.</li>
+<li>We compare the proportion of visitors who make a purchase, where visitors were randomly assigned to one of two webpage designs.</li>
+<li>A lab measures the same 36 tablets with a handheld assay and with the standard lab assay, and we estimate the mean difference between them. We have the standard deviation of the 36 differences.</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-choose-se">
 <summary>Solution</summary>
 <ol type="1">
-<li>The parameter is a population mean <span class="math inline">\(\mu\)</span> and the unit is a ticket. The standard error is <span class="math inline">\(s/\sqrt n\)</span>, which assumes independent tickets.</li>
-<li>The parameter is a proportion <span class="math inline">\(p\)</span> and the unit is a customer. The standard error is <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}\)</span>, which assumes independent customers.</li>
-<li>The parameter is a difference in means <span class="math inline">\(\mu_A-\mu_B\)</span> and the unit is a ticket. The standard error is <span class="math inline">\(\sqrt{s_A^2/n_A+s_B^2/n_B}\)</span>, which assumes independent tickets within each team and independent samples from the two teams.</li>
-<li>The parameter is a difference in proportions <span class="math inline">\(p_A-p_B\)</span> and the unit is a visitor. The standard error is <span class="math inline">\(\sqrt{\hat p_A(1-\hat p_A)/n_A+\hat p_B(1-\hat p_B)/n_B}\)</span>, which assumes independent visitors and independent groups; random assignment of separate visitors supplies the second.</li>
-<li>The parameter is the mean within-tablet difference and the unit is a tablet. Compute each tablet’s difference first; the standard error is <span class="math inline">\(s_d/\sqrt{36}\)</span>, which assumes independent tablets. The two readings on one tablet are paired, so the formula for independent samples does not apply.</li>
+<li>The parameter is a population mean <span class="math inline">\(\mu\)</span>, and the unit is a ticket. The standard error is <span class="math inline">\(s/\sqrt n\)</span>. It assumes that the tickets are independent.</li>
+<li>The parameter is a proportion <span class="math inline">\(p\)</span>, and the unit is a customer. The standard error is <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}\)</span>. It assumes that the customers are independent.</li>
+<li>The parameter is a difference in means <span class="math inline">\(\mu_A-\mu_B\)</span>, and the unit is a ticket. The standard error is <span class="math inline">\(\sqrt{s_A^2/n_A+s_B^2/n_B}\)</span>. It assumes that the tickets within each team are independent, and that the two teams’ samples are independent of each other.</li>
+<li>The parameter is a difference in proportions <span class="math inline">\(p_A-p_B\)</span>, and the unit is a visitor. The standard error is <span class="math inline">\(\sqrt{\hat p_A(1-\hat p_A)/n_A+\hat p_B(1-\hat p_B)/n_B}\)</span>. It assumes that the visitors are independent and that the two groups are independent. We get independent groups here because separate visitors were randomly assigned to the two designs.</li>
+<li>The parameter is the mean difference within a tablet, and the unit is a tablet. We compute the difference for each tablet first, and then the standard error is <span class="math inline">\(s_d/\sqrt{36}\)</span>, which assumes that the tablets are independent. The two readings on the same tablet are paired, so we can’t use the formula for independent samples.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-shed-renters" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.10: </strong>How many adults rent?</div><div class="fobx-body">
-<p>The Federal Reserve’s 2025 Survey of Household Economics and Decisionmaking (SHED), whose economic-conditions ratings we plotted in <a href="./singlevar_05_categorical.html#sec-ordinal-rating">the chapter on categorical variables</a>, also asks each respondent about housing. Of the 12,934 respondents in our extract, 3,426 said they pay rent. The others own their home, with or without a mortgage, or neither own nor pay rent. Let <span class="math inline">\(p\)</span> denote the proportion of all U.S. adults who pay rent. For this exercise, treat the respondents as a random sample of U.S. adults. The SHED publishes survey weights, but this extract does not include them; the interval below therefore omits weighting and nonresponse error.</p>
-<p>A renters-insurance company, invented for this exercise, sizes its market with a planning model that assumes one in four adults pays rent, so <span class="math inline">\(p_0=0.25\)</span>.</p>
+<p>We used the Federal Reserve’s 2025 Survey of Household Economics and Decisionmaking (SHED) in <a href="./singlevar_05_categorical.html#sec-ordinal-rating">the chapter on categorical variables</a>, where we plotted its ratings of economic conditions. The survey also asks each respondent about their housing. There are 12,934 respondents in our extract, and 3,426 of them said that they pay rent. The rest either own their home (with or without a mortgage), or they neither own nor pay rent. Let <span class="math inline">\(p\)</span> be the proportion of all U.S. adults who pay rent. For this exercise you should treat the respondents as a random sample of U.S. adults.</p>
+<p>A renters-insurance company estimates the size of its market using a planning model. The model assumes that one in four adults pays rent, so <span class="math inline">\(p_0=0.25\)</span>.</p>
 <ol type="1">
-<li>Compute <span class="math inline">\(\hat p\)</span>, its estimated standard error, and a two-SE interval for <span class="math inline">\(p\)</span>. State in one sentence what the interval says about the share of adults who rent.</li>
-<li>Is the planning model’s 25% a plausible value for <span class="math inline">\(p\)</span>? Confirm your answer with a t-statistic, use the <a href="./prob_04_normal.html#sec-empirical-rule">68/95/99.7 rule</a> to bound the two-sided p-value, and state the verdict at <span class="math inline">\(\alpha=0.05\)</span>.</li>
-<li>What sources of error does this unweighted interval leave out? Explain why a narrow sampling interval alone does not establish that the estimate is close to the proportion among all U.S. adults.</li>
+<li>Compute <span class="math inline">\(\hat p\)</span>, its estimated standard error, and a two-SE interval for <span class="math inline">\(p\)</span>. In one sentence, what does the interval tell you about the share of adults who rent?</li>
+<li>Is the planning model’s 25% a plausible value for <span class="math inline">\(p\)</span>? Check your answer with a t-statistic. Use the <a href="./prob_04_normal.html#sec-empirical-rule">68/95/99.7 rule</a> to put a bound on the two-sided p-value, and state your conclusion at <span class="math inline">\(\alpha=0.05\)</span>.</li>
+<li>What sources of error does this interval leave out? Explain why a narrow interval doesn’t tell us, by itself, that our estimate is close to the proportion among all U.S. adults.</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-shed-renters">
 <summary>Solution</summary>
 <ol type="1">
-<li>The sample proportion is <span class="math inline">\(\hat p=3,426/12,934\approx0.265\)</span>, with estimated standard error <span class="math inline">\(\sqrt{0.265(0.735)/12,934}\approx0.0039\)</span>, or about 0.388 percentage points. The two-SE interval is <span class="math inline">\(0.265\pm2(0.0039)\)</span>, about <span class="math inline">\([25.7\%,\ 27.3\%]\)</span>. Under the sampling assumption, the plausible values for the share of U.S. adults who pay rent sit a little above one in four, with a margin of error of 0.8 points.</li>
-<li>The interval lies entirely above 25%, so the planning value is not plausible under the sampling assumption. To test <span class="math inline">\(H_0:p=0.25\)</span> against <span class="math inline">\(H_A:p\ne0.25\)</span>, work in percentage points: <span class="math display">\[
+<li>The sample proportion is <span class="math inline">\(\hat p=3,426/12,934\approx0.265\)</span> and its estimated standard error is <span class="math inline">\(\sqrt{0.265(0.735)/12,934}\approx0.0039\)</span>, or about 0.388 percentage points. The two-SE interval is <span class="math inline">\(0.265\pm2(0.0039)\)</span>, which is about <span class="math inline">\([25.7\%,\ 27.3\%]\)</span>. If we accept the sampling assumption, the plausible values for the share of U.S. adults who pay rent are a little more than one in four, and the margin of error is 0.8 points.</li>
+<li>The whole interval is above 25%, so the planning value isn’t plausible (under the sampling assumption). We can test <span class="math inline">\(H_0:p=0.25\)</span> against <span class="math inline">\(H_A:p\ne0.25\)</span>, working in percentage points: <span class="math display">\[
 t=\frac{26.49-25}{0.388}\approx3.84.
-\]</span> The sample proportion sits almost four standard errors above the planning value. About 99.7% of a standard normal distribution lies within three standard deviations of zero, so the two-sided p-value is below 0.003, well below 0.05, and we reject the null hypothesis. The verdict agrees with the planning value falling outside the two-SE interval.</li>
-<li>The interval measures the variation we would see from one random sample to the next under the sampling model. It does not cover differences between people who answer the survey and people who do not, or the population adjustments that the omitted weights would make. A narrow interval can coexist with a systematic difference between these respondents and all U.S. adults.</li>
+\]</span> The sample proportion is almost four standard errors above the planning value. About 99.7% of a standard normal distribution is within three standard deviations of zero, so the two-sided p-value has to be less than 0.003. That’s much smaller than 0.05 and we reject the null hypothesis, which agrees with what we saw from the two-SE interval.</li>
+<li>The interval measures how much our estimate would vary from one random sample to the next, if the sampling model is right. It doesn’t account for differences between the people who answer the survey and the people who don’t. We can have a very narrow interval even when these respondents are systematically different from U.S. adults as a whole.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-zero-errors" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.11: </strong>Zero observed errors</div><div class="fobx-body">
-<p>A random pilot audit finds no errors among 40 insurance claims. An analyst substitutes <span class="math inline">\(\hat p=0\)</span> into <span class="math inline">\(\sqrt{\hat p(1-\hat p)/40}\)</span>, gets a standard error of zero, and reports the confidence interval <span class="math inline">\([0,\ 0]\)</span>. Has the pilot established that the population error rate is zero? What condition for the interval fails here? You do not need to construct a replacement interval.</p>
+<p>A pilot audit of 40 randomly selected insurance claims finds no errors. An analyst plugs <span class="math inline">\(\hat p=0\)</span> into <span class="math inline">\(\sqrt{\hat p(1-\hat p)/40}\)</span>, gets a standard error of zero, and reports a confidence interval of <span class="math inline">\([0,\ 0]\)</span>. Has the pilot shown that the error rate in the population is zero? Which condition for the interval fails here? (You don’t need to construct a better interval.)</p>
 <details class="solution-details" aria-label="Solution" id="solution-zero-errors">
 <summary>Solution</summary>
-<p>No.&nbsp;A sample of 40 claims with no errors is quite likely when the population error rate is small but positive; at an error rate of 2%, for example, about 45% of samples of 40 would contain no errors, since <span class="math inline">\(0.98^{40}\approx0.45\)</span>. The normal approximation needs enough of both outcomes in the sample, and here there are no errors at all. The standard error of zero reflects that failure, not certainty about the error rate.</p>
+<p>No.&nbsp;If the population error rate is small but positive we could easily get a sample of 40 claims with no errors. For example, if the error rate is 2% then about 45% of samples of 40 claims would have no errors at all, since <span class="math inline">\(0.98^{40}\approx0.45\)</span>. The normal approximation needs enough of both outcomes in the sample, and we have none of one of them. The standard error is zero because the approximation has failed. It doesn’t mean that we are certain about the error rate.</p>
 </details>
 </div></div>
 </div>
 <div id="exercise-audit-cost-precision" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.12: </strong>Precision and audit cost</div><div class="fobx-body">
-<p>An insurer has several million claims and wants an approximate 95% confidence interval for the proportion with billing errors. Each audited claim costs $10. Use the worst-case planning margin <span class="math inline">\(1/\sqrt n\)</span>.</p>
+<p>An insurer has several million claims, and wants an approximate 95% confidence interval for the proportion of claims with billing errors. It costs $10 to audit each claim. Use the worst-case planning margin <span class="math inline">\(1/\sqrt n\)</span>.</p>
 <ol type="1">
-<li>Find the sample size and audit cost for a margin of 4 percentage points, and for a margin of 2 percentage points.</li>
-<li>Explain why halving the margin more than doubles the cost.</li>
-<li>The audit team proposes sampling only claims whose records are easy to retrieve. Does the calculation in part 1 account for that choice?</li>
+<li>Find the sample size and the cost of the audit for a margin of 4 percentage points. Do the same for a margin of 2 percentage points.</li>
+<li>When we cut the margin in half the cost more than doubles. Why?</li>
+<li>The audit team proposes sampling only from claims with records that are easy to retrieve. Does your calculation in part 1 account for that?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-audit-cost-precision">
 <summary>Solution</summary>
 <ol type="1">
-<li>Solving <span class="math inline">\(1/\sqrt n=0.04\)</span> gives <span class="math inline">\(n=625\)</span> claims, which cost $6,250. Solving <span class="math inline">\(1/\sqrt n=0.02\)</span> gives <span class="math inline">\(n=2{,}500\)</span> claims, which cost $25,000.</li>
-<li>The margin shrinks with <span class="math inline">\(\sqrt n\)</span>, so halving it requires four times as many claims. Cost is proportional to the number of claims, so it also quadruples.</li>
-<li>No.&nbsp;The margin describes sampling variability for a random sample of all claims. Easily retrieved claims may differ systematically in their error rate, and auditing more of them would not remove that difference.</li>
+<li>If we solve <span class="math inline">\(1/\sqrt n=0.04\)</span> we get <span class="math inline">\(n=625\)</span> claims, which would cost $6,250. If we solve <span class="math inline">\(1/\sqrt n=0.02\)</span> we get <span class="math inline">\(n=2{,}500\)</span> claims, which would cost $25,000.</li>
+<li>The margin shrinks with <span class="math inline">\(\sqrt n\)</span>, so to cut it in half we need four times as many claims. The cost is proportional to the number of claims, so it is four times as large too.</li>
+<li>No.&nbsp;The margin describes the sampling variability for a random sample from all of the claims. The claims that are easy to retrieve could have a systematically different error rate, and auditing more of them won’t fix that.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-two-stores-two-intervals" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.13: </strong>Two stores, two intervals</div><div class="fobx-body">
-<p>A retailer audits average transaction size at two stores. At Store A, a random sample of 64 transactions has mean $52 and standard deviation $16. At Store B, a random sample of 100 transactions has mean $58 and standard deviation $20. Assume the normal approximation is adequate for each sample mean.</p>
+<p>A retailer audits the average transaction size at two of its stores. A random sample of 64 transactions at Store A has a mean of $52 and a standard deviation of $16. A random sample of 100 transactions at Store B has a mean of $58 and a standard deviation of $20. Assume that the normal approximation is adequate for each sample mean.</p>
 <ol type="1">
-<li>Compute the two-SE interval for each store’s mean transaction size.</li>
-<li>The two intervals overlap. The regional manager concludes that “the stores could easily have the same average, so there is no evidence of a difference.” Before computing anything more, say whether overlapping intervals justify that conclusion.</li>
-<li>Treating the samples as independent, compute the standard error of the difference in means, B minus A, and a two-SE interval for the population difference.</li>
-<li>In one or two sentences, reconcile parts 1 and 3.</li>
+<li>Compute the two-SE interval for the mean transaction size at each store.</li>
+<li>The two intervals overlap. The regional manager concludes that “the stores could easily have the same average, so there is no evidence of a difference.” Before you compute anything else, do overlapping intervals justify the manager’s conclusion?</li>
+<li>Treat the samples as independent. Compute the standard error of the difference in means (B minus A), and a two-SE interval for the difference in the population.</li>
+<li>Reconcile your answers to parts 1 and 3 in one or two sentences.</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-two-stores-two-intervals">
 <summary>Solution</summary>
 <ol type="1">
-<li>Store A’s standard error is <span class="math inline">\(16/\sqrt{64}=2\)</span>, giving <span class="math inline">\([48,\ 56]\)</span>. Store B’s is <span class="math inline">\(20/\sqrt{100}=2\)</span>, giving <span class="math inline">\([54,\ 62]\)</span>.</li>
-<li>No.&nbsp;Each interval describes plausible values for one mean on its own. Whether the two means could be equal is a question about their difference, which has its own standard error and its own interval.</li>
-<li>The standard error is <span class="math inline">\(\sqrt{2^2+2^2}\approx2.83\)</span>, and the interval is <span class="math inline">\(6\pm2(2.83)\)</span>, about <span class="math inline">\([0.3,\ 11.7]\)</span> dollars.</li>
-<li>The separate intervals overlap unless the gap exceeds the sum of their margins, <span class="math inline">\(4+4=8\)</span> dollars. The interval for the difference excludes zero once the gap exceeds two standard errors of the difference, <span class="math inline">\(2\sqrt{2^2+2^2}\approx5.7\)</span> dollars, because standard errors combine through their squares. The $6 gap clears the second threshold but not the first.</li>
+<li>For Store A the standard error is <span class="math inline">\(16/\sqrt{64}=2\)</span> and the interval is <span class="math inline">\([48,\ 56]\)</span>. For Store B the standard error is <span class="math inline">\(20/\sqrt{100}=2\)</span> and the interval is <span class="math inline">\([54,\ 62]\)</span>.</li>
+<li>No.&nbsp;Each interval gives us the plausible values for one of the means, without reference to the other. Whether the two means could be equal is a question about the difference between them, and the difference has its own standard error and its own interval.</li>
+<li>The standard error is <span class="math inline">\(\sqrt{2^2+2^2}\approx2.83\)</span>. The interval is <span class="math inline">\(6\pm2(2.83)\)</span>, or about <span class="math inline">\([0.3,\ 11.7]\)</span> dollars.</li>
+<li>The two separate intervals will overlap unless the gap between the means is more than the sum of their margins of error, which is <span class="math inline">\(4+4=8\)</span> dollars. The interval for the difference will exclude zero when the gap is more than two standard errors of the difference, which is only <span class="math inline">\(2\sqrt{2^2+2^2}\approx5.7\)</span> dollars. It’s smaller because we add up the squares of the standard errors, and not the standard errors themselves. The gap we observed is $6, which is more than 5.7 and less than 8.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-sales-tool-break-even" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.14: </strong>A sales tool with a break-even</div><div class="fobx-body">
-<p>An auto-parts distributor is considering a subscription sales-planning tool for its outside sales representatives. Counting the license and the selling time lost to training, the tool costs $4,000 per rep per quarter, so it pays for itself only if it raises mean quarterly gross margin per rep by more than $4,000. For one quarter, the distributor randomly assigned 60 of 135 participating reps to use the tool (group A); the other 75 worked as usual (group B). The numbers in this exercise are invented.</p>
+<p>An auto-parts distributor is thinking about buying a subscription to a sales-planning tool for its outside sales representatives. Between the license and the selling time that reps would lose to training, the tool costs $4,000 per rep per quarter. That means it only pays for itself if it raises the mean quarterly gross margin per rep by more than $4,000. The distributor ran a pilot for one quarter with 135 reps, and randomly assigned 60 of them to use the tool (group A). The other 75 reps worked as usual (group B).</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1102,27 +1103,27 @@ t=\frac{26.49-25}{0.388}\approx3.84.
 </tr>
 </tbody>
 </table>
-<p>Treat the two groups as independent samples and assume the normal approximation is adequate for each group’s mean.</p>
+<p>Treat the two groups as independent samples, and assume that the normal approximation is adequate for the mean of each group.</p>
 <ol type="1">
-<li>Compute the estimate <span class="math inline">\(\bar x_A-\bar x_B\)</span>, its standard error, and the two-SE interval for <span class="math inline">\(\mu_A-\mu_B\)</span>, the tool’s effect on mean quarterly gross margin per rep.</li>
-<li>The vendor’s summary of the pilot reads, “The tool produced a statistically significant lift in gross margin.” Use the interval to evaluate that sentence at the 5% level. What does random assignment contribute to reading the difference as the tool’s effect?</li>
-<li>Does the pilot establish that the tool pays for itself? Compare the interval with the $4,000 break-even and state what the distributor can conclude.</li>
+<li>Let <span class="math inline">\(\mu_A-\mu_B\)</span> be the effect of the tool on mean quarterly gross margin per rep. Compute the estimate <span class="math inline">\(\bar x_A-\bar x_B\)</span>, its standard error, and the two-SE interval for <span class="math inline">\(\mu_A-\mu_B\)</span>.</li>
+<li>The vendor’s summary of the pilot says that “The tool produced a statistically significant lift in gross margin.” Use your interval to evaluate that statement at the 5% level. How does random assignment help us interpret the difference as the effect of the tool?</li>
+<li>Has the pilot shown that the tool pays for itself? Compare the interval to the $4,000 break-even value. What can the distributor conclude?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-sales-tool-break-even">
 <summary>Solution</summary>
 <ol type="1">
-<li>Working in thousands of dollars, the estimate is <span class="math inline">\(96.8-88.4=8.4\)</span>. The distributor measured the two groups separately, so the variances of the two sample means add: <span class="math display">\[
+<li>We will work in thousands of dollars. The estimate is <span class="math inline">\(96.8-88.4=8.4\)</span>. The two groups were measured separately, so we add the variances of the two sample means: <span class="math display">\[
 SE(\bar X_A-\bar X_B)=\sqrt{\frac{19.5^2}{60}+\frac{18.0^2}{75}}\approx3.26.
 \]</span> The interval is <span class="math inline">\(8.4\pm2(3.26)\approx[1.9,\ 14.9]\)</span>, or about $1,900 to $14,900 per rep per quarter.</li>
-<li>Zero lies below the interval’s lower endpoint, so a two-sided test of no effect rejects at about the 5% level, and the vendor’s sentence is accurate. Because the distributor randomly assigned the tool, the two groups differ only by chance apart from the tool, so the lift is credibly the tool’s effect for these reps. It is not merely a difference between the kinds of reps who would volunteer for it. Random assignment does not make these 135 reps representative of sales reps at other firms.</li>
-<li>No.&nbsp;The break-even value of $4,000 lies inside the interval, so effects both below and above break-even are consistent with the pilot. The estimate of $8,400 is above break-even, but only by <span class="math inline">\((8.4-4.0)/3.26\approx1.35\)</span> standard errors, not enough to rule out a tool that loses money. The pilot does not establish that the tool pays. The vendor’s sentence answers whether the effect is zero; the decision turns on whether it exceeds $4,000.</li>
+<li>Zero is below the lower endpoint of the interval, so we would reject the null hypothesis of no effect in a two-sided test at about the 5% level. The vendor’s statement is accurate. Since the distributor assigned the tool at random, the only differences between the two groups (other than the tool) are due to chance, and it’s credible that the lift is the effect of the tool for these reps. We don’t have to worry that we are just seeing a difference between the kinds of reps who would volunteer to use the tool and those who wouldn’t. Random assignment doesn’t make these 135 reps representative of sales reps at other firms, though.</li>
+<li>No.&nbsp;The break-even value of $4,000 is inside the interval, so the pilot is consistent with effects that are below the break-even value and with effects that are above it. Our estimate of $8,400 is above break-even but only by <span class="math inline">\((8.4-4.0)/3.26\approx1.35\)</span> standard errors, and that isn’t enough to rule out a tool that loses money. So the pilot hasn’t shown that the tool pays for itself. The vendor’s statement tells us that the effect isn’t zero, but the distributor’s decision depends on whether the effect is larger than $4,000.</li>
 </ol>
 </details>
 </div></div>
 </div>
 <div id="exercise-hmda-denials" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.15: </strong>Mortgage denial rates</div><div class="fobx-body">
-<p>The <code>HMDA</code> data in the <code>AER</code> package come from a Federal Reserve Bank of Boston study of 2,380 mortgage applications in the Boston area in 1990. Each application was either denied or approved, and the data record whether the applicant was Black. <a href="#tbl-practice-hmda" class="quarto-xref">Table&nbsp;<span>19.3</span></a> gives the counts. Treat the applications as a random sample of mortgage applications in the area that year.</p>
+<p>The <code>HMDA</code> data in the <code>AER</code> package are from a study by the Federal Reserve Bank of Boston, which looked at 2,380 mortgage applications in the Boston area in 1990. Each application was either approved or denied, and the data record whether the applicant was Black. The counts are in <a href="#tbl-practice-hmda" class="quarto-xref">Table&nbsp;<span>19.3</span></a>. Treat the applications as a random sample of the mortgage applications in the area that year.</p>
 <div class="cell">
 <div id="tbl-practice-hmda" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1161,18 +1162,18 @@ Table&nbsp;19.3: Mortgage applications and denials in the Boston HMDA data, 1990
 </div>
 </div>
 <ol type="1">
-<li>Compute the estimated standard error and a two-SE interval for the denial rate among all applications in the area, and then separately for Black applicants and for other applicants.</li>
-<li>The interval for Black applicants is about four times as wide as the interval for other applicants. Give the two reasons.</li>
-<li>The difference between the two sample denial rates is 19.1 percentage points. Treating the two groups as independent samples, compute the standard error of the difference and a two-SE interval for the difference in denial rates.</li>
-<li>State carefully what the interval in part 3 does and does not establish. What questions would the Boston Fed’s researchers have needed to answer before interpreting the gap?</li>
+<li>Compute the estimated standard error and a two-SE interval for the denial rate among all applications in the area. Then do the same for Black applicants and for other applicants separately.</li>
+<li>The interval for Black applicants is about four times as wide as the interval for other applicants. There are two reasons. What are they?</li>
+<li>The difference between the two sample denial rates is 19.1 percentage points. Treat the two groups as independent samples, and compute the standard error of the difference and a two-SE interval for the difference in denial rates.</li>
+<li>What does the interval in part 3 tell us, and what doesn’t it tell us? Be careful. What questions would the researchers at the Boston Fed have needed to answer before they could interpret the gap?</li>
 </ol>
 <details class="solution-details" aria-label="Solution" id="solution-hmda-denials">
 <summary>Solution</summary>
 <ol type="1">
-<li>Overall, <span class="math inline">\(\hat p=0.120\)</span> with standard error <span class="math inline">\(\sqrt{0.120(0.880)/2,380}\approx0.0067\)</span>, for an interval of about <span class="math inline">\([10.6\%,\ 13.3\%]\)</span>. For Black applicants, <span class="math inline">\(\hat p=0.283\)</span> with standard error 0.024 and interval <span class="math inline">\([23.4\%,\ 33.2\%]\)</span>. For other applicants, <span class="math inline">\(\hat p=0.093\)</span> with standard error 0.006 and interval <span class="math inline">\([8.0\%,\ 10.5\%]\)</span>.</li>
-<li>The sample of Black applicants is about one sixth the size, which by itself multiplies the standard error by about <span class="math inline">\(\sqrt6\approx2.4\)</span>. Their denial rate is also closer to one half, where <span class="math inline">\(p(1-p)\)</span> is largest, which adds the rest of the difference.</li>
-<li>Using the standard error for a difference in proportions, we get <span class="math inline">\(\sqrt{0.024^2+0.006^2}\approx0.025\)</span>, and the interval is about <span class="math inline">\([14.0,\ 24.1]\)</span> percentage points.</li>
-<li>Under the sampling model, the interval excludes a zero gap by a wide margin, so random sampling variation alone is an implausible explanation for the observed difference. It does not say why the gap exists. Applicants differ in income, debt ratios, credit history, and the properties they sought, and the raw rates make no adjustment for any of that. The Boston Fed study’s central question was whether the gap survives after accounting for those characteristics, which requires more than a comparison of two raw rates.</li>
+<li>For all applications, <span class="math inline">\(\hat p=0.120\)</span> and the standard error is <span class="math inline">\(\sqrt{0.120(0.880)/2,380}\approx0.0067\)</span>, so the interval is about <span class="math inline">\([10.6\%,\ 13.3\%]\)</span>. For Black applicants, <span class="math inline">\(\hat p=0.283\)</span> with a standard error of 0.024, and the interval is <span class="math inline">\([23.4\%,\ 33.2\%]\)</span>. For other applicants, <span class="math inline">\(\hat p=0.093\)</span> with a standard error of 0.006, and the interval is <span class="math inline">\([8.0\%,\ 10.5\%]\)</span>.</li>
+<li>First, the sample of Black applicants is only about one sixth as large. That alone would make the standard error larger by a factor of about <span class="math inline">\(\sqrt6\approx2.4\)</span>. Second, the denial rate for Black applicants is closer to one half, and <span class="math inline">\(p(1-p)\)</span> is largest at one half. That accounts for the rest.</li>
+<li>From the standard error for a difference in proportions we get <span class="math inline">\(\sqrt{0.024^2+0.006^2}\approx0.025\)</span>, and the interval is about <span class="math inline">\([14.0,\ 24.1]\)</span> percentage points.</li>
+<li>Zero is far outside the interval, so (under our sampling model) it isn’t plausible that the difference we observed is only due to random sampling variation. The interval doesn’t tell us why there is a gap. The applicants were different in their incomes, their debt ratios, their credit histories, and the properties they were trying to buy, and the raw denial rates don’t adjust for any of those differences. The main question in the Boston Fed study was whether there is still a gap after we account for the applicants’ characteristics. We can’t answer that by comparing two raw rates.</li>
 </ol>
 </details>
 </div></div>
@@ -1181,12 +1182,16 @@ Table&nbsp;19.3: Mortgage applications and denials in the Boston HMDA data, 1990
 <section id="data-used-in-this-section" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="data-used-in-this-section">Data used in this section</h2>
 <ul>
+<li><a href="./appendix_data.html#sec-data-wfh-bloom">Bloom, Han &amp; Liang Hybrid WFH Experiment</a> supplies the attrition counts used in the introduction <span class="citation" data-cites="wfh-bloom">(<a href="appendix_data.html#ref-wfh-bloom" role="doc-biblioref">Bloom et al. 2024</a>)</span>.</li>
 <li><a href="./appendix_data.html#sec-data-shed">Survey of Household Economics and Decisionmaking</a> supplies the housing-status data used in the additional practice.</li>
 <li><code>HMDA</code> from the <code>AER</code> package supplies the Boston mortgage applications <span class="citation" data-cites="munnell-hmda-1996 aer-package">(<a href="appendix_data.html#ref-munnell-hmda-1996" role="doc-biblioref">Munnell et al. 1996</a>; <a href="appendix_data.html#ref-aer-package" role="doc-biblioref">Kleiber and Zeileis 2008</a>)</span>.</li>
 </ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-wfh-bloom" class="csl-entry" role="listitem">
+Bloom, Nicholas, Ruobing Han, and James Liang. 2024. <span>“Hybrid Working from Home Improves Retention Without Damaging Performance.”</span> <em>Nature</em> 630 (8018): 920–25. <a href="https://doi.org/10.1038/s41586-024-07500-2">https://doi.org/10.1038/s41586-024-07500-2</a>.
+</div>
 <div id="ref-aer-package" class="csl-entry" role="listitem">
 Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with <span>R</span></em>. Springer-Verlag. <a href="https://doi.org/10.1007/978-0-387-77318-6">https://doi.org/10.1007/978-0-387-77318-6</a>.
 </div>

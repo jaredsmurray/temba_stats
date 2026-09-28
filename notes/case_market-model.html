@@ -77,14 +77,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
-}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
@@ -96,6 +88,14 @@ ul.task-list li input[type="checkbox"] {
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
+}
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
 }
 </style>
 
@@ -772,7 +772,7 @@ Figure&nbsp;22.7: Tesla’s abnormal returns (market-model residuals) over time.
 <li><p>Which stock is most sensitive to market movements? Which is least sensitive?</p></li>
 <li><p>For Stock A, construct a 95% confidence interval for the true beta. Is <span class="math inline">\(\beta = 1\)</span> a plausible value?</p></li>
 </ol>
-<details aria-label="Solution" id="details-1" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="details-1">
 <summary>Solution</summary>
 <p><strong>1. Beta interpretation for Stock B:</strong></p>
 <p>Stock B has a beta of 1.45. When the market return increases by 1 percentage point, Stock B’s return tends to increase by 1.45 percentage points on average. This stock amplifies market movements—when the market is up 2%, Stock B tends to be up about 0.15 + 1.45(2) = 3.05% on average.</p>
@@ -799,7 +799,7 @@ Figure&nbsp;22.7: Tesla’s abnormal returns (market-model residuals) over time.
 <li><p>Interpret the alpha for Fund Y and construct a 95% confidence interval. What does this tell you about Fund Y’s returns beyond what the market explains?</p></li>
 <li><p>Both funds have betas close to 1.0. What does this mean about their market exposure? Based solely on these models, which fund has delivered more return beyond what the market explains?</p></li>
 </ol>
-<details aria-label="Solution" id="details-2" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="details-2">
 <summary>Solution</summary>
 <p><strong>1. Fund X alpha interpretation:</strong></p>
 <p>Fund X has an estimated alpha of 0.25% per month, or about 3% per year (0.25 × 12). Alpha represents average returns not explained by market movements—returns beyond what the fund’s beta and the market’s return would predict. The alpha is also the predicted return when the market return is zero.</p>
@@ -853,7 +853,7 @@ Figure&nbsp;22.7: Tesla’s abnormal returns (market-model residuals) over time.
 <li><p>In which week did Microsoft have the worst company-specific performance?</p></li>
 <li><p>Was any of these weeks unusual for Microsoft? Use the residual standard error.</p></li>
 </ol>
-<details aria-label="Solution" id="details-3" class="solution-details">
+<details class="solution-details" aria-label="Solution" id="details-3">
 <summary>Solution</summary>
 <p><strong>1. Predictions and residuals:</strong></p>
 <p><strong>Week 1:</strong></p>

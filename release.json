@@ -1,6 +1,6 @@
 {
-  "baseline_commit": "9e976af71d5ae4ab88d4de29957558e68bc4c413",
-  "release": "20260928T214424-7axrlzew",
+  "baseline_commit": "0175e70a54c03fe3215908959c202ba0b322b3f2",
+  "release": "20260928T215612-rfs7la7p",
   "scope": "notes",
   "selected": [],
   "shared_inputs": {
@@ -43,5 +43,5 @@
     "slides/_metadata.yml": "a0417d21e30fbeefc86f0797033b4f537985193e9e1aa0feec6beb60e0d7883f",
     "slides/_setup.R": "bcf3c3ebcacea8f65c4b613961108704579019c62e344206c3ce435be1f06699"
   },
-  "source_commit": "027a5514eb17dbaa3300a9de045f1871836dfccf"
+  "source_commit": "92c03ec8698a8b5413e7a06d2a620e885ce997ec"
 }
