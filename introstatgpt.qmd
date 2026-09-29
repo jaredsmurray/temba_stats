@@ -84,6 +84,25 @@ Your ability to complete any assignment, quiz, or exam never depends on an AI
 tool working: known-good tables and figures are provided alongside every
 assignment, and you can use them to check your own output or instead of it.
 
+## Homework 3
+
+Download [IntroStatGPT_homework_03_2026-09-28.zip](files/IntroStatGPT_homework_03_2026-09-28.zip)
+(159 KB). This workspace includes the assignment and all four datasets.
+It works with Codex and Claude Code. Unzip it and open the
+`TEMBA-2026-homework-03-codex` folder, following the [setup instructions](introstatgpt/setup.qmd).
+
+1. [Homework 3](files/homework-03.pdf) — portfolios, the central limit theorem,
+   sampling, confidence intervals, and tests. Graded credit/no credit.
+2. **Optional:** [Sample Homework 3 chat](introstatgpt/homework-03-sample-chat.qmd)
+   — requests and reference tables and plots. Try generating the outputs yourself
+   first, then use this example to check your work.
+3. **Optional:** [Homework 3 report skeleton](files/homework-03-report-skeleton.docx)
+   — the tables and plots in problem order, ready for your calculations and
+   written answers. Use it as a backup if IntroStatGPT is unavailable.
+
+Submit one or more PDFs with every answer labeled by problem and part number.
+Legible handwritten work is welcome once converted to PDF.
+
 ## Intensive
 
 Download [IntroStatGPT_intensive_2026-08-26.zip](files/IntroStatGPT_intensive_2026-08-26.zip)
