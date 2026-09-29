@@ -1,11 +1,10 @@
 {
-  "baseline_commit": "581de2b496bf4f4cb2548a48f165b9f3c0ff8b0f",
-  "release": "20260929T052221-nhkhpcb5",
+  "baseline_commit": "a5f5244c5df76b498a6476d1dbb31bd8e442d463",
+  "release": "20260929T052500-r7er7uki",
   "scope": null,
   "selected": [
-    "files/IntroStatGPT_homework_03_2026-09-28.zip",
-    "files/homework-03-report-skeleton.docx",
-    "files/homework-03.pdf"
+    "introstatgpt.qmd",
+    "introstatgpt/homework-03-sample-chat.qmd"
   ],
   "shared_inputs": {
     "_quarto.yml": "dca89d3406e1f96701bb4db450a47900b4401e159eb35b103890c053660f67d6",

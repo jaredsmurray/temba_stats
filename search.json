@@ -1485,56 +1485,6 @@
     "title": "Visualizing and Summarizing Two Quantitative Variables"
   },
   {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html",
-    "objectID": "introstatgpt.html",
-    "section": "",
-    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#start-here",
-    "objectID": "introstatgpt.html#start-here",
-    "section": "Start here",
-    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT — how to make requests that produce checkable output, how to check it, and what to save.\n\nThe course setup uses Codex with your UT ChatGPT account. If you already have a Claude account with access to Claude Code, you may instead set up IntroStatGPT with Claude Code.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#homework-1",
-    "objectID": "introstatgpt.html#homework-1",
-    "section": "Homework 1",
-    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-28.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets. It works with Codex and Claude Code.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment. Solutions (Canvas login required).\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nOptional: Sample Homework 1 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 1 report skeleton — try building your own report first. This file contains known-good copies of the required tables and figures, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit the PDF you export from Word.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#homework-2",
-    "objectID": "introstatgpt.html#homework-2",
-    "section": "Homework 2",
-    "text": "Homework 2\nDownload IntroStatGPT_homework_02_2026-09-12.zip (444 KB). This folder contains the Homework 2 workspace, assignment, dataset, and supplied figures. It works with Codex and Claude Code.\nTo start, unzip the file, open the ChatGPT desktop app, and choose File → Open Folder. Select the unzipped TEMBA-2026-homework-02-codex folder. Do not upload or drag the ZIP file into a chat; open the unzipped folder so the workspace instructions and tools load correctly.\nUse the workspace with these files:\n\nHomework 2: Probability and Relationships — the assignment.\nOptional: Sample Homework 2 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 2 report skeleton — try building your own report first. This file contains known-good copies of the required tables, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit one or more PDF files. Clearly label every answer with its problem and part number. Legible scans or photographs of handwritten pages are acceptable once converted to PDF.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
-    "title": "IntroStatGPT"
-  },
-  {
-    "crumbs": [
-      "IntroStatGPT"
-    ],
-    "href": "introstatgpt.html#intensive",
-    "objectID": "introstatgpt.html#intensive",
-    "section": "Intensive",
-    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
-    "title": "IntroStatGPT"
-  },
-  {
     "href": "introstatgpt/homework-02-sample-chat.html",
     "objectID": "introstatgpt/homework-02-sample-chat.html",
     "section": "",
@@ -2410,318 +2360,448 @@
     "title": "Triangle Tests and Hypothesis Tests"
   },
   {
-    "objectID": "slides.html",
     "href": "slides.html",
-    "title": "Slides",
+    "objectID": "slides.html",
     "section": "",
-    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view)."
+    "text": "Lecture slide decks. Each opens as a slideshow (press ? for keyboard shortcuts, E for print view).",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#chapters-1014",
     "href": "slides.html#chapters-1014",
-    "title": "Slides",
+    "objectID": "slides.html#chapters-1014",
     "section": "Chapters 10–14",
-    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables"
+    "text": "Chapters 10–14\n\n10. Joint, Marginal, and Conditional Distributions\n12. Independence\n13. Visualizing and Summarizing Two Quantitative Variables\n14. Combining Random Variables",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#chapters-1516",
     "href": "slides.html#chapters-1516",
-    "title": "Slides",
+    "objectID": "slides.html#chapters-1516",
     "section": "Chapters 15–16",
-    "text": "Chapters 15–16\n\n15. Sums, Averages, and the Central Limit Theorem\n16. Sampling Distributions and Confidence Intervals\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard."
+    "text": "Chapters 15–16\n\n15. Sums, Averages, and the Central Limit Theorem\n16. Sampling Distributions and Confidence Intervals\n\nThese decks support pen annotations: press C to write on the slide or B to open the chalkboard.",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#week-of-september-21",
     "href": "slides.html#week-of-september-21",
-    "title": "Slides",
+    "objectID": "slides.html#week-of-september-21",
     "section": "Week of September 21",
-    "text": "Week of September 21\n\nSample Proportions\nTriangle Tests and Hypothesis Tests\nComparisons Between Groups"
+    "text": "Week of September 21\n\nSample Proportions\nTriangle Tests and Hypothesis Tests\nComparisons Between Groups",
+    "title": "Slides"
   },
   {
-    "objectID": "slides.html#week-of-september-28",
     "href": "slides.html#week-of-september-28",
-    "title": "Slides",
+    "objectID": "slides.html#week-of-september-28",
     "section": "Week of September 28",
-    "text": "Week of September 28\n\nSimple Linear Regression"
+    "text": "Week of September 28\n\nSimple Linear Regression",
+    "title": "Slides"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#sale-prices-and-living-area",
     "href": "slides/simple_linear_regression.html#sale-prices-and-living-area",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#sale-prices-and-living-area",
     "section": "Sale prices and living area",
-    "text": "Sale prices and living area\n\n\n\n\n\n\n\n\n\n\n\n\nEach point is one of 438 homes sold in a single ZIP code in southeast Austin.\nA 2,000 sq ft home comes on the market. What price would you predict?\n\n\n\nThese are different homes from the three ZIP codes in Chapter 13, but size and price are about as closely related: r = 0.73 here versus 0.77 there. Take a few guesses. Most people look at the homes near 2,000 sq ft and average them by eye. The line does the same thing in a disciplined way. We come back to this listing in Use 2."
+    "text": "Sale prices and living area\n\n\n\n\n\n\n\n\n\n\n\n\nEach point is one of 438 homes sold in a single ZIP code in southeast Austin.\nA 2,000 sq ft home comes on the market. What price would you predict?\n\n\n\nThese are different homes from the three ZIP codes in Chapter 13, but size and price are about as closely related: r = 0.73 here versus 0.77 there. Take a few guesses. Most people look at the homes near 2,000 sq ft and average them by eye. The line does the same thing in a disciplined way. We come back to this listing in Use 2.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#a-fitted-line",
     "href": "slides/simple_linear_regression.html#a-fitted-line",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#a-fitted-line",
     "section": "A fitted line",
-    "text": "A fitted line\n\n\n\n\n\n\n\n\n\n\n\n\nThe line runs through the bulk of the data:\n\\[\n\\begin{aligned}\n\\widehat{\\text{price}} = {} & 100{,}771 \\\\\n& + 100.01 \\times \\text{area}\n\\end{aligned}\n\\]\nWe estimated its intercept and slope from these 438 homes."
+    "text": "A fitted line\n\n\n\n\n\n\n\n\n\n\n\n\nThe line runs through the bulk of the data:\n\\[\n\\begin{aligned}\n\\widehat{\\text{price}} = {} & 100{,}771 \\\\\n& + 100.01 \\times \\text{area}\n\\end{aligned}\n\\]\nWe estimated its intercept and slope from these 438 homes.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#hats-mark-estimates",
     "href": "slides/simple_linear_regression.html#hats-mark-estimates",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#hats-mark-estimates",
     "section": "Hats mark estimates",
-    "text": "Hats mark estimates\n\\[\n\\hat y = \\hat\\beta_0 + \\hat\\beta_1 x\n\\]\n\n\\(\\hat\\beta_0 = 100{,}771\\) estimates the true intercept \\(\\beta_0\\), and \\(\\hat\\beta_1 = 100.01\\) estimates the true slope \\(\\beta_1\\).\nA hat marks a number computed from data, just like \\(\\hat p\\) for a sample proportion.\n\\(\\hat y\\) is a predicted value: the height of the line above \\(x\\).\n\n\nGreek letters are unknown parameters, as in Chapter 8. We’ll write the model that defines beta_0 and beta_1 in a few slides."
+    "text": "Hats mark estimates\n\\[\n\\hat y = \\hat\\beta_0 + \\hat\\beta_1 x\n\\]\n\n\\(\\hat\\beta_0 = 100{,}771\\) estimates the true intercept \\(\\beta_0\\), and \\(\\hat\\beta_1 = 100.01\\) estimates the true slope \\(\\beta_1\\).\nA hat marks a number computed from data, just like \\(\\hat p\\) for a sample proportion.\n\\(\\hat y\\) is a predicted value: the height of the line above \\(x\\).\n\n\nGreek letters are unknown parameters, as in Chapter 8. We’ll write the model that defines beta_0 and beta_1 in a few slides.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#fitted-values-and-residuals",
     "href": "slides/simple_linear_regression.html#fitted-values-and-residuals",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#fitted-values-and-residuals",
     "section": "Fitted values and residuals",
-    "text": "Fitted values and residuals\n\nA residual is the observed price minus the fitted value on the line. A positive residual means the home sold for more than the line predicts for its size.\n\nThe smaller home sold for less than the larger one, but it did better relative to its size. Residuals carry information about everything besides living area: location on the block, condition, age, and so on."
+    "text": "Fitted values and residuals\n\nA residual is the observed price minus the fitted value on the line. A positive residual means the home sold for more than the line predicts for its size.\n\nThe smaller home sold for less than the larger one, but it did better relative to its size. Residuals carry information about everything besides living area: location on the block, condition, age, and so on.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#least-squares-minimizes-the-residual-variance",
     "href": "slides/simple_linear_regression.html#least-squares-minimizes-the-residual-variance",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#least-squares-minimizes-the-residual-variance",
     "section": "Least squares minimizes the residual variance",
-    "text": "Least squares minimizes the residual variance\n\nAmong all possible lines, least squares chooses the one whose residuals have the smallest variance.\n\nAll three lines pass through the point of averages, so each set of residuals averages zero and the residual variance is the average squared residual. The orange segments are residuals for 70 of the homes. Tilting the line either way makes the typical residual bigger. We won’t derive the minimizing line; software finds it. The criterion is in the notes."
+    "text": "Least squares minimizes the residual variance\n\nAmong all possible lines, least squares chooses the one whose residuals have the smallest variance.\n\nAll three lines pass through the point of averages, so each set of residuals averages zero and the residual variance is the average squared residual. The orange segments are residuals for 70 of the homes. Tilting the line either way makes the typical residual bigger. We won’t derive the minimizing line; software finds it. The criterion is in the notes.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#the-slope-is-correlation-times-a-ratio-of-sds",
     "href": "slides/simple_linear_regression.html#the-slope-is-correlation-times-a-ratio-of-sds",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#the-slope-is-correlation-times-a-ratio-of-sds",
     "section": "The slope is correlation times a ratio of SDs",
-    "text": "The slope is correlation times a ratio of SDs\n\\[\n\\hat\\beta_1 = r\\,\\frac{s_y}{s_x}\n= 0.73 \\times \\frac{72{,}263}{527}\n\\approx 100 \\text{ dollars per sq ft}\n\\]\n\nHere \\(r\\) is the correlation from Chapter 13, and \\(s_x\\) and \\(s_y\\) are the standard deviations of area and price.\nA home one SD larger than average (527 sq ft) has a predicted price \\(r = 0.73\\) SDs above average.\nTwo relationships with the same correlation can have different slopes when their outcomes vary by different amounts.\n\n\n0.73 SDs of price is about $52,800. Hang onto the last bullet: it explains the Tesla and Walmart comparison at the end."
+    "text": "The slope is correlation times a ratio of SDs\n\\[\n\\hat\\beta_1 = r\\,\\frac{s_y}{s_x}\n= 0.73 \\times \\frac{72{,}263}{527}\n\\approx 100 \\text{ dollars per sq ft}\n\\]\n\nHere \\(r\\) is the correlation from Chapter 13, and \\(s_x\\) and \\(s_y\\) are the standard deviations of area and price.\nA home one SD larger than average (527 sq ft) has a predicted price \\(r = 0.73\\) SDs above average.\nTwo relationships with the same correlation can have different slopes when their outcomes vary by different amounts.\n\n\n0.73 SDs of price is about $52,800. Hang onto the last bullet: it explains the Tesla and Walmart comparison at the end.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#residuals-in-sales-forecasting",
     "href": "slides/simple_linear_regression.html#residuals-in-sales-forecasting",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#residuals-in-sales-forecasting",
     "section": "Residuals in sales forecasting",
-    "text": "Residuals in sales forecasting\nA retailer predicts monthly sales from advertising spend, both in thousands of dollars.\n\n\n\\[\n\\widehat{\\text{sales}} = 125 + 3.2 \\times \\text{advertising}\n\\]\n\n\n\n\nMonth\nAdvertising\nSales\n\n\n\n\nMarch\n40\n265\n\n\nApril\n50\n275\n\n\n\n\n\nFind the fitted value and residual for each month.\nWhich month did better relative to what its advertising predicts?\nThe CFO is worried about April’s negative residual. Was April a bad month?\n\n\nSource: exercise ex-slr-sales-residuals in the notes. Allow three or four minutes."
+    "text": "Residuals in sales forecasting\nA retailer predicts monthly sales from advertising spend, both in thousands of dollars.\n\n\n\\[\n\\widehat{\\text{sales}} = 125 + 3.2 \\times \\text{advertising}\n\\]\n\n\n\n\nMonth\nAdvertising\nSales\n\n\n\n\nMarch\n40\n265\n\n\nApril\n50\n275\n\n\n\n\n\nFind the fitted value and residual for each month.\nWhich month did better relative to what its advertising predicts?\nThe CFO is worried about April’s negative residual. Was April a bad month?\n\n\nSource: exercise ex-slr-sales-residuals in the notes. Allow three or four minutes.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#residuals-in-sales-forecasting-solution",
     "href": "slides/simple_linear_regression.html#residuals-in-sales-forecasting-solution",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#residuals-in-sales-forecasting-solution",
     "section": "Residuals in sales forecasting: solution",
-    "text": "Residuals in sales forecasting: solution\n\n\n\nMonth\nFitted value\nResidual\n\n\n\n\nMarch\n\\(125 + 3.2 \\times 40 = 253\\)\n\\(265 - 253 = +12\\)\n\n\nApril\n\\(125 + 3.2 \\times 50 = 285\\)\n\\(275 - 285 = -10\\)\n\n\n\nApril had higher sales, but March beat its prediction by $12,000 while April fell $10,000 short.\nA negative residual means April sold less than the line predicts for $50,000 of advertising, not that April was a bad month. Residuals average zero, so some months always land below the line.\n\nApril’s shortfall could be ordinary month-to-month variation, seasonality, or anything else the model leaves out."
+    "text": "Residuals in sales forecasting: solution\n\n\n\nMonth\nFitted value\nResidual\n\n\n\n\nMarch\n\\(125 + 3.2 \\times 40 = 253\\)\n\\(265 - 253 = +12\\)\n\n\nApril\n\\(125 + 3.2 \\times 50 = 285\\)\n\\(275 - 285 = -10\\)\n\n\n\nApril had higher sales, but March beat its prediction by $12,000 while April fell $10,000 short.\nA negative residual means April sold less than the line predicts for $50,000 of advertising, not that April was a bad month. Residuals average zero, so some months always land below the line.\n\nApril’s shortfall could be ordinary month-to-month variation, seasonality, or anything else the model leaves out.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#the-regression-model",
     "href": "slides/simple_linear_regression.html#the-regression-model",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#the-regression-model",
     "section": "The regression model",
-    "text": "The regression model\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{gathered}\ny = \\beta_0 + \\beta_1 x + \\epsilon \\\\\n\\epsilon \\sim N(0, \\sigma^2)\n\\end{gathered}\n\\]\n\nThe line gives the average price of all homes of each size.\nPrices of homes the same size are normally distributed around the line.\nThe standard deviation \\(\\sigma\\) is the same at every size.\n\n\n\nThe gray point is one 2,800 sq ft home, and epsilon is its distance from the true line. We drew the picture using our estimates as if they were the truth. In practice we never see the true line."
+    "text": "The regression model\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{gathered}\ny = \\beta_0 + \\beta_1 x + \\epsilon \\\\\n\\epsilon \\sim N(0, \\sigma^2)\n\\end{gathered}\n\\]\n\nThe line gives the average price of all homes of each size.\nPrices of homes the same size are normally distributed around the line.\nThe standard deviation \\(\\sigma\\) is the same at every size.\n\n\n\nThe gray point is one 2,800 sq ft home, and epsilon is its distance from the true line. We drew the picture using our estimates as if they were the truth. In practice we never see the true line.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#estimates-stand-in-for-unknown-parameters",
     "href": "slides/simple_linear_regression.html#estimates-stand-in-for-unknown-parameters",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#estimates-stand-in-for-unknown-parameters",
     "section": "Estimates stand in for unknown parameters",
-    "text": "Estimates stand in for unknown parameters\n\n\n\n\nTrue value (unknown)\nEstimate\n\n\n\n\nIntercept\n\\(\\beta_0\\)\n\\(\\hat\\beta_0 = 100{,}771\\)\n\n\nSlope\n\\(\\beta_1\\)\n\\(\\hat\\beta_1 = 100.01\\)\n\n\nSD around the line\n\\(\\sigma\\)\n\\(s_e = 49{,}443\\)\n\n\n\nThe residual standard error, \\(s_e\\), is essentially the SD of the residuals.\nAnother sample of homes would give different estimates. Standard errors measure how far estimates tend to fall from the truth, as they did for \\(\\bar x\\) and \\(\\hat p\\)."
+    "text": "Estimates stand in for unknown parameters\n\n\n\n\nTrue value (unknown)\nEstimate\n\n\n\n\nIntercept\n\\(\\beta_0\\)\n\\(\\hat\\beta_0 = 100{,}771\\)\n\n\nSlope\n\\(\\beta_1\\)\n\\(\\hat\\beta_1 = 100.01\\)\n\n\nSD around the line\n\\(\\sigma\\)\n\\(s_e = 49{,}443\\)\n\n\n\nThe residual standard error, \\(s_e\\), is essentially the SD of the residuals.\nAnother sample of homes would give different estimates. Standard errors measure how far estimates tend to fall from the truth, as they did for \\(\\bar x\\) and \\(\\hat p\\).",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#the-regression-table",
     "href": "slides/simple_linear_regression.html#the-regression-table",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#the-regression-table",
     "section": "The regression table",
-    "text": "The regression table\n\n\n\n\n\n\n\n\n\n\n\n\n\nTerm\nEstimate\nStd. error\n95% CI\nt\np-value\n\n\n\n\nIntercept\n100,771\n7,923\n[85,198, 116,343]\n12.72\n&lt;0.001\n\n\nLiving area (sq ft)\n100.01\n4.48\n[91.20, 108.83]\n22.30\n&lt;0.001\n\n\nResidual standard error\n49,443\n\n\n\n\n\n\nR²\n0.53\n\n\n\n\n\n\nObservations\n438\n\n\n\n\n\n\n\n\n\n\nEach coefficient comes with a standard error, a 95% confidence interval, and a test of whether its true value is zero.\nThe residual standard error is \\(s_e\\), our estimate of \\(\\sigma\\).\n\n\nWalk the columns left to right. R-squared comes in Use 3. The software’s intervals differ slightly from estimate plus or minus two SEs because it makes small adjustments for accuracy. Software also reports an adjusted R-squared; it’s bookkeeping that matters only in small samples (see the notes)."
+    "text": "The regression table\n\n\n\n\n\n\n\n\n\n\n\n\n\nTerm\nEstimate\nStd. error\n95% CI\nt\np-value\n\n\n\n\nIntercept\n100,771\n7,923\n[85,198, 116,343]\n12.72\n&lt;0.001\n\n\nLiving area (sq ft)\n100.01\n4.48\n[91.20, 108.83]\n22.30\n&lt;0.001\n\n\nResidual standard error\n49,443\n\n\n\n\n\n\nR²\n0.53\n\n\n\n\n\n\nObservations\n438\n\n\n\n\n\n\n\n\n\n\nEach coefficient comes with a standard error, a 95% confidence interval, and a test of whether its true value is zero.\nThe residual standard error is \\(s_e\\), our estimate of \\(\\sigma\\).\n\n\nWalk the columns left to right. R-squared comes in Use 3. The software’s intervals differ slightly from estimate plus or minus two SEs because it makes small adjustments for accuracy. Software also reports an adjusted R-squared; it’s bookkeeping that matters only in small samples (see the notes).",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#the-slope-compares-average-prices",
     "href": "slides/simple_linear_regression.html#the-slope-compares-average-prices",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#the-slope-compares-average-prices",
     "section": "The slope compares average prices",
-    "text": "The slope compares average prices\n\nComparing homes that differ by 1,000 sq ft, the larger ones sold for about $100,000 more on average.\n\nThree equivalent readings, from the notes: the line rises $100.01 per square foot; two homes a square foot apart have predicted prices $100.01 apart; and, across many pairs of homes a square foot apart, the larger ones sell for $100.01 more on average. The last one is the model’s reading: each point on the line is the average price of all homes of that size."
+    "text": "The slope compares average prices\n\nComparing homes that differ by 1,000 sq ft, the larger ones sold for about $100,000 more on average.\n\nThree equivalent readings, from the notes: the line rises $100.01 per square foot; two homes a square foot apart have predicted prices $100.01 apart; and, across many pairs of homes a square foot apart, the larger ones sell for $100.01 more on average. The last one is the model’s reading: each point on the line is the average price of all homes of that size.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#the-intercept-is-an-extrapolation-here",
     "href": "slides/simple_linear_regression.html#the-intercept-is-an-extrapolation-here",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#the-intercept-is-an-extrapolation-here",
     "section": "The intercept is an extrapolation here",
-    "text": "The intercept is an extrapolation here\n\nThe smallest home in the data has 852 sq ft, so the intercept is an extrapolation to zero square feet with no practical meaning.\n\nSomeone usually proposes an empty lot as a zero-square-foot house. Even granting that, zero is far outside the data, and nothing says the line holds down there."
+    "text": "The intercept is an extrapolation here\n\nThe smallest home in the data has 852 sq ft, so the intercept is an extrapolation to zero square feet with no practical meaning.\n\nSomeone usually proposes an empty lot as a zero-square-foot house. Even granting that, zero is far outside the data, and nothing says the line holds down there.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#an-intercept-with-a-meaning",
     "href": "slides/simple_linear_regression.html#an-intercept-with-a-meaning",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#an-intercept-with-a-meaning",
     "section": "An intercept with a meaning",
-    "text": "An intercept with a meaning\n\n\n\n\n\n\n\n\n\n\n\n\nCourse evaluations for 463 UT Austin sections (Hamermesh and Parker, 2005).\nEach instructor’s beauty rating is shifted so that 0 is the average rating.\nThe intercept, 4.00, is the predicted evaluation for an instructor of average beauty.\n\n\nSix students rated each instructor’s photo. Because beauty has mean zero and the line passes through the point of averages, the intercept is also the average evaluation. Centering area the same way would make the housing intercept the predicted price of an average-sized home; the slope would not change."
+    "text": "An intercept with a meaning\n\n\n\n\n\n\n\n\n\n\n\n\nCourse evaluations for 463 UT Austin sections (Hamermesh and Parker, 2005).\nEach instructor’s beauty rating is shifted so that 0 is the average rating.\nThe intercept, 4.00, is the predicted evaluation for an instructor of average beauty.\n\n\nSix students rated each instructor’s photo. Because beauty has mean zero and the line passes through the point of averages, the intercept is also the average evaluation. Centering area the same way would make the housing intercept the predicted price of an average-sized home; the slope would not change.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#plausible-values-for-the-slope",
     "href": "slides/simple_linear_regression.html#plausible-values-for-the-slope",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#plausible-values-for-the-slope",
     "section": "Plausible values for the slope",
-    "text": "Plausible values for the slope\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\n&\\hat\\beta_1 \\pm 2\\,\\text{SE}(\\hat\\beta_1) \\\\\n&= 100.01 \\pm 2(4.48) \\\\\n&\\approx [91,\\ 109]\n\\end{aligned}\n\\]\nPlausible values for the true slope run from about $91 to $109 per square foot.\nA flat line, with slope zero, is far outside that range.\n\n\nThe regression table’s interval, [91.20, 108.83], differs only in the decimals. The dashed lines pivot around the point of averages; they show the range of slopes the data support, not a full band for the line."
+    "text": "Plausible values for the slope\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\n&\\hat\\beta_1 \\pm 2\\,\\text{SE}(\\hat\\beta_1) \\\\\n&= 100.01 \\pm 2(4.48) \\\\\n&\\approx [91,\\ 109]\n\\end{aligned}\n\\]\nPlausible values for the true slope run from about $91 to $109 per square foot.\nA flat line, with slope zero, is far outside that range.\n\n\nThe regression table’s interval, [91.20, 108.83], differs only in the decimals. The dashed lines pivot around the point of averages; they show the range of slopes the data support, not a full band for the line.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#testing-for-a-linear-relationship",
     "href": "slides/simple_linear_regression.html#testing-for-a-linear-relationship",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#testing-for-a-linear-relationship",
     "section": "Testing for a linear relationship",
-    "text": "Testing for a linear relationship\nA true slope of zero means no linear relationship: the line is flat.\n\\[\nH_0: \\beta_1 = 0 \\qquad H_A: \\beta_1 \\neq 0\n\\]\n\\[\nt = \\frac{\\hat\\beta_1 - 0}{\\text{SE}(\\hat\\beta_1)}\n= \\frac{100.01}{4.48}\n\\approx 22.3\n\\]\nThe estimate is about 22 standard errors from zero, so the p-value is far below 0.001. These are the \\(t\\) and p-value in the slope row of the regression table.\n\nThe test agrees with the interval: zero is not a plausible slope. The intercept row has its own test of beta_0 = 0, which is of no practical interest here for the reasons on the intercept slide."
+    "text": "Testing for a linear relationship\nA true slope of zero means no linear relationship: the line is flat.\n\\[\nH_0: \\beta_1 = 0 \\qquad H_A: \\beta_1 \\neq 0\n\\]\n\\[\nt = \\frac{\\hat\\beta_1 - 0}{\\text{SE}(\\hat\\beta_1)}\n= \\frac{100.01}{4.48}\n\\approx 22.3\n\\]\nThe estimate is about 22 standard errors from zero, so the p-value is far below 0.001. These are the \\(t\\) and p-value in the slope row of the regression table.\n\nThe test agrees with the interval: zero is not a plausible slope. The intercept row has its own test of beta_0 = 0, which is of no practical interest here for the reasons on the intercept slide.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#predicting-a-2000-sq-ft-home",
     "href": "slides/simple_linear_regression.html#predicting-a-2000-sq-ft-home",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#predicting-a-2000-sq-ft-home",
     "section": "Predicting a 2,000 sq ft home",
-    "text": "Predicting a 2,000 sq ft home\n\n\\[\n\\widehat{\\text{price}} = 100{,}771 + 100.01 \\times 2{,}000 \\approx \\$300{,}791\n\\]"
+    "text": "Predicting a 2,000 sq ft home\n\n\\[\n\\widehat{\\text{price}} = 100{,}771 + 100.01 \\times 2{,}000 \\approx \\$300{,}791\n\\]",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#a-rough-95-prediction-interval",
     "href": "slides/simple_linear_regression.html#a-rough-95-prediction-interval",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#a-rough-95-prediction-interval",
     "section": "A rough 95% prediction interval",
-    "text": "A rough 95% prediction interval\n\n\\[\n\\widehat{\\text{price}} \\pm 2 s_e = 300{,}791 \\pm 2 \\times 49{,}443\n\\approx [\\$201{,}905,\\ \\$399{,}677]\n\\]\nThe model says about 95% of 2,000 sq ft homes sell within \\(2 s_e\\) of the line.\n\nIn our data, 93% of the homes fall between the dashed lines. Software computes a slightly more careful interval that also accounts for uncertainty in the line; here it is almost identical."
+    "text": "A rough 95% prediction interval\n\n\\[\n\\widehat{\\text{price}} \\pm 2 s_e = 300{,}791 \\pm 2 \\times 49{,}443\n\\approx [\\$201{,}905,\\ \\$399{,}677]\n\\]\nThe model says about 95% of 2,000 sq ft homes sell within \\(2 s_e\\) of the line.\n\nIn our data, 93% of the homes fall between the dashed lines. Software computes a slightly more careful interval that also accounts for uncertainty in the line; here it is almost identical.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#three-kinds-of-typical-error",
     "href": "slides/simple_linear_regression.html#three-kinds-of-typical-error",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#three-kinds-of-typical-error",
     "section": "Three kinds of typical error",
-    "text": "Three kinds of typical error\n\n\n\n\n\n\n\n\n\nTypical distance\nHousing\n\n\n\n\nStandard deviation, \\(s_y\\)\nfrom prices to their average\n$72,263\n\n\nStandard error, \\(\\text{SE}(\\hat\\beta_1)\\)\nfrom \\(\\hat\\beta_1\\) to the true slope\n$4.48\n\n\nResidual standard error, \\(s_e\\)\nfrom prices to the line\n$49,443\n\n\n\nWhich of these would shrink if we had four times as many homes?\n\nThe standard error would be about half as large, because the estimate improves with more data. \\(s_y\\) and \\(s_e\\) would stay about the same, because sale prices would be no less variable.\n\n\nTake answers before revealing. This distinction drives most of the confusion about regression output: a tiny SE for the slope says the line is well estimated, not that predictions for individual homes are precise."
+    "text": "Three kinds of typical error\n\n\n\n\n\n\n\n\n\nTypical distance\nHousing\n\n\n\n\nStandard deviation, \\(s_y\\)\nfrom prices to their average\n$72,263\n\n\nStandard error, \\(\\text{SE}(\\hat\\beta_1)\\)\nfrom \\(\\hat\\beta_1\\) to the true slope\n$4.48\n\n\nResidual standard error, \\(s_e\\)\nfrom prices to the line\n$49,443\n\n\n\nWhich of these would shrink if we had four times as many homes?\n\nThe standard error would be about half as large, because the estimate improves with more data. \\(s_y\\) and \\(s_e\\) would stay about the same, because sale prices would be no less variable.\n\n\nTake answers before revealing. This distinction drives most of the confusion about regression output: a tiny SE for the slope says the line is well estimated, not that predictions for individual homes are precise.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#extrapolation",
     "href": "slides/simple_linear_regression.html#extrapolation",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#extrapolation",
     "section": "Extrapolation",
-    "text": "Extrapolation\n\nWe fit the line to homes from 852 to 3,319 sq ft. These data tell us nothing about how prices behave for a 10,000 sq ft home.\n\nPrice per square foot for luxury properties can look quite different, and they sit in different neighborhoods. The intercept slide was the same problem at the other end of the line."
+    "text": "Extrapolation\n\nWe fit the line to homes from 852 to 3,319 sq ft. These data tell us nothing about how prices behave for a 10,000 sq ft home.\n\nPrice per square foot for luxury properties can look quite different, and they sit in different neighborhoods. The intercept slide was the same problem at the other end of the line.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#predicting-with-and-without-living-area",
     "href": "slides/simple_linear_regression.html#predicting-with-and-without-living-area",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#predicting-with-and-without-living-area",
     "section": "Predicting with and without living area",
-    "text": "Predicting with and without living area\n\nThe colored homes are the same in both panels. Which set of prediction errors is smaller?\n\nWe’ll call the left panel the null model: it forces the slope to zero, matching the null hypothesis beta_1 = 0."
+    "text": "Predicting with and without living area\n\nThe colored homes are the same in both panels. Which set of prediction errors is smaller?\n\nWe’ll call the left panel the null model: it forces the slope to zero, matching the null hypothesis beta_1 = 0.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#prediction-errors-with-and-without-living-area",
     "href": "slides/simple_linear_regression.html#prediction-errors-with-and-without-living-area",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#prediction-errors-with-and-without-living-area",
     "section": "Prediction errors with and without living area",
-    "text": "Prediction errors with and without living area\n\nUsing living area shrinks the typical prediction error from $72,263 to $49,443."
+    "text": "Prediction errors with and without living area\n\nUsing living area shrinks the typical prediction error from $72,263 to $49,443.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#each-homes-price-splits-into-two-parts",
     "href": "slides/simple_linear_regression.html#each-homes-price-splits-into-two-parts",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#each-homes-price-splits-into-two-parts",
     "section": "Each home’s price splits into two parts",
-    "text": "Each home’s price splits into two parts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[{\\color{#0072B2}y} = {\\color{#009E73}\\hat y} + {\\color{#D55E00}e}\\]\n\n\n\nThe two homes from the residuals slide. Each price is the line’s prediction for a home that size plus a residual: the part of the price that size alone doesn’t predict."
+    "text": "Each home’s price splits into two parts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[{\\color{#0072B2}y} = {\\color{#009E73}\\hat y} + {\\color{#D55E00}e}\\]\n\n\n\nThe two homes from the residuals slide. Each price is the line’s prediction for a home that size plus a residual: the part of the price that size alone doesn’t predict.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#variance-splits-the-same-way",
     "href": "slides/simple_linear_regression.html#variance-splits-the-same-way",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#variance-splits-the-same-way",
     "section": "Variance splits the same way",
-    "text": "Variance splits the same way\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Var}({\\color{#0072B2}y}) = \\text{Var}({\\color{#009E73}\\hat y}) + \\text{Var}({\\color{#D55E00}e})\\)\n\n\n\nIn thousands of dollars:\n\\[{\\color{#0072B2}72.3^2} \\approx {\\color{#009E73}52.8^2} + {\\color{#D55E00}49.4^2}\\] \\[\n\\begin{aligned}\nR^2 &= ({\\color{#009E73}52.8} / {\\color{#0072B2}72.3})^2 \\\\\n    &= 1 - ({\\color{#D55E00}49.4} / {\\color{#0072B2}72.3})^2 \\\\\n    &= 0.53\n\\end{aligned}\n\\]\n\n\n\nStandard deviations don’t add; variances do, because the fitted values and the residuals are uncorrelated. R-squared is the share of the variance in prices that the line predicts from size."
+    "text": "Variance splits the same way\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Var}({\\color{#0072B2}y}) = \\text{Var}({\\color{#009E73}\\hat y}) + \\text{Var}({\\color{#D55E00}e})\\)\n\n\n\nIn thousands of dollars:\n\\[{\\color{#0072B2}72.3^2} \\approx {\\color{#009E73}52.8^2} + {\\color{#D55E00}49.4^2}\\] \\[\n\\begin{aligned}\nR^2 &= ({\\color{#009E73}52.8} / {\\color{#0072B2}72.3})^2 \\\\\n    &= 1 - ({\\color{#D55E00}49.4} / {\\color{#0072B2}72.3})^2 \\\\\n    &= 0.53\n\\end{aligned}\n\\]\n\n\n\nStandard deviations don’t add; variances do, because the fitted values and the residuals are uncorrelated. R-squared is the share of the variance in prices that the line predicts from size.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#r2-measures-the-reduction-in-prediction-variance",
     "href": "slides/simple_linear_regression.html#r2-measures-the-reduction-in-prediction-variance",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#r2-measures-the-reduction-in-prediction-variance",
     "section": "\\(R^2\\) measures the reduction in prediction variance",
-    "text": "\\(R^2\\) measures the reduction in prediction variance\n\nUsing living area cuts the variance of our prediction errors by about 53%.\n\\(R^2\\) is also the squared correlation: \\(0.73^2 \\approx 0.53\\).\nAn \\(R^2\\) of 0 means the line predicts no better than the average; an \\(R^2\\) of 1 means every point sits on the line.\n\n\n“Explained” in “proportion of variance explained” really means “predicted.” Predicting size from price gives exactly the same R-squared."
+    "text": "\\(R^2\\) measures the reduction in prediction variance\n\nUsing living area cuts the variance of our prediction errors by about 53%.\n\\(R^2\\) is also the squared correlation: \\(0.73^2 \\approx 0.53\\).\nAn \\(R^2\\) of 0 means the line predicts no better than the average; an \\(R^2\\) of 1 means every point sits on the line.\n\n\n“Explained” in “proportion of variance explained” really means “predicted.” Predicting size from price gives exactly the same R-squared.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#a-low-r2-does-not-mean-no-relationship",
     "href": "slides/simple_linear_regression.html#a-low-r2-does-not-mean-no-relationship",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#a-low-r2-does-not-mean-no-relationship",
     "section": "A low \\(R^2\\) does not mean no relationship",
-    "text": "A low \\(R^2\\) does not mean no relationship\n\n\n\n\n\n\n\n\n\n\n\n\n\\(R^2 = 0.036\\): beauty predicts about 4% of the variation in evaluations.\nThe 95% CI for the slope is [0.07, 0.20], and \\(t = 4.1\\).\nThe data give strong evidence of a weak linear relationship.\n\n\nKnowing beauty barely changes the typical error: 0.55 points without it and 0.55 with it. Clarity and fair grading almost surely matter more, and they end up in the residuals. Whether there is a linear relationship is a question about the slope, not about R-squared."
+    "text": "A low \\(R^2\\) does not mean no relationship\n\n\n\n\n\n\n\n\n\n\n\n\n\\(R^2 = 0.036\\): beauty predicts about 4% of the variation in evaluations.\nThe 95% CI for the slope is [0.07, 0.20], and \\(t = 4.1\\).\nThe data give strong evidence of a weak linear relationship.\n\n\nKnowing beauty barely changes the typical error: 0.55 points without it and 0.55 with it. Clarity and fair grading almost surely matter more, and they end up in the residuals. Whether there is a linear relationship is a question about the slope, not about R-squared.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#r2-and-the-size-of-prediction-errors",
     "href": "slides/simple_linear_regression.html#r2-and-the-size-of-prediction-errors",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#r2-and-the-size-of-prediction-errors",
     "section": "\\(R^2\\) and the size of prediction errors",
-    "text": "\\(R^2\\) and the size of prediction errors\nA logistics company predicts weekly delivery costs from the number of shipments. The model has \\(R^2 = 0.77\\) and \\(s_e = \\$3{,}200\\). Weekly costs have a standard deviation of \\(s_y = \\$6{,}700\\).\nThe CFO says, “An \\(R^2\\) of 0.77 seems low. I don’t want forecasts that miss by more than $7,000 very often.”\n\nHow much smaller is the typical prediction error using shipments than predicting the average cost every week?\nIs the model precise enough for the CFO?\n\n\nSource: exercise ex-slr-rsquared-interpretation in the notes. Allow three minutes."
+    "text": "\\(R^2\\) and the size of prediction errors\nA logistics company predicts weekly delivery costs from the number of shipments. The model has \\(R^2 = 0.77\\) and \\(s_e = \\$3{,}200\\). Weekly costs have a standard deviation of \\(s_y = \\$6{,}700\\).\nThe CFO says, “An \\(R^2\\) of 0.77 seems low. I don’t want forecasts that miss by more than $7,000 very often.”\n\nHow much smaller is the typical prediction error using shipments than predicting the average cost every week?\nIs the model precise enough for the CFO?\n\n\nSource: exercise ex-slr-rsquared-interpretation in the notes. Allow three minutes.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#r2-and-the-size-of-prediction-errors-solution",
     "href": "slides/simple_linear_regression.html#r2-and-the-size-of-prediction-errors-solution",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#r2-and-the-size-of-prediction-errors-solution",
     "section": "\\(R^2\\) and the size of prediction errors: solution",
-    "text": "\\(R^2\\) and the size of prediction errors: solution\n\n\n\n\nTypical prediction error\n\n\n\n\nPredicting the average cost\n$6,700\n\n\nUsing shipments\n$3,200\n\n\nReduction\n$3,500\n\n\n\nA $7,000 miss is \\(7{,}000 / 3{,}200 \\approx 2.2\\) residual standard errors. Misses that large should happen in fewer than 5% of weeks, so the model meets the CFO’s standard.\n\\(R^2\\) is a relative measure. To judge the size of errors in dollars, look at \\(s_e\\)."
+    "text": "\\(R^2\\) and the size of prediction errors: solution\n\n\n\n\nTypical prediction error\n\n\n\n\nPredicting the average cost\n$6,700\n\n\nUsing shipments\n$3,200\n\n\nReduction\n$3,500\n\n\n\nA $7,000 miss is \\(7{,}000 / 3{,}200 \\approx 2.2\\) residual standard errors. Misses that large should happen in fewer than 5% of weeks, so the model meets the CFO’s standard.\n\\(R^2\\) is a relative measure. To judge the size of errors in dollars, look at \\(s_e\\).",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#do-two-story-homes-sell-for-more",
     "href": "slides/simple_linear_regression.html#do-two-story-homes-sell-for-more",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#do-two-story-homes-sell-for-more",
     "section": "Do two-story homes sell for more?",
-    "text": "Do two-story homes sell for more?\n\n\n\n\nOne-story\nTwo-story\n\n\n\n\nHomes\n284\n154\n\n\nAverage price\n$252,500\n$300,700\n\n\nAverage living area\n1,468 sq ft\n2,090 sq ft\n\n\n\nTwo-story homes sold for about $48,200 more on average. They are also about 622 sq ft larger.\nHow much of the $48,200 is size?"
+    "text": "Do two-story homes sell for more?\n\n\n\n\nOne-story\nTwo-story\n\n\n\n\nHomes\n284\n154\n\n\nAverage price\n$252,500\n$300,700\n\n\nAverage living area\n1,468 sq ft\n2,090 sq ft\n\n\n\nTwo-story homes sold for about $48,200 more on average. They are also about 622 sq ft larger.\nHow much of the $48,200 is size?",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#comparing-homes-of-the-same-size",
     "href": "slides/simple_linear_regression.html#comparing-homes-of-the-same-size",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#comparing-homes-of-the-same-size",
     "section": "Comparing homes of the same size",
-    "text": "Comparing homes of the same size\n\nAt the same living area, two-story homes sold for about $14,000 less on average.\n\nHand check from the table: the extra 622 sq ft adds 622 x $100 = $62,200 to the predicted price, and $48,200 - $62,200 is about -$14,000. The raw premium was size, and then some. This compares homes of the same size; it is not a claim about what adding a second story would do."
+    "text": "Comparing homes of the same size\n\nAt the same living area, two-story homes sold for about $14,000 less on average.\n\nHand check from the table: the extra 622 sq ft adds 622 x $100 = $62,200 to the predicted price, and $48,200 - $62,200 is about -$14,000. The raw premium was size, and then some. This compares homes of the same size; it is not a claim about what adding a second story would do.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#size-is-not-the-only-difference",
     "href": "slides/simple_linear_regression.html#size-is-not-the-only-difference",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#size-is-not-the-only-difference",
     "section": "Size is not the only difference",
-    "text": "Size is not the only difference\n\n\n\n\nOne-story\nTwo-story\n\n\n\n\nMedian age (years)\n24\n9.5\n\n\nAverage bathrooms\n2.1\n3.0\n\n\nAverage bedrooms\n3.1\n3.6\n\n\n\nA line in size alone cannot hold these fixed, so the residuals still mix them into the comparison. Multiple regression compares homes that match on several characteristics at once."
+    "text": "Size is not the only difference\n\n\n\n\nOne-story\nTwo-story\n\n\n\n\nMedian age (years)\n24\n9.5\n\n\nAverage bathrooms\n2.1\n3.0\n\n\nAverage bedrooms\n3.1\n3.6\n\n\n\nA line in size alone cannot hold these fixed, so the residuals still mix them into the comparison. Multiple regression compares homes that match on several characteristics at once.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#the-market-model-r-alpha-beta-r_m-epsilon",
     "href": "slides/simple_linear_regression.html#the-market-model-r-alpha-beta-r_m-epsilon",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#the-market-model-r-alpha-beta-r_m-epsilon",
     "section": "The market model: \\(R = \\alpha + \\beta R_M + \\epsilon\\)",
-    "text": "The market model: \\(R = \\alpha + \\beta R_M + \\epsilon\\)\n\nBeta is the slope: a stock’s average move per 1% move in the market. Alpha is the intercept: its average return when the market is flat.\n\nAlpha and beta are finance’s names for beta_0 and beta_1. R is the stock’s return, R_M the market’s, and epsilon the stock-specific part of the return. Beta above 1 amplifies market swings in both directions; below 1 dampens them."
+    "text": "The market model: \\(R = \\alpha + \\beta R_M + \\epsilon\\)\n\nBeta is the slope: a stock’s average move per 1% move in the market. Alpha is the intercept: its average return when the market is flat.\n\nAlpha and beta are finance’s names for beta_0 and beta_1. R is the stock’s return, R_M the market’s, and epsilon the stock-specific part of the return. Beta above 1 amplifies market swings in both directions; below 1 dampens them.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#tesla-and-ford",
     "href": "slides/simple_linear_regression.html#tesla-and-ford",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#tesla-and-ford",
     "section": "Tesla and Ford",
-    "text": "Tesla and Ford\n\nEach point is one week of returns, October 2023 to September 2025; the market is the S&P 500 (SPY). The dashed line has slope 1.\nWhich stock amplifies market moves? Roughly what is each beta?\n\nPause here and take guesses before moving on."
+    "text": "Tesla and Ford\n\nEach point is one week of returns, October 2023 to September 2025; the market is the S&P 500 (SPY). The dashed line has slope 1.\nWhich stock amplifies market moves? Roughly what is each beta?\n\nPause here and take guesses before moving on.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#software-tests-beta-0",
     "href": "slides/simple_linear_regression.html#software-tests-beta-0",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#software-tests-beta-0",
     "section": "Software tests \\(\\beta = 0\\)",
-    "text": "Software tests \\(\\beta = 0\\)\n\n\n\n\n\nTerm\nEstimate\nStd. error\nt\np-value\n\n\n\n\nIntercept\n-0.02\n0.72\n-0.03\n0.980\n\n\nMarket return\n1.87\n0.33\n5.60\n&lt;0.001\n\n\nResidual standard error\n7.19\n\n\n\n\n\nR²\n0.23\n\n\n\n\n\nObservations\n104\n\n\n\n\n\n\n\n\nReturns in percent. When the market moves 1%, Tesla moves about 1.87% on average. The intercept, \\(\\hat\\alpha\\), is small next to its standard error.\nThe \\(t\\) of 5.60 tests \\(\\beta = 0\\). For a stock, the more useful question is whether \\(\\beta = 1\\).\n\nNobody doubts that Tesla moves with the market. The question an investor cares about is whether it moves more than one-for-one.\nThe 95% intervals for alpha are about [-1.46, 1.43] for Tesla and [-1.06, 0.58] for Ford, percent per week."
+    "text": "Software tests \\(\\beta = 0\\)\n\n\n\n\n\nTerm\nEstimate\nStd. error\nt\np-value\n\n\n\n\nIntercept\n-0.02\n0.72\n-0.03\n0.980\n\n\nMarket return\n1.87\n0.33\n5.60\n&lt;0.001\n\n\nResidual standard error\n7.19\n\n\n\n\n\nR²\n0.23\n\n\n\n\n\nObservations\n104\n\n\n\n\n\n\n\n\nReturns in percent. When the market moves 1%, Tesla moves about 1.87% on average. The intercept, \\(\\hat\\alpha\\), is small next to its standard error.\nThe \\(t\\) of 5.60 tests \\(\\beta = 0\\). For a stock, the more useful question is whether \\(\\beta = 1\\).\n\nNobody doubts that Tesla moves with the market. The question an investor cares about is whether it moves more than one-for-one.\nThe 95% intervals for alpha are about [-1.46, 1.43] for Tesla and [-1.06, 0.58] for Ford, percent per week.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#is-teslas-beta-different-from-1",
     "href": "slides/simple_linear_regression.html#is-teslas-beta-different-from-1",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#is-teslas-beta-different-from-1",
     "section": "Is Tesla’s beta different from 1?",
-    "text": "Is Tesla’s beta different from 1?\n\n\n\nStock\n\\(\\hat\\beta\\)\n\\(\\hat\\beta \\pm 2\\,\\text{SE}\\)\nIs 1 plausible?\n\n\n\n\nTesla\n1.87\n[1.20, 2.54]\nNo\n\n\nFord\n0.98\n[0.60, 1.36]\nYes\n\n\n\n\\[\nt = \\frac{\\hat\\beta - 1}{\\text{SE}(\\hat\\beta)}\n= \\frac{1.873 - 1}{0.335}\n\\approx 2.61,\n\\qquad \\text{p-value} \\approx 0.009\n\\]\nWe have good evidence that Tesla amplifies market moves. Ford’s estimate is just under 1, and the data are consistent with a beta of 1."
+    "text": "Is Tesla’s beta different from 1?\n\n\n\nStock\n\\(\\hat\\beta\\)\n\\(\\hat\\beta \\pm 2\\,\\text{SE}\\)\nIs 1 plausible?\n\n\n\n\nTesla\n1.87\n[1.20, 2.54]\nNo\n\n\nFord\n0.98\n[0.60, 1.36]\nYes\n\n\n\n\\[\nt = \\frac{\\hat\\beta - 1}{\\text{SE}(\\hat\\beta)}\n= \\frac{1.873 - 1}{0.335}\n\\approx 2.61,\n\\qquad \\text{p-value} \\approx 0.009\n\\]\nWe have good evidence that Tesla amplifies market moves. Ford’s estimate is just under 1, and the data are consistent with a beta of 1.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#similar-r2-different-betas",
     "href": "slides/simple_linear_regression.html#similar-r2-different-betas",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#similar-r2-different-betas",
     "section": "Similar \\(R^2\\), different betas",
-    "text": "Similar \\(R^2\\), different betas\n\nBoth correlations with the market are about 0.48.\n\nThis is the payoff of the slope formula from the start of the lecture: same r, different s_y, different slope. R-squared is a relative measure, so the two stocks can share it while Tesla’s residuals are far larger: s_e = 7.19% versus 2.59%."
+    "text": "Similar \\(R^2\\), different betas\n\nBoth correlations with the market are about 0.48.\n\nThis is the payoff of the slope formula from the start of the lecture: same r, different s_y, different slope. R-squared is a relative measure, so the two stocks can share it while Tesla’s residuals are far larger: s_e = 7.19% versus 2.59%.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#each-weeks-return-splits-into-two-parts",
     "href": "slides/simple_linear_regression.html#each-weeks-return-splits-into-two-parts",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#each-weeks-return-splits-into-two-parts",
     "section": "Each week’s return splits into two parts",
-    "text": "Each week’s return splits into two parts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[{\\color{#0072B2}y} = {\\color{#009E73}\\hat y} + {\\color{#D55E00}e}\\]\n\n\n\nTwo weeks of Tesla returns. The week ending April 26, 2024, the market rose 2.6%; the line predicted 4.9% for Tesla and it returned 14.4%, a residual of 9.5%. The week ending October 20, 2023, the market fell 2.4%; the line predicted a 4.5% loss and Tesla lost 15.6%. Every week splits this way: a market part on the line, plus a stock-specific part off it."
+    "text": "Each week’s return splits into two parts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[{\\color{#0072B2}y} = {\\color{#009E73}\\hat y} + {\\color{#D55E00}e}\\]\n\n\n\nTwo weeks of Tesla returns. The week ending April 26, 2024, the market rose 2.6%; the line predicted 4.9% for Tesla and it returned 14.4%, a residual of 9.5%. The week ending October 20, 2023, the market fell 2.4%; the line predicted a 4.5% loss and Tesla lost 15.6%. Every week splits this way: a market part on the line, plus a stock-specific part off it.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#variance-splits-the-same-way-1",
     "href": "slides/simple_linear_regression.html#variance-splits-the-same-way-1",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#variance-splits-the-same-way-1",
     "section": "Variance splits the same way",
-    "text": "Variance splits the same way\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Var}({\\color{#0072B2}y}) = \\text{Var}({\\color{#009E73}\\hat y}) + \\text{Var}({\\color{#D55E00}e})\\)\n\n\n\n\\[{\\color{#0072B2}8.17^2} \\approx {\\color{#009E73}3.96^2} + {\\color{#D55E00}7.15^2}\\] \\[\n\\begin{aligned}\nR^2 &= ({\\color{#009E73}3.96} / {\\color{#0072B2}8.17})^2 \\\\\n    &= 1 - ({\\color{#D55E00}7.15} / {\\color{#0072B2}8.17})^2 \\\\\n    &= 0.23\n\\end{aligned}\n\\]\n\n\n\n\\[{\\color{#0072B2}2.94^2} \\approx {\\color{#009E73}1.40^2} + {\\color{#D55E00}2.58^2}\\] \\[\n\\begin{aligned}\nR^2 &= ({\\color{#009E73}1.40} / {\\color{#0072B2}2.94})^2 \\\\\n    &= 1 - ({\\color{#D55E00}2.58} / {\\color{#0072B2}2.94})^2 \\\\\n    &= 0.23\n\\end{aligned}\n\\]\n\n\n\nStandard deviations don’t add; variances do, because the market part and the residual are uncorrelated. Beta sets how much market risk a stock carries: Tesla’s market part is almost three times as wide as Walmart’s. R-squared is the market’s share of the total, and it is the same for both. Diversification can only shrink the orange part."
+    "text": "Variance splits the same way\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Var}({\\color{#0072B2}y}) = \\text{Var}({\\color{#009E73}\\hat y}) + \\text{Var}({\\color{#D55E00}e})\\)\n\n\n\n\\[{\\color{#0072B2}8.17^2} \\approx {\\color{#009E73}3.96^2} + {\\color{#D55E00}7.15^2}\\] \\[\n\\begin{aligned}\nR^2 &= ({\\color{#009E73}3.96} / {\\color{#0072B2}8.17})^2 \\\\\n    &= 1 - ({\\color{#D55E00}7.15} / {\\color{#0072B2}8.17})^2 \\\\\n    &= 0.23\n\\end{aligned}\n\\]\n\n\n\n\\[{\\color{#0072B2}2.94^2} \\approx {\\color{#009E73}1.40^2} + {\\color{#D55E00}2.58^2}\\] \\[\n\\begin{aligned}\nR^2 &= ({\\color{#009E73}1.40} / {\\color{#0072B2}2.94})^2 \\\\\n    &= 1 - ({\\color{#D55E00}2.58} / {\\color{#0072B2}2.94})^2 \\\\\n    &= 0.23\n\\end{aligned}\n\\]\n\n\n\nStandard deviations don’t add; variances do, because the market part and the residual are uncorrelated. Beta sets how much market risk a stock carries: Tesla’s market part is almost three times as wide as Walmart’s. R-squared is the market’s share of the total, and it is the same for both. Diversification can only shrink the orange part.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#similar-betas-different-r2",
     "href": "slides/simple_linear_regression.html#similar-betas-different-r2",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#similar-betas-different-r2",
     "section": "Similar betas, different \\(R^2\\)",
-    "text": "Similar betas, different \\(R^2\\)\n\nApple and Ford both move about one-for-one with the market on average. Ford’s returns scatter more around its line, so the market predicts less of their variation.\n\nBeta tells us whether a stock amplifies or dampens market moves. R-squared tells us what share of its week-to-week variation the market predicts."
+    "text": "Similar betas, different \\(R^2\\)\n\nApple and Ford both move about one-for-one with the market on average. Ford’s returns scatter more around its line, so the market predicts less of their variation.\n\nBeta tells us whether a stock amplifies or dampens market moves. R-squared tells us what share of its week-to-week variation the market predicts.",
+    "title": "Simple Linear Regression"
   },
   {
-    "objectID": "slides/simple_linear_regression.html#abnormal-returns-are-residuals",
     "href": "slides/simple_linear_regression.html#abnormal-returns-are-residuals",
-    "title": "Simple Linear Regression",
+    "objectID": "slides/simple_linear_regression.html#abnormal-returns-are-residuals",
     "section": "Abnormal returns are residuals",
-    "text": "Abnormal returns are residuals\n\nA residual is Tesla’s return minus what the market model predicts for that week. Finance calls it an abnormal return. The dashed lines are two SDs above and below zero.\n\nWith no news at all we’d expect about 5% of weeks, roughly 5 of 104, outside the dashed lines; 6 are. The largest, the week of October 24, 2024, followed a strong third-quarter earnings report. Others line up with the July 2024 delivery numbers, the June 2025 Musk-Trump spat, the January 2024 growth warning, the October 2024 robotaxi event, and the rally after the 2024 election. Sources are linked in the notes. Not every extreme residual has a tidy explanation, and news rarely accounts for all of one."
+    "text": "Abnormal returns are residuals\n\nA residual is Tesla’s return minus what the market model predicts for that week. Finance calls it an abnormal return. The dashed lines are two SDs above and below zero.\n\nWith no news at all we’d expect about 5% of weeks, roughly 5 of 104, outside the dashed lines; 6 are. The largest, the week of October 24, 2024, followed a strong third-quarter earnings report. Others line up with the July 2024 delivery numbers, the June 2025 Musk-Trump spat, the January 2024 growth warning, the October 2024 robotaxi event, and the rally after the 2024 election. Sources are linked in the notes. Not every extreme residual has a tidy explanation, and news rarely accounts for all of one.",
+    "title": "Simple Linear Regression"
+  },
+  {
+    "objectID": "introstatgpt.html",
+    "href": "introstatgpt.html",
+    "title": "IntroStatGPT",
+    "section": "",
+    "text": "IntroStatGPT is how we do statistical computing in this course. You ask for a table, a graph, or a model fit in ordinary language; IntroStatGPT runs R behind the scenes and hands back the output, ready to check and drop into a report. You never write code from scratch, and you are evaluated on concepts, not code. What you still own is the important part: choosing the method, checking the output, and deciding what it means.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#start-here",
+    "href": "introstatgpt.html#start-here",
+    "title": "IntroStatGPT",
+    "section": "Start here",
+    "text": "Start here\n\nInstall and set up IntroStatGPT — do this once, before you first use it. Activate your UT ChatGPT account, install R and the ChatGPT desktop app, download the IntroStatGPT folder, and run the setup.\nUse IntroStatGPT — the everyday workflow: find the available data, request an analysis, revise it, browse the gallery, organize your outputs, and compile a Word report.\nWorking with IntroStatGPT — how to make requests that produce checkable output, how to check it, and what to save.\n\nThe course setup uses Codex with your UT ChatGPT account. If you already have a Claude account with access to Claude Code, you may instead set up IntroStatGPT with Claude Code.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-1",
+    "href": "introstatgpt.html#homework-1",
+    "title": "IntroStatGPT",
+    "section": "Homework 1",
+    "text": "Homework 1\n\nDownload IntroStatGPT_homework_01_2026-08-28.zip (13 MB). This folder contains the current IntroStatGPT workspace, Homework 1, and the course datasets. It works with Codex and Claude Code.\nUse the workspace with these files:\n\nHomework 1: Describing and Comparing Distributions — the assignment. Solutions (Canvas login required).\nIntroStatGPT: Homework Workflow — how to generate output, review the report outline, and export your report.\nOptional: Sample Homework 1 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 1 report skeleton — try building your own report first. This file contains known-good copies of the required tables and figures, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit the PDF you export from Word.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-2",
+    "href": "introstatgpt.html#homework-2",
+    "title": "IntroStatGPT",
+    "section": "Homework 2",
+    "text": "Homework 2\nDownload IntroStatGPT_homework_02_2026-09-12.zip (444 KB). This folder contains the Homework 2 workspace, assignment, dataset, and supplied figures. It works with Codex and Claude Code.\nTo start, unzip the file, open the ChatGPT desktop app, and choose File → Open Folder. Select the unzipped TEMBA-2026-homework-02-codex folder. Do not upload or drag the ZIP file into a chat; open the unzipped folder so the workspace instructions and tools load correctly.\nUse the workspace with these files:\n\nHomework 2: Probability and Relationships — the assignment.\nOptional: Sample Homework 2 chat — try generating the required output yourself first. If you get stuck, use this complete output-generation conversation to check your requests and output. It does not answer the homework questions.\nOptional: Homework 2 report skeleton — try building your own report first. This file contains known-good copies of the required tables, with no written answers. Use it to check your output or as a backup if IntroStatGPT is unavailable.\n\nSubmit one or more PDF files. Clearly label every answer with its problem and part number. Legible scans or photographs of handwritten pages are acceptable once converted to PDF.\nYour ability to complete any assignment, quiz, or exam never depends on an AI tool working: known-good tables and figures are provided alongside every assignment, and you can use them to check your own output or instead of it.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#homework-3",
+    "href": "introstatgpt.html#homework-3",
+    "title": "IntroStatGPT",
+    "section": "Homework 3",
+    "text": "Homework 3\nDownload IntroStatGPT_homework_03_2026-09-28.zip (159 KB). This workspace includes the assignment and all four datasets. It works with Codex and Claude Code. Unzip it and open the TEMBA-2026-homework-03-codex folder, following the setup instructions.\n\nHomework 3 — portfolios, the central limit theorem, sampling, confidence intervals, and tests. Graded credit/no credit.\nOptional: Sample Homework 3 chat — requests and reference tables and plots. Try generating the outputs yourself first, then use this example to check your work.\nOptional: Homework 3 report skeleton — the tables and plots in problem order, ready for your calculations and written answers. Use it as a backup if IntroStatGPT is unavailable.\n\nSubmit one or more PDFs with every answer labeled by problem and part number. Legible handwritten work is welcome once converted to PDF.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt.html#intensive",
+    "href": "introstatgpt.html#intensive",
+    "title": "IntroStatGPT",
+    "section": "Intensive",
+    "text": "Intensive\nDownload IntroStatGPT_intensive_2026-08-26.zip (13 MB) for the in-class Intensive examples and course-note activities. Keep this folder separate from the Homework 1 folder.",
+    "crumbs": [
+      "IntroStatGPT"
+    ]
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html",
+    "href": "introstatgpt/homework-03-sample-chat.html",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "",
+    "text": "This example gives requests you can adapt for Homework 3. The tables and plots were generated through the assignment harness; the conversation is assembled to show one possible workflow. Output labels in your workspace may differ.\nDo the hand calculations when the assignment asks for them, then request the specified software checks. Add your own calculations, interpretations, and recommendation to the report. For normal probabilities, first supply your standardized value and the tail or tails; those requests will depend on your work and are not included here.\nOpen the Word report and add your answers under the matching problem and part numbers. Export your completed work to one or more PDFs, as described in the assignment. The report skeleton contains output, not the written solutions."
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#set-up",
+    "href": "introstatgpt/homework-03-sample-chat.html#set-up",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "Set up",
+    "text": "Set up\n\n\nStudent\n\nSet up this IntroStatGPT workspace and verify that it is ready. Do not begin an analysis yet.\n\n\n\nIntroStatGPT\n\nThe workspace contains the assignment and four datasets: portfolio_monthly_returns (192 rows), bloom_attrition (1,612), bloom_satisfaction (1,346), and bloom_performance (1,507). Problems 2–4 supply their inputs in the questions."
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#return-summaries",
+    "href": "introstatgpt/homework-03-sample-chat.html#return-summaries",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "1.1. Return summaries",
+    "text": "1.1. Return summaries\n\n\nStudent\n\nUsing portfolio_monthly_returns, report the observation count, mean, and sample SD for SPY and GLD, using decimal returns and six decimal places. Also report their correlation to six decimal places and covariance to eight decimal places. Make a scatterplot of GLD return against SPY return for all months. Label both axes with percentages. Save the two tables and plot for my report; do not interpret them.\n\n\n\nIntroStatGPT\n\nSaved T1: 1.1 Return summaries.\n\n\n\nAsset\nMonths\nMean\nSD\n\n\n\n\nSPY\n192\n0.011844\n0.041391\n\n\nGLD\n192\n0.007845\n0.045416\n\n\n\n\n\n\nIntroStatGPT\n\nSaved T2: 1.1 Correlation and covariance.\n\n\n\nQuantity\nValue\n\n\n\n\nCorrelation\n0.082948\n\n\nCovariance (decimal returns)\n0.00015593\n\n\n\n\n\n\nIntroStatGPT\n\nSaved P1: 1.1 Monthly SPY and GLD returns.\n\n\n\n1.1 Monthly SPY and GLD returns"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#check-the-6040-portfolio",
+    "href": "introstatgpt/homework-03-sample-chat.html#check-the-6040-portfolio",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "1.2. Check the 60/40 portfolio",
+    "text": "1.2. Check the 60/40 portfolio\n\n\nStudent\n\nFor each month, calculate the return from 60% SPY and 40% GLD. Report the observation count, mean, and sample SD of those monthly portfolio returns. Calculate in decimals; show the mean and SD to six decimal places, with percentages or percentage points in parentheses to two decimal places. Save the table. I will compare it with my hand calculation.\n\n\n\nIntroStatGPT\n\nSaved T3: 1.2 Direct 60/40 portfolio check.\n\n\n\nQuantity\nValue\n\n\n\n\nMonths\n192\n\n\nMean monthly return\n0.010244 (1.02%)\n\n\nSample SD\n0.031963 (3.20 percentage points)"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#compare-allocations",
+    "href": "introstatgpt/homework-03-sample-chat.html#compare-allocations",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "1.3. Compare allocations",
+    "text": "1.3. Compare allocations\n\n\nStudent\n\nFor portfolios with SPY weight from 0 to 1 and GLD weight equal to one minus the SPY weight, use the full-period historical summaries and a fixed monthly risk-free return of 0.0025. Find the maximum-Sharpe and minimum-SD allocations over the full allowed range, checking the endpoints too. Report their weights, expected monthly return, monthly SD, and Sharpe ratio, along with the same quantities for 60/40. Calculate in decimals, then report weights as percentages to one decimal place, returns as percentages and SDs in percentage points to two decimal places, and Sharpe ratios to four decimal places.\nMake a three-panel plot of expected return, SD, and Sharpe ratio against the percentage invested in SPY. Mark the maximum-Sharpe allocation on all three panels. Save the table and plot without interpretations.\n\n\n\nIntroStatGPT\n\nSaved T4: 1.3 Portfolio allocations.\n\n\n\nAllocation\nSPY (%)\nGLD (%)\nMean (%)\nSD (pp)\nSharpe\n\n\n\n\nMaximum Sharpe\n70.5\n29.5\n1.07\n3.31\n0.2466\n\n\nMinimum SD\n55.0\n45.0\n1.00\n3.18\n0.2371\n\n\n60/40\n60.0\n40.0\n1.02\n3.20\n0.2423\n\n\n\n\n\n\nIntroStatGPT\n\nSaved P2: 1.3 Expected return SD and Sharpe ratio.\n\n\n\n1.3 Expected return SD and Sharpe ratio"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#c.-compare-periods",
+    "href": "introstatgpt/homework-03-sample-chat.html#c.-compare-periods",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "1.3c. Compare periods",
+    "text": "1.3c. Compare periods\n\n\nStudent\n\nRepeat the return summaries, correlation, and covariance separately for 2010–2017 and 2018–2025. Use six decimal places for means, sample SDs, and correlations, and eight for covariances. Find the maximum-Sharpe allocation in each period using the same monthly risk-free return of 0.0025 and SPY weights from 0 to 1. Report the allocations and portfolio summaries using the rounding from the previous request. Save these three tables.\n\n\n\nIntroStatGPT\n\nSaved T5: 1.3c Return summaries by period.\n\n\n\nPeriod\nAsset\nMonths\nMean\nSD\n\n\n\n\n2010–2017\nSPY\n96\n0.011430\n0.034464\n\n\n2010–2017\nGLD\n96\n0.002698\n0.049699\n\n\n2018–2025\nSPY\n96\n0.012258\n0.047501\n\n\n2018–2025\nGLD\n96\n0.012992\n0.040290\n\n\n\n\n\n\nIntroStatGPT\n\nSaved T6: 1.3c Correlation and covariance by period.\n\n\n\nPeriod\nCorrelation\nCovariance\n\n\n\n\n2010–2017\n0.026520\n0.00004543\n\n\n2018–2025\n0.137823\n0.00026376\n\n\n\n\n\n\nIntroStatGPT\n\nSaved T7: 1.3c Maximum Sharpe allocations by period.\n\n\n\nPeriod\nSPY (%)\nGLD (%)\nMean (%)\nSD (pp)\nSharpe\n\n\n\n\n2010–2017\n100.0\n0.0\n1.14\n3.45\n0.2591\n\n\n2018–2025\n38.3\n61.7\n1.27\n3.28\n0.3116"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#c.-check-the-mean-test",
+    "href": "introstatgpt/homework-03-sample-chat.html#c.-check-the-mean-test",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "4.1c. Check the mean test",
+    "text": "4.1c. Check the mean test\n\n\nStudent\n\nFor the consumer survey, the sample size is 400, the sample mean is 0.034, and the sample SD is 0.040, all in decimal units. Test a population mean of 0.040 against a two-sided alternative and give a 95% confidence interval. Use these supplied summaries. Report the SE, test statistic, interval, and p-value; show the p-value to five decimal places. Save the table. I will compare it with my hand calculation using the 68/95/99.7% rule.\n\n\n\nIntroStatGPT\n\nSaved T8: 4.1c Mean inflation expectations software check.\n\n\n\nQuantity\nValue\n\n\n\n\nSample size\n400\n\n\nMean\n0.034 (3.4%)\n\n\nSample SD\n0.040 (4.0 percentage points)\n\n\nSE\n0.002 (0.2 percentage points)\n\n\nNull mean\n0.040 (4.0%)\n\n\nt-statistic\n-3.000\n\n\n95% CI lower\n0.030068 (3.007%)\n\n\n95% CI upper\n0.037932 (3.793%)\n\n\nTwo-sided p-value\n0.00287"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#summarize-the-study",
+    "href": "introstatgpt/homework-03-sample-chat.html#summarize-the-study",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "5.1. Summarize the study",
+    "text": "5.1. Summarize the study\n\n\nStudent\n\nUse the three Bloom datasets. For each assigned group, report its assigned count, observed and missing counts for each outcome, the quit count and proportion, and the satisfaction and performance means and sample SDs. Use observed counts for each outcome; count a blank outcome as missing. Report quit proportions to six decimal places with percentages to two in parentheses, and score means and SDs to four decimal places. Save the table.\n\n\n\nIntroStatGPT\n\nSaved T9: 5.1 Outcomes by assigned group.\n\n\n\n\n\n\n\n\n\n\n\n\nGroup\nOutcome\nAssigned\nObserved\nMissing\nMean or proportion\nSample SD\n\n\n\n\nHybrid\nQuitting\n792\n792\n0\n38/792 = 0.047980 (4.80%)\n—\n\n\nHybrid\nSatisfaction\n792\n680\n112\n8.1853\n1.4847\n\n\nHybrid\nPerformance\n792\n748\n44\n3.4385\n0.8425\n\n\nOffice\nQuitting\n820\n820\n0\n59/820 = 0.071951 (7.20%)\n—\n\n\nOffice\nSatisfaction\n820\n665\n155\n7.8346\n1.5962\n\n\nOffice\nPerformance\n820\n759\n61\n3.4941\n0.8312"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#b.-compare-means",
+    "href": "introstatgpt/homework-03-sample-chat.html#b.-compare-means",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "5.3b. Compare means",
+    "text": "5.3b. Compare means\n\n\nStudent\n\nEstimate hybrid minus office mean performance and mean satisfaction. For each, give a 95% confidence interval and test a zero difference against a two-sided alternative, using employees with observed outcomes. Show estimates and interval endpoints to three decimal places and p-values to seven decimal places so the small satisfaction p-value remains visible. Save the table without interpretations.\n\n\n\nIntroStatGPT\n\nSaved T10: 5.3b Mean performance and satisfaction.\n\n\n\nOutcome\nHybrid minus office\n95% CI\nTwo-sided p-value\n\n\n\n\nPerformance (points)\n-0.056\n[-0.140, 0.029]\n0.1976812\n\n\nSatisfaction (points)\n0.351\n[0.186, 0.516]\n0.0000324"
+  },
+  {
+    "objectID": "introstatgpt/homework-03-sample-chat.html#build-the-report",
+    "href": "introstatgpt/homework-03-sample-chat.html#build-the-report",
+    "title": "Homework 3: Example IntroStatGPT Chat",
+    "section": "Build the report",
+    "text": "Build the report\n\n\nStudent\n\nArrange the saved tables and plots in assignment order. Keep headings for 1.1, 1.2, 1.3, Problem 2, Problem 3, 4.1, 4.2, 5.1, 5.2, 5.3, and 5.4, including parts that have no saved output. Show me the proposed outline first. I will add my hand calculations and written answers.\n\n\n\nIntroStatGPT\n\nProposed outline:\nHomework 3 report skeleton\n\n1.1. Return summaries\n  - T1: 1.1 Return summaries [Table]\n  - T2: 1.1 Correlation and covariance [Table]\n  - P1: 1.1 Monthly SPY and GLD returns [Figure]\n\n1.2. A 60/40 portfolio\n  - T3: 1.2 Direct 60/40 portfolio check [Table]\n\n1.3. Portfolio allocations\n  - T4: 1.3 Portfolio allocations [Table]\n  - P2: 1.3 Expected return SD and Sharpe ratio [Figure]\n  - T5: 1.3c Return summaries by period [Table]\n  - T6: 1.3c Correlation and covariance by period [Table]\n  - T7: 1.3c Maximum Sharpe allocations by period [Table]\n\n2. Lunch orders\n\n3. Inspection workload\n\n4.1. Inflation expectations\n  - T8: 4.1c Mean inflation expectations software check [Table]\n\n4.2. Family finances\n\n5.1. Study design and summaries\n  - T9: 5.1 Outcomes by assigned group [Table]\n\n5.2. Quitting\n\n5.3. Performance and satisfaction\n  - T10: 5.3b Mean performance and satisfaction [Table]\n\n5.4. Recommendation\n\n\n\nStudent\n\nApprove this outline. Build the Word report.\n\n\n\nIntroStatGPT\n\nThe report is ready: Homework 3 report skeleton."
   }
 ]
