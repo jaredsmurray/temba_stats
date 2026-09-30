@@ -96,6 +96,14 @@ div.csl-indent {
   }
 }</script>
 <style>
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.TechnicalDetail {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
@@ -104,17 +112,9 @@ div.csl-indent {
   --color1: #F4EAF0;
   --color2: #7C3F58;
 }
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
 .Example {
   --color1: #F4EFEA;
   --color2: #80644D;
-}
-.TechnicalDetail {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
 }
 </style>
 
@@ -457,7 +457,7 @@ window.Quarto = {
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 18.1: </strong>More responses from the same source</div><div class="fobx-body">
 <p>Suppose a retailer surveys customers who volunteer through a loyalty-program email. It increases the number of responses from 200 to 20,000 and reports a much narrower confidence interval for mean satisfaction among all customers.</p>
 <p>Explain why the larger sample does not establish that the interval describes all customers. What would you need to investigate about how respondents compare with the customers the retailer wants to describe?</p>
-<details aria-label="Solution" id="solution-more-volunteer-responses" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-more-volunteer-responses">
 <summary>Solution</summary>
 <p>More responses can reduce sampling variability without removing differences between volunteers and other customers. Investigate whether loyalty members and people who choose to respond have different satisfaction levels from nonmembers and nonrespondents. The narrower interval does not account for those possible differences.</p>
 </details>
@@ -509,7 +509,7 @@ Table&nbsp;18.1: Delivery times across all hours and during the 6 p.m. hour.
 <li>The manager instead uses 100 orders from 6:00 to 7:00 p.m. What mean would their average estimate? Use the table to explain why it would give a misleading estimate of the overall mean even with 100 orders.</li>
 <li>Suppose the manager wants the mean for the 6 p.m. hour specifically. Which group should the orders come from, and what standard deviation does the independent-draw model predict for their average? Would selecting orders from one actual evening necessarily satisfy that model?</li>
 </ol>
-<details aria-label="Solution" id="solution-same-hour-orders" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-same-hour-orders">
 <summary>Solution</summary>
 <ol type="1">
 <li>The average has mean 26.1 minutes and standard deviation <span class="math inline">\(\sigma/\sqrt{100}\)</span>, about 0.69 minutes.</li>
@@ -528,7 +528,7 @@ Table&nbsp;18.1: Delivery times across all hours and during the 6 p.m. hour.
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 18.3: </strong>What does the interval cover?</div><div class="fobx-body">
 <p>Suppose a service center randomly samples completed calls and reports an approximate 95% confidence interval of 4–6 minutes for mean recorded waiting time. Its records omit callers who hang up before receiving service, and the timer starts only after a caller finishes an automated menu.</p>
 <p>Assume the interval appropriately accounts for random sampling of the recorded completed calls. What uncertainty does it quantify? Explain why it does not establish that the mean total wait for all callers lies between 4 and 6 minutes.</p>
-<details aria-label="Solution" id="solution-what-wait-interval-covers" class="solution-details">
+<details aria-label="Solution" class="solution-details" id="solution-what-wait-interval-covers">
 <summary>Solution</summary>
 <p>The interval quantifies sampling uncertainty about the mean recorded wait among completed calls. It omits both the callers who abandon the queue and the time spent in the automated menu. Random sampling of the available records does not make those records describe every caller’s full wait.</p>
 </details>

@@ -96,25 +96,25 @@ div.csl-indent {
   }
 }</script>
 <style>
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
+}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
-}
-.Example {
-  --color1: #F4EFEA;
-  --color2: #80644D;
 }
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
 }
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
 .Notation {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Example {
+  --color1: #F4EFEA;
+  --color2: #80644D;
 }
 </style>
 
@@ -796,7 +796,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.1: </strong>What is being estimated?</div><div class="fobx-body">
 <p>A retailer wants the mean delivery time <span class="math inline">\(\mu\)</span> for all orders in its current service area. In an invented study, it takes a random sample of 100 orders and computes an average delivery time of 42 minutes.</p>
 <p>Identify the parameter, the estimator, and the estimate. If the retailer drew a new random sample, which of these would change and which would stay fixed?</p>
-<details class="solution-details" aria-label="Solution" id="solution-identify-delivery-estimate">
+<details id="solution-identify-delivery-estimate" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The parameter is the population mean delivery time <span class="math inline">\(\mu\)</span>. The estimator is the sample mean <span class="math inline">\(\bar{X}\)</span>, the rule for averaging the sampled times. The estimate is <span class="math inline">\(\bar{x}=42\)</span> minutes. A new sample would generally give a different estimate; the population parameter and the averaging rule would stay fixed.</p>
 </details>
@@ -806,7 +806,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 16.2: </strong>Individual times and averages</div><div class="fobx-body">
 <p>Suppose delivery times are iid draws from a population with standard deviation <span class="math inline">\(\sigma=12\)</span> minutes. Compare random samples of 100 and 400 orders.</p>
 <p>Compute the standard error of the sample mean for each size. Explain which spread changes and which stays at 12 minutes when the sample size increases.</p>
-<details class="solution-details" aria-label="Solution" id="solution-delivery-sd-se">
+<details id="solution-delivery-sd-se" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>The standard errors are <span class="math inline">\(12/\sqrt{100}=1.2\)</span> minutes and <span class="math inline">\(12/\sqrt{400}=0.6\)</span> minutes. Quadrupling the sample size halves the spread of sample means across repeated samples. Individual delivery times still have population SD 12 minutes; collecting more orders makes their average more precise without making individual deliveries less variable.</p>
 </details>
@@ -820,7 +820,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>Write one sentence interpreting the interval for the company’s operations manager.</li>
 <li>A population mean delivery time above 45 minutes would trigger a costly process review. Does this audit support triggering the review?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-delivery-confidence-interval">
+<details id="solution-delivery-confidence-interval" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The estimated SE is <span class="math inline">\(12/\sqrt{100}=1.2\)</span> minutes. The interval is <span class="math inline">\(42\pm2(1.2)=[39.6,\ 44.4]\)</span> minutes.</li>
@@ -837,7 +837,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>Recover the sample mean, the margin of error, the estimated standard error, and the sample standard deviation.</li>
 <li>A manager calls the $8 width of the interval “the standard error.” What is wrong with that description?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-interval-backwards">
+<details id="solution-interval-backwards" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The sample mean is the midpoint, <span class="math inline">\((46+54)/2=50\)</span> dollars. The margin of error is half the width, $4. The margin is two standard errors, so the estimated standard error is $2. Since <span class="math inline">\(s/\sqrt{100}=2\)</span>, the sample standard deviation is $20.</li>
@@ -854,7 +854,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>Write one sentence interpreting the interval in context.</li>
 <li>Is a population mean of 21 hours plausible at this confidence level? Does the interval say where 95% of individual tickets’ resolution times fall?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-ticket-interval">
+<details id="solution-ticket-interval" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The estimated standard error is <span class="math inline">\(8/\sqrt{64}=1\)</span> hour, so the margin of error is 2 hours and the interval is <span class="math inline">\(18\pm2=[16,\ 20]\)</span> hours.</li>
@@ -873,7 +873,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>“About 95% of intervals constructed this way from repeated random samples would contain the population mean.”</li>
 <li>“Now that we have calculated it, there is a 0.95 probability that the population mean lies between 16 and 20 hours.”</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-repair-interpretation">
+<details id="solution-repair-interpretation" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>Incorrect. It confuses uncertainty about the mean with variation among tickets. A correct version is statement 2.</li>
@@ -893,7 +893,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>Across 1,000 repetitions, about how many intervals would you expect to contain the mean? Must the count equal that number exactly?</li>
 <li>What stays fixed as the sampling repeats, and what changes?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-count-coverage">
+<details id="solution-count-coverage" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>Four intervals contain 50: the first, second, fourth, and fifth. The fourth has 50 as its upper endpoint. The third, <span class="math inline">\([51,\ 57]\)</span>, misses.</li>
@@ -912,7 +912,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>What sample size targets a margin of $2,000?</li>
 <li>Does a larger sample make individual salaries less variable? Does it guarantee that the next sample mean will be closer to the population mean than the first one was?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-plan-salary-survey">
+<details id="solution-plan-salary-survey" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The margin is <span class="math inline">\(2(15{,}000)/\sqrt{100}=3{,}000\)</span> dollars.</li>
@@ -931,7 +931,7 @@ Figure&nbsp;16.8: The first 100 samples, one interval each, in the order they we
 <li>Write a two-sentence report giving the estimate, the interval, and what remains uncertain.</li>
 <li>The quality team considers repeating the study using only tablets from the first hour of Monday’s run. Explain what would need to be checked before reading the new interval as an estimate for the whole week’s production.</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-tablet-audit">
+<details id="solution-tablet-audit" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The population is every tablet the line produced that week, and the parameter is their mean active-ingredient content. The estimated standard error is <span class="math inline">\(12/\sqrt{144}=1\)</span> mg, and the interval is <span class="math inline">\(249\pm2(1)=[247,\ 251]\)</span> mg.</li>
@@ -1044,7 +1044,7 @@ END OF COMMENTED-OUT BOOTSTRAP SECTION -->
 <li>“Sampling 1,600 orders instead of 400 would roughly halve the margin of error.”</li>
 </ol>
 <p>Finally, a free-delivery promotion breaks even if the mean order value is at least $62. What does the interval say about whether the promotion breaks even?</p>
-<details class="solution-details" aria-label="Solution" id="solution-reading-interval-statements">
+<details id="solution-reading-interval-statements" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <p>One correct interpretation: under the random-sampling model, mean order values across all of last month’s orders from about $60.40 to $68.00 are consistent with this sample.</p>
 <ol type="1">
@@ -1065,7 +1065,7 @@ END OF COMMENTED-OUT BOOTSTRAP SECTION -->
 <li>A bank executive argues that the credit union’s estimate must be far more precise, because 800 is 4% of its members but only 0.04% of the bank’s. Evaluate the argument.</li>
 <li>Suppose the bank had instead emailed the survey to every customer and used the first 800 replies. Would <span class="math inline">\(2.0/\sqrt{800}\)</span> still describe the likely error in its estimate? Answer in one or two sentences.</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-sample-vs-population-size">
+<details id="solution-sample-vs-population-size" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>Both standard errors are <span class="math inline">\(2.0/\sqrt{800}\approx0.071\)</span> points. The formula uses the sample size and the spread of responses, and those are the same in both surveys.</li>
@@ -1083,7 +1083,7 @@ END OF COMMENTED-OUT BOOTSTRAP SECTION -->
 <li>The quantity that matters is the total overbilling, which is 8,000 times the mean. Give an estimate of the total and a two-SE interval for it. Which rule from the probability chapters lets you scale the interval this way?</li>
 <li>The company treats total overbilling above $50,000 as material. What does the interval say about whether the total is material?</li>
 </ol>
-<details class="solution-details" aria-label="Solution" id="solution-audit-total">
+<details id="solution-audit-total" aria-label="Solution" class="solution-details">
 <summary>Solution</summary>
 <ol type="1">
 <li>The standard error is <span class="math inline">\(60/\sqrt{200}\approx4.24\)</span> dollars, and the interval is <span class="math inline">\(12.40\pm2(4.24)\)</span>, about <span class="math inline">\([3.9,\ 20.9]\)</span> dollars per invoice.</li>
