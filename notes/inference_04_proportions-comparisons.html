@@ -96,6 +96,10 @@ div.csl-indent {
   }
 }</script>
 <style>
+.Definition {
+  --color1: #F4EAF0;
+  --color2: #7C3F58;
+}
 .Exercise {
   --color1: #E7F4F5;
   --color2: #147D85;
@@ -107,10 +111,6 @@ div.csl-indent {
 .Example {
   --color1: #F4EFEA;
   --color2: #80644D;
-}
-.Definition {
-  --color1: #F4EAF0;
-  --color2: #7C3F58;
 }
 .Notation {
   --color1: #EEF1F3;
@@ -533,7 +533,7 @@ SE(\hat p) \approx \sqrt{\frac{0.483(1-0.483)}{1{,}100}} \approx 0.015,
 <li>Estimate the open rate among all customers, and give an approximate 95% confidence interval.</li>
 <li>For a campaign like this one the team considers 35% to be a good open rate. What does your interval tell you about how this campaign compares?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-email-open-rate">
+<details class="solution-details" id="solution-email-open-rate" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The sample proportion is <span class="math inline">\(\hat p=287/850\approx0.338\)</span> and its estimated standard error is <span class="math inline">\(\sqrt{0.338(0.662)/850}\approx0.016\)</span>. The interval is <span class="math inline">\(0.338\pm2(0.016)\approx[0.305,\ 0.370]\)</span>, or about 30.5% to 37.0%.</li>
@@ -610,7 +610,7 @@ n \approx \frac{1}{m^2}
 <li>Compute an approximate 95% confidence interval for the proportion of all employees who support the policy.</li>
 <li>Should management go ahead with the policy? Check your answer by computing the <span class="math inline">\(t\)</span>-statistic for the null hypothesis <span class="math inline">\(p=0.60\)</span>.</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-remote-work-survey">
+<details class="solution-details" id="solution-remote-work-survey" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The sample proportion is <span class="math inline">\(\hat p=142/200=0.71\)</span> and the estimated standard error is <span class="math inline">\(\sqrt{0.71(0.29)/200}\approx0.032\)</span>, so the interval is <span class="math inline">\(0.71\pm2(0.032)\approx[0.646,\ 0.774]\)</span>.</li>
@@ -753,7 +753,7 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 <li>What does the sign of the interval tell you? Is it plausible that the difference in the population is four hours?</li>
 <li>Suppose you reported B minus A instead. What happens to the estimate, the standard error, and the interval?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-two-teams">
+<details class="solution-details" id="solution-two-teams" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>Our estimate is <span class="math inline">\(18-15=3\)</span> hours. The standard error of each sample mean is <span class="math inline">\(10/\sqrt{100}=1\)</span> hour, so the standard error of the difference is <span class="math inline">\(\sqrt{1^2+1^2}\approx1.41\)</span> hours, and the interval is <span class="math inline">\(3\pm2(1.41)\approx[0.17,\ 5.83]\)</span> hours.</li>
@@ -770,7 +770,7 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 <li>Compute an approximate 95% confidence interval for the difference in mean response time (cloud minus on-premise).</li>
 <li>Can the company conclude that the mean response times are different for the two deployments? Can it conclude that they are the same?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-cloud-on-premise">
+<details class="solution-details" id="solution-cloud-on-premise" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The standard errors are <span class="math inline">\(15.6/\sqrt{28}\approx2.95\)</span> milliseconds for cloud and <span class="math inline">\(18.2/\sqrt{35}\approx3.08\)</span> milliseconds for on-premise. The difference in means is <span class="math inline">\(92.4-89.7=2.7\)</span> milliseconds and its standard error is <span class="math inline">\(\sqrt{2.95^2+3.08^2}\approx4.26\)</span>, so the interval is <span class="math inline">\(2.7\pm2(4.26)\approx[-5.8,\ 11.2]\)</span> milliseconds.</li>
@@ -787,7 +787,7 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 <li>Should the company expect its customers to notice the improvement? Compute the <span class="math inline">\(t\)</span>-statistic for the null hypothesis that the reduction is 30 minutes.</li>
 <li>The two samples were taken in different months. What else would you want to know before you decide that the training is responsible for the reduction?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-support-training">
+<details class="solution-details" id="solution-support-training" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The standard errors of the two sample means are <span class="math inline">\(65/\sqrt{42}\approx10.03\)</span> and <span class="math inline">\(58/\sqrt{38}\approx9.41\)</span> minutes, so the standard error of the difference is <span class="math inline">\(\sqrt{10.03^2+9.41^2}\approx13.75\)</span> minutes and the interval is <span class="math inline">\(35\pm2(13.75)=[7.5,\ 62.5]\)</span> minutes. Zero is outside the interval and <span class="math inline">\(t=35/13.75\approx2.5\)</span>. If our sampling assumptions hold, the mean response time went down.</li>
@@ -805,7 +805,7 @@ t=\frac{(\bar x_A-\bar x_B)-0}{SE(\bar X_A-\bar X_B)}=\frac{9}{4.27}\approx2.11,
 <li>Explain why the sample size is <span class="math inline">\(n=36\)</span> and not 72. If we computed separate standard deviations for the handheld and lab readings and combined them, what information would we be throwing away?</li>
 <li>The company will accept the device if its readings differ from the lab assay by less than 3 mg on average, in either direction. What does the interval tell you about that standard? Does it tell you how far off a single handheld reading could be from the lab value?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-paired-assay">
+<details class="solution-details" id="solution-paired-assay" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The estimated standard error is <span class="math inline">\(3/\sqrt{36}=0.5\)</span> mg, so the interval is <span class="math inline">\(1.5\pm2(0.5)=[0.5,\ 2.5]\)</span> mg. Under our model the handheld device gives higher readings than the lab assay, on average.</li>
@@ -900,7 +900,7 @@ Figure&nbsp;19.2: The 95% confidence interval for the difference in defect rates
 <li>Compute an approximate 95% confidence interval for the difference in conversion rates (B minus A).</li>
 <li>Based on these results, should the company switch to Variant B?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-ab-test-conversions">
+<details class="solution-details" id="solution-ab-test-conversions" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The sample proportions are <span class="math inline">\(156/820\approx0.190\)</span> for A and <span class="math inline">\(171/830\approx0.206\)</span> for B, and their standard errors are 0.0137 and 0.0140. The difference is 1.6 percentage points and its standard error is <span class="math inline">\(\sqrt{0.0137^2+0.0140^2}\approx0.0196\)</span>. That gives us the interval <span class="math inline">\(0.016\pm2(0.0196)\approx[-0.023,\ 0.055]\)</span>, or <span class="math inline">\(-2.3\)</span> to <span class="math inline">\(5.5\)</span> percentage points.</li>
@@ -917,7 +917,7 @@ Figure&nbsp;19.2: The 95% confidence interval for the difference in defect rates
 <li>A manager wants to use these rates to decide whether to promote digital wallets, or to discourage them. What does the interval tell the manager?</li>
 <li>Suppose that the interval had excluded zero. Would that show that the company could raise its completion rate by steering customers toward the payment method with the higher rate?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-checkout-payment-method">
+<details class="solution-details" id="solution-checkout-payment-method" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The completion rates are <span class="math inline">\(847/900\approx0.941\)</span> for credit cards and <span class="math inline">\(445/480\approx0.927\)</span> for digital wallets, and their standard errors are 0.0078 and 0.0119. The difference is <span class="math inline">\(-1.4\)</span> percentage points, and its standard error is <span class="math inline">\(\sqrt{0.0078^2+0.0119^2}\approx0.0142\)</span>. The interval is <span class="math inline">\(-0.014\pm2(0.0142)\approx[-0.042,\ 0.014]\)</span>, or <span class="math inline">\(-4.2\)</span> to <span class="math inline">\(1.4\)</span> percentage points.</li>
@@ -997,13 +997,13 @@ Table&nbsp;19.2: Estimates and standard errors for the four parameters we have c
 <li>We compare the proportion of visitors who make a purchase, where visitors were randomly assigned to one of two webpage designs.</li>
 <li>A lab measures the same 36 tablets with a handheld assay and with the standard lab assay, and we estimate the mean difference between them. We have the standard deviation of the 36 differences.</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-choose-se">
+<details class="solution-details" id="solution-choose-se" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The parameter is a population mean <span class="math inline">\(\mu\)</span>, and the unit is a ticket. The standard error is <span class="math inline">\(s/\sqrt n\)</span>. It assumes that the tickets are independent.</li>
 <li>The parameter is a proportion <span class="math inline">\(p\)</span>, and the unit is a customer. The standard error is <span class="math inline">\(\sqrt{\hat p(1-\hat p)/n}\)</span>. It assumes that the customers are independent.</li>
-<li>The parameter is a difference in means <span class="math inline">\(\mu_A-\mu_B\)</span>, and the unit is a ticket. The standard error is <span class="math inline">\(\sqrt{SE(\bar x_A)^2+SE(\bar x_B)^2}=\sqrt{s_A^2/n_A+s_B^2/n_B}\)</span>. It assumes that the tickets within each team are independent, and that the two teams’ samples are independent of each other.</li>
-<li>The parameter is a difference in proportions <span class="math inline">\(p_A-p_B\)</span>, and the unit is a visitor. The standard error is <span class="math inline">\(\sqrt{SE(\hat p_A)^2+SE(\hat p_B)^2}=\sqrt{\hat p_A(1-\hat p_A)/n_A+\hat p_B(1-\hat p_B)/n_B}\)</span>. It assumes that the visitors are independent and that the two groups are independent. We get independent groups here because separate visitors were randomly assigned to the two designs.</li>
+<li>The parameter is a difference in means <span class="math inline">\(\mu_A-\mu_B\)</span>, and the unit is a ticket. The standard error is <span class="math inline">\(\sqrt{SE(\bar x_A)^2+SE(\bar x_B)^2}\)</span> <span class="math inline">\(=\sqrt{s_A^2/n_A+s_B^2/n_B}\)</span>. It assumes that the tickets within each team are independent, and that the two teams’ samples are independent of each other.</li>
+<li>The parameter is a difference in proportions <span class="math inline">\(p_A-p_B\)</span>, and the unit is a visitor. The standard error is <span class="math inline">\(\sqrt{SE(\hat p_A)^2+SE(\hat p_B)^2}\)</span> <span class="math inline">\(=\sqrt{\hat p_A(1-\hat p_A)/n_A+\hat p_B(1-\hat p_B)/n_B}\)</span>. It assumes that the visitors are independent and that the two groups are independent. We get independent groups here because separate visitors were randomly assigned to the two designs.</li>
 <li>The parameter is the mean difference within a tablet, and the unit is a tablet. We compute the difference for each tablet first, and then the standard error is <span class="math inline">\(s_d/\sqrt{36}\)</span>, which assumes that the tablets are independent. The two readings on the same tablet are paired, so we can’t use the formula for independent samples.</li>
 </ol>
 </details>
@@ -1018,7 +1018,7 @@ Table&nbsp;19.2: Estimates and standard errors for the four parameters we have c
 <li>Is the planning model’s 25% a plausible value for <span class="math inline">\(p\)</span>? Check your answer with a t-statistic. Use the <a href="./prob_04_normal.html#sec-empirical-rule">68/95/99.7 rule</a> to put a bound on the two-sided p-value, and state your conclusion at <span class="math inline">\(\alpha=0.05\)</span>.</li>
 <li>What sources of error does this interval leave out? Explain why a narrow interval doesn’t tell us, by itself, that our estimate is close to the proportion among all U.S. adults.</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-shed-renters">
+<details class="solution-details" id="solution-shed-renters" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>The sample proportion is <span class="math inline">\(\hat p=3,426/12,934\approx0.265\)</span> and its estimated standard error is <span class="math inline">\(\sqrt{0.265(0.735)/12,934}\approx0.0039\)</span>, or about 0.388 percentage points. The two-SE interval is <span class="math inline">\(0.265\pm2(0.0039)\)</span>, which is about <span class="math inline">\([25.7\%,\ 27.3\%]\)</span>. If we accept the sampling assumption, the plausible values for the share of U.S. adults who pay rent are a little more than one in four, and the margin of error is 0.8 points.</li>
@@ -1033,7 +1033,7 @@ t=\frac{26.49-25}{0.388}\approx3.84.
 <div id="exercise-zero-errors" class="Exercise">
 <div class="Exercise fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-pencil-square fobx-icon" aria-hidden="true"></i><strong>Exercise 19.11: </strong>Zero observed errors</div><div class="fobx-body">
 <p>A pilot audit of 40 randomly selected insurance claims finds no errors. An analyst plugs <span class="math inline">\(\hat p=0\)</span> into <span class="math inline">\(\sqrt{\hat p(1-\hat p)/40}\)</span>, gets a standard error of zero, and reports a confidence interval of <span class="math inline">\([0,\ 0]\)</span>. Has the pilot shown that the error rate in the population is zero? Which condition for the interval fails here? (You don’t need to construct a better interval.)</p>
-<details aria-label="Solution" class="solution-details" id="solution-zero-errors">
+<details class="solution-details" id="solution-zero-errors" aria-label="Solution">
 <summary>Solution</summary>
 <p>No.&nbsp;If the population error rate is small but positive we could easily get a sample of 40 claims with no errors. For example, if the error rate is 2% then about 45% of samples of 40 claims would have no errors at all, since <span class="math inline">\(0.98^{40}\approx0.45\)</span>. The normal approximation needs enough of both outcomes in the sample, and we have none of one of them. The standard error is zero because the approximation has failed. It doesn’t mean that we are certain about the error rate.</p>
 </details>
@@ -1047,7 +1047,7 @@ t=\frac{26.49-25}{0.388}\approx3.84.
 <li>When we cut the margin in half the cost more than doubles. Why?</li>
 <li>The audit team proposes sampling only from claims with records that are easy to retrieve. Does your calculation in part 1 account for that?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-audit-cost-precision">
+<details class="solution-details" id="solution-audit-cost-precision" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>If we solve <span class="math inline">\(1/\sqrt n=0.04\)</span> we get <span class="math inline">\(n=625\)</span> claims, which would cost $6,250. If we solve <span class="math inline">\(1/\sqrt n=0.02\)</span> we get <span class="math inline">\(n=2{,}500\)</span> claims, which would cost $25,000.</li>
@@ -1066,7 +1066,7 @@ t=\frac{26.49-25}{0.388}\approx3.84.
 <li>Treat the samples as independent. Compute the standard error of the difference in means (B minus A), and a two-SE interval for the difference in the population.</li>
 <li>Reconcile your answers to parts 1 and 3 in one or two sentences.</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-two-stores-two-intervals">
+<details class="solution-details" id="solution-two-stores-two-intervals" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>For Store A the standard error is <span class="math inline">\(16/\sqrt{64}=2\)</span> and the interval is <span class="math inline">\([48,\ 56]\)</span>. For Store B the standard error is <span class="math inline">\(20/\sqrt{100}=2\)</span> and the interval is <span class="math inline">\([54,\ 62]\)</span>.</li>
@@ -1110,7 +1110,7 @@ t=\frac{26.49-25}{0.388}\approx3.84.
 <li>The vendor’s summary of the pilot says that “The tool produced a statistically significant lift in gross margin.” Use your interval to evaluate that statement at the 5% level. How does random assignment help us interpret the difference as the effect of the tool?</li>
 <li>Has the pilot shown that the tool pays for itself? Compare the interval to the $4,000 break-even value. What can the distributor conclude?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-sales-tool-break-even">
+<details class="solution-details" id="solution-sales-tool-break-even" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>We will work in thousands of dollars. The estimate is <span class="math inline">\(96.8-88.4=8.4\)</span>. The two groups were measured separately, so we add the variances of the two sample means: <span class="math display">\[
@@ -1168,7 +1168,7 @@ Table&nbsp;19.3: Mortgage applications and denials in the Boston HMDA data, 1990
 <li>The difference between the two sample denial rates is 19.1 percentage points. Treat the two groups as independent samples, and compute the standard error of the difference and a two-SE interval for the difference in denial rates.</li>
 <li>What does the interval in part 3 tell us, and what doesn’t it tell us? Be careful. What questions would the researchers at the Boston Fed have needed to answer before they could interpret the gap?</li>
 </ol>
-<details aria-label="Solution" class="solution-details" id="solution-hmda-denials">
+<details class="solution-details" id="solution-hmda-denials" aria-label="Solution">
 <summary>Solution</summary>
 <ol type="1">
 <li>For all applications, <span class="math inline">\(\hat p=0.120\)</span> and the standard error is <span class="math inline">\(\sqrt{0.120(0.880)/2,380}\approx0.0067\)</span>, so the interval is about <span class="math inline">\([10.6\%,\ 13.3\%]\)</span>. For Black applicants, <span class="math inline">\(\hat p=0.283\)</span> with a standard error of 0.024, and the interval is <span class="math inline">\([23.4\%,\ 33.2\%]\)</span>. For other applicants, <span class="math inline">\(\hat p=0.093\)</span> with a standard error of 0.006, and the interval is <span class="math inline">\([8.0\%,\ 10.5\%]\)</span>.</li>

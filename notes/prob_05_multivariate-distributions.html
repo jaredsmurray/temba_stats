@@ -96,14 +96,6 @@ div.csl-indent {
   }
 }</script>
 <style>
-.Notation {
-  --color1: #EEF1F3;
-  --color2: #5B6770;
-}
-.Exercise {
-  --color1: #E7F4F5;
-  --color2: #147D85;
-}
 .Definition {
   --color1: #F4EAF0;
   --color2: #7C3F58;
@@ -111,6 +103,14 @@ div.csl-indent {
 .TechnicalDetail {
   --color1: #EEF1F3;
   --color2: #5B6770;
+}
+.Notation {
+  --color1: #EEF1F3;
+  --color2: #5B6770;
+}
+.Exercise {
+  --color1: #E7F4F5;
+  --color2: #147D85;
 }
 </style>
 
@@ -671,15 +671,17 @@ Table&nbsp;10.2: Default rate by loan purpose: the proportion of loans charged o
 <summary>Solution</summary>
 <p>Within the control group, the conditional distribution of attrition status is</p>
 <p><span class="math display">\[
-\Pr(\text{Stayed}\mid\text{Control})=\frac{761}{820}=0.9280,
-\qquad
-\Pr(\text{Left}\mid\text{Control})=\frac{59}{820}=0.0720.
+\begin{aligned}
+\Pr(\text{Stayed}\mid\text{Control})&amp;=\frac{761}{820}=0.9280,\\
+\Pr(\text{Left}\mid\text{Control})&amp;=\frac{59}{820}=0.0720.
+\end{aligned}
 \]</span></p>
 <p>Within the Hybrid WFH group, the corresponding distribution is</p>
 <p><span class="math display">\[
-\Pr(\text{Stayed}\mid\text{Hybrid WFH})=\frac{754}{792}=0.9520,
-\qquad
-\Pr(\text{Left}\mid\text{Hybrid WFH})=\frac{38}{792}=0.0480.
+\begin{aligned}
+\Pr(\text{Stayed}\mid\text{Hybrid WFH})&amp;=\frac{754}{792}=0.9520,\\
+\Pr(\text{Left}\mid\text{Hybrid WFH})&amp;=\frac{38}{792}=0.0480.
+\end{aligned}
 \]</span></p>
 <p>Each pair sums to one because every employee in that schedule either stayed or left. Reversing the condition gives</p>
 <p><span class="math display">\[
@@ -785,10 +787,12 @@ Table&nbsp;10.3: Joint proportions of purpose and loan status: each count from t
 </div>
 <p>We will use the historical relative frequencies as a probability model for that loan: the probability assigned to each purpose–outcome pair is its count divided by 58,456. For example,</p>
 <p><span class="math display">\[
+\begin{aligned}
 \Pr(\text{small business and default})
-= \Pr(P = 3 \text{ and } D = 1)
-= \frac{822}{58,456}
+&amp;= \Pr(P = 3 \text{ and } D = 1) \\
+&amp;= \frac{822}{58,456}
 = 0.014.
+\end{aligned}
 \]</span></p>
 <p>Dividing each of the six interior counts by 58,456 produces the complete joint distribution in <a href="#tbl-loan-joint" class="quarto-xref">Table&nbsp;<span>10.4</span></a>.</p>
 <div class="cell">
@@ -836,8 +840,8 @@ Table&nbsp;10.4: The joint probability distribution of purpose and outcome for a
 \begin{aligned}
 \Pr(D = 1)
 &amp;= \Pr(P = 1 \text{ and } D = 1)
-+ \Pr(P = 2 \text{ and } D = 1)
-+ \Pr(P = 3 \text{ and } D = 1) \\
++ \Pr(P = 2 \text{ and } D = 1) \\
+&amp;\quad + \Pr(P = 3 \text{ and } D = 1) \\
 &amp;= 0.139
 + 0.012
 + 0.014 \\
@@ -1042,9 +1046,10 @@ Table&nbsp;10.6: The conditional distribution of default status for a future sma
 \]</span></p>
 <p>Adding down the columns gives the marginal renewal distribution:</p>
 <p><span class="math display">\[
-\Pr(\text{Renews})=0.42+0.24=0.66,
-\qquad
-\Pr(\text{Does not renew})=0.28+0.06=0.34.
+\begin{aligned}
+\Pr(\text{Renews})&amp;=0.42+0.24=0.66,\\
+\Pr(\text{Does not renew})&amp;=0.28+0.06=0.34.
+\end{aligned}
 \]</span></p>
 <p>The completed joint probability model is</p>
 <table class="caption-top table">
@@ -1079,15 +1084,17 @@ Table&nbsp;10.6: The conditional distribution of default status for a future sma
 </table>
 <p>For Basic customers, divide the two joint probabilities in the Basic row by the row’s marginal probability, 0.70:</p>
 <p><span class="math display">\[
-\Pr(\text{Renews}\mid\text{Basic})=\frac{0.42}{0.70}=0.60,
-\qquad
-\Pr(\text{Does not renew}\mid\text{Basic})=\frac{0.28}{0.70}=0.40.
+\begin{aligned}
+\Pr(\text{Renews}\mid\text{Basic})&amp;=\frac{0.42}{0.70}=0.60,\\
+\Pr(\text{Does not renew}\mid\text{Basic})&amp;=\frac{0.28}{0.70}=0.40.
+\end{aligned}
 \]</span></p>
 <p>For Premium customers, divide by 0.30:</p>
 <p><span class="math display">\[
-\Pr(\text{Renews}\mid\text{Premium})=\frac{0.24}{0.30}=0.80,
-\qquad
-\Pr(\text{Does not renew}\mid\text{Premium})=\frac{0.06}{0.30}=0.20.
+\begin{aligned}
+\Pr(\text{Renews}\mid\text{Premium})&amp;=\frac{0.24}{0.30}=0.80,\\
+\Pr(\text{Does not renew}\mid\text{Premium})&amp;=\frac{0.06}{0.30}=0.20.
+\end{aligned}
 \]</span></p>
 <p>Among renewing customers, the Premium share is</p>
 <p><span class="math display">\[
@@ -1112,9 +1119,10 @@ Table&nbsp;10.6: The conditional distribution of default status for a future sma
 </div>
 <p>Most tall people aren’t in the NBA, but most people in the NBA are tall: <span class="math inline">\(\Pr(\text{NBA} \mid \text{tall})\)</span> is minuscule while <span class="math inline">\(\Pr(\text{tall} \mid \text{NBA})\)</span> is close to one. Mathematically,</p>
 <p><span class="math display">\[
-\Pr(\text{NBA} \mid \text{tall}) = \frac{\Pr(\text{NBA and tall})}{\Pr(\text{tall})},
-\qquad
-\Pr(\text{tall} \mid \text{NBA}) = \frac{\Pr(\text{NBA and tall})}{\Pr(\text{NBA})}.
+\begin{aligned}
+\Pr(\text{NBA} \mid \text{tall}) &amp;= \frac{\Pr(\text{NBA and tall})}{\Pr(\text{tall})},\\
+\Pr(\text{tall} \mid \text{NBA}) &amp;= \frac{\Pr(\text{NBA and tall})}{\Pr(\text{NBA})}.
+\end{aligned}
 \]</span></p>
 <p>Adult heights are roughly normal, so about half of adults are taller than average. The first conditional therefore divides a tiny joint probability by about 0.5 and stays tiny. The second divides that same joint probability by the much smaller probability of being in the NBA, producing a conditional probability near 1.</p>
 </section>

@@ -433,7 +433,7 @@ window.Quarto = {
 <p>Visualizations show the shape of a distribution, but we often need concise, numerical descriptions of our data. Statistical summaries compress a distribution into a few quantities which we can report, compare, or use in subsequent statistical analyses.</p>
 <div id="notation-subscripts-summation" class="Notation">
 <div class="Notation fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-braces fobx-icon" aria-hidden="true"></i><strong>Notation 3.1: </strong>Subscripts and summation</div><div class="fobx-body">
-<details open="" aria-label="Details" id="details-subscripts-summation">
+<details id="details-subscripts-summation" aria-label="Details" open="">
 <summary>Details</summary>
 <p>A subscript labels <em>which</em> observation we mean: <span class="math inline">\(x_1\)</span> is the first value of a variable <span class="math inline">\(x\)</span>, <span class="math inline">\(x_2\)</span> the second, and <span class="math inline">\(x_i\)</span> is “the <span class="math inline">\(i\)</span>-th one” when we don’t want to say which. With <span class="math inline">\(n\)</span> observations, <span class="math inline">\(i\)</span> runs from 1 to <span class="math inline">\(n\)</span>. Here are the first four sale prices in our 78752 data with their labels:</p>
 <div class="cell">
@@ -478,9 +478,11 @@ Table&nbsp;3.1: The first four sale prices, labeled.
 </div>
 <p>The symbol <span class="math inline">\(\sum\)</span> (a capital sigma, for “sum”) means “add up.” Writing <span class="math inline">\(\sum_{i=1}^{4} x_i\)</span> says: add up <span class="math inline">\(x_i\)</span> for every <span class="math inline">\(i\)</span> from 1 to 4,</p>
 <p><span class="math display">\[
-\sum_{i=1}^{4} x_i = x_1 + x_2 + x_3 + x_4
-= \$419,000 + \$429,000 + \$575,000 + \$210,000
-= \$1,633,000.
+\begin{aligned}
+\sum_{i=1}^{4} x_i &amp;= x_1 + x_2 + x_3 + x_4 \\
+&amp;= \$419,000 + \$429,000 + \$575,000 + \$210,000 \\
+&amp;= \$1,633,000.
+\end{aligned}
 \]</span></p>
 <p>Putting <span class="math inline">\(n\)</span> in place of 4 adds up the whole column, and <span class="math inline">\(\frac{1}{n}\sum_{i=1}^{n} x_i\)</span> is that total divided by the number of observations — the sample mean.</p>
 </details>
@@ -492,7 +494,7 @@ Table&nbsp;3.1: The first four sale prices, labeled.
 <div id="defn-sample-mean" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.1: </strong>Sample mean</div><div class="fobx-body">
 <p>The <strong>sample mean</strong> is the arithmetic average of the observed values: add them up and divide by how many there are. We write it <span class="math inline">\(\bar{x}\)</span>, read aloud as “x-bar.”</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-sample-mean">
+<details class="formula-details" id="formula-sample-mean" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>For observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
 <p><span class="math display">\[
@@ -553,7 +555,7 @@ Figure&nbsp;3.1: Sale prices by ZIP code: box plots (left) with x’s indicating
 <div id="defn-variance" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.3: </strong>Sample Variance</div><div class="fobx-body">
 <p>The sample <strong>variance</strong> is the average squared deviation (difference) between each observation <span class="math inline">\(x_i\)</span> and the mean <span class="math inline">\(\bar x\)</span> (which is <span class="math inline">\((x_i-\bar x)\)</span>). We denote it <span class="math inline">\(s^2\)</span>.</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-variance">
+<details class="formula-details" id="formula-variance" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p>The variance is given by</p>
 <p><span class="math display">\[
@@ -577,7 +579,7 @@ s^2 = \frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2,
 <div id="defn-standard-deviation" class="Definition">
 <div class="Definition fobx-simplebox fobx-default fobx-static"><div class="fobx-title"><i class="bi bi-book fobx-icon" aria-hidden="true"></i><strong>Definition 3.4: </strong>Sample standard deviation</div><div class="fobx-body">
 <p>The sample <strong>standard deviation</strong> is the square root of the variance: <span class="math inline">\(s = \sqrt{s^2}\)</span>. It measures the typical distance of an observation from the mean — above or below. The standard deviation has the same units as the original <span class="math inline">\(x\)</span> variable, and is more interpretable.</p>
-<details class="formula-details" aria-label="Details and formulas" id="formula-standard-deviation">
+<details class="formula-details" id="formula-standard-deviation" aria-label="Details and formulas">
 <summary>Details and formulas</summary>
 <p><span class="math display">\[
 s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n} (x_i - \bar{x})^2}

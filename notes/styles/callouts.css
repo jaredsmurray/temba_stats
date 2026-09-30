@@ -90,3 +90,21 @@ details.fobx-default > div > :last-child,
 .solution-details[open] > summary {
   margin-bottom: 0.25rem;
 }
+
+/* Wide display math scrolls on its own line instead of being clipped by
+   callout boxes or spilling into the margin on narrow screens. */
+mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+/* On narrow screens, wide tables scroll within the text column instead of
+   widening the page. */
+@media (max-width: 1199.98px) {
+  main table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
